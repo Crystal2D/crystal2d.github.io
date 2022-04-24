@@ -19,13 +19,12 @@ BlankEngine.loadData = function ()
         if (windowR.status < 400)
         {
             BlankEngine.windowData = JSON.parse(this.responseText);
-            BlankEngine.init();
         }
     };
     
     shaderR.onload = function ()
     {
-        if (windowR.status < 400)
+        if (shaderR.status < 400)
         {
             BlankEngine.shaderData = JSON.parse(this.responseText);
             BlankEngine.init();
@@ -55,7 +54,7 @@ BlankEngine.init = function ()
     this.name = this.windowData.name;
     this.window = this.windowData.window;
     
-    document.title = this.windowData.window.title;
+    document.title = this.window.title;
     
     game = new Game(this.window.width, this.window.height);
 };
