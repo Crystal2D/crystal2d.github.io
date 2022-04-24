@@ -1,6 +1,6 @@
 function BlankEngine()
 {
-    throw new Error("This is a static class");
+    ThrowError("This is a static class");
 }
 
 BlankEngine.initiateProgram = function ()
@@ -12,7 +12,7 @@ BlankEngine.initiateProgram = function ()
 BlankEngine.loadData = function ()
 {
     let windowR = new XMLHttpRequest();
-    let shaderR = new XMLHttpRequest();
+    //let shaderR = new XMLHttpRequest();
     
     windowR.onload = function ()
     {
@@ -22,31 +22,31 @@ BlankEngine.loadData = function ()
         }
     };
     
-    shaderR.onload = function ()
+    /*shaderR.onload = function ()
     {
         if (shaderR.status < 400)
         {
             BlankEngine.shaderData = JSON.parse(this.responseText);
             BlankEngine.init();
         }
-    };
+    };*/
     
     windowR.onerror = function ()
     {
         ThrowError(3);
     };
     
-    shaderR.onerror = function ()
+    /*shaderR.onerror = function ()
     {
         ThrowError(3);
-    };
+    };*/
     
     windowR.open("GET", "/package.json");
-    shaderR.open("GET", "/data/shaders.json");
+    //shaderR.open("GET", "/data/shaders.json");
     windowR.overrideMimeType("application/json");
-    shaderR.overrideMimeType("application/json");
+    //shaderR.overrideMimeType("application/json");
     windowR.send();
-    shaderR.send();
+    //shaderR.send();
 };
 
 BlankEngine.init = function ()
@@ -81,7 +81,7 @@ class Game
         
         document.body.appendChild(this.htmlCanvas);
         
-        var test = new Material(this.gl, BlankEngine.shaderData.vShader, BlankEngine.shaderData.fShader);
+        //var test = new Material(this.gl, BlankEngine.shaderData.vShader, BlankEngine.shaderData.fShader);
     }
     
     Update ()
