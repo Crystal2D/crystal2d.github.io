@@ -1,12 +1,12 @@
 function BlankEngine()
 {
-    ThrowError("This is a static class");
+    ThrowError(1);
 }
 
 BlankEngine.initiateProgram = function ()
 {
-    alert("hi");
     this.loadData();
+    this.requestUpdate();
 };
 
 BlankEngine.loadData = function ()
@@ -20,7 +20,6 @@ BlankEngine.loadData = function ()
         {
             BlankEngine.windowData = JSON.parse(this.responseText);
             BlankEngine.init();
-            BlankEngine.requestUpdate();
         }
     };
     
