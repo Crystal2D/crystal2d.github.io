@@ -5,10 +5,11 @@ function BlankEngine()
 
 BlankEngine.initiateProgram = function ()
 {
-    this.loadData();
-    this.requestUpdate();
+    alert("jshdrjfbdhddjb");
+    //this.loadData();
+    //this.requestUpdate();
 };
-
+/*
 BlankEngine.loadData = function ()
 {
     let windowR = new XMLHttpRequest();
@@ -31,7 +32,7 @@ BlankEngine.loadData = function ()
             BlankEngine.init();
         }
     };*/
-    
+    /*
     windowR.onerror = function ()
     {
         ThrowError(3);
@@ -41,7 +42,7 @@ BlankEngine.loadData = function ()
     {
         ThrowError(3);
     };*/
-    
+    /*
     windowR.open("GET", "/package.json");
     //shaderR.open("GET", "/data/shaders.json");
     windowR.overrideMimeType("application/json");
@@ -123,7 +124,7 @@ class Material
         return output;
     }
 }
-
+*/
 function ThrowError (errorCode)
 {
     var errorText;
