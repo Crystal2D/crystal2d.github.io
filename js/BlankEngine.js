@@ -7,7 +7,6 @@ BlankEngine.initiateProgram = function ()
 {
     alert("hi");
     this.loadData();
-    this.requestUpdate();
 };
 
 BlankEngine.loadData = function ()
@@ -21,6 +20,7 @@ BlankEngine.loadData = function ()
         {
             BlankEngine.windowData = JSON.parse(this.responseText);
             BlankEngine.init();
+            BlankEngine.requestUpdate();
         }
     };
     
