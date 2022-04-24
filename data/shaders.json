@@ -1,0 +1,4 @@
+{
+    "vShader" : "attribute vec2 aVertexPos;attribute vec2 aTexturePos;varying vec2 vTexturePos;void main () {gl_Position = vec4(aVertexPos, 1, 1);vTexturePos = aTexturePos;}",
+    "fShader" : "precision mediump float;uniform sampler2D uImage;varying vec2 vTexturePos;void main (){gl_FragColor = texture2D(uImage, vTexturePos);}"
+}
