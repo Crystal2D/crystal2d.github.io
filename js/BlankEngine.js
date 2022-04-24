@@ -5,6 +5,7 @@ function BlankEngine()
 
 BlankEngine.initiateProgram = function ()
 {
+    alert("hi");
     this.loadData();
     this.requestUpdate();
 };
@@ -52,11 +53,9 @@ BlankEngine.loadData = function ()
 BlankEngine.init = function ()
 {
     this.name = this.windowData.name;
-    this.window = this.windowData.window;
+    this.wData = this.windowData.window;
     
-    document.title = this.window.title;
-    
-    game = new Game(this.window.width, this.window.height);
+    game = new Game(this.wData.width, this.wData.height);
 };
 
 BlankEngine.requestUpdate = function ()
