@@ -20,6 +20,7 @@ BlankEngine.loadData = function ()
         if (windowR.status < 400)
         {
             BlankEngine.windowData = JSON.parse(this.responseText);
+            BlankEngine.init();
         }
     };
     
