@@ -54,6 +54,8 @@ BlankEngine.init = function ()
     this.name = this.windowData.name;
     this.wData = this.windowData.window;
     
+    document.title = this.wData.title;
+    
     game = new Game(this.wData.width, this.wData.height);
 };
 
@@ -79,7 +81,7 @@ class Game
         
         document.body.appendChild(this.htmlCanvas);
         
-        //var test = new Material(this.gl, BlankEngine.shaderData.vShader, BlankEngine.shaderData.fShader);
+        var test = new Material(this.gl, BlankEngine.shaderData.vShader, BlankEngine.shaderData.fShader);
     }
     
     Update ()
