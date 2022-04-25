@@ -63,7 +63,7 @@ BlankEngine.init = function ()
     
     document.title = wTitle;
     
-    game = new Game(this.wData.width, this.wData.height);
+    this.game = new Game(this.wData.width, this.wData.height);
 };
 
 BlankEngine.requestUpdate = function ()
@@ -73,7 +73,7 @@ BlankEngine.requestUpdate = function ()
 
 BlankEngine.update = function ()
 {
-    game.Update();
+    this.game.Update();
 };
 
 class Game
