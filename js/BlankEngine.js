@@ -51,10 +51,17 @@ BlankEngine.loadData = function ()
 
 BlankEngine.init = function ()
 {
+    var wTitle = "Untitled";
+    
     this.name = this.windowData.name;
     this.wData = this.windowData.window;
     
-    document.title = this.wData.title;
+    if (this.wData.title != null)
+    {
+        wTitle = this.wData.title;
+    }
+    
+    document.title = wTitle;
     
     game = new Game(this.wData.width, this.wData.height);
 };
@@ -73,11 +80,14 @@ class Game
 {
     constructor (width, height)
     {
+        if (width == null || height == null) return ThrowError(0);
+        
         this.htmlCanvas = document.createElement("canvas");
         this.htmlCanvas.width = width;
         this.htmlCanvas.height = height;
         
         this.gl = this.htmlCanvas.getContext("webgl2");
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         
         document.body.appendChild(this.htmlCanvas);
         
@@ -86,8 +96,8 @@ class Game
     
     Update ()
     {
+        alert("hi");
         gl.viewport(0, 0, game.htmlCanvas.width, game.htmlCanvas.height);
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
