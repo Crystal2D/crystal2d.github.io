@@ -87,6 +87,7 @@ class Game
     Update ()
     {
         gl.viewport(0, 0, game.htmlCanvas.width, game.htmlCanvas.height);
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
