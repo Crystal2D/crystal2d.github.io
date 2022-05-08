@@ -5,6 +5,7 @@ function BlankEngine()
 
 BlankEngine.initiateProgram = function ()
 {
+    document.body.style.width = "100%";
     document.body.style.display = "flex";
     document.body.style.alignItems = "center";
     
