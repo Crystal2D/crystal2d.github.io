@@ -5,6 +5,8 @@ function BlankEngine()
 
 BlankEngine.initiateProgram = function ()
 {
+    document.body.style.display = "flex";
+    
     this.loadData();
     this.requestUpdate();
 };
@@ -76,6 +78,16 @@ BlankEngine.update = function ()
     this.game.Update();
 };
 
+function DataManager ()
+{
+    ThrowError(1);
+}
+
+DataManager.load = function (directory, funcAfter)
+{
+    
+};
+
 class Game
 {
     constructor (width, height)
@@ -85,7 +97,8 @@ class Game
         this.htmlCanvas = document.createElement("canvas");
         this.htmlCanvas.width = width;
         this.htmlCanvas.height = height;
-        this.htmlCanvas.style.backgroundColor = "black";
+        this.htmlCanvas.style.margin = "auto";
+        this.htmlCanvas.style.background = "black";
         
         this.gl = this.htmlCanvas.getContext("webgl2");
         
