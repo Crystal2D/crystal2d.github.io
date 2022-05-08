@@ -6,7 +6,7 @@ function BlankEngine()
 BlankEngine.initiateProgram = function ()
 {
     document.body.style.display = "flex";
-    document.body.style.alignContent = "center";
+    document.body.style.alignItems = "center";
     
     this.loadData();
     this.requestUpdate();
