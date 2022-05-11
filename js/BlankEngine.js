@@ -6,11 +6,11 @@ function BlankEngine()
 BlankEngine.initiateProgram = function ()
 {
     document.body.style.height = "100vh";
+    document.body.style.margin = "0";
     document.body.style.display = "flex";
     document.body.style.alignItems = "center";
     
     this.loadData();
-    this.requestUpdate();
 };
 
 BlankEngine.loadData = function ()
@@ -68,6 +68,8 @@ BlankEngine.init = function ()
     document.title = wTitle;
     
     this.game = new Game(this.wData.width, this.wData.height);
+    
+    this.requestUpdate();
 };
 
 BlankEngine.requestUpdate = function ()
@@ -80,16 +82,6 @@ BlankEngine.update = function ()
     this.game.Update();
 };
 
-function DataManager ()
-{
-    ThrowError(1);
-}
-
-DataManager.load = function (directory, funcAfter)
-{
-    
-};
-
 class Game
 {
     constructor (width, height)
@@ -100,9 +92,9 @@ class Game
         this.htmlCanvas.width = width;
         this.htmlCanvas.height = height;
         this.htmlCanvas.style.margin = "auto";
-        this.htmlCanvas.style.background = "black";
         
         this.gl = this.htmlCanvas.getContext("webgl2");
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         
         document.body.appendChild(this.htmlCanvas);
         
@@ -111,11 +103,11 @@ class Game
     
     Update ()
     {
-        gl.viewport(0, 0, game.htmlCanvas.width, game.htmlCanvas.height);
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        gl.flush();
+        this.gl.viewport(0, 0, this.htmlCanvas.width, this.htmlCanvas.height);
+        this.gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        this.gl.enable(gl.BLEND);
+        this.gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        this.gl.flush();
     }
 }
 
