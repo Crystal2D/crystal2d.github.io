@@ -74,8 +74,7 @@ BlankEngine.init = function ()
 
 BlankEngine.requestUpdate = function ()
 {
-    this.update();
-    requestAnimationFrame(this.update);
+    requestAnimationFrame(this.update.bind(this));
 };
 
 BlankEngine.update = function ()
