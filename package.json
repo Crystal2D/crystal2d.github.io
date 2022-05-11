@@ -4,6 +4,7 @@
         "title" : "BlankEngine",
         "width" : 408,
         "height" : 312,
+        "resizable" : false,
         "icon" : ""
     }
 }
