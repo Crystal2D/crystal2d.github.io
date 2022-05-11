@@ -79,7 +79,7 @@ BlankEngine.requestUpdate = function ()
 
 BlankEngine.update = function ()
 {
-    this.game.Update();
+    if (this.game.Update != null) this.game.Update();
 };
 
 class Game
