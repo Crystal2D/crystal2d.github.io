@@ -92,12 +92,17 @@ class Game
         this.htmlCanvas = document.createElement("canvas");
         this.htmlCanvas.width = width;
         this.htmlCanvas.height = height;
+        
+        //this.htmlCanvas.style.position = "relative";
+        this.htmlCanvas.style.width = "100%";
+        this.htmlCanvas.style.height = "100%";
         this.htmlCanvas.style.margin = "auto";
         
         this.gl = this.htmlCanvas.getContext("webgl2");
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         
         document.body.appendChild(this.htmlCanvas);
+        document.body.style.background = "white";
         
         var test = new Material(this.gl, BlankEngine.shaderData.vShader, BlankEngine.shaderData.fShader);
     }
