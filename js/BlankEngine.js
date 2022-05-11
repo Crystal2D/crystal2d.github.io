@@ -74,12 +74,13 @@ BlankEngine.init = function ()
 
 BlankEngine.requestUpdate = function ()
 {
-    requestAnimationFrame(() => this.update);
+    requestAnimationFrame(this.update);
 };
 
 BlankEngine.update = function ()
 {
     this.game.Update();
+    this.requestUpdate();
 };
 
 class Game
