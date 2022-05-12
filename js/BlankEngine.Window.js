@@ -9,13 +9,7 @@ function Window()
 
 
 // ---------- Static Properties
-Window.fullScreen = {
-    set Window.fullScreen (value)
-    {
-        Window.fullScreen = value;
-        alert(Window.fullScreen);
-    }
-};
+Window.fullScreen = false;
 
 
 
@@ -95,8 +89,9 @@ Window.SetMargin = function (width, height)
  */
 Window.init = function ()
 {
-    Window.data.marginX = 2;
-    Window.data.marginY = 2;
+    this.data.marginX = 2;
+    this.data.marginY = 2;
+    this.data.fullscreen = this.fullScreen;
     
     this.updateSize();
     this.requestUpdate();
@@ -117,6 +112,14 @@ Window.requestUpdate = function ()
  */
 Window.update = function ()
 {
+    if (this.data.fullscreen != this.fullScreen)
+    {
+        if (this.fullScreen) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+        
+        this.data.fullscreen = this.fullScreen;
+    }
+    
     if (!this.data.resizable)
     {
         this.updateSize();
