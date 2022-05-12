@@ -9,7 +9,7 @@ function Window()
 
 
 // ---------- Static Properties
-Window.fullScreen = false;
+Window.fullScreen = true;
 
 
 
@@ -91,7 +91,6 @@ Window.init = function ()
 {
     this.data.marginX = 2;
     this.data.marginY = 2;
-    this.data.fullscreen = this.fullScreen;
     
     this.updateSize();
     this.requestUpdate();
@@ -112,13 +111,10 @@ Window.requestUpdate = function ()
  */
 Window.update = function ()
 {
-    if (this.data.fullscreen != this.fullScreen)
-    {
-        if (this.fullScreen) document.documentElement.requestFullscreen();
-        else document.exitFullscreen();
-        
-        this.data.fullscreen = this.fullScreen;
-    }
+    if (!document.hasFocus()) return this.requestUpdate();
+    
+    if (document.fullscreenElement && !this.fullScreen) document.exitFullscreen();
+    else if (!document.fullscreenElement && this.fullScreen) document.documentElement.requestFullscreen();
     
     if (!this.data.resizable)
     {

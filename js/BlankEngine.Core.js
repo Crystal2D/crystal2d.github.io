@@ -73,6 +73,8 @@ BlankEngineCore.requestUpdate = function ()
 
 BlankEngineCore.update = function ()
 {
+    if (!document.hasFocus()) return this.requestUpdate();
+    
     this.game.Update();
     this.requestUpdate();
 };
