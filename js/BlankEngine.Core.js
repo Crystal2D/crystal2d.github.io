@@ -1,9 +1,9 @@
-function BlankEngineCore()
+BlankEngine.Core = function ()
 {
     ThrowError(1);
-}
+};
 
-BlankEngineCore.initiateProgram = function ()
+BlankEngine.Core.initiateProgram = function ()
 {
     document.body.style.height = "100vh";
     document.body.style.margin = "0";
@@ -13,7 +13,7 @@ BlankEngineCore.initiateProgram = function ()
     this.loadData();
 };
 
-BlankEngineCore.loadData = function ()
+BlankEngine.Core.loadData = function ()
 {
     let windowR = new XMLHttpRequest();
     let shaderR = new XMLHttpRequest();
@@ -22,7 +22,7 @@ BlankEngineCore.loadData = function ()
     {
         if (windowR.status < 400)
         {
-            BlankEngineCore.windowData = JSON.parse(this.responseText);
+            BlankEngine.Core.windowData = JSON.parse(this.responseText);
         }
     };
     
@@ -30,8 +30,8 @@ BlankEngineCore.loadData = function ()
     {
         if (shaderR.status < 400)
         {
-            BlankEngineCore.shaderData = JSON.parse(this.responseText);
-            BlankEngineCore.init();
+            BlankEngine.Core.shaderData = JSON.parse(this.responseText);
+            BlankEngine.Core.init();
         }
     };
     
@@ -53,7 +53,7 @@ BlankEngineCore.loadData = function ()
     shaderR.send();
 };
 
-BlankEngineCore.init = function ()
+BlankEngine.Core.init = function ()
 {
     this.name = this.windowData.name;
     this.wData = this.windowData.window;
@@ -66,12 +66,12 @@ BlankEngineCore.init = function ()
     this.requestUpdate();
 };
 
-BlankEngineCore.requestUpdate = function ()
+BlankEngine.Core.requestUpdate = function ()
 {
     requestAnimationFrame(this.update.bind(this));
 };
 
-BlankEngineCore.update = function ()
+BlankEngine.Core.update = function ()
 {
     if (!document.hasFocus()) return this.requestUpdate();
     
@@ -97,7 +97,7 @@ class Game
         
         document.body.appendChild(this.htmlCanvas);
         
-        var test = new Material(this.gl, BlankEngineCore.shaderData.vShader, BlankEngineCore.shaderData.fShader);
+        var test = new Material(this.gl, BlankEngine.Core.shaderData.vShader, BlankEngine.Core.shaderData.fShader);
     }
     
     Update ()

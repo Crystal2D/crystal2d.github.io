@@ -1,3 +1,3 @@
 window.onload = () => {
-    BlankEngineCore.initiateProgram();
+    BlankEngine.Core.initiateProgram();
 };
