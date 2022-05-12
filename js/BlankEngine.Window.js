@@ -90,6 +90,9 @@ Window.update = function ()
         this.updateSize();
     }
     
+    BlankEngineCore.game.htmlCanvas.style.width = `calc(100% - ${this.data.marginX}px)`;
+    BlankEngineCore.game.htmlCanvas.style.height =  `calc(100% - ${this.data.marginY}px)`;
+    
     this.requestUpdate();
 };
 
