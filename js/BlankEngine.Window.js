@@ -4,6 +4,11 @@
 function Window()
 {
     ThrowError(1);
+    
+    set fullScreen (value)
+    {
+        this.fullScreen = value;
+    }
 }
 
 
@@ -72,18 +77,6 @@ Window.SetMargin = function (width, height)
     this.data.marginY = height ?? 4;
     
     this.updateSize();
-};
-
-
-
-// ---------- Properties
-Window.fullScreen = var
-{
-    set this(value)
-    {
-        this.fullScreen = value;
-        alert(Window.fullScreen);
-    }
 };
 
 
