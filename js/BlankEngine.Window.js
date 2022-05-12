@@ -13,6 +13,7 @@ Window.fullScreen = {
     set this (value)
     {
         this.fullScreen = value;
+        alert(Window.fullScreen);
     }
 };
 
