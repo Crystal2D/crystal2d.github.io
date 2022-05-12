@@ -19,49 +19,85 @@ class Vector2
         this.y = y;
     }
     
-    zero ()
+    static zero ()
     {
-        this.Set(0, 0);
+        return new Vector2(0, 0);
     }
     
-    one ()
+    static one ()
     {
-        this.Set(1, 1);
+        return new Vector2(1, 1);
     }
     
-    up ()
+    static up ()
     {
-        this.Set(0, 1);
+        return new Vector2(0, 1);
     }
     
-    down ()
+    static down ()
     {
-        this.Set(0, -1);
+        return new Vector2(0, -1);
     }
     
-    left ()
+    static left ()
     {
-        this.Set(-1, 0);
+        return new Vector2(-1, 0);
     }
     
-    right ()
+    static right ()
     {
-        this.Set(1, 0);
+        return new Vector2(1, 0);
     }
     
-    magnitude ()
+    get magnitude ()
     {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
     
-    sqrMagnitude ()
+    get sqrMagnitude ()
     {
         return (this.x * this.x + this.y * this.y);
     }
     
-    normalized ()
+    get normalized ()
     {
-        return (this.x / this.sqrMagnitude() + this.y / this.sqrMagnitude()) ?? 0.0;
+        return new Vector2(this.x / this.magnitude || 0.0, this.y / this.magnitude || 0.0);
+    }
+    
+    ToString ()
+    {
+        return `${this.x}, ${this.y}`;
+    }
+    
+    Equals (other)
+    {
+        return this.x == other.x && this.y == other.y;
+    }
+    
+    Normalize ()
+    {
+        let magnitude = this.magnitude;
+        
+        this.x = this.x / magnitude;
+        this.y = this.y / magnitude;
+    }
+    
+    static Distance (a, b)
+    {
+        let x = a.x - b.x;
+        let y = a.y - b.y;
+        
+        return Math.sqrt(x * x + y * y);
+    }
+    
+    static Min (lhs, rhs)
+    {
+        return new Vector2(Math.min(lhs.x, rhs.x), Math.min(lhs.y, rhs.y));
+    }
+    
+    static Max (lhs, rhs)
+    {
+        return new Vector2(Math.max(lhs.x, rhs.x), Math.max(lhs.y, rhs.y));
     }
 }
 
@@ -75,10 +111,15 @@ class Color
         this.a = a ?? 1.0;
     }
     
-    grayscale ()
+    get grayscale ()
     {
         let value = (this.r * 0.3 + this.g * 0.59 + this.b * 0.11);
         
         return new Color(value, value, value, this.a);
+    }
+    
+    ToString ()
+    {
+        return `${this.r}, ${this.g}, ${this.b}, ${this.a}`;
     }
 }

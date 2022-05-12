@@ -6,6 +6,10 @@ function Window()
     ThrowError(1);
 }
 
+
+
+// ---------- Static Methods
+
 /**
  * Sets the window base
  * @memberof Window
@@ -70,19 +74,44 @@ Window.SetMargin = function (width, height)
     this.updateSize();
 };
 
+
+
+// ---------- Properties
+Window.fullScreen = set (value)
+{
+    alert(value);
+};
+
+
+
+// ---------- Events
+
+/**
+ * Called for initialization
+ * @memberof Window
+ */
 Window.init = function ()
 {
     Window.data.marginX = 2;
     Window.data.marginY = 2;
     
+    this.updateSize();
     this.requestUpdate();
 }
 
+/**
+ * Called for update
+ * @memberof Window
+ */
 Window.requestUpdate = function ()
 {
     requestAnimationFrame(this.update.bind(this));
 };
 
+/**
+ * When updating
+ * @memberof Window
+ */
 Window.update = function ()
 {
     if (!this.data.resizable)
@@ -90,16 +119,20 @@ Window.update = function ()
         this.updateSize();
     }
     
-    BlankEngineCore.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
-    BlankEngineCore.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
-    
     this.requestUpdate();
 };
 
+/**
+ * Sets the window size from Window.data
+ * @memberof Window
+ */
 Window.updateSize = function ()
 {
     let sX = this.data.width + (this.data.width * (this.data.marginX * 2 / 100));
     let sY = this.data.height + (this.data.height * (this.data.marginY * 2 / 100));
+    
+    BlankEngineCore.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
+    BlankEngineCore.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
     window.resizeTo(sX, sY);
 };
