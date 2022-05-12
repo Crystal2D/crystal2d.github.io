@@ -6,14 +6,17 @@ function Window()
     ThrowError(1);
 }
 
+Window.data.marginX = 2;
+Window.data.marginY = 2;
+
 /**
  * Sets the window base
  * @memberof Window
  * @param {string} title - The title of the window
  * @param {int} width - The width of the window in pixels
  * @param {int} height - The height of the window in pixels
- * @param {int} marginX - The width of the inner margin in pixels
- * @param {int} marginY - The height of the inner margin in pixels
+ * @param {int} marginX - The width of the inner margin in percent
+ * @param {int} marginY - The height of the inner margin in percent
  */
 Window.SetBase = function (title, width, height, marginX, marginY)
 {
@@ -59,13 +62,13 @@ Window.SetSize = function (width, height)
 /**
  * Sets the inner margin's size
  * @memberof Window
- * @param {int} width - The width of the margin in pixels
- * @param {int} height - The height of the margin in pixels
+ * @param {int} width - The width of the margin in percent
+ * @param {int} height - The height of the margin in percent
  */
 Window.SetMargin = function (width, height)
 {
-    this.data.marginX = width ?? 0;
-    this.data.marginY = height ?? 0;
+    this.data.marginX = width ?? 4;
+    this.data.marginY = height ?? 4;
     
     this.updateSize();
 };
@@ -82,16 +85,16 @@ Window.update = function ()
         this.updateSize();
     }
     
-    BlankEngineCore.game.htmlCanvas.style.width = `calc(100% - ${this.data.marginX ?? 4}px)`;
-    BlankEngineCore.game.htmlCanvas.style.height =  `calc(100% - ${this.data.marginY ?? 4}px)`;
-    
     this.requestUpdate();
 };
 
 Window.updateSize = function ()
 {
-    let sX = this.data.width + (this.data.marginX * 2);
-    let sY = this.data.height + (this.data.marginY * 2);
+    let sX = this.data.width + (this.data.width * (this.data.marginX * 2 / 100));
+    let sY = this.data.height + (this.data.height * (this.data.marginY * 2 / 100));
+    
+    BlankEngineCore.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
+    BlankEngineCore.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
     window.resizeTo(sX, sY);
 };
