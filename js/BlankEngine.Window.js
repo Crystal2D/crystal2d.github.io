@@ -64,16 +64,8 @@ Window.SetSize = function (width, height)
  */
 Window.SetMargin = function (width, height)
 {
-    if (width == null || height == null)
-    {
-        this.data.marginX = 0;
-        this.data.marginY = 0;
-        
-        return null;
-    }
-    
-    this.data.marginX = width;
-    this.data.marginY = height;
+    this.data.marginX = width ?? 0;
+    this.data.marginY = height ?? 0;
     
     this.updateSize();
 };
@@ -90,8 +82,8 @@ Window.update = function ()
         this.updateSize();
     }
     
-    BlankEngineCore.game.htmlCanvas.style.width = `calc(100% - ${this.data.marginX}px)`;
-    BlankEngineCore.game.htmlCanvas.style.height =  `calc(100% - ${this.data.marginY}px)`;
+    BlankEngineCore.game.htmlCanvas.style.width = `calc(100% - ${this.data.marginX ?? 4}px)`;
+    BlankEngineCore.game.htmlCanvas.style.height =  `calc(100% - ${this.data.marginY ?? 4}px)`;
     
     this.requestUpdate();
 };
