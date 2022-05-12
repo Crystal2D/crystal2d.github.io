@@ -77,9 +77,13 @@ Window.SetMargin = function (width, height)
 
 
 // ---------- Properties
-Window.fullScreen = set (value)
+Window.fullScreen = var
 {
-    alert(value);
+    set this(value)
+    {
+        this.fullScreen = value;
+        alert(Window.fullScreen);
+    }
 };
 
 
