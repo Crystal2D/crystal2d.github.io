@@ -4,12 +4,17 @@
 function Window()
 {
     ThrowError(1);
-    
-    set fullScreen (value)
+}
+
+
+
+// ---------- Static Properties
+Window.fullScreen = {
+    set this (value)
     {
         this.fullScreen = value;
     }
-}
+};
 
 
 
