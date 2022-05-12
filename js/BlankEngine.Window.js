@@ -85,6 +85,9 @@ Window.update = function ()
         this.updateSize();
     }
     
+    BlankEngineCore.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
+    BlankEngineCore.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
+    
     this.requestUpdate();
 };
 
@@ -92,9 +95,6 @@ Window.updateSize = function ()
 {
     let sX = this.data.width + (this.data.width * (this.data.marginX * 2 / 100));
     let sY = this.data.height + (this.data.height * (this.data.marginY * 2 / 100));
-    
-    BlankEngineCore.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
-    BlankEngineCore.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
     window.resizeTo(sX, sY);
 };
