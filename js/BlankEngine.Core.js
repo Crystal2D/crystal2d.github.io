@@ -1,9 +1,9 @@
-function BlankEngineCoreCore()
+function BlankEngineCore()
 {
     ThrowError(1);
 }
 
-BlankEngineCoreCore.initiateProgram = function ()
+BlankEngineCore.initiateProgram = function ()
 {
     document.body.style.height = "100vh";
     document.body.style.margin = "0";
