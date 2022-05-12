@@ -97,7 +97,7 @@ Window.init = function ()
     this.data.marginX = 2;
     this.data.marginY = 2;
     
-    this.setTitle(this.data.title);
+    this.SetTitle(this.data.title);
     this.updateSize();
     this.requestUpdate();
 }
