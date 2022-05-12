@@ -90,6 +90,11 @@ class Vector2
         return Math.sqrt(x * x + y * y);
     }
     
+    static Dot (lhs, rhs)
+    {
+        return (lhs.x * rhs.x + lhs.y * rhs.y)
+    }
+    
     static Min (lhs, rhs)
     {
         return new Vector2(Math.min(lhs.x, rhs.x), Math.min(lhs.y, rhs.y));

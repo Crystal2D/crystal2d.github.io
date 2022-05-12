@@ -9,7 +9,12 @@ function Window()
 
 
 // ---------- Static Properties
-Window.fullScreen = true;
+
+/**
+ * Sets the fullscreen property of the window
+ * @memberof Window
+ */
+Window.fullScreen = false;
 
 
 
@@ -116,10 +121,7 @@ Window.update = function ()
     if (document.fullscreenElement && !this.fullScreen) document.exitFullscreen();
     else if (!document.fullscreenElement && this.fullScreen) document.documentElement.requestFullscreen();
     
-    if (!this.data.resizable)
-    {
-        this.updateSize();
-    }
+    if (!this.data.resizable && !this.fullScreen) this.updateSize();
     
     this.requestUpdate();
 };
