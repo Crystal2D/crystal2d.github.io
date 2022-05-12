@@ -10,7 +10,7 @@ function Window()
 
 // ---------- Static Properties
 Window.fullScreen = {
-    set this (value)
+    set this.fullScreen (value)
     {
         this.fullScreen = value;
         alert(Window.fullScreen);
