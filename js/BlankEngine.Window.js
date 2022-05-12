@@ -6,9 +6,6 @@ function Window()
     ThrowError(1);
 }
 
-Window.data.marginX = 2;
-Window.data.marginY = 2;
-
 /**
  * Sets the window base
  * @memberof Window
@@ -72,6 +69,14 @@ Window.SetMargin = function (width, height)
     
     this.updateSize();
 };
+
+Window.init = function ()
+{
+    Window.data.marginX = 2;
+    Window.data.marginY = 2;
+    
+    this.requestUpdate();
+}
 
 Window.requestUpdate = function ()
 {

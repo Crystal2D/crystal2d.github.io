@@ -62,7 +62,7 @@ BlankEngineCore.init = function ()
     
     this.game = new Game(this.wData.width, this.wData.height);
     
-    Window.requestUpdate();
+    Window.init();
     this.requestUpdate();
 };
 
