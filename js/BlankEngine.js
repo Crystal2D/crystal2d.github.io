@@ -3,6 +3,37 @@ function BlankEngine ()
     ThrowError(1);
 }
 
+class Material
+{
+    constructor (gl, vertexShader, fragmentShader)
+    {
+        this.gl = gl;
+        
+        let vShader = this.asShader(vertexShader, this.gl.VERTEX_SHADER);
+        let fShader = this.asShader(fragmentShader, this.gl.FRAGMENT_SHADER);
+    }
+    
+    asShader (shader, type)
+    {
+        var output = this.gl.createShader(type);
+        
+        this.gl.shaderSource(output, shader);
+        this.gl.compileShader(output);
+        
+        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS))
+        {
+            let errorText = `${this.gl.getShaderInfoLog(output)}`;
+            
+            console.error(errorText);
+            alert(errorText);
+            
+            return null;
+        }
+        
+        return output;
+    }
+}
+
 class Vector2
 {
     constructor (x, y)

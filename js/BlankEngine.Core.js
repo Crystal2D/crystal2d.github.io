@@ -55,12 +55,7 @@ BlankEngine.Core.loadData = function ()
 
 BlankEngine.Core.init = function ()
 {
-    this.name = this.windowData.name;
-    this.wData = this.windowData.window;
-    
     Window.data = this.windowData.window;
-    
-    this.game = new Game(this.wData.width, this.wData.height);
     
     Window.init();
     this.requestUpdate();
@@ -75,71 +70,9 @@ BlankEngine.Core.update = function ()
 {
     if (!document.hasFocus()) return this.requestUpdate();
     
-    this.game.Update();
+    Application.Update();
     this.requestUpdate();
 };
-
-class Game
-{
-    constructor (width, height)
-    {
-        if (width == null || height == null) return ThrowError(0);
-        
-        this.htmlCanvas = document.createElement("canvas");
-        this.htmlCanvas.width = width;
-        this.htmlCanvas.height = height;
-        
-        this.htmlCanvas.style.margin = "auto";
-        this.htmlCanvas.style.objectFit = "contain";
-        
-        this.gl = this.htmlCanvas.getContext("webgl2");
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        
-        document.body.appendChild(this.htmlCanvas);
-        
-        var test = new Material(this.gl, BlankEngine.Core.shaderData.vShader, BlankEngine.Core.shaderData.fShader);
-    }
-    
-    Update ()
-    {
-        this.gl.viewport(0, 0, this.htmlCanvas.width, this.htmlCanvas.height);
-        this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-        this.gl.enable(this.gl.BLEND);
-        this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
-        this.gl.flush();
-    }
-}
-
-class Material
-{
-    constructor (gl, vertexShader, fragmentShader)
-    {
-        this.gl = gl;
-        
-        let vShader = this.asShader(vertexShader, this.gl.VERTEX_SHADER);
-        let fShader = this.asShader(fragmentShader, this.gl.FRAGMENT_SHADER);
-    }
-    
-    asShader (shader, type)
-    {
-        var output = this.gl.createShader(type);
-        
-        this.gl.shaderSource(output, shader);
-        this.gl.compileShader(output);
-        
-        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS))
-        {
-            let errorText = `${this.gl.getShaderInfoLog(output)}`;
-            
-            console.error(errorText);
-            alert(errorText);
-            
-            return null;
-        }
-        
-        return output;
-    }
-}
 
 function ThrowError (errorCode)
 {
