@@ -7,14 +7,14 @@ Application.Load = function (width, height)
 {
     if (width == null || height == null) return ThrowError(0);
     
+    if (this.gl != null) document.querySelector("canvas").remove();
+    
     this.htmlCanvas = document.createElement("canvas");
     this.htmlCanvas.width = width;
     this.htmlCanvas.height = height;
     
     this.htmlCanvas.style.margin = "auto";
     this.htmlCanvas.style.objectFit = "contain";
-    
-    if (this.gl != null) document.querySelector("canvas").remove();
     
     this.gl = this.htmlCanvas.getContext("webgl2");
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
