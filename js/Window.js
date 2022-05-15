@@ -104,7 +104,7 @@ Window.SetMargin = function (width, height)
  */
 Window.init = function ()
 {
-    Application.Load(this.sata.width, this.data.height);
+    Application.Load(this.data.width, this.data.height);
     
     this.data.marginX = 1;
     this.data.marginY = 1;
