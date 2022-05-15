@@ -153,8 +153,8 @@ Window.update = function ()
  */
 Window.updateSize = function ()
 {
-    BlankEngine.Core.game.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
-    BlankEngine.Core.game.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
+    Application.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
+    Application.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
     if (this.data.resizable && this.fullScreen) return null;
     
