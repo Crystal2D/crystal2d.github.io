@@ -16,6 +16,16 @@ function Window()
  */
 Window.fullScreen = false;
 
+/**
+ * Sets what happens when fullscreen has entered
+ */
+Window.OnFullscreenEnter = function () { };
+
+/**
+ * Sets what happens when fullscreen has exited
+ */
+Window.OnFullscreenExit = function () { };
+
 
 
 // ---------- Static Methods
@@ -78,8 +88,8 @@ Window.SetSize = function (width, height)
  */
 Window.SetMargin = function (width, height)
 {
-    this.data.marginX = width ?? 6;
-    this.data.marginY = height ?? 6;
+    this.data.marginX = width ?? 1;
+    this.data.marginY = height ?? 1;
     
     this.updateSize();
 };
@@ -94,8 +104,8 @@ Window.SetMargin = function (width, height)
  */
 Window.init = function ()
 {
-    this.data.marginX = 6;
-    this.data.marginY = 6;
+    this.data.marginX = 1;
+    this.data.marginY = 1;
     
     this.SetTitle(this.data.title);
     this.updateSize();
@@ -119,8 +129,16 @@ Window.update = function ()
 {
     if (!document.hasFocus()) return this.requestUpdate();
     
-    if (document.fullscreenElement && !this.fullScreen) document.exitFullscreen();
-    else if (!document.fullscreenElement && this.fullScreen) document.documentElement.requestFullscreen();
+    if (document.fullscreenElement && !this.fullScreen)
+    {
+        document.exitFullscreen();
+        Window.OnFullscreenExit();
+    }
+    else if (!document.fullscreenElement && this.fullScreen)
+    {
+        document.documentElement.requestFullscreen();
+        Window.OnFullscreenEnter();
+    }
     
     if (!this.data.resizable && !this.fullScreen) this.updateSize();
     
