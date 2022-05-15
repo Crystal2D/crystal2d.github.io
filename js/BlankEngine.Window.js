@@ -131,13 +131,13 @@ Window.update = function ()
     
     if (document.fullscreenElement && !this.fullScreen)
     {
-        document.exitFullscreen();
         Window.OnFullscreenExit();
+        document.exitFullscreen();
     }
     else if (!document.fullscreenElement && this.fullScreen)
     {
-        document.documentElement.requestFullscreen();
         Window.OnFullscreenEnter();
+        document.documentElement.requestFullscreen();
     }
     
     if (!this.data.resizable && !this.fullScreen) this.updateSize();
