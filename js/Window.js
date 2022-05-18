@@ -76,8 +76,6 @@ Window.SetSize = function (width, height)
     
     this.data.width = width;
     this.data.height = height;
-    
-    this.updateSize();
 };
 
 /**
@@ -90,8 +88,6 @@ Window.SetMargin = function (width, height)
 {
     this.data.marginX = width ?? 1;
     this.data.marginY = height ?? 1;
-    
-    this.updateSize();
 };
 
 
@@ -110,7 +106,6 @@ Window.init = function ()
     this.data.marginY = 1;
     
     this.SetTitle(this.data.title);
-    this.updateSize();
     this.requestUpdate();
 }
 

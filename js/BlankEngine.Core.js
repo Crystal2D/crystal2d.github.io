@@ -15,7 +15,9 @@ BlankEngine.Core.initiateProgram = function ()
 
 BlankEngine.Core.loadData = function ()
 {
-    let windowR = new XMLHttpRequest();
+    Managers.Data.ReadJSONFile("../package.json", "BlankEngine.Core.windowData", function () { alert(`${BlankEngine.Core.windowData}`); });
+    
+    /*let windowR = new XMLHttpRequest();
     let shaderR = new XMLHttpRequest();
     
     windowR.onload = function ()
@@ -50,7 +52,7 @@ BlankEngine.Core.loadData = function ()
     windowR.overrideMimeType("application/json");
     shaderR.overrideMimeType("application/json");
     windowR.send();
-    shaderR.send();
+    shaderR.send();*/
 };
 
 BlankEngine.Core.init = function ()
