@@ -20,29 +20,31 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
     
     var requestFunc;
     
-    if (!hasArrays)
+    switch (hasArrays)
     {
-        requestFunc = Function(`
-    let request = new XMLHttpRequest();
-    
-    request.onload = function ()
-    {
-        if (request.status < 400)
-        {
-            ${varName} = JSON.parse(this.responseText);
-            afterFunc();
-        }
-    };
-    
-    request.onerror = function ()
-    {
-        ThrowError(3);
-    };
-    
-    request.open("GET", "${file}");
-    request.overrideMimeType("application/json");
-    request.send();
-    `);
+        case 0:
+            requestFunc = Function(`
+            let request = new XMLHttpRequest();
+            
+            request.onload = function ()
+            {
+                if (request.status < 400)
+                {
+                    ${varName} = JSON.parse(this.responseText);
+                    this.afterFunc();
+                }
+            };
+            
+            request.onerror = function ()
+            {
+                ThrowError(3);
+            };
+            
+            request.open("GET", "${file}");
+            request.overrideMimeType("application/json");
+            request.send();
+            `);
+            break;
     }
     
     requestFunc();
