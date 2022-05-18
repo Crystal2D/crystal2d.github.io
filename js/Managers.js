@@ -20,6 +20,8 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
     
     var requestFunc;
     
+    return alert(`${afterFunc}`);
+    
     switch (hasArrays)
     {
         case 0:
