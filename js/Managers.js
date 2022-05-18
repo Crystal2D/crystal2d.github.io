@@ -23,25 +23,19 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
     switch (hasArrays)
     {
         case 0:
-            requestFunc = Function("afterFunc", `
-            let request = new XMLHttpRequest();
+            requestFunc = Function("afterFunc", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); afterFunc(); } }; request.onerror = () => { ThrowError(3); }; request.open("GET", "${file}"); request.overrideMimeType("application/json"); request.send();`);
+            break;
+        case 2:
+            var arrayRequest;
             
-            request.onload = () => {
-                if (request.status < 400)
-                {
-                    ${varName} = JSON.parse(request.responseText);
-                    afterFunc();
-                }
-            };
+            for (let i = 0; i < file.length; i++)
+            {
+                if (i == file.length - 1) return null;
+                
+                arrayRequest += `call${i} = () => { Managers.Data.ReadJSONFile(${file[i]}, ${varName[i]}, call${i + 1}); }; `;
+            }
             
-            request.onerror = () => {
-                ThrowError(3);
-            };
-            
-            request.open("GET", "${file}");
-            request.overrideMimeType("application/json");
-            request.send();
-            `);
+            requestFunc = Function("afterFunc", `${arrayRequest}call${file.length - 1} = () => { Managers.Data.ReadJSONFile(${file[i]}, ${varName[i]}, afterFunc); }; call0();`);
             break;
     }
     

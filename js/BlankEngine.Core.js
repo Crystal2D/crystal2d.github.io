@@ -15,7 +15,7 @@ BlankEngine.Core.initiateProgram = function ()
 
 BlankEngine.Core.loadData = function ()
 {
-    Managers.Data.ReadJSONFile("../package.json", "BlankEngine.Core.windowData", function () { alert(`${BlankEngine.Core.windowData}`); });
+    Managers.Data.ReadJSONFile(["../package.json", "../data/shaders.json"], ["BlankEngine.Core.windowData", "BlankEngine.Core.shaderData"], function () { alert("e"); });
     
     /*let windowR = new XMLHttpRequest();
     let shaderR = new XMLHttpRequest();
