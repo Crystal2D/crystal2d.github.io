@@ -20,19 +20,17 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
     
     var requestFunc;
     
-    return alert(`${afterFunc}`);
-    
     switch (hasArrays)
     {
         case 0:
-            requestFunc = Function(`
+            requestFunc = Function("afterFunc", `
             let request = new XMLHttpRequest();
             
             request.onload = () => {
                 if (request.status < 400)
                 {
                     ${varName} = JSON.parse(request.responseText);
-                    this.afterFunc();
+                    afterFunc();
                 }
             };
             
@@ -47,5 +45,5 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
             break;
     }
     
-    requestFunc();
+    requestFunc(afterFunc ?? function () { });
 };
