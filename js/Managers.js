@@ -31,19 +31,19 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
             
             for (let i = 0; i < fileLength; i++)
             {
-                arrayRequest += `var funcCall${i} = () => {
-                    Managers.Data.ReadJSONFile("${file[i]}", "${varName[i]}", funcCall${i + 1});
+                arrayRequest += `var call${i} = () => {
+                    Managers.Data.ReadJSONFile("${file[i]}", "${varName[i]}", call${i + 1});
                 };`;
             }
             
             requestFunc = Function("afterFunc", `
             ${arrayRequest}
             
-            /*var funcCall${fileLength} = () => {
+            /*var call${fileLength} = () => {
                 Managers.Data.ReadJSONFile("${file[fileLength]}", "${varName[fileLength]}", afterFunc);
             };*/
             
-            funcCall0();`);
+            call0();`);
             break;
     }
     
