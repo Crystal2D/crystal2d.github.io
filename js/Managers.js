@@ -26,8 +26,7 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
             requestFunc = Function(`
             let request = new XMLHttpRequest();
             
-            request.onload = function ()
-            {
+            request.onload = () => {
                 if (request.status < 400)
                 {
                     ${varName} = JSON.parse(this.responseText);
@@ -35,8 +34,7 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
                 }
             };
             
-            request.onerror = function ()
-            {
+            request.onerror = () => {
                 ThrowError(3);
             };
             
