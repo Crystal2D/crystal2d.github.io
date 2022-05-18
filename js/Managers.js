@@ -29,7 +29,7 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
             request.onload = () => {
                 if (request.status < 400)
                 {
-                    ${varName} = JSON.parse(this.responseText);
+                    ${varName} = JSON.parse(request.responseText);
                     this.afterFunc();
                 }
             };
