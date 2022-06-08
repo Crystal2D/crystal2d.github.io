@@ -15,44 +15,7 @@ BlankEngine.Core.initiateProgram = function ()
 
 BlankEngine.Core.loadData = function ()
 {
-    Managers.Data.ReadJSONFile(["../package.json", "../data/shaders.json"], ["BlankEngine.Core.windowData", "BlankEngine.Core.shaderData"], function () { alert("e"); });
-    
-    /*let windowR = new XMLHttpRequest();
-    let shaderR = new XMLHttpRequest();
-    
-    windowR.onload = function ()
-    {
-        if (windowR.status < 400)
-        {
-            BlankEngine.Core.windowData = JSON.parse(this.responseText);
-        }
-    };
-    
-    shaderR.onload = function ()
-    {
-        if (shaderR.status < 400)
-        {
-            BlankEngine.Core.shaderData = JSON.parse(this.responseText);
-            BlankEngine.Core.init();
-        }
-    };
-    
-    windowR.onerror = function ()
-    {
-        ThrowError(3);
-    };
-    
-    shaderR.onerror = function ()
-    {
-        ThrowError(3);
-    };
-    
-    windowR.open("GET", "../package.json");
-    shaderR.open("GET", "../data/shaders.json");
-    windowR.overrideMimeType("application/json");
-    shaderR.overrideMimeType("application/json");
-    windowR.send();
-    shaderR.send();*/
+    Managers.Data.ReadJSONFile(["../package.json", "../data/shaders.json"], ["BlankEngine.Core.windowData", "BlankEngine.Core.shaderData"], () => { this.Core.init(); });
 };
 
 BlankEngine.Core.init = function ()
