@@ -8,7 +8,7 @@ Managers.Data = function ()
     ThrowError(1);
 };
 
-Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
+Managers.Data.ReadJSONFile = function (file, varName, callback)
 {
     var hasArrays = 0;
     
@@ -23,7 +23,7 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
     switch (hasArrays)
     {
         case 0:
-            requestFunc = Function("afterFunc", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); afterFunc(); } }; request.onerror = () => { ThrowError(3); }; request.open("GET", "${file}"); request.overrideMimeType("application/json"); request.send();`);
+            requestFunc = Function("callback", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); afterFunc(); } }; request.onerror = () => { ThrowError(3); }; request.open("GET", "${file}"); request.overrideMimeType("application/json"); request.send();`);
             break;
         case 2:
             var arrayRequest = "";
@@ -34,9 +34,9 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
                 arrayRequest += `var call_${i} = () => { Managers.Data.ReadJSONFile("${file[i]}", "${varName[i]}", call_${i + 1}); };`;
             }
             
-            requestFunc = Function("afterFunc", `${arrayRequest} var call_${fileLength} = () => { Managers.Data.ReadJSONFile("${file[fileLength]}", "${varName[fileLength]}", afterFunc); }; call_0();`);
+            requestFunc = Function("callback", `${arrayRequest} var call_${fileLength} = () => { Managers.Data.ReadJSONFile("${file[fileLength]}", "${varName[fileLength]}", callback); }; call_0();`);
             break;
     }
     
-    requestFunc(afterFunc ?? function () { });
+    requestFunc(callback ?? function () { });
 };
