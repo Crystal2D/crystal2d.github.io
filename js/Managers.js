@@ -26,24 +26,24 @@ Managers.Data.ReadJSONFile = function (file, varName, afterFunc)
             requestFunc = Function("afterFunc", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); afterFunc(); } }; request.onerror = () => { ThrowError(3); }; request.open("GET", "${file}"); request.overrideMimeType("application/json"); request.send();`);
             break;
         case 2:
-            var arrayRequest;
+            var arrayRequest = "";
             let fileLength = file.length - 1;
             
             for (let i = 0; i < fileLength; i++)
             {
-                arrayRequest += `Managers.Data.ReadJsonFile_managed_${i} = () => {
-                    Managers.Data.ReadJSONFile("${file[i]}", "${varName[i]}", Managers.Data.ReadJsonFile_managed_${i + 1});
+                arrayRequest += `var /*Managers.Data.ReadJsonFile_managed*/call_${i} = () => {
+                    Managers.Data.ReadJSONFile("${file[i]}", "${varName[i]}", /*Managers.Data.ReadJsonFile_managed*/call_${i + 1});
                 };`;
             }
             
             requestFunc = Function("afterFunc", `
             ${arrayRequest}
             
-            Managers.Data.ReadJsonFile_managed_${fileLength} = () => {
+            var /*Managers.Data.ReadJsonFile_managed*/call_${fileLength} = () => {
                 Managers.Data.ReadJSONFile("${file[fileLength]}", "${varName[fileLength]}", afterFunc);
             };
             
-            Managers.Data.ReadJsonFile_managed_0();`);
+            /*Managers.Data.ReadJsonFile_managed*/call_0();`);
             break;
     }
     
