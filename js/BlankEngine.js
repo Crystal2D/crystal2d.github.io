@@ -5,12 +5,16 @@ function BlankEngine ()
 
 class Material
 {
-    constructor (gl, vertexShader, fragmentShader)
+    constructor (vertexShader, fragmentShader)
     {
-        this.gl = gl;
+        this.gl = Application.gl;
         
-        let vShader = this.asShader(vertexShader, this.gl.VERTEX_SHADER);
-        let fShader = this.asShader(fragmentShader, this.gl.FRAGMENT_SHADER);
+        let vShader = this.asShader(vertexShader ?? "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }", this.gl.VERTEX_SHADER);
+        let fShader = this.asShader(fragmentShader ?? "precision mediump float; uniform sampler2D uImage; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uImage, vTexturePos); }", this.gl.FRAGMENT_SHADER);
+        
+        if (vShader == null && fShader == null) return null;
+        
+        
     }
     
     asShader (shader, type)
