@@ -99,7 +99,7 @@ class Vector2
         return new Vector2(this.x / this.magnitude || 0.0, this.y / this.magnitude || 0.0);
     }
     
-    ToString ()
+    toString ()
     {
         return `${this.x}, ${this.y}`;
     }
