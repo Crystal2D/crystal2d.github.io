@@ -12,9 +12,20 @@ class Material
         let vShader = this.asShader(vertexShader ?? "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }", this.gl.VERTEX_SHADER);
         let fShader = this.asShader(fragmentShader ?? "precision mediump float; uniform sampler2D uImage; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uImage, vTexturePos); }", this.gl.FRAGMENT_SHADER);
         
-        if (vShader == null && fShader == null) return null;
+        if (vShader == null || fShader == null) return null;
         
+        this.program = this.gl.createProgram();
         
+        this.gl.attachShader(this.program, vShader);
+        this.gl.attachShader(this.program, fShader);
+        this.gl.linkProgram(this.program);
+        
+        if (!gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(4, this.gl.getProgramInfoLog(this.program));
+        
+        this.gl.detachShader(this.program, vShader);
+        this.gl.detachShader(this.program, fShader);
+        this.gl.deleteShader(vShader);
+        this.gl.deleteShader(fShader);
     }
     
     asShader (shader, type)
@@ -24,17 +35,17 @@ class Material
         this.gl.shaderSource(output, shader);
         this.gl.compileShader(output);
         
-        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS))
-        {
-            let errorText = `${this.gl.getShaderInfoLog(output)}`;
-            
-            console.error(errorText);
-            alert(errorText);
-            
-            return null;
-        }
+        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS)) return ThrowError(4, this.gl.getShaderInfoLog(output));
         
         return output;
+    }
+}
+
+class Texture
+{
+    constructor (src)
+    {
+        
     }
 }
 
