@@ -124,7 +124,7 @@ class Sprite
         this.img = texture;
         this.material = material;
         
-        checkImg();
+        this.checkImg();
     }
     
     checkImg ()
