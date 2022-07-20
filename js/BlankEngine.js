@@ -129,7 +129,7 @@ class Sprite
     
     checkImg ()
     {
-        requestAnimationFrame(() => { if (this.img.hasLoaded) return this.load(); this.checkImg(); }.bind(this));
+        requestAnimationFrame(() => { if (this.img.hasLoaded) return this.load(); this.checkImg(); });
     }
     
     load ()
