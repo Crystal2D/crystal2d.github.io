@@ -124,12 +124,12 @@ class Sprite
         this.img = texture;
         this.material = material;
         
-        checkTexture();
+        checkImg();
     }
     
-    checkTexture ()
+    checkImg ()
     {
-        requestAnimationFrame(() => { if (this.texture.hasLoaded) return this.load(); this.checkTexture(); }.bind(this));
+        requestAnimationFrame(() => { if (this.img.hasLoaded) return this.load(); this.checkImg(); }.bind(this));
     }
     
     load ()
