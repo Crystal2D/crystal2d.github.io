@@ -20,7 +20,7 @@ class Material
         this.gl.attachShader(this.program, fShader);
         this.gl.linkProgram(this.program);
         
-        if (!gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(4, this.gl.getProgramInfoLog(this.program));
+        if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(4, this.gl.getProgramInfoLog(this.program));
         
         this.gl.detachShader(this.program, vShader);
         this.gl.detachShader(this.program, fShader);
