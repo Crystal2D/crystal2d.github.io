@@ -178,7 +178,7 @@ class Sprite
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapMode);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filterMode);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filterMode);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl,RGBA, gl.UNSIGNED_BYTE, this.img.img);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.img.img);
         gl.bindTexture(gl.TEXTURE_2D, null);
         
         gl.bindBuffer(gl.ARRAY_BUFFER, this.texBuffer);
