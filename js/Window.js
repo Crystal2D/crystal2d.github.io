@@ -51,16 +51,9 @@ Window.SetBase = function (title, width, height, marginX, marginY)
  * @memberof Window
  * @param {string} title - The title of the window
  */
-Window.SetTitle = function (title)
+Window.SetTitle = function (title = "Untitled")
 {
-    var wTitle = "Untitled";
-    
-    if (title != null)
-    {
-        wTitle = title;
-    }
-    
-    this.data.title = wTitle;
+    this.data.title = title;
     document.title = this.data.title;
 };
 
@@ -84,10 +77,10 @@ Window.SetSize = function (width, height)
  * @param {int} width - The width of the margin in percent
  * @param {int} height - The height of the margin in percent
  */
-Window.SetMargin = function (width, height)
+Window.SetMargin = function (width = 0, height = 0)
 {
-    this.data.marginX = width ?? 1;
-    this.data.marginY = height ?? 1;
+    this.data.marginX = width;
+    this.data.marginY = height;
 };
 
 
