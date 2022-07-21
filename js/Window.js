@@ -116,7 +116,7 @@ Window.init = function ()
     this.SetTitle(this.data.title);
     this.requestUpdate();
     
-    window.onresize = () => { if (this.data.resizable) this.sizeChanged = true; };
+    window.onresize = () => { if (!this.data.resizable) this.sizeChanged = true; };
 }
 
 /**
