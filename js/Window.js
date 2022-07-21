@@ -144,10 +144,10 @@ Window.updateSize = function ()
     Application.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
     Application.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
-    if (this.data.resizable && this.fullScreen) return null;
+    if (this.data.resizable || this.fullScreen) return null;
     
-    let sX = this.data.width + (this.data.width * (this.data.marginX * 2 / 100));
-    let sY = this.data.height + (this.data.height * (this.data.marginY * 2 / 100));
+    let sX = this.data.width + (window.outerWidth - window.innerWidth)/*(this.data.width * (this.data.marginX * 2 / 100))*/;
+    let sY = this.data.height + (window.outerHeight - window.innerHeight)/*(this.data.height * (this.data.marginY * 2 / 100))*/;
     
     window.resizeTo(sX, sY);
 };
