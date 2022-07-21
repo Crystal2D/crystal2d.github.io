@@ -85,7 +85,7 @@ class Rect
         let w = this.width;
         let h = this.height;
         
-        return new Float32Array([x, y, x + w, y, x, y + height, x, y + height, x + width, y, x + width, y + height]);
+        return new Float32Array([x, y, x + w, y, x, y + h, x, y + h, x + w, y, x + w, y + h]);
     }
     
     get position ()
