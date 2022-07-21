@@ -96,6 +96,26 @@ Window.SetMargin = function (width = 0, height = 0)
     this.sizeChanged = true;
 };
 
+/**
+ * Sets the window's icon
+ * @memberof Window
+ * @param {string} src - The location of the icon source
+ */
+Window.SetIcon = function (src)
+{
+    let icon = document.querySelector("link[rel=icon]");
+    
+    if (icon == null)
+    {
+        icon = document.createElement("link");
+        icon.rel = "icon";
+        
+        document.head.appendChild(icon);
+    }
+    
+    icon.src = src;
+};
+
 
 
 // ---------- Events
@@ -114,6 +134,8 @@ Window.init = function ()
     this.sizeChanged = true;
     
     this.SetTitle(this.data.title);
+    this.SetIcon(this.data.icon);
+    
     this.requestUpdate();
     
     window.onresize = () => { if (!this.data.resizable) this.sizeChanged = true; };

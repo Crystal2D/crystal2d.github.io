@@ -80,7 +80,12 @@ class Rect
     
     get rectArray ()
     {
-        return new Float32Array([this.x, this.y, this.x + this.width, this.y, this.x, this.y + this.height, this.x, this.y + this.height, this.x + this.width, this.y, this.x + this.width, this.y + this.height]);
+        let x = this.x;
+        let y = this.y;
+        let w = this.width;
+        let h = this.height;
+        
+        return new Float32Array([x, y, x + w, y, x, y + height, x, y + height, x + width, y, x + width, y + height]);
     }
     
     get position ()
