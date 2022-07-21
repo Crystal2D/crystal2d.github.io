@@ -5,6 +5,6 @@
         "width" : 408,
         "height" : 312,
         "resizable" : true,
-        "icon" : ""
+        "icon" : "icon/icon.ico"
     }
 }
