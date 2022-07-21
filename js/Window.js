@@ -113,7 +113,7 @@ Window.SetIcon = function (src)
         document.head.appendChild(icon);
     }
     
-    icon.src = src;
+    icon.href = src;
 };
 
 
