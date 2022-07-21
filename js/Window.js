@@ -16,6 +16,13 @@ function Window()
  */
 Window.fullScreen = false;
 
+
+/**
+ * Tells if the window has to resize
+ * @memberof Window
+ */
+Window.sizeChanged = false;
+
 /**
  * Sets what happens when fullscreen has entered
  */
@@ -44,6 +51,8 @@ Window.SetBase = function (title, width, height, marginX, marginY)
     this.SetTitle(title);
     this.SetSize(width, height);
     this.SetMargin(marginX, marginY);
+    
+    this.sizeChanged = true;
 };
 
 /**
@@ -69,6 +78,8 @@ Window.SetSize = function (width, height)
     
     this.data.width = width;
     this.data.height = height;
+    
+    this.sizeChanged = true;
 };
 
 /**
@@ -81,6 +92,8 @@ Window.SetMargin = function (width = 0, height = 0)
 {
     this.data.marginX = width;
     this.data.marginY = height;
+    
+    this.sizeChanged = true;
 };
 
 
@@ -98,8 +111,12 @@ Window.init = function ()
     this.data.marginX = 1;
     this.data.marginY = 1;
     
+    this.sizeChanged = true;
+    
     this.SetTitle(this.data.title);
     this.requestUpdate();
+    
+    window.onresize = () => { if (this.data.resizable) this.sizeChanged = true; };
 }
 
 /**
@@ -144,10 +161,12 @@ Window.updateSize = function ()
     Application.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
     Application.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
     
-    if (this.data.resizable || this.fullScreen) return null;
+    if (!this.sizeChanged || this.fullScreen) return null;
     
-    let sX = this.data.width + (window.outerWidth - window.innerWidth)/*(this.data.width * (this.data.marginX * 2 / 100))*/;
-    let sY = this.data.height + (window.outerHeight - window.innerHeight)/*(this.data.height * (this.data.marginY * 2 / 100))*/;
+    let sX = this.data.width + (window.outerWidth - window.innerWidth) + (this.data.width * (this.data.marginX * 2 / 100));
+    let sY = this.data.height + (window.outerHeight - window.innerHeight) + (this.data.height * (this.data.marginY * 2 / 100));
     
     window.resizeTo(sX, sY);
+    
+    this.sizeChanged = false;
 };
