@@ -29,6 +29,11 @@ Application.Load = function (width, height)
     this.sprite = new Sprite (texture, material);
 };
 
+Application.Quit = function ()
+{
+    window.close();
+};
+
 Application.Update = function ()
 {
     this.gl.viewport(0, 0, this.htmlCanvas.width, this.htmlCanvas.height);
