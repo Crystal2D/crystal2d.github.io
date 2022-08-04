@@ -610,7 +610,7 @@ class GameObject extends Object
     {
         this.activeSelf = state;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             this.components[i].gameObject = this;
         }
