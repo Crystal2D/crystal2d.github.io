@@ -1,5 +1,8 @@
 /**
  * The static class for working with the window
+ * @public
+ * @static
+ * @class
  */
 function Window()
 {
@@ -13,23 +16,36 @@ function Window()
 /**
  * Sets the fullscreen property of the window
  * @memberof Window
+ * @public
+ * @static
+ * @type {bool}
  */
 Window.fullScreen = false;
-
 
 /**
  * Tells if the window has to resize
  * @memberof Window
+ * @public
+ * @static
+ * @type {bool}
  */
 Window.sizeChanged = false;
 
 /**
  * Sets what happens when fullscreen has entered
+ * @memberof Window
+ * @public
+ * @static
+ * @type {function}
  */
 Window.OnFullscreenEnter = function () { };
 
 /**
  * Sets what happens when fullscreen has exited
+ * @memberof Window
+ * @public
+ * @static
+ * @type {function}
  */
 Window.OnFullscreenExit = function () { };
 
@@ -40,6 +56,9 @@ Window.OnFullscreenExit = function () { };
 /**
  * Sets the window base
  * @memberof Window
+ * @public
+ * @static
+ * @function
  * @param {string} title - The title of the window
  * @param {int} width - The width of the window in pixels
  * @param {int} height - The height of the window in pixels
@@ -58,17 +77,23 @@ Window.SetBase = function (title, width, height, marginX, marginY)
 /**
  * Sets the window's title
  * @memberof Window
+ * @public
+ * @static
+ * @function
  * @param {string} title - The title of the window
  */
-Window.SetTitle = function (title = "Untitled")
+Window.SetTitle = function (title)
 {
-    this.data.title = title;
+    this.data.title = title ?? "Untitled";
     document.title = this.data.title;
 };
 
 /**
  * Sets the window's size
  * @memberof Window
+ * @public
+ * @static
+ * @function
  * @param {int} width - The width of the window in pixels
  * @param {int} height - The height of the window in pixels
  */
@@ -85,13 +110,16 @@ Window.SetSize = function (width, height)
 /**
  * Sets the inner margin's size
  * @memberof Window
+ * @public
+ * @static
+ * function
  * @param {int} width - The width of the margin in percent
  * @param {int} height - The height of the margin in percent
  */
-Window.SetMargin = function (width = 0, height = 0)
+Window.SetMargin = function (width, height)
 {
-    this.data.marginX = width;
-    this.data.marginY = height;
+    this.data.marginX = width ?? 1;
+    this.data.marginY = height ?? 1;
     
     this.sizeChanged = true;
 };
@@ -99,6 +127,9 @@ Window.SetMargin = function (width = 0, height = 0)
 /**
  * Sets the window's icon
  * @memberof Window
+ * @public
+ * @static
+ * @function
  * @param {string} src - The location of the icon source
  */
 Window.SetIcon = function (src)
@@ -117,12 +148,14 @@ Window.SetIcon = function (src)
 };
 
 
-
-// ---------- Events
+// ----- Events
 
 /**
  * Called for initialization
  * @memberof Window
+ * @public
+ * @static
+ * @function
  */
 Window.init = function ()
 {
@@ -144,6 +177,9 @@ Window.init = function ()
 /**
  * Called for update
  * @memberof Window
+ * @public
+ * @static
+ * @function
  */
 Window.requestUpdate = function ()
 {
@@ -153,6 +189,9 @@ Window.requestUpdate = function ()
 /**
  * When updating
  * @memberof Window
+ * @public
+ * @static
+ * @function
  */
 Window.update = function ()
 {
@@ -177,6 +216,9 @@ Window.update = function ()
 /**
  * Sets the window size from Window.data
  * @memberof Window
+ * @public
+ * @static
+ * @function
  */
 Window.updateSize = function ()
 {

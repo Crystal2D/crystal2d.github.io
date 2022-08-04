@@ -49,16 +49,19 @@ function ThrowError (errorCode, errorDesc)
             errorText = "Value is unassigned or invalid";
             break;
         case 1:
-            errorText = "Using static class as a function";
+            errorText = "Using static class as function";
             break;
         case 2:
-            errorText = "There is no instance to work with";
+            errorText = "No instance to work with";
             break;
         case 3:
             errorText = "File cannot be loaded";
             break;
         case 4:
             errorText = "Shader is invalid";
+            break;
+        case 5:
+            errorText = "Cannot set value of read-only variables";
             break;
     }
     

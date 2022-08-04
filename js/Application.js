@@ -20,13 +20,6 @@ Application.Load = function (width, height)
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     
     document.body.appendChild(this.htmlCanvas);
-    
-    var material = new Material();
-    var texture = new Texture("ball.png");
-    
-    texture.filterMode = 1;
-    
-    this.sprite = new Sprite (texture, material);
 };
 
 Application.Quit = function ()
@@ -40,8 +33,6 @@ Application.Update = function ()
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
     this.gl.enable(this.gl.BLEND);
     this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
-    
-    if (this.sprite != null) this.sprite.render();
     
     this.gl.flush();
 };

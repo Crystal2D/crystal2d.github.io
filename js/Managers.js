@@ -8,7 +8,7 @@ Managers.Data = function ()
     ThrowError(1);
 };
 
-Managers.Data.ReadJSONFile = function (src, varName, callback = function () { })
+Managers.Data.ReadJSONFile = function (src, varName, callback)
 {
     var hasArrays = 0;
     
@@ -38,5 +38,5 @@ Managers.Data.ReadJSONFile = function (src, varName, callback = function () { })
             break;
     }
     
-    requestFunc(callback);
+    requestFunc(callback ?? function () { });
 };
