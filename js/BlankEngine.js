@@ -4,7 +4,7 @@
  * @static
  * @class
  */
-function BlankEngine () { ThrowError(1); }
+function BlankEngine () ThrowError(1);
 
 
 
@@ -625,7 +625,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf || this.#hasAwoken) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].isGameBehavior) continue;
             
@@ -638,7 +638,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled || !this.components[i].isGameBehavior) continue;
             
@@ -651,7 +651,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf || this.#hasStarted) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -664,7 +664,7 @@ class GameObject extends Object
     {
         if (!this.activeSlef) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -677,7 +677,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -690,7 +690,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -703,7 +703,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -716,7 +716,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -729,7 +729,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -742,7 +742,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -755,7 +755,7 @@ class GameObject extends Object
     {
         if (!this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -768,7 +768,7 @@ class GameObject extends Object
     {
         if (this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
@@ -781,7 +781,7 @@ class GameObject extends Object
     {
         if (this.activeSelf) return null;
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
             
