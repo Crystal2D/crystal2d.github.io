@@ -4,7 +4,7 @@
  * @static
  * @class
  */
-function BlankEngine () { ThrowError(1); }
+class BlankEngine { }
 
 
 
