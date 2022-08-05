@@ -8,60 +8,9 @@ class BlankEngine { }
 
 
 
-// ---------- Static Classes
-
-/*function SceneManagement () { ThrowError(1); }
-
-function SceneManager () { ThrowError(1); }
-
-SceneManager.#scenes = [];
-
-SceneManager.#activeScene = null;
-
-SceneManager.#loaded = false;
-
-SceneManager.#unloaded = false;
-
-Object.defineProperty(SceneManager, "sceneLoaded", {
-    get : function () {
-        return this.#loaded;
-    }
-});
-
-Object.defineProperty(SceneManager, "sceneUnloaded", {
-    get : function () {
-        return this.#unloaded;
-    }
-});
-
-SceneManager.Set = function (scenes)
-{
-    if (gameObjects != null && !Array.isArray(gameObjects)) return ThrowError(0);
-    
-    this.#scenes = scenes ?? [new SceneManagement.Scene()];
-}
-
-SceneManager.LoadScene = function (index)
-{
-    this.#activeScene = this.#scenes[index] ?? new SceneManagement.Scene();
-};*/
-
-
-
 // ---------- Classes
 
 // ----- Data Types
-
-/*SceneManagememt.Scene = class
-{
-    constructor (name, gameObjects)
-    {
-        if (gameObjects != null && !Array.isArray(gameObjects)) return ThrowError(0);
-        
-        this.name = name ?? "scene";
-        this.gameObjects = gameObjects ?? [];
-    }
-}*/
 
 class Matrix3x3
 {
@@ -634,6 +583,8 @@ class GameObject extends Object
     {
         if (components != null && !Array.isArray(components)) return ThrowError(0);
         
+        super();
+        
         this.name = name ?? "Empty Object";
         this.activeSelf = active ?? true;
         this.components = components ?? [];
@@ -660,7 +611,7 @@ class GameObject extends Object
     
     set activeSelf (value)
     {
-        return ThrowError(5);
+        return ThrowError(4);
     }
     
     Awake ()
@@ -843,6 +794,8 @@ class Material extends Object
 {
     constructor (vertexShader, fragmentShader)
     {
+        super();
+        
         this.gl = Application.gl;
         
         let vShader = this.asShader(vertexShader, this.gl.VERTEX_SHADER) ?? "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }";
@@ -856,7 +809,7 @@ class Material extends Object
         this.gl.attachShader(this.program, fShader);
         this.gl.linkProgram(this.program);
         
-        if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(4, this.gl.getProgramInfoLog(this.program));
+        if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(3, this.gl.getProgramInfoLog(this.program));
         
         this.gl.detachShader(this.program, vShader);
         this.gl.detachShader(this.program, fShader);
@@ -871,7 +824,7 @@ class Material extends Object
         this.gl.shaderSource(output, shader);
         this.gl.compileShader(output);
         
-        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS)) return ThrowError(4, this.gl.getShaderInfoLog(output));
+        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS)) return ThrowError(3, this.gl.getShaderInfoLog(output));
         
         return output;
     }
@@ -882,6 +835,8 @@ class Texture extends Object
     constructor (src)
     {
         if (src == null) return ThrowError(0);
+        
+        super();
         
         this.hasLoaded = false;
         
@@ -900,6 +855,10 @@ class Sprite extends Object
 {
     constructor (texture, rect)
     {
+        if (texture == null) return ThrowError(0);
+        
+        super();
+        
         this.texture = texture;
         this.rect = rect ?? new Rect();
     }
@@ -912,6 +871,8 @@ class Component extends Object
 {
     constructor ()
     {
+        super();
+        
         this.gameObject = null;
     }
 }
@@ -920,6 +881,8 @@ class Behavior extends Component
 {
     constructor ()
     {
+        super();
+        
         this.enabled = true;
     }
     
@@ -933,7 +896,7 @@ class GameBehavior extends Behavior
 {
     constructor ()
     {
-        
+        super();
     }
     
     get isGameBehavior ()
@@ -972,12 +935,21 @@ class SpriteRenderer extends Component
 {
     constructor (sprite, material)
     {
-        if (texture == null) return ThrowError(0);
+        if (sprite == null) return ThrowError(0);
+        
+        super();
         
         this.hasLoaded = false;
         
         this.sprite = sprite;
         this.material = material = new Material();
+        
+        this.checkImg();
+    }
+    
+    get isRenderer ()
+    {
+        return true;
     }
     
     checkImg ()

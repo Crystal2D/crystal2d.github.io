@@ -17,7 +17,7 @@ Managers.Data = class
         switch (hasArrays)
         {
             case 0:
-                requestFunc = Function("callback", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); callback(); } }; request.onerror = () => { ThrowError(3); }; request.open("GET", "${src}"); request.overrideMimeType("application/json"); request.send();`);
+                requestFunc = Function("callback", `let request = new XMLHttpRequest(); request.onload = () => { if (request.status < 400) { ${varName} = JSON.parse(request.responseText); callback(); } }; request.onerror = () => { ThrowError(2); }; request.open("GET", "${src}"); request.overrideMimeType("application/json"); request.send();`);
                 break;
             case 2:
                 var arrayRequest = "";
@@ -33,5 +33,51 @@ Managers.Data = class
         }
         
         requestFunc(callback ?? function () { });
+    }
+}
+
+Managers.Scene = class
+{
+    static #scenes = [];
+    static #activeScene = null;
+    static #loaded = false;
+    static #unloaded = false;
+    
+    static get sceneLoaded ()
+    {
+        return this.#loaded;
+    }
+    
+    static get sceneUnloaded ()
+    {
+        return this.#unload;
+    }
+    
+    static Scene = class
+    {
+        constructor (name, gameObjects)
+        {
+            if (gameObjects != null && !Array.isArray(gameObjects)) return ThrowError(0);
+            
+            this.name = name ?? "scene";
+            this.gameObjects = gameObjects ?? [];
+        }
+    }
+    
+    static Set (scenes)
+    {
+        if (scenes != null && !Array.isArray(scenes)) return ThrowError(0);
+        
+        this.#scenes = scenes ?? [new this.Scene()];
+    }
+    
+    static GetActiveScene ()
+    {
+        return this.#activeScene;
+    }
+    
+    static Load (index)
+    {
+        this.#activeScene = this.#scenes[index] ?? new this.Scene();
     }
 }
