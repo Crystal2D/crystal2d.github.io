@@ -1,12 +1,6 @@
-function Managers ()
-{
-    ThrowError(1);
-}
+function Managers () { ThrowError(1); }
 
-Managers.Data = function ()
-{
-    ThrowError(1);
-};
+Managers.Data = function () { ThrowError(1); };
 
 Managers.Data.ReadJSONFile = function (src, varName, callback)
 {

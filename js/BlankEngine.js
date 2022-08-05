@@ -4,22 +4,64 @@
  * @static
  * @class
  */
-function BlankEngine () ThrowError(1);
+function BlankEngine () { ThrowError(1); }
 
 
 
 // ---------- Static Classes
 
-//function SceneManager ()
-//{
-//    
-//}
+/*function SceneManagement () { ThrowError(1); }
+
+function SceneManager () { ThrowError(1); }
+
+SceneManager.#scenes = [];
+
+SceneManager.#activeScene = null;
+
+SceneManager.#loaded = false;
+
+SceneManager.#unloaded = false;
+
+Object.defineProperty(SceneManager, "sceneLoaded", {
+    get : function () {
+        return this.#loaded;
+    }
+});
+
+Object.defineProperty(SceneManager, "sceneUnloaded", {
+    get : function () {
+        return this.#unloaded;
+    }
+});
+
+SceneManager.Set = function (scenes)
+{
+    if (gameObjects != null && !Array.isArray(gameObjects)) return ThrowError(0);
+    
+    this.#scenes = scenes ?? [new SceneManagement.Scene()];
+}
+
+SceneManager.LoadScene = function (index)
+{
+    this.#activeScene = this.#scenes[index] ?? new SceneManagement.Scene();
+};*/
 
 
 
 // ---------- Classes
 
 // ----- Data Types
+
+/*SceneManagememt.Scene = class
+{
+    constructor (name, gameObjects)
+    {
+        if (gameObjects != null && !Array.isArray(gameObjects)) return ThrowError(0);
+        
+        this.name = name ?? "scene";
+        this.gameObjects = gameObjects ?? [];
+    }
+}*/
 
 class Matrix3x3
 {
@@ -596,15 +638,15 @@ class GameObject extends Object
         this.activeSelf = active ?? true;
         this.components = components ?? [];
         
-        for (int i = 0; i < this.components.length; i++)
+        for (let i = 0; i < this.components.length; i++)
         {
             this.components[i].name = this.name;
             this.components[i].gameObject = this;
         }
-        
-        this.#hasAwoken = false;
-        this.#hasStarted = false;
     }
+    
+    #hasAwoken = false;
+    #hasStarted = false;
     
     SetActive (state)
     {
@@ -632,6 +674,8 @@ class GameObject extends Object
             let callback = this.components[i].Awake;
             callback();
         }
+        
+        this.#hasAwoken = true;
     }
     
     OnEnable ()
@@ -658,6 +702,8 @@ class GameObject extends Object
             let callback = this.components[i].Start;
             callback();
         }
+        
+        this.#hasStarted = true;
     }
     
     FixedUpdate ()

@@ -1,7 +1,4 @@
-BlankEngine.Core = function ()
-{
-    ThrowError(1);
-};
+BlankEngine.Core = function () { ThrowError(1); };
 
 BlankEngine.Core.initiateProgram = function ()
 {

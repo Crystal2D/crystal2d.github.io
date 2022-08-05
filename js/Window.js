@@ -4,10 +4,7 @@
  * @static
  * @class
  */
-function Window()
-{
-    ThrowError(1);
-}
+function Window() { ThrowError(1); }
 
 
 
@@ -148,7 +145,8 @@ Window.SetIcon = function (src)
 };
 
 
-// ----- Events
+
+// ---------- Events
 
 /**
  * Called for initialization
