@@ -1,0 +1,28 @@
+{
+    "scripts" : [
+        "test/main"
+    ],
+    "resources" : [
+        {
+            "name" : "folder",
+            "type" : "subpath",
+            "content" : [
+                {
+                    "name" : "ball",
+                    "type" : "Texture",
+                    "args" : {
+                        "src" : "ball.png",
+                        "filterMode" : 1
+                    }
+                }
+            ]
+        }
+    ],
+    "scenes" : [
+        "scene"
+    ],
+    "shaders" : [
+        
+    ],
+    "debugMode" : false
+}
