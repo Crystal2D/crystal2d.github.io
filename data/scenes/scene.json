@@ -1,0 +1,25 @@
+{
+    "name" : "Scene",
+    "resources" : [
+        
+    ],
+    "gameObjects" : [
+        {
+            "name" : "obj_ball",
+            "active" : true,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "folder/ball"
+                        }
+                    }
+                },
+                {
+                    "type" : "testGB"
+                }
+            ]
+        }
+    ]
+}
