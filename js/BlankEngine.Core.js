@@ -38,11 +38,11 @@ BlankEngine.Core = class
         {
             while (!Shader.isReady) { }
             
-            let scriptSrc = `../js/${this.buildData.scripts[i]}.js`;
+            let scriptSrc = `js/${this.buildData.scripts[i]}.js`;
             let script = document.createElement("script");
             
-            script.type = "text/javascript";
             script.src = scriptSrc;
+            script.type = "text/javascript";
             
             document.body.appendChild(script);
         }
