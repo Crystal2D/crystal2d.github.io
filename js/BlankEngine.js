@@ -8,6 +8,15 @@ class BlankEngine { }
 
 
 
+// ---------- Static Classes
+
+class Time
+{
+    
+}
+
+
+
 // ---------- Classes
 
 // ----- Data Types
@@ -586,7 +595,7 @@ class GameObject extends Object
         super();
         
         this.name = name ?? "Empty Object";
-        this.activeSelf = active ?? true;
+        this.#active = active ?? true;
         this.components = components ?? [];
         
         for (let i = 0; i < this.components.length; i++)
@@ -596,12 +605,11 @@ class GameObject extends Object
         }
     }
     
-    #hasAwoken = false;
-    #hasStarted = false;
+    #active = false;
     
     SetActive (state)
     {
-        this.activeSelf = state;
+        this.#active = state;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -609,14 +617,14 @@ class GameObject extends Object
         }
     }
     
-    set activeSelf (value)
+    get activeSelf ()
     {
-        return ThrowError(4);
+        return this.#active;
     }
     
     Awake ()
     {
-        if (!this.activeSelf || this.#hasAwoken) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -625,13 +633,11 @@ class GameObject extends Object
             let callback = this.components[i].Awake;
             callback();
         }
-        
-        this.#hasAwoken = true;
     }
     
     OnEnable ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -644,7 +650,7 @@ class GameObject extends Object
     
     Start ()
     {
-        if (!this.activeSelf || this.#hasStarted) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -652,14 +658,14 @@ class GameObject extends Object
             
             let callback = this.components[i].Start;
             callback();
+            
+            this.components[i].Start = function () {};
         }
-        
-        this.#hasStarted = true;
     }
     
     FixedUpdate ()
     {
-        if (!this.activeSlef) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -672,7 +678,7 @@ class GameObject extends Object
     
     Update ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -685,7 +691,7 @@ class GameObject extends Object
     
     LateUpdate ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -698,7 +704,7 @@ class GameObject extends Object
     
     OnPreRender ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -711,7 +717,7 @@ class GameObject extends Object
     
     OnRenderObject ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -724,7 +730,7 @@ class GameObject extends Object
     
     OnPostRender ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -737,7 +743,7 @@ class GameObject extends Object
     
     OnRenderImage ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -750,7 +756,7 @@ class GameObject extends Object
     
     OnApplicationQuit ()
     {
-        if (!this.activeSelf) return null;
+        if (!this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -763,7 +769,7 @@ class GameObject extends Object
     
     OnDisable ()
     {
-        if (this.activeSelf) return null;
+        if (this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -776,7 +782,7 @@ class GameObject extends Object
     
     OnDestroy ()
     {
-        if (this.activeSelf) return null;
+        if (this.#active) return null;
         
         for (let i = 0; i < this.components.length; i++)
         {
@@ -790,6 +796,148 @@ class GameObject extends Object
     }
 }
 
+class Shader extends Object
+{
+    static #shaders = [];
+    static #ready = false;
+    
+    static get isReady ()
+    {
+        return this.#ready;
+    }
+    
+    constructor (name, shader, type)
+    {
+        if (shader == null || shader === "") return ThrowError(3, "Shader Data: Shader is undefined");
+        if (type == null || type === "") return ThrowError(3, "Shader Data: Shader type is undefined");
+        
+        super();
+        
+        this.name = name;
+        this.type = type;
+        
+        let gl = Application.gl;
+        var shaderType;
+        
+        switch (this.type)
+        {
+            case "VERTEX":
+                shaderType = gl.VERTEX_SHADER;
+                break;
+            case "FRAGMENT":
+                shaderType = gl.FRAGMENT_SHADER;
+                break;
+        }
+        
+        if (shaderType == null) return ThrowError(3, `Shader Data: Type "${this.type}" doesn't exist`);
+        
+        this.shader = gl.createShader(shaderType);
+        
+        gl.shaderSource(this.shader, shader);
+        gl.compileShader(this.shader);
+        
+        if (!gl.getShaderParameter(this.shader, gl.COMPILE_STATUS)) return ThrowError(3, this.gl.getShaderInfoLog(this.shader));
+    }
+    
+    static Set (shaders)
+    {
+        if (shaders == null || !Array.isArray(shaders)) return ThrowError(0);
+        
+        this.#shaders[0] = new Shader("Default/None", "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }", "VERTEX");
+        this.#shaders[1] = new Shader("Default/None", "precision mediump float; uniform sampler2D uSampler; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uSampler, vTexturePos); }", "FRAGMENT");
+        
+        for (let iA = 0; iA < shaders.length; iA++)
+        {
+            if (shaders[iA] === "") continue;
+            
+            var slashes = 0;
+            var keyword = "";
+            var shaderData = ["", ""];
+            var keywordValue = 0;
+            var isInsideQuote = false;
+            var quoteType = "";
+            
+            for (let iB = 0; iB < shaders[iA].length; iB++)
+            {
+                if (shaders[iA][iB] === "/" && shaders[iA][iB + 1] === "/")
+                {
+                    slashes++;
+                    keywordValue = 0;
+                    iB++;
+                    
+                    continue;
+                }
+                
+                if (slashes >= 4) break;
+                if (shaders[iA][iB] === "\n") continue;
+                
+                if (shaders[iA][iB] === `'` || shaders[iA][iB] === `"`)
+                {
+                    if (isInsideQuote && shaders[iA][iB] === quoteType)
+                    {
+                        isInsideQuote = false;
+                        quoteType = "";
+                        
+                        continue;
+                    }
+                    
+                    isInsideQuote = true;
+                    quoteType = shaders[iA][iB];
+                    
+                    continue;
+                }
+                
+                if (!isInsideQuote && shaders[iA][iB] === " ") continue;
+                
+                if (shaders[iA][iB] === ":")
+                {
+                    keywordValue = -1;
+                    
+                    switch (keyword)
+                    {
+                        case "NAME":
+                            keywordValue = 1;
+                            break;
+                        case "TYPE":
+                            keywordValue = 2;
+                            break;
+                    }
+                    
+                    if (keywordValue === -1) return ThrowError(3, `Shader Data: Keyword "${keyword}" doesn't exist`);
+                    
+                    keyword = "";
+                    
+                    continue;
+                }
+                
+                if (keywordValue !== 0)
+                {
+                    shaderData[keywordValue - 1] += shaders[iA][iB];
+                    
+                    continue;
+                }
+                
+                keyword += shaders[iA][iB];
+            }
+            
+            this.#shaders[iA + 2] = new Shader(shaderData[0], shaders[iA], shaderData[1]);
+        }
+        
+        this.#ready = true;
+    }
+    
+    static Find (name, type)
+    {
+        if (name == null) return ThrowError(0);
+        
+        for (let i = 0; i < this.#shaders.length; i++)
+        {
+            if (type != null && this.#shaders[i].type !== type) continue;
+            if (this.#shaders[i].name === name) return this.#shaders[i];
+        }
+    }
+}
+
 class Material extends Object
 {
     constructor (vertexShader, fragmentShader)
@@ -798,35 +946,37 @@ class Material extends Object
         
         this.gl = Application.gl;
         
-        let vShader = this.asShader(vertexShader, this.gl.VERTEX_SHADER) ?? "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }";
-        let fShader = this.asShader(fragmentShader, this.gl.FRAGMENT_SHADER) ?? "precision mediump float; uniform sampler2D uImage; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uImage, vTexturePos); }";
+        let vShader = vertexShader ?? Shader.Find("Default/None", "VERTEX");
+        let fShader = fragmentShader ?? Shader.Find("Default/None", "FRAGMENT");
         
         if (vShader == null || fShader == null) return null;
         
         this.program = this.gl.createProgram();
         
-        this.gl.attachShader(this.program, vShader);
-        this.gl.attachShader(this.program, fShader);
+        this.gl.attachShader(this.program, vShader.shader);
+        this.gl.attachShader(this.program, fShader.shader);
         this.gl.linkProgram(this.program);
         
         if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) return ThrowError(3, this.gl.getProgramInfoLog(this.program));
         
-        this.gl.detachShader(this.program, vShader);
-        this.gl.detachShader(this.program, fShader);
-        this.gl.deleteShader(vShader);
-        this.gl.deleteShader(fShader);
+        this.gl.detachShader(this.program, vShader.shader);
+        this.gl.detachShader(this.program, fShader.shader);
+        this.gl.deleteShader(vShader.shader);
+        this.gl.deleteShader(fShader.shader);
     }
     
-    asShader (shader, type)
+    getAttribLocation (name)
     {
-        var output = this.gl.createShader(type);
+        if (name == null) return ThrowError(0);
         
-        this.gl.shaderSource(output, shader);
-        this.gl.compileShader(output);
+        return this.gl.getAttribLocation(this.program, name);
+    }
+    
+    getUniformLocation (name)
+    {
+        if (name == null) return ThrowError(0);
         
-        if (!this.gl.getShaderParameter(output, this.gl.COMPILE_STATUS)) return ThrowError(3, this.gl.getShaderInfoLog(output));
-        
-        return output;
+        return this.gl.getUniformLocation(this.program, name);
     }
 }
 
@@ -931,6 +1081,14 @@ class GameBehavior extends Behavior
     OnDestroy () { }
 }
 
+class Camera extends Behavior
+{
+    constructor ()
+    {
+        super();
+    }
+}
+
 class SpriteRenderer extends Component
 {
     constructor (sprite, material)
@@ -942,7 +1100,7 @@ class SpriteRenderer extends Component
         this.hasLoaded = false;
         
         this.sprite = sprite;
-        this.material = material = new Material();
+        this.material = material ?? new Material();
         
         this.checkImg();
     }
@@ -963,7 +1121,7 @@ class SpriteRenderer extends Component
         
         let texture = this.sprite.texture;
         
-        if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNan(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) return ThrowError(0);
+        if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) return ThrowError(0);
         
         let gl = this.material.gl;
         
@@ -1000,9 +1158,9 @@ class SpriteRenderer extends Component
         this.texBuffer = gl.createBuffer();
         this.geoBuffer = gl.createBuffer();
         
-        this.aVPosLoc = gl.getAttribLocation(this.material.program, "aVertexPos");
-        this.aTPosLoc = gl.getAttribLocation(this.material.program, "aTexturePos");
-        this.uImgLoc = gl.getUniformLocation(this.material.program, "uImage");
+        this.aVPosLoc = this.material.getAttribLocation("aVertexPos");
+        this.aTPosLoc = this.material.getAttribLocation("aTexturePos");
+        this.uSamplerLoc = this.material.getUniformLocation("uSampler");
         
         gl.bindTexture(gl.TEXTURE_2D, this.texture);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapMode);
@@ -1034,7 +1192,7 @@ class SpriteRenderer extends Component
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.texture);
         
-        gl.uniform1i(this.uImgLoc, 0);
+        gl.uniform1i(this.uSamplerLoc, 0);
         
         gl.bindBuffer(gl.ARRAY_BUFFER, this.texBuffer);
         gl.enableVertexAttribArray(this.aTPosLoc);

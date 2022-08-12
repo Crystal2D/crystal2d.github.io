@@ -12,14 +12,43 @@ BlankEngine.Core = class
     
     static loadData ()
     {
-        Managers.Data.ReadJSONFile("../package.json", "BlankEngine.Core.windowData", () => { this.init(); });
+        this.compiledData = { shaders : [], loadedScripts : false };
+        
+        Managers.Data.ReadJSONFile(["../package", "../data/build"], ["BlankEngine.Core.packageData", "BlankEngine.Core.buildData"], () => { this.init(); });
     }
     
     static init ()
     {
-        Window.data = this.windowData.window;
-        
+        Window.data = this.packageData.window;
         Window.init();
+        
+        var shaderSrc = [];
+        var shaderVar = [];
+        
+        for (let i = 0; i < this.buildData.shaders.length; i++)
+        {
+            shaderSrc[i] = `../shaders/${this.buildData.shaders[i]}.shader`;
+            shaderVar[i] = `BlankEngine.Core.compiledData.shaders[${i}]`;
+        }
+        
+        if (this.buildData.shaders[0] == null) Shader.Set([]);
+        else Managers.Data.ReadFile(shaderSrc, shaderVar, () => { Shader.Set(this.compiledData.shaders); });
+        
+        for (let i = 0; i < this.buildData.scripts.length; i++)
+        {
+            while (!Shader.isReady) { }
+            
+            let scriptSrc = `../js/${this.buildData.scripts[i]}.js`;
+            let script = document.createElement("script");
+            
+            script.type = "text/javascript";
+            script.src = scriptSrc;
+            
+            document.body.appendChild(script);
+        }
+        
+        this.compiledData.loadedScripts = true; 
+        
         this.requestUpdate();
     }
     
@@ -32,8 +61,23 @@ BlankEngine.Core = class
     {
         if (!document.hasFocus()) return this.requestUpdate();
         
-        Application.Update();
+        if (Application.isLoaded) Application.Update();
         this.requestUpdate();
+    }
+}
+
+class Debug
+{
+    static #debugMode = false;
+    
+    static get isDebugMode ()
+    {
+        return this.#debugMode;
+    }
+    
+    static Set (debugMode)
+    {
+        this.#debugMode = debugMode;
     }
 }
 
@@ -54,9 +98,6 @@ function ThrowError (errorCode, errorDesc)
             break;
         case 3:
             errorText = "Shader is invalid";
-            break;
-        case 4:
-            errorText = "Cannot set value of read-only variables";
             break;
     }
     

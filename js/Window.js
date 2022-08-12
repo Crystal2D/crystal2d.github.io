@@ -48,6 +48,8 @@ class Window
     
     static #update ()
     {
+        if (Shader.isReady && BlankEngine.Core.compiledData.loadedScripts && !Application.isLoaded) Application.Load();
+        
         if (!document.hasFocus()) return this.#requestUpdate();
         
         if (document.fullscreenElement && !this.fullScreen)
@@ -92,17 +94,17 @@ class Window
      */
     static init ()
     {
-        Application.Load(this.data.width, this.data.height);
+        Application.init(this.data.width, this.data.height);
         
         this.data.marginX = 1;
         this.data.marginY = 1;
         
-        this.#sizeShouldChange = true;
+        this.#sizeChanged = true;
         
         this.SetTitle(this.data.title);
         this.SetIcon(this.data.icon);
         
-        this.requestUpdate();
+        this.#requestUpdate();
         
         window.onresize = () => { if (!this.data.resizable) this.#sizeChanged = true; };
     }
