@@ -48,7 +48,7 @@ class Window
     
     static #update ()
     {
-        if (Shader.isReady && BlankEngine.Core.compiledData.loadedScripts && !Application.isLoaded) Application.Load();
+        if (Shader.hasLoaded && BlankEngine.Core.compiledData.loadedScripts && !Application.hasLoaded) Application.Load();
         
         if (!document.hasFocus()) return this.#requestUpdate();
         

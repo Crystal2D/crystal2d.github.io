@@ -2,13 +2,14 @@ class Application
 {
     static #loaded = false;
     
-    static get isLoaded ()
+    static get hasLoaded ()
     {
         return this.#loaded;
     }
     
     static init (width, height)
     {
+        if (this.#loaded) return null;
         if (width == null || height == null) return ThrowError(0);
         
         if (this.gl != null) document.querySelector("canvas").remove();
@@ -30,7 +31,7 @@ class Application
     {
         Debug.Set(BlankEngine.Core.buildData.debugMode);
         
-        let texture = new Texture("ball.png");
+        /*let texture = new Texture("ball.png");
         texture.filterMode = 1;
         
         let scene = new Managers.Scene.Scene("test", [
@@ -40,11 +41,11 @@ class Application
                 ),
                 new testGB()
             ])
-        ]);
+        ]);*/
         
         
         
-        Managers.Scene.Set([scene]);
+        Managers.Scene.Set([]);
         
         this.#loaded = true;
     }

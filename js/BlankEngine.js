@@ -10,6 +10,273 @@ class BlankEngine { }
 
 // ---------- Static Classes
 
+class Resources
+{
+    static #unloadedRes = [];
+    static #resources = [];
+    static #loaded = false;
+    
+    static get hasLoaded ()
+    {
+        return this.#loaded;
+    }
+    
+    static get res () { return this.#resources }
+    
+    static toObject (data)
+    {
+        if (data.name == null) return ThrowError(0);
+        
+        var object;
+        
+        switch (data.type)
+        {
+            case "Texture":
+                if (data.args.src == null) return ThrowError(0);
+                
+                object = new Texture(data.args.src);
+                
+                
+                if (data.args.wrapMode != null) object.wrapMode = data.args.wrapMode;
+                if (data.args.filterMode != null) object.filterMode = data.args.filterMode;
+                break;
+        }
+        
+        if (object == null) return ThrowError(0);
+        
+        object.name = data.name;
+        
+        return object;
+    }
+    
+    static setRes (path, data)
+    {
+        if (path == null || data == null) return ThrowError(0);
+        
+        var resIndexes = [];
+        var resPath = [this.#resources];
+        
+        /* ########## */ console.log(`pass 1\n\t${resPath.length}`);
+        
+        for (let iA = 0; iA < path.length; iA++)
+        {
+            /* ########## */ console.log(`pass 2\n\t${iA}`);
+            
+            if (resPath[resPath.length - 1].length == 0) break;
+            
+            for (let iB = 0; iB < resPath[resPath.length - 1].length; iB++)
+            {
+                if (resPath[resPath.length - 1][iB].name != path[iA]) continue;
+                
+                if (iA == path.length - 1) break;
+                
+                resIndexes += iB;
+                resPath += resPath[resPath.length - 1][iB].content;
+                
+                break;
+            }
+        }
+        
+        if (data.type === "subpath")
+        {
+            resPath[resPath.length] = {
+                name : data.name,
+                type : "subpath",
+                content : []
+            };
+        }
+        else resPath[resPath.length] = data;
+        
+        /* ########## */ console.log(`pass 3\n\t${resIndexes.length}\n\t${resIndexes}\n\t${resPath.length}`);
+        
+        if (resIndexes[0] == null)
+        {
+            /* ########## */ console.log(`pass 4A\n\t${resPath[1]}`);
+            
+            resPath[0] += resPath[1];
+            this.#resources = resPath[0];
+            
+            return null;
+        }
+        
+        for (let iA = resIndexes.length - 1; iA >= 0; iA--)
+        {
+            /* ########## */ console.log(`pass 4B\n\t${iA}`);
+            
+            if (iA == 0)
+            {
+                /* ########## */ console.log(`pass 5A`);
+                
+                for (let iB = 0; iB < resPath[0].length; iB++)
+                {
+                    /* ########## */ console.log(`pass 6\n\t${iB}`);
+                    
+                    if (resIndexes[0] == iB)
+                    {
+                        resPath[0] += resPath[1];
+                        
+                        continue;
+                    }
+                    
+                    resPath[0] += resPath[iB];
+                }
+                
+                break;
+            }
+            
+            /* ########## */ console.log(`pass 5B`);
+            
+            for (let iB = 0; iB < resPath[iA].content.length; iB++)
+            {
+                if (resIndexes[iA] == iB)
+                {
+                    resPath[iA].content += resPath[iA + 1];
+                    
+                    continue;
+                }
+                
+                resPath[iA].content += resPath[iA].content[iB];
+            }
+        }
+        
+        this.#resources = resPath[0];
+    }
+    
+    static Set (resources)
+    {
+        if (resources == null || !Array.isArray(resources)) return ThrowError(0);
+        
+        this.#unloadedRes = resources;
+    }
+    
+    /*static Load (path, callback)
+    {
+        if (path == null) return ThrowError(0);
+        
+        var newPath = [""];
+        var pathIndex = 0
+        
+        for (let i = 0; i < path.length; i++)
+        {
+            if (path[i] === "/")
+            {
+                pathIndex++;
+                newPath[pathIndex] = "";
+                
+                continue;
+            }
+            
+            newPath[pathIndex] += path[i];
+        }
+        
+        var uRPath = this.#unloadedRes;
+        
+        //FOREACH WORD
+        for (let iA = 0; iA < newPath.length; iA++)
+        {
+            //REFRESH RESPATH
+            var resPath = this.#resources;
+            
+            //SET RESPATH TO CURRENT PATH
+            for (let iB = 0; iB < iA; iB++)
+            {
+                for (let iC = 0; iC < resPath.length; iC++)
+                {
+                    if (resPath[iC].name != newPath[iB] && resPath[iC].type != "subfolder") continue;
+                    
+                    resPath = resPath[iC].content;
+                    
+                    break;
+                }
+            }
+            
+            //FOREACH URPATH
+            for (let iB = 0; iB < uRPath.length; iB++)
+            {
+                //IF WORD NOT EXIST IN URPATH THEN CONTINUE
+                if (uRPath[iB].name != newPath[iA]) continue;
+                
+                var existsInPath = 0;
+                
+                //CHECK IF EXISTS IN RESPATH AND TYPE
+                for (let iC = 0; iC < resPath.length; iC++)
+                {
+                    if (resPath[iC].name != uRPath[iB].name) continue;
+                    
+                    if (existsInPath != 0)
+                    {
+                        existInPath = 3;
+                        break;
+                    }
+                    
+                    if (resPath[iC].type === "subpath") existsInPath = 1;
+                    else existsInPath = 2;
+                }
+                
+                //IF LOADING OBJECT
+                if (iA == newPath.length - 1)
+                {
+                    
+                    
+                    break;
+                }
+                
+                //IF LOADING FOLDER
+                
+                //IF EXIST IN RESPATH THEN BREAK
+                if (existsInPath == 1 || existsInPath == 3) break;
+                
+                //IF NOT EXIST IN RESPATH
+                
+            }
+        }
+    }*/
+    
+    static Find (path)
+    {
+        if (path == null) return ThrowError(0);
+        
+        var newPath = [""];
+        var pathIndex = 0
+        
+        for (let i = 0; i < path.length; i++)
+        {
+            if (path[i] === "/")
+            {
+                pathIndex++;
+                newPath[pathIndex] = "";
+                
+                continue;
+            }
+            
+            newPath[pathIndex] += path[i];
+        }
+        
+        var resPath = this.#resources;
+        
+        for (let iA = 0; iA < newPath.length; iA++)
+        {
+            for (let iB = 0; iB < resPath.length; iB++)
+            {
+                if (resPath[iB].name != newPath[iA]) continue;
+                
+                if (iA == newPath.length - 1)
+                {
+                    if (resPath[iB].type === "subpath") return ThrowError(4);
+                    
+                    return resPath[iB];
+                }
+                
+                resPath = resPath[iB].content;
+                
+                break;
+            }
+        }
+        
+        ThrowError(4);
+    }
+}
+
 class Time
 {
     
@@ -799,11 +1066,11 @@ class GameObject extends Object
 class Shader extends Object
 {
     static #shaders = [];
-    static #ready = false;
+    static #loaded = false;
     
-    static get isReady ()
+    static get hasLoaded ()
     {
-        return this.#ready;
+        return this.#loaded;
     }
     
     constructor (name, shader, type)
@@ -923,7 +1190,7 @@ class Shader extends Object
             this.#shaders[iA + 2] = new Shader(shaderData[0], shaders[iA], shaderData[1]);
         }
         
-        this.#ready = true;
+        this.#loaded = true;
     }
     
     static Find (name, type)
@@ -935,6 +1202,8 @@ class Shader extends Object
             if (type != null && this.#shaders[i].type !== type) continue;
             if (this.#shaders[i].name === name) return this.#shaders[i];
         }
+        
+        ThrowError(4);
     }
 }
 

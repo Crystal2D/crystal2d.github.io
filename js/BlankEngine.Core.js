@@ -49,6 +49,8 @@ BlankEngine.Core = class
         
         this.compiledData.loadedScripts = true; 
         
+        Resources.Set(this.buildData.resources);
+        
         this.requestUpdate();
     }
     
@@ -61,7 +63,7 @@ BlankEngine.Core = class
     {
         if (!document.hasFocus()) return this.requestUpdate();
         
-        if (Application.isLoaded) Application.Update();
+        if (Application.hasLoaded) Application.Update();
         this.requestUpdate();
     }
 }
@@ -98,6 +100,9 @@ function ThrowError (errorCode, errorDesc)
             break;
         case 3:
             errorText = "Shader is invalid";
+            break;
+        case 4:
+            errorText = "Object cannot be found";
             break;
     }
     
