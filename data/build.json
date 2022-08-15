@@ -1,6 +1,6 @@
 {
     "scripts" : [
-        "test/main"
+        
     ],
     "resources" : [
         {
@@ -12,7 +12,8 @@
                     "type" : "Texture",
                     "args" : {
                         "src" : "ball.png",
-                        "filterMode" : 1
+                        "filterMode" : 1,
+                        "wrapMode" : 0
                     }
                 }
             ]
