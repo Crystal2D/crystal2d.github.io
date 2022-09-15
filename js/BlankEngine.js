@@ -58,10 +58,12 @@ class BlankEngine
             
             for (let i = 0; i < this.buildData.scripts.length; i++)
             {
-                let scriptSrc = `js/${this.buildData.scripts[i]}.js`;
+                let scriptResponse = await fetch(`../js/${this.buildData.scripts[i]}.js`);
+                let scriptBlob = await scriptResponse.blob();
+                let scriptURL = await URL.createObjectURL(scriptBlob);
                 let script = await document.createElement("script");
                 
-                script.src = scriptSrc;
+                script.src = scriptURL;
                 script.type = "text/javascript";
                 
                 await document.body.appendChild(script);
@@ -69,9 +71,9 @@ class BlankEngine
             
             await Resources.Set(this.buildData.resources);
             
-            //await SceneManager.Set(this.compiledData.scenes);
+            await SceneManager.Set(this.compiledData.scenes);
             
-            //BlankEngine.PlayerLoop.init();
+            BlankEngine.PlayerLoop.init();
         }
         
         static initiateProgram ()
