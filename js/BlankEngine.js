@@ -1638,8 +1638,6 @@ class Material extends Object
         
         this.gl.detachShader(this.program, vShader.shader);
         this.gl.detachShader(this.program, fShader.shader);
-        this.gl.deleteShader(vShader.shader);
-        this.gl.deleteShader(fShader.shader);
     }
     
     getAttribLocation (name)
