@@ -73,7 +73,7 @@ class SceneManager
             
             if (object == null)
             {
-                object = await eval(`new ${type}()`);
+                object = await eval(`new window.${type}()`);
                 
                 let properties = Object.getOwnPropertyNames(data);
                 
