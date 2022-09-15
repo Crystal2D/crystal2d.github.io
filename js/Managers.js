@@ -45,6 +45,10 @@ class SceneManager
         
         async #toObject (type, data)
         {
+            if (type == null) throw BlankEngine.ThrowError(0);
+            
+            if (data == null) return null;
+            
             var object;
             
             switch (type)
