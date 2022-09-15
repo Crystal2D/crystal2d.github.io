@@ -73,7 +73,21 @@ class SceneManager
             
             if (object == null)
             {
-                return console.log("e");
+                object = await eval(`new ${type}()`);
+                
+                let properties = Object.getOwnPropertyNames(data);
+                
+                for (let i = 0; i < properties.length; i++)
+                {
+                    let value = eval(`data.${properties[i]}`);
+                    
+                    eval(`object.${properties[i]} = value`)
+                    
+                    if (value != null && value.type != null)
+                    {
+                        await eval(`object.${properties[i]} = await this.#toObject(value.type, value.args)`);
+                    }
+                }
             }
             
             object.name = data.name;
