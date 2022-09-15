@@ -1,4 +1,4 @@
-SceneManager = class
+class SceneManage
 {
     static #scenes = [];
     static #activeScene = null;
