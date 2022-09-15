@@ -63,7 +63,7 @@ class SceneManager
                 case "SpriteRenderer":
                     if (data.args.sprite == null) throw BlankEngine.ThrowError(0);
                     
-                    object = await new SpirteRenderer(await this.#toObject(data.args.sprite), await this.#toObject(data.args.material));
+                    object = await new SpriteRenderer(await this.#toObject(data.args.sprite), await this.#toObject(data.args.material));
                     break;
             }
             
