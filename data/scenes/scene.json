@@ -15,10 +15,6 @@
                             "texture" : "folder/ball"
                         }
                     }
-                },
-                {
-                    "type" : "testGB",
-                    "args" : { }
                 }
             ]
         }
