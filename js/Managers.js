@@ -75,7 +75,7 @@ class SceneManager
             {
                 console.log();
                 
-                objectEval = Function(`return new ${type}()`);
+                let objectEval = Function(`return new ${type}()`);
                 object = objectEval();
                 
                 let properties = Object.getOwnPropertyNames(data);
