@@ -37,7 +37,7 @@ class SceneManager
         
         constructor (name, data)
         {
-            this.name = this.#data.name ?? "scene";
+            this.name = name ?? "scene";
             this.#data = data ?? {};
             
             this.#load();
