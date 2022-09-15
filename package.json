@@ -4,7 +4,10 @@
         "title" : "BlankEngine",
         "width" : 408,
         "height" : 312,
+        "marginX" : 1,
+        "marginY" : 1,
         "resizable" : false,
+        "fillWindow" : false,
         "icon" : "icon/icon.ico"
     }
 }
