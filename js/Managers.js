@@ -114,6 +114,7 @@ class SceneManager
                 }
                 
                 let newGameObj = await this.#toObject({
+                    type : "GameObject",
                     name : this.#data.gameObjects[iA].name,
                     components : components,
                     active : this.#data.gameObjects[iA].active

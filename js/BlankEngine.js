@@ -154,7 +154,7 @@ class Resources
     static get res () { return this.#resources }
     static set res (r) { this.#resources = r; }
     
-    static #toObject (data)
+    static async #toObject (data)
     {
         if (data.name == null) throw BlankEngine.ThrowError(0);
         
@@ -165,7 +165,7 @@ class Resources
             case "Texture":
                 if (data.args.src == null) throw BlankEngine.ThrowError(0);
                 
-                object = new Texture(data.args.src);
+                object = await new Texture(data.args.src);
                 
                 
                 if (data.args.wrapMode != null) object.wrapMode = data.args.wrapMode;
@@ -441,7 +441,7 @@ class Resources
                     if (existInRes == 2 || existInRes == 3) return null;
                     
                     // LOAD CONTENT
-                    await this.#setRes(inPath, this.#toObject(uRPath[iB]));
+                    await this.#setRes(inPath, await this.#toObject(uRPath[iB]));
                     
                     return null;
                 }
