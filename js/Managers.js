@@ -107,7 +107,7 @@ class SceneManager
             {
                 var components = [];
                 
-                for (let iB = 0; iB < this.#data.gameObjects[iA].components; iB++)
+                for (let iB = 0; iB < this.#data.gameObjects[iA].components.length; iB++)
                 {
                     if (components.length == 0) components[0] = await this.#toObject(this.#data.gameObjects[iA].components[iB]);
                     else components.push(await this.#toObject(this.#data.gameObjects[iA].components[iB]));
