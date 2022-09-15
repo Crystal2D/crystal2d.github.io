@@ -73,10 +73,7 @@ class SceneManager
             
             if (object == null)
             {
-                console.log(new testGB());
-                
-                let objectEval = Function(`return new ${type}()`);
-                object = objectEval();
+                object = eval(`new ${type}()`);
                 
                 let properties = Object.getOwnPropertyNames(data);
                 
