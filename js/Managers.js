@@ -144,7 +144,7 @@ class SceneManage
         this.#activeScene = await new this.Scene(this.#scenes[index].name, {
             resources : this.#scenes[index].resources,
             gameObjects : this.#scenes[index].gameObjects,
-            buildIndex : this.#scenes[index].buildIndex
+            buildIndex : this.#scenes[index].buildIndex,
             path : this.#scenes[index].path
         }) ?? await new this.Scene();
         
