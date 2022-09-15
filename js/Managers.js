@@ -43,11 +43,11 @@ class SceneManager
             this.#load();
         }
         
-        async #toObject (data)
+        async #toObject (type, data)
         {
             var object;
             
-            switch (data.type)
+            switch (type)
             {
                 case "GameObject":
                     object = await new GameObject(data.name, data.components, data.active);
@@ -61,9 +61,9 @@ class SceneManager
                     object = await new Material(Shader.Find(data.vertexShader, "VERTEX"), Shader.Find(data.fragmentShader, "FRAGMENT"));
                     break;
                 case "SpriteRenderer":
-                    if (data.args.sprite == null) throw BlankEngine.ThrowError(0);
+                    if (data.sprite == null) throw BlankEngine.ThrowError(0);
                     
-                    object = await new SpriteRenderer(await this.#toObject(data.args.sprite), await this.#toObject(data.args.material));
+                    object = await new SpriteRenderer(await this.#toObject("Sprite", data.sprite), await this.#toObject("Material", data.material));
                     break;
             }
             
@@ -107,12 +107,11 @@ class SceneManager
                 
                 for (let iB = 0; iB < this.#data.gameObjects[iA].components.length; iB++)
                 {
-                    if (components.length == 0) components[0] = await this.#toObject(this.#data.gameObjects[iA].components[iB]);
-                    else components.push(await this.#toObject(this.#data.gameObjects[iA].components[iB]));
+                    if (components.length == 0) components[0] = await this.#toObject(this.#data.gameObjects[iA].components[iB].type, this.#data.gameObjects[iA].components[iB].args);
+                    else components.push(await this.#toObject(this.#data.gameObjects[iA].components[iB].type, this.#data.gameObjects[iA].components[iB].args));
                 }
                 
-                let newGameObj = await this.#toObject({
-                    type : "GameObject",
+                let newGameObj = await this.#toObject("GameObject", {
                     name : this.#data.gameObjects[iA].name,
                     components : components,
                     active : this.#data.gameObjects[iA].active
