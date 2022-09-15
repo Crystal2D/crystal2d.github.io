@@ -90,7 +90,7 @@ class SceneManager
                 }
             }
             
-            object.name = data.name;
+            if (data.name != null) object.name = data.name;
             
             return object;
         }
