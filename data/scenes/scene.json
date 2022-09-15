@@ -1,7 +1,7 @@
 {
     "name" : "Scene",
     "resources" : [
-        
+        "folder/ball"
     ],
     "gameObjects" : [
         {
@@ -17,7 +17,8 @@
                     }
                 },
                 {
-                    "type" : "testGB"
+                    "type" : "testGB",
+                    "args" : { }
                 }
             ]
         }
