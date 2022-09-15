@@ -1,6 +1,6 @@
 {
     "scripts" : [
-        
+        "Assembly-JavaScript"
     ],
     "resources" : [
         {
@@ -23,7 +23,8 @@
         "scene"
     ],
     "shaders" : [
-        
+        "invertColor"
     ],
+    "targetFrameRate" : -1,
     "debugMode" : false
 }
