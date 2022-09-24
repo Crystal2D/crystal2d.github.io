@@ -1,19 +1,66 @@
 {
     "name" : "Scene",
     "resources" : [
-        "folder/ball"
+        "textures/ball",
+        "materials/mat_invert"
     ],
     "gameObjects" : [
         {
+            "name" : "camera",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 0, "y" : 0 },
+                "rotation" : 0,
+                "scale" : { "x" : 0, "y" : 0 }
+            },
+            "components" : [
+                {
+                    "type" : "Camera",
+                    "args" : {
+                        "orthographicSize" : 1.5
+                    }
+                }
+            ]
+        },
+        {
             "name" : "obj_ball",
             "active" : true,
+            "transform" : {
+                "position" : { "x" : 0, "y" : 0 },
+                "rotation" : 0 ,
+                "scale" : { "x" : 0, "y" : 0 }
+            },
             "components" : [
                 {
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "folder/ball"
+                            "texture" : "textures/ball"
                         }
+                    }
+                },
+                {
+                    "type" : "testGB",
+                    "args" : { }
+                }
+            ]
+        },
+        {
+            "name" : "obj_ballInv",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 1.5, "y" : 0.5 },
+                "rotation" : 0 ,
+                "scale" : { "x" : 0, "y" : 0 }
+            },
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "textures/ball"
+                        },
+                        "material" : "materials/mat_invert"
                     }
                 },
                 {
