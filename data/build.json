@@ -1,10 +1,18 @@
 {
     "scripts" : [
-        "Assembly-JavaScript"
+        {
+            "src" : "Assembly-JavaScript",
+            "classes" : [
+                {
+                    "name" : "testGB",
+                    "args" : []
+                }
+            ]
+        }
     ],
     "resources" : [
         {
-            "name" : "folder",
+            "name" : "textures",
             "type" : "subpath",
             "content" : [
                 {
@@ -14,6 +22,20 @@
                         "src" : "ball.png",
                         "filterMode" : 1,
                         "wrapMode" : 0
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "materials",
+            "type" : "subpath",
+            "content" : [
+                {
+                    "name" : "mat_invert",
+                    "type" : "Material",
+                    "args" : {
+                        "vertexShader" : null,
+                        "fragmentShader" : "Invert Color"
                     }
                 }
             ]
