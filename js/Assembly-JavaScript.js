@@ -5,6 +5,6 @@ class testGB extends GameBehavior
     Start ()
     {
         console.log("Start");
-        Application.gl.clearColor(0.4, 0.4, 0.4, 1.0);
+        Application.gl.clearColor(0.25, 0.25, 0.25, 1.0);
     }
 }

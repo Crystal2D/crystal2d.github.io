@@ -1,5 +1,6 @@
 /**
  * The main static class of the engine
+ * 
  * @public
  * @static
  * @class
@@ -10,10 +11,78 @@ class BlankEngine
     
     static Core = class
     {
+        static packageData = null;
+        static buildData = null;
+        static compiledData = { shaders : [], scripts : [], scenes : [] };
+        
+        static #script = class
+        {
+            #loaded = false;
+            #src = null;
+            #classes = [];
+            
+            get isLoaded ()
+            {
+                return this.#loaded;
+            }
+            
+            get src ()
+            {
+                this.#src;
+            }
+            
+            get classes ()
+            {
+                return this.#classes;
+            }
+            
+            constructor (src, classes)
+            {
+                this.#src = src;
+                this.#classes = classes;
+            }
+            
+            async load ()
+            {
+                if (this.#loaded) return;
+                
+                let script = document.createElement("script");
+                var newClasses = [];
+                
+                script.src = this.#src;
+                script.type = "text/javascript";
+                script.async = true;
+                
+                document.body.appendChild(script);
+                
+                await new Promise(resolve => script.addEventListener("load", resolve));
+                
+                for (let i = 0; i < this.#classes.length; i++)
+                {
+                    if (this.#classes[i].name == null || this.#classes[i].args == null) continue;
+                    
+                    if (newClasses.length == 0) newClasses[0] = this.#classes[i];
+                    else newClasses.push(this.#classes[i]);
+                }
+                
+                this.#classes = newClasses;
+                
+                this.#loaded = true;
+            }
+        }
+        
+        static initiateProgram ()
+        {
+            document.body.style.height = "100vh";
+            document.body.style.margin = "0";
+            document.body.style.display = "flex";
+            document.body.style.alignItems = "center";
+            
+            this.#loadData();
+        }
+        
         static async #loadData ()
         {
-            this.compiledData = { shaders : [], scenes : [] };
-            
             let packageResponse = await fetch("../package.json");
             let buildResponse = await fetch("../data/build.json");
             
@@ -27,6 +96,16 @@ class BlankEngine
                 
                 if (this.compiledData.shaders.length == 0) this.compiledData.shaders[0] = shader;
                 else this.compiledData.shaders.push(shader);
+            }
+            
+            for (let i = 0; i < this.buildData.scripts.length; i++)
+            {
+                if (this.buildData.scripts[i] == null || !this.buildData.scripts[i].src) continue;
+                
+                let script = new this.#script(`../js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
+                
+                if (this.compiledData.scripts.length == 0) this.compiledData.scripts[0] = script;
+                else this.compiledData.scripts.push(script);
             }
             
             for (let i = 0; i < this.buildData.scenes.length; i++)
@@ -51,22 +130,22 @@ class BlankEngine
         
         static async #init ()
         {
-            Window.data = this.packageData.window;
+            Window.data.title = this.packageData.window.title;
+            Window.data.width = this.packageData.window.width ?? 250;
+            Window.data.height = this.packageData.window.height ?? 250;
+            Window.data.marginX = this.packageData.window.marginX ?? 0.5;
+            Window.data.marginY = this.packageData.window.marginY ?? 0.5;
+            Window.data.resizable = this.packageData.window.resizable ?? true;
+            Window.data.fillWindow = this.packageData.window.fillWindow ?? true;
+            Window.data.icon = this.packageData.window.icon ?? "";
+            
             Window.init();
             
             await Shader.Set(this.compiledData.shaders);
             
-            for (let i = 0; i < this.buildData.scripts.length; i++)
+            for (let i = 0; i < this.compiledData.scripts.length; i++)
             {
-                let scriptResponse = await fetch(`../js/${this.buildData.scripts[i]}.js`);
-                let scriptBlob = await scriptResponse.blob();
-                let scriptURL = await URL.createObjectURL(scriptBlob);
-                let script = await document.createElement("script");
-                
-                script.src = scriptURL;
-                script.type = "text/javascript";
-                
-                await document.body.appendChild(script);
+                await this.compiledData.scripts[i].load();
             }
             
             await Resources.Set(this.buildData.resources);
@@ -75,20 +154,12 @@ class BlankEngine
             
             BlankEngine.PlayerLoop.init();
         }
-        
-        static initiateProgram ()
-        {
-            document.body.style.height = "100vh";
-            document.body.style.margin = "0";
-            document.body.style.display = "flex";
-            document.body.style.alignItems = "center";
-            
-            this.#loadData();
-        }
     }
     
     static PlayerLoop = class
     {
+        static #loadedApp = false;
+        
         static #requestUpdate ()
         {
             requestAnimationFrame(this.#update.bind(this));
@@ -96,9 +167,18 @@ class BlankEngine
         
         static #update ()
         {
+            if (!this.#loadedApp && !Application.isLoaded)
+            {
+                Application.Load();
+                
+                this.#loadedApp = true;
+            }
+            
             if (!document.hasFocus() || !Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
             
-            Application.Update();
+            this.Start();
+            
+            this.Render();
             
             this.#requestUpdate();
         }
@@ -106,6 +186,34 @@ class BlankEngine
         static init ()
         {
             this.#requestUpdate();
+        }
+        
+        static Start ()
+        {
+            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
+            {
+                SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
+            }
+        }
+        
+        static Render ()
+        {
+            Application.gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
+            Application.gl.clear(Application.gl.COLOR_BUFFER_BIT | Application.gl.DEPTH_BUFFER_BIT);
+            Application.gl.enable(Application.gl.BLEND);
+            Application.gl.blendFunc(Application.gl.SRC_ALPHA, Application.gl.ONE_MINUS_SRC_ALPHA);
+            
+            for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
+            {
+                let cameras = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("Camera");
+                
+                for (let iB = 0; iB < cameras.length; iB++)
+                {
+                    cameras[iB].Render();
+                }
+            }
+            
+            Application.gl.flush();
         }
     }
     
@@ -156,22 +264,73 @@ class Resources
     static get res () { return this.#resources }
     static set res (r) { this.#resources = r; }
     
+    static Find (path)
+    {
+        if (path == null) throw BlankEngine.ThrowError(0);
+        
+        var newPath = [""];
+        var resPath = this.#resources;
+        
+        for (let i = 0; i < path.length; i++)
+        {
+            if (path[i] === "/")
+            {
+                newPath.push("");
+                
+                continue;
+            }
+            
+            newPath[newPath.length - 1] += path[i];
+        }
+        
+        for (let iA = 0; iA < newPath.length; iA++)
+        {
+            for (let iB = 0; iB < resPath.length; iB++)
+            {
+                if (resPath[iB].name != newPath[iA]) continue;
+                
+                if (iA == newPath.length - 1)
+                {
+                    if (resPath[iB].type === "subpath") throw BlankEngine.ThrowError(3);
+                    
+                    return resPath[iB];
+                }
+                
+                resPath = resPath[iB].content;
+                
+                break;
+            }
+        }
+        
+        throw BlankEngine.ThrowError(3);
+    }
+    
     static async #toObject (data)
     {
-        if (data.name == null) throw BlankEngine.ThrowError(0);
+        if (data.name == null || data.args == null) throw BlankEngine.ThrowError(0);
         
-        var object;
+        let args = data.args;
+        var object = null;
         
         switch (data.type)
         {
             case "Texture":
-                if (data.args.src == null) throw BlankEngine.ThrowError(0);
+                if (args.src == null) throw BlankEngine.ThrowError(0);
                 
-                object = await new Texture(data.args.src);
+                object = await new Texture(args.src);
                 
                 
-                if (data.args.wrapMode != null) object.wrapMode = data.args.wrapMode;
-                if (data.args.filterMode != null) object.filterMode = data.args.filterMode;
+                if (args.wrapMode != null) object.wrapMode = args.wrapMode;
+                if (args.filterMode != null) object.filterMode = args.filterMode;
+                break;
+            case "Material":
+                var vertexShader = null;
+                var fragmentShader = null;
+                
+                if (args.vertexShader != null) vertexShader = await Shader.Find(args.vertexShader, "VERTEX");
+                if (args.fragmentShader != null) fragmentShader = await Shader.Find(args.fragmentShader, "FRAGMENT");
+                
+                object = await new Material(vertexShader, fragmentShader);
                 break;
             default:
                 throw BlankEngine.ThrowError(0);
@@ -324,47 +483,6 @@ class Resources
         this.#resources = await newPath.final;
     }
     
-    static Find (path)
-    {
-        if (path == null) throw BlankEngine.ThrowError(0);
-        
-        var newPath = [""];
-        var resPath = this.#resources;
-        
-        for (let i = 0; i < path.length; i++)
-        {
-            if (path[i] === "/")
-            {
-                newPath.push("");
-                
-                continue;
-            }
-            
-            newPath[newPath.length - 1] += path[i];
-        }
-        
-        for (let iA = 0; iA < newPath.length; iA++)
-        {
-            for (let iB = 0; iB < resPath.length; iB++)
-            {
-                if (resPath[iB].name != newPath[iA]) continue;
-                
-                if (iA == newPath.length - 1)
-                {
-                    if (resPath[iB].type === "subpath") throw BlankEngine.ThrowError(3);
-                    
-                    return resPath[iB];
-                }
-                
-                resPath = resPath[iB].content;
-                
-                break;
-            }
-        }
-        
-        throw BlankEngine.ThrowError(3);
-    }
-    
     static async Set (resources)
     {
         if (resources == null || !Array.isArray(resources)) throw BlankEngine.ThrowError(0);
@@ -440,12 +558,12 @@ class Resources
                 if (iA == newPath.length - 1)
                 {
                     // IF ALREADY EXIST THEN RETURN
-                    if (existInRes == 2 || existInRes == 3) return null;
+                    if (existInRes == 2 || existInRes == 3) return;
                     
                     // LOAD CONTENT
                     await this.#setRes(inPath, await this.#toObject(uRPath[iB]));
                     
-                    return null;
+                    return;
                 }
                 
                 //IF LOADING FOLDER
@@ -499,7 +617,7 @@ class Resources
             if (iA == 0) // IF CURRENT PATH IS IN ROOT
             {
                 // IF RESPATH IS EMPTY THEN RETURN NULL
-                if (resPath[0].length == 0) return null;
+                if (resPath[0].length == 0) return;
                 
                 // FOREACH CONTENT IN CURRENT PATH
                 for (let iB = 0; iB < resPath[0].length; iB++)
@@ -513,7 +631,7 @@ class Resources
                             // IF CONTENT IS NOT OBJECT OR
                             // CONTENT NAME IS NOT EQUAL TO PATH
                             // THEN RETURN NULL
-                            if (resPath[0][iB].type == "subpath" || resPath[0][iB].name != newTargetPath[0]) return null;
+                            if (resPath[0][iB].type == "subpath" || resPath[0][iB].name != newTargetPath[0]) return;
                         }
                         
                         // IF CONTENT IS NOT OBJECT OR
@@ -529,7 +647,7 @@ class Resources
                             // IF CONTENT IS NOT FOLDER OR
                             // CONTENT NAME IS NOT EQUAL TO PATH
                             // THEN RETURN NULL
-                            if (resPath[0][iB].type != "subpath" || resPath[0][iB].name != newTargetPath[0]) return null;
+                            if (resPath[0][iB].type != "subpath" || resPath[0][iB].name != newTargetPath[0]) return;
                         }
                         
                         // IF CONTENT IS NOT FOLDER OR
@@ -551,7 +669,7 @@ class Resources
             // IF PATH IS IN SUB
             
             // IF RESPATH IS EMPTY THEN RETURN NULL
-            if (resPath[resPath.length - 1].content.length == 0) return null;
+            if (resPath[resPath.length - 1].content.length == 0) return;
             
             // FOREACH CONTENT IN CURRENT PATH
             for (let iB = 0; iB < resPath[iA].content.length; iB++)
@@ -565,7 +683,7 @@ class Resources
                         // IF CONTENT IS NOT OBJECT OR
                         // CONTENT NAME IS NOT EQUAL TO PATH
                         // THEN RETURN NULL
-                        if (resPath[iA].content[iB].type == "subpath" || resPath[iA].content[iB].name != newTargetPath[iA]) return null;
+                        if (resPath[iA].content[iB].type == "subpath" || resPath[iA].content[iB].name != newTargetPath[iA]) return;
                     }
                     
                     // IF CONTENT IS NOT OBJECT OR
@@ -581,7 +699,7 @@ class Resources
                         // IF CONTENT IS NOT FOLDER OR
                         // CONTENT NAME IS NOT EQUAL TO PATH
                         // THEN RETURN NULL
-                        if (resPath[iA].content[iB].type != "subpath" || resPath[iA].content[iB].name != newTargetPath[iA]) return null;
+                        if (resPath[iA].content[iB].type != "subpath" || resPath[iA].content[iB].name != newTargetPath[iA]) return;
                     }
                     
                     // IF CONTENT IS NOT FOLDER OR
@@ -696,127 +814,130 @@ class Debug
 
 class Matrix3x3
 {
-    get floatArray ()
-    {
-        return new Float32Array(this.matrix);
-    }
+    matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
     
     get transpose ()
     {
-        let output = new Matrix3x3();
         let m = this.matrix;
+        let output = new Matrix3x3();
         
         output.matrix = [
-            m[0], m[3], m[6],
-            m[1], m[4], m[7],
-            m[2], m[5], m[8]
+            [m[0][0], m[1][0], m[2][0]],
+            [m[0][1], m[1][1], m[2][1]],
+            [m[0][2], m[1][2], m[2][2]]
         ];
         
         return output;
     }
     
-    constructor ()
+    constructor (a, b, c)
     {
-        this.matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+        this.matrix = [
+            a ?? [1, 0, 0],
+            b ?? [0, 1, 0],
+            c ?? [0, 0, 1]
+        ];
     }
     
-    GetValue (row, column)
+    static Translate (translation)
     {
-        if (row == null || column == null) throw BlankEngine.ThrowError(0);
+        let output = new Matrix3x3(
+            [1, 0, 0],
+            [0, 1, 0],
+            [translation.x, translation.y, 1]
+        );
         
-        let arrayPos = 0;
-        let matVPos = `${row}${column}`;
-        
-        switch (matVPos)
-        {
-            case "01":
-                arrayPos = 1;
-                break;
-            case "02":
-                arrayPos = 2;
-                break;
-            case "10":
-                arrayPos = 3;
-                break;
-            case "11":
-                arrayPos = 4;
-                break;
-            case "12":
-                arrayPos = 5;
-                break;
-            case "20":
-                arrayPos = 6;
-                break;
-            case "21":
-                arrayPos = 7;
-                break;
-            case "22":
-                arrayPos = 8;
-                break;
-        }
-        
-        return this.matrix[arrayPos];
+        return output;
     }
     
-    SetValue (row, column, value)
+    static Rotate (rotation)
     {
-        if (row == null || column == null || value == null) throw BlankEngine.ThrowError(0);
+        let output = new Matrix3x3(
+            [Math.cos(rotation), Math.sin(rotation), 0],
+            [-Math.sin(rotation), Math.cos(rotation), 0],
+            [0, 0, 1]
+        );
         
-        let arrayPos = 0;
-        let matVPos = `${row}${column}`;
-        
-        switch (matVPos)
-        {
-            case "01":
-                arrayPos = 1;
-                break;
-            case "02":
-                arrayPos = 2;
-                break;
-            case "10":
-                arrayPos = 3;
-                break;
-            case "11":
-                arrayPos = 4;
-                break;
-            case "12":
-                arrayPos = 5;
-                break;
-            case "20":
-                arrayPos = 6;
-                break;
-            case "21":
-                arrayPos = 7;
-                break;
-            case "22":
-                arrayPos = 8;
-                break;
-        }
-        
-        this.matrix[arrayPos] = value;
+        return output;
     }
     
-    SetRow (index, values)
+    static Scale (scale)
     {
-        if (index == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
+        let output = new Matrix3x3(
+            [scale.x, 0, 0],
+            [0, scale.y, 0],
+            [0, 0, 1]
+        );
         
-        for (let i = 0; i <= 2; i++)
-        {
-            this.SetValue(index, i, values[i]);
-        }
+        return output;
     }
     
-    SetColumn (index, values)
+    static TRS (translation, rotation, scale)
     {
-        if (index == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
+        let output = new Matrix3x3(
+            [Math.cos(rotation) * scale.x, Math.sin(rotation) * scale.y, 0],
+            [-Math.sin(rotation) * scale.x, Math.cos(rotation) * scale.y, 0],
+            [translation.x, translation.y, 1]
+        );
         
-        for (let i = 0; i <= 2; i++)
-        {
-            this.SetValue(i, index, values[i]);
-        }
+        return output;
     }
     
-    GetRow (index)
+    static Ortho (left, right, bottom, top)
+    {
+        let output = new Matrix3x3(
+            [right - left, 0, 0]
+            [0, top - bottom, 0]
+            [-(right + left) / (right - left), -(top + bottom) / (top - bottom), 1]
+        );
+        
+        return output;
+    }
+    
+    static Multiply (lhs, rhs)
+    {
+        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        
+        let a = lhs.matrix;
+        let b = rhs.matrix;
+        let output = new Matrix3x3();
+        
+        output.matrix = [
+            [
+                a[0][0] * b[0][0] + a[0][1] * b[1][0] + a[0][2] * b[2][0],
+                a[0][0] * b[0][1] + a[0][1] * b[1][1] + a[0][2] * b[2][1],
+                a[0][0] * b[0][2] + a[0][1] * b[1][2] + a[0][2] * b[2][2]
+            ],
+            [
+                a[1][0] * b[0][0] + a[1][1] * b[1][0] + a[1][2] * b[2][0],
+                a[1][0] * b[0][1] + a[1][1] * b[1][1] + a[1][2] * b[2][1],
+                a[1][0] * b[0][2] + a[1][1] * b[1][2] + a[1][2] * b[2][2]
+            ],
+            [
+                a[2][0] * b[0][0] + a[2][1] * b[1][0] + a[2][2] * b[2][0],
+                a[2][0] * b[0][1] + a[2][1] * b[1][1] + a[2][2] * b[2][1],
+                a[2][0] * b[0][2] + a[2][1] * b[1][2] + a[2][2] * b[2][2]
+            ]
+        ];
+        
+        return output;
+    }
+    
+    GetValue (column, row)
+    {
+        if (column == null || row == null) throw BlankEngine.ThrowError(0);
+        
+        return this.matrix[column][row];
+    }
+    
+    SetValue (column, row, value)
+    {
+        if (column == null || row == null || value == null) throw BlankEngine.ThrowError(0);
+        
+        this.matrix[column][row] = value;
+    }
+    
+    GetColumn (index)
     {
         if (index == null) throw BlankEngine.ThrowError(0);
         
@@ -830,7 +951,17 @@ class Matrix3x3
         return output;
     }
     
-    GetColumn (index)
+    SetColumn (index, values)
+    {
+        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
+        
+        for (let i = 0; i <= 2; i++)
+        {
+            this.SetValue(index, i, values[i]);
+        }
+    }
+    
+    GetRow (index)
     {
         if (index == null) throw BlankEngine.ThrowError(0);
         
@@ -844,32 +975,20 @@ class Matrix3x3
         return output;
     }
     
-    static Multiply (lhs, rhs)
+    SetRow (index, values)
     {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
         
-        let output = new Matrix3x3();
-        let a = lhs.matrix;
-        let b = rhs.matrix;
-        
-        output.matrix = [
-            a[0] * b[0] + a[3] * b[1] + a[6] * b[2],
-            a[1] * b[0] + a[4] * b[1] + a[7] * b[2],
-            a[2] * b[0] + a[5] * b[1] + a[8] * b[2],
-            a[0] * b[3] + a[3] * b[4] + a[6] * b[5],
-            a[1] * b[3] + a[4] * b[4] + a[7] * b[5],
-            a[2] * b[3] + a[5] * b[4] + a[8] * b[5],
-            a[0] * b[6] + a[3] * b[7] + a[6] * b[8],
-            a[1] * b[6] + a[4] * b[7] + a[7] * b[8],
-            a[2] * b[6] + a[5] * b[7] + a[8] * b[8],
-        ];
-        
-        return output;
+        for (let i = 0; i <= 2; i++)
+        {
+            this.SetValue(i, index, values[i]);
+        }
     }
 }
 
 /**
  * Used to represent 2D vectors, positions and points
+ * 
  * @public
  * @class
  */
@@ -879,10 +998,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(0, 0)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get zero ()
     {
@@ -891,10 +1012,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(1, 1)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get one ()
     {
@@ -903,10 +1026,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(0, 1)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get up ()
     {
@@ -915,10 +1040,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(0, -1)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get down ()
     {
@@ -927,10 +1054,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(-1, 0)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get left ()
     {
@@ -939,10 +1068,12 @@ class Vector2
     
     /**
      * Shorthand for Vector2(1, 0)
+     * 
      * @memberof Vector2
+     * 
      * @public
      * @static
-     * @returns {Vector2}
+     * @type {Vector2}
      */
     static get right ()
     {
@@ -953,12 +1084,34 @@ class Vector2
     // Properties
     
     /**
+     * The X component of the vector
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @type {number}
+     */
+    x = 0;
+    
+    /**
+     * The Y component of the vector
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @type {number}
+     */
+    y = 0;
+    
+    /**
      * (Read Only)
      * Returns the length of this vector
+     * 
      * @memberof Vector2
-     * @readonly
+     * 
      * @public
-     * @returns {float}
+     * @readonly
+     * @type {number}
      */
     get magnitude ()
     {
@@ -968,10 +1121,12 @@ class Vector2
     /**
      * (Read Only)
      * Returns the squared length of this vector
+     * 
      * @memberof Vector2
-     * @readonly
+     * 
      * @public
-     * @returns {float}
+     * @readonly
+     * @type {number}
      */
     get sqrMagnitude ()
     {
@@ -981,10 +1136,12 @@ class Vector2
     /**
      * (Read Only)
      * Returns this vector with a magnitude of 1
+     * 
      * @memberof Vector2
-     * @readonly
+     * 
      * @public
-     * @returns {Vector2}
+     * @readonly
+     * @type {Vector2}
      */
     get normalized ()
     {
@@ -996,27 +1153,104 @@ class Vector2
     
     /**
      * Creates a new Vector2 with given x and y components
+     * 
      * @memberof Vector2
-     * @param {float} x - The X component of the vector
-     * @param {float} y - The Y component of the vector
+     * 
+     * @param {number} x - The X component of the vector
+     * @param {number} y - The Y component of the vector
      */
     constructor (x, y)
     {
-        /**
-         * The X component of the vector
-         * @memberof Vector2
-         * @public
-         * @member {float}
-         */
-        this.x = x ?? 0.0;
+        this.x = x ?? 0;
+        this.y = y ?? 0;
+    }
+    
+    
+    // Static Methods
+    
+    /**
+     * Returns the distance of a and b
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @static
+     * @method
+     * 
+     * @param {Vector2} a - The first vector
+     * @param {Vector2} b - The second vector
+     * 
+     * @returns {number}
+     */
+    static Distance (a, b)
+    {
+        let x = a.x - b.x;
+        let y = a.y - b.y;
         
-        /**
-         * The Y component of the vector
-         * @memberof Vector2
-         * @public
-         * @member {float}
-         */
-        this.y = y ?? 0.0;
+        return Math.sqrt(x * x + y * y);
+    }
+    
+    /**
+     * Returns the dot product of two vectors
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @static
+     * @method
+     * 
+     * @param {Vector2} lhs - The left hand side of the equation
+     * @param {Vector2} rhs - The right hand side of the equation
+     * 
+     * @returns {number}
+     */
+    static Dot (lhs, rhs)
+    {
+        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        
+        return (lhs.x * rhs.x + lhs.y * rhs.y)
+    }
+    
+    /**
+     * Returns a vector made of the smallest components of two vectors
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @static
+     * @method
+     * 
+     * @param {Vector2} lhs - The left hand side of the equation
+     * @param {Vector2} rhs - The right hand side of the equation
+     * 
+     * @returns {Vector2}
+     */
+    static Min (lhs, rhs)
+    {
+        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        
+        return new Vector2(Math.min(lhs.x, rhs.x), Math.min(lhs.y, rhs.y));
+    }
+    
+    /**
+     * Returns a vector made of the largest components of two vectors
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @static
+     * @method
+     * 
+     * @param {Vector2} lhs - The left hand side of the equation
+     * @param {Vector2} rhs - The right hand side of the equation
+     * 
+     * @returns {Vector2}
+     */
+    static Max (lhs, rhs)
+    {
+        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        
+        return new Vector2(Math.max(lhs.x, rhs.x), Math.max(lhs.y, rhs.y));
     }
     
     
@@ -1024,11 +1258,14 @@ class Vector2
     
     /**
      * Sets the x and y components of the vector
+     * 
      * @memberof Vector2
+     * 
      * @public
-     * @function
-     * @param {float} x - The X component of the vector
-     * @param {float} y - The Y component of the vector
+     * @method
+     * 
+     * @param {number} x - The X component of the vector
+     * @param {number} y - The Y component of the vector
      */
     Set (x, y)
     {
@@ -1041,8 +1278,10 @@ class Vector2
     /**
      * Returns a string format of this vector
      * @memberof Vector2
+     * 
      * @public
-     * @function
+     * @method
+     * 
      * @returns {string}
      */
     toString ()
@@ -1052,11 +1291,15 @@ class Vector2
     
     /**
      * Compares this vector with another Vector2, returns true if the vectors are equal
+     * 
      * @memberof Vector2
+     * 
      * @public
-     * @function
+     * @method
+     * 
      * @param {Vector2} other - The vector you want to compare with
-     * @returns {bool}
+     * 
+     * @returns {boolean}
      */
     Equals (other)
     {
@@ -1065,9 +1308,11 @@ class Vector2
     
     /**
      * Makes this vector have a magnitude of 1
+     * 
      * @memberof Vector2
+     * 
      * @public
-     * @function
+     * @method
      */
     Normalize ()
     {
@@ -1076,82 +1321,15 @@ class Vector2
         this.x = this.x / magnitude;
         this.y = this.y / magnitude;
     }
-    
-    
-    // Static Methods
-    
-    /**
-     * Returns the distance of a and b
-     * @memberof Vector2
-     * @public
-     * @static
-     * @function
-     * @param {Vector2} a - The first vector
-     * @param {Vector2} b - The second vector
-     * @returns {float}
-     */
-    static Distance (a, b)
-    {
-        let x = a.x - b.x;
-        let y = a.y - b.y;
-        
-        return Math.sqrt(x * x + y * y);
-    }
-    
-    /**
-     * Returns the dot product of two vectors
-     * @memberof Vector2
-     * @public
-     * @static
-     * @function
-     * @param {Vector2} lhs - The left hand side of the equation
-     * @param {Vector2} rhs - The right hand side of the equation
-     * @returns {float}
-     */
-    static Dot (lhs, rhs)
-    {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
-        
-        return (lhs.x * rhs.x + lhs.y * rhs.y)
-    }
-    
-    /**
-     * Returns a vector made of the smallest components of two vectors
-     * @memberof Vector2
-     * @public
-     * @static
-     * @function
-     * @param {Vector2} lhs - The left hand side of the equation
-     * @param {Vector2} rhs - The right hand side of the equation
-     * @returns {Vector2}
-     */
-    static Min (lhs, rhs)
-    {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
-        
-        return new Vector2(Math.min(lhs.x, rhs.x), Math.min(lhs.y, rhs.y));
-    }
-    
-    /**
-     * Returns a vector made of the largest components of two vectors
-     * @memberof Vector2
-     * @public
-     * @static
-     * @function
-     * @param {Vector2} lhs - The left hand side of the equation
-     * @param {Vector2} rhs - The right hand side of the equation
-     * @returns {Vector2}
-     */
-    static Max (lhs, rhs)
-    {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
-        
-        return new Vector2(Math.max(lhs.x, rhs.x), Math.max(lhs.y, rhs.y));
-    }
 }
 
 class Rect
 {
+    x = 0;
+    y = 0;
+    width = 1;
+    height = 1;
+    
     get rectArray ()
     {
         let x = this.x;
@@ -1188,12 +1366,12 @@ class Rect
         this.height = value.y
     }
     
-    constructor (x = 0, y = 0, width = 1, height = 1)
+    constructor (x, y, width, height)
     {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.x = x ?? 0;
+        this.y = y ?? 0;
+        this.width = width ?? 1;
+        this.height = height ?? 1;
     }
     
     Set (x, y, width, height)
@@ -1214,6 +1392,11 @@ class Rect
 
 class Color
 {
+    r = 0;
+    g = 0;
+    b = 0;
+    a = 1;
+    
     get grayscale ()
     {
         let value = (this.r * 0.3 + this.g * 0.59 + this.b * 0.11);
@@ -1221,22 +1404,23 @@ class Color
         return new Color(value, value, value, this.a);
     }
     
-    constructor (r = 0.0, g = 0.0, b = 0.0, a = 1.0)
+    constructor (r, g, b, a)
     {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
+        this.r = r ?? 0;
+        this.g = g ?? 0;
+        this.b = b ?? 0;
+        this.a = a ?? 1;
     }
     
-    Set (r, g, b, a = this.a)
+    Set (r, g, b, a)
     {
         if (r == null || g == null || b == null) throw BlankEngine.ThrowError(0);
         
         this.r = r;
         this.g = g;
         this.b = b;
-        this.a = a;
+        
+        if (a != null) this.a = a;
     }
     
     toString ()
@@ -1250,10 +1434,9 @@ class Color
 
 class Object
 {
-    constructor ()
-    {
-        this.name = null;
-    }
+    name = null;
+    
+    constructor () { }
     
     toString ()
     {
@@ -1263,14 +1446,77 @@ class Object
 
 class GameObject extends Object
 {
+    #name = "Empty Object";
     #active = false;
+    #components = [new Transform()];
+    
+    get name ()
+    {
+        return this.#name;
+    }
+    
+    set name (value)
+    {
+        this.#name = value;
+        
+        let components = this.#components;
+        
+        for (let i = 0; i < this.#components.length; i++)
+        {
+            components[i].gameObject = this;
+            components[i].name = this.name;
+        }
+    }
     
     get activeSelf ()
     {
         return this.#active;
     }
     
-    constructor (name, components, active)
+    get components ()
+    {
+        return this.#components;
+    }
+    
+    set components (value)
+    {
+        var newComps = [this.#components[0]];
+        
+        for (let i = 0; i < value.length; i++)
+        {
+            let validType = value[i] instanceof Component;
+            
+            if (!validType) throw BlankEngine.ThrowError(4);
+            
+            newComps.push(value[i]);
+        }
+        
+        this.#components = newComps;
+        
+        for (let i = 0; i < this.#components.length; i++)
+        {
+            this.#components[i].gameObject = this;
+            this.#components[i].name = this.name;
+        }
+    }
+    
+    get transform ()
+    {
+        return this.#components[0];
+    }
+    
+    set transform (value)
+    {
+        this.#components[0] = value;
+        
+        for (let i = 0; i < this.#components.length; i++)
+        {
+            this.#components[i].gameObject = this;
+            this.#components[i].name = this.name;
+        }
+    }
+    
+    constructor (name, components, active, transform)
     {
         if (components != null && !Array.isArray(components)) throw BlankEngine.ThrowError(0);
         
@@ -1279,197 +1525,80 @@ class GameObject extends Object
         this.name = name ?? "Empty Object";
         this.#active = active ?? true;
         this.components = components ?? [];
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].isComponent) throw BlankEngine.ThrowError(4);
-            
-            this.components[i].name = this.name;
-            this.components[i].gameObject = this;
-        }
+        this.transform = transform ?? new Transform();
     }
     
     SetActive (state)
     {
         this.#active = state;
         
-        for (let i = 0; i < this.components.length; i++)
+        let components = this.#components;
+        
+        for (let i = 0; i < this.#components.length; i++)
         {
-            this.components[i].gameObject = this;
+            components[i].gameObject = this;
+            components[i].name = this.name;
         }
     }
     
-    Awake ()
+    BroadcastMessage (method, params, data)
     {
-        if (!this.#active) return null;
+        if (method == null) throw BlankEngine.ThrowError(0);
         
-        for (let i = 0; i < this.components.length; i++)
+        if (!this.#active) return;
+        
+        let components = this.#components;
+        var args = "";
+        var data = data ?? { };
+        
+        if (params == null || typeof params == "string") args = params;
+        else 
         {
-            if (!this.components[i].isGameBehavior) continue;
+            for (let i = 0; i < params.length; i++)
+            {
+                args += `params[${i}]`;
+                
+                if (i != params.length - 1) args += ",";
+            }
+        }
+        
+        for (let i = 0; i < components.length; i++)
+        {
+            let validType = components[i] instanceof GameBehavior;
             
-            let callback = this.components[i].Awake;
-            callback();
+            if (!components[i].enabled || !validType) continue;
+            
+            eval(`components[i].${method}(${args})`);
+            
+            if (data.clearAfter) eval(`components[i].${method} = function () { }`);
+            
+            components[i].gameObject = this;
+            components[i].name = this.name;
         }
     }
     
-    OnEnable ()
+    GetComponents (type)
     {
-        if (!this.#active) return null;
+        if (type == null) throw BlankEngine.ThrowError(0);
         
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled || !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnEnable;
-            callback();
-        }
-    }
-    
-    Start ()
-    {
-        if (!this.#active) return null;
+        let components = this.#components;
+        var newComps = [];
         
-        for (let i = 0; i < this.components.length; i++)
+        for (let i = 0; i < components.length; i++)
         {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
+            let validType = eval(`components[i] instanceof ${type}`);
             
-            let callback = this.components[i].Start;
-            callback();
+            if (!validType) continue;
             
-            this.components[i].Start = function () {};
-        }
-    }
-    
-    FixedUpdate ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
+            let isBehavior = components[i] instanceof Behavior;
             
-            let callback = this.components[i].FixedUpdate;
-            callback();
-        }
-    }
-    
-    Update ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
+            if (isBehavior && !components[i].enabled) continue;
             
-            let callback = this.components[i].Update;
-            callback();
-        }
-    }
-    
-    LateUpdate ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].LateUpdate;
-            callback();
-        }
-    }
-    
-    OnPreRender ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnPreRender;
-            callback();
-        }
-    }
-    
-    OnRenderObject ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnRenderObject;
-            callback();
-        }
-    }
-    
-    OnPostRender ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnPostRender;
-            callback();
-        }
-    }
-    
-    OnRenderImage ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnRenderImage;
-            callback();
-        }
-    }
-    
-    OnApplicationQuit ()
-    {
-        if (!this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnApplicationQuit;
-            callback();
-        }
-    }
-    
-    OnDisable ()
-    {
-        if (this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnDisable;
-            callback();
-        }
-    }
-    
-    OnDestroy ()
-    {
-        if (this.#active) return null;
-        
-        for (let i = 0; i < this.components.length; i++)
-        {
-            if (!this.components[i].enabled && !this.components[i].isGameBehavior) continue;
-            
-            let callback = this.components[i].OnDestroy;
-            callback();
+            if (newComps.length == 0) newComps[0] = components[i];
+            else newComps(components[i]);
         }
         
-        this.OnDisable();
+        return newComps;
     }
 }
 
@@ -1483,20 +1612,34 @@ class Shader extends Object
         return this.#loaded;
     }
     
+    #type = null;
+    #shader = null;
+    
+    get type ()
+    {
+        return this.#type;
+    }
+    
+    get shader ()
+    {
+        return this.#shader;
+    }
+    
     constructor (name, shader, type)
     {
-        if (shader == null || shader === "") throw BlankEngine.ThrowError(2, "Shader Data: Shader is undefined");
-        if (type == null || type === "") throw BlankEngine.ThrowError(2, "Shader Data: Shader type is undefined");
+        if (!name) throw BlankEngine.ThrowError(2, "Shader Data: Shader name is undefined");
+        if (!shader) throw BlankEngine.ThrowError(2, "Shader Data: Shader is undefined");
+        if (!type) throw BlankEngine.ThrowError(2, "Shader Data: Shader type is undefined");
         
         super();
         
         this.name = name;
-        this.type = type;
+        this.#type = type;
         
         let gl = Application.gl;
         var shaderType;
         
-        switch (this.type)
+        switch (this.#type)
         {
             case "VERTEX":
                 shaderType = gl.VERTEX_SHADER;
@@ -1506,14 +1649,14 @@ class Shader extends Object
                 break;
         }
         
-        if (shaderType == null) throw BlankEngine.ThrowError(2, `Shader Data: Type "${this.type}" doesn't exist`);
+        if (shaderType == null) throw BlankEngine.ThrowError(2, `Shader Data: Type "${this.#type}" doesn't exist`);
         
-        this.shader = gl.createShader(shaderType);
+        this.#shader = gl.createShader(shaderType);
         
-        gl.shaderSource(this.shader, shader);
-        gl.compileShader(this.shader);
+        gl.shaderSource(this.#shader, shader);
+        gl.compileShader(this.#shader);
         
-        if (!gl.getShaderParameter(this.shader, gl.COMPILE_STATUS)) throw BlankEngine.ThrowError(2, this.gl.getShaderInfoLog(this.shader));
+        if (!gl.getShaderParameter(this.#shader, gl.COMPILE_STATUS)) throw BlankEngine.ThrowError(2, gl.getShaderInfoLog(this.#shader));
     }
     
     static Find (name, type)
@@ -1533,7 +1676,7 @@ class Shader extends Object
     {
         if (shaders == null || !Array.isArray(shaders)) throw BlankEngine.ThrowError(0);
         
-        this.#shaders[0] = new Shader("Default/None", "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; void main () { gl_Position = vec4(aVertexPos, 1, 1); vTexturePos = aTexturePos; }", "VERTEX");
+        this.#shaders[0] = new Shader("Default/None", "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; uniform mat3 uWorldSpaceMat; void main () { gl_Position = vec4(uWorldSpaceMat * vec3(aVertexPos, 1), 1); vTexturePos = aTexturePos; }", "VERTEX");
         this.#shaders[1] = new Shader("Default/None", "precision mediump float; uniform sampler2D uSampler; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uSampler, vTexturePos); }", "FRAGMENT");
         
         for (let iA = 0; iA < shaders.length; iA++)
@@ -1619,52 +1762,71 @@ class Shader extends Object
 
 class Material extends Object
 {
+    #gl = null;
+    #program = null;
+    
+    get gl ()
+    {
+        return this.#gl;
+    }
+    
+    get program ()
+    {
+        return this.#program;
+    }
+    
     constructor (vertexShader, fragmentShader)
     {
         super();
         
-        this.gl = Application.gl;
+        this.#gl = Application.gl;
         
         let vShader = vertexShader ?? Shader.Find("Default/None", "VERTEX");
         let fShader = fragmentShader ?? Shader.Find("Default/None", "FRAGMENT");
         
-        if (vShader == null || fShader == null) return null;
+        this.#program = this.#gl.createProgram();
         
-        this.program = this.gl.createProgram();
+        this.#gl.attachShader(this.#program, vShader.shader);
+        this.#gl.attachShader(this.#program, fShader.shader);
+        this.#gl.linkProgram(this.#program);
         
-        this.gl.attachShader(this.program, vShader.shader);
-        this.gl.attachShader(this.program, fShader.shader);
-        this.gl.linkProgram(this.program);
+        if (!this.#gl.getProgramParameter(this.#program, this.#gl.LINK_STATUS)) throw BlankEngine.ThrowError(2, this.#gl.getProgramInfoLog(this.#program));
         
-        if (!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) throw BlankEngine.ThrowError(2, this.gl.getProgramInfoLog(this.program));
-        
-        this.gl.detachShader(this.program, vShader.shader);
-        this.gl.detachShader(this.program, fShader.shader);
+        this.#gl.detachShader(this.#program, vShader.shader);
+        this.#gl.detachShader(this.#program, fShader.shader);
     }
     
     getAttribLocation (name)
     {
         if (name == null) throw BlankEngine.ThrowError(0);
         
-        return this.gl.getAttribLocation(this.program, name);
+        return this.#gl.getAttribLocation(this.#program, name);
     }
     
     getUniformLocation (name)
     {
         if (name == null) throw BlankEngine.ThrowError(0);
         
-        return this.gl.getUniformLocation(this.program, name);
+        return this.#gl.getUniformLocation(this.#program, name);
     }
 }
 
 class Texture extends Object
 {
     #loaded = false;
-    #sprite = null;
+    #img = null;
+    
+    wrapMode = 0;
+    filterMode = 0;
     
     get isLoaded ()
     {
         return this.#loaded;
+    }
+    
+    get img ()
+    {
+        return this.#img;
     }
     
     constructor (src)
@@ -1673,19 +1835,19 @@ class Texture extends Object
         
         super();
         
-        this.wrapMode = 0;
-        this.filterMode = 0;
+        this.#img = new Image();
+        this.#img.src = `../img/${src}`;
+        this.#img.sprite = this;
         
-        this.img = new Image();
-        this.img.src = `../img/${src}`;
-        this.img.sprite = this;
-        
-        this.img.onload = () => { this.#loaded = true; };
+        this.#img.onload = () => { this.#loaded = true; };
     }
 }
 
 class Sprite extends Object
 {
+    texture = null;
+    rect = new Rect();
+    
     constructor (texture, rect)
     {
         if (texture == null) throw BlankEngine.ThrowError(0);
@@ -1702,21 +1864,52 @@ class Sprite extends Object
 
 class Component extends Object
 {
-    get isComponent ()
-    {
-        return true;
-    }
+    gameObject = null;
     
     constructor ()
     {
         super();
+    }
+    
+    BroadcastMessage (method, params, data)
+    {
+        if (!gameObject.activeSelf) return;
         
-        this.gameObject = null;
+        let components = this.gameObject.components;
+        var args = "";
+        var data = data ?? { };
+        
+        if (params == null || typeof params == "string") args = params;
+        else
+        {
+            for (let i = 0; i < params.length; i++)
+            {
+                args += `params[${i}]`;
+                
+                if (i != params.length - 1) args += ",";
+            }
+        }
+        
+        for (let i = 0; i < components.length; i++)
+        {
+            let validType = components[i] instanceof GameBehavior;
+            
+            if (!components[i].enabled || !validType) continue;
+            
+            eval(`components[i].${method}(${args})`);
+            
+            if (data.clearAfter) eval(`components[i].${method} = function () { }`);
+            
+            components[i].gameObject = this.gameObject;
+            components[i].name = this.name;
+        }
     }
 }
 
 class Behavior extends Component
 {
+    enabled = true;
+    
     get isActiveAndEnabled ()
     {
         return this.gameObject.activeSelf && this.enabled;
@@ -1725,18 +1918,11 @@ class Behavior extends Component
     constructor ()
     {
         super();
-        
-        this.enabled = true;
     }
 }
 
 class GameBehavior extends Behavior
 {
-    get isGameBehavior ()
-    {
-        return true;
-    }
-    
     constructor ()
     {
         super();
@@ -1769,26 +1955,98 @@ class GameBehavior extends Behavior
     OnDestroy () { }
 }
 
+class Transform extends Component
+{
+    position = new Vector2();
+    rotation = 0;
+    scale = new Vector2();
+    
+    constructor (position, rotation, scale)
+    {
+        super();
+        
+        this.position = position ?? new Vector2();
+        this.rotation = rotation ?? 0;
+        this.scale = scale ?? new Vector2();
+    }
+}
+
 class Camera extends Behavior
 {
+    projectionMatrix = Matrix3x3.Ortho();
+    orthographicSize = 1;
+    
     constructor ()
     {
         super();
+    }
+    
+    Render ()
+    {
+        let projM = this.projectionMatrix.matrix;
+        let mPos = new Vector2(-1, 1);
+        let mScale = new Vector2(1 / (Application.htmlCanvas.width / (Application.htmlCanvas.height / this.orthographicSize)), -1 / this.orthographicSize);
+        let viewMatrix = Matrix3x3.TRS(mPos, 0 * Math.PI / 180, mScale);
+        
+        for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
+        {
+            let renderers = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("SpriteRenderer");
+            
+            for (let iB = 0; iB < renderers.length; iB++)
+            {
+                renderers[iB].localSpaceMatrix = viewMatrix.transpose;
+                renderers[iB].render();
+            }
+        }
     }
 }
 
 class SpriteRenderer extends Component
 {
     #loaded = false;
+    #sprite = null;
+    #material = new Material();
+    #texture = null;
+    #texBuffer = null;
+    #geoBuffer = null;
+    #aVPosLoc = null;
+    #aTPosLoc = null;
+    #uSamplerLoc = null;
+    #uWSMatLoc = null;
+    
+    localSpaceMatrix = new Matrix3x3();
     
     get isLoaded ()
     {
         return this.#loaded;
     }
     
-    get isRenderer ()
+    get sprite ()
     {
-        return true;
+        return this.#sprite;
+    }
+    
+    set sprite (value)
+    {
+        this.#sprite = value;
+        
+        this.#loaded = false;
+        
+        this.checkImg();
+    }
+    
+    get material ()
+    {
+        return this.#material;
+    }
+    
+    set material (value)
+    {
+        this.#material = value;
+        
+        this.#loaded = false;
+        
+        this.checkImg();
     }
     
     constructor (sprite, material)
@@ -1797,27 +2055,27 @@ class SpriteRenderer extends Component
         
         super();
         
-        this.sprite = sprite;
+        this.#sprite = sprite;
         
-        this.material = material ?? new Material();
+        this.#material = material ?? new Material();
         
         this.checkImg();
     }
     
     checkImg ()
     {
-        requestAnimationFrame(() => { if (this.sprite.texture.isLoaded) return this.load(); this.checkImg(); });
+        requestAnimationFrame(() => { if (this.#sprite.texture.isLoaded) return this.load(); this.checkImg(); });
     }
     
     load ()
     {
-        if (this.#loaded) return null;
+        if (this.#loaded) return;
         
-        let texture = this.sprite.texture;
+        let texture = this.#sprite.texture;
         
         if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) throw BlankEngine.ThrowError(0);
         
-        let gl = this.material.gl;
+        let gl = this.#material.gl;
         
         let filterMode;
         let wrapMode;
@@ -1846,17 +2104,18 @@ class SpriteRenderer extends Component
                 break;
         }
         
-        gl.useProgram(this.material.program);
+        gl.useProgram(this.#material.program);
         
-        this.texture = gl.createTexture();
-        this.texBuffer = gl.createBuffer();
-        this.geoBuffer = gl.createBuffer();
+        this.#texture = gl.createTexture();
+        this.#texBuffer = gl.createBuffer();
+        this.#geoBuffer = gl.createBuffer();
         
-        this.aVPosLoc = this.material.getAttribLocation("aVertexPos");
-        this.aTPosLoc = this.material.getAttribLocation("aTexturePos");
-        this.uSamplerLoc = this.material.getUniformLocation("uSampler");
+        this.#aVPosLoc = this.#material.getAttribLocation("aVertexPos");
+        this.#aTPosLoc = this.#material.getAttribLocation("aTexturePos");
+        this.#uSamplerLoc = this.#material.getUniformLocation("uSampler");
+        this.#uWSMatLoc = this.#material.getUniformLocation("uWorldSpaceMat");
         
-        gl.bindTexture(gl.TEXTURE_2D, this.texture);
+        gl.bindTexture(gl.TEXTURE_2D, this.#texture);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapMode);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapMode);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filterMode);
@@ -1864,10 +2123,10 @@ class SpriteRenderer extends Component
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.img);
         gl.bindTexture(gl.TEXTURE_2D, null);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.texBuffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#texBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, rect.rectArray, gl.STATIC_DRAW);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.geoBuffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geoBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, rect.rectArray, gl.STATIC_DRAW);
         
         gl.useProgram(null);
@@ -1877,24 +2136,37 @@ class SpriteRenderer extends Component
     
     render ()
     {
-        if (!this.#loaded) return null;
+        if (!this.#loaded) return;
         
-        let gl = this.material.gl;
+        let gl = this.#material.gl;
+        let localSpaceMat = [
+            this.localSpaceMatrix.matrix[0][0],
+            this.localSpaceMatrix.matrix[0][1],
+            this.localSpaceMatrix.matrix[0][2],
+            this.localSpaceMatrix.matrix[1][0],
+            this.localSpaceMatrix.matrix[1][1],
+            this.localSpaceMatrix.matrix[1][2],
+            this.localSpaceMatrix.matrix[2][0],
+            this.localSpaceMatrix.matrix[2][1],
+            this.localSpaceMatrix.matrix[2][2]
+        ];
         
-        gl.useProgram(this.material.program);
+        gl.useProgram(this.#material.program);
         
         gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, this.texture);
+        gl.bindTexture(gl.TEXTURE_2D, this.#texture);
         
-        gl.uniform1i(this.uSamplerLoc, 0);
+        gl.uniform1i(this.#uSamplerLoc, 0);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.texBuffer);
-        gl.enableVertexAttribArray(this.aTPosLoc);
-        gl.vertexAttribPointer(this.aTPosLoc, 2, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#texBuffer);
+        gl.enableVertexAttribArray(this.#aTPosLoc);
+        gl.vertexAttribPointer(this.#aTPosLoc, 2, gl.FLOAT, false, 0, 0);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.geoBuffer);
-        gl.enableVertexAttribArray(this.aVPosLoc);
-        gl.vertexAttribPointer(this.aVPosLoc, 2, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geoBuffer);
+        gl.enableVertexAttribArray(this.#aVPosLoc);
+        gl.vertexAttribPointer(this.#aVPosLoc, 2, gl.FLOAT, false, 0, 0);
+        
+        gl.uniformMatrix3fv(this.#uWSMatLoc, false, new Float32Array(localSpaceMat));
         
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 6);
         

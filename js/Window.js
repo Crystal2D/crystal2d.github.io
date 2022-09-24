@@ -1,5 +1,6 @@
 /**
  * The static class for working with the window
+ * 
  * @public
  * @static
  * @class
@@ -8,7 +9,6 @@ class Window
 {
     // Private Static Properties
     
-    static #loadedApp = false;
     static #sizeChanged = false;
     static #fillMode = 0;
     
@@ -16,27 +16,64 @@ class Window
     // Static Properties
     
     /**
-     * Sets the fullscreen property of the window
+     * The data that is used by the window 
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @type {bool}
+     * @type {object}
+     * 
+     * @property {string} title - The title of the window
+     * @property {integer} width - The width of the window in pixels
+     * @property {integer} height - The height of the window in pixels
+     * @property {integer} marginX - The width of the inner margin in percent
+     * @property {integer} marginY - The height of the inner margin in percent
+     * @property {boolean} resizable - The resizeable status of the window
+     * @property {boolean} fillWindow - The fillmode status of the application to the window
+     * @property {string} icon - The source of the window icon
+     */
+    static data = {
+        title : "Untitled",
+        width : 0,
+        height : 0,
+        marginX : 0.5,
+        marginY : 0.5,
+        resizable : true,
+        fillWindow : true,
+        icon : ""
+    };
+    
+    /**
+     * Sets the fullscreen property of the window
+     * 
+     * @memberof Window
+     * 
+     * @public
+     * @static
+     * @type {boolean}
      */
     static fullScreen = false;
     
-    /**Sets what happens when fullscreen has entered
+    /**
+     * Sets a callback for when fullscreen has entered
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @type {function}
+     * @callback
      */
     static OnFullscreenEnter = function () { };
     
-    /**Sets what happens when fullscreen has exited
+    /**
+     * Sets a callback for when fullscreen has exited
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @type {function}
+     * @callback
      */
     static OnFullscreenExit = function () { };
     
@@ -50,13 +87,6 @@ class Window
     
     static #update ()
     {
-        if (!this.#loadedApp && Shader.isLoaded && !Application.isLoaded)
-        {
-            Application.Load();
-            
-            this.#loadedApp = true;
-        }
-        
         if (!document.hasFocus()) return this.#requestUpdate();
         
         if (document.fullscreenElement && !this.fullScreen)
@@ -95,7 +125,7 @@ class Window
         Application.htmlCanvas.style.width = `${100 - this.data.marginX * 2}%`;
         Application.htmlCanvas.style.height =  `${100 - this.data.marginY * 2}%`;
         
-        if (!this.#sizeChanged || this.fullScreen) return null;
+        if (!this.#sizeChanged || this.fullScreen) return;
         
         let sX = this.data.width + (window.outerWidth - window.innerWidth) + (this.data.width * (this.data.marginX * 2 / 100));
         let sY = this.data.height + (window.outerHeight - window.innerHeight) + (this.data.height * (this.data.marginY * 2 / 100));
@@ -109,10 +139,12 @@ class Window
     
     /**
      * Called for initialization
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @function
+     * @method
      */
     static init ()
     {
@@ -123,44 +155,46 @@ class Window
         this.SetTitle(this.data.title);
         this.SetIcon(this.data.icon);
         
-        if (this.data.marginX == null) this.data.marginX = 0.5;
-        if (this.data.marginY == null) this.data.marginY = 0.5;
-        
-        if (this.data.resizable == null) this.data.resizable = true;
-        
-        if (this.data.fillWindow == null) this.data.fillWindow = true;
-        
         this.#requestUpdate();
         
         window.onresize = () => { if (!this.data.resizable) this.#sizeChanged = true; };
     }
     
     /**
-     * Sets the window base@memberof Window
+     * Sets the window base
+     * 
+     * @memberof Window
+     * 
      * @public
      * @static
-     * @function
+     * @method
+     * 
      * @param {string} title - The title of the window
-     * @param {int} width - The width of the window in pixels
-     * @param {int} height - The height of the window in pixels
-     * @param {int} marginX - The width of the inner margin in percent
-     * @param {int} marginY - The height of the inner margin in percent
+     * @param {integer} width - The width of the window in pixels
+     * @param {integer} height - The height of the window in pixels
+     * @param {integer} marginX - The width of the inner margin in percent
+     * @param {integer} marginY - The height of the inner margin in percent
+     * @param {string} icon - The source of the window icon
      */
-    static SetBase (title, width, height, marginX, marginY)
+    static SetBase (title, width, height, marginX, marginY, icon)
     {
         this.SetTitle(title);
         this.SetSize(width, height);
         this.SetMargin(marginX, marginY);
+        this.SetIcon(icon);
         
         this.#sizeChanged = true;
     }
     
     /**
      * Sets the window's title
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @function
+     * @method
+     * 
      * @param {string} title - The title of the window
      */
     static SetTitle (title)
@@ -171,12 +205,15 @@ class Window
     
     /**
      * Sets the window's size
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @function
-     * @param {int} width - The width of the window in pixels
-     * @param {int} height - The height of the window in pixels
+     * @method
+     * 
+     * @param {integer} width - The width of the window in pixels
+     * @param {integer} height - The height of the window in pixels
      */
     static SetSize (width, height)
     {
@@ -193,12 +230,15 @@ class Window
     
     /**
      * Sets the inner margin's size
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * function
-     * @param {int} width - The width of the margin in percent
-     * @param {int} height - The height of the margin in percent
+     * @method
+     * 
+     * @param {integer} width - The width of the margin in percent
+     * @param {integer} height - The height of the margin in percent
      */
     static SetMargin (width, height)
     {
@@ -210,14 +250,19 @@ class Window
     
     /**
      * Sets the window's icon
+     * 
      * @memberof Window
+     * 
      * @public
      * @static
-     * @function
-     * @param {string} src - The location of the icon source
+     * @method
+     * 
+     * @param {string} src - The source of the window icon
      */
     static SetIcon (src)
     {
+        if (!src) return;
+        
         this.data.icon = src;
         
         let icon = document.querySelector("link[rel=icon]");
@@ -228,7 +273,6 @@ class Window
             icon.rel = "icon";
             
             document.head.appendChild(icon);
-            
         }
         
         icon.href = this.data.icon;

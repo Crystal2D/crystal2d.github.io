@@ -20,6 +20,9 @@ class SceneManager
         #data = null;
         #loaded = false;
         
+        name = "scene";
+        gameObjects = [];
+        
         get buildIndex ()
         {
             return this.#data.buildIndex;
@@ -38,7 +41,7 @@ class SceneManager
         constructor (name, data)
         {
             this.name = name ?? "scene";
-            this.#data = data ?? {};
+            this.#data = data ?? { };
             
             this.#load();
         }
@@ -47,14 +50,20 @@ class SceneManager
         {
             if (type == null) throw BlankEngine.ThrowError(0);
             
-            if (data == null) return null;
+            if (data == null) return;
             
             var object;
             
             switch (type)
             {
                 case "GameObject":
-                    object = await new GameObject(data.name, data.components, data.active);
+                    object = await new GameObject(data.name, data.components, data.active, await this.#toObject("Transform", data.transform));
+                    break;
+                case "Transform":
+                    let pos = data.position ?? { };
+                    let sca = data.scale ?? { };
+                    
+                    object = await new Transform(await new Vector2(pos.x, pos.y), data.rotation, await new Vector2(sca.x, sca.y));
                     break;
                 case "Sprite":
                     if (data.texture == null) throw BlankEngine.ThrowError(0);
@@ -62,7 +71,13 @@ class SceneManager
                     object = await new Sprite(Resources.Find(data.texture), data.rect);
                     break;
                 case "Material":
-                    object = await new Material(Shader.Find(data.vertexShader, "VERTEX"), Shader.Find(data.fragmentShader, "FRAGMENT"));
+                    if (typeof data == "string") object = await Resources.Find(data);
+                    else object = await new Material(await Shader.Find(data.vertexShader, "VERTEX"), await Shader.Find(data.fragmentShader, "FRAGMENT"));
+                    break;
+                case "Camera":
+                    object = new Camera();
+                    
+                    if (data.orthographicSize != null) object.orthographicSize = data.orthographicSize;
                     break;
                 case "SpriteRenderer":
                     if (data.sprite == null) throw BlankEngine.ThrowError(0);
@@ -73,24 +88,37 @@ class SceneManager
             
             if (object == null)
             {
-                object = eval(`new ${type}()`);
+                let scripts = BlankEngine.Core.compiledData.scripts;
+                var foundClass = false;
+                var properties = [];
                 
-                let properties = Object.getOwnPropertyNames(data);
+                for (let iA = 0; iA < scripts.length; iA++)
+                {
+                    for (let iB = 0; iA < scripts[iA].classes.length; iB++)
+                    {
+                        if (scripts[iA].classes[iB].name != type) continue;
+                        
+                        properties = scripts[iA].classes[iB].args;
+                        
+                        foundClass = true;
+                        
+                        break;
+                    }
+                    
+                    if (!foundClass && iA == scripts.length) throw BlankEngine.ThrowError(3);
+                }
+                
+                object = eval(`new ${type}()`);
                 
                 for (let i = 0; i < properties.length; i++)
                 {
-                    let value = eval(`data.${properties[i]}`);
+                    if (eval(`data.${properties[i]}`) == null) continue;
                     
-                    eval(`object.${properties[i]} = value`)
-                    
-                    if (value != null && value.type != null)
-                    {
-                        await eval(`object.${properties[i]} = await this.#toObject(value.type, value.args)`);
-                    }
+                    eval(`object.${properties[i]} = data.${properties[i]}`);
                 }
             }
             
-            if (data.name != null) object.name = data.name;
+            object.name = data.name;
             
             return object;
         }
@@ -132,11 +160,12 @@ class SceneManager
                 let newGameObj = await this.#toObject("GameObject", {
                     name : this.#data.gameObjects[iA].name,
                     components : components,
-                    active : this.#data.gameObjects[iA].active
+                    active : this.#data.gameObjects[iA].active,
+                    transform : this.#data.gameObjects[iA].transform
                 });
                 
                 if (newGameObjs.length == 0) newGameObjs[0] = newGameObj;
-                else newGameObjs.push(newGameObjs);
+                else newGameObjs.push(newGameObj);
             }
             
             this.gameObjects = await newGameObjs;
