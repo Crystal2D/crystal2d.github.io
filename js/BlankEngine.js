@@ -1994,7 +1994,7 @@ class Camera extends Behavior
             
             for (let iB = 0; iB < renderers.length; iB++)
             {
-                renderers[iB].localSpaceMatrix = viewMatrix.transpose;
+                renderers[iB].localSpaceMatrix = viewMatrix;
                 renderers[iB].render();
             }
         }
