@@ -161,7 +161,6 @@ class BlankEngine
     static PlayerLoop = class
     {
         static #loadedApp = false;
-        static #accumulator = 0;
         
         static #requestUpdate ()
         {
@@ -203,20 +202,20 @@ class BlankEngine
         
         static async Update ()
         {
-            Time.unscaledDeltaTime = (performance.now() / 1000) - Time.unscaledTime;
-            Time.unscaledTime += Time.unscaledDeltaTime;
+            var accumulator = (performance.now() / 1000) - Time.time;
             
-            var deltaT = Time.unscaledDeltaTime;
-            
-            if (deltaT > Time.maximumDeltaTime) deltaT = Time.maximumDeltaTime;
-            
-            Time.deltaTime = deltaT * Time.timeScale;
-            Time.time += Time.deltaTime;
-            
-            this.#accumulator += Time.deltaTime;
-            
-            while (this.#accumulator >= 1 / Application.targetFrameRate)
+            while (accumulator >= 1 / Application.targetFrameRate)
             {
+                Time.unscaledDeltaTime = (performance.now() / 1000) - Time.unscaledTime;
+                Time.unscaledTime += Time.unscaledDeltaTime;
+                
+                var deltaT = Time.unscaledDeltaTime;
+                
+                if (deltaT > Time.maximumDeltaTime) deltaT = Time.maximumDeltaTime;
+                
+                Time.deltaTime = deltaT * Time.timeScale;
+                Time.time += Time.deltaTime;
+                
                 for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
                 {
                     SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
@@ -224,7 +223,7 @@ class BlankEngine
                 
                 Time.frameCount++;
                 
-                this.#accumulator -= 1 / Application.targetFrameRate;
+                accumulator -= 1 / Application.targetFrameRate;
             }
         }
         
