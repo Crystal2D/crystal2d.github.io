@@ -5,7 +5,7 @@
             "classes" : [
                 {
                     "name" : "testGB",
-                    "args" : []
+                    "args" : [ "speed" ]
                 }
             ]
         }
@@ -47,6 +47,6 @@
     "shaders" : [
         "invertColor"
     ],
-    "targetFrameRate" : -1,
+    "targetFrameRate" : 60,
     "debugMode" : false
 }
