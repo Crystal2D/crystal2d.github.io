@@ -202,7 +202,7 @@ class BlankEngine
         
         static async Update ()
         {
-            var accumulator = (performance.now() / 1000) - Time.time;
+            var accumulator = (performance.now() / 1000) - Time.unscaledTime;
             
             while (accumulator >= 1 / Application.targetFrameRate)
             {
