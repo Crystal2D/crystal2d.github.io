@@ -125,6 +125,8 @@ class BlankEngine
                 else this.compiledData.scenes.push(newScene);
             }
             
+            Application.targetFrameRate = this.buildData.targetFrameRate;
+            
             this.#init();
         }
         
@@ -133,8 +135,8 @@ class BlankEngine
             Window.data.title = this.packageData.window.title;
             Window.data.width = this.packageData.window.width ?? 250;
             Window.data.height = this.packageData.window.height ?? 250;
-            Window.data.marginX = this.packageData.window.marginX ?? 0.5;
-            Window.data.marginY = this.packageData.window.marginY ?? 0.5;
+            Window.data.marginX = this.packageData.window.marginX ?? 0;
+            Window.data.marginY = this.packageData.window.marginY ?? 0;
             Window.data.resizable = this.packageData.window.resizable ?? true;
             Window.data.fillWindow = this.packageData.window.fillWindow ?? true;
             Window.data.icon = this.packageData.window.icon ?? "";
@@ -159,13 +161,14 @@ class BlankEngine
     static PlayerLoop = class
     {
         static #loadedApp = false;
+        static #accumulator = 0;
         
         static #requestUpdate ()
         {
             requestAnimationFrame(this.#update.bind(this));
         }
         
-        static #update ()
+        static async #update ()
         {
             if (!this.#loadedApp && !Application.isLoaded)
             {
@@ -176,7 +179,9 @@ class BlankEngine
             
             if (!document.hasFocus() || !Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
             
-            this.Start();
+            await this.Start();
+            
+            await this.Update();
             
             this.Render();
             
@@ -188,11 +193,38 @@ class BlankEngine
             this.#requestUpdate();
         }
         
-        static Start ()
+        static async Start ()
         {
             for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
             {
                 SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
+            }
+        }
+        
+        static async Update ()
+        {
+            Time.unscaledDeltaTime = (performance.now() / 1000) - Time.unscaledTime;
+            Time.unscaledTime += Time.unscaledDeltaTime;
+            
+            var deltaT = Time.unscaledDeltaTime;
+            
+            if (deltaT > Time.maximumDeltaTime) deltaT = Time.maximumDeltaTime;
+            
+            Time.deltaTime = deltaT * Time.timeScale;
+            Time.time += Time.deltaTime;
+            
+            this.#accumulator += Time.deltaTime;
+            
+            while (this.#accumulator >= 1 / Application.targetFrameRate)
+            {
+                for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
+                {
+                    SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
+                }
+                
+                Time.frameCount++;
+                
+                this.#accumulator -= 1 / Application.targetFrameRate;
             }
         }
         
@@ -788,7 +820,13 @@ class Resources
 
 class Time
 {
-    
+    static unscaledTime = 0;
+    static unscaledDeltaTime = 0;
+    static timeScale = 1;
+    static frameCount = 0;
+    static time = 0;
+    static deltaTime = 0;
+    static maximumDeltaTime = 0.3333333;
 }
 
 class Debug
@@ -816,16 +854,36 @@ class Matrix3x3
 {
     matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
     
+    static get zero ()
+    {
+        let output = new Matrix3x3(
+            [0, 0 ,0],
+            [0, 0, 0],
+            [0, 0, 0]
+        );
+        
+        return output;
+    }
+    
+    static get identity ()
+    {
+        let output = new Matrix3x3(
+            [1, 0 ,0],
+            [0, 1, 0],
+            [0, 0, 1]
+        );
+        
+        return output;
+    }
+    
     get transpose ()
     {
         let m = this.matrix;
-        let output = new Matrix3x3();
-        
-        output.matrix = [
+        let output = new Matrix3x3(
             [m[0][0], m[1][0], m[2][0]],
             [m[0][1], m[1][1], m[2][1]],
             [m[0][2], m[1][2], m[2][2]]
-        ];
+        );
         
         return output;
     }
@@ -1973,8 +2031,16 @@ class Transform extends Component
 
 class Camera extends Behavior
 {
-    projectionMatrix = Matrix3x3.Ortho();
     orthographicSize = 1;
+    projectionMatrix = Matrix3x3.Ortho();
+    
+    get worldToCameraMatrix ()
+    {
+        let gOTrans = this.gameObject.transform;
+        let output = Matrix3x3.TRS(gOTrans.position, gOTrans.rotation * Math.PI / 180, gOTrans.scale);
+        
+        return output;
+    }
     
     constructor ()
     {
@@ -1984,9 +2050,30 @@ class Camera extends Behavior
     Render ()
     {
         let projM = this.projectionMatrix.matrix;
-        let mPos = new Vector2(-1, 1);
+        let camM = this.worldToCameraMatrix;
+        
+        let mPos = new Vector2(-camM.matrix[2][0], -camM.matrix[2][1]);
+        let mRot = 0;
         let mScale = new Vector2(1 / (Application.htmlCanvas.width / (Application.htmlCanvas.height / this.orthographicSize)), -1 / this.orthographicSize);
-        let viewMatrix = Matrix3x3.TRS(mPos, 0 * Math.PI / 180, mScale);
+        
+        let transM = Matrix3x3.TRS(mPos, mRot * Math.PI / 180, mScale);
+        let viewM = new Matrix3x3(
+            [
+                camM.matrix[0][0] * transM.matrix[0][0],
+                camM.matrix[0][1] * transM.matrix[0][1],
+                camM.matrix[0][2] * transM.matrix[0][2]
+            ],
+            [
+                camM.matrix[1][0] * transM.matrix[1][0],
+                camM.matrix[1][1] * transM.matrix[1][1],
+                camM.matrix[1][2] * transM.matrix[1][2]
+            ],
+            [
+                transM.matrix[2][0],
+                transM.matrix[2][1],
+                camM.matrix[2][2] * transM.matrix[2][2]
+            ]
+        );
         
         for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
         {
@@ -1994,7 +2081,7 @@ class Camera extends Behavior
             
             for (let iB = 0; iB < renderers.length; iB++)
             {
-                renderers[iB].localSpaceMatrix = viewMatrix;
+                renderers[iB].localSpaceMatrix = viewM;
                 renderers[iB].render();
             }
         }

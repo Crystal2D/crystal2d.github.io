@@ -59,6 +59,9 @@ class SceneManager
                 case "GameObject":
                     object = await new GameObject(data.name, data.components, data.active, await this.#toObject("Transform", data.transform));
                     break;
+                case "Vector2":
+                    object = await new Vector2(data.x, data.y);
+                    break;
                 case "Transform":
                     let pos = data.position ?? { };
                     let sca = data.scale ?? { };
@@ -114,7 +117,13 @@ class SceneManager
                 {
                     if (eval(`data.${properties[i]}`) == null) continue;
                     
-                    eval(`object.${properties[i]} = data.${properties[i]}`);
+                    if (eval(`data.${properties[i]}.type`) != null && eval(`data.${properties[i]}.args`) != null)
+                    {
+                        let subObj = await eval(`this.#toObject(data.${properties[i]}.type, data.${properties[i]}.args)`);
+                        
+                        eval(`object.${properties[i]} = subObj`);
+                    }
+                    else eval(`object.${properties[i]} = data.${properties[i]}`);
                 }
             }
             

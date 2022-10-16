@@ -2,6 +2,8 @@ class Application
 {
     static #loaded = false;
     
+    static targetFrameRate = -1;
+    
     static get isLoaded ()
     {
         return this.#loaded;

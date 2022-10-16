@@ -37,8 +37,8 @@ class Window
         title : "Untitled",
         width : 0,
         height : 0,
-        marginX : 0.5,
-        marginY : 0.5,
+        marginX : 0,
+        marginY : 0,
         resizable : true,
         fillWindow : true,
         icon : ""
@@ -242,8 +242,8 @@ class Window
      */
     static SetMargin (width, height)
     {
-        this.data.marginX = width ?? 0.5;
-        this.data.marginY = height ?? 0.5;
+        this.data.marginX = width ?? 0;
+        this.data.marginY = height ?? 0;
         
         this.#sizeChanged = true;
     }
