@@ -11,7 +11,7 @@
             "transform" : {
                 "position" : { "x" : 0, "y" : 0 },
                 "rotation" : 0,
-                "scale" : { "x" : 0, "y" : 0 }
+                "scale" : { "x" : 1, "y" : 1 }
             },
             "components" : [
                 {
@@ -41,7 +41,15 @@
                 },
                 {
                     "type" : "testGB",
-                    "args" : { }
+                    "args" : {
+                        "speed" : {
+                            "type" : "Vector2",
+                            "args" : {
+                                "x" : -15,
+                                "y" : 5
+                            }
+                        }
+                    }
                 }
             ]
         },
@@ -62,10 +70,6 @@
                         },
                         "material" : "materials/mat_invert"
                     }
-                },
-                {
-                    "type" : "testGB",
-                    "args" : { }
                 }
             ]
         }
