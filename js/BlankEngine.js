@@ -176,7 +176,7 @@ class BlankEngine
                 this.#loadedApp = true;
             }
             
-            if (!document.hasFocus() || !Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
+            if (!Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
             
             await this.Start();
             
@@ -196,7 +196,7 @@ class BlankEngine
         {
             for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
             {
-                SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
+                if (document.hasFocus()) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
             }
         }
         
@@ -218,10 +218,10 @@ class BlankEngine
                 
                 for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
                 {
-                    SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
+                    if (document.hasFocus()) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
                 }
                 
-                Time.frameCount++;
+                if (document.hasFocus()) Time.frameCount++;
                 
                 accumulator -= 1 / Application.targetFrameRate;
             }
@@ -229,6 +229,8 @@ class BlankEngine
         
         static Render ()
         {
+            if (!document.hasFocus()) return;
+            
             Application.gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
             Application.gl.clear(Application.gl.COLOR_BUFFER_BIT | Application.gl.DEPTH_BUFFER_BIT);
             Application.gl.enable(Application.gl.BLEND);
@@ -240,7 +242,7 @@ class BlankEngine
                 
                 for (let iB = 0; iB < cameras.length; iB++)
                 {
-                    cameras[iB].Render();
+                    if (document.hasFocus()) cameras[iB].Render();
                 }
             }
             
