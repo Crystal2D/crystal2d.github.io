@@ -178,7 +178,7 @@ class BlankEngine
             
             if (!Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
             
-            await this.Start();
+            this.Start();
             
             await this.Update();
             
