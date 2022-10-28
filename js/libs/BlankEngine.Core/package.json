@@ -1,0 +1,31 @@
+{
+    "name" : "BlankEngine.Core",
+    "description" : "The core module that BlankEngine runs on. We allow modifications, but it may break the engine. Please tamper with care",
+    "scripts" : [
+        "Application",
+        "Window",
+        "Object.bindings",
+        "Resources",
+        "Debug",
+        "Time",
+        "Scripting/Component",
+        "Scripting/Behavior",
+        "Scripting/GameBehavior",
+        "Math/Math.bindings",
+        "Math/Matrix3x3",
+        "Math/Vector2",
+        "Math/Color",
+        "Math/Geometry/Rect",
+        "Transform/Transform",
+        "GameObject",
+        "SceneManager/SceneManager",
+        "SceneManager/Scene",
+        "PlayerLoop",
+        "Graphics/Shaders/Shader",
+        "Graphics/Shaders/Material",
+        "Graphics/Texture",
+        "Graphics/Sprite",
+        "Graphics/Rendering/Camera",
+        "Graphics/Rendering/Renderers/SpriteRenderer"
+    ]
+}
