@@ -10,12 +10,13 @@
             "active" : true,
             "transform" : {
                 "position" : { "x" : 0, "y" : 0 },
-                "rotation" : 0,
+                "rotation" : 30,
                 "scale" : { "x" : 1, "y" : 1 }
             },
             "components" : [
                 {
                     "type" : "Camera",
+                    "construct" : { },
                     "args" : {
                         "orthographicSize" : 1.5
                     }
@@ -33,6 +34,7 @@
             "components" : [
                 {
                     "type" : "SpriteRenderer",
+                    "construct" : { },
                     "args" : {
                         "sprite" : {
                             "texture" : "textures/ball"
@@ -41,11 +43,13 @@
                 },
                 {
                     "type" : "testGB",
+                    "construct" : { },
                     "args" : {
                         "speed" : {
                             "type" : "Vector2",
+                            "construct" : { },
                             "args" : {
-                                "x" : -15,
+                                "x" : 15,
                                 "y" : 5
                             }
                         }
@@ -64,6 +68,7 @@
             "components" : [
                 {
                     "type" : "SpriteRenderer",
+                    "construct" : { },
                     "args" : {
                         "sprite" : {
                             "texture" : "textures/ball"
