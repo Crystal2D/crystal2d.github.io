@@ -1,1 +1,18 @@
-
+{
+    "name" : "Assembly-JavaScript",
+    "description" : "The assembly module where all of the build scripts are located",
+    "scripts" : [
+        {
+            "src" : "testGB",
+            "classes" : [
+                {
+                    "name" : "testGB",
+                    "construct" : [],
+                    "args" : [
+                        "speed"
+                    ]
+                }
+            ]
+        }
+    ]
+}
