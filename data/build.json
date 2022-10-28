@@ -1,15 +1,8 @@
 {
-    "scripts" : [
-        {
-            "src" : "Assembly-JavaScript",
-            "classes" : [
-                {
-                    "name" : "testGB",
-                    "args" : [ "speed" ]
-                }
-            ]
-        }
+    "libs" : [
+        "Assembly-JavaScript"
     ],
+    "scripts" : [],
     "resources" : [
         {
             "name" : "textures",
@@ -48,5 +41,10 @@
         "invertColor"
     ],
     "targetFrameRate" : 60,
-    "debugMode" : false
+    "debugMode" : false,
+    "Time" : {
+        "maximumDeltaTime" : 0.3333333,
+        "timeScale" : 1,
+        "fixedDeltaTime" : 0.02
+    }
 }
