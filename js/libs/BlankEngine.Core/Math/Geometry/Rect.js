@@ -7,10 +7,10 @@ class Rect
     
     get rectArray ()
     {
-        let x = this.x;
-        let y = this.y;
-        let w = this.width;
-        let h = this.height;
+        const x = this.x;
+        const y = this.y;
+        const w = this.width;
+        const h = this.height;
         
         return new Float32Array([x, y, x + w, y, x, y + h, x, y + h, x + w, y, x + w, y + h]);
     }
