@@ -6,9 +6,10 @@ class Component
     {
         if (!gameObject.activeSelf) return;
         
-        let components = this.gameObject.components;
-        var args = "";
-        var data = data ?? { };
+        const components = this.gameObject.components;
+        
+        let args = "";
+        let dat = data ?? { };
         
         if (params == null || typeof params == "string") args = params;
         else
@@ -23,13 +24,13 @@ class Component
         
         for (let i = 0; i < components.length; i++)
         {
-            let validType = components[i] instanceof GameBehavior;
+            const validType = components[i] instanceof GameBehavior;
             
             if (!components[i].enabled || !validType) continue;
             
             eval(`components[i].${method}(${args})`);
             
-            if (data.clearAfter) eval(`components[i].${method} = function () { }`);
+            if (dat.clearAfter) eval(`components[i].${method} = function () { }`);
             
             components[i].gameObject = this.gameObject;
             components[i].name = this.name;
