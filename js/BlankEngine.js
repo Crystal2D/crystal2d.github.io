@@ -82,8 +82,9 @@ class BlankEngine
                 {
                     if (this.#loaded) return;
                     
-                    let script = document.createElement("script");
-                    var newClasses = [];
+                    const script = document.createElement("script");
+                    
+                    let newClasses = [];
                     
                     script.src = this.#src;
                     script.type = "text/javascript";
@@ -125,7 +126,7 @@ class BlankEngine
                 {
                     if (this.#unloadedScripts[i] == null) continue;
                     
-                    var script = null;
+                    let script = null;
                     
                     if (this.#unloadedScripts[i].src != null) script = new this.script(`../js/libs/${this.#src}/${this.#unloadedScripts[i].src}.js`, this.#unloadedScripts[i].classes);
                     else script = new this.script(`../js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
@@ -155,8 +156,8 @@ class BlankEngine
         
         static async #loadData ()
         {
-            let packageResponse = await fetch("../package.json");
-            let buildResponse = await fetch("../data/build.json");
+            const packageResponse = await fetch("../package.json");
+            const buildResponse = await fetch("../data/build.json");
             
             this.packageData = await packageResponse.json();
             this.buildData = await buildResponse.json();
@@ -168,9 +169,9 @@ class BlankEngine
             {
                 if (this.buildData.libs[i] == null) continue;
                 
-                let libResponse = await fetch(`../js/libs/${this.buildData.libs[i]}/package.json`);
-                let libData = await libResponse.json();
-                let lib = new this.#lib(
+                const libResponse = await fetch(`../js/libs/${this.buildData.libs[i]}/package.json`);
+                const libData = await libResponse.json();
+                const lib = new this.#lib(
                     libData.name,
                     libData.description,
                     libData.scripts,
@@ -185,7 +186,7 @@ class BlankEngine
             {
                 if (this.buildData.scripts[i] == null) continue;
                 
-                var script = null;
+                let script = null;
                 
                 if (this.buildData.scripts[i].src != null) script = new this.#lib.script(`../js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
                 else script = new this.#lib.script(`../js/${this.buildData.scripts[i]}.js`,);
@@ -196,8 +197,8 @@ class BlankEngine
             
             for (let i = 0; i < this.buildData.shaders.length; i++)
             {
-                let shaderResponse = await fetch(`../shaders/${this.buildData.shaders[i]}.shader`);
-                let shader = await shaderResponse.text();
+                const shaderResponse = await fetch(`../shaders/${this.buildData.shaders[i]}.shader`);
+                const shader = await shaderResponse.text();
                 
                 if (this.compiledData.shaders.length == 0) this.compiledData.shaders[0] = shader;
                 else this.compiledData.shaders.push(shader);
@@ -205,10 +206,9 @@ class BlankEngine
             
             for (let i = 0; i < this.buildData.scenes.length; i++)
             {
-                let sceneResponse = await fetch(`../data/scenes/${this.buildData.scenes[i]}.json`);
-                let scene = await sceneResponse.json();
-                
-                let newScene = {
+                const sceneResponse = await fetch(`../data/scenes/${this.buildData.scenes[i]}.json`);
+                const scene = await sceneResponse.json();
+                const newScene = {
                     name : scene.name,
                     resources : scene.resources,
                     gameObjects : scene.gameObjects,
@@ -263,7 +263,7 @@ class BlankEngine
     
     static ThrowError (errorCode, errorDesc)
     {
-        var errorText;
+        let errorText;
         
         switch (errorCode)
         {
