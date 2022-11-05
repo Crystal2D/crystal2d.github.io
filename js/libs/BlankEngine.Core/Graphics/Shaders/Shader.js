@@ -30,8 +30,9 @@ class Shader
         this.name = name;
         this.#type = type;
         
-        let gl = Application.gl;
-        var shaderType;
+        const gl = Application.gl;
+        
+        let shaderType;
         
         switch (this.#type)
         {
@@ -77,12 +78,12 @@ class Shader
         {
             if (shaders[iA] === "") continue;
             
-            var slashes = 0;
-            var keyword = "";
-            var shaderData = ["", ""];
-            var keywordValue = 0;
-            var isInsideQuote = false;
-            var quoteType = "";
+            let slashes = 0;
+            let keyword = "";
+            let shaderData = ["", ""];
+            let keywordValue = 0;
+            let isInsideQuote = false;
+            let quoteType = "";
             
             for (let iB = 0; iB < shaders[iA].length; iB++)
             {

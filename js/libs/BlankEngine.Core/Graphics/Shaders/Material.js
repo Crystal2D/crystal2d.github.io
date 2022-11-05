@@ -17,8 +17,8 @@ class Material
     {
         this.#gl = Application.gl;
         
-        let vShader = vertexShader ?? Shader.Find("Default/None", "VERTEX");
-        let fShader = fragmentShader ?? Shader.Find("Default/None", "FRAGMENT");
+        const vShader = vertexShader ?? Shader.Find("Default/None", "VERTEX");
+        const fShader = fragmentShader ?? Shader.Find("Default/None", "FRAGMENT");
         
         this.#program = this.#gl.createProgram();
         
