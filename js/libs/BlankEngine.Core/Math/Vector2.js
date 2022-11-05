@@ -196,8 +196,8 @@ class Vector2
      */
     static Distance (a, b)
     {
-        let x = a.x - b.x;
-        let y = a.y - b.y;
+        const x = a.x - b.x;
+        const y = a.y - b.y;
         
         return Math.sqrt(x * x + y * y);
     }
@@ -328,7 +328,7 @@ class Vector2
      */
     Normalize ()
     {
-        let magnitude = this.magnitude;
+        const magnitude = this.magnitude;
         
         this.x = this.x / magnitude;
         this.y = this.y / magnitude;
