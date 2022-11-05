@@ -13,7 +13,7 @@ class GameObject
     {
         this.#name = value;
         
-        let components = this.#components;
+        const components = this.#components;
         
         for (let i = 0; i < this.#components.length; i++)
         {
@@ -34,11 +34,11 @@ class GameObject
     
     set components (value)
     {
-        var newComps = [this.#components[0]];
+        let newComps = [this.#components[0]];
         
         for (let i = 0; i < value.length; i++)
         {
-            let validType = value[i] instanceof Component;
+            const validType = value[i] instanceof Component;
             
             if (!validType) throw BlankEngine.ThrowError(4);
             
@@ -84,7 +84,7 @@ class GameObject
     {
         this.#active = state;
         
-        let components = this.#components;
+        const components = this.#components;
         
         for (let i = 0; i < this.#components.length; i++)
         {
@@ -99,9 +99,10 @@ class GameObject
         
         if (!this.#active) return;
         
-        let components = this.#components;
-        var args = "";
-        var data = data ?? { };
+        const components = this.#components;
+        
+        let args = "";
+        let dat = data ?? { };
         
         if (params == null || typeof params == "string") args = params;
         else 
@@ -122,7 +123,7 @@ class GameObject
             
             eval(`components[i].${method}(${args})`);
             
-            if (data.clearAfter) eval(`components[i].${method} = function () { }`);
+            if (dat.clearAfter) eval(`components[i].${method} = function () { }`);
             
             components[i].gameObject = this;
             components[i].name = this.name;
@@ -133,16 +134,17 @@ class GameObject
     {
         if (type == null) throw BlankEngine.ThrowError(0);
         
-        let components = this.#components;
-        var newComps = [];
+        const components = this.#components;
+        
+        let newComps = [];
         
         for (let i = 0; i < components.length; i++)
         {
-            let validType = eval(`components[i] instanceof ${type}`);
+            const validType = eval(`components[i] instanceof ${type}`);
             
             if (!validType) continue;
             
-            let isBehavior = components[i] instanceof Behavior;
+            const isBehavior = components[i] instanceof Behavior;
             
             if (isBehavior && !components[i].enabled) continue;
             

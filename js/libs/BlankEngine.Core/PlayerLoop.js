@@ -18,11 +18,37 @@ class PlayerLoop
         
         if (!Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#requestUpdate();
         
-        this.Start();
+        const docFocus = document.hasFocus();
         
-        await this.Update();
+        if (docFocus) this.Start();
         
-        this.Render();
+        const slice = (1 / Application.targetFrameRate) - 0.005;
+        
+        let accumulator = (performance.now() / 1000) - Time.unscaledTime;
+        
+        while (accumulator >= slice)
+        {
+            Time.unscaledDeltaTime = (performance.now() / 1000) - Time.unscaledTime;
+            Time.unscaledTime += Time.unscaledDeltaTime;
+            
+            let deltaT = Time.unscaledDeltaTime;
+            
+            if (deltaT > Time.maximumDeltaTime) deltaT = Time.maximumDeltaTime;
+            
+            Time.deltaTime = deltaT * Time.timeScale;
+            Time.time += Time.deltaTime;
+            
+            if (docFocus)
+            {
+                this.Update();
+                
+                if (Time.timeScale != 0) Time.frameCount++;
+            }
+            
+            accumulator -= slice;
+        }
+        
+        if (docFocus) this.Render();
         
         this.#requestUpdate();
     }
@@ -32,45 +58,24 @@ class PlayerLoop
         this.#requestUpdate();
     }
     
-    static async Start ()
+    static Start ()
     {
         for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
         {
-            if (document.hasFocus()) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
+            SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
         }
     }
     
-    static async Update ()
+    static Update ()
     {
-        var accumulator = (performance.now() / 1000) - Time.unscaledTime;
-        
-        while (accumulator >= 1 / Application.targetFrameRate)
+        for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
         {
-            Time.unscaledDeltaTime = (performance.now() / 1000) - Time.unscaledTime;
-            Time.unscaledTime += Time.unscaledDeltaTime;
-            
-            var deltaT = Time.unscaledDeltaTime;
-            
-            if (deltaT > Time.maximumDeltaTime) deltaT = Time.maximumDeltaTime;
-            
-            Time.deltaTime = deltaT * Time.timeScale;
-            Time.time += Time.deltaTime;
-            
-            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++)
-            {
-                if (Time.timeScale != 0 && document.hasFocus()) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
-            }
-            
-            if (Time.timeScale != 0 && document.hasFocus()) Time.frameCount++;
-            
-            accumulator -= 1 / Application.targetFrameRate;
+            if (Time.timeScale != 0) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
         }
     }
     
     static Render ()
     {
-        if (!document.hasFocus()) return;
-        
         Application.gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
         Application.gl.clear(Application.gl.COLOR_BUFFER_BIT | Application.gl.DEPTH_BUFFER_BIT);
         Application.gl.enable(Application.gl.BLEND);
@@ -78,11 +83,11 @@ class PlayerLoop
         
         for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
         {
-            let cameras = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("Camera");
+            const cameras = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("Camera");
             
             for (let iB = 0; iB < cameras.length; iB++)
             {
-                if (document.hasFocus()) cameras[iB].Render();
+                cameras[iB].Render();
             }
         }
         

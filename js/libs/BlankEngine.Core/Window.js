@@ -128,8 +128,9 @@ class Window
         
         if (!this.#sizeChanged || this.fullScreen) return;
         
-        let sX = this.data.width + (window.outerWidth - window.innerWidth) + (this.data.width * (this.data.marginX * 2 / 100));
-        let sY = this.data.height + (window.outerHeight - window.innerHeight) + (this.data.height * (this.data.marginY * 2 / 100));
+        const sX = this.data.width + (window.outerWidth - window.innerWidth) + (this.data.width * (this.data.marginX * 2 / 100));
+        const sY = this.data.height + (window.outerHeight - window.innerHeight) + (this.data.height * (this.data.marginY * 2 / 100));
+        
         window.resizeTo(sX, sY);
         
         this.#sizeChanged = false;

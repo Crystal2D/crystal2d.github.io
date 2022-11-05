@@ -10,8 +10,8 @@ class Resources
     {
         if (path == null) throw BlankEngine.ThrowError(0);
         
-        var newPath = [""];
-        var resPath = this.#resources;
+        let newPath = [""];
+        let resPath = this.#resources;
         
         for (let i = 0; i < path.length; i++)
         {
@@ -51,8 +51,9 @@ class Resources
     {
         if (data.name == null || data.args == null) throw BlankEngine.ThrowError(0);
         
-        let args = data.args;
-        var object = null;
+        const args = data.args;
+        
+        let object = null;
         
         switch (data.type)
         {
@@ -88,9 +89,9 @@ class Resources
         if (path == null || data == null) throw BlankEngine.ThrowError(0);
         
         // ROOT VARIABLES
-        var resIndexes = [];
-        var resPath = [this.#resources];
-        var newPath = { final : [], sub : [] };
+        let resIndexes = [];
+        let resPath = [this.#resources];
+        let newPath = { final : [], sub : [] };
         
         // DECONSTRUCT
         
@@ -157,7 +158,7 @@ class Resources
             // IF IN DEEPEST THEN CONTINUE
             if (iA == resPath.length - 1) continue;
             
-            var addedNewCont = false;
+            let addedNewCont = false;
             
             if (resPath[iA].content.length == 0) newPath.sub[newPath.sub.length - 1].content[0] = newPath.sub[newPath.sub.length - 2];
             
@@ -192,7 +193,7 @@ class Resources
         // ROOT CONSTRUCTION
         if (resPath[0].length == 0) newPath.final[0] = newPath.sub[newPath.sub.length - 1];
         
-        var addedNewCont = false;
+        let addedNewCont = false;
         
         // FOREACH CONTENT IN PATH
         for (let i = 0; i < resPath[0].length; i++)
@@ -238,9 +239,9 @@ class Resources
     {
         if (path == null) throw BlankEngine.ThrowError(0);
         
-        var newPath = [""];
-        var uRPath = this.#unloadedRes;
-        var inPath = [];
+        let newPath = [""];
+        let uRPath = this.#unloadedRes;
+        let inPath = [];
         
         for (let i = 0; i < path.length; i++)
         {
@@ -257,7 +258,7 @@ class Resources
         // FOREACH WORD
         for (let iA = 0; iA < newPath.length; iA++)
         {
-            var resPath = this.#resources;
+            let resPath = this.#resources;
             
             // ADD CURRENT PATH TO INPATH
             if (inPath.length == 0) inPath[0] = newPath[iA];
@@ -280,7 +281,7 @@ class Resources
                 // IF CONTENT NAME IS NOT EQUAL TO URPATH THEN CONTINUE
                 if (newPath[iA] != uRPath[iB].name) continue;
                 
-                var existInRes = 0;
+                let existInRes = 0;
                 
                 // CHECK IF CONTENT EXIST IN RESPATH
                 // DOESN'T EXIST : 0
@@ -319,7 +320,7 @@ class Resources
                 }
                 
                 // LOAD CONTENT
-                let loaded = await this.#setRes(inPath, uRPath[iB]);
+                await this.#setRes(inPath, uRPath[iB]);
                 
                 uRPath = uRPath[iB].content;
                 
@@ -334,10 +335,10 @@ class Resources
     {
         if (path == null) throw BlankEngine.ThrowError(0);
         
-        var newTargetPath = [""];
-        var resIndexes = [];
-        var resPath = [this.#resources];
-        var newPath = { final : [], sub : [] };
+        let newTargetPath = [""];
+        let resIndexes = [];
+        let resPath = [this.#resources];
+        let newPath = { final : [], sub : [] };
         
         for (let i = 0; i < path.length; i++)
         {
