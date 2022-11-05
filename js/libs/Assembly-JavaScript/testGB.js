@@ -1,8 +1,8 @@
 class testGB extends GameBehavior
 {
     speed = new Vector2();
-    minClamp = new Vector2(-2, -1);
-    maxClamp = new Vector2(3, 1);
+    minClamp = new Vector2(-2.25, -1.25);
+    maxClamp = new Vector2(3, 0.75);
     
     constructor () { super(); }
     
@@ -14,7 +14,8 @@ class testGB extends GameBehavior
     
     Update ()
     {
-        let oldPos = SceneManager.GetActiveScene().gameObjects[0].transform.position;
+        const oldPos = SceneManager.GetActiveScene().gameObjects[0].transform.position;
+        
         let newPos = new Vector2(oldPos.x + (this.speed.x * Time.deltaTime), oldPos.y + (this.speed.y * Time.deltaTime));
         
         if (newPos.x < this.minClamp.x) newPos.x = this.maxClamp.x;
