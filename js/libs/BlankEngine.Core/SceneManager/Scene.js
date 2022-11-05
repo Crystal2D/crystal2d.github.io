@@ -35,7 +35,7 @@ SceneManager.Scene = class
         
         if (data == null || constructData == null) return;
         
-        var object;
+        let object;
         
         switch (type)
         {
@@ -46,8 +46,8 @@ SceneManager.Scene = class
                 object = await new Vector2(data.x, data.y);
                 break;
             case "Transform":
-                let pos = data.position ?? { };
-                let sca = data.scale ?? { };
+                var pos = data.position ?? { };
+                var sca = data.scale ?? { };
                 
                 object = await new Transform(await new Vector2(pos.x, pos.y), data.rotation, await new Vector2(sca.x, sca.y));
                 break;
@@ -74,12 +74,13 @@ SceneManager.Scene = class
         
         if (object == null)
         {
-            let libs = BlankEngine.Inner.compiledData.libs;
-            let scripts = BlankEngine.Inner.compiledData.scripts;
-            var foundClass = false;
-            var construct = [];
-            var properties = [];
-            var cData = "";
+            const libs = BlankEngine.Inner.compiledData.libs;
+            const scripts = BlankEngine.Inner.compiledData.scripts;
+            
+            let foundClass = false;
+            let construct = [];
+            let properties = [];
+            let cData = "";
             
             for (let iA = 0; iA < libs.length; iA++)
             {
@@ -122,7 +123,7 @@ SceneManager.Scene = class
             
             for (let i = 0; i < construct.length; i++)
             {
-                var subObj = null;
+                let subObj = null;
                 
                 if (eval(`constructData.${construct[i]}`) == null) subObj = eval(`constructData.${construct[i]}`);
                 else if (eval(`constructData.${construct[i]}.type`) != null && eval(`constructData.${construct[i]}.args`) != null) subObj = await eval(`this.#toObject(constructData.${construct[i]}.type, constructData.${construct[i]}.args, constructData.${construct[i]}.construct)`);
@@ -177,21 +178,21 @@ SceneManager.Scene = class
     {
         if (this.#data.gameObjects == null) this.#data.gameObjects = [];
         
-        var newGameObjs = [];
+        let newGameObjs = [];
         
         for (let iA = 0; iA < this.#data.gameObjects.length; iA++)
         {
-            var components = [];
+            let components = [];
             
             for (let iB = 0; iB < this.#data.gameObjects[iA].components.length; iB++)
             {
-                let component = await this.#toObject(this.#data.gameObjects[iA].components[iB].type, this.#data.gameObjects[iA].components[iB].args, this.#data.gameObjects[iA].components[iB].construct);
+                const component = await this.#toObject(this.#data.gameObjects[iA].components[iB].type, this.#data.gameObjects[iA].components[iB].args, this.#data.gameObjects[iA].components[iB].construct);
                 
                 if (components.length == 0) components[0] = component;
                 else components.push(component);
             }
             
-            let newGameObj = await this.#toObject("GameObject", {
+            const newGameObj = await this.#toObject("GameObject", {
                 name : this.#data.gameObjects[iA].name,
                 components : components,
                 active : this.#data.gameObjects[iA].active,
