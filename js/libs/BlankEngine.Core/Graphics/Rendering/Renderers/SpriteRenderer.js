@@ -68,15 +68,15 @@ class SpriteRenderer extends Component
     {
         if (this.#loaded) return;
         
-        let texture = this.#sprite.texture;
+        const texture = this.#sprite.texture;
         
         if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) throw BlankEngine.ThrowError(0);
         
-        let gl = this.#material.gl;
+        const gl = this.#material.gl;
+        const rect = new Rect();
         
         let filterMode;
         let wrapMode;
-        let rect = new Rect();
         
         switch (texture.filterMode)
         {
@@ -135,8 +135,8 @@ class SpriteRenderer extends Component
     {
         if (!this.#loaded) return;
         
-        let gl = this.#material.gl;
-        let localSpaceMat = [
+        const gl = this.#material.gl;
+        const localSpaceMat = [
             this.localSpaceMatrix.matrix[0][0],
             this.localSpaceMatrix.matrix[0][1],
             this.localSpaceMatrix.matrix[0][2],
