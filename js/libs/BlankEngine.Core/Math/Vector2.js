@@ -218,7 +218,7 @@ class Vector2
      */
     static Dot (lhs, rhs)
     {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        if (lhs == null || rhs == null) throw BlankEngine.Err(0);
         
         return (lhs.x * rhs.x + lhs.y * rhs.y)
     }
@@ -239,7 +239,7 @@ class Vector2
      */
     static Min (lhs, rhs)
     {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        if (lhs == null || rhs == null) throw BlankEngine.Err(0);
         
         return new Vector2(Math.min(lhs.x, rhs.x), Math.min(lhs.y, rhs.y));
     }
@@ -260,7 +260,7 @@ class Vector2
      */
     static Max (lhs, rhs)
     {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        if (lhs == null || rhs == null) throw BlankEngine.Err(0);
         
         return new Vector2(Math.max(lhs.x, rhs.x), Math.max(lhs.y, rhs.y));
     }
@@ -281,7 +281,7 @@ class Vector2
      */
     Set (x, y)
     {
-        if (x == null || y == null) throw BlankEngine.ThrowError(0);
+        if (x == null || y == null) throw BlankEngine.Err(0);
         
         this.x = x;
         this.y = y;

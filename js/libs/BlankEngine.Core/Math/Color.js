@@ -22,7 +22,7 @@ class Color
     
     Set (r, g, b, a)
     {
-        if (r == null || g == null || b == null) throw BlankEngine.ThrowError(0);
+        if (r == null || g == null || b == null) throw BlankEngine.Err(0);
         
         this.r = r;
         this.g = g;

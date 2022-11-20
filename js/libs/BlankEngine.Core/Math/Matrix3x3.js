@@ -102,7 +102,7 @@ class Matrix3x3
     
     static Multiply (lhs, rhs)
     {
-        if (lhs == null || rhs == null) throw BlankEngine.ThrowError(0);
+        if (lhs == null || rhs == null) throw BlankEngine.Err(0);
         
         const a = lhs.matrix;
         const b = rhs.matrix;
@@ -129,21 +129,21 @@ class Matrix3x3
     
     GetValue (column, row)
     {
-        if (column == null || row == null) throw BlankEngine.ThrowError(0);
+        if (column == null || row == null) throw BlankEngine.Err(0);
         
         return this.matrix[column][row];
     }
     
     SetValue (column, row, value)
     {
-        if (column == null || row == null || value == null) throw BlankEngine.ThrowError(0);
+        if (column == null || row == null || value == null) throw BlankEngine.Err(0);
         
         this.matrix[column][row] = value;
     }
     
     GetColumn (index)
     {
-        if (index == null) throw BlankEngine.ThrowError(0);
+        if (index == null) throw BlankEngine.Err(0);
         
         let output = [0, 0, 0];
         
@@ -157,7 +157,7 @@ class Matrix3x3
     
     SetColumn (index, values)
     {
-        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
+        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.Err(0);
         
         for (let i = 0; i <= 2; i++)
         {
@@ -167,7 +167,7 @@ class Matrix3x3
     
     GetRow (index)
     {
-        if (index == null) throw BlankEngine.ThrowError(0);
+        if (index == null) throw BlankEngine.Err(0);
         
         let output = [0, 0, 0];
         
@@ -181,7 +181,7 @@ class Matrix3x3
     
     SetRow (index, values)
     {
-        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.ThrowError(0);
+        if (index == null || values == null || values[0] == null || values[1] == null || values[2] == null) throw BlankEngine.Err(0);
         
         for (let i = 0; i <= 2; i++)
         {
