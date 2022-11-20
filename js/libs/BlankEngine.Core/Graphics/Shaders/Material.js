@@ -26,7 +26,7 @@ class Material
         this.#gl.attachShader(this.#program, fShader.shader);
         this.#gl.linkProgram(this.#program);
         
-        if (!this.#gl.getProgramParameter(this.#program, this.#gl.LINK_STATUS)) throw BlankEngine.ThrowError(2, this.#gl.getProgramInfoLog(this.#program));
+        if (!this.#gl.getProgramParameter(this.#program, this.#gl.LINK_STATUS)) throw BlankEngine.Err(2, this.#gl.getProgramInfoLog(this.#program));
         
         this.#gl.detachShader(this.#program, vShader.shader);
         this.#gl.detachShader(this.#program, fShader.shader);
@@ -34,14 +34,14 @@ class Material
     
     getAttribLocation (name)
     {
-        if (name == null) throw BlankEngine.ThrowError(0);
+        if (name == null) throw BlankEngine.Err(0);
         
         return this.#gl.getAttribLocation(this.#program, name);
     }
     
     getUniformLocation (name)
     {
-        if (name == null) throw BlankEngine.ThrowError(0);
+        if (name == null) throw BlankEngine.Err(0);
         
         return this.#gl.getUniformLocation(this.#program, name);
     }

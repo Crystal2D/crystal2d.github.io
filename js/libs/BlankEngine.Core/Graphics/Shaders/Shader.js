@@ -23,9 +23,9 @@ class Shader
     
     constructor (name, shader, type)
     {
-        if (!name) throw BlankEngine.ThrowError(2, "Shader Data: Shader name is undefined");
-        if (!shader) throw BlankEngine.ThrowError(2, "Shader Data: Shader is undefined");
-        if (!type) throw BlankEngine.ThrowError(2, "Shader Data: Shader type is undefined");
+        if (!name) throw BlankEngine.Err(2, "Shader Data: Shader name is undefined");
+        if (!shader) throw BlankEngine.Err(2, "Shader Data: Shader is undefined");
+        if (!type) throw BlankEngine.Err(2, "Shader Data: Shader type is undefined");
         
         this.name = name;
         this.#type = type;
@@ -44,19 +44,19 @@ class Shader
                 break;
         }
         
-        if (shaderType == null) throw BlankEngine.ThrowError(2, `Shader Data: Type "${this.#type}" doesn't exist`);
+        if (shaderType == null) throw BlankEngine.Err(2, `Shader Data: Type "${this.#type}" doesn't exist`);
         
         this.#shader = gl.createShader(shaderType);
         
         gl.shaderSource(this.#shader, shader);
         gl.compileShader(this.#shader);
         
-        if (!gl.getShaderParameter(this.#shader, gl.COMPILE_STATUS)) throw BlankEngine.ThrowError(2, gl.getShaderInfoLog(this.#shader));
+        if (!gl.getShaderParameter(this.#shader, gl.COMPILE_STATUS)) throw BlankEngine.Err(2, gl.getShaderInfoLog(this.#shader));
     }
     
     static Find (name, type)
     {
-        if (name == null) throw BlankEngine.ThrowError(0);
+        if (name == null) throw BlankEngine.Err(0);
         
         for (let i = 0; i < this.#shaders.length; i++)
         {
@@ -64,12 +64,12 @@ class Shader
             if (this.#shaders[i].name === name) return this.#shaders[i];
         }
         
-        throw BlankEngine.ThrowError(3);
+        throw BlankEngine.Err(3);
     }
     
     static async Set (shaders)
     {
-        if (shaders == null || !Array.isArray(shaders)) throw BlankEngine.ThrowError(0);
+        if (shaders == null || !Array.isArray(shaders)) throw BlankEngine.Err(0);
         
         this.#shaders[0] = new Shader("Default/None", "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; uniform mat3 uWorldSpaceMat; void main () { gl_Position = vec4(uWorldSpaceMat * vec3(aVertexPos, 1), 1); vTexturePos = aTexturePos; }", "VERTEX");
         this.#shaders[1] = new Shader("Default/None", "precision mediump float; uniform sampler2D uSampler; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uSampler, vTexturePos); }", "FRAGMENT");
@@ -131,7 +131,7 @@ class Shader
                             break;
                     }
                     
-                    if (keywordValue === -1) throw BlankEngine.ThrowError(3, `Shader Data: Keyword "${keyword}" doesn't exist`);
+                    if (keywordValue === -1) throw BlankEngine.Err(3, `Shader Data: Keyword "${keyword}" doesn't exist`);
                     
                     keyword = "";
                     
