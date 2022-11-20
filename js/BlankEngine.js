@@ -49,7 +49,7 @@ class BlankEngine
                 return this.#scripts;
             }
             
-            script = class
+            #script = class
             {
                 #loaded = false;
                 #src = null;
@@ -64,7 +64,7 @@ class BlankEngine
                 {
                     return this.#src;
                 }
-                 
+                
                 get classes ()
                 {
                     return this.#classes;
@@ -72,7 +72,7 @@ class BlankEngine
                 
                 constructor (src, classes)
                 {
-                    if (src == null) BlankEngine.ThrowError(0);
+                    if (src == null) BlankEngine.Err(0);
                     
                     this.#src = src;
                     this.#classes = classes ?? [];
@@ -110,7 +110,7 @@ class BlankEngine
             
             constructor (name, desc, scripts, src)
             {
-                if (src == null) BlankEngine.ThrowError(0);
+                if (src == null) BlankEngine.Err(0);
                 
                 this.#name =  name;
                 this.#desc = desc;
@@ -128,8 +128,8 @@ class BlankEngine
                     
                     let script = null;
                     
-                    if (this.#unloadedScripts[i].src != null) script = new this.script(`../js/libs/${this.#src}/${this.#unloadedScripts[i].src}.js`, this.#unloadedScripts[i].classes);
-                    else script = new this.script(`../js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    if (this.#unloadedScripts[i].src != null) script = new this.#script(`../js/libs/${this.#src}/${this.#unloadedScripts[i].src}.js`, this.#unloadedScripts[i].classes);
+                    else script = new this.#script(`../js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
                     
                     if (this.#scripts.length == 0) this.#scripts[0] = script;
                     else this.#scripts.push(script);
@@ -139,6 +139,65 @@ class BlankEngine
                 {
                     await this.#scripts[i].load();
                 }
+                
+                this.#loaded = true;
+            }
+        }
+        
+        static #script = class
+        {
+            #loaded = false;
+            #src = null;
+            #classes = [];
+            
+            get isLoaded ()
+            {
+                return this.#loaded;
+            }
+            
+            get src ()
+            {
+                return this.#src;
+            }
+            
+            get classes ()
+            {
+                return this.#classes;
+            }
+            
+            constructor (src, classes)
+            {
+                if (src == null) BlankEngine.Err(0);
+                
+                this.#src = src;
+                this.#classes = classes ?? [];
+            }
+            
+            async load ()
+            {
+                if (this.#loaded) return;
+                
+                const script = document.createElement("script");
+                
+                let newClasses = [];
+                
+                script.src = this.#src;
+                script.type = "text/javascript";
+                script.async = true;
+                
+                document.body.appendChild(script);
+                
+                await new Promise(resolve => script.addEventListener("load", resolve));
+                
+                for (let i = 0; i < this.#classes.length; i++)
+                {
+                    if (this.#classes[i].name == null || this.#classes[i].args == null) continue;
+                    
+                    if (newClasses.length == 0) newClasses[0] = this.#classes[i];
+                    else newClasses.push(this.#classes[i]);
+                }
+                
+                this.#classes = newClasses;
                 
                 this.#loaded = true;
             }
@@ -188,8 +247,8 @@ class BlankEngine
                 
                 let script = null;
                 
-                if (this.buildData.scripts[i].src != null) script = new this.#lib.script(`../js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
-                else script = new this.#lib.script(`../js/${this.buildData.scripts[i]}.js`,);
+                if (this.buildData.scripts[i].src != null) script = new this.#script(`../js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
+                else script = new this.#script(`../js/${this.buildData.scripts[i]}.js`,);
                 
                 if (this.compiledData.scripts.length == 0) this.compiledData.scripts[0] = script;
                 else this.compiledData.scripts.push(script);
@@ -197,7 +256,7 @@ class BlankEngine
             
             for (let i = 0; i < this.buildData.shaders.length; i++)
             {
-                const shaderResponse = await fetch(`../shaders/${this.buildData.shaders[i]}.shader`);
+                const shaderResponse = await fetch(`../shaders/${this.buildData.shaders[i]}.glsl`);
                 const shader = await shaderResponse.text();
                 
                 if (this.compiledData.shaders.length == 0) this.compiledData.shaders[0] = shader;
@@ -261,34 +320,34 @@ class BlankEngine
     
     // Static Methods
     
-    static ThrowError (errorCode, errorDesc)
+    static Err (code, description)
     {
-        let errorText;
+        let errTxt;
         
-        switch (errorCode)
+        switch (code)
         {
             case 0:
-                errorText = "Value is unassigned or invalid";
+                errTxt = "Value is unassigned or invalid";
                 break;
             case 1:
-                errorText = "No instance to work with";
+                errTxt = "No instance to work with";
                 break;
             case 2:
-                errorText = "Shader is invalid";
+                errTxt = "Shader is invalid";
                 break;
             case 3:
-                errorText = "Object cannot be found";
+                errTxt = "Object cannot be found";
                 break;
             case 4:
-                errorText = "Class used as component is not derived from class 'Component'";
+                errTxt = "Class used as component is not derived from class 'Component'";
                 break;
         }
         
-        if (errorDesc != null) errorText += `\n\nDescription: ${errorDesc}`;
+        if (description != null) errTxt += `\n\nDescription: ${description}`;
         
-        errorText += `\n\nError Code: ${errorCode}`;
+        errTxt += `\n\nError Code: ${code}`;
         
-        alert(errorText);
-        throw new Error(errorText);
+        alert(errTxt);
+        throw new Error(errTxt);
     }
 }
