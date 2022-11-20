@@ -6,6 +6,14 @@ class Transform extends Component
     
     get localToWorldMatrix ()
     {
+        const gOTrans = this.gameObject.transform;
+        const output = Matrix3x3.TRS(gOTrans.position, gOTrans.rotation * Math.PI / 180, gOTrans.scale);
+        
+        return output;
+    }
+    
+    get worldToLocalMatrix ()
+    {
         
     }
     
