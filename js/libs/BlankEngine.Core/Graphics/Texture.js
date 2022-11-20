@@ -18,7 +18,7 @@ class Texture
     
     constructor (src)
     {
-        if (src == null) throw BlankEngine.ThrowError(0);
+        if (src == null) throw BlankEngine.Err(0);
         
         this.#img = new Image();
         this.#img.src = `../img/${src}`;
