@@ -48,7 +48,7 @@ class SpriteRenderer extends Component
     
     constructor (sprite, material)
     {
-        if (sprite == null) throw BlankEngine.ThrowError(0);
+        if (sprite == null) throw BlankEngine.Err(0);
         
         super();
         
@@ -70,7 +70,7 @@ class SpriteRenderer extends Component
         
         const texture = this.#sprite.texture;
         
-        if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) throw BlankEngine.ThrowError(0);
+        if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) throw BlankEngine.Err(0);
         
         const gl = this.#material.gl;
         const rect = new Rect();
