@@ -6,7 +6,7 @@ class Camera extends Behavior
     get worldToCameraMatrix ()
     {
         const gOTrans = this.gameObject.transform;
-        const output = Matrix3x3.TRS(gOTrans.position, gOTrans.rotation * Math.PI / 180, gOTrans.scale);
+        const output = Matrix3x3.TRS(gOTrans.position, -gOTrans.rotation * Math.PI / 180, gOTrans.scale);
         
         return output;
     }
@@ -31,7 +31,6 @@ class Camera extends Behavior
         const mScale = new Vector2(1 / (Application.htmlCanvas.width / (Application.htmlCanvas.height / this.orthographicSize)), -1 / this.orthographicSize);
         
         const transM = Matrix3x3.TRS(mPos, mRot * Math.PI / 180, mScale);
-        const viewM = Matrix3x3.Multiply(transM, camM);
         
         for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
         {
@@ -39,7 +38,11 @@ class Camera extends Behavior
             
             for (let iB = 0; iB < renderers.length; iB++)
             {
-                renderers[iB].localSpaceMatrix = viewM;
+                let lWM = renderers[iB].gameObject.transform.localToWorldMatrix;
+                
+                lWM.matrix[2][1] *= "-1";
+                
+                renderers[iB].localSpaceMatrix = Matrix3x3.Multiply(Matrix3x3.Multiply(transM, camM), lWM);
                 renderers[iB].render();
             }
         }
