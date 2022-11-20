@@ -219,7 +219,7 @@ class Window
      */
     static SetSize (width, height)
     {
-        if (width == null || height == null) throw BlankEngine.ThrowError(0);
+        if (width == null || height == null) throw BlankEngine.Err(0);
         
         this.data.width = width;
         this.data.height = height;

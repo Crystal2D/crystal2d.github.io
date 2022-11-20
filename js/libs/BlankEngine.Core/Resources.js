@@ -8,7 +8,7 @@ class Resources
     
     static Find (path)
     {
-        if (path == null) throw BlankEngine.ThrowError(0);
+        if (path == null) throw BlankEngine.Err(0);
         
         let newPath = [""];
         let resPath = this.#resources;
@@ -33,7 +33,7 @@ class Resources
                 
                 if (iA == newPath.length - 1)
                 {
-                    if (resPath[iB].type === "subpath") throw BlankEngine.ThrowError(3);
+                    if (resPath[iB].type === "subpath") throw BlankEngine.Err(3);
                     
                     return resPath[iB];
                 }
@@ -44,12 +44,12 @@ class Resources
             }
         }
         
-        throw BlankEngine.ThrowError(3);
+        throw BlankEngine.Err(3);
     }
     
     static async #toObject (data)
     {
-        if (data.name == null || data.args == null) throw BlankEngine.ThrowError(0);
+        if (data.name == null || data.args == null) throw BlankEngine.Err(0);
         
         const args = data.args;
         
@@ -58,7 +58,7 @@ class Resources
         switch (data.type)
         {
             case "Texture":
-                if (args.src == null) throw BlankEngine.ThrowError(0);
+                if (args.src == null) throw BlankEngine.Err(0);
                 
                 object = await new Texture(args.src);
                 
@@ -76,7 +76,7 @@ class Resources
                 object = await new Material(vertexShader, fragmentShader);
                 break;
             default:
-                throw BlankEngine.ThrowError(0);
+                throw BlankEngine.Err(0);
         }
         
         object.name = data.name;
@@ -86,7 +86,7 @@ class Resources
     
     static async #setRes (path, data)
     {
-        if (path == null || data == null) throw BlankEngine.ThrowError(0);
+        if (path == null || data == null) throw BlankEngine.Err(0);
         
         // ROOT VARIABLES
         let resIndexes = [];
@@ -228,7 +228,7 @@ class Resources
     
     static async Set (resources)
     {
-        if (resources == null || !Array.isArray(resources)) throw BlankEngine.ThrowError(0);
+        if (resources == null || !Array.isArray(resources)) throw BlankEngine.Err(0);
         
         await this.UnloadAll();
         
@@ -237,7 +237,7 @@ class Resources
     
     static async Load (path)
     {
-        if (path == null) throw BlankEngine.ThrowError(0);
+        if (path == null) throw BlankEngine.Err(0);
         
         let newPath = [""];
         let uRPath = this.#unloadedRes;
@@ -328,12 +328,12 @@ class Resources
             }
         }
         
-        throw BlankEngine.ThrowError(3);
+        throw BlankEngine.Err(3);
     }
     
     static async Unload (path)
     {
-        if (path == null) throw BlankEngine.ThrowError(0);
+        if (path == null) throw BlankEngine.Err(0);
         
         let newTargetPath = [""];
         let resIndexes = [];

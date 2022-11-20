@@ -2,6 +2,8 @@ class Application
 {
     static #loaded = false;
     
+    static htmlCanvas = null;
+    static gl = null;
     static targetFrameRate = -1;
     
     static get isLoaded ()
@@ -11,7 +13,7 @@ class Application
     
     static init (width, height)
     {
-        if (width == null || height == null) throw BlankEngine.ThrowError(0);
+        if (width == null || height == null) throw BlankEngine.Err(0);
         
         if (this.#loaded) return;
         

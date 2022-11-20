@@ -40,7 +40,7 @@ class GameObject
         {
             const validType = value[i] instanceof Component;
             
-            if (!validType) throw BlankEngine.ThrowError(4);
+            if (!validType) throw BlankEngine.Err(4);
             
             newComps.push(value[i]);
         }
@@ -72,7 +72,7 @@ class GameObject
     
     constructor (name, components, active, transform)
     {
-        if (components != null && !Array.isArray(components)) throw BlankEngine.ThrowError(0);
+        if (components != null && !Array.isArray(components)) throw BlankEngine.Err(0);
         
         this.name = name ?? "Empty Object";
         this.#active = active ?? true;
@@ -95,7 +95,7 @@ class GameObject
     
     BroadcastMessage (method, params, data)
     {
-        if (method == null) throw BlankEngine.ThrowError(0);
+        if (method == null) throw BlankEngine.Err(0);
         
         if (!this.#active) return;
         
@@ -132,7 +132,7 @@ class GameObject
     
     GetComponents (type)
     {
-        if (type == null) throw BlankEngine.ThrowError(0);
+        if (type == null) throw BlankEngine.Err(0);
         
         const components = this.#components;
         
