@@ -22,7 +22,7 @@ class SceneManager
     
     static async Set (scenes)
     {
-        if (scenes != null && !Array.isArray(scenes)) throw BlankEngine.ThrowError(0);
+        if (scenes != null && !Array.isArray(scenes)) throw BlankEngine.Err(0);
         
         this.#scenes = await scenes;
     }

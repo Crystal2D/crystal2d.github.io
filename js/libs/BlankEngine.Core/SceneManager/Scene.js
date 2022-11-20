@@ -31,7 +31,7 @@ SceneManager.Scene = class
     
     async #toObject (type, data, constructData)
     {
-        if (type == null) throw BlankEngine.ThrowError(0);
+        if (type == null) throw BlankEngine.Err(0);
         
         if (data == null || constructData == null) return;
         
@@ -52,7 +52,7 @@ SceneManager.Scene = class
                 object = await new Transform(await new Vector2(pos.x, pos.y), data.rotation, await new Vector2(sca.x, sca.y));
                 break;
             case "Sprite":
-                if (data.texture == null) throw BlankEngine.ThrowError(0);
+                if (data.texture == null) throw BlankEngine.Err(0);
                 
                 object = await new Sprite(Resources.Find(data.texture), data.rect);
                 break;
@@ -66,7 +66,7 @@ SceneManager.Scene = class
                 if (data.orthographicSize != null) object.orthographicSize = data.orthographicSize;
                 break;
             case "SpriteRenderer":
-                if (data.sprite == null) throw BlankEngine.ThrowError(0);
+                if (data.sprite == null) throw BlankEngine.Err(0);
                 
                 object = await new SpriteRenderer(await this.#toObject("Sprite", data.sprite, { }), await this.#toObject("Material", data.material, { }));
                 break;
@@ -119,7 +119,7 @@ SceneManager.Scene = class
                 }
             }
             
-            if (!foundClass) throw BlankEngine.ThrowError(3);
+            if (!foundClass) throw BlankEngine.Err(3);
             
             for (let i = 0; i < construct.length; i++)
             {
