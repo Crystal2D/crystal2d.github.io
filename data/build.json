@@ -2,7 +2,9 @@
     "libs" : [
         "Assembly-JavaScript"
     ],
-    "scripts" : [],
+    "scripts" : [
+        "plugins/crispixels"
+    ],
     "resources" : [
         {
             "name" : "textures",
