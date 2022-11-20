@@ -4,6 +4,8 @@ class Component
     
     BroadcastMessage (method, params, data)
     {
+        if (method == null) throw BlankEngine.Err(0);
+        
         if (!gameObject.activeSelf) return;
         
         const components = this.gameObject.components;
