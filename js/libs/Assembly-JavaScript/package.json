@@ -9,6 +9,8 @@
                     "name" : "testGB",
                     "construct" : [],
                     "args" : [
+                        "minClamp",
+                        "maxClamp",
                         "speed"
                     ]
                 }
