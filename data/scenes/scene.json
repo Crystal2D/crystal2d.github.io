@@ -6,29 +6,11 @@
     ],
     "gameObjects" : [
         {
-            "name" : "camera",
-            "active" : true,
-            "transform" : {
-                "position" : { "x" : 0, "y" : 0 },
-                "rotation" : 30,
-                "scale" : { "x" : 1, "y" : 1 }
-            },
-            "components" : [
-                {
-                    "type" : "Camera",
-                    "construct" : { },
-                    "args" : {
-                        "orthographicSize" : 1.5
-                    }
-                }
-            ]
-        },
-        {
             "name" : "obj_ball",
             "active" : true,
             "transform" : {
                 "position" : { "x" : 0, "y" : 0 },
-                "rotation" : 69,
+                "rotation" : 30,
                 "scale" : { "x" : 1, "y" : 1 }
             },
             "components" : [
@@ -78,7 +60,7 @@
             "active" : true,
             "transform" : {
                 "position" : { "x" : 0.5, "y" : 0.25 },
-                "rotation" : 0 ,
+                "rotation" : 30,
                 "scale" : { "x" : 1, "y" : 1 }
             },
             "components" : [
@@ -91,6 +73,29 @@
                         },
                         "material" : "materials/mat_invert"
                     }
+                }
+            ]
+        },
+        {
+            "name" : "camera",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 0, "y" : 0 },
+                "rotation" : 0,
+                "scale" : { "x" : 1, "y" : 1 }
+            },
+            "components" : [
+                {
+                    "type" : "Camera",
+                    "construct" : { },
+                    "args" : {
+                        "orthographicSize" : 1.5
+                    }
+                },
+                {
+                    "type" : "camFollow",
+                    "construct" : { },
+                    "args" : { }
                 }
             ]
         }
