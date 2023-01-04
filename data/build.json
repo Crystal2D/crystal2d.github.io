@@ -40,6 +40,8 @@
         "scene"
     ],
     "shaders" : [
+        "vertex",
+        "fragment",
         "invertColor"
     ],
     "targetFrameRate" : 60,
