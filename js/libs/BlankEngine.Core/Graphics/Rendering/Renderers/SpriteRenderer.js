@@ -4,12 +4,13 @@ class SpriteRenderer extends Component
     #sprite = null;
     #material = new Material();
     #texture = null;
-    #texBuffer = null;
-    #geoBuffer = null;
-    #aVPosLoc = null;
-    #aTPosLoc = null;
-    #uSamplerLoc = null;
-    #uWSMatLoc = null;
+    #textureBuffer = null;
+    #geometryBuffer = null;
+    #uSampler = null;
+    #uLocalMatrix = null;
+    #uVertexPositionOffset = null;
+    #aVertexPosition = null;
+    #aTexturePosition = null;
     
     localSpaceMatrix = new Matrix3x3();
     
@@ -73,7 +74,22 @@ class SpriteRenderer extends Component
         if (isNaN(texture.filterMode) || texture.filterMode < 0 || texture.filterMode > 1 || isNaN(texture.wrapMode) || texture.wrapMode < 0 || texture.wrapMode > 2) throw BlankEngine.Err(0);
         
         const gl = this.#material.gl;
-        const rect = new Rect();
+        
+        const rect = this.#sprite.rect;
+        const x = rect.x;
+        const y = rect.y;
+        const width = rect.width;
+        const height = rect.height;
+        const xMin = rect.xMin;
+        const yMin = rect.yMin;
+        const rectArray = [
+            x + xMin, y + yMin,
+            x + width, y + yMin,
+            x + width, y + height,
+            x + xMin, y + yMin,
+            x + xMin, y + height,
+            x + width, y + height
+        ];
         
         let filterMode;
         let wrapMode;
@@ -104,13 +120,14 @@ class SpriteRenderer extends Component
         gl.useProgram(this.#material.program);
         
         this.#texture = gl.createTexture();
-        this.#texBuffer = gl.createBuffer();
-        this.#geoBuffer = gl.createBuffer();
+        this.#textureBuffer = gl.createBuffer();
+        this.#geometryBuffer = gl.createBuffer();
         
-        this.#aVPosLoc = this.#material.getAttribLocation("aVertexPos");
-        this.#aTPosLoc = this.#material.getAttribLocation("aTexturePos");
-        this.#uSamplerLoc = this.#material.getUniformLocation("uSampler");
-        this.#uWSMatLoc = this.#material.getUniformLocation("uWorldSpaceMat");
+        this.#uSampler = this.#material.getUniformLocation("uSampler");
+        this.#uLocalMatrix = this.#material.getUniformLocation("uLocalMatrix");
+        this.#uVertexPositionOffset = this.#material.getUniformLocation("uVertexPositionOffset");
+        this.#aVertexPosition = this.#material.getAttribLocation("aVertexPosition");
+        this.#aTexturePosition = this.#material.getAttribLocation("aTexturePosition");
         
         gl.bindTexture(gl.TEXTURE_2D, this.#texture);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapMode);
@@ -120,11 +137,11 @@ class SpriteRenderer extends Component
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.img);
         gl.bindTexture(gl.TEXTURE_2D, null);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.#texBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, rect.rectArray, gl.STATIC_DRAW);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geometryBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(rectArray), gl.STATIC_DRAW);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geoBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, rect.rectArray, gl.STATIC_DRAW);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#textureBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(rectArray), gl.STATIC_DRAW);
         
         gl.useProgram(null);
         
@@ -133,10 +150,10 @@ class SpriteRenderer extends Component
     
     render ()
     {
-        if (!this.#loaded) return;
+        if (!this.#loaded || !this.gameObject.activeSelf) return;
         
         const gl = this.#material.gl;
-        const localSpaceMat = [
+        const localMatrix = [
             this.localSpaceMatrix.matrix[0][0],
             this.localSpaceMatrix.matrix[0][1],
             this.localSpaceMatrix.matrix[0][2],
@@ -153,17 +170,21 @@ class SpriteRenderer extends Component
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.#texture);
         
-        gl.uniform1i(this.#uSamplerLoc, 0);
+        gl.uniform1i(this.#uSampler, 0);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.#texBuffer);
-        gl.enableVertexAttribArray(this.#aTPosLoc);
-        gl.vertexAttribPointer(this.#aTPosLoc, 2, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geometryBuffer);
+        gl.enableVertexAttribArray(this.#aVertexPosition);
+        gl.vertexAttribPointer(this.#aVertexPosition, 2, gl.FLOAT, false, 0, 0);
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.#geoBuffer);
-        gl.enableVertexAttribArray(this.#aVPosLoc);
-        gl.vertexAttribPointer(this.#aVPosLoc, 2, gl.FLOAT, false, 0, 0);
+        gl.uniformMatrix3fv(this.#uLocalMatrix, false, new Float32Array(localMatrix));
         
-        gl.uniformMatrix3fv(this.#uWSMatLoc, false, new Float32Array(localSpaceMat));
+        const center = this.#sprite.rect.center;
+        
+        gl.uniform2fv(this.#uVertexPositionOffset, new Float32Array([-0.5 * (center.x + 1), -0.5 * (center.y + 1)]))
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.#textureBuffer);
+        gl.enableVertexAttribArray(this.#aTexturePosition);
+        gl.vertexAttribPointer(this.#aTexturePosition, 2, gl.FLOAT, false, 0, 0);
         
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 6);
         
