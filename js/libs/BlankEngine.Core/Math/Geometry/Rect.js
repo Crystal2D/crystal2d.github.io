@@ -4,15 +4,28 @@ class Rect
     y = 0;
     width = 1;
     height = 1;
+    xMin = 0;
+    yMin = 0;
+    center = new Vector2();
     
-    get rectArray ()
+    get xMax ()
     {
-        const x = this.x;
-        const y = this.y;
-        const w = this.width;
-        const h = this.height;
-        
-        return new Float32Array([x, y, x + w, y, x, y + h, x, y + h, x + w, y, x + w, y + h]);
+        return this.width;
+    }
+    
+    set xMax (value)
+    {
+        this.width = value;
+    }
+    
+    get yMax ()
+    {
+        return this.height;
+    }
+    
+    set yMax (value)
+    {
+        this.height = value;
     }
     
     get position ()
