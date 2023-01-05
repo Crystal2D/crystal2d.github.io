@@ -80,7 +80,7 @@ class crispixels
             canvas.style.imageRendering = "pixelated";
             
             if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "crisp-edges";
-            if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "optimize-contrast"
+            if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "optimize-contrast";
             if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "-webkit-optimize-contrast";
             if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "-o-crisp-edges";
             if (window.getComputedStyle(canvas).imageRendering == "auto") canvas.style.imageRendering = "-moz-crisp-edges";
