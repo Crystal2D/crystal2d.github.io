@@ -71,9 +71,6 @@ class Shader
     {
         if (shaders == null || !Array.isArray(shaders)) throw BlankEngine.Err(0);
         
-        this.#shaders[0] = new Shader("Default/None", "attribute vec2 aVertexPos; attribute vec2 aTexturePos; varying vec2 vTexturePos; uniform mat3 uWorldSpaceMat; void main () { gl_Position = vec4(uWorldSpaceMat * vec3(aVertexPos, 1), 1); vTexturePos = aTexturePos; }", "VERTEX");
-        this.#shaders[1] = new Shader("Default/None", "precision mediump float; uniform sampler2D uSampler; varying vec2 vTexturePos; void main () { gl_FragColor = texture2D(uSampler, vTexturePos); }", "FRAGMENT");
-        
         for (let iA = 0; iA < shaders.length; iA++)
         {
             if (shaders[iA] === "") continue;
@@ -148,7 +145,10 @@ class Shader
                 keyword += shaders[iA][iB];
             }
             
-            this.#shaders[iA + 2] = await new Shader(shaderData[0], shaders[iA], shaderData[1]);
+            const newShader = await new Shader(shaderData[0], shaders[iA], shaderData[1]);
+            
+            if (this.#shaders.length === 0) this.#shaders[0] = newShader;
+            else this.#shaders.push(newShader);
         }
         
         this.#loaded = true;
