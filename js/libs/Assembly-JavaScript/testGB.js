@@ -1,8 +1,6 @@
 class testGB extends GameBehavior
 {
-    speed = new Vector2();
-    minClamp = new Vector2();
-    maxClamp = new Vector2();
+    speed = 1;
     
     constructor () { super(); }
     
@@ -10,21 +8,17 @@ class testGB extends GameBehavior
     {
         console.log("Start");
         crispixels.effect = true;
-        Application.gl.clearColor(0.25, 0.25, 0.25, 1.0);
+        Application.gl.clearColor(0.25, 0.25, 0.25, 1);
     }
     
     Update ()
     {
-        const oldPos = this.gameObject.transform.position;
+        const input = new Vector2(
+            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
+            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
+        );
         
-        let newPos = new Vector2(oldPos.x + (this.speed.x * Time.deltaTime), oldPos.y + (this.speed.y * Time.deltaTime));
-        
-        if (newPos.x < this.minClamp.x) newPos.x = this.maxClamp.x;
-        else if (newPos.x > this.maxClamp.x) newPos.x = this.minClamp.x;
-        
-        if (newPos.y < this.minClamp.y) newPos.y = this.maxClamp.y;
-        else if (newPos.y > this.maxClamp.y) newPos.y = this.minClamp.y;
-        
-        this.gameObject.transform.position = newPos;
+        this.transform.position.x += input.x * this.speed * Time.deltaTime;
+        this.transform.position.y += input.y * this.speed * Time.deltaTime;
     }
 }
