@@ -8,15 +8,9 @@
         {
             "name" : "obj_ball",
             "active" : true,
-            "transform" : {
-                "position" : { "x" : 0, "y" : 0 },
-                "rotation" : 30,
-                "scale" : { "x" : 1, "y" : 1 }
-            },
             "components" : [
                 {
                     "type" : "SpriteRenderer",
-                    "construct" : { },
                     "args" : {
                         "sprite" : {
                             "texture" : "textures/ball"
@@ -25,32 +19,8 @@
                 },
                 {
                     "type" : "testGB",
-                    "construct" : { },
                     "args" : {
-                        "minClamp" : {
-                            "type" : "Vector2",
-                            "construct" : { },
-                            "args" : {
-                                "x" : -2.75,
-                                "y" : -1.5
-                            }
-                        },
-                        "maxClamp" : {
-                            "type" : "Vector2",
-                            "construct" : { },
-                            "args" : {
-                                "x" : 3,
-                                "y" : 3.5
-                            }
-                        },
-                        "speed" : {
-                            "type" : "Vector2",
-                            "construct" : { },
-                            "args" : {
-                                "x" : -2,
-                                "y" : 1
-                            }
-                        }
+                        "speed" : 2
                     }
                 }
             ]
@@ -59,14 +29,11 @@
             "name" : "obj_ballInv",
             "active" : true,
             "transform" : {
-                "position" : { "x" : 0.5, "y" : 0.25 },
-                "rotation" : 30,
-                "scale" : { "x" : 1, "y" : 1 }
+                "position" : { "x" : 0.5, "y" : 0.25 }
             },
             "components" : [
                 {
                     "type" : "SpriteRenderer",
-                    "construct" : { },
                     "args" : {
                         "sprite" : {
                             "texture" : "textures/ball"
@@ -79,23 +46,15 @@
         {
             "name" : "camera",
             "active" : true,
-            "transform" : {
-                "position" : { "x" : 0, "y" : 0 },
-                "rotation" : 0,
-                "scale" : { "x" : 1, "y" : 1 }
-            },
             "components" : [
                 {
                     "type" : "Camera",
-                    "construct" : { },
                     "args" : {
-                        "orthographicSize" : 1.5
+                        "orthographicSize" : 4
                     }
                 },
                 {
-                    "type" : "camFollow",
-                    "construct" : { },
-                    "args" : { }
+                    "type" : "camFollow"
                 }
             ]
         }
