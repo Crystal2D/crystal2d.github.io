@@ -30,7 +30,7 @@
                     "type" : "Material",
                     "args" : {
                         "vertexShader" : null,
-                        "fragmentShader" : "Invert Color"
+                        "fragmentShader" : "Default/Invert Color"
                     }
                 }
             ]
