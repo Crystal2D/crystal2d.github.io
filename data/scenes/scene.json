@@ -50,7 +50,7 @@
                 {
                     "type" : "Camera",
                     "args" : {
-                        "orthographicSize" : 4
+                        "orthographicSize" : 8
                     }
                 },
                 {
