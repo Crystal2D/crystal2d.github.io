@@ -2,8 +2,8 @@
     "name" : "",
     "window" : {
         "title" : "BlankEngine",
-        "width" : 408,
-        "height" : 312,
+        "width" : 816,
+        "height" : 624,
         "marginX" : 1,
         "marginY" : 1,
         "resizable" : false,
