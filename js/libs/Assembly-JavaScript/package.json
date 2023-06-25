@@ -3,10 +3,10 @@
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         {
-            "src" : "testGB",
+            "src" : "charController",
             "classes" : [
                 {
-                    "name" : "testGB",
+                    "name" : "charController",
                     "construct" : [],
                     "args" : [
                         "speed"
@@ -15,10 +15,10 @@
             ]
         },
         {
-            "src" : "camFollow",
+            "src" : "cameraController",
             "classes" : [
                 {
-                    "name" : "camFollow",
+                    "name" : "cameraController",
                     "construct" : [],
                     "args" : []
                 }
