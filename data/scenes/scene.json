@@ -6,7 +6,22 @@
     ],
     "gameObjects" : [
         {
-            "name" : "obj_ball",
+            "name" : "camera",
+            "active" : true,
+            "components" : [
+                {
+                    "type" : "Camera",
+                    "args" : {
+                        "orthographicSize" : 8
+                    }
+                },
+                {
+                    "type" : "cameraController"
+                }
+            ]
+        },
+        {
+            "name" : "char_main",
             "active" : true,
             "components" : [
                 {
@@ -18,7 +33,7 @@
                     }
                 },
                 {
-                    "type" : "testGB",
+                    "type" : "charController",
                     "args" : {
                         "speed" : 2
                     }
@@ -40,21 +55,6 @@
                         },
                         "material" : "materials/mat_invert"
                     }
-                }
-            ]
-        },
-        {
-            "name" : "camera",
-            "active" : true,
-            "components" : [
-                {
-                    "type" : "Camera",
-                    "args" : {
-                        "orthographicSize" : 8
-                    }
-                },
-                {
-                    "type" : "camFollow"
                 }
             ]
         }
