@@ -17,10 +17,9 @@ class charController extends GameBehavior
     
     FixedUpdate ()
     {
-        const speed = this.speed * (this.#zoom > 0 ? 10 : 1) * Time.fixedDeltaTime;
+        const movement = Vector2.Scale(this.#input, this.speed * (this.#zoom > 0 ? 10 : 1) * Time.fixedDeltaTime);
        
-        this.transform.position.x += this.#input.x * speed;
-        this.transform.position.y += this.#input.y * speed;
+        this.transform.position = Vector2.Add(this.transform.position, movement);
     }
     
     Update ()

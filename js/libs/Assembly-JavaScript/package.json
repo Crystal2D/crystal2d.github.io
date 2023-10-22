@@ -7,9 +7,12 @@
             "classes" : [
                 {
                     "name" : "charController",
-                    "construct" : [],
+                    "type" : 0,
                     "args" : [
-                        "speed"
+                        {
+                            "name" : "speed",
+                            "type" : "number"
+                        }
                     ]
                 }
             ]
@@ -19,7 +22,7 @@
             "classes" : [
                 {
                     "name" : "cameraController",
-                    "construct" : [],
+                    "type" : 0,
                     "args" : []
                 }
             ]
