@@ -3,10 +3,10 @@
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         {
-            "src" : "charController",
+            "src" : "CharController",
             "classes" : [
                 {
-                    "name" : "charController",
+                    "name" : "CharController",
                     "type" : 0,
                     "args" : [
                         {
@@ -18,10 +18,10 @@
             ]
         },
         {
-            "src" : "cameraController",
+            "src" : "CameraController",
             "classes" : [
                 {
-                    "name" : "cameraController",
+                    "name" : "CameraController",
                     "type" : 0,
                     "args" : []
                 }
