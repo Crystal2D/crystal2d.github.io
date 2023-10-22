@@ -17,7 +17,7 @@
                     }
                 },
                 {
-                    "type" : "cameraController"
+                    "type" : "CameraController"
                 }
             ]
         },
@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "type" : "charController",
+                    "type" : "CharController",
                     "args" : {
                         "speed" : 2
                     }
