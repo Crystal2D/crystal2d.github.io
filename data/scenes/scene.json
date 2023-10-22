@@ -1,6 +1,7 @@
 {
     "name" : "Scene",
     "resources" : [
+        "textures/square",
         "textures/ball",
         "materials/mat_invert"
     ],
@@ -41,7 +42,7 @@
             ]
         },
         {
-            "name" : "obj_ballInv",
+            "name" : "obj_square",
             "active" : true,
             "transform" : {
                 "position" : { "x" : 0.5, "y" : 0.25 }
@@ -51,9 +52,8 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "textures/ball"
-                        },
-                        "material" : "materials/mat_invert"
+                            "texture" : "textures/square"
+                        }
                     }
                 }
             ]
