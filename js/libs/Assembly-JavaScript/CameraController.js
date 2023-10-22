@@ -1,10 +1,18 @@
 class CameraController extends GameBehavior
 {
+    clampMin = new Vector2(0, -2);
+    clampMax = new Vector2(3, 0);
+    
     constructor () { super(); }
     
     LateUpdate ()
     {
-        const newPos = SceneManager.GetActiveScene().gameObjects[1].transform.position;
+        const charPos = SceneManager.GetActiveScene().gameObjects[1].transform.position;
+        
+        const newPos = new Vector2(
+            Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
+            Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
+        );
         
         this.transform.position = newPos;
     }
