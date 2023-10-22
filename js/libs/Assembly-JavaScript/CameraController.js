@@ -5,6 +5,11 @@ class CameraController extends GameBehavior
     
     constructor () { super(); }
     
+    Update ()
+    {
+        if (Input.GetKeyDown(KeyCode.F4)) Window.fullScreen = !Window.fullScreen;
+    }
+    
     LateUpdate ()
     {
         const charPos = SceneManager.GetActiveScene().gameObjects[1].transform.position;
