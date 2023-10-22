@@ -2,7 +2,7 @@
 
 An Official BlankEngine plugin that lets you make the pixels in the screen crispier.
 
-Version : 1f
+Version : 1f - Minimized
 
 
 Copyright (c) 2022 Photon Eye Studios
@@ -12,85 +12,4 @@ Licensed under MIT (https://github.com/blankengine/extras/blob/main/LICENSE)
 */
 
 
-/**
- * Makes the pixels in the screen crispier
- * 
- * @public
- * @static
- * @class
- */
-class crispixels
-{
-    // Private Static Properties
-    
-    static #enabled = false;
-    static #isMs = null;
-    
-    
-    // Static Properties
-    
-    /**
-     * Enables/disables the effect
-     * 
-     * @memberof crispixels
-     * 
-     * @public
-     * @static
-     * @type {boolean}
-     */
-    static get effect ()
-    {
-        return this.#enabled;
-    }
-    
-    /**
-     * Enables/disables the effect
-     * 
-     * @memberof crispixels
-     * 
-     * @public
-     * @static
-     * @type {boolean}
-     */
-    static set effect (value)
-    {
-        this.#enabled = value;
-        
-        this.#update();
-    }
-    
-    
-    // Private Static Methods
-    
-    static #update ()
-    {
-        const canvas = Application.htmlCanvas;
-        
-        if (canvas == null) throw BlankEngine.Err(1);
-        
-        if (this.#isMs == null)
-        {
-            this.#isMs = window.getComputedStyle(canvas).msInterpolationMode != null;
-        }
-        
-        if (this.#enabled)
-        {
-            if (this.#isMs) return canvas.style.msInterpolationMode = "nearest-neighbor";
-            
-            canvas.style.imageRendering = "pixelated";
-            
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "crisp-edges";
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "optimize-contrast";
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "-webkit-optimize-contrast";
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "-o-crisp-edges";
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "-moz-crisp-edges";
-            if (window.getComputedStyle(canvas).imageRendering === "auto") canvas.style.imageRendering = "optimizeSpeed";
-            
-            return;
-        }
-        
-        if (this.#isMs) return canvas.style.msInterpolationMode = "auto";
-        
-        canvas.style.imageRendering = "auto";
-    }
-}
+class crispixels{static#e=!1;static#t=null;static get effect(){return this.#e}static set effect(e){this.#e=e,this.#i()}static#i(){const e=Application.htmlCanvas;if(null==e)throw BlankEngine.Err(1);return null==this.#t&&(this.#t=null!=window.getComputedStyle(e).msInterpolationMode),this.#e?this.#t?e.style.msInterpolationMode="nearest-neighbor":(e.style.imageRendering="pixelated","auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="crisp-edges"),"auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="optimize-contrast"),"auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="-webkit-optimize-contrast"),"auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="-o-crisp-edges"),"auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="-moz-crisp-edges"),void("auto"===window.getComputedStyle(e).imageRendering&&(e.style.imageRendering="optimizeSpeed"))):this.#t?e.style.msInterpolationMode="auto":void(e.style.imageRendering="auto")}}
