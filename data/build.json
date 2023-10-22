@@ -3,7 +3,7 @@
         "Assembly-JavaScript"
     ],
     "scripts" : [
-        "plugins/crispixels"
+        "plugins/Crispixels"
     ],
     "resources" : [
         {
@@ -15,8 +15,7 @@
                     "type" : "Texture",
                     "args" : {
                         "src" : "square_outline.png",
-                        "filterMode" : 1,
-                        "wrapMode" : 0
+                        "filterMode" : 1
                     }
                 },
                 {
@@ -24,8 +23,7 @@
                     "type" : "Texture",
                     "args" : {
                         "src" : "ball.png",
-                        "filterMode" : 1,
-                        "wrapMode" : 0
+                        "filterMode" : 1
                     }
                 }
             ]
@@ -38,7 +36,6 @@
                     "name" : "mat_invert",
                     "type" : "Material",
                     "args" : {
-                        "vertexShader" : null,
                         "fragmentShader" : "Default/Invert Color"
                     }
                 }
