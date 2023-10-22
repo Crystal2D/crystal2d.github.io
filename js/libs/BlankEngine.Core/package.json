@@ -2,6 +2,85 @@
     "name" : "BlankEngine.Core",
     "description" : "The core module that BlankEngine runs on. We allow modifications, but it may break the engine. Please tamper with care",
     "scripts" : [
-        "main"
+        {
+            "src" : "main",
+            "classes" : [
+                {
+                    "name" : "Vector2",
+                    "type" : 0,
+                    "args" : [
+                        {
+                            "name" : "x",
+                            "type" : "number"
+                        },
+                        {
+                            "name" : "y",
+                            "type" : "number"
+                        }
+                    ]
+                },
+                {
+                    "name" : "Transform",
+                    "type" : 0,
+                    "construction" : "if (data.scale == null) data.scale = Vector2.one; if (data.scale.x == null) data.scale.x = 1; if (data.scale.y == null) data.scale.y = 1; return { object : new Transform(await toObject(\"Vector2\", data.position), data.rotation, await toObject(\"Vector2\", data.scale)) };"
+                },
+                {
+                    "name" : "GameObject",
+                    "type" : 0,
+                    "construction" : "return { keepName : true, object : new GameObject(data.name, data.components, data.active, await toObject(\"Transform\", data.transform)) };"
+                },
+                {
+                    "name" : "Material",
+                    "type" : 0,
+                    "construction" : "if (typeof data === \"string\") return { keepName : true, object : Resources.Find(data) }; else if (typeof data === \"object\") return { object : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")) };"
+                },
+                {
+                    "name" : "Material",
+                    "type" : 1,
+                    "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+                },
+                {
+                    "name" : "Texture",
+                    "type" : 1,
+                    "construction" : "return new Texture(data.src);",
+                    "args" : [
+                        {
+                            "name" : "wrapMode",
+                            "type" : "number"
+                        },
+                        {
+                            "name" : "filterMode",
+                            "type" : "number"
+                        }
+                    ]
+                },
+                {
+                    "name" : "Sprite",
+                    "type" : 0,
+                    "construction" : "return { object : new Sprite(Resources.Find(data.texture)) };",
+                    "args" : [
+                        {
+                            "name" : "rect",
+                            "type" : "Rect"
+                        }
+                    ]
+                },
+                {
+                    "name" : "Camera",
+                    "type" : 0,
+                    "args" : [
+                        {
+                            "name" : "orthographicSize",
+                            "type" : "number"
+                        }
+                    ]
+                },
+                {
+                    "name" : "SpriteRenderer",
+                    "type" : 0,
+                    "construction" : "return { object : new SpriteRenderer(await toObject(\"Sprite\", data.sprite), await toObject(\"Material\", data.material)) };"
+                }
+            ]
+        }
     ]
 }
