@@ -11,6 +11,15 @@
             "type" : "subpath",
             "content" : [
                 {
+                    "name" : "square",
+                    "type" : "Texture",
+                    "args" : {
+                        "src" : "square_outline.png",
+                        "filterMode" : 1,
+                        "wrapMode" : 0
+                    }
+                },
+                {
                     "name" : "ball",
                     "type" : "Texture",
                     "args" : {
