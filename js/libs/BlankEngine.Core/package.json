@@ -2,8 +2,21 @@
     "name" : "BlankEngine.Core",
     "description" : "The core module that BlankEngine runs on. We allow modifications, but it may break the engine. Please tamper with care",
     "scripts" : [
+        "bindings",
+        "Application.bindings",
+        "Object.bindings",
+        "Resources",
+        "Debug",
+        "Time",
+        "Input/Input",
+        "Input/KeyCode",
+        "Scripting/Component",
+        "Scripting/Behavior",
+        "Scripting/GameBehavior",
+        "Math/Math.bindings",
+        "Math/Matrix3x3",
         {
-            "src" : "main",
+            "src" : "Math/Vector2",
             "classes" : [
                 {
                     "name" : "Vector2",
@@ -18,17 +31,41 @@
                             "type" : "number"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        "Math/Color",
+        "Math/Geometry/Rect",
+        "Math/Geometry/Ray",
+        "Math/Geometry/Bounds",
+        {
+            "src" : "Transform/Transform",
+            "classes" : [
                 {
                     "name" : "Transform",
                     "type" : 0,
                     "construction" : "if (data.scale == null) data.scale = Vector2.one; if (data.scale.x == null) data.scale.x = 1; if (data.scale.y == null) data.scale.y = 1; return { object : new Transform(await toObject(\"Vector2\", data.position), data.rotation, await toObject(\"Vector2\", data.scale)) };"
-                },
+                }
+            ]
+        },
+        {
+            "src" : "GameObject",
+            "classes" : [
                 {
                     "name" : "GameObject",
                     "type" : 0,
                     "construction" : "return { keepName : true, object : new GameObject(data.name, data.components, data.active, await toObject(\"Transform\", data.transform)) };"
-                },
+                }
+            ]
+        },
+        "SceneManager/SceneManager",
+        "SceneManager/Scene",
+        "PlayerLoop/PlayerLoop",
+        "PlayerLoop/PlayerLoopSystem",
+        "Graphics/Shaders/Shader",
+        {
+            "src" : "Graphics/Shaders/Material",
+            "classes" : [
                 {
                     "name" : "Material",
                     "type" : 0,
@@ -38,7 +75,12 @@
                     "name" : "Material",
                     "type" : 1,
                     "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
-                },
+                }
+            ]
+        },
+        {
+            "src" : "Graphics/Texture",
+            "classes" : [
                 {
                     "name" : "Texture",
                     "type" : 1,
@@ -53,7 +95,12 @@
                             "type" : "number"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "src" : "Graphics/Sprite",
+            "classes" : [
                 {
                     "name" : "Sprite",
                     "type" : 0,
@@ -64,7 +111,12 @@
                             "type" : "Rect"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "src" : "Graphics/Rendering/Camera",
+            "classes" : [
                 {
                     "name" : "Camera",
                     "type" : 0,
@@ -74,7 +126,12 @@
                             "type" : "number"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "src" : "Graphics/Rendering/Renderers/SpriteRenderer",
+            "classes" : [
                 {
                     "name" : "SpriteRenderer",
                     "type" : 0,
