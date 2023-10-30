@@ -1,11 +1,11 @@
 {
-    "name" : "",
+    "name" : "BlankEngine",
     "window" : {
         "title" : "BlankEngine",
-        "width" : 816,
-        "height" : 624,
-        "marginX" : 1,
-        "marginY" : 1,
+        "width" : 960,
+        "height" : 864,
+        "windowWidth" : 470,
+        "windowHeight" : 422,
         "resizable" : false,
         "fillWindow" : false,
         "icon" : "icon/icon.ico"
