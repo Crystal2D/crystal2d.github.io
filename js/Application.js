@@ -3,6 +3,7 @@ class Application
     static #inited = false;
     static #loaded = false;
     static #binded = false;
+    static #name = "";
     
     static htmlCanvas = null;
     static gl = null;
@@ -13,15 +14,20 @@ class Application
         return this.#loaded;
     }
     
-    static Init (width, height)
+    static get packageName ()
+    {
+        return this.#name;
+    }
+    
+    static Init (packageName)
     {
         if (this.#inited) return;
+        
+        this.#name = packageName;
         
         if (this.gl != null) document.querySelector("canvas").remove();
         
         this.htmlCanvas = document.createElement("canvas");
-        this.htmlCanvas.width = width;
-        this.htmlCanvas.height = height;
         
         this.htmlCanvas.style.margin = "auto";
         this.htmlCanvas.style.objectFit = "contain";

@@ -13,7 +13,6 @@ class BlankEngine
     {
         static #terminateStart = false;
         
-        static packageData = null;
         static buildData = null;
         static compiledData = {
             libs : [],
@@ -253,20 +252,12 @@ class BlankEngine
         static async #LoadData ()
         {
             const packageResponse = await fetch("package.json");
+            const packageData = await packageResponse.json();
+            
+            Application.Init(packageData.name);
+            Window.Init(packageData.window);
+            
             const buildResponse = await fetch("data/build.json");
-            
-            this.packageData = await packageResponse.json();
-            
-            Window.data.title = this.packageData.window.title;
-            Window.data.width = this.packageData.window.width ?? 250;
-            Window.data.height = this.packageData.window.height ?? 250;
-            Window.data.marginX = this.packageData.window.marginX ?? 0;
-            Window.data.marginY = this.packageData.window.marginY ?? 0;
-            Window.data.resizable = this.packageData.window.resizable ?? true;
-            Window.data.fillWindow = this.packageData.window.fillWindow ?? true;
-            Window.data.icon = this.packageData.window.icon ?? "";
-            
-            Window.Init();
             
             this.buildData = await buildResponse.json();
             
@@ -346,13 +337,10 @@ class BlankEngine
             Time.fixedDeltaTime = this.buildData.Time.fixedDeltaTime;
             
             Shader.Set(this.compiledData.shaders);
-            
             Resources.Set(this.buildData.resources);
-            
             SceneManager.Set(this.compiledData.scenes);
             
             Input.Init();
-            
             PlayerLoop.Init();
         }
     }

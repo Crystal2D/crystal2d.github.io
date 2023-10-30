@@ -11,39 +11,19 @@ class Window
     
     static #loaded = false;
     static #sizeChanged = false;
-    static #fillMode = 0;
+    static #fillWin = true;
+    static #x = 0;
+    static #y = 0;
+    static #marginX = 0;
+    static #marginY = 0;
+    static #winX = 0;
+    static #winY = 0;
+    static #title = "";
+    
+    static #icon = null;
     
     
     // Static Properties
-    
-    /**
-     * The data that is used by the window 
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @type {object}
-     * 
-     * @property {string} title - The title of the window
-     * @property {integer} width - The width of the window in pixels
-     * @property {integer} height - The height of the window in pixels
-     * @property {integer} marginX - The width of the inner margin in percent
-     * @property {integer} marginY - The height of the inner margin in percent
-     * @property {boolean} resizable - The resizeable status of the window
-     * @property {boolean} fillWindow - The fillmode status of the application to the window
-     * @property {string} icon - The source of the window icon
-     */
-    static data = {
-        title : "Untitled",
-        width : 0,
-        height : 0,
-        marginX : 0,
-        marginY : 0,
-        resizable : true,
-        fillWindow : true,
-        icon : ""
-    };
     
     /**
      * Sets the fullscreen property of the window
@@ -56,27 +36,58 @@ class Window
      */
     static fullScreen = false;
     
-    /**
-     * Sets a callback for when fullscreen has entered
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @callback
-     */
-    static OnFullscreenEnter = () => { };
+    static resizable = true;
     
-    /**
-     * Sets a callback for when fullscreen has exited
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @callback
-     */
-    static OnFullscreenExit = () => { };
+    static get width ()
+    {
+        return this.#x;
+    }
+    
+    static get height ()
+    {
+        return this.#y;
+    }
+    
+    static get marginWidth ()
+    {
+        return this.#marginX;
+    }
+    
+    static get marginHeight ()
+    {
+        return this.#marginY;
+    }
+    
+    static get windowWidth ()
+    {
+        return this.#winX || this.#x;
+    }
+    
+    static get windowHeight ()
+    {
+        return this.#winY || this.#y;
+    }
+    
+    static get fillWindow ()
+    {
+        return this.#fillWin;
+    }
+    
+    static set fillWindow (value)
+    {
+        if (value)
+        {
+            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
+            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+        }
+        else
+        {
+            Application.htmlCanvas.width = this.#x;
+            Application.htmlCanvas.height = this.#y;
+        }
+        
+        this.#fillWin = value;
+    }
     
     
     // Private Static Methods
@@ -90,51 +101,21 @@ class Window
     {
         if (document.hasFocus())
         {
-            if (document.fullscreenElement && !this.fullScreen)
-            {
-                Window.OnFullscreenExit();
-                document.exitFullscreen();
-            }
-            else if (!document.fullscreenElement && this.fullScreen)
-            {
-                Window.OnFullscreenEnter();
-                document.documentElement.requestFullscreen();
-            }
+            if (document.fullscreenElement && !this.fullScreen) document.exitFullscreen();
+            else if (!document.fullscreenElement && this.fullScreen) document.documentElement.requestFullscreen();
         }
         
-        this.#UpdateSize();
+        if (this.#sizeChanged && !this.fullScreen)
+        {
+            const x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
+            const y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
+            
+            window.resizeTo(x, y);
+            
+            this.#sizeChanged = false;
+        }
         
         this.#RequestUpdate();
-    }
-    
-    static #UpdateSize ()
-    {
-        if (this.data.fillWindow && this.#fillMode != 1)
-        {
-            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.data.marginX * window.innerWidth;
-            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.data.marginY * window.innerHeight;
-            
-            this.#fillMode = 1;
-        }
-        if (!this.data.fillWindow && this.#fillMode != 2)
-        {
-            Application.htmlCanvas.width = this.data.width;
-            Application.htmlCanvas.height = this.data.height;
-            
-            this.#fillMode = 2;
-        }
-        
-        Application.htmlCanvas.style.width = `${100 - 2 * this.data.marginX}%`;
-        Application.htmlCanvas.style.height =  `${100 - 2 * this.data.marginY}%`;
-        
-        if (!this.#sizeChanged || this.fullScreen) return;
-        
-        const sX = this.data.width + (window.outerWidth - window.innerWidth) + (0.02 * this.data.width * this.data.marginX);
-        const sY = this.data.height + (window.outerHeight - window.innerHeight) + (0.02 * this.data.height * this.data.marginY);
-        
-        window.resizeTo(sX, sY);
-        
-        this.#sizeChanged = false;
     }
     
     
@@ -149,51 +130,27 @@ class Window
      * @static
      * @method
      */
-    static Init ()
+    static Init (data)
     {
         if (this.#loaded) return;
         
-        Application.Init(this.data.width, this.data.height);
+        this.fullScreen = data.fullScreen ?? false;
+        this.resizable = data.resizable ?? true;
+        this.fillWindow = data.fillWindow ?? true;
         
-        this.#sizeChanged = true;
+        this.SetTitle(data.title);
+        this.SetResolution(data.width, data.height);
+        this.SetMargin(data.marginWidth, data.marginHeight);
+        this.SetWindowSize(data.windowWidth, data.windowHeight);
+        this.SetIcon(data.icon);
         
-        this.SetTitle(this.data.title);
-        this.SetIcon(this.data.icon);
+        window.addEventListener("resize", () => {
+            if (!this.resizable) this.#sizeChanged = true;
+        });
         
         this.#RequestUpdate();
         
-        window.addEventListener("resize", () => {
-            if (!this.data.resizable) this.#sizeChanged = true;
-        });
-        
         this.#loaded = true;
-    }
-    
-    /**
-     * Sets the window base
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     * 
-     * @param {string} title - The title of the window
-     * @param {integer} width - The width of the window in pixels
-     * @param {integer} height - The height of the window in pixels
-     * @param {integer} marginX - The width of the inner margin in percent
-     * @param {integer} marginY - The height of the inner margin in percent
-     * @param {string} icon - The source of the window icon
-     */
-    static SetBase (title, width, height, marginX, marginY, icon)
-    {
-        this.SetTitle(title);
-        this.SetSize(width, height);
-        this.SetMargin(marginX, marginY);
-        
-        if (icon != null) this.SetIcon(icon);
-        
-        this.#sizeChanged = true;
     }
     
     /**
@@ -209,8 +166,8 @@ class Window
      */
     static SetTitle (title)
     {
-        this.data.title = title ?? "Untitled";
-        document.title = this.data.title;
+        this.#title = title ?? "Untitled";
+        document.title = this.#title;
     }
     
     /**
@@ -225,15 +182,18 @@ class Window
      * @param {integer} width - The width of the window in pixels
      * @param {integer} height - The height of the window in pixels
      */
-    static SetSize (width, height)
+    static SetResolution (width, height)
     {
-        this.data.width = width;
-        this.data.height = height;
+        this.#x = width ?? 250;
+        this.#y = height ?? 250;
         
-        Application.htmlCanvas.width = this.data.width;
-        Application.htmlCanvas.height = this.data.height;
+        if (!this.#fillWin)
+        {
+            Application.htmlCanvas.width = this.#x;
+            Application.htmlCanvas.height = this.#y;
+        }
         
-        this.#sizeChanged = true;
+        if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = true;
     }
     
     /**
@@ -250,8 +210,19 @@ class Window
      */
     static SetMargin (width, height)
     {
-        this.data.marginX = width ?? 0;
-        this.data.marginY = height ?? 0;
+        this.#marginX = width ?? 0;
+        this.#marginY = height ?? 0;
+        
+        Application.htmlCanvas.style.width = `${100 - 2 * this.#marginX}%`;
+        Application.htmlCanvas.style.height =  `${100 - 2 * this.#marginY}%`;
+        
+        this.#sizeChanged = true;
+    }
+    
+    static SetWindowSize (width, height)
+    {
+        this.#winX = width ?? 0;
+        this.#winY = height ?? 0;
         
         this.#sizeChanged = true;
     }
@@ -269,7 +240,9 @@ class Window
      */
     static SetIcon (src)
     {
-        this.data.icon = src;
+        this.#icon = src;
+        
+        if (this.#icon == null) return;
         
         let icon = document.querySelector("link[rel=icon]");
         
@@ -281,6 +254,6 @@ class Window
             document.head.append(icon);
         }
         
-        icon.href = this.data.icon;
+        icon.href = this.#icon;
     }
 }
