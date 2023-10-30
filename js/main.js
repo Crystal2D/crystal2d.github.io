@@ -1,1 +1,3 @@
-window.onload=()=>{BlankEngine.Inner.InitiateProgram()};
+window.onload = () => {
+    BlankEngine.Inner.InitiateProgram();
+};

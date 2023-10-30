@@ -1,1 +1,359 @@
-class BlankEngine{static Inner=class{static #a=!1;static packageData=null;static buildData=null;static compiledData={libs:[],scripts:[],shaders:[],scenes:[]};static #b=class{#c=!1;#d=null;#e="";#f=[];#g=[];#h=null;get isLoaded(){return this.#c}get name(){return this.#d}get description(){return this.#e}get scripts(){return this.#g}#i=class{#c=!1;#h=null;#j=[];get isLoaded(){return this.#c}get src(){return this.#h}get classes(){return this.#j}constructor(t,s){null==t&&BlankEngine.Err(0),this.#h=t,this.#j=s??[]}async Load(){if(this.#c)return;let t=document.createElement("script"),s=[];t.src=this.#h,t.type="text/javascript",t.async=!0,document.body.append(t),await new Promise(s=>t.addEventListener("load",s));for(let a=0;a<this.#j.length;a++)null!=this.#j[a].name&&(null==this.#j[a].args&&(this.#j[a].args=[]),0==s.length?s[0]=this.#j[a]:s.push(this.#j[a]));this.#j=s,this.#c=!0}};constructor(t,s,a,i){this.#d=t,this.#e=s,this.#f=a,this.#h=i}async Load(){if(!this.#c){for(let t=0;t<this.#f.length;t++){if(null==this.#f[t])continue;let s=null;s=null!=this.#f[t].src?new this.#i(`js/libs/${this.#h}/${this.#f[t].src}.js`,this.#f[t].classes):new this.#i(`js/libs/${this.#h}/${this.#f[t]}.js`),0==this.#g.length?this.#g[0]=s:this.#g.push(s)}for(let a=0;a<this.#g.length;a++)await this.#g[a].Load();this.#c=!0}}};static #i=class{#c=!1;#h=null;#j=[];get isLoaded(){return this.#c}get src(){return this.#h}get classes(){return this.#j}constructor(t,s){this.#h=t,this.#j=s??[]}async Load(){if(this.#c)return;let t=document.createElement("script"),s=[];t.src=this.#h,t.type="text/javascript",t.async=!0,document.body.append(t),await new Promise(s=>t.addEventListener("load",s));for(let a=0;a<this.#j.length;a++)null!=this.#j[a].name&&(null==this.#j[a].args&&(this.#j[a].args=[]),0==s.length?s[0]=this.#j[a]:s.push(this.#j[a]));this.#j=s,this.#c=!0}};static InitiateProgram(){document.body.style.height="100vh",document.body.style.margin="0",document.body.style.display="flex",document.body.style.alignItems="center",document.body.style.userSelect="none",document.body.style.color="white";let t=!1,s=null;window.addEventListener("error",a=>{if(t){s.append(`\n\n${a.stack}`);return}t=!0,this.#a=!0,Application.hasLoaded&&Application.Unload(),document.body.style.margin="12px",document.body.style.display="block";let i=document.createElement("div");i.style.whiteSpace="pre-wrap",(s=document.createElement("span")).append(a.stack);let e=document.createElement("span");e.append("\n\n\n----------\n\nPress F5 to refresh"),i.append(s,e),document.body.append(i)}),this.#k()}static async #k(){let t=await fetch("package.json"),s=await fetch("data/build.json");this.packageData=await t.json(),Window.data.title=this.packageData.window.title,Window.data.width=this.packageData.window.width??250,Window.data.height=this.packageData.window.height??250,Window.data.marginX=this.packageData.window.marginX??0,Window.data.marginY=this.packageData.window.marginY??0,Window.data.resizable=this.packageData.window.resizable??!0,Window.data.fillWindow=this.packageData.window.fillWindow??!0,Window.data.icon=this.packageData.window.icon??"",Window.Init(),this.buildData=await s.json(),0==this.buildData.libs.length?this.buildData.libs[0]="BlankEngine.Core":this.buildData.libs.unshift("BlankEngine.Core");for(let a=0;a<this.buildData.libs.length;a++){if(null==this.buildData.libs[a])continue;let i=await fetch(`js/libs/${this.buildData.libs[a]}/package.json`),e=await i.json(),l=new this.#b(e.name,e.description,e.scripts,this.buildData.libs[a]);0==this.compiledData.libs.length?this.compiledData.libs[0]=l:this.compiledData.libs.push(l)}for(let n=0;n<this.buildData.scripts.length;n++){if(null==this.buildData.scripts[n])continue;let c=null;c=null!=this.buildData.scripts[n].src?new this.#i(`js/${this.buildData.scripts[n].src}.js`,this.buildData.scripts[n].classes):new this.#i(`js/${this.buildData.scripts[n]}.js`),0==this.compiledData.scripts.length?this.compiledData.scripts[0]=c:this.compiledData.scripts.push(c)}for(let d=0;d<this.buildData.shaders.length;d++){let h=await fetch(`shaders/${this.buildData.shaders[d]}.glsl`),r=await h.text();0==this.compiledData.shaders.length?this.compiledData.shaders[0]=r:this.compiledData.shaders.push(r)}for(let o=0;o<this.buildData.scenes.length;o++){let p=await fetch(`data/scenes/${this.buildData.scenes[o]}.json`),u=await p.json(),g={name:u.name,resources:u.resources,gameObjects:u.gameObjects,buildIndex:o,path:`data/scenes/${this.buildData.scenes[o]}.json`};0==this.compiledData.scenes.length?this.compiledData.scenes[0]=g:this.compiledData.scenes.push(g)}this.#l()}static async #l(){for(let m=0;m<this.compiledData.libs.length;m++)await this.compiledData.libs[m].Load();for(let b=0;b<this.compiledData.scripts.length;b++)await this.compiledData.scripts[b].Load();this.#a||(Application.targetFrameRate=this.buildData.targetFrameRate,Time.maximumDeltaTime=this.buildData.Time.maximumDeltaTime,Time.timeScale=this.buildData.Time.timeScale,Time.fixedDeltaTime=this.buildData.Time.fixedDeltaTime,Shader.Set(this.compiledData.shaders),Resources.Set(this.buildData.resources),SceneManager.Set(this.compiledData.scenes),Input.Init(),PlayerLoop.Init())}}}
+/**
+ * The main static class of the engine
+ * 
+ * @public
+ * @static
+ * @class
+ */
+class BlankEngine
+{
+    // Static Classes
+    
+    static Inner = class
+    {
+        static #terminateStart = false;
+        
+        static packageData = null;
+        static buildData = null;
+        static compiledData = {
+            libs : [],
+            scripts : [],
+            shaders : [],
+            scenes : []
+        };
+        
+        static #Lib = class
+        {
+            #loaded = false;
+            #name = null;
+            #desc = "";
+            #unloadedScripts = [];
+            #scripts = [];
+            #src = null;
+            
+            get isLoaded ()
+            {
+                return this.#loaded;
+            }
+            
+            get name ()
+            {
+                return this.#name;
+            }
+            
+            get description ()
+            {
+                return this.#desc;
+            }
+            
+            get scripts ()
+            {
+                return this.#scripts;
+            }
+            
+            #Script = class
+            {
+                #loaded = false;
+                #src = null;
+                #classes = [];
+                
+                get isLoaded ()
+                {
+                    return this.#loaded;
+                }
+                
+                get src ()
+                {
+                    return this.#src;
+                }
+                
+                get classes ()
+                {
+                    return this.#classes;
+                }
+                
+                constructor (src, classes)
+                {
+                    if (src == null) BlankEngine.Err(0);
+                    
+                    this.#src = src;
+                    this.#classes = classes ?? [];
+                }
+                
+                async Load ()
+                {
+                    if (this.#loaded) return;
+                    
+                    const script = document.createElement("script");
+                    
+                    let newClasses = [];
+                    
+                    script.src = this.#src;
+                    script.type = "text/javascript";
+                    script.async = true;
+                    
+                    document.body.append(script);
+                    
+                    await new Promise(resolve => script.addEventListener("load", resolve));
+                    
+                    for (let i = 0; i < this.#classes.length; i++)
+                    {
+                        if (this.#classes[i].name == null) continue;
+                        
+                        if (this.#classes[i].args == null) this.#classes[i].args = [];
+                        
+                        if (newClasses.length == 0) newClasses[0] = this.#classes[i];
+                        else newClasses.push(this.#classes[i]);
+                    }
+                    
+                    this.#classes = newClasses;
+                    
+                    this.#loaded = true;
+                }
+            }
+            
+            constructor (name, desc, scripts, src)
+            {
+                this.#name =  name;
+                this.#desc = desc;
+                this.#unloadedScripts = scripts;
+                this.#src = src;
+            }
+            
+            async Load ()
+            {
+                if (this.#loaded) return;
+                
+                for (let i = 0; i < this.#unloadedScripts.length; i++)
+                {
+                    if (this.#unloadedScripts[i] == null) continue;
+                    
+                    let script = null;
+                    
+                    if (this.#unloadedScripts[i].src != null) script = new this.#Script(`js/libs/${this.#src}/${this.#unloadedScripts[i].src}.js`, this.#unloadedScripts[i].classes);
+                    else script = new this.#Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    
+                    if (this.#scripts.length == 0) this.#scripts[0] = script;
+                    else this.#scripts.push(script);
+                }
+                
+                for (let i = 0; i < this.#scripts.length; i++) await this.#scripts[i].Load();
+                
+                this.#loaded = true;
+            }
+        }
+        
+        static #Script = class
+        {
+            #loaded = false;
+            #src = null;
+            #classes = [];
+            
+            get isLoaded ()
+            {
+                return this.#loaded;
+            }
+            
+            get src ()
+            {
+                return this.#src;
+            }
+            
+            get classes ()
+            {
+                return this.#classes;
+            }
+            
+            constructor (src, classes)
+            {
+                this.#src = src;
+                this.#classes = classes ?? [];
+            }
+            
+            async Load ()
+            {
+                if (this.#loaded) return;
+                
+                const script = document.createElement("script");
+                
+                let newClasses = [];
+                
+                script.src = this.#src;
+                script.type = "text/javascript";
+                script.async = true;
+                
+                document.body.append(script);
+                
+                await new Promise(resolve => script.addEventListener("load", resolve));
+                
+                for (let i = 0; i < this.#classes.length; i++)
+                {
+                    if (this.#classes[i].name == null) continue;
+                    
+                    if (this.#classes[i].args == null) this.#classes[i].args = [];
+                    
+                    if (newClasses.length == 0) newClasses[0] = this.#classes[i];
+                    else newClasses.push(this.#classes[i]);
+                }
+                
+                this.#classes = newClasses;
+                
+                this.#loaded = true;
+            }
+        }
+        
+        static InitiateProgram ()
+        {
+            document.body.style.height = "100vh";
+            document.body.style.margin = "0";
+            document.body.style.display = "flex";
+            document.body.style.alignItems = "center";
+            document.body.style.userSelect = "none";
+            document.body.style.color = "white";
+            
+            let caughtErr = false;
+            let errLogs = null;
+            
+            window.addEventListener("error", event => {
+                if (caughtErr)
+                {
+                    errLogs.append(`\n\n${event.stack}`);
+                    
+                    return;
+                }
+                
+                caughtErr = true;
+                
+                this.#terminateStart = true;
+                
+                if (Application.hasLoaded) Application.Unload();
+                
+                document.body.style.margin = "12px";
+                document.body.style.display = "block";
+                
+                const errWrap = document.createElement("div");
+                
+                errWrap.style.whiteSpace = "pre-wrap";
+                
+                errLogs = document.createElement("span");
+                
+                errLogs.append(event.stack);
+                
+                const tip = document.createElement("span");
+                
+                tip.append("\n\n\n----------\n\nPress F5 to refresh");
+                
+                errWrap.append(errLogs, tip)
+                document.body.append(errWrap);
+            });
+            
+            this.#LoadData();
+        }
+        
+        static async #LoadData ()
+        {
+            const packageResponse = await fetch("package.json");
+            const buildResponse = await fetch("data/build.json");
+            
+            this.packageData = await packageResponse.json();
+            
+            Window.data.title = this.packageData.window.title;
+            Window.data.width = this.packageData.window.width ?? 250;
+            Window.data.height = this.packageData.window.height ?? 250;
+            Window.data.marginX = this.packageData.window.marginX ?? 0;
+            Window.data.marginY = this.packageData.window.marginY ?? 0;
+            Window.data.resizable = this.packageData.window.resizable ?? true;
+            Window.data.fillWindow = this.packageData.window.fillWindow ?? true;
+            Window.data.icon = this.packageData.window.icon ?? "";
+            
+            Window.Init();
+            
+            this.buildData = await buildResponse.json();
+            
+            if (this.buildData.libs.length == 0) this.buildData.libs[0] = "BlankEngine.Core";
+            else this.buildData.libs.unshift("BlankEngine.Core");
+            
+            for (let i = 0; i < this.buildData.libs.length; i++)
+            {
+                if (this.buildData.libs[i] == null) continue;
+                
+                const libResponse = await fetch(`js/libs/${this.buildData.libs[i]}/package.json`);
+                const libData = await libResponse.json();
+                const lib = new this.#Lib(
+                    libData.name,
+                    libData.description,
+                    libData.scripts,
+                    this.buildData.libs[i]
+                );
+                
+                if (this.compiledData.libs.length == 0) this.compiledData.libs[0] = lib;
+                else this.compiledData.libs.push(lib);
+            }
+            
+            for (let i = 0; i < this.buildData.scripts.length; i++)
+            {
+                if (this.buildData.scripts[i] == null) continue;
+                
+                let script = null;
+                
+                if (this.buildData.scripts[i].src != null) script = new this.#Script(`js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
+                else script = new this.#Script(`js/${this.buildData.scripts[i]}.js`,);
+                
+                if (this.compiledData.scripts.length == 0) this.compiledData.scripts[0] = script;
+                else this.compiledData.scripts.push(script);
+            }
+            
+            for (let i = 0; i < this.buildData.shaders.length; i++)
+            {
+                const shaderResponse = await fetch(`shaders/${this.buildData.shaders[i]}.glsl`);
+                const shader = await shaderResponse.text();
+                
+                if (this.compiledData.shaders.length == 0) this.compiledData.shaders[0] = shader;
+                else this.compiledData.shaders.push(shader);
+            }
+            
+            for (let i = 0; i < this.buildData.scenes.length; i++)
+            {
+                const sceneResponse = await fetch(`data/scenes/${this.buildData.scenes[i]}.json`);
+                const scene = await sceneResponse.json();
+                const newScene = {
+                    name : scene.name,
+                    resources : scene.resources,
+                    gameObjects : scene.gameObjects,
+                    buildIndex : i,
+                    path : `data/scenes/${this.buildData.scenes[i]}.json`
+                };
+                
+                if (this.compiledData.scenes.length == 0) this.compiledData.scenes[0] = newScene;
+                else this.compiledData.scenes.push(newScene);
+            }
+            
+            this.#Init();
+        }
+        
+        static async #Init ()
+        {
+            for (let i = 0; i < this.compiledData.libs.length; i++) await this.compiledData.libs[i].Load();
+            
+            for (let i = 0; i < this.compiledData.scripts.length; i++) await this.compiledData.scripts[i].Load();
+            
+            if (this.#terminateStart) return;
+            
+            Application.targetFrameRate = this.buildData.targetFrameRate;
+            
+            Time.maximumDeltaTime = this.buildData.Time.maximumDeltaTime;
+            Time.timeScale = this.buildData.Time.timeScale;
+            Time.fixedDeltaTime = this.buildData.Time.fixedDeltaTime;
+            
+            Shader.Set(this.compiledData.shaders);
+            
+            Resources.Set(this.buildData.resources);
+            
+            SceneManager.Set(this.compiledData.scenes);
+            
+            Input.Init();
+            
+            PlayerLoop.Init();
+        }
+    }
+}
