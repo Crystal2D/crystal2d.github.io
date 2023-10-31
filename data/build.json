@@ -52,7 +52,7 @@
     ],
     "targetFrameRate" : 60,
     "debugMode" : false,
-    "Time" : {
+    "time" : {
         "maximumDeltaTime" : 0.3333333,
         "timeScale" : 1,
         "fixedDeltaTime" : 0.02
