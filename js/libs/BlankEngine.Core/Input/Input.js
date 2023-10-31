@@ -41,7 +41,18 @@ class Input
             new this.#key("left", "ArrowLeft"),
             new this.#key("right", "ArrowRight"),
             new this.#key("shift", "Shift"),
-            new this.#key("f4", "F4")
+            new this.#key("f4", "F4"),
+            new this.#key("f1", "F1"),
+            new this.#key("f2", "F2"),
+            new this.#key("f3", "F3"),
+            new this.#key("f5", "F5"),
+            new this.#key("f6", "F6"),
+            new this.#key("f7", "F7"),
+            new this.#key("f8", "F8"),
+            new this.#key("f9", "F9"),
+            new this.#key("f10", "F10"),
+            new this.#key("f11", "F11"),
+            new this.#key("f12", "F12")
         ];
         
         document.addEventListener("keydown", event => {
