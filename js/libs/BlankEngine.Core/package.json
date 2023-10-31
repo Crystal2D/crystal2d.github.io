@@ -84,7 +84,7 @@
                 {
                     "name" : "Texture",
                     "type" : 1,
-                    "construction" : "return new Texture(data.src);",
+                    "construction" : "const output = new Texture(data.src); await output.Load(); return output;",
                     "args" : [
                         {
                             "name" : "wrapMode",
@@ -104,13 +104,7 @@
                 {
                     "name" : "Sprite",
                     "type" : 0,
-                    "construction" : "return { object : new Sprite(Resources.Find(data.texture)) };",
-                    "args" : [
-                        {
-                            "name" : "rect",
-                            "type" : "Rect"
-                        }
-                    ]
+                    "construction" : "return { object : new Sprite(Resources.Find(data.texture)) };"
                 }
             ]
         },
