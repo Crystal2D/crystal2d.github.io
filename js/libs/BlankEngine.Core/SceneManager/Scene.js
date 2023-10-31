@@ -31,18 +31,18 @@ SceneManager.Scene = class
     
     async #Load ()
     {
-        this.#LoadRes();
+        await this.#LoadRes();
         
         await this.#LoadObjects();
         
         this.#loaded = true;
     }
     
-    #LoadRes ()
+    async #LoadRes ()
     {
         if (this.#data.resources == null) this.#data.resources = [];
         
-        for (let i = 0; i < this.#data.resources.length; i++) Resources.Load(this.#data.resources[i]);
+        for (let i = 0; i < this.#data.resources.length; i++) await Resources.Load(this.#data.resources[i]);
     }
     
     async #LoadObjects ()
