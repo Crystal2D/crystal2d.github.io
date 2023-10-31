@@ -30,7 +30,7 @@ class SpriteRenderer extends Component
     {
         this.#sprite = value;
         
-        this.CheckImg();
+        this.#CheckImg();
     }
     
     get material ()
@@ -42,7 +42,7 @@ class SpriteRenderer extends Component
     {
         this.#material = value;
         
-        this.CheckImg();
+        this.#CheckImg();
     }
     
     constructor (sprite, material)
@@ -53,15 +53,14 @@ class SpriteRenderer extends Component
         
         this.#material = material ?? new Material();
         
-        this.CheckImg();
+        this.#CheckImg();
     }
     
-    CheckImg ()
+    #CheckImg ()
     {
         requestAnimationFrame(() => {
-            if (this.#sprite.texture.isLoaded) return this.Load();
-            
-            this.CheckImg();
+            if (this.#sprite.texture.isLoaded) this.Load();
+            else this.#CheckImg();
         });
     }
     
@@ -150,16 +149,26 @@ class SpriteRenderer extends Component
         if (!this.#loaded || !this.gameObject.activeSelf) return;
         
         const gl = this.#materialOld.gl;
-        const localMatrix = [
-            this.localSpaceMatrix.matrix[0][0],
-            this.localSpaceMatrix.matrix[0][1],
-            this.localSpaceMatrix.matrix[0][2],
-            this.localSpaceMatrix.matrix[1][0],
-            this.localSpaceMatrix.matrix[1][1],
-            this.localSpaceMatrix.matrix[1][2],
-            this.localSpaceMatrix.matrix[2][0],
-            this.localSpaceMatrix.matrix[2][1],
-            this.localSpaceMatrix.matrix[2][2]
+        
+        const x = this.#sprite.texture.width;
+        const y = this.#sprite.texture.height;
+        
+        const scale = x > y ? new Vector2(1, y / x) : new Vector2(x / y, 1);
+        
+        const localMatrix = Matrix3x3.Multiply(
+            this.localSpaceMatrix,
+            Matrix3x3.Scale(scale)
+        );
+        const appliedMatrix = [
+            localMatrix.matrix[0][0],
+            localMatrix.matrix[0][1],
+            localMatrix.matrix[0][2],
+            localMatrix.matrix[1][0],
+            localMatrix.matrix[1][1],
+            localMatrix.matrix[1][2],
+            localMatrix.matrix[2][0],
+            localMatrix.matrix[2][1],
+            localMatrix.matrix[2][2]
         ];
         
         gl.useProgram(this.#materialOld.program);
@@ -173,7 +182,7 @@ class SpriteRenderer extends Component
         gl.enableVertexAttribArray(this.#aVertexPosition);
         gl.vertexAttribPointer(this.#aVertexPosition, 2, gl.FLOAT, false, 0, 0);
         
-        gl.uniformMatrix3fv(this.#uLocalMatrix, false, new Float32Array(localMatrix));
+        gl.uniformMatrix3fv(this.#uLocalMatrix, false, new Float32Array(appliedMatrix));
         
         const center = this.#spriteOld.rect.center;
         
