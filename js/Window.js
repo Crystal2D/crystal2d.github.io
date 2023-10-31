@@ -37,8 +37,6 @@ class Window
      */
     static fullScreen = false;
     
-    static resizable = true;
-    
     static get width ()
     {
         return this.#x;
