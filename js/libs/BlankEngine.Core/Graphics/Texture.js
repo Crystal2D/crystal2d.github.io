@@ -1,6 +1,8 @@
 class Texture
 {
     #loaded = false;
+    #src = "";
+    
     #img = null;
     
     wrapMode = 0;
@@ -16,12 +18,32 @@ class Texture
         return this.#img;
     }
     
+    get width ()
+    {
+        return this.#img.width;
+    }
+    
+    get height ()
+    {
+        return this.#img.height;
+    }
+    
     constructor (src)
     {
         this.#img = new Image();
-        this.#img.src = `img/${src}`;
         this.#img.sprite = this;
         
-        this.#img.onload = () => { this.#loaded = true; };
+        this.#src = src;
+    }
+    
+    async Load ()
+    {
+        if (this.#loaded) return;
+        
+        this.#img.src = `img/${this.#src}`;
+        
+        await new Promise(resolve => this.#img.onload = resolve);
+        
+        this.#loaded = true;
     }
 }
