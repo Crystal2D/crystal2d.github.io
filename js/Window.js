@@ -118,7 +118,7 @@ class Window
         
         if (this.#sizeChanged)
         {
-            if (this.#resizable && !this.fullScreen)
+            if (!this.#resizable && !this.fullScreen)
             {
                 const x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 const y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
