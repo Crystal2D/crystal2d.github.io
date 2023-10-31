@@ -332,9 +332,9 @@ class BlankEngine
             
             Application.targetFrameRate = this.buildData.targetFrameRate;
             
-            Time.maximumDeltaTime = this.buildData.Time.maximumDeltaTime;
-            Time.timeScale = this.buildData.Time.timeScale;
-            Time.fixedDeltaTime = this.buildData.Time.fixedDeltaTime;
+            Time.maximumDeltaTime = this.buildData.time.maximumDeltaTime;
+            Time.timeScale = this.buildData.time.timeScale;
+            Time.fixedDeltaTime = this.buildData.time.fixedDeltaTime;
             
             Shader.Set(this.compiledData.shaders);
             Resources.Set(this.buildData.resources);
