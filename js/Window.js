@@ -76,6 +76,12 @@ class Window
     {
         this.#sizeChanged = true;
         
+        if (this.#fillWin)
+        {
+            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
+            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+        }
+        
         this.#resizable = value;
     }
     
