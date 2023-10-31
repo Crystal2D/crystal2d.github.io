@@ -1,7 +1,7 @@
 class CameraController extends GameBehavior
 {
-    clampMin = new Vector2(0, -2);
-    clampMax = new Vector2(3, 0);
+    clampMin = new Vector2(0, -4);
+    clampMax = new Vector2(8, 0);
     
     constructor () { super(); }
     
