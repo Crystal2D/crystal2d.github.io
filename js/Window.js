@@ -102,12 +102,6 @@ class Window
         
         if (this.#sizeChanged && !this.fullScreen)
         {
-            if (this.#fillWin)
-            {
-                Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
-                Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
-            }
-            
             const x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
             const y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
             
@@ -147,6 +141,11 @@ class Window
         
         window.addEventListener("resize", () => {
             if (!this.resizable) this.#sizeChanged = true;
+            else if (this.#fillWin)
+            {
+                Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
+                Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+            }
         });
         
         this.#RequestUpdate();
