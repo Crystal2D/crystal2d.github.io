@@ -1,8 +1,9 @@
 {
     "name" : "Scene",
     "resources" : [
-        "textures/square",
-        "textures/ball",
+        "sprites/square",
+        "sprites/ball",
+        "sprites/characters/yoki",
         "materials/mat_invert"
     ],
     "gameObjects" : [
@@ -29,7 +30,7 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "textures/ball"
+                            "texture" : "sprites/ball"
                         }
                     }
                 },
@@ -52,7 +53,25 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "textures/square"
+                            "texture" : "sprites/square"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "char_yoki",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 9, "y" : -3.5 },
+                "scale" : { "x" : 6, "y" : 6 }
+            },
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/characters/yoki"
                         }
                     }
                 }
