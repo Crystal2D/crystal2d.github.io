@@ -11,6 +11,7 @@ class Window
     
     static #loaded = false;
     static #sizeChanged = false;
+    static #resizable = true;
     static #fillWin = true;
     static #x = 0;
     static #y = 0;
@@ -68,6 +69,18 @@ class Window
         return this.#winY || this.#y;
     }
     
+    static get resizable ()
+    {
+        return this.#resizable;
+    }
+    
+    static set resizable (value)
+    {
+        this.#sizeChanged = true;
+        
+        this.#resizable = value;
+    }
+    
     static get fillWindow ()
     {
         return this.#fillWin;
@@ -75,7 +88,12 @@ class Window
     
     static set fillWindow (value)
     {
-        if (!value)
+        if (value)
+        {
+            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
+            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+        }
+        else
         {
             Application.htmlCanvas.width = this.#x;
             Application.htmlCanvas.height = this.#y;
@@ -129,8 +147,9 @@ class Window
     {
         if (this.#loaded) return;
         
+        this.#resizable = data.resizable ?? true;
+        
         this.fullScreen = data.fullScreen ?? false;
-        this.resizable = data.resizable ?? true;
         this.fillWindow = data.fillWindow ?? true;
         
         this.SetTitle(data.title);
