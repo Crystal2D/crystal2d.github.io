@@ -5,8 +5,9 @@ class Application
     static #binded = false;
     static #name = "";
     
-    static htmlCanvas = null;
-    static gl = null;
+    static #canvas = null;
+    static #gl = null;
+    
     static targetFrameRate = -1;
     
     static get isLoaded ()
@@ -19,23 +20,31 @@ class Application
         return this.#name;
     }
     
+    static get htmlCanvas ()
+    {
+        return this.#canvas;
+    }
+    
+    static get gl ()
+    {
+        return this.#gl;
+    }
+    
     static Init (packageName)
     {
         if (this.#inited) return;
         
         this.#name = packageName;
         
-        if (this.gl != null) document.querySelector("canvas").remove();
+        this.#canvas = document.createElement("canvas");
         
-        this.htmlCanvas = document.createElement("canvas");
+        this.#canvas.style.margin = "auto";
+        this.#canvas.style.objectFit = "contain";
         
-        this.htmlCanvas.style.margin = "auto";
-        this.htmlCanvas.style.objectFit = "contain";
+        this.#gl = this.#canvas.getContext("webgl2");
+        this.#gl.clearColor(0.0, 0.0, 0.0, 1.0);
         
-        this.gl = this.htmlCanvas.getContext("webgl2");
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        
-        document.body.append(this.htmlCanvas);
+        document.body.append(this.#canvas);
         
         this.#inited = true;
     }

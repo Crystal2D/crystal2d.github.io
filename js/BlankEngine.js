@@ -13,13 +13,14 @@ class BlankEngine
     {
         static #terminateStart = false;
         
-        static buildData = null;
         static compiledData = {
             libs : [],
             scripts : [],
             shaders : [],
             scenes : []
         };
+        
+        static buildData = null;
         
         static #Lib = class
         {
