@@ -1,7 +1,7 @@
 class GameObject
 {
-    #name = "Empty Object";
     #active = false;
+    #name = "Empty Object";
     #components = [];
     
     get name ()

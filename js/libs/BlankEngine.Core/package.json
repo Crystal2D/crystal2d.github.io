@@ -34,8 +34,26 @@
                 }
             ]
         },
-        "Math/Color",
-        "Math/Geometry/Rect",
+        {
+            "src" : "Math/Color",
+            "classes" : [
+                {
+                    "name" : "Color",
+                    "type" : 0,
+                    "construction" : "return { object : new Color(data.r, data.g, data.b, data.a) };"
+                }
+            ]
+        },
+        {
+            "src" : "Math/Geometry/Rect",
+            "classes" : [
+                {
+                    "name" : "Rect",
+                    "type" : 0,
+                    "construction" : "return { object : new Rect(data.x, data.y, data.width, data.height) };"
+                }
+            ]
+        },
         "Math/Geometry/Ray",
         "Math/Geometry/Bounds",
         {
@@ -63,13 +81,15 @@
         "PlayerLoop/PlayerLoop",
         "PlayerLoop/PlayerLoopSystem",
         "Graphics/Shaders/Shader",
+        "Graphics/Shaders/GraphicsBuffer",
+        "Graphics/Shaders/ShaderAttribute",
         {
             "src" : "Graphics/Shaders/Material",
             "classes" : [
                 {
                     "name" : "Material",
                     "type" : 0,
-                    "construction" : "if (typeof data === \"string\") return { keepName : true, object : Resources.Find(data) }; else if (typeof data === \"object\") return { object : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")) };"
+                    "construction" : "if (typeof data === \"string\") return { object : Resources.Find(data).Duplicate() }; else if (typeof data === \"object\") return { object : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")) };"
                 },
                 {
                     "name" : "Material",
@@ -104,7 +124,7 @@
                 {
                     "name" : "Sprite",
                     "type" : 0,
-                    "construction" : "return { object : new Sprite(Resources.Find(data.texture)) };"
+                    "construction" : "const rect = data.rect == null ? null : await toObject(\"Rect\", data.rect); return { object : new Sprite(Resources.Find(data.texture), rect) };"
                 }
             ]
         },
@@ -129,7 +149,13 @@
                 {
                     "name" : "SpriteRenderer",
                     "type" : 0,
-                    "construction" : "return { object : new SpriteRenderer(await toObject(\"Sprite\", data.sprite), await toObject(\"Material\", data.material)) };"
+                    "construction" : "return { object : new SpriteRenderer(await toObject(\"Sprite\", data.sprite), await toObject(\"Material\", data.material)) };",
+                    "args" : [
+                        {
+                            "name" : "color",
+                            "type" : "Color"
+                        }
+                    ]
                 }
             ]
         }

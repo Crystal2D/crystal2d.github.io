@@ -3,97 +3,6 @@ class Resources
     static #unloadedRes = [];
     static #resources = [];
     
-    static async #ToObject (name, type, data)
-    {
-        const dat = data ?? { };
-        
-        let object = null;
-        
-        const libs = BlankEngine.Inner.compiledData.libs;
-        const scripts = BlankEngine.Inner.compiledData.scripts;
-        
-        let foundClass = false;
-        let construction = null;
-        let properties = [];
-        
-        for (let iA = 0; iA < libs.length; iA++)
-        {
-            for (let iB = 0; iB < libs[iA].scripts.length; iB++)
-            {
-                if (libs[iA].scripts[iB].classes == null) continue;
-                
-                for (let iC = 0; iC < libs[iA].scripts[iB].classes.length; iC++)
-                {
-                    if (libs[iA].scripts[iB].classes[iC].name !== type || libs[iA].scripts[iB].classes[iC].type !== 1) continue;
-                    
-                    construction = libs[iA].scripts[iB].classes[iC].construction;
-                    properties = libs[iA].scripts[iB].classes[iC].args;
-                    
-                    foundClass = true;
-                    
-                    break;
-                }
-            }
-        }
-        
-        for (let iA = 0; iA < scripts.length; iA++)
-        {
-            if (scripts[iA].classes == null) continue;
-            
-            for (let iB = 0; iA < scripts[iA].classes.length; iB++)
-            {
-                if (scripts[iA].classes[iB].name !== type || scripts[iA].classes[iB].type !== 1) continue;
-                
-                construction = scripts[iA].classes[iB].construction;
-                properties = scripts[iA].classes[iB].args;
-                
-                foundClass = true;
-                
-                break;
-            }
-        }
-        
-        if (!foundClass) return new Object();
-        
-        if (construction != null)
-        {
-            const evalCall = new AsyncFunction("data", "toObject", construction);
-            
-            object = await evalCall(dat, async (type, data) => await SceneManager.CreateObject(type, data));
-        }
-        
-        for (let i = 0; i < properties.length; i++)
-        {
-            if (typeof properties[i] !== "object" || eval(`dat.${properties[i].name}`) === undefined) continue;
-            
-            let subObj = null;
-            
-            if (properties[i].evaluation != null)
-            {
-                const evalCall = new AsyncFunction("data", properties[i].evaluation);
-                
-                subObj = await evalCall(eval(`dat.${properties[i].name}`));
-            }
-            else if (properties[i].evalType != null)
-            {
-                const evalCall = new AsyncFunction("data", properties[i].evalType);
-                
-                subObj = await eval(`SceneManager.CreateObject(${await evalCall(eval(`dat.${properties[i].name}`))}, ${eval(`dat.${properties[i].name}`)})`);
-            }
-            else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
-            else if (properties[i].type === "array") subObj = await SceneManager.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await eval(`SceneManager.CreateObject(${properties[i].type}, ${eval(`dat.${properties[i].name}`)})`);
-            
-            subObj = eval(`dat.${properties[i].name}`);
-            
-            eval(`object.${properties[i].name} = subObj`);
-        }
-        
-        if (name != null) object.name = name;
-        
-        return object;
-    }
-    
     static #SetRes (path, data)
     {
         // ROOT VARIABLES
@@ -234,103 +143,100 @@ class Resources
         this.#resources = newPath.final;
     }
     
+    static async #ToObject (name, type, data)
+    {
+        const dat = data ?? { };
+        
+        let object = null;
+        
+        const libs = BlankEngine.Inner.compiledData.libs;
+        const scripts = BlankEngine.Inner.compiledData.scripts;
+        
+        let foundClass = false;
+        let construction = null;
+        let properties = [];
+        
+        for (let iA = 0; iA < libs.length; iA++)
+        {
+            for (let iB = 0; iB < libs[iA].scripts.length; iB++)
+            {
+                if (libs[iA].scripts[iB].classes == null) continue;
+                
+                for (let iC = 0; iC < libs[iA].scripts[iB].classes.length; iC++)
+                {
+                    if (libs[iA].scripts[iB].classes[iC].name !== type || libs[iA].scripts[iB].classes[iC].type !== 1) continue;
+                    
+                    construction = libs[iA].scripts[iB].classes[iC].construction;
+                    properties = libs[iA].scripts[iB].classes[iC].args;
+                    
+                    foundClass = true;
+                    
+                    break;
+                }
+            }
+        }
+        
+        for (let iA = 0; iA < scripts.length; iA++)
+        {
+            if (scripts[iA].classes == null) continue;
+            
+            for (let iB = 0; iA < scripts[iA].classes.length; iB++)
+            {
+                if (scripts[iA].classes[iB].name !== type || scripts[iA].classes[iB].type !== 1) continue;
+                
+                construction = scripts[iA].classes[iB].construction;
+                properties = scripts[iA].classes[iB].args;
+                
+                foundClass = true;
+                
+                break;
+            }
+        }
+        
+        if (!foundClass) return new Object();
+        
+        if (construction != null)
+        {
+            const evalCall = new AsyncFunction("data", "toObject", construction);
+            
+            object = await evalCall(dat, async (type, data) => await SceneManager.CreateObject(type, data));
+        }
+        
+        for (let i = 0; i < properties.length; i++)
+        {
+            if (typeof properties[i] !== "object" || eval(`dat.${properties[i].name}`) === undefined) continue;
+            
+            let subObj = null;
+            
+            if (properties[i].evaluation != null)
+            {
+                const evalCall = new AsyncFunction("data", properties[i].evaluation);
+                
+                subObj = await evalCall(eval(`dat.${properties[i].name}`));
+            }
+            else if (properties[i].evalType != null)
+            {
+                const evalCall = new AsyncFunction("data", properties[i].evalType);
+                
+                subObj = await eval(`SceneManager.CreateObject(${await evalCall(eval(`dat.${properties[i].name}`))}, ${eval(`dat.${properties[i].name}`)})`);
+            }
+            else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
+            else if (properties[i].type === "array") subObj = await SceneManager.CreateObjectArray(eval(`dat.${properties[i].name}`));
+            else subObj = await eval(`SceneManager.CreateObject(properties[i].type, ${eval(`dat.${properties[i].name}`)})`);
+            
+            eval(`object.${properties[i].name} = subObj`);
+        }
+        
+        if (name != null) object.name = name;
+        
+        return object;
+    }
+    
     static Set (resources)
     {
         this.UnloadAll();
         
         this.#unloadedRes = resources;
-    }
-    
-    static async Load (path)
-    {
-        let newPath = [""];
-        let uRPath = this.#unloadedRes;
-        let inPath = [];
-        
-        for (let i = 0; i < path.length; i++)
-        {
-            if (path[i] === "/")
-            {
-                newPath.push("");
-                
-                continue;
-            }
-            
-            newPath[newPath.length - 1] += path[i];
-        }
-        
-        // FOREACH WORD
-        for (let iA = 0; iA < newPath.length; iA++)
-        {
-            let resPath = this.#resources;
-            
-            // ADD CURRENT PATH TO INPATH
-            if (inPath.length === 0) inPath[0] = newPath[iA];
-            else inPath.push(newPath[iA]);
-            
-            // REFRESH RESPATH
-            for (let iB = 1; iB <= iA; iB++)
-            {
-                for (let iC = 0; iC < resPath.length; iC++)
-                {
-                    if (resPath[iC].name !== newPath[iA - 1] || resPath[iC].type !== "subpath") continue;
-                    
-                    resPath = resPath[iC].content;
-                }
-            }
-            
-            // FOREACH CONTENT IN CURRENT PATH
-            for (let iB = 0; iB < uRPath.length; iB++)
-            {
-                // IF CONTENT NAME IS NOT EQUAL TO URPATH THEN CONTINUE
-                if (newPath[iA] !== uRPath[iB].name) continue;
-                
-                let existInRes = 0;
-                
-                // CHECK IF CONTENT EXIST IN RESPATH
-                // DOESN'T EXIST : 0
-                // EXIST AS FOLDER : 1
-                // EXIST AS OBJECT : 2
-                // EXIST AS BOTH : 3
-                for (let iC = 0; iC < resPath.length; iC++)
-                {
-                    if (newPath[iA] !== resPath[iC].name) continue;
-                    
-                    if (existInRes !== 0) existInRes = 3;
-                    else if (resPath[iC].type === "subpath") existInRes = 1;
-                    else existInRes = 2;
-                }
-                
-                // IF LOADING OBJECT
-                if (iA === newPath.length - 1)
-                {
-                    // IF ALREADY EXIST THEN RETURN
-                    if (existInRes === 2 || existInRes === 3) return;
-                    
-                    // LOAD CONTENT
-                    this.#SetRes(inPath, await this.#ToObject(uRPath[iB].name, uRPath[iB].type, uRPath[iB].args));
-                    
-                    return;
-                }
-                
-                //IF LOADING FOLDER
-                
-                //IF ALREADY EXIST THEN BREAK
-                if (existInRes === 1 || existInRes === 3)
-                {
-                    uRPath = uRPath[iB].content;
-                    
-                    break;
-                }
-                
-                // LOAD CONTENT
-                this.#SetRes(inPath, uRPath[iB]);
-                
-                uRPath = uRPath[iB].content;
-                
-                break;
-            }
-        }
     }
     
     static Unload (path)
@@ -565,5 +471,97 @@ class Resources
         }
         
         return new Object();
+    }
+    
+    static async Load (path)
+    {
+        let newPath = [""];
+        let uRPath = this.#unloadedRes;
+        let inPath = [];
+        
+        for (let i = 0; i < path.length; i++)
+        {
+            if (path[i] === "/")
+            {
+                newPath.push("");
+                
+                continue;
+            }
+            
+            newPath[newPath.length - 1] += path[i];
+        }
+        
+        // FOREACH WORD
+        for (let iA = 0; iA < newPath.length; iA++)
+        {
+            let resPath = this.#resources;
+            
+            // ADD CURRENT PATH TO INPATH
+            if (inPath.length === 0) inPath[0] = newPath[iA];
+            else inPath.push(newPath[iA]);
+            
+            // REFRESH RESPATH
+            for (let iB = 1; iB <= iA; iB++)
+            {
+                for (let iC = 0; iC < resPath.length; iC++)
+                {
+                    if (resPath[iC].name !== newPath[iA - 1] || resPath[iC].type !== "subpath") continue;
+                    
+                    resPath = resPath[iC].content;
+                }
+            }
+            
+            // FOREACH CONTENT IN CURRENT PATH
+            for (let iB = 0; iB < uRPath.length; iB++)
+            {
+                // IF CONTENT NAME IS NOT EQUAL TO URPATH THEN CONTINUE
+                if (newPath[iA] !== uRPath[iB].name) continue;
+                
+                let existInRes = 0;
+                
+                // CHECK IF CONTENT EXIST IN RESPATH
+                // DOESN'T EXIST : 0
+                // EXIST AS FOLDER : 1
+                // EXIST AS OBJECT : 2
+                // EXIST AS BOTH : 3
+                for (let iC = 0; iC < resPath.length; iC++)
+                {
+                    if (newPath[iA] !== resPath[iC].name) continue;
+                    
+                    if (existInRes !== 0) existInRes = 3;
+                    else if (resPath[iC].type === "subpath") existInRes = 1;
+                    else existInRes = 2;
+                }
+                
+                // IF LOADING OBJECT
+                if (iA === newPath.length - 1)
+                {
+                    // IF ALREADY EXIST THEN RETURN
+                    if (existInRes === 2 || existInRes === 3) return;
+                    
+                    // LOAD CONTENT
+                    this.#SetRes(inPath, await this.#ToObject(uRPath[iB].name, uRPath[iB].type, uRPath[iB].args));
+                    
+                    return;
+                }
+                
+                //IF LOADING FOLDER
+                
+                //IF ALREADY EXIST THEN BREAK
+                if (existInRes === 1 || existInRes === 3)
+                {
+                    uRPath = uRPath[iB].content;
+                    
+                    break;
+                }
+                
+                // LOAD CONTENT
+                this.#SetRes(inPath, uRPath[iB]);
+                
+                uRPath = uRPath[iB].content;
+                
+                break;
+            }
+        }
     }
 }
