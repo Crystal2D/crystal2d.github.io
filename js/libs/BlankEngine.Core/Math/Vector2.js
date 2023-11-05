@@ -287,23 +287,6 @@ class Vector2
     // Methods
     
     /**
-     * Sets the x and y components of the vector
-     * 
-     * @memberof Vector2
-     * 
-     * @public
-     * @method
-     * 
-     * @param {number} x - The X component of the vector
-     * @param {number} y - The Y component of the vector
-     */
-    Set (x, y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-    
-    /**
      * Returns a string format of this vector
      * @memberof Vector2
      * 
@@ -348,5 +331,22 @@ class Vector2
         
         this.x = (this.x / magnitude) || 0;
         this.y = (this.y / magnitude) || 0;
+    }
+    
+    /**
+     * Sets the x and y components of the vector
+     * 
+     * @memberof Vector2
+     * 
+     * @public
+     * @method
+     * 
+     * @param {number} x - The X component of the vector
+     * @param {number} y - The Y component of the vector
+     */
+    Set (x, y)
+    {
+        this.x = x;
+        this.y = y;
     }
 }

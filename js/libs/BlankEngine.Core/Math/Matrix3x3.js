@@ -169,11 +169,6 @@ class Matrix3x3
         return this.matrix[column][row];
     }
     
-    SetValue (column, row, value)
-    {
-        this.matrix[column][row] = value;
-    }
-    
     GetColumn (index)
     {
         let output = [0, 0, 0];
@@ -183,11 +178,6 @@ class Matrix3x3
         return output;
     }
     
-    SetColumn (index, values)
-    {
-        for (let i = 0; i <= 2; i++) this.SetValue(index, i, values[i]);
-    }
-    
     GetRow (index)
     {
         let output = [0, 0, 0];
@@ -195,6 +185,16 @@ class Matrix3x3
         for (let i = 0; i <= 2; i++) output[i] = this.GetValue(i, index);
         
         return output;
+    }
+    
+    SetValue (column, row, value)
+    {
+        this.matrix[column][row] = value;
+    }
+    
+    SetColumn (index, values)
+    {
+        for (let i = 0; i <= 2; i++) this.SetValue(index, i, values[i]);
     }
     
     SetRow (index, values)

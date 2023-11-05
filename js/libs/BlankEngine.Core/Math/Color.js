@@ -1,5 +1,10 @@
 class Color
 {
+    static get white ()
+    {
+        return new Color(1, 1, 1);
+    }
+    
     r = 0;
     g = 0;
     b = 0;
@@ -17,6 +22,11 @@ class Color
         this.Set(r ?? 0, g ?? 0, b ?? 0, a ?? 1);
     }
     
+    toString ()
+    {
+        return `${this.r}, ${this.g}, ${this.b}, ${this.a}`;
+    }
+    
     Set (r, g, b, a)
     {
         this.r = r;
@@ -24,10 +34,5 @@ class Color
         this.b = b;
         
         if (a != null) this.a = a;
-    }
-    
-    toString ()
-    {
-        return `${this.r}, ${this.g}, ${this.b}, ${this.a}`;
     }
 }
