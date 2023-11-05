@@ -4,28 +4,53 @@ class Rect
     y = 0;
     width = 1;
     height = 1;
-    xMin = 0;
-    yMin = 0;
-    center = new Vector2();
+    
+    get xMin ()
+    {
+        return this.x;
+    }
+    
+    set xMin (value)
+    {
+        const max = this.xMax;
+        
+        this.x = value;
+        
+        this.width = max - this.x;
+    }
+    
+    get yMin ()
+    {
+        return this.y;
+    }
+    
+    set yMin (value)
+    {
+        const max = this.yMax;
+        
+        this.y = value;
+        
+        this.height = max - this.y;
+    }
     
     get xMax ()
     {
-        return this.width;
+        return this.x + this.width;
     }
     
     set xMax (value)
     {
-        this.width = value;
+        this.width = value - this.x;
     }
     
     get yMax ()
     {
-        return this.height;
+        return this.y + this.height;
     }
     
     set yMax (value)
     {
-        this.height = value;
+        this.height = value - this.y;
     }
     
     get position ()
@@ -50,9 +75,25 @@ class Rect
         this.height = value.y;
     }
     
+    get center ()
+    {
+        return new Vector2(this.x + 0.5 * this.width, this.y + 0.5 * this.height)
+    }
+    
+    set center (value)
+    {
+        this.x = value.x - 0.5 * this.width;
+        this.y = value.y - 0.5 * this.height;
+    }
+    
     constructor (x, y, width, height)
     {
         this.Set(x ?? 0, y ?? 0, width ?? 1, height ?? 1);
+    }
+    
+    toString ()
+    {
+        return `${this.x}, ${this.y}, ${this.width}, ${this.height}`;
     }
     
     Set (x, y, width, height)
@@ -61,10 +102,5 @@ class Rect
         this.y = y;
         this.width = width;
         this.height = height;
-    }
-    
-    toString ()
-    {
-        return `${this.x}, ${this.y}, ${this.width}, ${this.height}`;
     }
 }

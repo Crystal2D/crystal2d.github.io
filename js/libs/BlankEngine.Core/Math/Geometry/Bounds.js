@@ -49,21 +49,9 @@ class Bounds
         return new Vector2(Math.clamp(point.x, this.min.x, this.max.x), Math.clamp(point.y, this.min.y, this.max.y))
     }
     
-    Expand (amount)
-    {
-        if (typeof amount === "number") this.extents = Vector2.Add(this.extents, 0.5 * amount);
-        else this.extents = Vector2.Add(this.extents, Vector2.Scale(amount, 0.5));
-    }
-    
     Intersects (bounds)
     {
         return bounds.min.x <= this.max.x && bounds.max.x >= this.min.x && bounds.min.y <= this.max.y && bounds.max.y >= this.min.y;
-    }
-    
-    SetMinMax (min, max)
-    {
-        this.extents = Vector2.Scale(Vector2.Subtract(max, min), 0.5);
-        this.center = Vector2.Add(min, this.extents);
     }
     
     SqrDistance (point)
@@ -77,4 +65,17 @@ class Bounds
     {
         return `Center: ${this.center.toString()}, Extents: ${this.extents.toString()}`;
     }
+    
+    SetMinMax (min, max)
+    {
+        this.extents = Vector2.Scale(Vector2.Subtract(max, min), 0.5);
+        this.center = Vector2.Add(min, this.extents);
+    }
+    
+    Expand (amount)
+    {
+        if (typeof amount === "number") this.extents = Vector2.Add(this.extents, 0.5 * amount);
+        else this.extents = Vector2.Add(this.extents, Vector2.Scale(amount, 0.5));
+    }
+    
 }
