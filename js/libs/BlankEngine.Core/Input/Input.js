@@ -5,12 +5,12 @@ class Input
     static #terminated = false;
     static #keys = [];
     
-    static #key = class
+    static #Key = class
     {
-        name = "";
-        code = "";
         active = false;
         lastState = false;
+        name = "";
+        code = "";
         
         constructor (name, code)
         {
@@ -19,48 +19,64 @@ class Input
         }
     }
     
-    static #findKey (name)
+    static #FindKey (name)
     {
-        for (let i = 0; i < this.#keys.length; i++) if (this.#keys[i].name === name) return i;
+        let output = -1;
         
-        return null;
+        this.#keys.find((element, index) => {
+            if (element.name !== name) return false;
+            
+            output = index;
+            
+            return true;
+        });
+        
+        return output;
     }
     
-    static #findKeyByCode (code)
+    static #FindKeyByCode (code)
     {
-        for (let i = 0; i < this.#keys.length; i++) if (this.#keys[i].code === code) return i;
+        let output = -1;
         
-        return null;
+        this.#keys.find((element, index) => {
+            if (element.code !== code) return false;
+            
+            output = index;
+            
+            return true;
+        });
+        
+        return output;
     }
     
     static Init ()
     {
         this.#keys = [
-            new this.#key("up", "ArrowUp"),
-            new this.#key("down", "ArrowDown"),
-            new this.#key("left", "ArrowLeft"),
-            new this.#key("right", "ArrowRight"),
-            new this.#key("shift", "Shift"),
-            new this.#key("f4", "F4"),
-            new this.#key("f1", "F1"),
-            new this.#key("f2", "F2"),
-            new this.#key("f3", "F3"),
-            new this.#key("f5", "F5"),
-            new this.#key("f6", "F6"),
-            new this.#key("f7", "F7"),
-            new this.#key("f8", "F8"),
-            new this.#key("f9", "F9"),
-            new this.#key("f10", "F10"),
-            new this.#key("f11", "F11"),
-            new this.#key("f12", "F12")
+            new this.#Key("up", "ArrowUp"),
+            new this.#Key("down", "ArrowDown"),
+            new this.#Key("left", "ArrowLeft"),
+            new this.#Key("right", "ArrowRight"),
+            new this.#Key("shift", "Shift"),
+            new this.#Key("f4", "F4"),
+            new this.#Key("f1", "F1"),
+            new this.#Key("f2", "F2"),
+            new this.#Key("f3", "F3"),
+            new this.#Key("f5", "F5"),
+            new this.#Key("f6", "F6"),
+            new this.#Key("f7", "F7"),
+            new this.#Key("f8", "F8"),
+            new this.#Key("f9", "F9"),
+            new this.#Key("f10", "F10"),
+            new this.#Key("f11", "F11"),
+            new this.#Key("f12", "F12")
         ];
         
         document.addEventListener("keydown", event => {
             if (!document.hasFocus() || this.#terminated) return;
             
-            const keyIndex = this.#findKeyByCode(event.key);
+            const keyIndex = this.#FindKeyByCode(event.key);
             
-            if (keyIndex == null) return;
+            if (keyIndex === -1) return;
             
             event.preventDefault();
             
@@ -69,9 +85,9 @@ class Input
         document.addEventListener("keyup", event => {
             if (!document.hasFocus() || this.#terminated) return;
             
-            const keyIndex = this.#findKeyByCode(event.key);
+            const keyIndex = this.#FindKeyByCode(event.key);
             
-            if (keyIndex == null) return;
+            if (keyIndex === -1) return;
             
             event.preventDefault();
             
@@ -104,7 +120,7 @@ class Input
         
         if (typeof key === "string")
         {
-            keyIndex = this.#findKey(key);
+            keyIndex = this.#FindKey(key);
             
             if (keyIndex == null) return false;
         }
@@ -119,7 +135,7 @@ class Input
         
         if (typeof key === "string")
         {
-            keyIndex = this.#findKey(key);
+            keyIndex = this.#FindKey(key);
             
             if (keyIndex == null) return false;
         }
@@ -134,7 +150,7 @@ class Input
         
         if (typeof key === "string")
         {
-            keyIndex = this.#findKey(key);
+            keyIndex = this.#FindKey(key);
             
             if (keyIndex == null) return false;
         }
