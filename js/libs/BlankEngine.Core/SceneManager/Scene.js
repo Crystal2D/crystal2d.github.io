@@ -1,7 +1,8 @@
 SceneManager.Scene = class
 {
-    #data = null;
     #loaded = false;
+    
+    #data = null;
     
     name = "scene";
     gameObjects = [];

@@ -1,9 +1,10 @@
 class SceneManager
 {
-    static #scenes = [];
-    static #activeScene = null;
     static #loaded = false;
     static #unloaded = false;
+    static #scenes = [];
+    
+    static #activeScene = null;
     
     static get sceneLoaded ()
     {
@@ -125,9 +126,7 @@ class SceneManager
             }
             else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
             else if (properties[i].type === "array") subObj = await this.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await eval(`this.CreateObject(${properties[i].type}, ${eval(`dat.${properties[i].name}`)})`);
-            
-            subObj = eval(`dat.${properties[i].name}`);
+            else subObj = await eval(`this.CreateObject(properties[i].type, ${eval(`dat.${properties[i].name}`)})`);
             
             eval(`object.${properties[i].name} = subObj`);
         }
