@@ -1,3 +1,5 @@
+#version 300 es
+
 //
 // NAME : "Default/Standard"
 // TYPE : FRAGMENT
@@ -6,10 +8,13 @@
 precision mediump float;
 
 uniform sampler2D uSampler;
+uniform vec4 uColor;
 
-varying vec2 vTexturePosition;
+in vec2 vTexturePos;
+
+out vec4 fragColor;
 
 void main ()
 {
-    gl_FragColor = texture2D(uSampler, vTexturePosition);
+    fragColor = texture(uSampler, vTexturePos) * uColor;
 }

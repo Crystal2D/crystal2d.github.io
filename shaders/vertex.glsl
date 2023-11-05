@@ -1,19 +1,20 @@
+#version 300 es
+
 //
 // NAME : "Default/Standard"
 // TYPE : VERTEX
 //
 
-uniform mat3 uLocalMatrix;
-uniform vec2 uVertexPositionOffset;
+uniform mat3 uMatrix;
 
-varying vec2 vTexturePosition; 
+layout(location = 0) in vec2 aVertexPos;
+layout(location = 1) in vec2 aTexturePos;
 
-attribute vec2 aVertexPosition;
-attribute vec2 aTexturePosition;
+out vec2 vTexturePos;
 
 void main ()
 {
-    gl_Position = vec4(uLocalMatrix * vec3(aVertexPosition + uVertexPositionOffset, 1), 1);
+    gl_Position = vec4(uMatrix * vec3(aVertexPos, 1), 1);
     
-    vTexturePosition = aTexturePosition;
+    vTexturePos = aTexturePos;
 }
