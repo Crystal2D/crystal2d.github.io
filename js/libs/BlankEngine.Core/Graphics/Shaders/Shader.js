@@ -1,7 +1,7 @@
 class Shader
 {
-    static #shaders = [];
     static #loaded = false;
+    static #shaders = [];
     
     static get isLoaded ()
     {
@@ -46,97 +46,104 @@ class Shader
         gl.compileShader(this.#shader);
     }
     
-    static Set (shaders)
+    static #GetShaderData (shader)
     {
-        for (let iA = 0; iA < shaders.length; iA++)
+        let slashes = 0;
+        let keyword = "";
+        let shaderData = ["", ""];
+        let keywordValue = 0;
+        let isInsideQuote = false;
+        let quoteType = "";
+        
+        for (let i = 0; i < shader.length; i++)
         {
-            if (shaders[iA] === "") continue;
-            
-            let slashes = 0;
-            let keyword = "";
-            let shaderData = ["", ""];
-            let keywordValue = 0;
-            let isInsideQuote = false;
-            let quoteType = "";
-            
-            for (let iB = 0; iB < shaders[iA].length; iB++)
+            if (shader[i] === "/" && shader[i + 1] === "/")
             {
-                if (shaders[iA][iB] === "/" && shaders[iA][iB + 1] === "/")
-                {
-                    slashes++;
-                    keywordValue = 0;
-                    iB++;
-                    
-                    continue;
-                }
+                slashes++;
+                keywordValue = 0;
+                keyword = "";
+                i++;
                 
-                if (slashes >= 4) break;
-                if (shaders[iA][iB] === "\n") continue;
-                
-                if (shaders[iA][iB] === `'` || shaders[iA][iB] === `"`)
-                {
-                    if (isInsideQuote && shaders[iA][iB] === quoteType)
-                    {
-                        isInsideQuote = false;
-                        quoteType = "";
-                        
-                        continue;
-                    }
-                    
-                    isInsideQuote = true;
-                    quoteType = shaders[iA][iB];
-                    
-                    continue;
-                }
-                
-                if (!isInsideQuote && shaders[iA][iB] === " ") continue;
-                
-                if (shaders[iA][iB] === ":")
-                {
-                    keywordValue = -1;
-                    
-                    switch (keyword)
-                    {
-                        case "NAME":
-                            keywordValue = 1;
-                            break;
-                        case "TYPE":
-                            keywordValue = 2;
-                            break;
-                    }
-                    
-                    keyword = "";
-                    
-                    continue;
-                }
-                
-                if (keywordValue !== 0)
-                {
-                    shaderData[keywordValue - 1] += shaders[iA][iB];
-                    
-                    continue;
-                }
-                
-                keyword += shaders[iA][iB];
+                continue;
             }
             
-            const newShader = new Shader(shaderData[0], shaders[iA], shaderData[1]);
+            if (slashes >= 4) break;
+            if (shader[i] === "\n") continue;
+            
+            if (shader[i] === `'` || shader[i] === `"`)
+            {
+                if (isInsideQuote && shader[i] === quoteType)
+                {
+                    isInsideQuote = false;
+                    quoteType = "";
+                    
+                    continue;
+                }
+                
+                isInsideQuote = true;
+                quoteType = shader[i];
+                
+                continue;
+            }
+            
+            if (!isInsideQuote && shader[i] === " ") continue;
+            
+            if (shader[i] === ":")
+            {
+                keywordValue = -1;
+                
+                switch (keyword)
+                {
+                    case "NAME":
+                        keywordValue = 1;
+                        break;
+                    case "TYPE":
+                        keywordValue = 2;
+                        break;
+                }
+                
+                keyword = "";
+                
+                continue;
+            }
+            
+            if (keywordValue !== 0)
+            {
+                shaderData[keywordValue - 1] += shader[i];
+                
+                continue;
+            }
+            
+            keyword += shader[i];
+        }
+        
+        return {
+            name : shaderData[0],
+            type : shaderData[1]
+        };
+    }
+    
+    static Find (name, type)
+    {
+        const output = this.#shaders.find(element => element.name === name && (type == null || element.type === type));
+        
+        return output ?? this.Find("Default/Standard", type);
+    }
+    
+    static Set (shaders)
+    {
+        for (let i = 0; i < shaders.length; i++)
+        {
+            if (shaders[i] === "") continue;
+            
+            const shaderData = this.#GetShaderData(shaders[i]);
+            
+            const newShader = new Shader(shaderData.name, shaders[i], shaderData.type);
             
             if (this.#shaders.length === 0) this.#shaders[0] = newShader;
             else this.#shaders.push(newShader);
         }
         
         this.#loaded = true;
-    }
-    
-    static Find (name, type)
-    {
-        for (let i = 0; i < this.#shaders.length; i++)
-        {
-            if (type != null && this.#shaders[i].type !== type) continue;
-            if (this.#shaders[i].name === name) return this.#shaders[i];
-        }
-        
-        return this.Find("Default/Standard", type);
     }
 }
