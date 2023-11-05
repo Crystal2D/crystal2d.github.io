@@ -59,6 +59,28 @@
                 }
             ]
         },
+                {
+            "name" : "obj_yokiBase",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 9, "y" : -3.5 },
+                "scale" : { "x" : 6, "y" : 6 }
+            },
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/characters/yoki"
+                        },
+                        "color" : {
+                            "r" : 1,
+                            "g" : 1
+                        }
+                    }
+                }
+            ]
+        },
         {
             "name" : "char_yoki",
             "active" : true,
@@ -71,7 +93,11 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/characters/yoki"
+                            "texture" : "sprites/characters/yoki",
+                            "rect" : {
+                                "width" : 16,
+                                "height" : 64
+                            }
                         }
                     }
                 }
