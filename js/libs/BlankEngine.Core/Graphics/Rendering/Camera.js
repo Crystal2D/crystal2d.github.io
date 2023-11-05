@@ -1,9 +1,9 @@
 class Camera extends Behavior
 {
     #updateProjMat = true;
+    
     #projMatrix = null;
     
-    orthographic = true;
     orthographicSize = 1;
     
     get projectionMatrix ()
@@ -42,7 +42,7 @@ class Camera extends Behavior
         
         if (this.#updateProjMat)
         {
-            if (this.orthographic) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
+            this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
         }
         
         const mScale = new Vector2(1 / (Application.htmlCanvas.width / Application.htmlCanvas.height), -1);
