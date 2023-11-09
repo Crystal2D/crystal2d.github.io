@@ -64,6 +64,11 @@ class GameObject
         this.components = components ?? [];
     }
     
+    static Find (name)
+    {
+        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name);
+    }
+    
     SetActive (state)
     {
         this.#active = state;

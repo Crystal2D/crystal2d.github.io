@@ -217,12 +217,13 @@ class Resources
             else if (properties[i].evalType != null)
             {
                 const evalCall = new AsyncFunction("data", properties[i].evalType);
+                const objType = await evalCall(eval(`dat.${properties[i].name}`));
                 
-                subObj = await eval(`SceneManager.CreateObject(${await evalCall(eval(`dat.${properties[i].name}`))}, ${eval(`dat.${properties[i].name}`)})`);
+                subObj = await SceneManager.CreateObject(objType, eval(`dat.${properties[i].name}`));
             }
             else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
             else if (properties[i].type === "array") subObj = await SceneManager.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await eval(`SceneManager.CreateObject(properties[i].type, ${eval(`dat.${properties[i].name}`)})`);
+            else subObj = await SceneManager.CreateObject(properties[i].type, eval(`dat.${properties[i].name}`));
             
             eval(`object.${properties[i].name} = subObj`);
         }
