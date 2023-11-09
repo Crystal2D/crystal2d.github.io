@@ -39,6 +39,14 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name" : "s",
+                    "type" : "Texture",
+                    "args" : {
+                        "src" : "s15.png",
+                        "filterMode" : 1
+                    }
                 }
             ]
         },
