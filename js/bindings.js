@@ -1,1 +1,0 @@
-const AsyncFunction = (async () => { }).constructor;
