@@ -4,21 +4,22 @@
         "sprites/square",
         "sprites/ball",
         "sprites/characters/yoki",
-        "materials/mat_invert"
+        "materials/mat_invert",
+        "sprites/s"
     ],
     "gameObjects" : [
         {
             "name" : "camera",
             "active" : true,
+            "transform" : {
+                "position" : { "x" : 9, "y" : -3.5 }
+            },
             "components" : [
                 {
                     "type" : "Camera",
                     "args" : {
                         "orthographicSize" : 8
                     }
-                },
-                {
-                    "type" : "CameraController"
                 }
             ]
         },
@@ -59,7 +60,53 @@
                 }
             ]
         },
+        {
+            "name" : "test_sprBase",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 9, "y" : -3.5 },
+                "scale" : { "x" : 6, "y" : 6 }
+            },
+            "components" : [
                 {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/s"
+                        },
+                        "color" : {
+                            "r" : 0.5,
+                            "g" : 0.5,
+                            "b" : 0.5
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "test_spr",
+            "active" : true,
+            "transform" : {
+                "position" : { "x" : 9, "y" : -3.5 },
+                "scale" : { "x" : 6, "y" : 6 }
+            },
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/s",
+                            "rect" : {
+                                "width" : 5,
+                                "height" : 5,
+                                "x" : 0
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
             "name" : "obj_yokiBase",
             "active" : true,
             "transform" : {
@@ -74,8 +121,9 @@
                             "texture" : "sprites/characters/yoki"
                         },
                         "color" : {
-                            "r" : 1,
-                            "g" : 1
+                            "r" : 0.5,
+                            "g" : 0.5,
+                            "b" : 0.5
                         }
                     }
                 }
@@ -96,7 +144,8 @@
                             "texture" : "sprites/characters/yoki",
                             "rect" : {
                                 "width" : 16,
-                                "height" : 64
+                                "height" : 16,
+                                "x" : 0
                             }
                         }
                     }
