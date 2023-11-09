@@ -121,12 +121,13 @@ class SceneManager
             else if (properties[i].evalType != null)
             {
                 const evalCall = new AsyncFunction("data", properties[i].evalType);
+                const objType = await evalCall(eval(`dat.${properties[i].name}`));
                 
-                subObj = await eval(`this.CreateObject(${await evalCall(eval(`dat.${properties[i].name}`))}, ${eval(`dat.${properties[i].name}`)})`);
+                subObj = await this.CreateObject(objType, eval(`dat.${properties[i].name}`));
             }
             else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
             else if (properties[i].type === "array") subObj = await this.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await eval(`this.CreateObject(properties[i].type, ${eval(`dat.${properties[i].name}`)})`);
+            else subObj = await this.CreateObject(properties[i].type, eval(`dat.${properties[i].name}`));
             
             eval(`object.${properties[i].name} = subObj`);
         }
