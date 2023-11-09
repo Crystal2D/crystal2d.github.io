@@ -48,7 +48,6 @@ class SceneManager
         const dat = data ?? { };
         
         let object = null;
-        let keepName = false;
         
         const libs = BlankEngine.Inner.compiledData.libs;
         const scripts = BlankEngine.Inner.compiledData.scripts;
@@ -99,10 +98,8 @@ class SceneManager
         if (construction != null)
         {
             const evalCall = new AsyncFunction("data", "toObject", construction);
-            const objData = await evalCall(dat, async (type, data) => await this.CreateObject(type, data));
             
-            keepName = objData.keepName;
-            object = objData.object;
+            object = await evalCall(dat, async (type, data) => await this.CreateObject(type, data));
         }
         else object = eval(`new ${type}()`);
         
@@ -132,7 +129,7 @@ class SceneManager
             eval(`object.${properties[i].name} = subObj`);
         }
         
-        if (dat.name != null && !keepName) object.name = dat.name;
+        if (dat.name != null && type !== "GameObject") object.name = dat.name;
         
         return object;
     }
