@@ -91,7 +91,7 @@ class PlayerLoop
                             Application.gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
                             Application.gl.clear(Application.gl.COLOR_BUFFER_BIT | Application.gl.DEPTH_BUFFER_BIT);
                             Application.gl.enable(Application.gl.BLEND);
-                            Application.gl.blendFunc(Application.gl.SRC_ALPHA, Application.gl.ONE_MINUS_SRC_ALPHA);
+                            // Application.gl.blendFunc(Application.gl.SRC_ALPHA, Application.gl.ONE_MINUS_SRC_ALPHA);
                         }
                     }),
                     new PlayerLoopSystem("UpdateInputManager", {
