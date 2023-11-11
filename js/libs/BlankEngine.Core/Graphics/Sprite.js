@@ -8,8 +8,8 @@ class Sprite
     get vertices ()
     {
         const rect = new Rect(
-            this.rect.x, 
-            this.rect.y,
+            this.rect.x / this.texture.width, 
+            this.rect.y / this.texture.height,
             this.rect.width / this.texture.width,
             this.rect.height / this.texture.height
         );
