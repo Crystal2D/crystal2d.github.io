@@ -111,50 +111,27 @@ class SpriteRenderer extends Component
         
         const scale = texX > texY ? new Vector2(1, texY / texX) : new Vector2(texX / texY, 1);
         
-        const rectOffset = Vector2.Scale(Vector2.Subtract(Vector2.one, scale), -0.5);
+        const scalePos = Vector2.Scale(Vector2.Subtract(Vector2.one, scale), -0.5);
         
-        const w = vertices[3].x - vertices[0].x;
-        const h = vertices[3].y - vertices[0].y;
-        const cW = vertices[0].x + 0.5 * w;
-        const cY = vertices[0].y + 0.5 * h;
+        const rectPos = vertices[0];
+        
         const center = new Vector2(
-            (cW / 1) - 0.5
-            //(cW / 0.5) - 1
-            
-            //(cW * 1.5) - 1.5,
-            //(cY * 1.5) - 1.5,
-            
-            //(cW - 1) * 1.5,
-            //cW - 1
-            
-            //(cW * 2) - 1.5,
-            //(cY * 2) - 1.5
+            ((rectPos.x + 0.5 * (vertices[3].x - rectPos.x)) - 0.5) * scale.x,
+            ((rectPos.y + 0.5 * (vertices[3].y - rectPos.y)) - 0.5) * scale.y
         );
         
-        const offset = Vector2.Scale(
+        const offset = Vector2.Add(
+            this.sprite.pivot,
             Vector2.Add(
-                rectOffset,
+                scalePos,
                 center
-                
-                //0.5
-            ),
-            1//0.5
-            
-            //center
+            )
         );
         
         const localMatrix = Matrix3x3.Multiply(
             this.localSpaceMatrix,
             Matrix3x3.TRS(
-                Vector2.Scale(
-                    Vector2.Add(
-                        Vector2.Scale(
-                            this.sprite.pivot,
-                            1
-                        ),
-                        offset
-                    )
-                , -1),
+                Vector2.Scale(offset, -1),
                 0,
                 scale
             )
