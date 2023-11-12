@@ -15,67 +15,13 @@
         "Scripting/GameBehavior",
         "Math/Math.bindings",
         "Math/Matrix3x3",
-        {
-            "src" : "Math/Vector2",
-            "classes" : [
-                {
-                    "name" : "Vector2",
-                    "type" : 0,
-                    "args" : [
-                        {
-                            "name" : "x",
-                            "type" : "number"
-                        },
-                        {
-                            "name" : "y",
-                            "type" : "number"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "src" : "Math/Color",
-            "classes" : [
-                {
-                    "name" : "Color",
-                    "type" : 0,
-                    "construction" : "return new Color(data.r, data.g, data.b, data.a);"
-                }
-            ]
-        },
-        {
-            "src" : "Math/Geometry/Rect",
-            "classes" : [
-                {
-                    "name" : "Rect",
-                    "type" : 0,
-                    "construction" : "return new Rect(data.x, data.y, data.width, data.height);"
-                }
-            ]
-        },
+        "Math/Vector2",
+        "Math/Color",
+        "Math/Geometry/Rect",
         "Math/Geometry/Ray",
         "Math/Geometry/Bounds",
-        {
-            "src" : "Transform/Transform",
-            "classes" : [
-                {
-                    "name" : "Transform",
-                    "type" : 0,
-                    "construction" : "if (data.scale == null) data.scale = Vector2.one; if (data.scale.x == null) data.scale.x = 1; if (data.scale.y == null) data.scale.y = 1; return new Transform(await toObject(\"Vector2\", data.position), data.rotation, await toObject(\"Vector2\", data.scale));"
-                }
-            ]
-        },
-        {
-            "src" : "GameObject",
-            "classes" : [
-                {
-                    "name" : "GameObject",
-                    "type" : 0,
-                    "construction" : "return new GameObject(data.name, data.components, data.active, await toObject(\"Transform\", data.transform));"
-                }
-            ]
-        },
+        "Transform/Transform",
+        "GameObject",
         "SceneManager/SceneManager",
         "SceneManager/Scene",
         "PlayerLoop/PlayerLoop",
@@ -83,85 +29,152 @@
         "Graphics/Shaders/Shader",
         "Graphics/Shaders/GraphicsBuffer",
         "Graphics/Shaders/ShaderAttribute",
+        "Graphics/Shaders/Material",
+        "Graphics/Texture",
+        "Graphics/Sprite",
+        "Graphics/Rendering/Camera",
+        "Graphics/Rendering/Renderers/SpriteRenderer"
+    ],
+    "classes" : [
         {
-            "src" : "Graphics/Shaders/Material",
-            "classes" : [
+            "name" : "Vector2",
+            "type" : 0,
+            "args" : [
                 {
-                    "name" : "Material",
-                    "type" : 0,
-                    "construction" : "if (typeof data === \"string\") Resources.Find(data).Duplicate(); else if (typeof data === \"object\") new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+                    "name" : "x",
+                    "type" : "number"
                 },
                 {
-                    "name" : "Material",
-                    "type" : 1,
-                    "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+                    "name" : "y",
+                    "type" : "number"
                 }
             ]
         },
         {
-            "src" : "Graphics/Texture",
-            "classes" : [
+            "name" : "Color",
+            "type" : 0,
+            "args" : [
                 {
-                    "name" : "Texture",
-                    "type" : 1,
-                    "construction" : "const output = new Texture(data.src); await output.Load(); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); output.sprites.push(newSprite); } return output;",
-                    "args" : [
-                        {
-                            "name" : "wrapMode",
-                            "type" : "number"
-                        },
-                        {
-                            "name" : "filterMode",
-                            "type" : "number"
-                        }
-                    ]
+                    "name" : "r",
+                    "type" : "number"
+                },
+                {
+                    "name" : "g",
+                    "type" : "number"
+                },
+                {
+                    "name" : "b",
+                    "type" : "number"
+                },
+                {
+                    "name" : "a",
+                    "type" : "number"
                 }
             ]
         },
         {
-            "src" : "Graphics/Sprite",
-            "classes" : [
+            "name" : "Rect",
+            "type" : 0,
+            "args" : [
                 {
-                    "name" : "Sprite",
-                    "type" : 0,
-                    "construction" : "const output = Resources.Find(data.texture).sprites[data.index ?? 0].Duplicate(); if (data.rect != null) output.rect = await toObject(\"Rect\", data.rect); return output;",
-                    "args" : [
-                        {
-                            "name" : "pivot",
-                            "type" : "Vector2"
-                        }
-                    ]
+                    "name" : "x",
+                    "type" : "number"
+                },
+                {
+                    "name" : "y",
+                    "type" : "number"
+                },
+                {
+                    "name" : "width",
+                    "type" : "number"
+                },
+                {
+                    "name" : "height",
+                    "type" : "number"
                 }
             ]
         },
         {
-            "src" : "Graphics/Rendering/Camera",
-            "classes" : [
+            "name" : "Transform",
+            "type" : 0,
+            "args" : [
                 {
-                    "name" : "Camera",
-                    "type" : 0,
-                    "args" : [
-                        {
-                            "name" : "orthographicSize",
-                            "type" : "number"
-                        }
-                    ]
+                    "name" : "rotation",
+                    "type" : "number"
+                },
+                {
+                    "name" : "position",
+                    "type" : "Vector2"
+                },
+                {
+                    "name" : "scale",
+                    "type" : "Vector2"
                 }
             ]
         },
         {
-            "src" : "Graphics/Rendering/Renderers/SpriteRenderer",
-            "classes" : [
+            "name" : "GameObject",
+            "type" : 0,
+            "construction" : "return new GameObject(data.name, data.components, data.active, await toObject(\"Transform\", data.transform));"
+        },
+        {
+            "name" : "Material",
+            "type" : 0,
+            "construction" : "if (typeof data === \"string\") Resources.Find(data).Duplicate(); else if (typeof data === \"object\") new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+        },
+        {
+            "name" : "Material",
+            "type" : 1,
+            "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+        },
+        {
+            "name" : "Texture",
+            "type" : 1,
+            "construction" : "const output = new Texture(data.src); await output.Load(); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); output.sprites.push(newSprite); } return output;",
+            "args" : [
                 {
-                    "name" : "SpriteRenderer",
-                    "type" : 0,
-                    "construction" : "return new SpriteRenderer(await toObject(\"Sprite\", data.sprite), await toObject(\"Material\", data.material));",
-                    "args" : [
-                        {
-                            "name" : "color",
-                            "type" : "Color"
-                        }
-                    ]
+                    "name" : "wrapMode",
+                    "type" : "number"
+                },
+                {
+                    "name" : "filterMode",
+                    "type" : "number"
+                }
+            ]
+        },
+        {
+            "name" : "Sprite",
+            "type" : 0,
+            "construction" : "return Resources.Find(data.texture).sprites[data.index ?? 0].Duplicate();",
+            "args" : [
+                {
+                    "name" : "pivot",
+                    "type" : "Vector2"
+                },
+                {
+                    "name" : "rect",
+                    "type" : "Rect"
+                }
+            ]
+        },
+        {
+            "name" : "Camera",
+            "type" : 0,
+            "args" : [
+                {
+                    "name" : "orthographicSize",
+                    "type" : "number"
+                }
+            ]
+        },
+        {
+            "name" : "SpriteRenderer",
+            "type" : 0,
+            "construction" : "return new SpriteRenderer(await toObject(\"Sprite\", data.sprite), await toObject(\"Material\", data.material));",
+            "args" : [
+                {
+                    "name" : "color",
+                    "type" : "Color"
                 }
             ]
         }
