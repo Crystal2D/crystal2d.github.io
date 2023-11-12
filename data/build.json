@@ -19,14 +19,6 @@
                     }
                 },
                 {
-                    "name" : "ball",
-                    "type" : "Texture",
-                    "args" : {
-                        "src" : "ball.png",
-                        "filterMode" : 1
-                    }
-                },
-                {
                     "name" : "characters",
                     "type" : "subpath",
                     "content" : [
@@ -35,18 +27,39 @@
                             "type" : "Texture",
                             "args" : {
                                 "src" : "characters/yoki.png",
-                                "filterMode" : 1
+                                "filterMode" : 1,
+                                "sprites" : [
+                                    {
+                                        "rect" : {
+                                            "width" : 16,
+                                            "height" : 16
+                                        }
+                                    },
+                                    {
+                                        "rect" : {
+                                            "y" : 16,
+                                            "width" : 16,
+                                            "height" : 16
+                                        }
+                                    },
+                                    {
+                                        "rect" : {
+                                            "y" : 32,
+                                            "width" : 16,
+                                            "height" : 16
+                                        }
+                                    },
+                                    {
+                                        "rect" : {
+                                            "y" : 48,
+                                            "width" : 16,
+                                            "height" : 16
+                                        }
+                                    }
+                                ]
                             }
                         }
                     ]
-                },
-                {
-                    "name" : "s",
-                    "type" : "Texture",
-                    "args" : {
-                        "src" : "s15.png",
-                        "filterMode" : 1
-                    }
                 }
             ]
         },
