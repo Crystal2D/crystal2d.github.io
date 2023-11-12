@@ -104,7 +104,7 @@
                 {
                     "name" : "Texture",
                     "type" : 1,
-                    "construction" : "const output = new Texture(data.src); await output.Load(); return output;",
+                    "construction" : "const output = new Texture(data.src); await output.Load(); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); output.sprites.push(newSprite); } return output;",
                     "args" : [
                         {
                             "name" : "wrapMode",
@@ -124,7 +124,13 @@
                 {
                     "name" : "Sprite",
                     "type" : 0,
-                    "construction" : "const rect = data.rect == null ? null : await toObject(\"Rect\", data.rect); return new Sprite(Resources.Find(data.texture), rect);"
+                    "construction" : "const output = Resources.Find(data.texture).sprites[data.index ?? 0].Duplicate(); if (data.rect != null) output.rect = await toObject(\"Rect\", data.rect); return output;",
+                    "args" : [
+                        {
+                            "name" : "pivot",
+                            "type" : "Vector2"
+                        }
+                    ]
                 }
             ]
         },

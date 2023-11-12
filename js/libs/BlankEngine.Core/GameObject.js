@@ -69,6 +69,13 @@ class GameObject
         return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name);
     }
     
+    #IsComponent (item, type, includeInactive)
+    {
+        if (!(eval(`item instanceof ${type}`)) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
+        
+        return true;
+    }
+    
     SetActive (state)
     {
         this.#active = state;
@@ -107,6 +114,11 @@ class GameObject
         }
     }
     
+    GetComponent (type)
+    {
+        return this.#components.find(element => this.#IsComponent(element, type, false));
+    }
+    
     GetComponents (type)
     {
         const components = this.#components;
@@ -115,12 +127,10 @@ class GameObject
         
         for (let i = 0; i < components.length; i++)
         {
-            if (!(eval(`components[i] instanceof ${type}`))) continue;
-            
-            if (components[i] instanceof Behavior && !components[i].enabled) continue;
+            if (!this.#IsComponent(components[i], type, false)) continue;
             
             if (newComps.length === 0) newComps[0] = components[i];
-            else newComps(components[i]);
+            else newComps.push(components[i]);
         }
         
         return newComps;
