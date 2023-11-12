@@ -35,4 +35,13 @@ class Sprite
         this.texture = texture;
         this.rect = rect ?? new Rect(0, 0, texture.width, texture.height);
     }
+    
+    Duplicate ()
+    {
+        const output = new Sprite(this.texture, this.rect);
+        
+        output.pivot = this.pivot;
+        
+        return output;
+    }
 }

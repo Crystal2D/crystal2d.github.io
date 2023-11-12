@@ -11,6 +11,8 @@ class Texture
     #gl = null;
     #texture = null;
     
+    sprites = [];
+    
     get isLoaded ()
     {
         return this.#loaded;
@@ -125,6 +127,8 @@ class Texture
         gl.bindTexture(gl.TEXTURE_2D, this.#texture);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.#img);
         gl.bindTexture(gl.TEXTURE_2D, null);
+        
+        this.sprites[0] = new Sprite(this);
         
         this.#loaded = true;
     }
