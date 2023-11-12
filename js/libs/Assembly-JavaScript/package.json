@@ -2,30 +2,23 @@
     "name" : "Assembly-JavaScript",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
+        "CharController",
+        "CameraController"
+    ],
+    "classes" : [
         {
-            "src" : "CharController",
-            "classes" : [
+            "name" : "CharController",
+            "type" : 0,
+            "args" : [
                 {
-                    "name" : "CharController",
-                    "type" : 0,
-                    "args" : [
-                        {
-                            "name" : "speed",
-                            "type" : "number"
-                        }
-                    ]
+                    "name" : "speed",
+                    "type" : "number"
                 }
             ]
         },
         {
-            "src" : "CameraController",
-            "classes" : [
-                {
-                    "name" : "CameraController",
-                    "type" : 0,
-                    "args" : []
-                }
-            ]
+            "name" : "CameraController",
+            "type" : 0
         }
     ]
 }
