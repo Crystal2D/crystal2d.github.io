@@ -9,8 +9,51 @@ class BlankEngine
 {
     // Static Classes
     
+    static Script = class
+    {
+        #loaded = false;
+        #src = null;
+        
+        get isLoaded ()
+        {
+            return this.#loaded;
+        }
+        
+        get src ()
+        {
+            return this.#src;
+        }
+            
+        constructor (src)
+        {
+            this.#src = src;
+        }
+        
+        OnLoad () { }
+        
+        async Load ()
+        {
+            if (this.#loaded) return;
+            
+            const script = document.createElement("script");
+            
+            script.src = this.#src;
+            script.type = "text/javascript";
+            script.async = true;
+            
+            document.body.append(script);
+            
+            await new Promise(resolve => script.addEventListener("load", resolve));
+            
+            this.OnLoad();
+            
+            this.#loaded = true;
+        }
+    }
+    
     static Inner = class
     {
+        static #inited = false;
         static #terminateStart = false;
         
         static compiledData = {
@@ -25,10 +68,12 @@ class BlankEngine
         static #Lib = class
         {
             #loaded = false;
-            #name = null;
+            #name = "";
             #desc = "";
             #unloadedScripts = [];
             #scripts = [];
+            #classes = [];
+            
             #src = null;
             
             get isLoaded ()
@@ -51,72 +96,17 @@ class BlankEngine
                 return this.#scripts;
             }
             
-            #Script = class
+            get classes ()
             {
-                #loaded = false;
-                #src = null;
-                #classes = [];
-                
-                get isLoaded ()
-                {
-                    return this.#loaded;
-                }
-                
-                get src ()
-                {
-                    return this.#src;
-                }
-                
-                get classes ()
-                {
-                    return this.#classes;
-                }
-                
-                constructor (src, classes)
-                {
-                    if (src == null) BlankEngine.Err(0);
-                    
-                    this.#src = src;
-                    this.#classes = classes ?? [];
-                }
-                
-                async Load ()
-                {
-                    if (this.#loaded) return;
-                    
-                    const script = document.createElement("script");
-                    
-                    let newClasses = [];
-                    
-                    script.src = this.#src;
-                    script.type = "text/javascript";
-                    script.async = true;
-                    
-                    document.body.append(script);
-                    
-                    await new Promise(resolve => script.addEventListener("load", resolve));
-                    
-                    for (let i = 0; i < this.#classes.length; i++)
-                    {
-                        if (this.#classes[i].name == null) continue;
-                        
-                        if (this.#classes[i].args == null) this.#classes[i].args = [];
-                        
-                        if (newClasses.length == 0) newClasses[0] = this.#classes[i];
-                        else newClasses.push(this.#classes[i]);
-                    }
-                    
-                    this.#classes = newClasses;
-                    
-                    this.#loaded = true;
-                }
+                return this.#classes;
             }
             
-            constructor (name, desc, scripts, src)
+            constructor (name, desc, scripts, classes, src)
             {
                 this.#name =  name;
-                this.#desc = desc;
+                this.#desc = desc ?? "";
                 this.#unloadedScripts = scripts;
+                this.#classes = classes ?? [];
                 this.#src = src;
             }
             
@@ -126,73 +116,22 @@ class BlankEngine
                 
                 for (let i = 0; i < this.#unloadedScripts.length; i++)
                 {
-                    if (this.#unloadedScripts[i] == null) continue;
+                    const script = new BlankEngine.Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
                     
-                    let script = null;
+                    await script.Load();
                     
-                    if (this.#unloadedScripts[i].src != null) script = new this.#Script(`js/libs/${this.#src}/${this.#unloadedScripts[i].src}.js`, this.#unloadedScripts[i].classes);
-                    else script = new this.#Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
-                    
-                    if (this.#scripts.length == 0) this.#scripts[0] = script;
+                    if (i === 0) this.#scripts[0] = script;
                     else this.#scripts.push(script);
                 }
                 
-                for (let i = 0; i < this.#scripts.length; i++) await this.#scripts[i].Load();
-                
-                this.#loaded = true;
-            }
-        }
-        
-        static #Script = class
-        {
-            #loaded = false;
-            #src = null;
-            #classes = [];
-            
-            get isLoaded ()
-            {
-                return this.#loaded;
-            }
-            
-            get src ()
-            {
-                return this.#src;
-            }
-            
-            get classes ()
-            {
-                return this.#classes;
-            }
-            
-            constructor (src, classes)
-            {
-                this.#src = src;
-                this.#classes = classes ?? [];
-            }
-            
-            async Load ()
-            {
-                if (this.#loaded) return;
-                
-                const script = document.createElement("script");
-                
                 let newClasses = [];
-                
-                script.src = this.#src;
-                script.type = "text/javascript";
-                script.async = true;
-                
-                document.body.append(script);
-                
-                await new Promise(resolve => script.addEventListener("load", resolve));
                 
                 for (let i = 0; i < this.#classes.length; i++)
                 {
                     if (this.#classes[i].name == null) continue;
+                    else if (this.#classes[i].args == null) this.#classes[i].args = [];
                     
-                    if (this.#classes[i].args == null) this.#classes[i].args = [];
-                    
-                    if (newClasses.length == 0) newClasses[0] = this.#classes[i];
+                    if (newClasses.length === 0) newClasses[0] = this.#classes[i];
                     else newClasses.push(this.#classes[i]);
                 }
                 
@@ -202,8 +141,82 @@ class BlankEngine
             }
         }
         
+        static #Script = class extends BlankEngine.Script
+        {
+            #classes = [];
+            
+            get classes ()
+            {
+                return this.#classes;
+            }
+            
+            constructor (src, classes)
+            {
+                super(src);
+                
+                this.#classes = classes ?? [];
+            }
+            
+            OnLoad ()
+            {
+                let newClasses = [];
+                
+                for (let i = 0; i < this.#classes.length; i++)
+                {
+                    if (this.#classes[i].name == null) continue;
+                    else if (this.#classes[i].args == null) this.#classes[i].args = [];
+                    
+                    if (newClasses.length === 0) newClasses[0] = this.#classes[i];
+                    else newClasses.push(this.#classes[i]);
+                }
+                
+                this.#classes = newClasses;
+            }
+        }
+        
+        static #IsClassOfType (item, name, type)
+        {
+            return item.name === name && item.type === type;
+        }
+        
+        static GetClassOfType (name, type)
+        {
+            const libs = this.compiledData.libs;
+            const scripts = this.compiledData.scripts;
+            
+            let output = null;
+            
+            for (let i = 0; i < libs.length; i++)
+            {
+                const currentClass = libs[i].classes.find(element => this.#IsClassOfType(element, name, type));
+                
+                if (currentClass == null) continue;
+                
+                output = currentClass;
+                
+                break;
+            }
+            
+            for (let i = 0; i < scripts.length; i++)
+            {
+                if (output != null) break;
+                
+                const currentClass = scripts[i].classes.find(element => this.#IsClassOfType(element, name, type));
+                
+                if (currentClass == null) continue;
+                
+                output = currentClass;
+                
+                break;
+            }
+            
+            return output;
+        }
+        
         static InitiateProgram ()
         {
+            if (this.#inited) return;
+            
             document.body.style.height = "100vh";
             document.body.style.margin = "0";
             document.body.style.display = "flex";
@@ -247,6 +260,8 @@ class BlankEngine
                 document.body.append(errWrap);
             });
             
+            this.#inited = true;
+            
             this.#LoadData();
         }
         
@@ -262,36 +277,35 @@ class BlankEngine
             
             this.buildData = await buildResponse.json();
             
-            if (this.buildData.libs.length == 0) this.buildData.libs[0] = "BlankEngine.Core";
+            if (this.buildData.libs.length === 0) this.buildData.libs[0] = "BlankEngine.Core";
             else this.buildData.libs.unshift("BlankEngine.Core");
             
             for (let i = 0; i < this.buildData.libs.length; i++)
             {
-                if (this.buildData.libs[i] == null) continue;
-                
                 const libResponse = await fetch(`js/libs/${this.buildData.libs[i]}/package.json`);
                 const libData = await libResponse.json();
                 const lib = new this.#Lib(
                     libData.name,
                     libData.description,
                     libData.scripts,
+                    libData.classes,
                     this.buildData.libs[i]
                 );
                 
-                if (this.compiledData.libs.length == 0) this.compiledData.libs[0] = lib;
+                if (i === 0) this.compiledData.libs[0] = lib;
                 else this.compiledData.libs.push(lib);
             }
             
             for (let i = 0; i < this.buildData.scripts.length; i++)
             {
-                if (this.buildData.scripts[i] == null) continue;
+                const scriptData = this.buildData.scripts[i];
                 
                 let script = null;
                 
-                if (this.buildData.scripts[i].src != null) script = new this.#Script(`js/${this.buildData.scripts[i].src}.js`, this.buildData.scripts[i].classes);
-                else script = new this.#Script(`js/${this.buildData.scripts[i]}.js`,);
+                if (typeof scriptData === "string") script = new this.#Script(`js/${scriptData}.js`);
+                else script = new this.#Script(`js/${scriptData.src}.js`, scriptData.classes);
                 
-                if (this.compiledData.scripts.length == 0) this.compiledData.scripts[0] = script;
+                if (i === 0) this.compiledData.scripts[0] = script;
                 else this.compiledData.scripts.push(script);
             }
             
@@ -300,7 +314,7 @@ class BlankEngine
                 const shaderResponse = await fetch(`shaders/${this.buildData.shaders[i]}.glsl`);
                 const shader = await shaderResponse.text();
                 
-                if (this.compiledData.shaders.length == 0) this.compiledData.shaders[0] = shader;
+                if (i === 0) this.compiledData.shaders[0] = shader;
                 else this.compiledData.shaders.push(shader);
             }
             
@@ -316,7 +330,7 @@ class BlankEngine
                     path : `data/scenes/${this.buildData.scenes[i]}.json`
                 };
                 
-                if (this.compiledData.scenes.length == 0) this.compiledData.scenes[0] = newScene;
+                if (i === 0) this.compiledData.scenes[0] = newScene;
                 else this.compiledData.scenes.push(newScene);
             }
             
