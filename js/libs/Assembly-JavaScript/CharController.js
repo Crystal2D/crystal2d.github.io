@@ -1,18 +1,55 @@
 class CharController extends GameBehavior
 {
-    #input = new Vector2();
     #zoom = 0;
     #halt = 0;
+    #sprites = [];
+    
+    #input = new Vector2();
+    
+    #renderer = null;
     
     speed = 1;
     
     constructor () { super(); }
     
+    #SetSprite (direction)
+    {
+        if (direction.Equals(Vector2.zero)) return;
+        
+        const values = [
+            Vector2.down,
+            Vector2.left,
+            Vector2.right,
+            Vector2.up
+        ]
+        
+        let index = 0;
+        
+        for (let i = 0; i < 4; i++)
+        {
+            if (!direction.Equals(values[i])) continue;
+            
+            index = i + 1;
+            
+            break;
+        }
+        
+        this.#renderer.sprite = this.#sprites[index];
+    }
+    
     Start ()
     {
-        console.log("Start");
-        Crispixels.effect = true;
-        Application.gl.clearColor(0.25, 0.25, 0.25, 1);
+        const sprites = Resources.Find("sprites/characters/yoki").sprites;
+        
+        for (let i = 0; i < sprites.length; i++)
+        {
+            const sprite = sprites[i].Duplicate();
+            
+            if (this.#sprites.length === 0) this.#sprites[0] = sprite;
+            else this.#sprites.push(sprite);
+        }
+        
+        this.#renderer = this.GetComponent("SpriteRenderer");
     }
     
     FixedUpdate ()
@@ -31,9 +68,13 @@ class CharController extends GameBehavior
                 +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
             );
             
+            if (this.#input.abs.Equals(Vector2.one)) this.#input.y = 0;
+            
+            this.#SetSprite(this.#input);
+            
             if (!this.#input.Equals(Vector2.zero) && this.#halt <= 0 && Input.GetKeyDown(KeyCode.Shift)) this.#zoom = 0.125;
             
-            if (this.#zoom > 0) this.gameObject.components[1].material = Resources.Find("materials/mat_invert");
+            if (this.#zoom > 0) this.#renderer.material = Resources.Find("materials/mat_invert");
         }
         else
         {
@@ -42,11 +83,10 @@ class CharController extends GameBehavior
             this.#zoom -= Time.deltaTime;
         }
         
-        if (this.#halt > 0)
-        {
-            if (this.#halt - Time.deltaTime <= 0) this.gameObject.components[1].material = new Material();
-            
-            this.#halt -= Time.deltaTime;
-        }
+        if (this.#halt <= 0) return;
+        
+        if (this.#halt - Time.deltaTime <= 0) this.#renderer.material = new Material();
+        
+        this.#halt -= Time.deltaTime;
     }
 }
