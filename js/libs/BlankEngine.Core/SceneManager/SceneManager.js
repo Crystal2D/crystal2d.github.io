@@ -49,51 +49,12 @@ class SceneManager
         
         let object = null;
         
-        const libs = BlankEngine.Inner.compiledData.libs;
-        const scripts = BlankEngine.Inner.compiledData.scripts;
+        const foundClass = BlankEngine.Inner.GetClassOfType(type, 0);
         
-        let foundClass = false;
-        let construction = null;
-        let properties = [];
+        if (foundClass == null) return new Object();
         
-        for (let iA = 0; iA < libs.length; iA++)
-        {
-            for (let iB = 0; iB < libs[iA].scripts.length; iB++)
-            {
-                if (libs[iA].scripts[iB].classes == null) continue;
-                
-                for (let iC = 0; iC < libs[iA].scripts[iB].classes.length; iC++)
-                {
-                    if (libs[iA].scripts[iB].classes[iC].name !== type || libs[iA].scripts[iB].classes[iC].type !== 0) continue;
-                    
-                    construction = libs[iA].scripts[iB].classes[iC].construction;
-                    properties = libs[iA].scripts[iB].classes[iC].args;
-                    
-                    foundClass = true;
-                    
-                    break;
-                }
-            }
-        }
-        
-        for (let iA = 0; iA < scripts.length; iA++)
-        {
-            if (scripts[iA].classes == null) continue;
-            
-            for (let iB = 0; iA < scripts[iA].classes.length; iB++)
-            {
-                if (scripts[iA].classes[iB].name !== type || scripts[iA].classes[iB].type !== 0) continue;
-                
-                construction = scripts[iA].classes[iB].construction;
-                properties = scripts[iA].classes[iB].args;
-                
-                foundClass = true;
-                
-                break;
-            }
-        }
-        
-        if (!foundClass) return new Object();
+        const construction = foundClass.construction;
+        const properties = foundClass.args;
         
         if (construction != null)
         {
