@@ -1,11 +1,9 @@
 {
     "name" : "Scene",
     "resources" : [
-        "sprites/square",
-        "sprites/ball",
         "sprites/characters/yoki",
-        "materials/mat_invert",
-        "sprites/s"
+        "sprites/square",
+        "materials/mat_invert"
     ],
     "gameObjects" : [
         {
@@ -16,6 +14,9 @@
             },
             "components" : [
                 {
+                    "type" : "CameraController"
+                },
+                {
                     "type" : "Camera",
                     "args" : {
                         "orthographicSize" : 8
@@ -24,21 +25,25 @@
             ]
         },
         {
-            "name" : "char_main",
+            "name" : "char_yoki",
             "active" : true,
+            "transform" : {
+                "scale" : { "x" : 6, "y" : 6 }
+            },
             "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                },
                 {
                     "type" : "CharController",
                     "args" : {
                         "speed" : 2
+                    }
+                },
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/characters/yoki",
+                            "index" : 1
+                        }
                     }
                 }
             ]
@@ -55,98 +60,6 @@
                     "args" : {
                         "sprite" : {
                             "texture" : "sprites/square"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "test_sprBase",
-            "active" : true,
-            "transform" : {
-                "position" : { "x" : 9, "y" : -3.5 },
-                "scale" : { "x" : 6, "y" : 6 }
-            },
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/s"
-                        },
-                        "color" : {
-                            "r" : 0.5,
-                            "g" : 0.5,
-                            "b" : 0.5
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "test_spr",
-            "active" : true,
-            "transform" : {
-                "position" : { "x" : 9, "y" : -3.5 },
-                "scale" : { "x" : 6, "y" : 6 }
-            },
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/s",
-                            "rect" : {
-                                "width" : 5,
-                                "height" : 5,
-                                "x" : 0
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "obj_yokiBase",
-            "active" : true,
-            "transform" : {
-                "position" : { "x" : 9, "y" : -3.5 },
-                "scale" : { "x" : 6, "y" : 6 }
-            },
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/characters/yoki"
-                        },
-                        "color" : {
-                            "r" : 0.5,
-                            "g" : 0.5,
-                            "b" : 0.5
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "char_yoki",
-            "active" : true,
-            "transform" : {
-                "position" : { "x" : 9, "y" : -3.5 },
-                "scale" : { "x" : 6, "y" : 6 }
-            },
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/characters/yoki",
-                            "rect" : {
-                                "width" : 16,
-                                "height" : 16,
-                                "x" : 0
-                            }
                         }
                     }
                 }
