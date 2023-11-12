@@ -160,6 +160,11 @@ class Vector2
         return new Vector2((this.x / this.magnitude) || 0, (this.y / this.magnitude) || 0);
     }
     
+    get abs ()
+    {
+        return new Vector2(Math.abs(this.x), Math.abs(this.y));
+    }
+    
     
     // Constructor
     
