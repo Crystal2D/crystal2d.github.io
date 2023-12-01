@@ -40,35 +40,33 @@ class Camera extends Behavior
     {
         const camM = this.worldToCameraMatrix;
         
-        if (this.#updateProjMat)
-        {
-            this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
-        }
+        if (this.#updateProjMat) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
         
         const mScale = new Vector2(1 / (Application.htmlCanvas.width / Application.htmlCanvas.height), -1);
         
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
         
-        for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
+        const renderers = GameObject.FindComponents("Renderer");
+        
+        for (let i = 0; i < renderers.length; i++)
         {
-            if (!SceneManager.GetActiveScene().gameObjects[iA].activeSelf) continue;
+            let lWM = renderers[i].transform.localToWorldMatrix;
             
-            const renderers = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("SpriteRenderer");
+            lWM.matrix[2][1] *= -1;
+            lWM.matrix[2][0] *= -1;
             
-            for (let iB = 0; iB < renderers.length; iB++)
-            {
-                let lWM = renderers[iB].gameObject.transform.localToWorldMatrix;
-                
-                lWM.matrix[2][1] *= -1;
-                lWM.matrix[2][0] *= -1;
-                
-                let renM = Matrix3x3.Multiply(Matrix3x3.Multiply(Matrix3x3.Multiply(transM, this.#projMatrix), camM), lWM);
-                
-                renM.matrix[2][0] *= -1;
-                
-                renderers[iB].localSpaceMatrix = renM;
-                renderers[iB].Render();
-            }
+            let renM = Matrix3x3.Multiply(
+                Matrix3x3.Multiply(
+                    Matrix3x3.Multiply(transM, this.#projMatrix),
+                    camM
+                ),
+                lWM
+            );
+            
+            renM.matrix[2][0] *= -1;
+            
+            renderers[i].localSpaceMatrix = renM;
+            renderers[i].Render();
         }
     }
 }
