@@ -1,8 +1,8 @@
 class PlayerLoopSystem
 {
     name = "";
-    loopConditionFunction = () => { return true; };
     subSystemList = [];
+    loopConditionFunction = () => { return true; };
     updateDelegate = () => { };
     updateFunction = () => {
         if (!this.loopConditionFunction()) return;
@@ -20,8 +20,8 @@ class PlayerLoopSystem
         
         const dat = data ?? { };
         
-        if (dat.loopConditionFunction != null) this.loopConditionFunction = dat.loopConditionFunction;
         if (dat.subSystemList != null) this.subSystemList = dat.subSystemList;
+        if (dat.loopConditionFunction != null) this.loopConditionFunction = dat.loopConditionFunction;
         if (dat.updateDelegate != null) this.updateDelegate = dat.updateDelegate;
         if (dat.updateFunction != null) this.updateFunction = dat.updateFunction;
     }

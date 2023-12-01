@@ -37,10 +37,12 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorStart", {
                         loopConditionFunction : () => {
-                            return document.hasFocus();
+                            return document.hasFocus() && SceneManager.GetActiveScene().isLoaded;
                         },
                         updateDelegate : () => {
-                            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Start", null, { clearAfter : true });
+                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
+                            
+                            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Start", null, { clearAfter : true });
                         }
                     })
                 ]
@@ -123,10 +125,12 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorFixedUpdate", {
                         loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0;
+                            return document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded;
                         },
                         updateDelegate : () => {
-                            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("FixedUpdate");
+                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
+                            
+                            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("FixedUpdate");
                         }
                     })
                 ]
@@ -138,10 +142,12 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorUpdate", {
                         loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0;
+                            return document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded;
                         },
                         updateDelegate : () => {
-                            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("Update");
+                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
+                            
+                            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Update");
                         }
                     })
                 ]
@@ -153,10 +159,12 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorLateUpdate", {
                         loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0;
+                            return document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded;
                         },
                         updateDelegate : () => {
-                            for (let i = 0; i < SceneManager.GetActiveScene().gameObjects.length; i++) SceneManager.GetActiveScene().gameObjects[i].BroadcastMessage("LateUpdate");
+                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
+                            
+                            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("LateUpdate");
                         }
                     })
                 ]
@@ -172,27 +180,13 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("UpdateAllRenderers", {
                         loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0;
+                            return document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded;
                         },
                         updateDelegate : () => {
-                            for (let iA = 0; iA < SceneManager.GetActiveScene().gameObjects.length; iA++)
-                            {
-                                const cameras = SceneManager.GetActiveScene().gameObjects[iA].GetComponents("Camera");
-                                
-                                for (let iB = 0; iB < cameras.length; iB++)
-                                {
-                                    cameras[iB].Render();
-                                }
-                            }
+                            const cameras = GameObject.FindComponents("Camera");
                             
-                            Application.gl.flush();
-                        }
-                    }),
-                    new PlayerLoopSystem("UpdateAllRenderers", {
-                        loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0;
-                        },
-                        updateDelegate : () => {
+                            for (let i = 0; i < cameras.length; i++) cameras[i].Render();
+                            
                             Application.gl.flush();
                         }
                     }),
