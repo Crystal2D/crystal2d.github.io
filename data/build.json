@@ -1,5 +1,6 @@
 {
     "libs" : [
+        "BlankEngine.BitmapText",
         "Assembly-JavaScript"
     ],
     "scripts" : [
@@ -15,7 +16,7 @@
                     "type" : "Texture",
                     "args" : {
                         "src" : "square_outline.png",
-                        "filterMode" : 1
+                        "pixelPerUnit" : 30
                     }
                 },
                 {
@@ -27,7 +28,6 @@
                             "type" : "Texture",
                             "args" : {
                                 "src" : "characters/yoki.png",
-                                "filterMode" : 1,
                                 "sprites" : [
                                     {
                                         "rect" : {
@@ -62,6 +62,14 @@
                     ]
                 }
             ]
+        },
+        {
+            "name" : "font_main",
+            "type" : "FontAtlas",
+            "args" : {
+                "texture" : "font.png",
+                "glyphs" : "font"
+            }
         },
         {
             "name" : "materials",
