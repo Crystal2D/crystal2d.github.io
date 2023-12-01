@@ -9,11 +9,6 @@ class ShaderAttribute
     #gl = null;
     #program = null;
     
-    get name ()
-    {
-        return this.#name;
-    }
-    
     get enabled ()
     {
         return this.#enabled;
@@ -31,6 +26,11 @@ class ShaderAttribute
         else gl.disableVertexAttribArray(this.#index);
         
         gl.useProgram(null);
+    }
+    
+    get name ()
+    {
+        return this.#name;
     }
     
     constructor (name, type, program)

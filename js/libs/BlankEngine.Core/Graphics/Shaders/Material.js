@@ -12,26 +12,6 @@ class Material
     #vertex = null;
     #fragment = null;
     
-    get gl ()
-    {
-        return this.#gl;
-    }
-    
-    get program ()
-    {
-        return this.#program;
-    }
-    
-    get vertexShader ()
-    {
-        return this.#vertex;
-    }
-    
-    get fragmentShader ()
-    {
-        return this.fragment;
-    }
-    
     get color ()
     {
         return this.#color;
@@ -42,6 +22,26 @@ class Material
         this.#color = value;
         
         this.SetVector(this.#uColorID, this.#color.r, this.#color.g, this.#color.b, this.#color.a)
+    }
+    
+    get vertexShader ()
+    {
+        return this.#vertex;
+    }
+    
+    get fragmentShader ()
+    {
+        return this.#fragment;
+    }
+    
+    get gl ()
+    {
+        return this.#gl;
+    }
+    
+    get program ()
+    {
+        return this.#program;
     }
     
     #Prop = class
