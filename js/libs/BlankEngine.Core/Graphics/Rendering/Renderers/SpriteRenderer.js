@@ -1,24 +1,7 @@
-class SpriteRenderer extends Component
+class SpriteRenderer extends Renderer
 {
-    #loaded = false;
-    #uMatrixID = 0;
-    #geometryBufferID = 0;
-    #textureBufferID = 0;
-    #aVertexPosID = 0;
-    #aTexturePosID = 0;
-    
     #sprite = null;
     #spriteOld = null;
-    #material = null;
-    #materialOld = null;
-    
-    color = Color.white;
-    localSpaceMatrix = new Matrix3x3();
-    
-    get isLoaded ()
-    {
-        return this.#loaded;
-    }
     
     get sprite ()
     {
@@ -29,66 +12,33 @@ class SpriteRenderer extends Component
     {
         this.#sprite = value;
         
-        this.#CheckImg();
-    }
-    
-    get material ()
-    {
-        return this.#materialOld;
-    }
-    
-    set material (value)
-    {
-        this.#material = value;
-        
-        this.#CheckImg();
+        this.Reload();
     }
     
     constructor (sprite, material)
     {
-        super();
+        super(material);
         
-        this.#sprite = sprite;
-        
-        this.#material = material ?? new Material();
-        
-        this.#CheckImg();
+        this.sprite = sprite;
     }
     
-    #CheckImg ()
+    Reload ()
     {
-        requestAnimationFrame(() => {
-            if (this.#sprite.texture.isLoaded) this.Load();
-            else this.#CheckImg();
-        });
-    }
-    
-    Load ()
-    {
-        const gl = this.#material.gl;
+        if (!this.#sprite.texture.isLoaded)
+        {
+            requestAnimationFrame(() => this.Reload());
+            
+            return;
+        }
         
-        this.#material.SetSampler2D("uSampler", 0);
-        
-        const geometryBuffer = this.#material.AddBuffer("geometry", null, 2);
-        const textureBuffer = this.#material.AddBuffer("texture", null, 2);
+        super.Reload();
         
         this.#spriteOld = this.#sprite;
-        this.#materialOld = this.#material;
-        
-        this.#uMatrixID = this.material.GetPropertyNameID("uMatrix");
-        
-        this.#geometryBufferID = geometryBuffer;
-        this.#textureBufferID = textureBuffer;
-        
-        this.#aVertexPosID = this.material.GetAttributeNameID("aVertexPos");
-        this.#aTexturePosID = this.material.GetAttributeNameID("aTexturePos");
-        
-        this.#loaded = true;
     }
     
     Render ()
     {
-        if (!this.#loaded || !this.gameObject.activeSelf) return;
+        if (!this.isLoaded || !this.gameObject.activeSelf) return;
         
         const gl = this.material.gl;
         
@@ -106,10 +56,27 @@ class SpriteRenderer extends Component
             rectArray[index + 1] = vertex.y;
         }
         
+        const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
         const texY = this.sprite.texture.height;
         
-        const scale = texX > texY ? new Vector2(1, texY / texX) : new Vector2(texX / texY, 1);
+        let scale = null;
+        let ppuScaler = 0;
+        
+        if (texX > texY)
+        {
+            scale = new Vector2(1, texY / texX);
+            
+            ppuScaler = texX / ppu;
+        }
+        else
+        {
+            scale = new Vector2(texX / texY, 1);
+            
+            ppuScaler = texY / ppu;
+        }
+        
+        scale = Vector2.Scale(scale, ppuScaler);
         
         const scalePos = Vector2.Scale(Vector2.Subtract(Vector2.one, scale), -0.5);
         
@@ -139,7 +106,7 @@ class SpriteRenderer extends Component
         
         this.material.color = this.color;
         
-        this.material.SetMatrix(this.#uMatrixID,
+        this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],
             localMatrix.matrix[0][1],
             localMatrix.matrix[0][2],
@@ -151,11 +118,11 @@ class SpriteRenderer extends Component
             localMatrix.matrix[2][2]
         );
         
-        this.material.SetBuffer(this.#geometryBufferID, rectArray);
-        this.material.SetBuffer(this.#textureBufferID, rectArray);
+        this.material.SetBuffer(this.geometryBufferID, rectArray);
+        this.material.SetBuffer(this.textureBufferID, rectArray);
         
-        this.material.SetAttribute(this.#aVertexPosID, this.#geometryBufferID);
-        this.material.SetAttribute(this.#aTexturePosID, this.#textureBufferID);
+        this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
+        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
         
         gl.useProgram(this.material.program);
         
