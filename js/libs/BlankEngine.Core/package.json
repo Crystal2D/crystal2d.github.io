@@ -20,7 +20,7 @@
         "Math/Geometry/Rect",
         "Math/Geometry/Ray",
         "Math/Geometry/Bounds",
-        "Transform/Transform",
+        "Transform",
         "GameObject",
         "SceneManager/SceneManager",
         "SceneManager/Scene",
@@ -33,6 +33,7 @@
         "Graphics/Texture",
         "Graphics/Sprite",
         "Graphics/Rendering/Camera",
+        "Graphics/Rendering/Renderers/Renderer",
         "Graphics/Rendering/Renderers/SpriteRenderer"
     ],
     "classes" : [
@@ -115,7 +116,7 @@
         {
             "name" : "GameObject",
             "type" : 0,
-            "construction" : "return new GameObject(data.name, data.components, data.active, await toObject(\"Transform\", data.transform));"
+            "construction" : "const transform = await toObject(\"Transform\", data.transform); transform.parent = data.parent; return new GameObject(data.name, data.components, data.active, transform, data.id);"
         },
         {
             "name" : "Material",
@@ -132,6 +133,10 @@
             "type" : 1,
             "construction" : "const output = new Texture(data.src); await output.Load(); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); output.sprites.push(newSprite); } return output;",
             "args" : [
+                {
+                    "name" : "pixelPerUnit",
+                    "type" : "number"
+                },
                 {
                     "name" : "wrapMode",
                     "type" : "number"

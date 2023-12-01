@@ -4,6 +4,13 @@ class GameObject
     #name = "Empty Object";
     #components = [];
     
+    #id = null;
+    
+    get activeSelf ()
+    {
+        return this.#active;
+    }
+    
     get name ()
     {
         return this.#name;
@@ -18,9 +25,17 @@ class GameObject
         for (let i = 0; i < this.#components.length; i++) components[i].name = this.name;
     }
     
-    get activeSelf ()
+    get transform ()
     {
-        return this.#active;
+        return this.#components[0];
+    }
+    
+    set transform (value)
+    {
+        this.#components[0] = value;
+        
+        this.#components[0].gameObject = this;
+        this.#components[0].name = this.name;
     }
     
     get components ()
@@ -43,30 +58,42 @@ class GameObject
         }
     }
     
-    get transform ()
+    constructor (name, components, active, transform, id)
     {
-        return this.#components[0];
-    }
-    
-    set transform (value)
-    {
-        this.#components[0] = value;
-        
-        this.#components[0].gameObject = this;
-        this.#components[0].name = this.name;
-    }
-    
-    constructor (name, components, active, transform)
-    {
-        this.name = name ?? "Empty Object";
+        this.#id = id;
+        this.#name = name ?? "Empty Object";
         this.#active = active ?? true;
-        this.transform = transform ?? new Transform();
+        this.#components[0] = transform ?? new Transform();
         this.components = components ?? [];
     }
     
     static Find (name)
     {
-        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name);
+        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name && element.activeSelf);
+    }
+    
+    static FindByID (id)
+    {
+        return SceneManager.GetActiveScene().gameObjects.find(element => element.GetSceneID() === id);
+    }
+    
+    static FindComponents (type)
+    {
+        const gameObjs = SceneManager.GetActiveScene().gameObjects;
+        
+        let output = [];
+        
+        for (let i = 0; i < gameObjs.length; i++)
+        {
+            if (!gameObjs[i].activeSelf) continue;
+            
+            const components = gameObjs[i].GetComponents(type);
+            
+            if (output.length === 0) output = components;
+            else output.push(...components);
+        }
+        
+        return output;
     }
     
     #IsComponent (item, type, includeInactive)
@@ -74,6 +101,11 @@ class GameObject
         if (!(eval(`item instanceof ${type}`)) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
         
         return true;
+    }
+    
+    GetSceneID ()
+    {
+        return this.#id;
     }
     
     SetActive (state)
@@ -123,16 +155,16 @@ class GameObject
     {
         const components = this.#components;
         
-        let newComps = [];
+        let output = [];
         
         for (let i = 0; i < components.length; i++)
         {
             if (!this.#IsComponent(components[i], type, false)) continue;
             
-            if (newComps.length === 0) newComps[0] = components[i];
-            else newComps.push(components[i]);
+            if (output.length === 0) output[0] = components[i];
+            else output.push(components[i]);
         }
         
-        return newComps;
+        return output;
     }
 }
