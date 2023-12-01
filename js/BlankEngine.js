@@ -239,7 +239,8 @@ class BlankEngine
                 
                 this.#terminateStart = true;
                 
-                if (Application.hasLoaded) Application.Unload();
+                if (Application.isLoaded) Application.Unload();
+                else Application.htmlCanvas.style.display = "none";
                 
                 document.body.style.margin = "12px";
                 document.body.style.display = "block";

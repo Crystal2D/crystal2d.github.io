@@ -37,6 +37,39 @@ class Window
      */
     static fullScreen = false;
     
+    static get fillWindow ()
+    {
+        return this.#fillWin;
+    }
+    
+    static get resizable ()
+    {
+        return this.#resizable;
+    }
+    
+    static set resizable (value)
+    {
+        this.#sizeChanged = true;
+        
+        this.#resizable = value;
+    }
+    
+    static set fillWindow (value)
+    {
+        if (value)
+        {
+            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
+            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+        }
+        else
+        {
+            Application.htmlCanvas.width = this.#x;
+            Application.htmlCanvas.height = this.#y;
+        }
+        
+        this.#fillWin = value;
+    }
+    
     static get width ()
     {
         return this.#x;
@@ -65,39 +98,6 @@ class Window
     static get windowHeight ()
     {
         return this.#winY || this.#y;
-    }
-    
-    static get resizable ()
-    {
-        return this.#resizable;
-    }
-    
-    static set resizable (value)
-    {
-        this.#sizeChanged = true;
-        
-        this.#resizable = value;
-    }
-    
-    static get fillWindow ()
-    {
-        return this.#fillWin;
-    }
-    
-    static set fillWindow (value)
-    {
-        if (value)
-        {
-            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
-            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
-        }
-        else
-        {
-            Application.htmlCanvas.width = this.#x;
-            Application.htmlCanvas.height = this.#y;
-        }
-        
-        this.#fillWin = value;
     }
     
     
