@@ -1,1 +1,29 @@
-
+{
+    "name" : "BlankEngine.BitmapText",
+    "description" : "Implements text rendering based on bitmaps",
+    "scripts" : [
+        "FontAtlas",
+        "FontGlyph"
+    ],
+    "classes" : [
+        {
+            "name" : "FontAtlas",
+            "type" : 1,
+            "construction" : "const texture = new Texture(data.texture); texture.filterMode = +(data.smooth === true); await texture.Load(); let glyphsData = data.glyphs; if (typeof glyphsData === \"string\") { const request = await fetch(`data/${data.glyphs}.json`); glyphsData = await request.json(); } let glyphs = []; for (let i = 0; i < glyphsData.length; i++) { const glyph = await toObject(\"FontGlyph\", glyphsData[i]); if (i === 0) glyphs[0] = glyph; else glyphs.push(glyph); } return new FontAtlas(texture, glyphs);"
+        },
+        {
+            "name" : "FontGlyph",
+            "type" : 0,
+            "args" : [
+                {
+                    "name" : "character",
+                    "type" : "string"
+                },
+                {
+                    "name" : "rect",
+                    "type" : "Rect"
+                }
+            ]
+        }
+    ]
+}
