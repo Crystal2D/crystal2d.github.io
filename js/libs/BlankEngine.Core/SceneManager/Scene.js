@@ -7,6 +7,11 @@ SceneManager.Scene = class
     name = "scene";
     gameObjects = [];
     
+    get isLoaded ()
+    {
+        return this.#loaded;
+    }
+    
     get buildIndex ()
     {
         return this.#data.buildIndex;
@@ -15,11 +20,6 @@ SceneManager.Scene = class
     get path ()
     {
         return this.#data.path;
-    }
-    
-    get isLoaded ()
-    {
-        return this.#loaded;
     }
     
     constructor (name, data)
@@ -41,40 +41,46 @@ SceneManager.Scene = class
     
     async #LoadRes ()
     {
-        if (this.#data.resources == null) this.#data.resources = [];
-        
         for (let i = 0; i < this.#data.resources.length; i++) await Resources.Load(this.#data.resources[i]);
+    }
+    
+    async #LoadComponents (components)
+    {
+        let output = [];
+        
+        for (let i = 0; i < components.length; i++)
+        {
+            let component = await SceneManager.CreateObject(components[i].type, components[i].args);
+            
+            if (i === 0) output[0] = component;
+            else output.push(component);
+        }
+        
+        return output;
     }
     
     async #LoadObjects ()
     {
-        if (this.#data.gameObjects == null) this.#data.gameObjects = [];
-        
-        let newGameObjs = [];
-        
-        for (let iA = 0; iA < this.#data.gameObjects.length; iA++)
+        for (let i = 0; i < this.#data.gameObjects.length; i++)
         {
-            let components = [];
+            const objData = this.#data.gameObjects[i];
+            const components = await this.#LoadComponents(objData.components ?? []);
             
-            for (let iB = 0; iB < this.#data.gameObjects[iA].components.length; iB++)
-            {
-                let component = await SceneManager.CreateObject(this.#data.gameObjects[iA].components[iB].type, this.#data.gameObjects[iA].components[iB].args);
-                
-                if (components.length === 0) components[0] = component;
-                else components.push(component);
-            }
+            let objParent = null;
             
-            const newGameObj = await SceneManager.CreateObject("GameObject", {
-                name : this.#data.gameObjects[iA].name,
+            if (objData.parent != null) objParent = this.gameObjects.find(element => element.GetSceneID() === objData.parent).transform;
+            
+            const gameObj = await SceneManager.CreateObject("GameObject", {
+                name : objData.name,
                 components : components,
-                active : this.#data.gameObjects[iA].active,
-                transform : this.#data.gameObjects[iA].transform
+                active : objData.active,
+                transform : objData.transform,
+                id : objData.id,
+                parent : objParent
             });
             
-            if (newGameObjs.length === 0) newGameObjs[0] = newGameObj;
-            else newGameObjs.push(newGameObj);
+            if (i === 0) this.gameObjects[0] = gameObj;
+            else this.gameObjects.push(gameObj);
         }
-        
-        this.gameObjects = newGameObjs;
     }
 }
