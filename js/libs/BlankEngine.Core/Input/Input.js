@@ -70,7 +70,7 @@ class Input
             new this.#Key("f11", "F11"),
             new this.#Key("f12", "F12"),
             new this.#Key("x", "x"),
-            new this.#Key("z", "x")
+            new this.#Key("z", "z")
         ];
         
         document.addEventListener("keydown", event => {
