@@ -11,16 +11,12 @@ class Texture
     #gl = null;
     #texture = null;
     
+    pixelPerUnit = 16;
     sprites = [];
     
     get isLoaded ()
     {
         return this.#loaded;
-    }
-    
-    get img ()
-    {
-        return this.#img;
     }
     
     get width ()
@@ -81,10 +77,10 @@ class Texture
         switch (value)
         {
             case 0:
-                mode = gl.LINEAR;
+                mode = gl.NEAREST;
                 break;
             case 1:
-                mode = gl.NEAREST;
+                mode = gl.LINEAR;
                 break;
         }
         
@@ -92,6 +88,11 @@ class Texture
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, mode);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, mode);
         gl.bindTexture(gl.TEXTURE_2D, null);
+    }
+    
+    get img ()
+    {
+        return this.#img;
     }
     
     constructor (src)
@@ -102,6 +103,9 @@ class Texture
         this.#gl = Application.gl;
         
         this.#texture = this.#gl.createTexture();
+        
+        this.wrapMode = 0;
+        this.filterMode = 0;
         
         this.#src = src;
     }

@@ -5,6 +5,19 @@ class Sprite
     texture = null;
     rect = null;
     
+    get pixelPerUnit ()
+    {
+        return this.texture.pixelPerUnit;
+    }
+    
+    get triangles ()
+    {
+        return [
+            0, 2, 1,
+            2, 3, 1
+        ];
+    }
+    
     get vertices ()
     {
         const rect = new Rect(
@@ -19,14 +32,6 @@ class Sprite
             new Vector2(rect.xMax, rect.y),
             new Vector2(rect.x, rect.yMax),
             new Vector2(rect.xMax, rect.yMax)
-        ];
-    }
-    
-    get triangles ()
-    {
-        return [
-            0, 2, 1,
-            2, 3, 1
         ];
     }
     
