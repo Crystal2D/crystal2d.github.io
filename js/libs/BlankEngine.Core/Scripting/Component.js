@@ -1,29 +1,39 @@
 class Component
 {
-    gameObject = null;
+    #gameObj = null;
     
     get transform ()
     {
-        return this.gameObject.transform;
+        return this.#gameObj.transform;
     }
     
     set transform (value)
     {
-        this.gameObject.transform = value;
+        this.#gameObj.transform = value;
+    }
+    
+    get gameObject ()
+    {
+        return this.#gameObj;
+    }
+    
+    set gameObject (value)
+    {
+        this.#gameObj = value;
     }
     
     BroadcastMessage (method, params, data)
     {
-        this.gameObject.BroadcastMessage(method, params, data);
+        this.#gameObj.BroadcastMessage(method, params, data);
     }
     
     GetComponent (type)
     {
-        return this.gameObject.GetComponent(type);
+        return this.#gameObj.GetComponent(type);
     }
     
     GetComponents (type)
     {
-        return this.gameObject.GetComponents(type);
+        return this.#gameObj.GetComponents(type);
     }
 }
