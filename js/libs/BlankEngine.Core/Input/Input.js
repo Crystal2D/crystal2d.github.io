@@ -9,13 +9,15 @@ class Input
     {
         active = false;
         lastState = false;
+        isLetter = false;
         name = "";
         code = "";
         
-        constructor (name, code)
+        constructor (name, code, isLetter)
         {
             this.name = name;
             this.code = code;
+            this.isLetter = isLetter ?? false;
         }
     }
     
@@ -39,7 +41,7 @@ class Input
         let output = -1;
         
         this.#keys.find((element, index) => {
-            if (element.code !== code) return false;
+            if (element.code !== (element.isLetter ? code.toLowerCase() : code)) return false;
             
             output = index;
             
@@ -69,8 +71,8 @@ class Input
             new this.#Key("f10", "F10"),
             new this.#Key("f11", "F11"),
             new this.#Key("f12", "F12"),
-            new this.#Key("x", "x"),
-            new this.#Key("z", "z")
+            new this.#Key("x", "x", true),
+            new this.#Key("z", "z", true)
         ];
         
         document.addEventListener("keydown", event => {
