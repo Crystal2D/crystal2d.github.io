@@ -17,4 +17,6 @@ class KeyCode
     static get F10 () { return 14; }
     static get F11 () { return 15; }
     static get F12 () { return 16; }
+    static get X () { return 17; }
+    static get Z () { return 18; }
 }
