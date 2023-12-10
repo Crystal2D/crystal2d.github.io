@@ -54,24 +54,7 @@
         {
             "name" : "Color",
             "type" : 0,
-            "args" : [
-                {
-                    "name" : "r",
-                    "type" : "number"
-                },
-                {
-                    "name" : "g",
-                    "type" : "number"
-                },
-                {
-                    "name" : "b",
-                    "type" : "number"
-                },
-                {
-                    "name" : "a",
-                    "type" : "number"
-                }
-            ]
+            "construction" : "return new Color((data.r ?? 0) / 255, (data.g ?? 0) / 255, (data.b ?? 0) / 255, (data.a ?? 255) / 255);"
         },
         {
             "name" : "Rect",
