@@ -19,7 +19,7 @@ class Color
     
     constructor (r, g, b, a)
     {
-        this.Set(r ?? 0, g ?? 0, b ?? 0, a ?? 1);
+        this.Set(r, g, b, a ?? 1);
     }
     
     toString ()
@@ -34,5 +34,10 @@ class Color
         this.b = b;
         
         if (a != null) this.a = a;
+    }
+    
+    Duplicate ()
+    {
+        return new Color(this.r, this.g, this.b, this.a);
     }
 }
