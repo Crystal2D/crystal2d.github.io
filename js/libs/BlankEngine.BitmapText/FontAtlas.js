@@ -2,6 +2,8 @@ class FontAtlas
 {
     #glyphs = [];
     
+    lineHeight = 20;
+    
     texture = null;
     
     constructor (texture, glyphs)
