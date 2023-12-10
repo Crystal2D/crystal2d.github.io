@@ -3,7 +3,6 @@
     "resources" : [
         "sprites/characters/yoki",
         "font_main",
-        "sprites/square",
         "materials/mat_invert"
     ],
     "gameObjects" : [
@@ -44,37 +43,66 @@
             ]
         },
         {
-            "name" : "obj_square",
+            "name" : "text_hi",
             "id" : 2,
-            "parent" : 1,
+            "transform": {
+                "position" : { "y" : 2 }
+            },
             "components" : [
                 {
-                    "type" : "SpriteRenderer",
+                    "type" : "Text",
                     "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/square"
+                        "font" : "font_main",
+                        "text" : "Welcome 2 whatever this is!",
+                        "fontSize" : 0.75,                        
+                        "width" : 6.25,
+                        "horizontalAlign" : 1,
+                        "color" : {
+                            "r" : 224,
+                            "g" : 248,
+                            "b" : 207
                         }
                     }
                 }
             ]
         },
         {
-            "name" : "obj_textLookup",
+            "name" : "text_ctrls",
             "id" : 3,
-            "transform" : {
-                "position" : { "x" : 4 }
+            "transform": {
+                "position" : { "x" : -1, "y" : -2 }
             },
             "components" : [
                 {
-                    "type" : "SpriteRenderer",
+                    "type" : "Text",
                     "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/square"
-                        }
+                        "font" : "font_main",
+                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Dash",
+                        "fontSize" : 0.37
                     }
-                },
+                }
+            ]
+        },
+        {
+            "name" : "text_updates",
+            "id" : 4,
+            "transform": {
+                "position" : { "x" : 6.5, "y" : 2.5 }
+            },
+            "components" : [
                 {
-                    "type" : "TextLookup"
+                    "type" : "Text",
+                    "args" : {
+                        "font" : "font_main",
+                        "text" : "There's now txt! We can now + updates, tips, descs, comments / even just spam on test scenes\n\nNext thing 2 + is d animator\nB4 that, I want n need 2 + culling 2 + perf. Right now all is rendered, also d unseen",
+                        "fontSize" : 0.5,
+                        "width" : 6,
+                        "pivot" : {
+                            "x" : 0.5,
+                            "y" : 0
+                        },
+                        "overflowHeight" : true
+                    }
                 }
             ]
         }
