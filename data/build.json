@@ -68,7 +68,8 @@
             "type" : "FontAtlas",
             "args" : {
                 "texture" : "font.png",
-                "glyphs" : "font"
+                "glyphs" : "font",
+                "pixelPerUnit" : 30
             }
         },
         {
