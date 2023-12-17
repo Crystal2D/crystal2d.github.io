@@ -21,7 +21,11 @@ class Camera extends Behavior
     get worldToCameraMatrix ()
     {
         const gOTrans = this.gameObject.transform;
-        const output = Matrix3x3.TRS(gOTrans.position, 5.555555555555556e-3 * -gOTrans.rotation * Math.PI, gOTrans.scale);
+        const output = Matrix3x3.TRS(
+            gOTrans.localPosition,
+            5.555555555555556e-3 * -gOTrans.localRotation * Math.PI,
+            gOTrans.localScale
+        );
         
         return output;
     }
