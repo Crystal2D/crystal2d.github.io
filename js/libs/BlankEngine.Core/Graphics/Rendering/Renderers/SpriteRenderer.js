@@ -1,5 +1,10 @@
 class SpriteRenderer extends Renderer
 {
+    #trisCount = 0;
+    #rectArray = [];
+    
+    #transMat = new Matrix3x3();
+    
     #sprite = null;
     #spriteOld = null;
     
@@ -34,13 +39,6 @@ class SpriteRenderer extends Renderer
         super.Reload();
         
         this.#spriteOld = this.#sprite;
-    }
-    
-    Render ()
-    {
-        if (!this.isLoaded || !this.gameObject.activeSelf) return;
-        
-        const gl = this.material.gl;
         
         const vertices = this.sprite.vertices;
         const tris = this.sprite.triangles;
@@ -55,6 +53,9 @@ class SpriteRenderer extends Renderer
             rectArray[index] = vertex.x;
             rectArray[index + 1] = vertex.y;
         }
+        
+        this.#trisCount = tris.length;
+        this.#rectArray = rectArray;
         
         const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
@@ -78,7 +79,13 @@ class SpriteRenderer extends Renderer
         
         scale = Vector2.Scale(scale, ppuScaler);
         
-        const scalePos = Vector2.Scale(Vector2.Subtract(Vector2.one, scale), -0.5);
+        const scalePos = Vector2.Scale(
+            Vector2.Subtract(
+                Vector2.one,
+                scale
+            ),
+            -0.5
+        );
         
         const rectPos = vertices[0];
         
@@ -95,13 +102,22 @@ class SpriteRenderer extends Renderer
             )
         );
         
+        this.#transMat = Matrix3x3.TRS(
+            Vector2.Scale(offset, -1),
+            0,
+            scale
+        );
+    }
+    
+    Render ()
+    {
+        if (!this.isLoaded || !this.gameObject.activeSelf) return;
+        
+        const gl = this.material.gl;
+        
         const localMatrix = Matrix3x3.Multiply(
             this.localSpaceMatrix,
-            Matrix3x3.TRS(
-                Vector2.Scale(offset, -1),
-                0,
-                scale
-            )
+            this.#transMat
         );
         
         this.material.color = this.color;
@@ -118,8 +134,8 @@ class SpriteRenderer extends Renderer
             localMatrix.matrix[2][2]
         );
         
-        this.material.SetBuffer(this.geometryBufferID, rectArray);
-        this.material.SetBuffer(this.textureBufferID, rectArray);
+        this.material.SetBuffer(this.geometryBufferID, this.#rectArray);
+        this.material.SetBuffer(this.textureBufferID, this.#rectArray);
         
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
         this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
@@ -129,7 +145,7 @@ class SpriteRenderer extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.sprite.texture.GetNativeTexture());
         
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, tris.length);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount);
         
         gl.useProgram(null);
     }
