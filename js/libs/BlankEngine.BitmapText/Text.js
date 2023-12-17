@@ -3,7 +3,6 @@ class Text extends Renderer
     #meshChanged = false;
     #overflowX = false;
     #overflowY = false;
-    #tempWidth = 0;
     #tempHeight = 0;
     #width = 4;
     #height = 1;
@@ -12,6 +11,9 @@ class Text extends Renderer
     #words = [];
     #widths = [];
     #onMUpdate = [];
+    
+    #scale = Vector2.one;
+    #scalePos = Vector2.zero;
     
     #font = null;
     #colorOld = null;
@@ -36,6 +38,10 @@ class Text extends Renderer
     set fontSize (value)
     {
         this.#size = value;
+        
+        this.#ReloadScale();
+        
+        this.#meshChanged = true;
     }
     
     get font ()
@@ -48,6 +54,7 @@ class Text extends Renderer
         this.#font = value;
         
         this.#ReloadWords();
+        this.#ReloadScale();
     }
     
     get width ()
@@ -157,10 +164,8 @@ class Text extends Renderer
         this.font = font;
     }
     
-    #RenderSprite (sprite, glyphPos, color, alignY)
+    #NewChar (sprite, pos)
     {
-        const gl = this.material.gl;
-        
         const vertices = sprite.vertices;
         const tris = sprite.triangles;
         
@@ -175,68 +180,38 @@ class Text extends Renderer
             rectArray[index + 1] = vertex.y;
         }
         
-        const ppu = this.pixelPerUnit / this.#size;
-        const texX = sprite.texture.width;
-        const texY = sprite.texture.height;
-        
-        let scale = null;
-        let ppuScaler = 0;
-        
-        if (texX > texY)
-        {
-            scale = new Vector2(1, texY / texX);
-            
-            ppuScaler = texX / ppu;
-        }
-        else
-        {
-            scale = new Vector2(texX / texY, 1);
-            
-            ppuScaler = texY / ppu;
-        }
-        
-        scale = Vector2.Scale(scale, ppuScaler);
-        
-        const scalePos = Vector2.Scale(Vector2.Subtract(Vector2.one, scale), -0.5);
-        
         const rectPos = vertices[0];
         
         const center = new Vector2(
-            ((rectPos.x + 0.5 * (vertices[3].x - rectPos.x)) - 0.5) * scale.x,
-            ((rectPos.y + 0.5 * (vertices[3].y - rectPos.y)) - 0.5) * scale.y
+            ((rectPos.x + 0.5 * (vertices[3].x - rectPos.x)) - 0.5) * this.#scale.x,
+            ((rectPos.y + 0.5 * (vertices[3].y - rectPos.y)) - 0.5) * this.#scale.y
         );
         
-        let alignment = new Vector2();
+        const newChar = new TextChar();
         
-        switch (this.horizontalAlign)
-        {
-            case 0:
-                alignment.x = this.#width;
-                break;
-            case 1:
-                alignment.x = Math.min(this.#tempWidth, this.#width);
-                break;
-            case 2:
-                alignment.x = (this.#tempWidth * 2) - this.#width;
-                break;
-        }
+        newChar.sprite = sprite;
         
-        alignment.y = alignY;
+        newChar.trisCount = tris.length;
+        newChar.rectArray = rectArray;
         
-        const pivot = Vector2.Scale(
-            this.pivot,
-            alignment
+        newChar.initialOffset = Vector2.Add(
+            this.#scalePos,
+            center
         );
+        newChar.position = pos;
+        
+        newChar.color = this.#colorOld.Duplicate();
+        
+        return newChar;
+    }
+    
+    #RenderSprite (sprite, trisCount, rectArray, glyphOffset, color, pivot)
+    {
+        const gl = this.material.gl;
         
         const offset = Vector2.Add(
-            Vector2.Add(
-                pivot,
-                Vector2.Add(
-                    scalePos,
-                    center
-                )
-            ),
-            glyphPos
+            glyphOffset,
+            pivot
         );
         
         const localMatrix = Matrix3x3.Multiply(
@@ -244,7 +219,7 @@ class Text extends Renderer
             Matrix3x3.TRS(
                 Vector2.Scale(offset, -1),
                 0,
-                scale
+                this.#scale
             )
         );
         
@@ -273,7 +248,7 @@ class Text extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, sprite.texture.GetNativeTexture());
         
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, tris.length);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, trisCount);
         
         gl.useProgram(null);
     }
@@ -340,6 +315,39 @@ class Text extends Renderer
         this.#meshChanged = true;
     }
     
+    #ReloadScale ()
+    {
+        const ppu = this.pixelPerUnit / this.#size;
+        const texture = this.font.texture;
+        const texX = texture.width;
+        const texY = texture.height;
+        
+        let scale = null;
+        let ppuScaler = 0;
+        
+        if (texX > texY)
+        {
+            scale = new Vector2(1, texY / texX);
+            
+            ppuScaler = texX / ppu;
+        }
+        else
+        {
+            scale = new Vector2(texX / texY, 1);
+            
+            ppuScaler = texY / ppu;
+        }
+        
+        this.#scale = Vector2.Scale(scale, ppuScaler);
+        this.#scalePos = Vector2.Scale(
+            Vector2.Subtract(
+                Vector2.one,
+                this.#scale
+            ),
+            -0.5
+        );
+    }
+    
     #GetWordChars (sprites, pos)
     {
         const ppu = this.pixelPerUnit / this.#size;
@@ -352,16 +360,13 @@ class Text extends Renderer
             const sprite = sprites[i];
             const width = sprite.rect.width / ppu;
             
-            const newChar = new TextChar();
-            
-            newChar.sprite = sprite;
-            
-            newChar.position = new Vector2(
-                x - ((1 - width) * 0.5),
-                -pos.y
+            const newChar = this.#NewChar(
+                sprite,
+                new Vector2(
+                    x - ((1 - width) * 0.5),
+                    -pos.y
+                )
             );
-            
-            newChar.color = this.#colorOld.Duplicate();
             
             if (i === 0) chars[0] = newChar;
             else chars.push(newChar);
@@ -444,16 +449,13 @@ class Text extends Renderer
                         break;
                     }
                     
-                    const newChar = new TextChar();
-                    
-                    newChar.sprite = sprite;
-                    
-                    newChar.position = new Vector2(
-                        x - ((1 - charWidth) * 0.5),
-                        -y
+                    const newChar = this.#NewChar(
+                        sprite,
+                        new Vector2(
+                            x - ((1 - charWidth) * 0.5),
+                            -y
+                        )
                     );
-                    
-                    newChar.color = this.#colorOld.Duplicate();
                     
                     if (chars.length === 0) chars[0] = newChar;
                     else chars.push(newChar);
@@ -547,48 +549,80 @@ class Text extends Renderer
         let widthI = 0;
         let widthC = widths[0].count;
         
-        this.#tempWidth = widths[0].size;
+        const tempWidth = widths[0].size;
         
-        let alignY = 0;
+        let align = new Vector2();
+        
+        switch (this.horizontalAlign)
+        {
+            case 0:
+                align.x = this.#width;
+                break;
+            case 1:
+                align.x = Math.min(tempWidth, this.#width);
+                break;
+            case 2:
+                align.x = (tempWidth * 2) - this.#width;
+                break;
+        }
         
         switch (this.verticalAlign)
         {
             case 0:
-                alignY = this.#height;
+                align.y = this.#height;
                 break;
             case 1:
-                alignY = Math.min(this.#tempHeight, this.#height);
+                align.y = Math.min(this.#tempHeight, this.#height);
                 break;
             case 2:
-                alignY = (this.#tempHeight * 2) - this.#height;
+                align.y = (this.#tempHeight * 2) - this.#height;
                 break;
         }
         
+        let pivot = Vector2.Scale(
+            this.pivot,
+            align
+        );
+        
         for (let i = 0; i < chars.length; i++)
         {
-            if (widthC === 0)
+            if (this.horizontalAlign !== 0)
             {
-                widthI++;
+                if (widthC === 0)
+                {
+                    widthI++;
+                    
+                    const width = widths[widthI];
+                    
+                    widthC = width.count;
+                    
+                    const tempWidth = width.size;
+                    
+                    switch (this.horizontalAlign)
+                    {
+                        case 1:
+                            align.x = Math.min(tempWidth, this.#width);
+                            break;
+                        case 2:
+                            align.x = (tempWidth * 2) - this.#width;
+                            break;
+                    }
+                    
+                    pivot.x = this.pivot.x * align.x;
+                }
                 
-                const width = widths[widthI];
-                
-                widthC = width.count;
-                
-                this.#tempWidth = width.size;
+                widthC--;
             }
-            
-            widthC--;
             
             const currentChar = chars[i];
             
             this.#RenderSprite(
                 currentChar.sprite,
-                Vector2.Scale(
-                    currentChar.position,
-                    new Vector2(-1, 1)
-                ),
+                currentChar.trisCount,
+                currentChar.rectArray,
+                currentChar.offset,
                 currentChar.color,
-                alignY
+                pivot
             );
         }
     }
