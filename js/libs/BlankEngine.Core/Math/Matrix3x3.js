@@ -164,6 +164,18 @@ class Matrix3x3
         return output;
     }
     
+    Duplicate ()
+    {
+        const m = this.matrix;
+        const output = new Matrix3x3(
+            [m[0][0], m[0][1], m[0][2]],
+            [m[1][0], m[1][1], m[1][2]],
+            [m[2][0], m[2][1], m[2][2]]
+        );
+        
+        return output;
+    }
+    
     GetValue (column, row)
     {
         return this.matrix[column][row];
