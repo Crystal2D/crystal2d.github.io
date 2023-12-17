@@ -1,13 +1,50 @@
 class Transform extends Component
 {
+    #rotation = 0;
     #child = [];
+    
+    #position = Vector2.zero;
+    #scale = Vector2.one;
+    #lWMat = new Matrix3x3();
+    #lWMatInv = new Matrix3x3();
     
     #parent = null;
     
-    rotation = 0;
+    get rotation ()
+    {
+        return this.#rotation;
+    }
     
-    position = Vector2.zero;
-    scale = Vector2.one;
+    set rotation (value)
+    {
+        this.#rotation = value;
+        
+        this.Recalc();
+    }
+    
+    get position ()
+    {
+        return this.#position;
+    }
+    
+    set position (value)
+    {
+        this.#position = value;
+        
+        this.Recalc();
+    }
+    
+    get scale ()
+    {
+        return this.#scale;
+    }
+    
+    set scale (value)
+    {
+        this.#scale = value;
+        
+        this.Recalc();
+    }
     
     get localRotation ()
     {
@@ -44,19 +81,14 @@ class Transform extends Component
         return this.#child.length;
     }
     
-    get childCount ()
-    {
-        return this.#child.length;
-    }
-    
     get localToWorldMatrix ()
     {
-        return Matrix3x3.TRS(this.localPosition, 5.555555555555556e-3 * this.localRotation * Math.PI, this.localScale);
+        return this.#lWMat.Duplicate();
     }
     
     get worldToLocalMatrix ()
     {
-        return this.localToWorldMatrix.inverse;
+        return this.#lWMatInv.Duplicate();;
     }
     
     get parent ()
@@ -91,6 +123,18 @@ class Transform extends Component
         if (this.#parent == null || this.gameObject == null) return;
         
         this.#parent.AttachChild(this);
+    }
+    
+    Recalc ()
+    {
+        this.#lWMat = Matrix3x3.TRS(
+            this.localPosition,
+            5.555555555555556e-3 * this.localRotation * Math.PI,
+            this.localScale
+        );
+        this.#lWMatInv = this.#lWMat.inverse;
+        
+        for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
     
     SetParent (parent)
@@ -134,13 +178,17 @@ class Transform extends Component
     {
         let newChild = [];
         
-        for (let i = 0; i < this.#child.length; i++)
+        for (let i = 0; i < this.childCount; i++)
         {
             const child = this.#child[i];
             
             if (child === id)
             {
-                this.GetChild(i).parent = null;
+                const target = this.GetChild(i);
+                
+                target.parent = null;
+                
+                target.Recalc();
                 
                 continue;
             }
@@ -161,7 +209,14 @@ class Transform extends Component
     
     DetachChildren ()
     {
-        for (let i = 0; i < this.#child.length; i++) this.GetChild(i).parent = null;
+        for (let i = 0; i < this.childCount; i++)
+        {
+            const child = this.GetChild(i);
+            
+            child.parent = null;
+            
+            child.Recalc();
+        }
         
         this.#child = [];
     }
@@ -170,9 +225,13 @@ class Transform extends Component
     {
         const id = child.gameObject.GetSceneID();
         
-        if (child.parent !== this) child.parent = this;
+        if (child.parent === this) return;
         
-        if (this.#child.length === 0) this.#child[0] = id;
+        child.parent = this;
+        
+        child.Recalc();
+        
+        if (this.childCount === 0) this.#child[0] = id;
         else this.#child.push(id);
     }
     
