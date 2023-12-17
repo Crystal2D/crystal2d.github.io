@@ -17,14 +17,6 @@ class GameBehavior extends Behavior
     
     LateUpdate () { }
     
-    OnPreRender () { }
-    
-    OnRenderObject () { }
-    
-    OnPostRender () { }
-    
-    OnRenderImage () { }
-    
     OnApplicationQuit () { }
     
     OnDisable () { }
