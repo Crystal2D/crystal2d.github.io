@@ -1,5 +1,7 @@
 class CameraController extends GameBehavior
 {
+    #time = 0;
+    
     #targetTrans = null;
     
     clampMin = new Vector2(0, 0);
@@ -30,5 +32,26 @@ class CameraController extends GameBehavior
         );
         
         this.transform.position = newPos;
+        
+        this.#UpdateTitle();
+    }
+    
+    #UpdateTitle ()
+    {
+        if (this.#time < 0.5)
+        {
+            this.#time += Time.deltaTime;
+            
+            return;
+        }
+        
+        this.#time = 0;
+        
+        const fps = Math.min(
+            parseInt(1 / Time.deltaTime | Time.maximumDeltaTime),
+            Application.targetFrameRate
+        );
+        
+        Window.SetTitle(`DEP @ ${fps}Hz`);
     }
 }
