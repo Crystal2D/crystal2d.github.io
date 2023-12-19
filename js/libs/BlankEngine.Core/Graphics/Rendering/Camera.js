@@ -6,6 +6,19 @@ class Camera extends Behavior
     
     orthographicSize = 1;
     
+    get bounds ()
+    {
+        const size = this.orthographicSize;
+        
+        return new Bounds(
+            this.transform.localPosition,
+            new Vector2(
+                Window.aspect * size,
+                1 * size
+            )
+        );
+    }
+    
     get projectionMatrix ()
     {
         return this.#projMatrix;
@@ -46,7 +59,7 @@ class Camera extends Behavior
         
         if (this.#updateProjMat) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
         
-        const mScale = new Vector2(1 / (Application.htmlCanvas.width / Application.htmlCanvas.height), -1);
+        const mScale = new Vector2(1 / Window.aspect, -1);
         
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
         
@@ -54,6 +67,8 @@ class Camera extends Behavior
         
         for (let i = 0; i < renderers.length; i++)
         {
+            if (!this.bounds.Intersects(renderers[i].bounds)) continue;
+            
             let lWM = renderers[i].transform.localToWorldMatrix;
             
             lWM.matrix[2][1] *= -1;
