@@ -19,6 +19,7 @@ class Window
     static #marginY = 0;
     static #winX = 0;
     static #winY = 0;
+    static #aspect = 0;
     static #title = "";
     
     static #icon = null;
@@ -67,6 +68,8 @@ class Window
             Application.htmlCanvas.height = this.#y;
         }
         
+        this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
+        
         this.#fillWin = value;
     }
     
@@ -100,6 +103,11 @@ class Window
         return this.#winY || this.#y;
     }
     
+    static get aspect ()
+    {
+        return this.#aspect;
+    }
+    
     
     // Private Static Methods
     
@@ -130,6 +138,8 @@ class Window
             {
                 Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
                 Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+                
+                this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
             }
             
             this.#sizeChanged = false;
@@ -210,6 +220,8 @@ class Window
         {
             Application.htmlCanvas.width = this.#x;
             Application.htmlCanvas.height = this.#y;
+            
+            this.#aspect = this.#x / this.#y;
         }
         
         if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = true;
