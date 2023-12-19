@@ -39,14 +39,19 @@ class Bounds
         this.size = size ?? Vector2.one;
     }
     
-    Contains (point)
+    Contains (value)
     {
-        return point.x >= this.min.x && point.x <= this.max.x && point.y >= this.min.y && point.y <= this.max.y;
+        if (value instanceof Bounds) return this.Contains(value.min) && this.Contains(value.max);
+        
+        return value.x >= this.min.x && value.x <= this.max.x && value.y >= this.min.y && value.y <= this.max.y;
     }
     
     ClosestPoint (point)
     {
-        return new Vector2(Math.clamp(point.x, this.min.x, this.max.x), Math.clamp(point.y, this.min.y, this.max.y))
+        return new Vector2(
+            Math.clamp(point.x, this.min.x, this.max.x),
+            Math.clamp(point.y, this.min.y, this.max.y)
+        );
     }
     
     Intersects (bounds)
@@ -72,10 +77,30 @@ class Bounds
         this.center = Vector2.Add(min, this.extents);
     }
     
-    Expand (amount)
+    Encapsulate (value)
     {
-        if (typeof amount === "number") this.extents = Vector2.Add(this.extents, 0.5 * amount);
-        else this.extents = Vector2.Add(this.extents, Vector2.Scale(amount, 0.5));
+        if (value instanceof Bounds)
+        {
+            this.Encapsulate(Vector2.Subtract(value.center, value.extents));
+            this.Encapsulate(Vector2.Add(value.center, value.extents));
+            
+            return;
+        }
+        
+        this.SetMinMax(
+            Vector2.Min(this.min, value),
+            Vector2.Max(this.max, value)
+        );
     }
     
+    Expand (amount)
+    {
+        this.extents = Vector2.Add(
+            this.extents,
+            Vector2.Scale(
+                new Vector2(0.5, 0.5),
+                amount
+            )
+        );
+    }
 }
