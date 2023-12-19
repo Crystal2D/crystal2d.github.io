@@ -1,4 +1,4 @@
-class Text extends Renderer
+class Text extends DynamicRenderer
 {
     #meshChanged = false;
     #overflowX = false;
@@ -10,8 +10,9 @@ class Text extends Renderer
     #text = "";
     #words = [];
     #widths = [];
-    #onMUpdate = [];
     
+    #boundsSize = Vector2.zero;
+    #boundsOffset = Vector2.zero;
     #scale = Vector2.one;
     #scalePos = Vector2.zero;
     
@@ -24,10 +25,55 @@ class Text extends Renderer
     
     pivot = new Vector2(0.5, 0.5);
     
-    set onMeshUpdate (value)
+    get meshChanged ()
     {
-        if (this.#onMUpdate.length === 0) this.#onMUpdate[0] = value;
-        else this.#onMUpdate.push(value);
+        return this.#meshChanged;
+    }
+    
+    get bounds ()
+    {
+        const scale = Vector2.Scale(
+            this.transform.localScale,
+            this.#boundsSize
+        );
+        const pivot = this.pivot;
+        const offset = this.#boundsOffset;
+        
+        let pos = this.transform.localPosition;
+        
+        switch (this.horizontalAlign)
+        {
+            case 0:
+                pos.x += offset.x;
+                break;
+            case 2:
+                pos.x -= offset.x;
+                break
+        }
+        
+        switch (this.verticalAlign)
+        {
+            case 0:
+                pos.y += offset.y;
+                break;
+            case 2:
+                pos.y -= offset.y;
+                break
+        }
+        
+        return new Bounds(
+            Vector2.Add(
+                pos,
+                Vector2.Scale(
+                    scale,
+                    new Vector2(
+                        0.5 - pivot.x,
+                        pivot.y - 0.5
+                    )
+                )
+            ),
+            scale
+        );
     }
     
     get fontSize ()
@@ -379,6 +425,8 @@ class Text extends Renderer
     
     ForceMeshUpdate ()
     {
+        this.#colorOld = this.color;
+        
         const ppu = this.pixelPerUnit / this.#size;
         const defaultLH = this.font.lineHeight / ppu;
         
@@ -392,6 +440,7 @@ class Text extends Renderer
                 count : 0
             }
         ];
+        let bestWidth = 0;
         
         for (let iA = 0; iA < this.#words.length; iA++)
         {
@@ -399,6 +448,10 @@ class Text extends Renderer
             
             if (word.lineBreak)
             {
+                const currentWidth = widths[widths.length - 1].size;
+                
+                if (currentWidth > bestWidth) bestWidth = currentWidth;
+                
                 y += lineHeight;
                 x = 0;
                 lineHeight = defaultLH;
@@ -428,6 +481,10 @@ class Text extends Renderer
                     
                     if (charWX)
                     {
+                        const currentWidth = widths[widths.length - 1].size;
+                        
+                        if (currentWidth > bestWidth) bestWidth = currentWidth;
+                        
                         y += lineHeight;
                         x = 0;
                         lineHeight = defaultLH;
@@ -461,6 +518,9 @@ class Text extends Renderer
                     else chars.push(newChar);
                     
                     x += charWidth;
+                    
+                    widths[widths.length - 1].size += charWidth;
+                    widths[widths.length - 1].count++;
                 }
                 
                 if (stop) break;
@@ -470,6 +530,10 @@ class Text extends Renderer
             
             if (wrapX)
             {
+                const currentWidth = widths[widths.length - 1].size;
+                
+                if (currentWidth > bestWidth) bestWidth = currentWidth;
+                
                 y += lineHeight;
                 x = 0;
                 lineHeight = defaultLH;
@@ -495,6 +559,10 @@ class Text extends Renderer
                     
                     if (nextWord == null || x + width + nextWord.width / ppu > this.#width)
                     {
+                        const currentWidth = widths[widths.length - 1].size;
+                        
+                        if (currentWidth > bestWidth) bestWidth = currentWidth;
+                        
                         y += lineHeight;
                         x = 0;
                         lineHeight = defaultLH;
@@ -520,25 +588,40 @@ class Text extends Renderer
             widths[widths.length - 1].count += word.sprites.length;
         }
         
+        const currentWidth = widths[widths.length - 1].size;
+        
+        if (currentWidth > bestWidth) bestWidth = currentWidth;
+        
+        y += defaultLH;
+        
         this.characters = chars;
         this.#widths = widths;
-        this.#tempHeight = y + 1;
+        this.#tempHeight = y;
         
-        for (let i = 0; i < this.#onMUpdate.length; i++) this.#onMUpdate[i]();
+        const boundsSize = new Vector2(
+            bestWidth,
+            this.#overflowY ? y : Math.min(y, this.#height)
+        );
+        
+        this.#boundsSize = boundsSize;
+        this.#boundsOffset = Vector2.Scale(
+            new Vector2(
+                boundsSize.x - this.#width,
+                this.#height - boundsSize.y
+            ),
+            0.5
+        );
+        
+        this.#meshChanged = false;
+        
+        super.ForceMeshUpdate();
     }
     
     Render ()
     {
         if (!this.isLoaded || !this.gameObject.activeSelf) return;
         
-        if (this.#meshChanged || this.#colorOld !== this.color)
-        {
-            this.#colorOld = this.color;
-            
-            this.ForceMeshUpdate();
-            
-            this.#meshChanged = false;
-        }
+        if (this.#colorOld !== this.color) this.ForceMeshUpdate();
         
         const chars = this.characters;
         
@@ -549,40 +632,37 @@ class Text extends Renderer
         let widthI = 0;
         let widthC = widths[0].count;
         
-        const tempWidth = widths[0].size;
+        const initialPivot = Vector2.Scale(
+            new Vector2(this.#width, this.#height),
+            this.pivot
+        );
         
-        let align = new Vector2();
+        let pivot = new Vector2(
+            initialPivot.x,
+            initialPivot.y + this.font.lineHeight / (this.pixelPerUnit / this.#size)
+        );
+        
+        const tempWidth = widths[0].size;
         
         switch (this.horizontalAlign)
         {
-            case 0:
-                align.x = this.#width;
-                break;
             case 1:
-                align.x = Math.min(tempWidth, this.#width);
+                pivot.x -= (this.#width - tempWidth) * 0.5;
                 break;
             case 2:
-                align.x = (tempWidth * 2) - this.#width;
+                pivot.x -= this.#width - tempWidth;
                 break;
         }
         
         switch (this.verticalAlign)
         {
-            case 0:
-                align.y = this.#height;
-                break;
             case 1:
-                align.y = Math.min(this.#tempHeight, this.#height);
+                pivot.y -= (this.#height - this.#tempHeight) * 0.5;
                 break;
             case 2:
-                align.y = (this.#tempHeight * 2) - this.#height;
+                pivot.y -= this.#height - this.#tempHeight;
                 break;
         }
-        
-        let pivot = Vector2.Scale(
-            this.pivot,
-            align
-        );
         
         for (let i = 0; i < chars.length; i++)
         {
@@ -598,17 +678,17 @@ class Text extends Renderer
                     
                     const tempWidth = width.size;
                     
+                    pivot.x = initialPivot.x;
+                    
                     switch (this.horizontalAlign)
                     {
                         case 1:
-                            align.x = Math.min(tempWidth, this.#width);
+                            pivot.x -= (this.#width - tempWidth) * 0.5;
                             break;
                         case 2:
-                            align.x = (tempWidth * 2) - this.#width;
+                            pivot.x -= this.#width - tempWidth;
                             break;
                     }
-                    
-                    pivot.x = this.pivot.x * align.x;
                 }
                 
                 widthC--;
