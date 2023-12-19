@@ -8,6 +8,26 @@ class SpriteRenderer extends Renderer
     #sprite = null;
     #spriteOld = null;
     
+    get bounds ()
+    {
+        const scale = this.transform.localScale;
+        const pivot = this.sprite.pivot;
+        
+        return new Bounds(
+            Vector2.Add(
+                this.transform.localPosition,
+                Vector2.Scale(
+                    scale,
+                    new Vector2(
+                        0.5 - pivot.x,
+                        pivot.y - 0.5
+                    )
+                )
+            ),
+            scale
+        );
+    }
+    
     get sprite ()
     {
         return this.#spriteOld;

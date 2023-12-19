@@ -19,6 +19,11 @@ class Renderer extends Component
         return this.#loaded;
     }
     
+    get bounds ()
+    {
+        return new Bounds();
+    }
+    
     get material ()
     {
         return this.#materialOld;
