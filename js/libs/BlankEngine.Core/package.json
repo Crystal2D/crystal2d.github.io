@@ -34,6 +34,7 @@
         "Graphics/Sprite",
         "Graphics/Rendering/Camera",
         "Graphics/Rendering/Renderers/Renderer",
+        "Graphics/Rendering/Renderers/DynamicRenderer",
         "Graphics/Rendering/Renderers/SpriteRenderer"
     ],
     "classes" : [

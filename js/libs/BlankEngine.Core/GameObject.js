@@ -79,14 +79,12 @@ class GameObject
     
     static FindComponents (type)
     {
-        const gameObjs = SceneManager.GetActiveScene().gameObjects;
+        const gameObjs = SceneManager.GetActiveScene().gameObjects.filter(item => item.activeSelf);
         
         let output = [];
         
         for (let i = 0; i < gameObjs.length; i++)
         {
-            if (!gameObjs[i].activeSelf) continue;
-            
             const components = gameObjs[i].GetComponents(type);
             
             if (output.length === 0) output = components;
@@ -117,8 +115,6 @@ class GameObject
     {
         if (!this.#active) return;
         
-        const components = this.#components;
-        
         let args = "";
         let dat = data ?? { };
         
@@ -133,10 +129,10 @@ class GameObject
         }
         else args = params;
         
+        const components = this.#components.filter(item => item.enabled && item instanceof GameBehavior);
+        
         for (let i = 0; i < components.length; i++)
         {
-            if (!components[i].enabled || !(components[i] instanceof GameBehavior)) continue;
-            
             eval(`components[i].${method}(${args})`);
             
             if (dat.clearAfter) eval(`components[i].${method} = () => { }`);
@@ -153,18 +149,6 @@ class GameObject
     
     GetComponents (type)
     {
-        const components = this.#components;
-        
-        let output = [];
-        
-        for (let i = 0; i < components.length; i++)
-        {
-            if (!this.#IsComponent(components[i], type, false)) continue;
-            
-            if (output.length === 0) output[0] = components[i];
-            else output.push(components[i]);
-        }
-        
-        return output;
+        return this.#components.filter(item => this.#IsComponent(item, type, false));
     }
 }
