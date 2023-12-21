@@ -68,7 +68,7 @@ class Shader
             }
             
             if (slashes >= 4) break;
-            if (shader[i] === "\n") continue;
+            if (shader[i] === "\n" || shader[i] === "\r") continue;
             
             if (shader[i] === `'` || shader[i] === `"`)
             {
