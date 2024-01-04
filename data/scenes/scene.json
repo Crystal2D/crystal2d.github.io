@@ -43,8 +43,30 @@
             ]
         },
         {
-            "name" : "text_hi",
+            "name" : "text_fps",
             "id" : 2,
+            "parent" : 0,
+            "transform" : {
+                "position" : { "x" : -3, "y" : 2.5 }
+            },
+            "components" : [
+                {
+                    "type" : "FPS"
+                },
+                {
+                    "type" : "Text",
+                    "args" : {
+                        "font" : "font_main",
+                        "text" : "",
+                        "width" : 0.5,
+                        "fontSize" : 0.37
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "text_hi",
+            "id" : 3,
             "transform" : {
                 "position" : { "y" : 1.5 }
             },
@@ -68,7 +90,7 @@
         },
         {
             "name" : "text_ctrls",
-            "id" : 3,
+            "id" : 4,
             "transform" : {
                 "position" : { "x" : -1, "y" : -2.25 }
             },
@@ -85,7 +107,7 @@
         },
         {
             "name" : "text_updates",
-            "id" : 4,
+            "id" : 5,
             "transform" : {
                 "position" : { "x" : 6.5, "y" : 2 }
             },

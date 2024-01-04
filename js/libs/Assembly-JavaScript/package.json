@@ -3,7 +3,8 @@
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         "CharController",
-        "CameraController"
+        "CameraController",
+        "FPS"
     ],
     "classes" : [
         {
@@ -18,6 +19,10 @@
         },
         {
             "name" : "CameraController",
+            "type" : 0
+        },
+        {
+            "name" : "FPS",
             "type" : 0
         }
     ]
