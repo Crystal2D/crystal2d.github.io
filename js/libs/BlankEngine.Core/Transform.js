@@ -223,13 +223,14 @@ class Transform extends Component
     
     AttachChild (child)
     {
+        if (child.parent !== this)
+        {
+            child.parent = this;
+            
+            child.Recalc();
+        }
+        
         const id = child.gameObject.GetSceneID();
-        
-        if (child.parent === this) return;
-        
-        child.parent = this;
-        
-        child.Recalc();
         
         if (this.childCount === 0) this.#child[0] = id;
         else this.#child.push(id);
