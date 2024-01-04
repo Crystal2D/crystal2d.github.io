@@ -234,8 +234,7 @@ class Text extends DynamicRenderer
         );
         
         const newChar = new TextChar();
-        
-        newChar.sprite = sprite;
+
         
         newChar.trisCount = tris.length;
         newChar.rectArray = rectArray;
@@ -284,15 +283,13 @@ class Text extends DynamicRenderer
         );
         
         this.material.SetBuffer(this.geometryBufferID, rectArray);
-        this.material.SetBuffer(this.textureBufferID, rectArray);
         
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
-        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
         
         gl.useProgram(this.material.program);
         
         gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, sprite.texture.GetNativeTexture());
+        gl.bindTexture(gl.TEXTURE_2D, this.font.texture.GetNativeTexture());
         
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, trisCount);
         

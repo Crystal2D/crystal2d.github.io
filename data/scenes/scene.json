@@ -45,7 +45,7 @@
         {
             "name" : "text_hi",
             "id" : 2,
-            "transform": {
+            "transform" : {
                 "position" : { "y" : 1.5 }
             },
             "components" : [
@@ -69,7 +69,7 @@
         {
             "name" : "text_ctrls",
             "id" : 3,
-            "transform": {
+            "transform" : {
                 "position" : { "x" : -1, "y" : -2.25 }
             },
             "components" : [
@@ -86,7 +86,7 @@
         {
             "name" : "text_updates",
             "id" : 4,
-            "transform": {
+            "transform" : {
                 "position" : { "x" : 6.5, "y" : 2 }
             },
             "components" : [

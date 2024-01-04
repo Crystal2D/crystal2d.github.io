@@ -155,10 +155,7 @@ class SpriteRenderer extends Renderer
         );
         
         this.material.SetBuffer(this.geometryBufferID, this.#rectArray);
-        this.material.SetBuffer(this.textureBufferID, this.#rectArray);
-        
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
-        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
         
         gl.useProgram(this.material.program);
         

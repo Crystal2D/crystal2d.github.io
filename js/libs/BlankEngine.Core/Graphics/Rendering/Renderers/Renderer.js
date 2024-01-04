@@ -7,9 +7,7 @@ class Renderer extends Component
     
     uMatrixID = 0;
     geometryBufferID = 0;
-    textureBufferID = 0;
     aVertexPosID = 0;
-    aTexturePosID = 0;
     
     color = Color.white;
     localSpaceMatrix = new Matrix3x3();
@@ -49,18 +47,12 @@ class Renderer extends Component
         
         this.#material.SetSampler2D("uSampler", 0);
         
-        const geometryBuffer = this.#material.AddBuffer("geometry", null, 2);
-        const textureBuffer = this.#material.AddBuffer("texture", null, 2);
-        
         this.#materialOld = this.#material;
         
         this.uMatrixID = this.material.GetPropertyNameID("uMatrix");
         
-        this.geometryBufferID = geometryBuffer;
-        this.textureBufferID = textureBuffer;
-        
+        this.geometryBufferID = this.#material.AddBuffer("geometry", null, 2);
         this.aVertexPosID = this.material.GetAttributeNameID("aVertexPos");
-        this.aTexturePosID = this.material.GetAttributeNameID("aTexturePos");
         
         this.#loaded = true;
     }
