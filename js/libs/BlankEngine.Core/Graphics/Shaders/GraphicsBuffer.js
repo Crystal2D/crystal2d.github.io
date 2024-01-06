@@ -5,6 +5,7 @@ class GraphicsBuffer
     #gl = null;
     #buffer = null;
     
+    target = 0;
     usageType = 0;
     name = "";
     
@@ -31,8 +32,9 @@ class GraphicsBuffer
     SetData (data)
     {
         const gl = this.#gl;
+        const target = this.target === 0 ? gl.ARRAY_BUFFER : gl.ELEMENT_ARRAY_BUFFER;
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.#buffer);
+        gl.bindBuffer(target, this.#buffer);
 
         let usage = null;
 
@@ -49,7 +51,7 @@ class GraphicsBuffer
                 break;
         }
 
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), usage);
-        gl.bindBuffer(gl.ARRAY_BUFFER, null);
+        gl.bufferData(target, new Float32Array(data), usage);
+        gl.bindBuffer(target, null);
     }
 }

@@ -285,8 +285,10 @@ class Text extends DynamicRenderer
         );
         
         this.material.SetBuffer(this.geometryBufferID, rectArray);
-        
+        this.material.SetBuffer(this.textureBufferID, rectArray);
+
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
+        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
         
         gl.useProgram(this.material.program);
         

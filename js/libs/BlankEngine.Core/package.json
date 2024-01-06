@@ -27,6 +27,7 @@
         "PlayerLoop/PlayerLoop",
         "PlayerLoop/PlayerLoopSystem",
         "Graphics/Shaders/Shader",
+        "Graphics/Shaders/GraphicsBufferTarget",
         "Graphics/Shaders/GraphicsBufferUsage",
         "Graphics/Shaders/GraphicsBuffer",
         "Graphics/Shaders/ShaderAttribute",
