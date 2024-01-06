@@ -158,6 +158,8 @@ class Text extends DynamicRenderer
     
     set text (value)
     {
+        if (this.#text === value) return;
+
         this.#text = value;
         
         this.#ReloadWords();
