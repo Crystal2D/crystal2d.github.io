@@ -26,8 +26,6 @@ class FPS extends GameBehavior
             parseInt(1 / (Time.deltaTime || Time.maximumDeltaTime)),
             Application.targetFrameRate
         );
-
-        console.log(fps);
         
         this.#text.text = `${fps}`;
     }
