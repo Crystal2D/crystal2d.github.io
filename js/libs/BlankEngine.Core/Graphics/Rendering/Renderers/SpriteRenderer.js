@@ -1,7 +1,8 @@
 class SpriteRenderer extends Renderer
 {
     #trisCount = 0;
-    #rectArray = [];
+    #vertexArray = [];
+    #textureArray = [];
     
     #transMat = new Matrix3x3();
     
@@ -61,21 +62,27 @@ class SpriteRenderer extends Renderer
         this.#spriteOld = this.#sprite;
         
         const vertices = this.sprite.vertices;
+        const vertexPos = vertices[0];
         const tris = this.sprite.triangles;
         
-        let rectArray = [];
+        let vertexArray = [];
+        let textureArray = [];
         
         for (let i = 0; i < tris.length; i++)
         {
             const vertex = vertices[tris[i]];
             const index = i * 2;
             
-            rectArray[index] = vertex.x;
-            rectArray[index + 1] = vertex.y;
+            vertexArray[index] = vertex.x - vertexPos.x;
+            vertexArray[index + 1] = vertex.y - vertexPos.y;
+            
+            textureArray[index] = vertex.x;
+            textureArray[index + 1] = vertex.y;
         }
         
         this.#trisCount = tris.length;
-        this.#rectArray = rectArray;
+        this.#vertexArray = vertexArray;
+        this.#textureArray = textureArray;
         
         const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
@@ -99,31 +106,8 @@ class SpriteRenderer extends Renderer
         
         scale = Vector2.Scale(scale, ppuScaler);
         
-        const scalePos = Vector2.Scale(
-            Vector2.Subtract(
-                Vector2.one,
-                scale
-            ),
-            -0.5
-        );
-        
-        const rectPos = vertices[0];
-        
-        const center = new Vector2(
-            ((rectPos.x + 0.5 * (vertices[3].x - rectPos.x)) - 0.5) * scale.x,
-            ((rectPos.y + 0.5 * (vertices[3].y - rectPos.y)) - 0.5) * scale.y
-        );
-        
-        const offset = Vector2.Add(
-            this.sprite.pivot,
-            Vector2.Add(
-                scalePos,
-                center
-            )
-        );
-        
         this.#transMat = Matrix3x3.TRS(
-            Vector2.Scale(offset, -1),
+            Vector2.Scale(this.sprite.pivot, -1),
             0,
             scale
         );
@@ -154,8 +138,8 @@ class SpriteRenderer extends Renderer
             localMatrix.matrix[2][2]
         );
         
-        this.material.SetBuffer(this.geometryBufferID, this.#rectArray);
-        this.material.SetBuffer(this.textureBufferID, this.#rectArray);
+        this.material.SetBuffer(this.geometryBufferID, this.#vertexArray);
+        this.material.SetBuffer(this.textureBufferID, this.#textureArray);
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
         this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
