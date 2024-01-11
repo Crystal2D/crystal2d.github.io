@@ -4,9 +4,9 @@ class TextChar
     #offset = Vector2.zero;
     
     trisCount = 0;
-    rectArray = [];
+    vertexArray = [];
+    textureArray = [];
     
-    offset = Vector2.zero;
     color = new Color(1, 1, 1);
     
     get position ()
@@ -17,20 +17,16 @@ class TextChar
     set position (value)
     {
         this.#pos = value;
+
+        for (let i = 0; i < this.trisCount; i++)
+        {
+            const index = i * 2;
+            
+            this.vertexArray[index] += value.x;
+            this.vertexArray[index + 1] -= value.y;
+        }
         
-        this.#RefreshOffset();
-    }
-    
-    get initialOffset ()
-    {
-        return this.#offset;
-    }
-    
-    set initialOffset (value)
-    {
-        this.#offset = value;
-        
-        this.#RefreshOffset();
+        // this.#RefreshOffset();
     }
     
     #RefreshOffset ()

@@ -25,8 +25,11 @@ class CameraController extends GameBehavior
         const charPos = this.#targetTrans.position;
         
         const newPos = new Vector2(
-            Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
-            Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
+            charPos.x,
+            charPos.y
+
+            // Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
+            // Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
         );
         
         this.transform.position = newPos;

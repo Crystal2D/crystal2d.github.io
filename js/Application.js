@@ -7,6 +7,7 @@ class Application
     
     static #canvas = null;
     static #gl = null;
+    static #gl_md = null;
     
     static targetFrameRate = -1;
     
@@ -29,6 +30,11 @@ class Application
     {
         return this.#gl;
     }
+
+    static get gl_multidraw ()
+    {
+        return this.#gl_md;
+    }
     
     static Init (packageName)
     {
@@ -43,6 +49,8 @@ class Application
         
         this.#gl = this.#canvas.getContext("webgl2");
         this.#gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+        this.#gl_md = this.#gl.getExtension("WEBGL_multi_draw");
         
         document.body.append(this.#canvas);
         

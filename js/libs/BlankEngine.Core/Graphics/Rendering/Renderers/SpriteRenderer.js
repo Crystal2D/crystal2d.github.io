@@ -1,8 +1,6 @@
 class SpriteRenderer extends Renderer
 {
     #trisCount = 0;
-    #vertexArray = [];
-    #textureArray = [];
     
     #transMat = new Matrix3x3();
     
@@ -81,8 +79,9 @@ class SpriteRenderer extends Renderer
         }
         
         this.#trisCount = tris.length;
-        this.#vertexArray = vertexArray;
-        this.#textureArray = textureArray;
+
+        this.material.SetBuffer(this.geometryBufferID, vertexArray);
+        this.material.SetBuffer(this.textureBufferID, textureArray);
         
         const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
@@ -137,9 +136,6 @@ class SpriteRenderer extends Renderer
             localMatrix.matrix[2][1],
             localMatrix.matrix[2][2]
         );
-        
-        this.material.SetBuffer(this.geometryBufferID, this.#vertexArray);
-        this.material.SetBuffer(this.textureBufferID, this.#textureArray);
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
         this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);

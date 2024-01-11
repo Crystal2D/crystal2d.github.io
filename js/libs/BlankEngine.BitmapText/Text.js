@@ -1,6 +1,7 @@
 class Text extends DynamicRenderer
 {
     #meshChanged = false;
+    #remapArrays = false;
     #overflowX = false;
     #overflowY = false;
     #tempHeight = 0;
@@ -10,6 +11,10 @@ class Text extends DynamicRenderer
     #text = "";
     #words = [];
     #widths = [];
+    #vertexArray = [];
+    #textureArray = [];
+    #trisCounts = [];
+    #indexes = [];
     
     #boundsSize = Vector2.zero;
     #boundsOffset = Vector2.zero;
@@ -215,36 +220,30 @@ class Text extends DynamicRenderer
     #NewChar (sprite, pos)
     {
         const vertices = sprite.vertices;
+        const vertexPos = vertices[0];
         const tris = sprite.triangles;
         
-        let rectArray = [];
+        let vertexArray = [];
+        let textureArray = [];
         
         for (let i = 0; i < tris.length; i++)
         {
             const vertex = vertices[tris[i]];
             const index = i * 2;
             
-            rectArray[index] = vertex.x;
-            rectArray[index + 1] = vertex.y;
+            vertexArray[index] = vertex.x - vertexPos.x;
+            vertexArray[index + 1] = vertex.y - vertexPos.y;
+            
+            textureArray[index] = vertex.x;
+            textureArray[index + 1] = vertex.y;
         }
         
-        const rectPos = vertices[0];
-        
-        const center = new Vector2(
-            ((rectPos.x + 0.5 * (vertices[3].x - rectPos.x)) - 0.5) * this.#scale.x,
-            ((rectPos.y + 0.5 * (vertices[3].y - rectPos.y)) - 0.5) * this.#scale.y
-        );
-        
         const newChar = new TextChar();
-
         
         newChar.trisCount = tris.length;
-        newChar.rectArray = rectArray;
+        newChar.vertexArray = vertexArray;
+        newChar.textureArray = textureArray;
         
-        newChar.initialOffset = Vector2.Add(
-            this.#scalePos,
-            center
-        );
         newChar.position = pos;
         
         newChar.color = this.#colorOld.Duplicate();
@@ -410,7 +409,8 @@ class Text extends DynamicRenderer
             const newChar = this.#NewChar(
                 sprite,
                 new Vector2(
-                    x - ((1 - width) * 0.5),
+                    x,
+                    //  - ((1 - width) * 0.5),
                     -pos.y
                 )
             );
@@ -422,6 +422,49 @@ class Text extends DynamicRenderer
         }
         
         return chars;
+    }
+
+    #RemapArrays ()
+    {
+        const chars = this.characters;
+
+        let index = 0;
+        let vertexArray = [];
+        let textureArray = [];
+        let trisCounts = [];
+        let indexes = [0];
+
+        for (let i = 0; i < chars.length; i++)
+        {
+            const trisCount = chars[i].trisCount;
+            const newIndex = index + trisCount;
+
+            if (i === 0)
+            {
+                vertexArray = chars[i].vertexArray;
+                textureArray = chars[i].textureArray;
+
+                index = newIndex;
+                trisCounts[0] = trisCount;
+
+                continue;
+            }
+
+            vertexArray.push(...chars[i].vertexArray);
+            textureArray.push(...chars[i].textureArray);
+
+            indexes.push(index);
+            index = newIndex;
+            trisCounts.push(trisCount);
+        }
+
+        this.material.SetBuffer(this.geometryBufferID, vertexArray);
+        this.material.SetBuffer(this.textureBufferID, textureArray);
+
+        this.#trisCounts = trisCounts;
+        this.#indexes = indexes;
+
+        this.#remapArrays = false;
     }
     
     ForceMeshUpdate ()
@@ -614,8 +657,15 @@ class Text extends DynamicRenderer
         );
         
         this.#meshChanged = false;
+
+        this.#RemapArrays();
         
         super.ForceMeshUpdate();
+    }
+
+    RemapGraphicArrays ()
+    {
+        this.#remapArrays = true;
     }
     
     Render ()
@@ -627,84 +677,128 @@ class Text extends DynamicRenderer
         const chars = this.characters;
         
         if (chars.length === 0) return;
+
+        if (this.#remapArrays) this.#RemapArrays();
         
-        const widths = this.#widths;
+        // const widths = this.#widths;
         
-        let widthI = 0;
-        let widthC = widths[0].count;
+        // let widthI = 0;
+        // let widthC = widths[0].count;
         
-        const initialPivot = Vector2.Scale(
-            new Vector2(this.#width, this.#height),
-            this.pivot
-        );
+        // const initialPivot = Vector2.Scale(
+        //     new Vector2(this.#width, this.#height),
+        //     this.pivot
+        // );
         
-        let pivot = new Vector2(
-            initialPivot.x,
-            initialPivot.y + this.font.lineHeight / (this.pixelPerUnit / this.#size)
-        );
+        // let pivot = new Vector2(
+        //     initialPivot.x,
+        //     initialPivot.y + this.font.lineHeight / (this.pixelPerUnit / this.#size)
+        // );
         
-        const tempWidth = widths[0].size;
+        // const tempWidth = widths[0].size;
         
-        switch (this.horizontalAlign)
-        {
-            case 1:
-                pivot.x -= (this.#width - tempWidth) * 0.5;
-                break;
-            case 2:
-                pivot.x -= this.#width - tempWidth;
-                break;
-        }
+        // switch (this.horizontalAlign)
+        // {
+        //     case 1:
+        //         pivot.x -= (this.#width - tempWidth) * 0.5;
+        //         break;
+        //     case 2:
+        //         pivot.x -= this.#width - tempWidth;
+        //         break;
+        // }
         
-        switch (this.verticalAlign)
-        {
-            case 1:
-                pivot.y -= (this.#height - this.#tempHeight) * 0.5;
-                break;
-            case 2:
-                pivot.y -= this.#height - this.#tempHeight;
-                break;
-        }
+        // switch (this.verticalAlign)
+        // {
+        //     case 1:
+        //         pivot.y -= (this.#height - this.#tempHeight) * 0.5;
+        //         break;
+        //     case 2:
+        //         pivot.y -= this.#height - this.#tempHeight;
+        //         break;
+        // }
         
-        for (let i = 0; i < chars.length; i++)
-        {
-            if (this.horizontalAlign !== 0)
-            {
-                if (widthC === 0)
-                {
-                    widthI++;
+        // for (let i = 0; i < chars.length; i++)
+        // {
+            // if (this.horizontalAlign !== 0)
+            // {
+            //     if (widthC === 0)
+            //     {
+            //         widthI++;
                     
-                    const width = widths[widthI];
+            //         const width = widths[widthI];
                     
-                    widthC = width.count;
+            //         widthC = width.count;
                     
-                    const tempWidth = width.size;
+            //         const tempWidth = width.size;
                     
-                    pivot.x = initialPivot.x;
+            //         pivot.x = initialPivot.x;
                     
-                    switch (this.horizontalAlign)
-                    {
-                        case 1:
-                            pivot.x -= (this.#width - tempWidth) * 0.5;
-                            break;
-                        case 2:
-                            pivot.x -= this.#width - tempWidth;
-                            break;
-                    }
-                }
+            //         switch (this.horizontalAlign)
+            //         {
+            //             case 1:
+            //                 pivot.x -= (this.#width - tempWidth) * 0.5;
+            //                 break;
+            //             case 2:
+            //                 pivot.x -= this.#width - tempWidth;
+            //                 break;
+            //         }
+            //     }
                 
-                widthC--;
-            }
+            //     widthC--;
+            // }
             
-            const currentChar = chars[i];
-            
-            this.#RenderSprite(
-                currentChar.sprite,
-                currentChar.trisCount,
-                currentChar.rectArray,
-                currentChar.offset,
-                currentChar.color,
-                pivot
-            );
-        }
+            // this.#RenderSprite(
+            //     currentChar.sprite,
+            //     currentChar.trisCount,
+            //     currentChar.rectArray,
+            //     currentChar.offset,
+            //     currentChar.color,
+            //     pivot
+            // );
+        // }
+        
+        const gl = this.material.gl;
+
+        const localMatrix = Matrix3x3.Multiply(
+            this.localSpaceMatrix,
+            Matrix3x3.TRS(
+                Vector2.Scale(this.pivot, 0),
+                0,
+                this.#scale
+            )
+        );
+
+        this.material.color = this.color;
+        
+        this.material.SetMatrix(this.uMatrixID,
+            localMatrix.matrix[0][0],
+            localMatrix.matrix[0][1],
+            localMatrix.matrix[0][2],
+            localMatrix.matrix[1][0],
+            localMatrix.matrix[1][1],
+            localMatrix.matrix[1][2],
+            localMatrix.matrix[2][0],
+            localMatrix.matrix[2][1],
+            localMatrix.matrix[2][2]
+        );
+
+        this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
+        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
+        
+        gl.useProgram(this.material.program);
+        
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.font.texture.GetNativeTexture());
+        
+        Application.gl_multidraw.multiDrawArraysWEBGL(
+            gl.TRIANGLE_STRIP,
+            this.#indexes,
+            0,
+            this.#trisCounts,
+            0,
+            chars.length
+        );
+        
+        gl.useProgram(null);
     }
 }
