@@ -1,0 +1,109 @@
+{
+    "name" : "Scene",
+    "resources" : [
+        "sprites/ball",
+        "materials/mat_invert",
+        "font_main"
+    ],
+    "gameObjects" : [
+        {
+            "name" : "camera",
+            "id" : 0,
+            "components" : [
+                {
+                    "type" : "Camera",
+                    "args" : {
+                        "orthographicSize" : 6
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "text_test",
+            "id" : 1,
+            "components" : [
+                {
+                    "type" : "Test"
+                },
+                {
+                    "type" : "Text",
+                    "args" : {
+                        "font" : "font_main",
+                        "text" : "AA AA AA"
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "center",
+            "id" : 2,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball",
+                            "material" : "materials/mat_invert"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "min",
+            "id" : 3,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "xMax",
+            "id" : 4,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "yMax",
+            "id" : 5,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "max",
+            "id" : 6,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

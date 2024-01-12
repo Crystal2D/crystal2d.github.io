@@ -11,8 +11,6 @@ class Text extends DynamicRenderer
     #text = "";
     #words = [];
     #widths = [];
-    #vertexArray = [];
-    #textureArray = [];
     #trisCounts = [];
     #indexes = [];
     
@@ -396,15 +394,15 @@ class Text extends DynamicRenderer
     
     #GetWordChars (sprites, pos)
     {
-        const ppu = this.pixelPerUnit / this.#size;
-        
+        const textureW = this.#font.texture.width;
+
         let x = pos.x;
         let chars = [];
         
         for (let i = 0; i < sprites.length; i++)
         {
             const sprite = sprites[i];
-            const width = sprite.rect.width / ppu;
+            const width = sprite.rect.width / textureW;
             
             const newChar = this.#NewChar(
                 sprite,
@@ -470,9 +468,10 @@ class Text extends DynamicRenderer
     ForceMeshUpdate ()
     {
         this.#colorOld = this.color;
-        
-        const ppu = this.pixelPerUnit / this.#size;
-        const defaultLH = this.font.lineHeight / ppu;
+
+        const textureW = this.#font.texture.width;
+        const textureH = this.#font.texture.height;
+        const defaultLH = this.font.lineHeight / textureH;
         
         let x = 0;
         let y = 0;
@@ -508,7 +507,7 @@ class Text extends DynamicRenderer
                 continue;
             }
             
-            const width = word.width / ppu;
+            const width = word.width / textureW;
             const wrapX = !this.#overflowX && x + width > this.#width;
             
             if (x === 0 && wrapX && !word.space)
@@ -520,7 +519,7 @@ class Text extends DynamicRenderer
                 for (let iB = 0; iB < sprites.length; iB++)
                 {
                     const sprite = sprites[iB];
-                    const charWidth = sprite.rect.width / ppu;
+                    const charWidth = sprite.rect.width / textureW;
                     const charWX = !this.overflowWidth && x + charWidth > this.#width;
                     
                     if (charWX)
@@ -539,7 +538,7 @@ class Text extends DynamicRenderer
                         });
                     }
                     
-                    const charHeight = sprite.rect.height / ppu;
+                    const charHeight = sprite.rect.height / textureH;
                     
                     if (lineHeight < charHeight) lineHeight = charHeight;
                     
@@ -588,7 +587,7 @@ class Text extends DynamicRenderer
                 });
             }
             
-            const height = word.height / ppu;
+            const height = word.height / textureH;
             
             if (lineHeight < height) lineHeight = height;
             
@@ -601,7 +600,7 @@ class Text extends DynamicRenderer
                 {
                     const nextWord = this.#words[iA + 1];
                     
-                    if (nextWord == null || x + width + nextWord.width / ppu > this.#width)
+                    if (nextWord == null || x + width + nextWord.width / textureW > this.#width)
                     {
                         const currentWidth = widths[widths.length - 1].size;
                         

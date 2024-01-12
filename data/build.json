@@ -20,6 +20,14 @@
                     }
                 },
                 {
+                    "name" : "ball",
+                    "type" : "Texture",
+                    "args" : {
+                        "src" : "ball.png",
+                        "pixelPerUnit" : 120
+                    }
+                },
+                {
                     "name" : "characters",
                     "type" : "subpath",
                     "content" : [
@@ -87,6 +95,7 @@
         }
     ],
     "scenes" : [
+        "test",
         "scene"
     ],
     "shaders" : [

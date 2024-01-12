@@ -89,24 +89,30 @@ class SpriteRenderer extends Renderer
         
         let scale = null;
         let ppuScaler = 0;
+        let scaleOffset = 0;
         
         if (texX > texY)
         {
             scale = new Vector2(1, texY / texX);
             
             ppuScaler = texX / ppu;
+            scaleOffset = ppuScaler * (vertices[3].x - vertexPos.x)
         }
         else
         {
             scale = new Vector2(texX / texY, 1);
             
             ppuScaler = texY / ppu;
+            scaleOffset = ppuScaler * (vertices[3].y - vertexPos.y)
         }
         
         scale = Vector2.Scale(scale, ppuScaler);
         
         this.#transMat = Matrix3x3.TRS(
-            Vector2.Scale(this.sprite.pivot, -1),
+            Vector2.Scale(
+                this.sprite.pivot,
+                -scaleOffset
+            ),
             0,
             scale
         );
