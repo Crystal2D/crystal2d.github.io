@@ -2,7 +2,6 @@
     "name" : "Scene",
     "resources" : [
         "sprites/ball",
-        "materials/mat_invert",
         "font_main"
     ],
     "gameObjects" : [
@@ -29,7 +28,10 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "AA AA AA"
+                        "text" : "AA AA AA",
+                        "width" : 2.5,
+                        "height" : 2,
+                        "fontSize" : 1
                     }
                 }
             ]
@@ -42,8 +44,10 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/ball",
-                            "material" : "materials/mat_invert"
+                            "texture" : "sprites/ball"
+                        },
+                        "color" : {
+                            "r" : 255
                         }
                     }
                 }

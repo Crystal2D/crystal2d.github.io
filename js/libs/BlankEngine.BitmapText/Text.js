@@ -469,8 +469,13 @@ class Text extends DynamicRenderer
     {
         this.#colorOld = this.color;
 
+        const ppu = this.pixelPerUnit / this.#size;
         const textureW = this.#font.texture.width;
         const textureH = this.#font.texture.height;
+        const rescaleW = textureW / ppu;
+        const rescaleH = textureH / ppu;
+        const maxW = this.#width / rescaleW;
+        const maxH = this.#height / rescaleH;
         const defaultLH = this.font.lineHeight / textureH;
         
         let x = 0;
@@ -508,7 +513,7 @@ class Text extends DynamicRenderer
             }
             
             const width = word.width / textureW;
-            const wrapX = !this.#overflowX && x + width > this.#width;
+            const wrapX = !this.#overflowX && x + width > maxW;
             
             if (x === 0 && wrapX && !word.space)
             {
@@ -520,7 +525,7 @@ class Text extends DynamicRenderer
                 {
                     const sprite = sprites[iB];
                     const charWidth = sprite.rect.width / textureW;
-                    const charWX = !this.overflowWidth && x + charWidth > this.#width;
+                    const charWX = !this.overflowWidth && x + charWidth > maxW;
                     
                     if (charWX)
                     {
@@ -542,7 +547,7 @@ class Text extends DynamicRenderer
                     
                     if (lineHeight < charHeight) lineHeight = charHeight;
                     
-                    if (!this.overflowHeight && y + charHeight > this.#height)
+                    if (!this.overflowHeight && y + charHeight > maxH)
                     {
                         stop = true;
                         
@@ -552,7 +557,8 @@ class Text extends DynamicRenderer
                     const newChar = this.#NewChar(
                         sprite,
                         new Vector2(
-                            x - ((1 - charWidth) * 0.5),
+                            x,
+                            // - ((1 - charWidth) * 0.5),
                             -y
                         )
                     );
@@ -591,7 +597,7 @@ class Text extends DynamicRenderer
             
             if (lineHeight < height) lineHeight = height;
             
-            if (!this.#overflowY && y + lineHeight > this.#height) break;
+            if (!this.#overflowY && y + lineHeight > maxH) break;
             
             if (word.space)
             {
@@ -600,7 +606,7 @@ class Text extends DynamicRenderer
                 {
                     const nextWord = this.#words[iA + 1];
                     
-                    if (nextWord == null || x + width + nextWord.width / textureW > this.#width)
+                    if (nextWord == null || x + width + nextWord.width / textureW > maxW)
                     {
                         const currentWidth = widths[widths.length - 1].size;
                         
@@ -642,18 +648,20 @@ class Text extends DynamicRenderer
         this.#tempHeight = y;
         
         const boundsSize = new Vector2(
-            bestWidth,
-            this.#overflowY ? y : Math.min(y, this.#height)
+            bestWidth * rescaleW,
+            (this.#overflowY ? y : Math.min(y, maxH)) * rescaleH
         );
         
         this.#boundsSize = boundsSize;
         this.#boundsOffset = Vector2.Scale(
             new Vector2(
-                boundsSize.x - this.#width,
-                this.#height - boundsSize.y
+                boundsSize.x - maxW * rescaleW,
+                maxH * rescaleH - boundsSize.y
             ),
             0.5
         );
+
+        console.log(boundsSize, this.#boundsOffset, this.bounds);
         
         this.#meshChanged = false;
 

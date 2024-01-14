@@ -2,7 +2,7 @@ class Test extends GameBehavior
 {
     constructor () { super(); }
 
-    Start ()
+    Update ()
     {
         let points = [];
 
@@ -17,7 +17,5 @@ class Test extends GameBehavior
         points[2].position = new Vector2(max.x, min.y);
         points[3].position = new Vector2(min.x, max.y);
         points[4].position = max;
-
-        console.log(bounds.toString());
     }
 }
