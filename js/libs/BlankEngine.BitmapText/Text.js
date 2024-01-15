@@ -4,10 +4,12 @@ class Text extends DynamicRenderer
     #remapArrays = false;
     #overflowX = false;
     #overflowY = false;
+    #largerWidth = false;
     #tempHeight = 0;
     #width = 4;
     #height = 1;
     #size = 1;
+    #scaleOffset = 0;
     #text = "";
     #words = [];
     #widths = [];
@@ -17,7 +19,6 @@ class Text extends DynamicRenderer
     #boundsSize = Vector2.zero;
     #boundsOffset = Vector2.zero;
     #scale = Vector2.one;
-    #scalePos = Vector2.zero;
     
     #font = null;
     #colorOld = null;
@@ -365,11 +366,12 @@ class Text extends DynamicRenderer
         const texture = this.font.texture;
         const texX = texture.width;
         const texY = texture.height;
+        const largerWidth = texX > texY;
         
         let scale = null;
         let ppuScaler = 0;
         
-        if (texX > texY)
+        if (largerWidth)
         {
             scale = new Vector2(1, texY / texX);
             
@@ -381,15 +383,9 @@ class Text extends DynamicRenderer
             
             ppuScaler = texY / ppu;
         }
-        
+
+        this.#largerWidth = largerWidth;
         this.#scale = Vector2.Scale(scale, ppuScaler);
-        this.#scalePos = Vector2.Scale(
-            Vector2.Subtract(
-                Vector2.one,
-                this.#scale
-            ),
-            -0.5
-        );
     }
     
     #GetWordChars (sprites, pos)
@@ -661,7 +657,7 @@ class Text extends DynamicRenderer
             0.5
         );
 
-        console.log(boundsSize, this.#boundsOffset, this.bounds);
+        this.#scaleOffset = this.#largerWidth ? (maxW * rescaleW) : (maxH * rescaleH);
         
         this.#meshChanged = false;
 
@@ -769,7 +765,10 @@ class Text extends DynamicRenderer
         const localMatrix = Matrix3x3.Multiply(
             this.localSpaceMatrix,
             Matrix3x3.TRS(
-                Vector2.Scale(this.pivot, 0),
+                Vector2.Scale(
+                    this.pivot,
+                    -this.#scaleOffset
+                ),
                 0,
                 this.#scale
             )

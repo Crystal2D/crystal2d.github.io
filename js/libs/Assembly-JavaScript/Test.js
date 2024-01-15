@@ -1,6 +1,6 @@
 class Test extends GameBehavior
 {
-    constructor () { super(); }
+    constructor () { super(); Application.gl.clearColor(1, 1, 1, 1); }
 
     Update ()
     {
