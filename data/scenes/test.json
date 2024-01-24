@@ -28,10 +28,12 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "AA AA AA",
+                        "text" : "AB CD EF",
                         "width" : 2.5,
                         "height" : 2,
-                        "fontSize" : 1
+                        "fontSize" : 1,
+                        "horizontalAlign" : 2,
+                        "verticalAlign" : 1
                     }
                 }
             ]
