@@ -47,7 +47,7 @@
             "id" : 2,
             "parent" : 0,
             "transform" : {
-                "position" : { "x" : -3, "y" : 2.5 }
+                "position" : { "x" : -3, "y" : 2.37 }
             },
             "components" : [
                 {
@@ -68,7 +68,7 @@
             "name" : "text_hi",
             "id" : 3,
             "transform" : {
-                "position" : { "y" : 1.5 }
+                "position" : { "y" : 1.75 }
             },
             "components" : [
                 {
@@ -92,7 +92,7 @@
             "name" : "text_ctrls",
             "id" : 4,
             "transform" : {
-                "position" : { "x" : -1, "y" : -2.25 }
+                "position" : { "x" : -1, "y" : -2.5 }
             },
             "components" : [
                 {
@@ -116,7 +116,7 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "There's now txt! We can now + updates, tips, descs, comments / even just spam on test scenes\n\nNext thing 2 + is d animator\nB4 that, I want n need 2 + culling 2 + perf. Right now all is rendered, also d unseen",
+                        "text" : "Woa, text is now faster and is using batched rendering. We can now use whole words with no lag.\n\nCulling has been added, but there's still no data management/optimization. Still working on that, going to use QuadTrees. Might also implement physics on the way.",
                         "fontSize" : 0.5,
                         "width" : 6,
                         "pivot" : {

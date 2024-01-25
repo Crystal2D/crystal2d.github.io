@@ -6,6 +6,7 @@ class SpriteRenderer extends Renderer
     
     #sprite = null;
     #spriteOld = null;
+    #colorOld = null;
     
     get bounds ()
     {
@@ -45,6 +46,27 @@ class SpriteRenderer extends Renderer
         
         this.sprite = sprite;
     }
+
+    #RemapColors ()
+    {
+        this.#colorOld = this.color;
+
+        const color = [
+            this.color.r,
+            this.color.g,
+            this.color.b,
+            this.color.a
+        ];
+
+        this.material.SetBuffer(this.colorBufferID, [
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color
+        ]);
+    }
     
     Reload ()
     {
@@ -82,6 +104,8 @@ class SpriteRenderer extends Renderer
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
+
+        this.#RemapColors();
         
         const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
@@ -121,6 +145,8 @@ class SpriteRenderer extends Renderer
     Render ()
     {
         if (!this.isLoaded || !this.gameObject.activeSelf) return;
+
+        if (this.#colorOld !== this.color) this.#RemapColors();
         
         const gl = this.material.gl;
         
@@ -128,8 +154,6 @@ class SpriteRenderer extends Renderer
             this.localSpaceMatrix,
             this.#transMat
         );
-        
-        this.material.color = this.color;
         
         this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],
@@ -145,6 +169,7 @@ class SpriteRenderer extends Renderer
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
         this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
+        this.material.SetAttribute(this.aColorID, this.colorBufferID);
         
         gl.useProgram(this.material.program);
         

@@ -1,28 +1,13 @@
 class Material
 {
-    #uColorID = 0;
     #props = [];
     #buffers = [];
     #attribs = [];
-    
-    #color = Color.white;
     
     #gl = null;
     #program = null;
     #vertex = null;
     #fragment = null;
-    
-    get color ()
-    {
-        return this.#color;
-    }
-    
-    set color (value)
-    {
-        this.#color = value;
-        
-        this.SetVector(this.#uColorID, this.#color.r, this.#color.g, this.#color.b, this.#color.a)
-    }
     
     get vertexShader ()
     {
@@ -132,9 +117,6 @@ class Material
         
         gl.detachShader(program, this.#vertex.shader);
         gl.detachShader(program, this.#fragment.shader);
-        
-        this.#uColorID = this.GetPropertyNameID("uColor");
-        this.SetVector(this.#uColorID, 1, 1, 1, 1);
     }
     
     #GetGLType (value)

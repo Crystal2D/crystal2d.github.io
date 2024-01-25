@@ -258,6 +258,8 @@ class Text extends DynamicRenderer
         }
         
         const newChar = new TextChar();
+
+        newChar.parent = this;
         
         newChar.trisCount = tris.length;
         newChar.vertexArray = vertexArray;
@@ -401,6 +403,7 @@ class Text extends DynamicRenderer
         let offsetX = (maxW - widths[0].size) * 0.5 * this.#alignX;
         let vertexArray = [];
         let textureArray = [];
+        let colorArray = [];
         let trisCounts = [];
         let indexes = [0];
 
@@ -430,6 +433,7 @@ class Text extends DynamicRenderer
             {
                 vertexArray = chars[i].localVertexArray;
                 textureArray = chars[i].textureArray;
+                colorArray = chars[i].colorArray;
 
                 index = newIndex;
                 trisCounts[0] = trisCount;
@@ -439,6 +443,7 @@ class Text extends DynamicRenderer
 
             vertexArray.push(...chars[i].localVertexArray);
             textureArray.push(...chars[i].textureArray);
+            colorArray.push(...chars[i].colorArray);
 
             indexes.push(index);
             index = newIndex;
@@ -447,6 +452,7 @@ class Text extends DynamicRenderer
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
+        this.material.SetBuffer(this.colorBufferID, colorArray);
 
         this.#trisCounts = trisCounts;
         this.#indexes = indexes;
@@ -683,8 +689,6 @@ class Text extends DynamicRenderer
                 this.#scale
             )
         );
-
-        this.material.color = this.color;
         
         this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],
@@ -700,6 +704,7 @@ class Text extends DynamicRenderer
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
         this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
+        this.material.SetAttribute(this.aColorID, this.colorBufferID);
         
         gl.useProgram(this.material.program);
         

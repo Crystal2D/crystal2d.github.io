@@ -4,12 +4,14 @@ class TextChar
 
     #pos = Vector2.zero;
     #offset = Vector2.zero;
+    #color = new Color(1, 1, 1);
     
     trisCount = 0;
     textureArray = [];
     localVertexArray = [];
-    
-    color = new Color(1, 1, 1);
+    colorArray = [];
+
+    parent = null;
 
     get vertexArray ()
     {
@@ -45,6 +47,34 @@ class TextChar
         this.#offset = value;
 
         this.#RecalcVerts();
+    }
+
+    get color ()
+    {
+        return this.#color;
+    }
+
+    set color (value)
+    {
+        this.#color = value;
+
+        const color = [
+            value.r,
+            value.g,
+            value.b,
+            value.a
+        ];
+
+        this.colorArray = [
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color
+        ];
+
+        this.parent.RemapGraphicArrays();
     }
 
     #RecalcVerts ()
