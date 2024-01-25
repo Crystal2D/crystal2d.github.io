@@ -491,18 +491,21 @@ class Text extends DynamicRenderer
             
             if (word.lineBreak)
             {
-                const currentWidth = widths[widths.length - 1].size;
-                
-                if (currentWidth > bestWidth) bestWidth = currentWidth;
-                
+                if (x !== 0)
+                {
+                    const currentWidth = widths[widths.length - 1].size;
+                    
+                    if (currentWidth > bestWidth) bestWidth = currentWidth;
+
+                    widths.push({
+                        size : 0,
+                        count : 0
+                    });
+                }
+
                 y += lineHeight;
                 x = 0;
                 lineHeight = defaultLH;
-                
-                widths.push({
-                    size : 0,
-                    count : 0
-                });
                 
                 continue;
             }
