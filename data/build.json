@@ -28,6 +28,13 @@
                     }
                 },
                 {
+                    "name" : "title",
+                    "type" : "Texture",
+                    "args" : {
+                        "src" : "title.png"
+                    }
+                },
+                {
                     "name" : "characters",
                     "type" : "subpath",
                     "content" : [

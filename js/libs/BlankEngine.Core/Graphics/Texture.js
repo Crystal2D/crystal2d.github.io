@@ -11,7 +11,7 @@ class Texture
     #gl = null;
     #texture = null;
     
-    pixelPerUnit = 16;
+    pixelPerUnit = 24;
     sprites = [];
     
     get isLoaded ()

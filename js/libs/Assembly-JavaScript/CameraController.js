@@ -1,5 +1,5 @@
-class CameraController extends GameBehavior
-{    
+class CameraController extends Viewport
+{
     #targetTrans = null;
     
     clampMin = new Vector2(0, 0);
@@ -9,15 +9,11 @@ class CameraController extends GameBehavior
     
     Start ()
     {
-        Crispixels.effect = true;
+        super.Start();
+
         Application.gl.clearColor(0.25, 0.25, 0.25, 1);
         
         this.#targetTrans = GameObject.Find("char_yoki").transform;
-    }
-    
-    Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.F4)) Window.fullScreen = !Window.fullScreen;
     }
     
     LateUpdate ()

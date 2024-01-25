@@ -340,24 +340,11 @@ class Text extends DynamicRenderer
         const texture = this.font.texture;
         const texX = texture.width;
         const texY = texture.height;
-        
-        let scale = null;
-        let ppuScaler = 0;
-        
-        if (texX > texY)
-        {
-            scale = new Vector2(1, texY / texX);
-            
-            ppuScaler = texX / ppu;
-        }
-        else
-        {
-            scale = new Vector2(texX / texY, 1);
-            
-            ppuScaler = texY / ppu;
-        }
 
-        this.#scale = Vector2.Scale(scale, ppuScaler);
+        this.#scale = Vector2.Scale(
+            texX > texY ? new Vector2(1, texY / texX) : new Vector2(texX / texY, 1),
+            texX > texY ? (texX / ppu) : (texY / ppu)
+        );
 
         this.#meshChanged = true;
     }

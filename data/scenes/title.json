@@ -1,0 +1,37 @@
+{
+    "name" : "Title",
+    "resources" : [
+        "sprites/title"
+    ],
+    "gameObjects" : [
+        {
+            "name" : "camera",
+            "id" : 0,
+            "components" : [
+                {
+                    "type" : "Viewport"
+                },
+                {
+                    "type" : "Camera",
+                    "args" : {
+                        "orthographicSize" : 6
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "obj_bg",
+            "id" : 1,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/title"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
