@@ -2,12 +2,17 @@
     "name" : "Assembly-JavaScript",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
+        "Viewport",
         "CharController",
         "CameraController",
         "FPS",
         "Test"
     ],
     "classes" : [
+        {
+            "name" : "Viewport",
+            "type" : 0
+        },
         {
             "name" : "CharController",
             "type" : 0,
@@ -31,4 +36,4 @@
             "type" : 0
         }
     ]
-}
+} 
