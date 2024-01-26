@@ -37,6 +37,11 @@ class Renderer extends Component
         
         this.Reload();
     }
+
+    get localToWorldMatrix ()
+    {
+        return Matrix3x3.zero;
+    }
     
     constructor (material)
     {

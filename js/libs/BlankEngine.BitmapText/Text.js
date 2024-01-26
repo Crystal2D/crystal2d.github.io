@@ -193,6 +193,21 @@ class Text extends DynamicRenderer
     {
         return this.font.texture.pixelPerUnit;
     }
+
+    get localToWorldMatrix ()
+    {
+        return Matrix3x3.Multiply(
+            this.transform.localToWorldMatrix,
+            Matrix3x3.TRS(
+                Vector2.Scale(
+                    this.pivot,
+                    new Vector2(-this.#width, -this.#height)
+                ),
+                0,
+                this.#scale
+            )
+        );
+    }
     
     #Word = class
     {
@@ -668,17 +683,7 @@ class Text extends DynamicRenderer
         
         const gl = this.material.gl;
 
-        const localMatrix = Matrix3x3.Multiply(
-            this.localSpaceMatrix,
-            Matrix3x3.TRS(
-                Vector2.Scale(
-                    this.pivot,
-                    new Vector2(-this.#width, -this.#height)
-                ),
-                0,
-                this.#scale
-            )
-        );
+        const localMatrix = this.localSpaceMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],

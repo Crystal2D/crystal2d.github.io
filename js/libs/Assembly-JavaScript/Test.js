@@ -2,7 +2,7 @@ class Test extends Viewport
 {
     #iter = 1000;
     #area = 100;
-    #sizeMin = 1;
+    #sizeMin = 0.5;
     #sizeMax = 2;
     #speed = 4;
     #scale = 0;
@@ -24,6 +24,10 @@ class Test extends Viewport
 
     Start ()
     {
+        super.Start();
+
+        Window.fillWindow = true;
+
         this.#camera = this.GetComponent("Camera");
         
         this.#scaleMin = this.#camera.orthographicSize;
@@ -89,6 +93,8 @@ class Test extends Viewport
     
     Update ()
     {
+        super.Update();
+
         this.#input = new Vector2(
             +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
             +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
