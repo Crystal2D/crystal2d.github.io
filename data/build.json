@@ -15,16 +15,8 @@
                     "name" : "square",
                     "type" : "Texture",
                     "args" : {
-                        "src" : "square_outline.png",
+                        "src" : "square.png",
                         "pixelPerUnit" : 30
-                    }
-                },
-                {
-                    "name" : "ball",
-                    "type" : "Texture",
-                    "args" : {
-                        "src" : "ball.png",
-                        "pixelPerUnit" : 120
                     }
                 },
                 {
@@ -102,7 +94,7 @@
         }
     ],
     "scenes" : [
-        "scene"
+        "test"
     ],
     "shaders" : [
         "vertex",
