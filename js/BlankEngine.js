@@ -55,15 +55,15 @@ class BlankEngine
     {
         static #inited = false;
         static #terminateStart = false;
-        
-        static compiledData = {
+        static #resources = [];
+        static #compiledData = {
             libs : [],
             scripts : [],
             shaders : [],
             scenes : []
         };
         
-        static buildData = null;
+        static #buildData = null;
         
         static #Lib = class
         {
@@ -181,8 +181,8 @@ class BlankEngine
         
         static GetClassOfType (name, type)
         {
-            const libs = this.compiledData.libs;
-            const scripts = this.compiledData.scripts;
+            const libs = this.#compiledData.libs;
+            const scripts = this.#compiledData.scripts;
             
             let output = null;
             
@@ -276,85 +276,90 @@ class BlankEngine
             
             const buildResponse = await fetch("data/build.json");
             
-            this.buildData = await buildResponse.json();
+            this.#buildData = await buildResponse.json();
             
-            if (this.buildData.libs.length === 0) this.buildData.libs[0] = "BlankEngine.Core";
-            else this.buildData.libs.unshift("BlankEngine.Core");
+            if (this.#buildData.libs.length === 0) this.#buildData.libs[0] = "BlankEngine.Core";
+            else this.#buildData.libs.unshift("BlankEngine.Core");
             
-            for (let i = 0; i < this.buildData.libs.length; i++)
+            for (let i = 0; i < this.#buildData.libs.length; i++)
             {
-                const libResponse = await fetch(`js/libs/${this.buildData.libs[i]}/package.json`);
+                const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/package.json`);
                 const libData = await libResponse.json();
                 const lib = new this.#Lib(
                     libData.name,
                     libData.description,
                     libData.scripts,
                     libData.classes,
-                    this.buildData.libs[i]
+                    this.#buildData.libs[i]
                 );
                 
-                if (i === 0) this.compiledData.libs[0] = lib;
-                else this.compiledData.libs.push(lib);
+                if (i === 0) this.#compiledData.libs[0] = lib;
+                else this.#compiledData.libs.push(lib);
             }
             
-            for (let i = 0; i < this.buildData.scripts.length; i++)
+            for (let i = 0; i < this.#buildData.scripts.length; i++)
             {
-                const scriptData = this.buildData.scripts[i];
+                const scriptData = this.#buildData.scripts[i];
                 
                 let script = null;
                 
                 if (typeof scriptData === "string") script = new this.#Script(`js/${scriptData}.js`);
                 else script = new this.#Script(`js/${scriptData.src}.js`, scriptData.classes);
                 
-                if (i === 0) this.compiledData.scripts[0] = script;
-                else this.compiledData.scripts.push(script);
+                if (i === 0) this.#compiledData.scripts[0] = script;
+                else this.#compiledData.scripts.push(script);
             }
             
-            for (let i = 0; i < this.buildData.shaders.length; i++)
+            for (let i = 0; i < this.#buildData.shaders.length; i++)
             {
-                const shaderResponse = await fetch(`shaders/${this.buildData.shaders[i]}.glsl`);
+                const shaderResponse = await fetch(`shaders/${this.#buildData.shaders[i]}.glsl`);
                 const shader = await shaderResponse.text();
                 
-                if (i === 0) this.compiledData.shaders[0] = shader;
-                else this.compiledData.shaders.push(shader);
+                if (i === 0) this.#compiledData.shaders[0] = shader;
+                else this.#compiledData.shaders.push(shader);
             }
             
-            for (let i = 0; i < this.buildData.scenes.length; i++)
+            for (let i = 0; i < this.#buildData.scenes.length; i++)
             {
-                const sceneResponse = await fetch(`data/scenes/${this.buildData.scenes[i]}.json`);
+                const sceneResponse = await fetch(`data/scenes/${this.#buildData.scenes[i]}.json`);
                 const scene = await sceneResponse.json();
                 const newScene = {
                     name : scene.name,
                     resources : scene.resources,
                     gameObjects : scene.gameObjects,
                     buildIndex : i,
-                    path : `data/scenes/${this.buildData.scenes[i]}.json`
+                    path : `data/scenes/${this.#buildData.scenes[i]}.json`
                 };
                 
-                if (i === 0) this.compiledData.scenes[0] = newScene;
-                else this.compiledData.scenes.push(newScene);
+                if (i === 0) this.#compiledData.scenes[0] = newScene;
+                else this.#compiledData.scenes.push(newScene);
             }
+
+            const resResponse = await fetch("data/resources.json");
+
+            this.#resources = await resResponse.json();
             
             this.#Init();
         }
         
         static async #Init ()
         {
-            for (let i = 0; i < this.compiledData.libs.length; i++) await this.compiledData.libs[i].Load();
+            for (let i = 0; i < this.#compiledData.libs.length; i++) await this.#compiledData.libs[i].Load();
             
-            for (let i = 0; i < this.compiledData.scripts.length; i++) await this.compiledData.scripts[i].Load();
+            for (let i = 0; i < this.#compiledData.scripts.length; i++) await this.#compiledData.scripts[i].Load();
             
             if (this.#terminateStart) return;
             
-            Application.targetFrameRate = this.buildData.targetFrameRate;
+            Application.targetFrameRate = this.#buildData.targetFrameRate;
             
-            Time.maximumDeltaTime = this.buildData.time.maximumDeltaTime;
-            Time.timeScale = this.buildData.time.timeScale;
-            Time.fixedDeltaTime = this.buildData.time.fixedDeltaTime;
+            Time.maximumDeltaTime = this.#buildData.time.maximumDeltaTime;
+            Time.timeScale = this.#buildData.time.timeScale;
+            Time.fixedDeltaTime = this.#buildData.time.fixedDeltaTime;
             
-            Shader.Set(this.compiledData.shaders);
-            Resources.Set(this.buildData.resources);
-            SceneManager.Set(this.compiledData.scenes);
+            Debug.Set(this.#buildData.debugMode);
+            Shader.Set(this.#compiledData.shaders);
+            Resources.Set(this.#resources);
+            SceneManager.Set(this.#compiledData.scenes);
             
             Input.Init();
             PlayerLoop.Init();

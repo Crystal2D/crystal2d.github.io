@@ -1,0 +1,69 @@
+[
+    {
+        "path" : "sprites/square",
+        "type" : "Texture",
+        "args" : {
+            "src" : "square.png",
+            "pixelPerUnit" : 30
+        }
+    },
+    {
+        "path" : "sprites/title",
+        "type" : "Texture",
+        "args" : {
+            "src" : "title.png"
+        }
+    },
+    {
+        "path" : "sprites/characters/yoki",
+        "type" : "Texture",
+        "args" : {
+            "src" : "characters/yoki.png",
+            "sprites" : [
+                {
+                    "rect" : {
+                        "width" : 16,
+                        "height" : 16
+                    }
+                },
+                {
+                    "rect" : {
+                        "y" : 16,
+                        "width" : 16,
+                        "height" : 16
+                    }
+                },
+                {
+                    "rect" : {
+                        "y" : 32,
+                        "width" : 16,
+                        "height" : 16
+                    }
+                },
+                {
+                    "rect" : {
+                        "y" : 48,
+                        "width" : 16,
+                        "height" : 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path" : "font_main",
+        "type" : "FontAtlas",
+        "args" : {
+            "texture" : "font.png",
+            "glyphs" : "font",
+            "pixelPerUnit" : 30
+        }
+    },
+    {
+        "path" : "materials/mat_invert",
+        "type" : "Material",
+        "args" : {
+            "fragmentShader" : "Default/Invert Color"
+        }
+    }
+]

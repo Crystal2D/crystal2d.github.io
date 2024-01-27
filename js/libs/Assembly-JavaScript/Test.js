@@ -9,7 +9,7 @@ class Test extends Viewport
     #scaleDelta = 0
     #scaleSpeed = 10;
     #scaleMin = 0;
-    #scaleMax = 100;
+    #scaleMax = 110;
     
     #input = Vector2.zero;
     
@@ -34,6 +34,7 @@ class Test extends Viewport
         this.#scale = this.#scaleMin;
         
         const sprite = Resources.Find("sprites/square").sprites[0];
+        const area = this.#area * 0.5;
         
         let objs = [];
         
@@ -50,8 +51,8 @@ class Test extends Viewport
             const transform = new Transform();
             
             transform.position = new Vector2(
-                this.#Rand(0, this.#area),
-                this.#Rand(0, -this.#area)
+                this.#Rand(-area, area),
+                this.#Rand(-area, area)
             );
             transform.scale = new Vector2(
                 this.#Rand(this.#sizeMin, this.#sizeMax),

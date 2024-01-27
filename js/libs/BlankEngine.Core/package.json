@@ -22,6 +22,7 @@
         "Math/Geometry/Bounds",
         "Transform",
         "GameObject",
+        "QuadTree",
         "SceneManager/SceneManager",
         "SceneManager/Scene",
         "PlayerLoop/PlayerLoop",
