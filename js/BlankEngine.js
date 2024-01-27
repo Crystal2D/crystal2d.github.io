@@ -220,9 +220,9 @@ class BlankEngine
             document.body.style.height = "100vh";
             document.body.style.margin = "0";
             document.body.style.display = "flex";
-            document.body.style.alignItems = "center";
             document.body.style.userSelect = "none";
             document.body.style.color = "white";
+            document.body.style.fontFamily = "monospace";
             
             let caughtErr = false;
             let errLogs = null;

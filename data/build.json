@@ -4,15 +4,15 @@
         "Assembly-JavaScript"
     ],
     "scripts" : [
-        "plugins/Crispixels"
+        "plugins/Crispixels",
+        "plugins/FPSMeter"
     ],
     "scenes" : [
         "test"
     ],
     "shaders" : [
         "vertex",
-        "fragment",
-        "invertColor"
+        "fragment"
     ],
     "targetFrameRate" : 60,
     "debugMode" : false,

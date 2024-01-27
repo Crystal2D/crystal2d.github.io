@@ -5,16 +5,13 @@ class QuadTree
     children = [];
     items = [];
 
-    bounds = null;
+    rect = null;
 
-    constructor (bounds, depth)
+    constructor (area, depth)
     {
         this.depth = depth ?? 0;
 
-        this.Resize(bounds ?? new Bounds(
-            new Vector2(50, 50),
-            new Vector2(100, 100)
-        ));
+        this.Resize(area ?? new Rect(50, 50, 100, 100));
     }
 
     Clear ()
@@ -22,18 +19,12 @@ class QuadTree
 
     }
 
-    Resize (bounds)
+    Resize (area)
     {
         this.Clear();
 
-        this.bounds = bounds;
+        this.rect = area;
 
-        const min = bounds.min;
-        const max = bounds.max;
-        const childSize = bounds.extents;
-
-        this.children = [
-            new Bounds()
-        ];
+        const childSize = Vector2.Scale(area.size, 0.5);
     }
 }
