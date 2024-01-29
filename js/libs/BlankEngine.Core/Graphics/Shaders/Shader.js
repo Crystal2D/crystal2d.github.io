@@ -140,8 +140,7 @@ class Shader
             
             const newShader = new Shader(shaderData.name, shaders[i], shaderData.type);
             
-            if (this.#shaders.length === 0) this.#shaders[0] = newShader;
-            else this.#shaders.push(newShader);
+            this.#shaders.push(newShader);
         }
         
         this.#loaded = true;

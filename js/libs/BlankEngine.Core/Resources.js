@@ -92,12 +92,9 @@ class Resources
             data.args
         );
 
-        const res = {
+        this.#resources.push({
             path : path,
             obj : obj
-        };
-
-        if (this.#resources.length === 0) this.#resources[0] = res;
-        else this.#resources.push(res);
+        });
     }
 }

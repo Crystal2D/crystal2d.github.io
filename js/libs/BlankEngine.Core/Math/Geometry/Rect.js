@@ -120,7 +120,7 @@ class Rect
 
     Contains (value)
     {
-        if (value instanceof Bounds) return this.Contains(value.min) && this.Contains(value.max);
+        if (value instanceof Rect) return this.Contains(value.min) && this.Contains(value.max);
 
         return (value.x >= this.xMin) && (value.x < this.xMax) && (value.y >= this.yMin) && (value.y < this.yMax);
     }

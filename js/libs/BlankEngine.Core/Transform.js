@@ -193,8 +193,7 @@ class Transform extends Component
                 continue;
             }
             
-            if (newChild.length === 0) newChild[0] = child;
-            else newChild.push(child);
+            newChild.push(child);
         }
         
         this.#child = newChild;
@@ -232,8 +231,7 @@ class Transform extends Component
         
         const id = child.gameObject.GetSceneID();
         
-        if (this.childCount === 0) this.#child[0] = id;
-        else this.#child.push(id);
+        this.#child.push(id);
     }
     
     AttachChildByID (id)

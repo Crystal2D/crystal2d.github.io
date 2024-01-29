@@ -26,6 +26,7 @@ class Test extends Viewport
     {
         super.Start();
 
+        Window.resizable = true;
         Window.fillWindow = true;
 
         this.#camera = this.GetComponent("Camera");

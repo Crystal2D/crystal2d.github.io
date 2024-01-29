@@ -18,16 +18,12 @@ class FontAtlas
             
             const spriteCount = initSpriteCount + i;
             
-            if (spriteCount === 0) this.texture.sprites[0] = sprite;
-            else this.texture.sprites.push(sprite);
+            this.texture.sprites.push(sprite);
             
-            const glyph = {
+            this.#glyphs.push({
                 character : glyphs[i].character,
                 index : spriteCount
-            };
-            
-            if (i === 0) this.#glyphs[0] = glyph;
-            else this.#glyphs.push(glyph);
+            });
         }
     }
     

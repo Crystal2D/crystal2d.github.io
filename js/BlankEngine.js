@@ -120,8 +120,7 @@ class BlankEngine
                     
                     await script.Load();
                     
-                    if (i === 0) this.#scripts[0] = script;
-                    else this.#scripts.push(script);
+                    this.#scripts.push(script);
                 }
                 
                 let newClasses = [];
@@ -131,8 +130,7 @@ class BlankEngine
                     if (this.#classes[i].name == null) continue;
                     else if (this.#classes[i].args == null) this.#classes[i].args = [];
                     
-                    if (newClasses.length === 0) newClasses[0] = this.#classes[i];
-                    else newClasses.push(this.#classes[i]);
+                    newClasses.push(this.#classes[i]);
                 }
                 
                 this.#classes = newClasses;
@@ -166,8 +164,7 @@ class BlankEngine
                     if (this.#classes[i].name == null) continue;
                     else if (this.#classes[i].args == null) this.#classes[i].args = [];
                     
-                    if (newClasses.length === 0) newClasses[0] = this.#classes[i];
-                    else newClasses.push(this.#classes[i]);
+                    newClasses.push(this.#classes[i]);
                 }
                 
                 this.#classes = newClasses;
@@ -285,16 +282,14 @@ class BlankEngine
             {
                 const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/package.json`);
                 const libData = await libResponse.json();
-                const lib = new this.#Lib(
+                
+                this.#compiledData.libs.push(new this.#Lib(
                     libData.name,
                     libData.description,
                     libData.scripts,
                     libData.classes,
                     this.#buildData.libs[i]
-                );
-                
-                if (i === 0) this.#compiledData.libs[0] = lib;
-                else this.#compiledData.libs.push(lib);
+                ));
             }
             
             for (let i = 0; i < this.#buildData.scripts.length; i++)
@@ -306,33 +301,28 @@ class BlankEngine
                 if (typeof scriptData === "string") script = new this.#Script(`js/${scriptData}.js`);
                 else script = new this.#Script(`js/${scriptData.src}.js`, scriptData.classes);
                 
-                if (i === 0) this.#compiledData.scripts[0] = script;
-                else this.#compiledData.scripts.push(script);
+                this.#compiledData.scripts.push(script);
             }
             
             for (let i = 0; i < this.#buildData.shaders.length; i++)
             {
                 const shaderResponse = await fetch(`shaders/${this.#buildData.shaders[i]}.glsl`);
-                const shader = await shaderResponse.text();
                 
-                if (i === 0) this.#compiledData.shaders[0] = shader;
-                else this.#compiledData.shaders.push(shader);
+                this.#compiledData.shaders.push(await shaderResponse.text());
             }
             
             for (let i = 0; i < this.#buildData.scenes.length; i++)
             {
                 const sceneResponse = await fetch(`data/scenes/${this.#buildData.scenes[i]}.json`);
                 const scene = await sceneResponse.json();
-                const newScene = {
+                
+                this.#compiledData.scenes.push({
                     name : scene.name,
                     resources : scene.resources,
                     gameObjects : scene.gameObjects,
                     buildIndex : i,
                     path : `data/scenes/${this.#buildData.scenes[i]}.json`
-                };
-                
-                if (i === 0) this.#compiledData.scenes[0] = newScene;
-                else this.#compiledData.scenes.push(newScene);
+                });
             }
 
             const resResponse = await fetch("data/resources.json");
