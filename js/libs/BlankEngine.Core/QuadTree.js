@@ -8,6 +8,11 @@ class QuadTree
 
     #rect = null;
 
+    get area ()
+    {
+        return this.#rect;
+    }
+
     get count ()
     {
         let output = this.#items.length;
@@ -24,7 +29,7 @@ class QuadTree
     {
         this.#depth = depth ?? 0;
 
-        this.Resize(area ?? new Rect(50, 50, 100, 100));
+        this.Resize(area ?? new Rect(-500, -500, 1000, 1000));
     }
 
     Clear ()
@@ -77,6 +82,42 @@ class QuadTree
         }
 
         this.#items.push(new QuadTreeItem(item, size));
+    }
+
+    Find (area)
+    {
+        let output = [];
+
+        this.FindByParam(area, output);
+
+        return output;
+    }
+
+    FindByParam (area, output)
+    {
+        for (let i = 0; i < this.#items.length; i++)
+        {
+            if (area.Overlaps(this.#items[i].size)) output.push(this.#items[i].item);
+        }
+
+        for (let i = 0; i < 4; i++)
+        {
+            if (this.#child[i] != null)
+            {
+                if (area.Contains(this.#areas[i])) this.#child[i].GetItems(output);
+                else if (this.#areas[i].Overlaps(area)) this.#child[i].FindByParam(area, output);
+            }
+        }
+    }
+
+    GetItems (output)
+    {
+        for (let i = 0; i < this.#items.length; i++) output.push(this.#items[i].item);
+
+        for (let i = 0; i < 4; i++)
+        {
+            if (this.#child[i] != null) this.#child[i].GetItems(output);
+        }
     }
 }
 

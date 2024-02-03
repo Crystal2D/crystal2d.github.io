@@ -1,15 +1,15 @@
 class Test extends Viewport
 {
-    #iter = 1000;
-    #area = 100;
+    #iter = 5000;
+    #area = 500;
     #sizeMin = 0.5;
     #sizeMax = 2;
     #speed = 4;
     #scale = 0;
     #scaleDelta = 0
-    #scaleSpeed = 10;
+    #scaleSpeed = 50;
     #scaleMin = 0;
-    #scaleMax = 110;
+    #scaleMax = 550;
     
     #input = Vector2.zero;
     
@@ -28,6 +28,8 @@ class Test extends Viewport
 
         Window.resizable = true;
         Window.fillWindow = true;
+
+        Window.SetTitle("DEP - Loading Environment (0)");
 
         this.#camera = this.GetComponent("Camera");
         
@@ -68,11 +70,22 @@ class Test extends Viewport
                 i
             );
             
-            if (i === 1) objs[0] = obj;
-            else objs.push(obj);
+            objs.push(obj);
+
+            const bounds = new Bounds(transform.position, transform.scale);
+            const min = bounds.min;
+            const max = bounds.max;
+
+            const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+            this.#camera.tree.Insert(obj, rect);
+
+            if (i % 10 === 0) Window.SetTitle(`DEP - Loading Environment (${i}/5000)`);
         }
         
         SceneManager.GetActiveScene().gameObjects.push(...objs);
+
+        Window.SetTitle("DEP - Linearly Rendered");
     }
     
     FixedUpdate ()
