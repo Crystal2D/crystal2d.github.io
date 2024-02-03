@@ -1,6 +1,7 @@
 class Camera extends Behavior
 {
-    #useQuad = false;
+    useQuad = false;
+    counter = 0;
     tree = new QuadTree();
 
     #updateProjMat = true;
@@ -59,20 +60,17 @@ class Camera extends Behavior
         
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            this.#useQuad = !this.#useQuad;
+        if (Input.GetKeyDown(KeyCode.F1)) this.useQuad = !this.useQuad;
 
-            Window.SetTitle(`DEP - ${this.#useQuad ? "Optimally" : "Linearly"} Rendered`);
-        }
-
-        if (this.#useQuad)
+        if (this.useQuad)
         {
             const min = this.bounds.min;
             const max = this.bounds.max;
             const camRect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
 
             const objs = this.tree.Find(camRect);
+
+            this.counter = objs.length;
 
             for (let i = 0; i < objs.length; i++)
             {
@@ -91,28 +89,32 @@ class Camera extends Behavior
                 renderer.localSpaceMatrix = renM;
                 renderer.Render();
             }
-
-            return;
         }
-
-        const renderers = GameObject.FindComponents("Renderer");
-        
-        for (let i = 0; i < renderers.length; i++)
+        else
         {
-            if (!this.bounds.Intersects(renderers[i].bounds)) continue;
+            this.counter = 0;
+
+            const renderers = GameObject.FindComponents("Renderer");
             
-            const lWM = renderers[i].localToWorldMatrix;
-            
-            const renM = Matrix3x3.Multiply(
-                Matrix3x3.Multiply(
-                    Matrix3x3.Multiply(transM, this.#projMatrix),
-                    camM,
-                ),
-                lWM
-            );
-            
-            renderers[i].localSpaceMatrix = renM;
-            renderers[i].Render();
+            for (let i = 0; i < renderers.length; i++)
+            {
+                if (!this.bounds.Intersects(renderers[i].bounds)) continue;
+
+                this.counter++;
+
+                const lWM = renderers[i].localToWorldMatrix;
+
+                const renM = Matrix3x3.Multiply(
+                    Matrix3x3.Multiply(
+                        Matrix3x3.Multiply(transM, this.#projMatrix),
+                        camM,
+                    ),
+                    lWM
+                );
+                    
+                renderers[i].localSpaceMatrix = renM;
+                renderers[i].Render();
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ class Test extends Viewport
     #scaleSpeed = 50;
     #scaleMin = 0;
     #scaleMax = 550;
+    #t = 0.5;
     
     #input = Vector2.zero;
     
@@ -84,8 +85,6 @@ class Test extends Viewport
         }
         
         SceneManager.GetActiveScene().gameObjects.push(...objs);
-
-        Window.SetTitle("DEP - Linearly Rendered");
     }
     
     FixedUpdate ()
@@ -104,6 +103,17 @@ class Test extends Viewport
         const movement = Vector2.Scale(this.#input, (this.#scale / this.#scaleMin) * this.#speed * Time.fixedDeltaTime);
        
         this.transform.position = Vector2.Add(this.transform.position, movement);
+
+        if (this.#t < 0.5)
+        {
+            this.#t += Time.fixedDeltaTime;
+            
+            return;
+        }
+        
+        this.#t = 0;
+
+        Window.SetTitle(`DEP - ${this.#camera.useQuad ? "Optimally" : "Linearly"} Rendered (${this.#camera.counter}/5000)`);
     }
     
     Update ()
