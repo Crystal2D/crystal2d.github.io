@@ -128,8 +128,8 @@ class Transform extends Component
     Recalc ()
     {
         this.#lWMat = Matrix3x3.TRS(
-            this.localPosition,
-            5.555555555555556e-3 * this.localRotation * Math.PI,
+            Vector2.Scale(this.localPosition, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.localRotation * Math.PI,
             this.localScale
         );
         this.#lWMatInv = this.#lWMat.inverse;
@@ -193,8 +193,7 @@ class Transform extends Component
                 continue;
             }
             
-            if (newChild.length === 0) newChild[0] = child;
-            else newChild.push(child);
+            newChild.push(child);
         }
         
         this.#child = newChild;
@@ -232,8 +231,7 @@ class Transform extends Component
         
         const id = child.gameObject.GetSceneID();
         
-        if (this.childCount === 0) this.#child[0] = id;
-        else this.#child.push(id);
+        this.#child.push(id);
     }
     
     AttachChildByID (id)

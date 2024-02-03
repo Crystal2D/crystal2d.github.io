@@ -107,8 +107,7 @@ class SceneManager
             else if (typeof data[i] === "object" && data[i].__compiled) newObj = await this.CreateObject(data[i].type, data[i].args);
             else newObj = data[i];
             
-            if (objects.length === 0) objects[0] = newObj;
-            else objects.push(newObj);
+            objects.push(newObj);
         }
         
         return objects;

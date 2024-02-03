@@ -1,8 +1,7 @@
 {
-    "name" : "Scene",
+    "name" : "Test",
     "resources" : [
-        "sprites/ball",
-        "font_main"
+        "sprites/square"
     ],
     "gameObjects" : [
         {
@@ -10,103 +9,12 @@
             "id" : 0,
             "components" : [
                 {
-                    "type" : "Camera",
-                    "args" : {
-                        "orthographicSize" : 6
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "text_test",
-            "id" : 1,
-            "components" : [
-                {
                     "type" : "Test"
                 },
                 {
-                    "type" : "Text",
+                    "type" : "Camera",
                     "args" : {
-                        "font" : "font_main",
-                        "text" : "AB CD EF",
-                        "width" : 2.5,
-                        "height" : 2,
-                        "fontSize" : 1,
-                        "horizontalAlign" : 2,
-                        "verticalAlign" : 1
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "center",
-            "id" : 2,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        },
-                        "color" : {
-                            "r" : 255
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "min",
-            "id" : 3,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "xMax",
-            "id" : 4,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "yMax",
-            "id" : 5,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "max",
-            "id" : 6,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
+                        "orthographicSize" : 6
                     }
                 }
             ]

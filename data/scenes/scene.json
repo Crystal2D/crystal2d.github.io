@@ -43,30 +43,8 @@
             ]
         },
         {
-            "name" : "text_fps",
-            "id" : 2,
-            "parent" : 0,
-            "transform" : {
-                "position" : { "x" : -3, "y" : 2.37 }
-            },
-            "components" : [
-                {
-                    "type" : "FPS"
-                },
-                {
-                    "type" : "Text",
-                    "args" : {
-                        "font" : "font_main",
-                        "text" : "",
-                        "width" : 0.5,
-                        "fontSize" : 0.37
-                    }
-                }
-            ]
-        },
-        {
             "name" : "text_hi",
-            "id" : 3,
+            "id" : 2,
             "transform" : {
                 "position" : { "y" : 1.75 }
             },
@@ -90,7 +68,7 @@
         },
         {
             "name" : "text_ctrls",
-            "id" : 4,
+            "id" : 3,
             "transform" : {
                 "position" : { "x" : -1, "y" : -2.5 }
             },
@@ -107,7 +85,7 @@
         },
         {
             "name" : "text_updates",
-            "id" : 5,
+            "id" : 4,
             "transform" : {
                 "position" : { "x" : 6.5, "y" : 2 }
             },

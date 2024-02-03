@@ -92,8 +92,7 @@ class Material
             prop.index = gl.getUniformIndices(program, [prop.name])[0];
             prop.location = gl.getUniformLocation(program, prop.name);
             
-            if (this.#props.length === 0) this.#props[0] = prop;
-            else this.#props.push(prop);
+            this.#props.push(prop);
         }
         
         const attributes = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
@@ -105,14 +104,11 @@ class Material
             
             if (name.startsWith("gl_") || name.startsWith("webgl_")) continue;
             
-            const attrib = new ShaderAttribute(
+            this.#attribs.push(new ShaderAttribute(
                 name,
                 this.#GetGLType(attribute.type),
                 program
-            );
-            
-            if (this.#attribs.length === 0) this.#attribs[0] = attrib;
-            else this.#attribs.push(attrib);
+            ));
         }
         
         gl.detachShader(program, this.#vertex.shader);
@@ -582,13 +578,7 @@ class Material
     {
         let value = [];
         
-        for (let i = 0; i < values.length; i++)
-        {
-            const newValue = +values[i];
-            
-            if (value.length === 0) value[0] = newValue;
-            else value.push(newValue);
-        }
+        for (let i = 0; i < values.length; i++) value.push(+values[i]);
         
         this.SetIntArray(name, value);
     }
@@ -738,8 +728,7 @@ class Material
         
         if (data != null) buffer.SetData(data);
         
-        if (this.#buffers.length === 0) this.#buffers[0] = buffer;
-        else this.#buffers.push(buffer);
+        this.#buffers.push(buffer);
         
         return this.#buffers.length - 1;
     }

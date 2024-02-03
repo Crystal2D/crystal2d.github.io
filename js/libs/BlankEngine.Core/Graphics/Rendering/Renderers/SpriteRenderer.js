@@ -39,6 +39,14 @@ class SpriteRenderer extends Renderer
         
         this.Reload();
     }
+
+    get localToWorldMatrix ()
+    {
+        return Matrix3x3.Multiply(
+            this.transform.localToWorldMatrix,
+            this.#transMat
+        );
+    }
     
     constructor (sprite, material)
     {
@@ -137,10 +145,7 @@ class SpriteRenderer extends Renderer
         
         const gl = this.material.gl;
         
-        const localMatrix = Matrix3x3.Multiply(
-            this.localSpaceMatrix,
-            this.#transMat
-        );
+        const localMatrix = this.localSpaceMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],

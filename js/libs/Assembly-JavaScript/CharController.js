@@ -1,7 +1,5 @@
 class CharController extends GameBehavior
 {
-    #zoom = 0;
-    #halt = 0;
     #sprites = [];
     
     #input = new Vector2();
@@ -9,6 +7,7 @@ class CharController extends GameBehavior
     #renderer = null;
     
     speed = 1;
+    speedScale = 1;
     
     constructor () { super(); }
     
@@ -45,8 +44,7 @@ class CharController extends GameBehavior
         {
             const sprite = sprites[i].Duplicate();
             
-            if (this.#sprites.length === 0) this.#sprites[0] = sprite;
-            else this.#sprites.push(sprite);
+            this.#sprites[i] = sprite;
         }
         
         this.#renderer = this.GetComponent("SpriteRenderer");
@@ -54,39 +52,21 @@ class CharController extends GameBehavior
     
     FixedUpdate ()
     {
-        const movement = Vector2.Scale(this.#input, this.speed * (this.#zoom > 0 ? 10 : 1) * Time.fixedDeltaTime);
+        const movement = Vector2.Scale(this.#input, this.speed * this.speedScale * Time.fixedDeltaTime);
        
         this.transform.position = Vector2.Add(this.transform.position, movement);
     }
     
     Update ()
     {
-        if (this.#zoom <= 0)
-        {
-            this.#input = new Vector2(
-                +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
-                +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
-            );
-            
-            if (this.#input.abs.Equals(Vector2.one)) this.#input.y = 0;
-            
-            this.#SetSprite(this.#input);
-            
-            if (!this.#input.Equals(Vector2.zero) && this.#halt <= 0 && Input.GetKeyDown(KeyCode.Shift)) this.#zoom = 0.125;
-            
-            if (this.#zoom > 0) this.#renderer.material = Resources.Find("materials/mat_invert");
-        }
-        else
-        {
-            if (this.#zoom - Time.deltaTime <= 0) this.#halt = 2;
-            
-            this.#zoom -= Time.deltaTime;
-        }
+        this.#input = new Vector2(
+            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
+            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
+        );
+        this.speedScale = Input.GetKey(KeyCode.Shift) ? 2 : 1;
         
-        if (this.#halt <= 0) return;
+        if (this.#input.abs.Equals(Vector2.one)) this.#input.y = 0;
         
-        if (this.#halt - Time.deltaTime <= 0) this.#renderer.material = new Material();
-        
-        this.#halt -= Time.deltaTime;
+        this.#SetSprite(this.#input);
     }
 }

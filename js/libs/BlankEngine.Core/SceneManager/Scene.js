@@ -48,13 +48,7 @@ SceneManager.Scene = class
     {
         let output = [];
         
-        for (let i = 0; i < components.length; i++)
-        {
-            let component = await SceneManager.CreateObject(components[i].type, components[i].args);
-            
-            if (i === 0) output[0] = component;
-            else output.push(component);
-        }
+        for (let i = 0; i < components.length; i++) output.push(await SceneManager.CreateObject(components[i].type, components[i].args));
         
         return output;
     }
@@ -79,8 +73,7 @@ SceneManager.Scene = class
                 parent : objParent
             });
             
-            if (i === 0) this.gameObjects[0] = gameObj;
-            else this.gameObjects.push(gameObj);
+            this.gameObjects.push(gameObj);
         }
     }
 }

@@ -5,7 +5,6 @@
         "Viewport",
         "CharController",
         "CameraController",
-        "FPS",
         "Test"
     ],
     "classes" : [
@@ -25,10 +24,6 @@
         },
         {
             "name" : "CameraController",
-            "type" : 0
-        },
-        {
-            "name" : "FPS",
             "type" : 0
         },
         {

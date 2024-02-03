@@ -83,13 +83,7 @@ class GameObject
         
         let output = [];
         
-        for (let i = 0; i < gameObjs.length; i++)
-        {
-            const components = gameObjs[i].GetComponents(type);
-            
-            if (output.length === 0) output = components;
-            else output.push(...components);
-        }
+        for (let i = 0; i < gameObjs.length; i++) output.push(...gameObjs[i].GetComponents(type));
         
         return output;
     }

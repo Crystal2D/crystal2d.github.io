@@ -85,10 +85,49 @@ class Rect
         this.x = value.x - 0.5 * this.width;
         this.y = value.y - 0.5 * this.height;
     }
+
+    get min ()
+    {
+        return new Vector2(this.xMin, this.yMin);
+    }
+
+    set min (value)
+    {
+        this.xMin = value.x;
+        this.yMin = value.y;
+    }
+
+    get max ()
+    {
+        return new Vector2(this.xMax, this.yMax);
+    }
+
+    set max (value)
+    {
+        this.xMax = value.x;
+        this.yMax = value.y;
+    }
     
     constructor (x, y, width, height)
     {
         this.Set(x ?? 0, y ?? 0, width ?? 1, height ?? 1);
+    }
+
+    static MinMaxRect (xmin, ymin, xmax, ymax)
+    {
+        return new Rect(xmin, ymin, xmax - xmin, ymax - ymin);
+    }
+
+    Contains (value)
+    {
+        if (value instanceof Rect) return this.Contains(value.min) && this.Contains(value.max);
+
+        return (value.x >= this.xMin) && (value.x < this.xMax) && (value.y >= this.yMin) && (value.y < this.yMax);
+    }
+
+    Overlaps (other)
+    {
+        return (other.xMax > this.xMin && other.xMin < this.xMax && other.yMax > this.yMin && other.yMin < this.yMax);
     }
     
     toString ()

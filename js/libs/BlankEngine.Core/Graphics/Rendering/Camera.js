@@ -30,22 +30,15 @@ class Camera extends Behavior
         
         this.projMatrix = value;
     }
+
+    get cameraToWorldMatrix ()
+    {
+        return this.transform.localToWorldMatrix
+    }
     
     get worldToCameraMatrix ()
     {
-        const gOTrans = this.gameObject.transform;
-        const output = Matrix3x3.TRS(
-            gOTrans.localPosition,
-            5.555555555555556e-3 * -gOTrans.localRotation * Math.PI,
-            gOTrans.localScale
-        );
-        
-        return output;
-    }
-    
-    get cameraToWorldMatrix ()
-    {
-        return this.worldToCameraMatrix.inverse;
+        return this.transform.worldToLocalMatrix;
     }
     
     constructor ()
@@ -69,20 +62,15 @@ class Camera extends Behavior
         {
             if (!this.bounds.Intersects(renderers[i].bounds)) continue;
             
-            let lWM = renderers[i].transform.localToWorldMatrix;
+            const lWM = renderers[i].localToWorldMatrix;
             
-            lWM.matrix[2][1] *= -1;
-            lWM.matrix[2][0] *= -1;
-            
-            let renM = Matrix3x3.Multiply(
+            const renM = Matrix3x3.Multiply(
                 Matrix3x3.Multiply(
                     Matrix3x3.Multiply(transM, this.#projMatrix),
-                    camM
+                    camM,
                 ),
                 lWM
             );
-            
-            renM.matrix[2][0] *= -1;
             
             renderers[i].localSpaceMatrix = renM;
             renderers[i].Render();

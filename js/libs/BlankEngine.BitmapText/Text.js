@@ -193,6 +193,21 @@ class Text extends DynamicRenderer
     {
         return this.font.texture.pixelPerUnit;
     }
+
+    get localToWorldMatrix ()
+    {
+        return Matrix3x3.Multiply(
+            this.transform.localToWorldMatrix,
+            Matrix3x3.TRS(
+                Vector2.Scale(
+                    this.pivot,
+                    new Vector2(-this.#width, -this.#height)
+                ),
+                0,
+                this.#scale
+            )
+        );
+    }
     
     #Word = class
     {
@@ -204,8 +219,7 @@ class Text extends DynamicRenderer
         
         Add (sprite)
         {
-            if (this.sprites.length === 0) this.sprites[0] = sprite;
-            else this.sprites.push(sprite);
+            this.sprites.push(sprite);
         }
         
         Update ()
@@ -366,8 +380,7 @@ class Text extends DynamicRenderer
                 new Vector2(x, -pos.y)
             );
             
-            if (i === 0) chars[0] = newChar;
-            else chars.push(newChar);
+            chars.push(newChar);
             
             x += width;
         }
@@ -415,18 +428,6 @@ class Text extends DynamicRenderer
 
             const trisCount = chars[i].trisCount;
             const newIndex = index + trisCount;
-
-            if (i === 0)
-            {
-                vertexArray = chars[i].localVertexArray;
-                textureArray = chars[i].textureArray;
-                colorArray = chars[i].colorArray;
-
-                index = newIndex;
-                trisCounts[0] = trisCount;
-
-                continue;
-            }
 
             vertexArray.push(...chars[i].localVertexArray);
             textureArray.push(...chars[i].textureArray);
@@ -544,8 +545,7 @@ class Text extends DynamicRenderer
                         new Vector2(x, -y)
                     );
                     
-                    if (chars.length === 0) chars[0] = newChar;
-                    else chars.push(newChar);
+                    chars.push(newChar);
                     
                     x += charWidth;
                     
@@ -609,8 +609,7 @@ class Text extends DynamicRenderer
             
             const newChars = this.#GetWordChars(word.sprites, new Vector2(x, y));
             
-            if (chars.length === 0) chars = newChars;
-            else chars.push(...newChars);
+            chars.push(...newChars);
             
             x += width;
             
@@ -668,17 +667,7 @@ class Text extends DynamicRenderer
         
         const gl = this.material.gl;
 
-        const localMatrix = Matrix3x3.Multiply(
-            this.localSpaceMatrix,
-            Matrix3x3.TRS(
-                Vector2.Scale(
-                    this.pivot,
-                    new Vector2(-this.#width, -this.#height)
-                ),
-                0,
-                this.#scale
-            )
-        );
+        const localMatrix = this.localSpaceMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
             localMatrix.matrix[0][0],

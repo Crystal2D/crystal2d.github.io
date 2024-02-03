@@ -9,8 +9,7 @@ class DynamicRenderer extends Renderer
     
     set onMeshUpdate (value)
     {
-        if (this.#onMUpdate.length === 0) this.#onMUpdate[0] = value;
-        else this.#onMUpdate.push(value);
+        this.#onMUpdate.push(value);
     }
     
     ForceMeshUpdate ()
