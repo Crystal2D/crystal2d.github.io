@@ -12,10 +12,7 @@
                     "type" : "Viewport"
                 },
                 {
-                    "type" : "Camera",
-                    "args" : {
-                        "orthographicSize" : 6
-                    }
+                    "type" : "Camera"
                 }
             ]
         },

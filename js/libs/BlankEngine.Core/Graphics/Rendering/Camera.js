@@ -8,7 +8,7 @@ class Camera extends Behavior
     
     #projMatrix = null;
     
-    orthographicSize = 1;
+    orthographicSize = 9;
     
     get bounds ()
     {

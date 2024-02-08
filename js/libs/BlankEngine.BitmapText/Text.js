@@ -7,8 +7,8 @@ class Text extends DynamicRenderer
     #alignX = 0;
     #alignY = 0;
     #tempHeight = 0;
-    #width = 4;
-    #height = 1;
+    #width = 8.5;
+    #height = 1.5;
     #size = 1;
     #text = "";
     #words = [];
@@ -369,7 +369,7 @@ class Text extends DynamicRenderer
 
         let x = pos.x;
         let chars = [];
-        
+
         for (let i = 0; i < sprites.length; i++)
         {
             const sprite = sprites[i];
@@ -405,7 +405,7 @@ class Text extends DynamicRenderer
         let textureArray = [];
         let colorArray = [];
         let trisCounts = [];
-        let indexes = [0];
+        let indexes = [];
 
         for (let i = 0; i < chars.length; i++)
         {
