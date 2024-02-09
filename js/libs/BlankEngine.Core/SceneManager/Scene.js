@@ -41,7 +41,7 @@ SceneManager.Scene = class
     
     async #LoadRes ()
     {
-        for (let i = 0; i < this.#data.resources.length; i++) await Resources.Load(this.#data.resources[i]);
+        await Resources.Load(...this.#data.resources);
     }
     
     async #LoadComponents (components)

@@ -1,7 +1,8 @@
 class QuadTree
 {
+    static maxDepth = 8;
+
     #depth = 0;
-    #maxDepth = 8;
     #areas = [];
     #child = [];
     #items = [];
@@ -67,7 +68,7 @@ class QuadTree
         {
             if (this.#areas[i].Contains(size))
             {
-                if (this.#depth + 1 < this.#maxDepth)
+                if (this.#depth + 1 < QuadTree.maxDepth)
                 {
                     if (this.#child[i] == null)
                     {
@@ -81,7 +82,10 @@ class QuadTree
             }
         }
 
-        this.#items.push(new QuadTreeItem(item, size));
+        this.#items.push({
+            item : item,
+            size : size
+        });
     }
 
     Find (area)
@@ -118,17 +122,5 @@ class QuadTree
         {
             if (this.#child[i] != null) this.#child[i].GetItems(output);
         }
-    }
-}
-
-class QuadTreeItem
-{
-    item = null;
-    size = new Rect();
-
-    constructor (item, size)
-    {
-        this.item = item;
-        this.size = size;
     }
 }

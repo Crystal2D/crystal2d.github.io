@@ -61,9 +61,15 @@ class Resources
         this.#unloadedRes = resources;
     }
     
-    static Unload (path)
+    static Unload (...path)
     {
-        this.#resources = this.#resources.filter(item => item.path !== path);
+        for (let i = 0; i < path.length; i++)
+        {
+            const res = this.#resources.find(item => item.path === path[i]);
+            const index = this.#resources.indexOf(res);
+
+            if (index > -1) this.#resources.splice(index, 1);
+        }
     }
     
     static UnloadAll ()
@@ -80,21 +86,24 @@ class Resources
         return { };
     }
     
-    static async Load (path)
+    static async Load (...path)
     {
-        const data = this.#unloadedRes.find(item => item.path === path);
+        for (let i = 0; i < path.length; i++)
+        {
+            const data = this.#unloadedRes.find(item => item.path === path[i]);
 
-        if (data == null) return;
+            if (data == null) continue;
 
-        const obj = await this.#ToObject(
-            path.split("/").slice(-1)[0],
-            data.type,
-            data.args
-        );
+            const obj = await this.#ToObject(
+                path[i].split("/").slice(-1)[0],
+                data.type,
+                data.args
+            );
 
-        this.#resources.push({
-            path : path,
-            obj : obj
-        });
+            this.#resources.push({
+                path : path[i],
+                obj : obj
+            });
+        }
     }
 }
