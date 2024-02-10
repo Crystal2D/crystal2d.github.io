@@ -66,9 +66,12 @@ class Resources
         for (let i = 0; i < path.length; i++)
         {
             const res = this.#resources.find(item => item.path === path[i]);
+
+            if (res == null) continue;
+
             const index = this.#resources.indexOf(res);
 
-            if (index > -1) this.#resources.splice(index, 1);
+            this.#resources.splice(index, 1);
         }
     }
     

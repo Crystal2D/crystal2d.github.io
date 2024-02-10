@@ -3,8 +3,8 @@ class Test extends Viewport
     #iter = 5000;
     #area = 500;
     #sizeMin = 0.5;
-    #sizeMax = 2;
-    #speed = 4;
+    #sizeMax = 4;
+    #speed = 18;
     #scale = 0;
     #scaleDelta = 0
     #scaleSpeed = 50;
@@ -33,6 +33,8 @@ class Test extends Viewport
         Window.SetTitle("DEP - Loading Environment (0)");
 
         this.#camera = this.GetComponent("Camera");
+
+        this.#camera.r = GameObject.FindByID(69420);
         
         this.#scaleMin = this.#camera.orthographicSize;
         this.#scale = this.#scaleMin;
@@ -113,7 +115,9 @@ class Test extends Viewport
         
         this.#t = 0;
 
-        Window.SetTitle(`DEP - ${this.#camera.useQuad ? "Optimally" : "Linearly"} Rendered (${this.#camera.counter}/5000)`);
+        const useQuad = this.#camera.useQuad;
+
+        Window.SetTitle(`DEP - ${useQuad ? "Optimally" : "Linearly"} Rendered (${this.#camera.counter}/${useQuad ? this.#camera.tree.count : 5000})`);
     }
     
     Update ()

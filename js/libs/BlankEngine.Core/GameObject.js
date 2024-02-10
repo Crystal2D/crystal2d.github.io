@@ -5,6 +5,8 @@ class GameObject
     #components = [];
     
     #id = null;
+
+    sceneTreeNode = null;
     
     get activeSelf ()
     {

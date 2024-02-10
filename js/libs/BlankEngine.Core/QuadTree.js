@@ -2,6 +2,69 @@ class QuadTree
 {
     static maxDepth = 8;
 
+    #items = [];
+    #root = null;
+
+    get i ()
+    {
+        return this.#items;
+    }
+
+    get count ()
+    {
+        return this.#items.length;
+    }
+
+    constructor (area)
+    {
+        this.#root = new QuadTreeNode(area, 0);
+    }
+
+    Find (area)
+    {
+        return this.#root.Find(area);
+    }
+
+    Remove (item)
+    {
+        const index = this.#items.indexOf(item);
+
+        if (index < 0) return;
+
+        item.sceneTreeNode.Remove(item);
+
+        this.#items.splice(index, 1);
+    }
+
+    Clear ()
+    {
+        this.#root.Clear();
+
+        this.#items = [];
+    }
+
+    Resize (area)
+    {
+        this.#root.Resize(area);
+    }
+
+    Insert (item, size)
+    {
+        this.#items.push(item);
+
+        this.#root.Insert(item, size);
+    }
+
+    Relocate (item, size)
+    {
+        item.sceneTreeNode.Remove(item);
+
+        this.#root.Insert(item, size);
+    }
+}
+
+class QuadTreeNode
+{
     #depth = 0;
     #areas = [];
     #child = [];
@@ -28,9 +91,20 @@ class QuadTree
 
     constructor (area, depth)
     {
-        this.#depth = depth ?? 0;
+        this.#depth = depth;
 
-        this.Resize(area ?? new Rect(-500, -500, 1000, 1000));
+        this.Resize(area ?? new Rect(-250, -250, 500, 500));
+    }
+
+    Remove (item)
+    {
+        const obj = this.#items.find(fItem => fItem.item === item);
+
+        if (obj == null) return;
+
+        const index = this.#items.indexOf(obj);
+
+        this.#items.splice(index, 1);
     }
 
     Clear ()
@@ -72,7 +146,7 @@ class QuadTree
                 {
                     if (this.#child[i] == null)
                     {
-                        this.#child[i] = new QuadTree(this.#areas[i], this.#depth + 1);
+                        this.#child[i] = new QuadTreeNode(this.#areas[i], this.#depth + 1);
                     }
 
                     this.#child[i].Insert(item, size);
@@ -82,10 +156,14 @@ class QuadTree
             }
         }
 
-        this.#items.push({
-            item : item,
-            size : size
-        });
+        item.sceneTreeNode = this;
+
+        const obj = new QuadTreeItem();
+
+        obj.item = item;
+        obj.size = size;
+
+        this.#items.push(obj);
     }
 
     Find (area)
@@ -123,4 +201,10 @@ class QuadTree
             if (this.#child[i] != null) this.#child[i].GetItems(output);
         }
     }
+}
+
+class QuadTreeItem
+{
+    item = null;
+    size = null;
 }

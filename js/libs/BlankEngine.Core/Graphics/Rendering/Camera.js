@@ -3,6 +3,7 @@ class Camera extends Behavior
     useQuad = false;
     counter = 0;
     tree = new QuadTree();
+    r = null;
 
     #updateProjMat = true;
     
@@ -68,9 +69,23 @@ class Camera extends Behavior
             const max = this.bounds.max;
             const camRect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
 
+            if (Input.GetKey(KeyCode.Shift))
+            {
+                const rPos = this.r.transform.localPosition;
+                const rect = new Rect(rPos.x - 7.5, rPos.y - 7.5, 15, 15);
+                const rem = this.tree.Find(rect);
+
+                for (let i = 0; i < rem.length; i++)
+                {
+                    this.tree.Remove(rem[i]);
+                }
+            }
+
             const objs = this.tree.Find(camRect);
 
             this.counter = objs.length;
+
+            objs.push(this.r);
 
             for (let i = 0; i < objs.length; i++)
             {

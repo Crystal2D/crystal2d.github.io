@@ -133,6 +133,8 @@ class Transform extends Component
             this.localScale
         );
         this.#lWMatInv = this.#lWMat.inverse;
+
+        // this.gameObject?.sceneTreeNode?.Relocate
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }

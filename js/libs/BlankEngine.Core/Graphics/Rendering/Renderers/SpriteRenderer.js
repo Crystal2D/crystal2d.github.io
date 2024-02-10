@@ -168,7 +168,7 @@ class SpriteRenderer extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.sprite.texture.GetNativeTexture());
         
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount - 1);
         
         gl.useProgram(null);
     }

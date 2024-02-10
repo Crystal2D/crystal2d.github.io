@@ -14,7 +14,31 @@
                 {
                     "type" : "Camera",
                     "args" : {
-                        "orthographicSize" : 6
+                        "orthographicSize" : 24
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "r",
+            "id" : 69420,
+            "parent" : 0,
+            "transform" : {
+                "scale" : { "x" : 15, "y" : 15 }
+            },
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/square"
+                        },
+                        "color" : {
+                            "r" : 255,
+                            "g" : 255,
+                            "b" : 255,
+                            "a" : 128
+                        }
                     }
                 }
             ]

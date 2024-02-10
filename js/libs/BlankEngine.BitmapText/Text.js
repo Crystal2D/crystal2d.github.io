@@ -435,7 +435,7 @@ class Text extends DynamicRenderer
 
             indexes.push(index);
             index = newIndex;
-            trisCounts.push(trisCount);
+            trisCounts.push(trisCount - 1);
         }
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);

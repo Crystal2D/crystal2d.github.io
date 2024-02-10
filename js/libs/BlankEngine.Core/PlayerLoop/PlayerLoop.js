@@ -84,10 +84,12 @@ class PlayerLoop
                     new PlayerLoopSystem("UpdateMainGameViewRect", {
                         loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0,
                         updateDelegate : () => {
-                            Application.gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
-                            Application.gl.clear(Application.gl.COLOR_BUFFER_BIT | Application.gl.DEPTH_BUFFER_BIT);
-                            Application.gl.enable(Application.gl.BLEND);
-                            Application.gl.blendFunc(Application.gl.SRC_ALPHA, Application.gl.ONE_MINUS_SRC_ALPHA);
+                            const gl = Application.gl;
+
+                            gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
+                            gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT);
+                            gl.enable(gl.BLEND);
+                            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
                         }
                     }),
                     new PlayerLoopSystem("UpdateInputManager", {
