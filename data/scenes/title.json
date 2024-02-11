@@ -1,5 +1,8 @@
 {
     "name" : "Title",
+    "partioning" : {
+        "disabled" : true
+    },
     "resources" : [
         "sprites/title"
     ],

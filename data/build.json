@@ -8,7 +8,7 @@
         "plugins/FPSMeter"
     ],
     "scenes" : [
-        "test"
+        "scene"
     ],
     "shaders" : [
         "vertex",
@@ -20,5 +20,7 @@
         "maximumDeltaTime" : 0.3333333,
         "timeScale" : 1,
         "fixedDeltaTime" : 0.02
-    }
+    },
+    "partioningMaxDepth" : 8,
+    "layers" : []
 }

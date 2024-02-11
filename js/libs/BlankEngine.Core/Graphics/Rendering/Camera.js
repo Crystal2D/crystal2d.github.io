@@ -1,10 +1,5 @@
 class Camera extends Behavior
 {
-    useQuad = false;
-    counter = 0;
-    tree = new QuadTree();
-    r = null;
-
     #updateProjMat = true;
     
     #projMatrix = null;
@@ -61,75 +56,29 @@ class Camera extends Behavior
         
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
 
-        if (Input.GetKeyDown(KeyCode.F1)) this.useQuad = !this.useQuad;
+        const min = this.bounds.min;
+        const max = this.bounds.max;
 
-        if (this.useQuad)
+        const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y));
+
+        objs.sort((a, b) => a.GetComponent("Renderer").sortingOrder - b.GetComponent("Renderer").sortingOrder);
+        if (SortingLayer.ids.length > 1) objs.sort((a, b) => SortingLayer.ids.indexOf(a.GetComponent("Renderer").sortingLayer) - SortingLayer.ids.indexOf(b.GetComponent("Renderer").sortingLayer));
+
+        for (let i = 0; i < objs.length; i++)
         {
-            const min = this.bounds.min;
-            const max = this.bounds.max;
-            const camRect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+            const renderer = objs[i].GetComponent("Renderer");
 
-            if (Input.GetKey(KeyCode.Shift))
-            {
-                const rPos = this.r.transform.localPosition;
-                const rect = new Rect(rPos.x - 7.5, rPos.y - 7.5, 15, 15);
-                const rem = this.tree.Find(rect);
-
-                for (let i = 0; i < rem.length; i++)
-                {
-                    this.tree.Remove(rem[i]);
-                }
-            }
-
-            const objs = this.tree.Find(camRect);
-
-            this.counter = objs.length;
-
-            objs.push(this.r);
-
-            for (let i = 0; i < objs.length; i++)
-            {
-                let renderer = objs[i].GetComponent("Renderer");
-
-                const lWM = renderer.localToWorldMatrix;
-
-                const renM = Matrix3x3.Multiply(
-                    Matrix3x3.Multiply(
-                        Matrix3x3.Multiply(transM, this.#projMatrix),
-                        camM,
-                    ),
-                    lWM
-                );
-                    
-                renderer.localSpaceMatrix = renM;
-                renderer.Render();
-            }
-        }
-        else
-        {
-            this.counter = 0;
-
-            const renderers = GameObject.FindComponents("Renderer");
+            const lWM = renderer.localToWorldMatrix;
+            const renM = Matrix3x3.Multiply(
+                Matrix3x3.Multiply(
+                    Matrix3x3.Multiply(transM, this.#projMatrix),
+                    camM,
+                ),
+                lWM
+            );
             
-            for (let i = 0; i < renderers.length; i++)
-            {
-                if (!this.bounds.Intersects(renderers[i].bounds)) continue;
-
-                this.counter++;
-
-                const lWM = renderers[i].localToWorldMatrix;
-
-                const renM = Matrix3x3.Multiply(
-                    Matrix3x3.Multiply(
-                        Matrix3x3.Multiply(transM, this.#projMatrix),
-                        camM,
-                    ),
-                    lWM
-                );
-                    
-                renderers[i].localSpaceMatrix = renM;
-                renderers[i].Render();
-            }
+            renderer.renderMatrix = renM;
+            renderer.Render();
         }
     }
 }

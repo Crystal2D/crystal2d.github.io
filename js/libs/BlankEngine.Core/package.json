@@ -22,7 +22,9 @@
         "Math/Geometry/Bounds",
         "Transform",
         "GameObject",
-        "QuadTree",
+        "QuadTree/QuadTreeItem",
+        "QuadTree/QuadTreeNode",
+        "QuadTree/QuadTree",
         "SceneManager/SceneManager",
         "SceneManager/Scene",
         "PlayerLoop/PlayerLoop",
@@ -35,6 +37,7 @@
         "Graphics/Shaders/Material",
         "Graphics/Texture",
         "Graphics/Sprite",
+        "Graphics/Rendering/SortingLayer",
         "Graphics/Rendering/Camera",
         "Graphics/Rendering/Renderers/Renderer",
         "Graphics/Rendering/Renderers/DynamicRenderer",
@@ -167,6 +170,14 @@
                 {
                     "name" : "color",
                     "type" : "Color"
+                },
+                {
+                    "name" : "sortingLayer",
+                    "type" : "number"
+                },
+                {
+                    "name" : "sortingOrder",
+                    "type" : "number"
                 }
             ]
         }

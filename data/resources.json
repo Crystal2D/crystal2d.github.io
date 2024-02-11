@@ -1,5 +1,13 @@
 [
     {
+        "path" : "sprites/ball",
+        "type" : "Texture",
+        "args" : {
+            "src" : "ball.png",
+            "pixelPerUnit" : 120
+        }
+    },
+    {
         "path" : "sprites/square",
         "type" : "Texture",
         "args" : {

@@ -1,68 +1,3 @@
-class QuadTree
-{
-    static maxDepth = 8;
-
-    #items = [];
-    #root = null;
-
-    get i ()
-    {
-        return this.#items;
-    }
-
-    get count ()
-    {
-        return this.#items.length;
-    }
-
-    constructor (area)
-    {
-        this.#root = new QuadTreeNode(area, 0);
-    }
-
-    Find (area)
-    {
-        return this.#root.Find(area);
-    }
-
-    Remove (item)
-    {
-        const index = this.#items.indexOf(item);
-
-        if (index < 0) return;
-
-        item.sceneTreeNode.Remove(item);
-
-        this.#items.splice(index, 1);
-    }
-
-    Clear ()
-    {
-        this.#root.Clear();
-
-        this.#items = [];
-    }
-
-    Resize (area)
-    {
-        this.#root.Resize(area);
-    }
-
-    Insert (item, size)
-    {
-        this.#items.push(item);
-
-        this.#root.Insert(item, size);
-    }
-
-    Relocate (item, size)
-    {
-        item.sceneTreeNode.Remove(item);
-
-        this.#root.Insert(item, size);
-    }
-}
-
 class QuadTreeNode
 {
     #depth = 0;
@@ -93,7 +28,7 @@ class QuadTreeNode
     {
         this.#depth = depth;
 
-        this.Resize(area ?? new Rect(-250, -250, 500, 500));
+        this.Resize(area);
     }
 
     Remove (item)
@@ -140,20 +75,14 @@ class QuadTreeNode
     {
         for (let i = 0; i < 4; i++)
         {
-            if (this.#areas[i].Contains(size))
-            {
-                if (this.#depth + 1 < QuadTree.maxDepth)
-                {
-                    if (this.#child[i] == null)
-                    {
-                        this.#child[i] = new QuadTreeNode(this.#areas[i], this.#depth + 1);
-                    }
+            if (this.#depth + 1 >= QuadTree.maxDepth) break;
+            if (!this.#areas[i].Contains(size)) continue;
 
-                    this.#child[i].Insert(item, size);
+            if (this.#child[i] == null) this.#child[i] = new QuadTreeNode(this.#areas[i], this.#depth + 1);
 
-                    return;
-                }
-            }
+            this.#child[i].Insert(item, size);
+
+            return;
         }
 
         item.sceneTreeNode = this;
@@ -201,10 +130,4 @@ class QuadTreeNode
             if (this.#child[i] != null) this.#child[i].GetItems(output);
         }
     }
-}
-
-class QuadTreeItem
-{
-    item = null;
-    size = null;
 }

@@ -25,7 +25,7 @@
                 {
                     "type" : "CharController",
                     "args" : {
-                        "speed" : 2
+                        "speed" : 3
                     }
                 },
                 {
@@ -34,7 +34,8 @@
                         "sprite" : {
                             "texture" : "sprites/characters/yoki",
                             "index" : 1
-                        }
+                        },
+                        "sortingOrder" : -1
                     }
                 }
             ]
@@ -89,7 +90,7 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Woa, text is now faster and is using batched rendering. We can now use whole words with no lag.\n\nCulling has been added, but there's still no data management/optimization. Still working on that, going to use QuadTrees. Might also implement physics on the way.",
+                        "text" : "Nyoooooooooooom.\nRendering is way more faster, there's now QuadTrees :0. And because they broke the rendering order, there's now sorting layers and orders.\n\nNow time to work on \"physics\".\n\nThis project is getting bigger, the amount of files in this thing is absurd.",
                         "fontSize" : 0.75,
                         "pivot" : {
                             "x" : 0.5,

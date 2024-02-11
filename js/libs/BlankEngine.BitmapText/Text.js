@@ -667,18 +667,18 @@ class Text extends DynamicRenderer
         
         const gl = this.material.gl;
 
-        const localMatrix = this.localSpaceMatrix;
+        const renderMatrix = this.renderMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
-            localMatrix.matrix[0][0],
-            localMatrix.matrix[0][1],
-            localMatrix.matrix[0][2],
-            localMatrix.matrix[1][0],
-            localMatrix.matrix[1][1],
-            localMatrix.matrix[1][2],
-            localMatrix.matrix[2][0],
-            localMatrix.matrix[2][1],
-            localMatrix.matrix[2][2]
+            renderMatrix.matrix[0][0],
+            renderMatrix.matrix[0][1],
+            renderMatrix.matrix[0][2],
+            renderMatrix.matrix[1][0],
+            renderMatrix.matrix[1][1],
+            renderMatrix.matrix[1][2],
+            renderMatrix.matrix[2][0],
+            renderMatrix.matrix[2][1],
+            renderMatrix.matrix[2][2]
         );
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);

@@ -1,7 +1,8 @@
 {
     "name" : "Test",
     "resources" : [
-        "sprites/square"
+        "sprites/ball",
+        "sprites/characters/yoki"
     ],
     "gameObjects" : [
         {
@@ -9,35 +10,95 @@
             "id" : 0,
             "components" : [
                 {
-                    "type" : "Test"
-                },
-                {
                     "type" : "Camera",
                     "args" : {
-                        "orthographicSize" : 24
+                        "orthographicSize" : 6
                     }
                 }
             ]
         },
         {
-            "name" : "r",
-            "id" : 69420,
-            "parent" : 0,
-            "transform" : {
-                "scale" : { "x" : 15, "y" : 15 }
-            },
+            "name" : "renderer",
+            "id" : 1,
+            "components" : [
+                {
+                    "type" : "Test"
+                },
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/characters/yoki"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "min",
+            "id" : 2,
             "components" : [
                 {
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/square"
-                        },
-                        "color" : {
-                            "r" : 255,
-                            "g" : 255,
-                            "b" : 255,
-                            "a" : 128
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "maxX",
+            "id" : 3,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "maxY",
+            "id" : 4,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "max",
+            "id" : 5,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "center",
+            "id" : 6,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/ball"
                         }
                     }
                 }
