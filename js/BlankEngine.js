@@ -318,6 +318,7 @@ class BlankEngine
                 
                 this.#compiledData.scenes.push({
                     name : scene.name,
+                    partioning : scene.partioning,
                     resources : scene.resources,
                     gameObjects : scene.gameObjects,
                     buildIndex : i,
@@ -345,10 +346,13 @@ class BlankEngine
             Time.maximumDeltaTime = this.#buildData.time.maximumDeltaTime;
             Time.timeScale = this.#buildData.time.timeScale;
             Time.fixedDeltaTime = this.#buildData.time.fixedDeltaTime;
+
+            QuadTree.maxDepth = this.#buildData.partioningMaxDepth;
             
             Debug.Set(this.#buildData.debugMode);
             Shader.Set(this.#compiledData.shaders);
             Resources.Set(this.#resources);
+            SortingLayer.Add(this.#buildData.layers);
             SceneManager.Set(this.#compiledData.scenes);
             
             Input.Init();

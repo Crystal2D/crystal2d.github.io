@@ -2,6 +2,7 @@ class SpriteRenderer extends Renderer
 {
     #trisCount = 0;
     
+    #boundsSize = Vector2.zero;
     #transMat = new Matrix3x3();
     
     #sprite = null;
@@ -10,7 +11,10 @@ class SpriteRenderer extends Renderer
     
     get bounds ()
     {
-        const scale = this.transform.localScale;
+        const scale = Vector2.Scale(
+            this.transform.localScale,
+            this.#boundsSize
+        );
         const pivot = this.sprite.pivot;
         
         return new Bounds(
@@ -120,14 +124,18 @@ class SpriteRenderer extends Renderer
         const texY = this.sprite.texture.height;
         const rescaleW = texX / ppu;
         const rescaleH = texY / ppu;
+
+        const boundsSize = new Vector2(
+            rescaleW * (vertices[3].x - vertexPos.x),
+            rescaleH * (vertices[3].y - vertexPos.y)
+        );
+
+        this.#boundsSize = boundsSize;
         
         this.#transMat = Matrix3x3.TRS(
             Vector2.Scale(
                 this.sprite.pivot,
-                new Vector2(
-                    -rescaleW * (vertices[3].x - vertexPos.x),
-                    -rescaleH * (vertices[3].y - vertexPos.y)
-                )
+                Vector2.Scale(boundsSize, -1)
             ),
             0,
             Vector2.Scale(
@@ -135,6 +143,15 @@ class SpriteRenderer extends Renderer
                 texX > texY ? rescaleW : rescaleH
             )
         );
+
+        if (this.gameObject != null)
+        {
+            const min = this.bounds.min;
+            const max = this.bounds.max;
+            const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+            this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
+        }
     }
     
     Render ()
@@ -145,18 +162,18 @@ class SpriteRenderer extends Renderer
         
         const gl = this.material.gl;
         
-        const localMatrix = this.localSpaceMatrix;
+        const renderMatrix = this.renderMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
-            localMatrix.matrix[0][0],
-            localMatrix.matrix[0][1],
-            localMatrix.matrix[0][2],
-            localMatrix.matrix[1][0],
-            localMatrix.matrix[1][1],
-            localMatrix.matrix[1][2],
-            localMatrix.matrix[2][0],
-            localMatrix.matrix[2][1],
-            localMatrix.matrix[2][2]
+            renderMatrix.matrix[0][0],
+            renderMatrix.matrix[0][1],
+            renderMatrix.matrix[0][2],
+            renderMatrix.matrix[1][0],
+            renderMatrix.matrix[1][1],
+            renderMatrix.matrix[1][2],
+            renderMatrix.matrix[2][0],
+            renderMatrix.matrix[2][1],
+            renderMatrix.matrix[2][2]
         );
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
@@ -168,7 +185,7 @@ class SpriteRenderer extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.sprite.texture.GetNativeTexture());
         
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount - 1);
         
         gl.useProgram(null);
     }

@@ -12,9 +12,11 @@ class Renderer extends Component
     aVertexPosID = 0;
     aTexturePosID = 0;
     aColorID = 0;
+    sortingLayer = 0;
+    sortingOrder = 0;
     
     color = Color.white;
-    localSpaceMatrix = new Matrix3x3();
+    renderMatrix = new Matrix3x3();
     
     get isLoaded ()
     {
@@ -51,9 +53,7 @@ class Renderer extends Component
     }
     
     Reload ()
-    {
-        const gl = this.#material.gl;
-        
+    {        
         this.#material.SetSampler2D("uSampler", 0);
         
         this.#materialOld = this.#material;

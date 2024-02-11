@@ -6,6 +6,8 @@ SceneManager.Scene = class
     
     name = "scene";
     gameObjects = [];
+
+    tree = null;
     
     get isLoaded ()
     {
@@ -32,6 +34,29 @@ SceneManager.Scene = class
     
     async #Load ()
     {
+        const size = new Vector2();
+
+        if (!this.#data.partioning?.disabled)
+        {
+            size.x = this.#data.partioning?.size?.x ?? 1024;
+            size.y = this.#data.partioning?.size?.y ?? 1024;
+        }
+
+        const pos = Vector2.Add(
+            Vector2.Scale(
+                size,
+                -0.5
+            ),
+            new Vector2(
+                this.#data.partioning?.offset?.x,
+                this.#data.partioning?.offset?.y
+            )
+        );
+
+        if (this.#data.partioning?.maxDepth != null) QuadTree.maxDepth = this.#data.partioning?.maxDepth;
+
+        this.tree = new QuadTree(new Rect(pos.x, pos.y, size.x, size.y));
+
         await this.#LoadRes();
         
         await this.#LoadObjects();
@@ -41,7 +66,7 @@ SceneManager.Scene = class
     
     async #LoadRes ()
     {
-        for (let i = 0; i < this.#data.resources.length; i++) await Resources.Load(this.#data.resources[i]);
+        await Resources.Load(...this.#data.resources);
     }
     
     async #LoadComponents (components)
@@ -72,6 +97,19 @@ SceneManager.Scene = class
                 id : objData.id,
                 parent : objParent
             });
+
+            gameObj.scene = this;
+
+            const renderer = gameObj.GetComponent("Renderer");
+
+            if (renderer != null)
+            {
+                const min = renderer.bounds.min;
+                const max = renderer.bounds.max;
+                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                this.tree.Insert(gameObj, rect);
+            }
             
             this.gameObjects.push(gameObj);
         }

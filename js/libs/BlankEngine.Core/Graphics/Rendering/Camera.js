@@ -4,7 +4,7 @@ class Camera extends Behavior
     
     #projMatrix = null;
     
-    orthographicSize = 1;
+    orthographicSize = 9;
     
     get bounds ()
     {
@@ -55,15 +55,20 @@ class Camera extends Behavior
         const mScale = new Vector2(1 / Window.aspect, -1);
         
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
-        
-        const renderers = GameObject.FindComponents("Renderer");
-        
-        for (let i = 0; i < renderers.length; i++)
+
+        const min = this.bounds.min;
+        const max = this.bounds.max;
+
+        const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y));
+
+        objs.sort((a, b) => a.GetComponent("Renderer").sortingOrder - b.GetComponent("Renderer").sortingOrder);
+        if (SortingLayer.ids.length > 1) objs.sort((a, b) => SortingLayer.ids.indexOf(a.GetComponent("Renderer").sortingLayer) - SortingLayer.ids.indexOf(b.GetComponent("Renderer").sortingLayer));
+
+        for (let i = 0; i < objs.length; i++)
         {
-            if (!this.bounds.Intersects(renderers[i].bounds)) continue;
-            
-            const lWM = renderers[i].localToWorldMatrix;
-            
+            const renderer = objs[i].GetComponent("Renderer");
+
+            const lWM = renderer.localToWorldMatrix;
             const renM = Matrix3x3.Multiply(
                 Matrix3x3.Multiply(
                     Matrix3x3.Multiply(transM, this.#projMatrix),
@@ -72,8 +77,8 @@ class Camera extends Behavior
                 lWM
             );
             
-            renderers[i].localSpaceMatrix = renM;
-            renderers[i].Render();
+            renderer.renderMatrix = renM;
+            renderer.Render();
         }
     }
 }

@@ -7,8 +7,8 @@ class Text extends DynamicRenderer
     #alignX = 0;
     #alignY = 0;
     #tempHeight = 0;
-    #width = 4;
-    #height = 1;
+    #width = 8.5;
+    #height = 1.5;
     #size = 1;
     #text = "";
     #words = [];
@@ -369,7 +369,7 @@ class Text extends DynamicRenderer
 
         let x = pos.x;
         let chars = [];
-        
+
         for (let i = 0; i < sprites.length; i++)
         {
             const sprite = sprites[i];
@@ -405,7 +405,7 @@ class Text extends DynamicRenderer
         let textureArray = [];
         let colorArray = [];
         let trisCounts = [];
-        let indexes = [0];
+        let indexes = [];
 
         for (let i = 0; i < chars.length; i++)
         {
@@ -435,7 +435,7 @@ class Text extends DynamicRenderer
 
             indexes.push(index);
             index = newIndex;
-            trisCounts.push(trisCount);
+            trisCounts.push(trisCount - 1);
         }
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
@@ -667,18 +667,18 @@ class Text extends DynamicRenderer
         
         const gl = this.material.gl;
 
-        const localMatrix = this.localSpaceMatrix;
+        const renderMatrix = this.renderMatrix;
         
         this.material.SetMatrix(this.uMatrixID,
-            localMatrix.matrix[0][0],
-            localMatrix.matrix[0][1],
-            localMatrix.matrix[0][2],
-            localMatrix.matrix[1][0],
-            localMatrix.matrix[1][1],
-            localMatrix.matrix[1][2],
-            localMatrix.matrix[2][0],
-            localMatrix.matrix[2][1],
-            localMatrix.matrix[2][2]
+            renderMatrix.matrix[0][0],
+            renderMatrix.matrix[0][1],
+            renderMatrix.matrix[0][2],
+            renderMatrix.matrix[1][0],
+            renderMatrix.matrix[1][1],
+            renderMatrix.matrix[1][2],
+            renderMatrix.matrix[2][0],
+            renderMatrix.matrix[2][1],
+            renderMatrix.matrix[2][2]
         );
 
         this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);

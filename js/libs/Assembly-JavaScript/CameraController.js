@@ -3,7 +3,7 @@ class CameraController extends Viewport
     #targetTrans = null;
     
     clampMin = new Vector2(0, 0);
-    clampMax = new Vector2(6.5, 0);
+    clampMax = new Vector2(9.5, 0);
     
     constructor () { super(); }
     

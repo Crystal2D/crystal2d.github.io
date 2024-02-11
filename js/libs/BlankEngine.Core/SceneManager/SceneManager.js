@@ -29,6 +29,7 @@ class SceneManager
     static Load (index)
     {
         this.#activeScene = new this.Scene(this.#scenes[index].name, {
+            partioning : this.#scenes[index].partioning,
             resources : this.#scenes[index].resources,
             gameObjects : this.#scenes[index].gameObjects,
             buildIndex : this.#scenes[index].buildIndex,

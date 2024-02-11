@@ -14,10 +14,7 @@
                     "type" : "CameraController"
                 },
                 {
-                    "type" : "Camera",
-                    "args" : {
-                        "orthographicSize" : 6
-                    }
+                    "type" : "Camera"
                 }
             ]
         },
@@ -28,7 +25,7 @@
                 {
                     "type" : "CharController",
                     "args" : {
-                        "speed" : 2
+                        "speed" : 3
                     }
                 },
                 {
@@ -37,7 +34,8 @@
                         "sprite" : {
                             "texture" : "sprites/characters/yoki",
                             "index" : 1
-                        }
+                        },
+                        "sortingOrder" : -1
                     }
                 }
             ]
@@ -46,16 +44,14 @@
             "name" : "text_hi",
             "id" : 2,
             "transform" : {
-                "position" : { "y" : 1.75 }
+                "position" : { "y" : 2.5 }
             },
             "components" : [
                 {
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Welcome 2 whatever this is!",
-                        "fontSize" : 0.75,                        
-                        "width" : 6.25,
+                        "text" : "Welcome to whatever this is!",
                         "horizontalAlign" : 1,
                         "color" : {
                             "r" : 224,
@@ -70,7 +66,7 @@
             "name" : "text_ctrls",
             "id" : 3,
             "transform" : {
-                "position" : { "x" : -1, "y" : -2.5 }
+                "position" : { "x" : -0.25, "y" : -3.75 }
             },
             "components" : [
                 {
@@ -78,7 +74,7 @@
                     "args" : {
                         "font" : "font_main",
                         "text" : "Ctrls:\n- Arrows: Move\n- Shift: Dash",
-                        "fontSize" : 0.37
+                        "fontSize" : 0.5
                     }
                 }
             ]
@@ -87,16 +83,15 @@
             "name" : "text_updates",
             "id" : 4,
             "transform" : {
-                "position" : { "x" : 6.5, "y" : 2 }
+                "position" : { "x" : 9.5, "y" : 3.5 }
             },
             "components" : [
                 {
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Woa, text is now faster and is using batched rendering. We can now use whole words with no lag.\n\nCulling has been added, but there's still no data management/optimization. Still working on that, going to use QuadTrees. Might also implement physics on the way.",
-                        "fontSize" : 0.5,
-                        "width" : 6,
+                        "text" : "Nyoooooooooooom.\nRendering is way more faster, there's now QuadTrees :0. And because they broke the rendering order, there's now sorting layers and orders.\n\nNow time to work on \"physics\".\n\nThis project is getting bigger, the amount of files in this thing is absurd.",
+                        "fontSize" : 0.75,
                         "pivot" : {
                             "x" : 0.5,
                             "y" : 0

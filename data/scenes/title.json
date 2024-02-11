@@ -1,5 +1,8 @@
 {
     "name" : "Title",
+    "partioning" : {
+        "disabled" : true
+    },
     "resources" : [
         "sprites/title"
     ],
@@ -12,10 +15,7 @@
                     "type" : "Viewport"
                 },
                 {
-                    "type" : "Camera",
-                    "args" : {
-                        "orthographicSize" : 6
-                    }
+                    "type" : "Camera"
                 }
             ]
         },

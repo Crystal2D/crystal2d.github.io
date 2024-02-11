@@ -5,6 +5,9 @@ class GameObject
     #components = [];
     
     #id = null;
+
+    scene = null;
+    sceneTreeNode = null;
     
     get activeSelf ()
     {
@@ -138,7 +141,7 @@ class GameObject
     
     GetComponent (type)
     {
-        return this.#components.find(element => this.#IsComponent(element, type, false));
+        return this.#components.find(item => this.#IsComponent(item, type, false));
     }
     
     GetComponents (type)

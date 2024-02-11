@@ -17,6 +17,8 @@ class Transform extends Component
     
     set rotation (value)
     {
+        if (this.#rotation === value) return;
+
         this.#rotation = value;
         
         this.Recalc();
@@ -29,6 +31,8 @@ class Transform extends Component
     
     set position (value)
     {
+        if (this.#position === value) return;
+
         this.#position = value;
         
         this.Recalc();
@@ -41,6 +45,8 @@ class Transform extends Component
     
     set scale (value)
     {
+        if (this.#scale === value) return;
+
         this.#scale = value;
         
         this.Recalc();
@@ -133,6 +139,20 @@ class Transform extends Component
             this.localScale
         );
         this.#lWMatInv = this.#lWMat.inverse;
+
+        if (this.gameObject != null)
+        {
+            const renderer = this.GetComponent("Renderer");
+
+            if (renderer != null)
+            {
+                const min = renderer.bounds.min;
+                const max = renderer.bounds.max;
+                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
+            }
+        }
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }

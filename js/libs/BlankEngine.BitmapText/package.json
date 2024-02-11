@@ -45,6 +45,14 @@
                     "type" : "Color"
                 },
                 {
+                    "name" : "sortingLayer",
+                    "type" : "number"
+                },
+                {
+                    "name" : "sortingOrder",
+                    "type" : "number"
+                },
+                {
                     "name" : "overflowWidth",
                     "type" : "boolean"
                 },
