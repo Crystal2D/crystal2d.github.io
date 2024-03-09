@@ -4,7 +4,8 @@
         "disabled" : true
     },
     "resources" : [
-        "sprites/title"
+        "sprites/title",
+        "font_main"
     ],
     "gameObjects" : [
         {

@@ -7,6 +7,8 @@ class Viewport extends GameBehavior
     Start ()
     {
         Crispixels.effect = true;
+
+        SceneManager.Load(1, 2);
     }
 
     Update ()
@@ -32,7 +34,21 @@ class Viewport extends GameBehavior
             }
         }
         if (Input.GetKeyDown(KeyCode.F4)) Window.fullScreen = !Window.fullScreen;
+        
+        if (Input.GetKeyDown(KeyCode.Z)) this.#AddScene(-1);
+        else if (Input.GetKeyDown(KeyCode.X)) this.#AddScene(1);
 
         FPSMeter.Update();
+    }
+
+    #AddScene (i)
+    {
+        if (SceneManager.loadedSceneCount === 0) return;
+
+        let index = this.gameObject.scene.index + i;
+
+        index = Math.Clamp(index, 0, SceneManager.sceneCount - 1);
+        
+        SceneManager.SetActiveScene(index);
     }
 }

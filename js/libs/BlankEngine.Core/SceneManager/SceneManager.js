@@ -1,47 +1,114 @@
 class SceneManager
 {
-    static #loaded = false;
-    static #unloaded = false;
+    static #inited = false;
+    static #emptyScene = new Scene();
+    static #unloadedScenes = [];
     static #scenes = [];
     
     static #activeScene = null;
-    
-    static get sceneLoaded ()
+
+    static sceneLoaded = new DelegateEvent();
+    static sceneUnloaded = new DelegateEvent();
+    static activeSceneChanged = new DelegateEvent();
+
+    static get sceneCount ()
     {
-        return this.#loaded;
+        return this.#unloadedScenes.length;
+    }
+
+    static get loadedSceneCount ()
+    {
+        return this.#scenes.filter(item => item.isLoaded).length;
     }
     
-    static get sceneUnloaded ()
+    static SetActiveScene (index)
     {
-        return this.#unloaded;
+        if (this.GetActiveScene().index === index) return;
+
+        const scene = this.GetScene(index);
+
+        if (scene.isInvalid) return false;
+
+        scene.isDirty = true;
+
+        this.#activeScene = scene;
+
+        this.activeSceneChanged.Invoke();
+
+        return true;
     }
-    
+
     static GetActiveScene ()
     {
-        return this.#activeScene ?? { isLoaded : false };
+        return this.#activeScene ?? this.#emptyScene;
+    }
+
+    static GetScene (index)
+    {
+        return this.#scenes.find(item => item.index === index && item.isLoaded) ?? new Scene(null, null, true);
     }
     
     static Set (scenes)
     {
-        this.#scenes = scenes;
+        if (this.#inited) return;
+
+        this.#unloadedScenes = scenes;
+
+        this.#inited = true;
     }
     
-    static Load (index)
+    static Unload (...index)
     {
-        this.#activeScene = new this.Scene(this.#scenes[index].name, {
-            partioning : this.#scenes[index].partioning,
-            resources : this.#scenes[index].resources,
-            gameObjects : this.#scenes[index].gameObjects,
-            buildIndex : this.#scenes[index].buildIndex,
-            path : this.#scenes[index].path
-        }) ?? new this.Scene();
-        
-        this.#loaded = true;
+        for (let iA = 0; iA < index.length; iA++)
+        {
+            if (this.GetActiveScene().index === index[iA]) this.#activeScene = null;
+
+            const scene = this.GetScene(index[iA]);
+
+            if (scene.isInvalid) return;
+
+            for (let iB = 0; iB < scene.resources.length; iB++)
+            {
+                const res = scene.resources[iB];
+                const noRes = (this.#scenes.find(item => item.index !== index[iA] && item.resources.find(resItem => resItem === res) != null)) == null;
+
+                if (noRes) Resources.Unload(res);
+            }
+
+            const itemIndex = this.#scenes.indexOf(scene);
+
+            this.#scenes.splice(itemIndex, 1);
+
+            this.sceneUnloaded.Invoke();
+        }
     }
-    
-    static Unload ()
+
+    static async Load (...index)
     {
-        this.#activeScene = new this.Scene();
+        for (let i = 0; i < index.length; i++)
+        {
+            if (this.#scenes.find(item => item.index === index[i])) return;
+
+            const path = `data/scenes/${this.#unloadedScenes[index[i]]}.json`;
+            const response = await fetch(path);
+            const data = await response.json();
+
+            const scene = new Scene(data.name, {
+                partioning : data.partioning,
+                resources : data.resources,
+                gameObjects : data.gameObjects,
+                path : path,
+                index : index[i]
+            });
+
+            await Resources.Load(...scene.resources);
+
+            await scene.Load();
+
+            this.#scenes.push(scene);
+
+            this.sceneLoaded.Invoke();
+        }
     }
     
     static async CreateObject (type, data)

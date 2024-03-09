@@ -1,10 +1,13 @@
 class GameObject
 {
     #active = false;
+    #activeOld = false;
     #name = "Empty Object";
     #components = [];
     
     #id = null;
+
+    destroying = false;
 
     scene = null;
     sceneTreeNode = null;
@@ -90,6 +93,11 @@ class GameObject
         
         return output;
     }
+
+    static Destroy (obj)
+    {
+        obj.destroying = true;
+    }
     
     #IsComponent (item, type, includeInactive)
     {
@@ -107,13 +115,34 @@ class GameObject
     {
         this.#active = state;
     }
+
+    a () { return this.#active }
     
     BroadcastMessage (method, params, data)
     {
-        if (!this.#active) return;
-        
         let args = "";
         let dat = data ?? { };
+
+        // 0 : Awake
+        // 1 : Enable
+        // 2 : Disable
+        if (dat.specialCall == null) dat.specialCall = 0;
+
+        if (!this.#active && !dat.passActive) return;
+
+        switch (dat.specialCall)
+        {
+            case 1:
+                if (this.#activeOld || !this.#active) return;
+
+                this.#activeOld = true;
+                break;
+            case 2:
+                if (!this.#activeOld || this.#active) return;
+
+                this.#activeOld = false;
+                break;
+        }
         
         if (Array.isArray(params))
         {
@@ -126,7 +155,7 @@ class GameObject
         }
         else args = params;
         
-        const components = this.#components.filter(item => item.enabled && item instanceof GameBehavior);
+        const components = this.#components.filter(item => (item.enabled || dat.specialCall === 0) && item instanceof GameBehavior);
         
         for (let i = 0; i < components.length; i++)
         {

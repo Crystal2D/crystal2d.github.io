@@ -1,6 +1,6 @@
 class PlayerLoop
 {
-    static #loadedApp = false;
+    static #loaded = false;
     static #loop = [];
     
     static #RequestUpdate ()
@@ -10,14 +10,19 @@ class PlayerLoop
     
     static async #Update ()
     {
-        if (!this.#loadedApp && !Application.isLoaded)
+        if (!this.#loaded && !Application.isLoaded)
         {
             Application.Load();
             
-            this.#loadedApp = true;
+            this.#loaded = true;
         }
         
-        if (!Application.isLoaded || !SceneManager.GetActiveScene().isLoaded) return this.#RequestUpdate();
+        if (!Application.isLoaded)
+        {
+            this.#RequestUpdate();
+
+            return;
+        }
         
         const systems = this.#loop;
         
@@ -28,20 +33,46 @@ class PlayerLoop
     
     static Init ()
     {
-        if (this.#loadedApp) return;
+        if (this.#loaded) return;
         
         let callUpdate = false;
+        let quitState = 0;
+        let gameObjs = [];
+
+        let activeScene = null;
         
         this.#loop = [
             new PlayerLoopSystem("Initialization", {
                 subSystemList : [
-                    new PlayerLoopSystem("ScriptRunBehaviorStart", {
-                        loopConditionFunction : () => document.hasFocus() && SceneManager.GetActiveScene().isLoaded,
-                        updateDelegate : () => {
-                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
-                            
-                            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Start", null, { clearAfter : true });
+                    new PlayerLoopSystem("SetLoopData", {
+                        updateDelegate : () =>
+                        {
+                            activeScene = SceneManager.GetActiveScene();
+                            gameObjs = activeScene.gameObjects;
                         }
+                    }),
+                    new PlayerLoopSystem("PlayerStart", {
+                        loopConditionFunction : () => document.hasFocus(),
+                        subSystemList : [
+                            new PlayerLoopSystem("ScriptRunBehaviorAwake", {
+                                updateDelegate : () => {
+                                    for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Awake", null, {
+                                        specialCall : 0,
+                                        clearAfter : true
+                                    });
+                                }
+                            }),
+                            new PlayerLoopSystem("ScriptRunBehaviorOnEnable", {
+                                updateDelegate : () => {
+                                    for (let i = 0; i < gameObjs.length; i++)gameObjs[i].BroadcastMessage("OnEnable", null, { specialCall : 1 });
+                                }
+                            }),
+                            new PlayerLoopSystem("ScriptRunBehaviorStart", {
+                                updateDelegate : () => {
+                                    for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Start", null, { clearAfter : true });
+                                }
+                            })
+                        ]
                     })
                 ]
             }),
@@ -116,10 +147,8 @@ class PlayerLoop
                 },
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorFixedUpdate", {
-                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded,
+                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0,
                         updateDelegate : () => {
-                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
-                            
                             for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("FixedUpdate");
                         }
                     })
@@ -132,11 +161,9 @@ class PlayerLoop
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorUpdate", {
                         loopConditionFunction : () => {
-                            return document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded;
+                            return document.hasFocus() && Time.timeScale !== 0;
                         },
                         updateDelegate : () => {
-                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
-                            
                             for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Update");
                         }
                     })
@@ -146,10 +173,8 @@ class PlayerLoop
                 loopConditionFunction : () => callUpdate,
                 subSystemList : [
                     new PlayerLoopSystem("ScriptRunBehaviorLateUpdate", {
-                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded,
+                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0,
                         updateDelegate : () => {
-                            const gameObjs = SceneManager.GetActiveScene().gameObjects;
-                            
                             for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("LateUpdate");
                         }
                     })
@@ -165,7 +190,7 @@ class PlayerLoop
                 },
                 subSystemList : [
                     new PlayerLoopSystem("UpdateAllRenderers", {
-                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0 && SceneManager.GetActiveScene().isLoaded,
+                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0,
                         updateDelegate : () => {
                             const dynamicRenderers = GameObject.FindComponents("DynamicRenderer");
                             
@@ -183,6 +208,79 @@ class PlayerLoop
                     }),
                     new PlayerLoopSystem("InputEndFrame", {
                         updateDelegate : () => Input.End()
+                    }),
+                    new PlayerLoopSystem("PlayerEnd", {
+                        loopConditionFunction : () => document.hasFocus() && Time.timeScale !== 0,
+                        subSystemList : [
+                            new PlayerLoopSystem("ScriptRunBehaviorOnApplicationQuit", {
+                                loopConditionFunction : () => quitState === 2,
+                                updateDelegate : () => {
+                                    for (let i = 0; i < gameObjs.length; i++)
+                                    {
+                                        gameObjs[i].BroadcastMessage("OnApplicationQuit");
+
+                                        GameObject.Destroy(gameObjs[i]);
+                                    }
+
+                                    Application.quitting.Invoke();
+                                }
+                            }),
+                            new PlayerLoopSystem("ScriptRunBehaviorOnDisable", {
+                                updateDelegate : () => {
+                                    for (let i = 0; i < gameObjs.length; i++)
+                                    {
+                                        if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
+
+                                        gameObjs[i].BroadcastMessage("OnDisable", null, {
+                                           passActive : true,
+                                           specialCall : 2
+                                        });
+                                    }
+                                }
+                            }),
+                            new PlayerLoopSystem("ScriptRunBehaviorOnDestroy", {
+                                updateDelegate : () => {
+                                    const tree = activeScene.tree;
+                                    const gameObjs = activeScene.gameObjects.filter(item => item.destroying);
+
+                                    for (let i = 0; i < gameObjs.length; i++)
+                                    {
+                                        gameObjs[i].BroadcastMessage("OnDestroy");
+
+                                        tree.Remove(gameObjs[i]);
+
+                                        const index = activeScene.gameObjects.indexOf(gameObjs[i]);
+
+                                        activeScene.gameObjects.splice(index, 1);
+                                    }
+                                }
+                            }),
+                            new PlayerLoopSystem("ApplicationQuit", {
+                                updateDelegate : () => {
+                                    if (quitState === 2)
+                                    {
+                                        Application.Unload();
+                                    
+                                        window.close();
+                                    
+                                        return;
+                                    }
+                                
+                                    if (!Application.isPlaying)
+                                    {
+                                        Application.wantsToQuit.Invoke();
+                                        
+                                        quitState = 1;
+                                    }
+                                
+                                    if (quitState === 1)
+                                    {
+                                        if (Application.isPlaying) quitState = 0;
+                                        else quitState++;
+                                    }
+                                }
+                            }),
+                        ]
                     })
                 ]
             })
