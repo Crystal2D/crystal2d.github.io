@@ -159,6 +159,10 @@
                 {
                     "name" : "orthographicSize",
                     "type" : "number"
+                },
+                {
+                    "name" : "backgroundColor",
+                    "type" : "Color"
                 }
             ]
         },

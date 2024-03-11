@@ -118,7 +118,12 @@ class PlayerLoop
                             const gl = Application.gl;
 
                             gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
-                            gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT);
+
+                            const cameras = GameObject.FindComponents("Camera");
+                            const color = cameras[cameras.length - 1].backgroundColor;
+                            
+                            gl.clearColor(color.r, color.g, color.b, color.a);
+                            gl.clear(gl.COLOR_BUFFER_BIT);
                             gl.enable(gl.BLEND);
                             gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
                         }

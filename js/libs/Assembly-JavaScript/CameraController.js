@@ -10,8 +10,6 @@ class CameraController extends Viewport
     Start ()
     {
         super.Start();
-
-        Application.gl.clearColor(0.25, 0.25, 0.25, 1);
         
         this.#targetTrans = GameObject.Find("char_yoki").transform;
     }
