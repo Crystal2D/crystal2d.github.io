@@ -1,20 +1,15 @@
 class DynamicRenderer extends Renderer
 {
-    #onMUpdate = [];
+    onMeshUpdate = new DelegateEvent();
     
     get meshChanged ()
     {
         return false;
     }
     
-    set onMeshUpdate (value)
-    {
-        this.#onMUpdate.push(value);
-    }
-    
     ForceMeshUpdate ()
     {
-        for (let i = 0; i < this.#onMUpdate.length; i++) this.#onMUpdate[i]();
+        this.onMeshUpdate.Invoke();
         
         const min = this.bounds.min;
         const max = this.bounds.max;

@@ -1,9 +1,11 @@
-SceneManager.Scene = class
+class Scene
 {
+    #invalid = false;
     #loaded = false;
-    
+
     #data = null;
     
+    isDirty = false;
     name = "scene";
     gameObjects = [];
 
@@ -13,60 +15,33 @@ SceneManager.Scene = class
     {
         return this.#loaded;
     }
-    
-    get buildIndex ()
+
+    get isInvalid ()
     {
-        return this.#data.buildIndex;
+        return this.#invalid;
     }
     
     get path ()
     {
         return this.#data.path;
     }
-    
-    constructor (name, data)
+
+    get index ()
     {
-        this.name = name ?? "scene";
+        return this.#data.index;
+    }
+
+    get resources ()
+    {
+        return this.#data.resources ?? [];
+    }
+    
+    constructor (name, data, invalid)
+    {
+        this.name = name ?? "Scene";
         this.#data = data ?? { };
-        
-        this.#Load();
-    }
-    
-    async #Load ()
-    {
-        const size = new Vector2();
 
-        if (!this.#data.partioning?.disabled)
-        {
-            size.x = this.#data.partioning?.size?.x ?? 1024;
-            size.y = this.#data.partioning?.size?.y ?? 1024;
-        }
-
-        const pos = Vector2.Add(
-            Vector2.Scale(
-                size,
-                -0.5
-            ),
-            new Vector2(
-                this.#data.partioning?.offset?.x,
-                this.#data.partioning?.offset?.y
-            )
-        );
-
-        if (this.#data.partioning?.maxDepth != null) QuadTree.maxDepth = this.#data.partioning?.maxDepth;
-
-        this.tree = new QuadTree(new Rect(pos.x, pos.y, size.x, size.y));
-
-        await this.#LoadRes();
-        
-        await this.#LoadObjects();
-        
-        this.#loaded = true;
-    }
-    
-    async #LoadRes ()
-    {
-        await Resources.Load(...this.#data.resources);
+        this.#invalid = invalid ?? false;
     }
     
     async #LoadComponents (components)
@@ -80,6 +55,8 @@ SceneManager.Scene = class
     
     async #LoadObjects ()
     {
+        if (this.#data.gameObjects == null) return;
+
         for (let i = 0; i < this.#data.gameObjects.length; i++)
         {
             const objData = this.#data.gameObjects[i];
@@ -113,5 +90,42 @@ SceneManager.Scene = class
             
             this.gameObjects.push(gameObj);
         }
+
+        for (let i = 0; i < this.gameObjects; i++) this.gameObjects[i].BroadcastMessage("Awake", null, {
+            specialCall : 0,
+            clearAfter : true
+        });
+    }
+
+    async Load ()
+    {
+        if (this.#loaded || this.#invalid) return;
+
+        const size = new Vector2();
+
+        if (!this.#data.partioning?.disabled)
+        {
+            size.x = this.#data.partioning?.size?.x ?? 1024;
+            size.y = this.#data.partioning?.size?.y ?? 1024;
+        }
+
+        const pos = Vector2.Add(
+            Vector2.Scale(
+                size,
+                -0.5
+            ),
+            new Vector2(
+                this.#data.partioning?.offset?.x,
+                this.#data.partioning?.offset?.y
+            )
+        );
+
+        if (this.#data.partioning?.maxDepth != null) QuadTree.maxDepth = this.#data.partioning?.maxDepth;
+
+        this.tree = new QuadTree(new Rect(pos.x, pos.y, size.x, size.y));
+        
+        await this.#LoadObjects();
+        
+        this.#loaded = true;
     }
 }

@@ -59,8 +59,7 @@ class BlankEngine
         static #compiledData = {
             libs : [],
             scripts : [],
-            shaders : [],
-            scenes : []
+            shaders : []
         };
         
         static #buildData = null;
@@ -310,21 +309,6 @@ class BlankEngine
                 
                 this.#compiledData.shaders.push(await shaderResponse.text());
             }
-            
-            for (let i = 0; i < this.#buildData.scenes.length; i++)
-            {
-                const sceneResponse = await fetch(`data/scenes/${this.#buildData.scenes[i]}.json`);
-                const scene = await sceneResponse.json();
-                
-                this.#compiledData.scenes.push({
-                    name : scene.name,
-                    partioning : scene.partioning,
-                    resources : scene.resources,
-                    gameObjects : scene.gameObjects,
-                    buildIndex : i,
-                    path : `data/scenes/${this.#buildData.scenes[i]}.json`
-                });
-            }
 
             const resResponse = await fetch("data/resources.json");
 
@@ -353,7 +337,7 @@ class BlankEngine
             Shader.Set(this.#compiledData.shaders);
             Resources.Set(this.#resources);
             SortingLayer.Add(this.#buildData.layers);
-            SceneManager.Set(this.#compiledData.scenes);
+            SceneManager.Set(this.#buildData.scenes);
             
             Input.Init();
             PlayerLoop.Init();

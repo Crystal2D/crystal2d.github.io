@@ -2,18 +2,31 @@ class Application
 {
     static #inited = false;
     static #loaded = false;
+    static #playing = false;
+    static #unloaded = false;
     static #binded = false;
     static #name = "";
+    static #onLoad = () => { };
+    static #onUnload = () => { };
     
     static #canvas = null;
     static #gl = null;
     static #gl_md = null;
     
     static targetFrameRate = -1;
+
+    static wantsToQuit = null;
+    static unloading = null;
+    static quitting = null;
     
     static get isLoaded ()
     {
         return this.#loaded;
+    }
+
+    static get isPlaying ()
+    {
+        return this.#playing;
     }
     
     static get packageName ()
@@ -57,30 +70,44 @@ class Application
         this.#inited = true;
     }
     
-    static Bind (onLoad, onUnload)
+    static Bind (onLoad)
     {
         if (this.#binded) return;
         
-        this.Load = async () => {
-            if (this.#loaded) return;
-            
-            await onLoad();
-            
-            this.#loaded = true;
-        }
-        this.Unload = () => onUnload();
+        this.#onLoad = async () => await onLoad();
+        this.#onUnload = async () => await onUnload();
         
         this.#binded = true;
     }
     
     static Quit ()
     {
-        this.Unload();
-        
-        window.close();
+        if (this.#playing) this.#playing = false;
+    }
+
+    static CancelQuit ()
+    {
+        if (!this.#playing) this.#playing = true;
     }
     
-    static async Load () { }
+    static async Load ()
+    {
+        if (this.#loaded) return;
+
+        await this.#onLoad();
+
+        this.#loaded = true;
+        this.#playing = true;
+    }
     
-    static Unload () { }
+    static async Unload ()
+    {
+        if (this.#unloaded) return;
+
+        this.unloading.Invoke();
+
+        await this.#onUnload();
+
+        this.#unloaded = true;
+    }
 }

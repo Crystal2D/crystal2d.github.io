@@ -83,10 +83,8 @@ class Resources
     static Find (path)
     {
         const res = this.#resources.find(item => item.path === path);
-
-        if (res != null) return res.obj;
-
-        return { };
+        
+        return res != null ? res.obj : { };
     }
     
     static async Load (...path)

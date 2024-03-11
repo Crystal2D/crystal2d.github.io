@@ -5,6 +5,7 @@ class Camera extends Behavior
     #projMatrix = null;
     
     orthographicSize = 9;
+    backgroundColor = new Color();
     
     get bounds ()
     {
