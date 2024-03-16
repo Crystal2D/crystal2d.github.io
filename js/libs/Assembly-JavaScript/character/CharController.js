@@ -17,10 +17,6 @@ class CharController extends RPGMovement
             +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
             +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
         );
-        const inputEnd = [
-            Input.GetKeyUp(KeyCode.ArrowRight) || Input.GetKeyUp(KeyCode.ArrowLeft),
-            Input.GetKeyUp(KeyCode.ArrowUp) || Input.GetKeyUp(KeyCode.ArrowDown)
-        ];
 
         if (input.x !== 0) this.#xTime++;
         else if (this.#xTime !== 0) this.#xTime = 0;
