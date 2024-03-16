@@ -34,8 +34,6 @@ class CharController extends RPGMovement
             else input.y = 0;
         }
 
-        console.log(this.#xTime, this.#yTime, input);
-
         this.MoveTowards(input);
 
         this.speedScale = this.#tertriaryInput ? 2 : 1;
