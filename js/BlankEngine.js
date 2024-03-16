@@ -12,6 +12,7 @@ class BlankEngine
     static Script = class
     {
         #loaded = false;
+        
         #src = null;
         
         get isLoaded ()

@@ -2,9 +2,7 @@ class Viewport extends GameBehavior
 {
     #fps = 0;
 
-    constructor () { super(); }
-
-    Start ()
+    Awake ()
     {
         Crispixels.effect = true;
 

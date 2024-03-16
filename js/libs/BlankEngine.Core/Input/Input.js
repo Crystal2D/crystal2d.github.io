@@ -1,6 +1,5 @@
 class Input
 {
-    static #loaded = false;
     static #terminating = false;
     static #terminated = false;
     static #keys = [];

@@ -9,6 +9,21 @@ class Color
     {
         return new Color(1, 1, 1);
     }
+
+    static get red ()
+    {
+        return new Color(1, 0, 0);
+    }
+
+    static get green ()
+    {
+        return new Color(0, 1, 0);
+    }
+
+    static get blue ()
+    {
+        return new Color(0, 0, 1);
+    }
     
     r = 0;
     g = 0;

@@ -1,27 +1,48 @@
 class Test extends GameBehavior
 {
-    #renderer = null;
-    #points = [];
+    #checkMode = false;
+    #collided = false;
+    #speed = 3;
+    #input = Vector2.zero;
 
-    constructor () { super(); }
+    #spr = null;
+    #otherSpr = null;
 
     Start ()
     {
-        this.#renderer = this.GetComponent("Renderer");
+        this.#spr = this.GetComponent("Renderer");
+        this.#otherSpr = GameObject.Find("obj_other").GetComponent("Renderer");
+    }
 
-        for (let i = 0; i < 5; i++) this.#points[i] = GameObject.FindByID(i + 2).transform;
+    FixedUpdate ()
+    {
+        const movement = Vector2.Scale(this.#input.normalized, this.#speed * Time.fixedDeltaTime);
+        const bounds = this.#spr.bounds;
+        const otherBounds = this.#otherSpr.bounds;
+        const pos = this.transform.position;
+        const newPos = Vector2.Add(pos, movement);
+
+        if (this.#checkMode && this.#collided !== bounds.Intersects(otherBounds))
+        {
+            this.#collided = !this.#collided;
+
+            this.#spr.color = this.#collided ? Color.blue : Color.white;
+            this.#otherSpr.color = this.#collided ? Color.red : Color.green;
+        }
+        if (!this.#checkMode)
+        {
+            if (new Bounds(new Vector2(newPos.x, pos.y), bounds.size).Intersects(otherBounds)) newPos.x = pos.x;
+            if (new Bounds(new Vector2(pos.x, newPos.y), bounds.size).Intersects(otherBounds)) newPos.y = pos.y;
+        }
+
+        this.transform.position = newPos;
     }
 
     Update ()
     {
-        const bounds = this.#renderer.bounds;
-        const min = bounds.min;
-        const max = bounds.max
-
-        this.#points[0].position = min;
-        this.#points[1].position = new Vector2(max.x, min.y);
-        this.#points[2].position = new Vector2(min.x, max.y);
-        this.#points[3].position = max;
-        this.#points[4].position = bounds.center;
+        this.#input = new Vector2(
+            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
+            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
+        );
     }
 }

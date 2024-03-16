@@ -115,8 +115,6 @@ class GameObject
     {
         this.#active = state;
     }
-
-    a () { return this.#active }
     
     BroadcastMessage (method, params, data)
     {
@@ -132,12 +130,12 @@ class GameObject
 
         switch (dat.specialCall)
         {
-            case 1:
+            case 2:
                 if (this.#activeOld || !this.#active) return;
 
                 this.#activeOld = true;
                 break;
-            case 2:
+            case 3:
                 if (!this.#activeOld || this.#active) return;
 
                 this.#activeOld = false;
@@ -155,8 +153,8 @@ class GameObject
         }
         else args = params;
         
-        const components = this.#components.filter(item => (item.enabled || dat.specialCall === 0) && item instanceof GameBehavior);
-        
+        const components = this.#components.filter(item => (item.enabled || dat.specialCall === 1) && item instanceof GameBehavior);
+
         for (let i = 0; i < components.length; i++)
         {
             eval(`components[i].${method}(${args})`);

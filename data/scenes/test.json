@@ -1,8 +1,7 @@
 {
     "name" : "Test",
     "resources" : [
-        "sprites/ball",
-        "sprites/characters/yoki"
+        "sprites/square"
     ],
     "gameObjects" : [
         {
@@ -21,7 +20,7 @@
             ]
         },
         {
-            "name" : "renderer",
+            "name" : "obj_main",
             "id" : 1,
             "components" : [
                 {
@@ -31,77 +30,27 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/characters/yoki"
+                            "texture" : "sprites/square"
                         }
                     }
                 }
             ]
         },
         {
-            "name" : "min",
+            "name" : "obj_other",
             "id" : 2,
+            "transform" : {
+                "position" : { "x" : 1.5, "y" : 1.75 }
+            },
             "components" : [
                 {
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "maxX",
-            "id" : 3,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "maxY",
-            "id" : 4,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "max",
-            "id" : 5,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "center",
-            "id" : 6,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
+                            "texture" : "sprites/square"
+                        },
+                        "color" : {
+                            "g" : 255
                         }
                     }
                 }

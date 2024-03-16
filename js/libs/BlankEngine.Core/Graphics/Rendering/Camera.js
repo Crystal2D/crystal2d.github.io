@@ -42,11 +42,6 @@ class Camera extends Behavior
         return this.transform.worldToLocalMatrix;
     }
     
-    constructor ()
-    {
-        super();
-    }
-    
     Render ()
     {
         const camM = this.worldToCameraMatrix;

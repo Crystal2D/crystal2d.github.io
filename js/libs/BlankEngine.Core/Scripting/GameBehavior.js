@@ -1,10 +1,5 @@
 class GameBehavior extends Behavior
 {
-    constructor ()
-    {
-        super();
-    }
-    
     Awake () { }
     
     OnEnable () { }

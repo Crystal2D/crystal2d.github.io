@@ -1,9 +1,8 @@
 {
     "name" : "Scene",
     "resources" : [
-        "sprites/characters/yoki",
-        "font_main",
-        "materials/mat_invert"
+        "sprites/square",
+        "font_main"
     ],
     "gameObjects" : [
         {
@@ -39,8 +38,7 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/characters/yoki",
-                            "index" : 1
+                            "texture" : "sprites/square"
                         },
                         "sortingOrder" : -1
                     }
@@ -80,7 +78,7 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Dash",
+                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Run",
                         "fontSize" : 0.5
                     }
                 }
@@ -104,6 +102,27 @@
                             "y" : 0
                         },
                         "overflowHeight" : true
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "obj_scheme",
+            "id" : 5,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/square"
+                        },
+                        "sortingOrder" : -1,
+                        "color" : {
+                            "r" : 255,
+                            "g" : 255,
+                            "b" : 255,
+                            "a" : 120
+                        }
                     }
                 }
             ]

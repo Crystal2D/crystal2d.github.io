@@ -3,7 +3,8 @@
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         "Viewport",
-        "CharController",
+        "character/RPGMovement",
+        "character/CharController",
         "CameraController",
         "Test"
     ],

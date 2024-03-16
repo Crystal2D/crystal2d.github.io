@@ -1,17 +1,9 @@
 [
     {
-        "path" : "sprites/ball",
-        "type" : "Texture",
-        "args" : {
-            "src" : "ball.png",
-            "pixelPerUnit" : 120
-        }
-    },
-    {
         "path" : "sprites/square",
         "type" : "Texture",
         "args" : {
-            "src" : "square.png",
+            "src" : "square_outline.png",
             "pixelPerUnit" : 30
         }
     },
@@ -65,13 +57,6 @@
             "texture" : "font.png",
             "glyphs" : "font",
             "pixelPerUnit" : 30
-        }
-    },
-    {
-        "path" : "materials/mat_invert",
-        "type" : "Material",
-        "args" : {
-            "fragmentShader" : "Default/Invert Color"
         }
     }
 ]

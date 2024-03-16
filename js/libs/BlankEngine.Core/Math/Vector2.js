@@ -259,6 +259,16 @@ class Vector2
     {
         return new Vector2(Math.max(lhs.x, rhs.x), Math.max(lhs.y, rhs.y));
     }
+
+    static Clamp (value, min, max)
+    {
+        return Vector2.Min(Vector2.Max(value, min), max);
+    }
+
+    static Abs (value)
+    {
+        return new Vector2(Math.abs(value.x), Math.abs(value.y));
+    }
     
     static Add (a, b)
     {
@@ -320,6 +330,21 @@ class Vector2
     Equals (other)
     {
         return this.x == other.x && this.y == other.y;
+    }
+
+    Greater (other)
+    {
+        const inv = [
+            this.x < other.x,
+            this.y < other.y
+        ];
+
+        const output = [
+            this.x > other.x && !inv[0],
+            this.y > other.y && !inv[1]
+        ];
+
+        return output[0] || output[1];
     }
     
     /**

@@ -6,9 +6,4 @@ class Behavior extends Component
     {
         return this.gameObject.activeSelf && this.enabled;
     }
-    
-    constructor ()
-    {
-        super();
-    }
 }

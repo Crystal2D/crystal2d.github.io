@@ -26,7 +26,7 @@ class Transform extends Component
     
     get position ()
     {
-        return this.#position;
+        return new Vector2(this.#position.x, this.#position.y);
     }
     
     set position (value)
@@ -40,7 +40,7 @@ class Transform extends Component
     
     get scale ()
     {
-        return this.#scale;
+        return new Vector2(this.#scale.x, this.#scale.y);
     }
     
     set scale (value)
@@ -117,11 +117,6 @@ class Transform extends Component
         super.gameObject = value;
         
         this.#BindData();
-    }
-    
-    constructor ()
-    {
-        super();
     }
     
     #BindData ()

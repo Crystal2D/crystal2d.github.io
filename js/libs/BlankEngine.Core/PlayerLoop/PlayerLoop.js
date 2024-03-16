@@ -57,14 +57,14 @@ class PlayerLoop
                             new PlayerLoopSystem("ScriptRunBehaviorAwake", {
                                 updateDelegate : () => {
                                     for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Awake", null, {
-                                        specialCall : 0,
+                                        specialCall : 1,
                                         clearAfter : true
                                     });
                                 }
                             }),
                             new PlayerLoopSystem("ScriptRunBehaviorOnEnable", {
                                 updateDelegate : () => {
-                                    for (let i = 0; i < gameObjs.length; i++)gameObjs[i].BroadcastMessage("OnEnable", null, { specialCall : 1 });
+                                    for (let i = 0; i < gameObjs.length; i++)gameObjs[i].BroadcastMessage("OnEnable", null, { specialCall : 2 });
                                 }
                             }),
                             new PlayerLoopSystem("ScriptRunBehaviorStart", {
@@ -238,7 +238,7 @@ class PlayerLoop
 
                                         gameObjs[i].BroadcastMessage("OnDisable", null, {
                                            passActive : true,
-                                           specialCall : 2
+                                           specialCall : 3
                                         });
                                     }
                                 }
