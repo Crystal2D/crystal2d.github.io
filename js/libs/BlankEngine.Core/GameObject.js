@@ -178,6 +178,11 @@ class GameObject
 
     GetComponentInParent (type)
     {
-        console.log(this.transform.parent);
+        return this.transform.parent.GetComponent(type);
+    }
+
+    GetComponentsInParent (type)
+    {
+        return this.transform.parent.GetComponents(type);
     }
 }

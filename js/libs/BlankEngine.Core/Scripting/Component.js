@@ -36,4 +36,14 @@ class Component
     {
         return this.#gameObj.GetComponents(type);
     }
+
+    GetComponentInParent (type)
+    {
+        return this.#gameObj.GetComponentInParent(type);
+    }
+
+    GetComponentsInParent (type)
+    {
+        return this.#gameObj.GetComponentsInParent(type);
+    }
 }

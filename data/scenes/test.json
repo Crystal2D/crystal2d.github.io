@@ -30,15 +30,46 @@
             "name" : "tile_bg",
             "id" : 2,
             "parent" : 1,
+            "active" : true,
             "components" : [
                 {
-                    "type" : "Tilemap"
+                    "type" : "Tilemap",
+                    "args" : {
+                        "texture" : "sprites/tilesets/yoki_room",
+                        "tiles" : [
+                            {
+                                "spriteID" : 1,
+                                "position" : { "x" : -3, "y" : 2 }
+                            },
+                            {
+                                "spriteID" : 2,
+                                "position" : { "x" : -2, "y" : 2 }
+                            },
+                            {
+                                "spriteID" : 3,
+                                "position" : { "x" : -1, "y" : 2 }
+                            },
+                            {
+                                "spriteID" : 9,
+                                "position" : { "x" : -3, "y" : 1 }
+                            },
+                            {
+                                "spriteID" : 10,
+                                "position" : { "x" : -2, "y" : 1 }
+                            },
+                            {
+                                "spriteID" : 11,
+                                "position" : { "x" : -1, "y" : 1 }
+                            }
+                        ]
+                    }
                 }
             ]
         },
         {
             "name" : "test",
             "id" : 3,
+            "active" : false,
             "components" : [
                 {
                     "type" : "Test"
