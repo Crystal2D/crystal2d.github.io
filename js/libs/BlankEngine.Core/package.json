@@ -41,7 +41,8 @@
         "Graphics/Rendering/Camera",
         "Graphics/Rendering/Renderers/Renderer",
         "Graphics/Rendering/Renderers/DynamicRenderer",
-        "Graphics/Rendering/Renderers/SpriteRenderer"
+        "Graphics/Rendering/Renderers/SpriteRenderer",
+        "Grid"
     ],
     "classes" : [
         {
@@ -182,6 +183,20 @@
                 {
                     "name" : "sortingOrder",
                     "type" : "number"
+                }
+            ]
+        },
+        {
+            "name" : "Grid",
+            "type" : 0,
+            "args" : [
+                {
+                    "name" : "cellGap",
+                    "type" : "Vector2"
+                },
+                {
+                    "name" : "cellSize",
+                    "type" : "Vector2"
                 }
             ]
         }

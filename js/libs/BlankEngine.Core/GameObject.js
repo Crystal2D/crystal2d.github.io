@@ -175,4 +175,9 @@ class GameObject
     {
         return this.#components.filter(item => this.#IsComponent(item, type, false));
     }
+
+    GetComponentInParent (type)
+    {
+        console.log(this.transform.parent);
+    }
 }

@@ -2,7 +2,6 @@ class Scene
 {
     #invalid = false;
     #loaded = false;
-
     #data = null;
     
     isDirty = false;

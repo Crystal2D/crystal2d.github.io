@@ -1,16 +1,17 @@
 {
     "libs" : [
         "BlankEngine.BitmapText",
+        "BlankEngine.RPGTiles",
         "Assembly-JavaScript"
     ],
     "scripts" : [
         "plugins/Crispixels",
         "plugins/FPSMeter"
     ],
-    "scenes" : [
+    "scenes" : ["test",
         "scene",
-        "title",
-        "test"
+        "title"
+        
     ],
     "shaders" : [
         "vertex",

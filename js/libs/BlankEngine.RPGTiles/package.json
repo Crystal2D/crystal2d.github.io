@@ -1,0 +1,14 @@
+{
+    "name" : "BlankEngine.RPGTiles",
+    "description" : "",
+    "scripts" : [
+        "Tile",
+        "Tilemap"
+    ],
+    "classes" : [
+        {
+            "name" : "Tilemap",
+            "type" : 0
+        }
+    ]
+} 

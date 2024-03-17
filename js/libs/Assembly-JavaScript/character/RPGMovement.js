@@ -38,7 +38,6 @@ class RPGMovement extends GameBehavior
             this.onMoveStart.Invoke();
         }
 
-        // Change delta time to fixed
         const nextPos = Vector2.Add(
             this.transform.position,
             Vector2.Scale(this._moveDir, Time.deltaTime * this.#moveSpeed)
@@ -62,7 +61,6 @@ class RPGMovement extends GameBehavior
             return;
         }
 
-        // Change to rigidbody
         this.transform.position = nextPos;
 
         this._OnMove();
