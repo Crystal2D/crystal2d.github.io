@@ -1,5 +1,0 @@
-class Tileset
-{
-    name = "";
-    srpites = [];
-}
