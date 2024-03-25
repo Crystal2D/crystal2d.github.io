@@ -1,5 +1,5 @@
 {
-    "name" : "BlankEngine.BitmapText",
+    "name" : "Crystal.BitmapText",
     "description" : "Implements text rendering based on bitmaps",
     "scripts" : [
         "FontAtlas",

@@ -1,6 +1,6 @@
 {
-    "name" : "BlankEngine.Core",
-    "description" : "The core module that BlankEngine runs on. We allow modifications, but it may break the engine. Please tamper with care",
+    "name" : "Crystal.Core",
+    "description" : "The core module that Crystal runs on. We allow modifications, but it may break the engine. Please tamper with care",
     "scripts" : [
         "bindings",
         "DelegateEvent",
