@@ -117,7 +117,7 @@ class SceneManager
         
         let object = null;
         
-        const foundClass = BlankEngine.Inner.GetClassOfType(type, 0);
+        const foundClass = CrystalEngine.Inner.GetClassOfType(type, 0);
         
         if (foundClass == null) return new Object();
         

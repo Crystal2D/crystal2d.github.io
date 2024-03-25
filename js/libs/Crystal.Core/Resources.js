@@ -9,7 +9,7 @@ class Resources
         
         let object = null;
         
-        const foundClass = BlankEngine.Inner.GetClassOfType(type, 1);
+        const foundClass = CrystalEngine.Inner.GetClassOfType(type, 1);
         
         if (foundClass == null) return new Object();
         

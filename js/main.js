@@ -1,3 +1,3 @@
 window.onload = () => {
-    BlankEngine.Inner.InitiateProgram();
+    CrystalEngine.Inner.InitiateProgram();
 };

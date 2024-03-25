@@ -1,8 +1,9 @@
 {
     "name" : "Scene",
     "resources" : [
+        "font_main",
         "sprites/square",
-        "font_main"
+        "sprites/characters/yoki"
     ],
     "gameObjects" : [
         {
@@ -38,7 +39,8 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/square"
+                            "texture" : "sprites/characters/yoki",
+                            "index" : 1
                         },
                         "sortingOrder" : -1
                     }

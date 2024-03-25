@@ -1,7 +1,7 @@
 {
     "libs" : [
-        "BlankEngine.BitmapText",
-        "BlankEngine.RPGTiles",
+        "Crystal.BitmapText",
+        "Crystal.RPGTiles",
         "Assembly-JavaScript"
     ],
     "scripts" : [

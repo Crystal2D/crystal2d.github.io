@@ -5,7 +5,7 @@
  * @static
  * @class
  */
-class BlankEngine
+class CrystalEngine
 {
     // Static Classes
     
@@ -116,7 +116,7 @@ class BlankEngine
                 
                 for (let i = 0; i < this.#unloadedScripts.length; i++)
                 {
-                    const script = new BlankEngine.Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    const script = new CrystalEngine.Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
                     
                     await script.Load();
                     
@@ -139,7 +139,7 @@ class BlankEngine
             }
         }
         
-        static #Script = class extends BlankEngine.Script
+        static #Script = class extends CrystalEngine.Script
         {
             #classes = [];
             
@@ -275,8 +275,7 @@ class BlankEngine
             
             this.#buildData = await buildResponse.json();
             
-            if (this.#buildData.libs.length === 0) this.#buildData.libs[0] = "BlankEngine.Core";
-            else this.#buildData.libs.unshift("BlankEngine.Core");
+            this.#buildData.libs.unshift("Crystal.Core");
             
             for (let i = 0; i < this.#buildData.libs.length; i++)
             {
