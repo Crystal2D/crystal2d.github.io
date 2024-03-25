@@ -1,91 +1,15 @@
-class FPSMeter
-{
-    static #enabled = false;
-    static #ms = false
-    static #time = 0;
+/*
 
-    static #text = null;
+Plugin that adds a simple FPS meter.
 
-    static get enabled ()
-    {
-        return this.#enabled;
-    }
+Version : 1f
 
-    static set enabled (value)
-    {
-        this.SetActive(value);
-    }
 
-    static get msMode ()
-    {
-        return this.#ms;
-    }
+Copyright (c) 2024 Desert Lake
 
-    static set msMode (value)
-    {
-        this.#ms = value;
+Licensed under MIT (https://github.com/crystal2d/extras/blob/main/LICENSE.md)
 
-        this.#time = 0.5;
-    }
+*/
 
-    static SetActive (state)
-    {
-        if (state === this.#enabled) return;
 
-        if (this.#text == null)
-        {
-            this.#text = document.createElement("div");
-
-            this.#text.style.position = "absolute";
-            this.#text.style.background = "#ffffff7f";
-            this.#text.style.margin = "4px";
-            this.#text.style.fontSize = "20px";
-            this.#text.style.minWidth = "67px";
-            this.#text.style.height = "24px";
-            this.#text.style.padding = "8px 6px";
-            this.#text.style.whiteSpace = "pre-wrap";
-
-            document.body.append(this.#text);
-        }
-        else this.#text.style.display = state ? "block" : "none";
-
-        if (state) this.#time = 0.5;
-
-        this.#enabled = state;
-    }
-
-    static Update ()
-    {
-        if (!this.#enabled) return;
-
-        if (this.#time < 0.5)
-        {
-            this.#time += Time.deltaTime;
-            
-            return;
-        }
-        
-        this.#time = 0;
-
-        if (this.#ms)
-        {
-            const ms = parseInt(
-                Math.max(
-                    (Time.deltaTime || Time.maximumDeltaTime),
-                    1 / Application.targetFrameRate
-                ) * 1000
-            );
-            
-            this.#text.textContent = `ms  ${ms}`;
-
-            return;
-        }
-        
-        const fps = Math.min(
-            parseInt(1 / (Time.deltaTime || Time.maximumDeltaTime)),
-            Application.targetFrameRate
-        );
-        
-        this.#text.textContent = `FPS ${fps}`;
-    }
-}
+class FPSMeter{static #a=!1;static #b=!1;static #c=0;static #d=null;static get enabled(){return this.#a}static set enabled(t){this.SetActive(t)}static get msMode(){return this.#b}static set msMode(t){this.#b=t,this.#c=.5}static SetActive(t){t!==this.#a&&(null==this.#d?(this.#d=document.createElement("div"),this.#d.style.position="absolute",this.#d.style.background="#ffffff7f",this.#d.style.margin="4px",this.#d.style.fontSize="20px",this.#d.style.minWidth="67px",this.#d.style.height="24px",this.#d.style.padding="8px 6px",this.#d.style.whiteSpace="pre-wrap",document.body.append(this.#d)):this.#d.style.display=t?"block":"none",t&&(this.#c=.5),this.#a=t)}static Update(){if(!this.#a)return;if(this.#c<.5){this.#c+=Time.deltaTime;return}if(this.#c=0,this.#b){let t=parseInt(1e3*Math.max(Time.deltaTime||Time.maximumDeltaTime,1/Application.targetFrameRate));this.#d.textContent=`ms  ${t}`;return}let e=Math.min(parseInt(1/(Time.deltaTime||Time.maximumDeltaTime)),Application.targetFrameRate);this.#d.textContent=`FPS ${e}`}}
