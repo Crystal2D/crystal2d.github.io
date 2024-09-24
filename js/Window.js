@@ -1,18 +1,9 @@
-/**
- * The static class for working with the window
- * 
- * @public
- * @static
- * @class
- */
 class Window
 {
-    // Private Static Properties
-    
     static #loaded = false;
-    static #sizeChanged = false;
     static #resizable = true;
     static #fillWin = true;
+    static #sizeChanged = 0;
     static #x = 0;
     static #y = 0;
     static #marginX = 0;
@@ -23,20 +14,9 @@ class Window
     static #title = "";
     
     static #icon = null;
+    static #ipcRenderer = null;
     
-    
-    // Static Properties
-    
-    /**
-     * Sets the fullscreen property of the window
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @type {boolean}
-     */
-    static fullScreen = false;
+    static fullscreen = false;
     
     static get fillWindow ()
     {
@@ -51,6 +31,8 @@ class Window
     static set resizable (value)
     {
         this.#sizeChanged = true;
+
+        if (this.#ipcRenderer != null) this.#ipcRenderer.invoke("SetResizable", value);
         
         this.#resizable = value;
     }
@@ -108,9 +90,6 @@ class Window
         return this.#aspect;
     }
     
-    
-    // Private Static Methods
-    
     static #RequestUpdate ()
     {
         requestAnimationFrame(this.#Update.bind(this));
@@ -120,16 +99,22 @@ class Window
     {
         if (document.hasFocus())
         {
-            if (document.fullscreenElement && !this.fullScreen) document.exitFullscreen();
-            else if (!document.fullscreenElement && this.fullScreen) document.documentElement.requestFullscreen();
+            if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
+            else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen();
         }
-        
+
         if (this.#sizeChanged)
         {
-            if (!this.#resizable && !this.fullScreen)
+            if (!this.fullscreen)
             {
-                const x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
-                const y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
+                let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
+                let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
+
+                if (this.#ipcRenderer != null)
+                {
+                    if (x % 2 !== 0) x += x % 2;
+                    if (y % 2 !== 0) y += y % 2;
+                }
                 
                 window.resizeTo(x, y);
             }
@@ -148,32 +133,25 @@ class Window
         this.#RequestUpdate();
     }
     
-    
-    // Static Methods
-    
-    /**
-     * Called for initialization
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     */
     static Init (data)
     {
         if (this.#loaded) return;
-        
+
         this.#resizable = data.resizable ?? true;
-        
-        this.fullScreen = data.fullScreen ?? false;
+        this.fullscreen = data.fullscreen ?? false;
         this.fillWindow = data.fillWindow ?? true;
-        
+  
         this.SetTitle(data.title);
         this.SetResolution(data.width, data.height);
         this.SetMargin(data.marginWidth, data.marginHeight);
         this.SetWindowSize(data.windowWidth, data.windowHeight);
-        this.SetIcon(data.icon);
+
+        if (Application.isInElectron())
+        {
+            const { ipcRenderer } = require("electron");
+            this.#ipcRenderer = ipcRenderer;
+        }
+        else this.SetIcon(data.icon);
         
         window.addEventListener("resize", () => { this.#sizeChanged = true; });
         
@@ -182,35 +160,12 @@ class Window
         this.#loaded = true;
     }
     
-    /**
-     * Sets the window's title
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     * 
-     * @param {string} title - The title of the window
-     */
     static SetTitle (title)
     {
         this.#title = title ?? "Untitled";
         document.title = this.#title;
     }
     
-    /**
-     * Sets the window's size
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     * 
-     * @param {integer} width - The width of the window in pixels
-     * @param {integer} height - The height of the window in pixels
-     */
     static SetResolution (width, height)
     {
         this.#x = width ?? 250;
@@ -227,18 +182,6 @@ class Window
         if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = true;
     }
     
-    /**
-     * Sets the inner margin's size
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     * 
-     * @param {integer} width - The width of the margin in percent
-     * @param {integer} height - The height of the margin in percent
-     */
     static SetMargin (width, height)
     {
         this.#marginX = width ?? 0;
@@ -258,22 +201,18 @@ class Window
         this.#sizeChanged = true;
     }
     
-    /**
-     * Sets the window's icon
-     * 
-     * @memberof Window
-     * 
-     * @public
-     * @static
-     * @method
-     * 
-     * @param {string} src - The source of the window icon
-     */
     static SetIcon (src)
     {
         this.#icon = src;
         
         if (this.#icon == null) return;
+
+        if (this.#ipcRenderer != null)
+        {
+            this.#ipcRenderer.invoke("SetIcon", this.#icon);
+
+            return;
+        }
         
         let icon = document.querySelector("link[rel=icon]");
         

@@ -16,8 +16,8 @@ class DelegateEvent
         this.#calls.splice(index, 1);
     }
 
-    Invoke ()
+    Invoke (...params)
     {
-        for (let i = 0; i < this.#calls.length; i++) this.#calls[i]();
+        for (let i = 0; i < this.#calls.length; i++) this.#calls[i](...params);
     }
 }

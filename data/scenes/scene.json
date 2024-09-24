@@ -3,7 +3,9 @@
     "resources" : [
         "font_main",
         "sprites/square",
-        "sprites/characters/yoki"
+        "sprites/characters/yoki",
+        "animations/characters/yoki",
+        "animations/characters/spin"
     ],
     "gameObjects" : [
         {
@@ -44,6 +46,9 @@
                         },
                         "sortingOrder" : -1
                     }
+                },
+                {
+                    "type" : "Animator"
                 }
             ]
         },
@@ -97,7 +102,7 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Nyoooooooooooom.\nRendering is way more faster, there's now QuadTrees :0. And because they broke the rendering order, there's now sorting layers and orders.\n\nNow time to work on \"physics\".\n\nThis project is getting bigger, the amount of files in this thing is absurd.",
+                        "text" : "e",
                         "fontSize" : 0.75,
                         "pivot" : {
                             "x" : 0.5,

@@ -13,7 +13,8 @@ class Application
     static #gl = null;
     static #gl_md = null;
     
-    static targetFrameRate = -1;
+    static targetFrameRate = 0;
+    static vSyncCount = 0;
 
     static wantsToQuit = null;
     static unloading = null;
@@ -47,6 +48,11 @@ class Application
     static get gl_multidraw ()
     {
         return this.#gl_md;
+    }
+
+    static isInElectron ()
+    {
+        return navigator.userAgent.indexOf("Electron") >= 0;
     }
     
     static Init (packageName)

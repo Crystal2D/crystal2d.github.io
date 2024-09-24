@@ -2,22 +2,24 @@
     "libs" : [
         "Crystal.BitmapText",
         "Crystal.RPGTiles",
+        "Crystal.SimpleAnimate",
         "Assembly-JavaScript"
     ],
     "scripts" : [
         "plugins/Crispixels",
         "plugins/FPSMeter"
     ],
-    "scenes" : ["test",
+    "scenes" : [
         "scene",
-        "title"
-        
+        "title",
+        "test"
     ],
     "shaders" : [
         "vertex",
         "fragment"
     ],
-    "targetFrameRate" : 60,
+    "targetFrameRate" : -1,
+    "vSyncCount" : 0,
     "debugMode" : false,
     "time" : {
         "maximumDeltaTime" : 0.3333333,

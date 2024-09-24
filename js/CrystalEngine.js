@@ -326,6 +326,7 @@ class CrystalEngine
             if (this.#terminateStart) return;
             
             Application.targetFrameRate = this.#buildData.targetFrameRate;
+            Application.vSyncCount = this.#buildData.vSyncCount;
             
             Time.maximumDeltaTime = this.#buildData.time.maximumDeltaTime;
             Time.timeScale = this.#buildData.time.timeScale;
