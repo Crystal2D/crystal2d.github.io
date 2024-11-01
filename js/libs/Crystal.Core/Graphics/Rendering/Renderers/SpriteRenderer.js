@@ -12,14 +12,14 @@ class SpriteRenderer extends Renderer
     get bounds ()
     {
         const scale = Vector2.Scale(
-            this.transform.localScale,
+            this.transform.scale,
             this.#boundsSize
         );
         const pivot = this.sprite.pivot;
         
         return new Bounds(
             Vector2.Add(
-                this.transform.localPosition,
+                this.transform.position,
                 Vector2.Scale(
                     scale,
                     new Vector2(

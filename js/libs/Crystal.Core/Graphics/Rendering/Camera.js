@@ -12,7 +12,7 @@ class Camera extends Behavior
         const size = this.orthographicSize;
         
         return new Bounds(
-            this.transform.localPosition,
+            this.transform.position,
             new Vector2(
                 Window.aspect * size,
                 1 * size

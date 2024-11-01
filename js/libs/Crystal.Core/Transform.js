@@ -10,12 +10,12 @@ class Transform extends Component
     
     #parent = null;
     
-    get rotation ()
+    get localRotation ()
     {
         return this.#rotation;
     }
     
-    set rotation (value)
+    set localRotation (value)
     {
         if (this.#rotation === value) return;
 
@@ -24,12 +24,12 @@ class Transform extends Component
         this.Recalc();
     }
     
-    get position ()
+    get localPosition ()
     {
         return new Vector2(this.#position.x, this.#position.y);
     }
     
-    set position (value)
+    set localPosition (value)
     {
         if (this.#position === value) return;
 
@@ -38,12 +38,12 @@ class Transform extends Component
         this.Recalc();
     }
     
-    get scale ()
+    get localScale ()
     {
         return new Vector2(this.#scale.x, this.#scale.y);
     }
     
-    set scale (value)
+    set localScale (value)
     {
         if (this.#scale === value) return;
 
@@ -52,34 +52,34 @@ class Transform extends Component
         this.Recalc();
     }
     
-    get localRotation ()
+    get rotation ()
     {
-        return this.rotation + (this.parent?.rotation ?? 0);
+        return this.localRotation + (this.parent?.rotation ?? 0);
     }
     
-    set localRotation (value)
+    set rotation (value)
     {
-        this.rotation = value - (this.parent?.rotation ?? 0);
+        this.localRotation = value - (this.parent?.rotation ?? 0);
     }
     
-    get localPosition ()
+    get position ()
     {
-        return Vector2.Add(this.position, this.parent?.position ?? Vector2.zero);
+        return Vector2.Add(this.localPosition, this.parent?.position ?? Vector2.zero);
     }
     
-    set localPosition (value)
+    set position (value)
     {
-        this.position = Vector2.Subtract(value, this.parent?.position ?? Vector2.zero);
+        this.localPosition = Vector2.Subtract(value, this.parent?.position ?? Vector2.zero);
     }
     
-    get localScale ()
+    get scale ()
     {
-        return Vector2.Scale(this.scale, this.parent?.scale ?? Vector2.one);
+        return Vector2.Scale(this.localScale, this.parent?.scale ?? Vector2.one);
     }
     
-    set localScale (value)
+    set scale (value)
     {
-        this.scale = Vector2.Divide(value, this.parent?.scale ?? Vector2.one);
+        this.localScale = Vector2.Divide(value, this.parent?.scale ?? Vector2.one);
     }
     
     get childCount ()
@@ -124,14 +124,21 @@ class Transform extends Component
         if (this.#parent == null || this.gameObject == null) return;
         
         this.#parent.AttachChild(this);
+
+        this.#lWMat = Matrix3x3.TRS(
+            Vector2.Scale(this.position, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.rotation * Math.PI,
+            this.scale
+        );
+        this.#lWMatInv = this.#lWMat.inverse;
     }
     
     Recalc ()
     {
         this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(this.localPosition, new Vector2(1, -1)),
-            5.555555555555556e-3 * -this.localRotation * Math.PI,
-            this.localScale
+            Vector2.Scale(this.position, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.rotation * Math.PI,
+            this.scale
         );
         this.#lWMatInv = this.#lWMat.inverse;
 

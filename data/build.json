@@ -19,7 +19,7 @@
         "fragment"
     ],
     "targetFrameRate" : -1,
-    "vSyncCount" : 0,
+    "vSyncCount" : 1,
     "debugMode" : false,
     "time" : {
         "maximumDeltaTime" : 0.3333333,

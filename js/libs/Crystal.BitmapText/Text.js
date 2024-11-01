@@ -35,13 +35,13 @@ class Text extends DynamicRenderer
     get bounds ()
     {
         const scale = Vector2.Scale(
-            this.transform.localScale,
+            this.transform.scale,
             this.#boundsSize
         );
         const pivot = this.pivot;
         const offset = this.#boundsOffset;
         
-        let pos = this.transform.localPosition;
+        let pos = this.transform.position;
         
         switch (this.horizontalAlign)
         {

@@ -88,20 +88,7 @@
         {
             "name" : "Transform",
             "type" : 0,
-            "args" : [
-                {
-                    "name" : "rotation",
-                    "type" : "number"
-                },
-                {
-                    "name" : "position",
-                    "type" : "Vector2"
-                },
-                {
-                    "name" : "scale",
-                    "type" : "Vector2"
-                }
-            ]
+            "construction" : "const output = new Transform(); if (data.rotation != null) output.localRotation = data.rotation; if (data.position != null) output.localPosition = await toObject(\"Vector2\", data.position); if (data.scale != null) output.localScale = await toObject(\"Vector2\", data.scale); return output;"
         },
         {
             "name" : "GameObject",
