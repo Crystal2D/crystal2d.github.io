@@ -30,7 +30,7 @@ class Application
         return this.#playing;
     }
     
-    static get packageName ()
+    static get name ()
     {
         return this.#name;
     }
@@ -55,11 +55,11 @@ class Application
         return navigator.userAgent.indexOf("Electron") >= 0;
     }
     
-    static Init (packageName)
+    static Init (name)
     {
         if (this.#inited) return;
         
-        this.#name = packageName;
+        this.#name = name;
         
         this.#canvas = document.createElement("canvas");
         

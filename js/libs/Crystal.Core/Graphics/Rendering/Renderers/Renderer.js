@@ -42,7 +42,7 @@ class Renderer extends Component
 
     get localToWorldMatrix ()
     {
-        return Matrix3x3.zero;
+        return Matrix3x3.identity;
     }
     
     constructor (material)

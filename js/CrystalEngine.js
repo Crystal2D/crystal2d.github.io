@@ -265,11 +265,11 @@ class CrystalEngine
         
         static async #LoadData ()
         {
-            const packageResponse = await fetch("package.json");
-            const packageData = await packageResponse.json();
+            const manifestResponse = await fetch("manifest.json");
+            const manifestData = await manifestResponse.json();
             
-            Application.Init(packageData.name);
-            Window.Init(packageData.window);
+            Application.Init(manifestData.name);
+            Window.Init(manifestData.window);
             
             const buildResponse = await fetch("data/build.json");
             
@@ -279,7 +279,7 @@ class CrystalEngine
             
             for (let i = 0; i < this.#buildData.libs.length; i++)
             {
-                const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/package.json`);
+                const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/manifest.json`);
                 const libData = await libResponse.json();
                 
                 this.#compiledData.libs.push(new this.#Lib(
