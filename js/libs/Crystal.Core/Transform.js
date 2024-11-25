@@ -31,7 +31,7 @@ class Transform extends Component
     
     set localPosition (value)
     {
-        if (this.#position === value) return;
+        if (this.#position.Equals(value)) return;
 
         this.#position = value;
         
@@ -45,7 +45,7 @@ class Transform extends Component
     
     set localScale (value)
     {
-        if (this.#scale === value) return;
+        if (this.#scale.Equals(value)) return;
 
         this.#scale = value;
         
@@ -142,19 +142,7 @@ class Transform extends Component
         );
         this.#lWMatInv = this.#lWMat.inverse;
 
-        if (this.gameObject != null)
-        {
-            const renderer = this.GetComponent("Renderer");
-
-            if (renderer != null)
-            {
-                const min = renderer.bounds.min;
-                const max = renderer.bounds.max;
-                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
-
-                this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
-            }
-        }
+        if (this.gameObject != null) this.GetComponent("Renderer")?.RecalcBounds();
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }

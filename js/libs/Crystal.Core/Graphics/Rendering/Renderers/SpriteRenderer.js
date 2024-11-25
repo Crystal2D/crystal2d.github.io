@@ -1,35 +1,24 @@
 class SpriteRenderer extends Renderer
 {
+    #meshChanged = true;
     #trisCount = 0;
     
     #boundsSize = Vector2.zero;
+    #bounds = new Bounds();
     #transMat = new Matrix3x3();
     
     #sprite = null;
     #spriteOld = null;
     #colorOld = null;
-    
+
+    get meshChanged ()
+    {
+        return this.#meshChanged;
+    }
+
     get bounds ()
     {
-        const scale = Vector2.Scale(
-            this.transform.scale,
-            this.#boundsSize
-        );
-        const pivot = this.sprite.pivot;
-        
-        return new Bounds(
-            Vector2.Add(
-                this.transform.position,
-                Vector2.Scale(
-                    scale,
-                    new Vector2(
-                        0.5 - pivot.x,
-                        pivot.y - 0.5
-                    )
-                )
-            ),
-            scale
-        );
+        return new Bounds(this.#bounds.center, this.#bounds.size);
     }
     
     get sprite ()
@@ -143,15 +132,39 @@ class SpriteRenderer extends Renderer
                 texX > texY ? rescaleW : rescaleH
             )
         );
+    }
 
-        if (this.gameObject != null)
-        {
-            const min = this.bounds.min;
-            const max = this.bounds.max;
-            const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+    RecalcBounds ()
+    {
+        const bounds = new Bounds(Vector2.zero, this.#boundsSize);
 
-            this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
-        }
+        const refMat = this.transform.localToWorldMatrix;
+        const pointA = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(bounds.min));
+        const pointB = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(new Vector2(bounds.min.x, bounds.max.y)));
+        const pointC = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(new Vector2(bounds.max.x, bounds.min.y)));
+        const pointD = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(bounds.max));
+
+        bounds.SetMinMax(
+            new Vector2(
+                Math.min(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.min(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            ),
+            new Vector2(
+                Math.max(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.max(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            ),
+        );
+
+        this.#bounds = bounds;
+
+        super.RecalcBounds();
+    }
+
+    ForceMeshUpdate ()
+    {
+        super.ForceMeshUpdate();
+
+        this.#meshChanged = false;
     }
     
     Render ()

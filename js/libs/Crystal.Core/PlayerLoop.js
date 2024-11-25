@@ -155,11 +155,11 @@ class PlayerLoop
             // UpdateAllRenderers
             if (document.hasFocus() && Time.timeScale !== 0)
             {
-                const dynamicRenderers = GameObject.FindComponents("DynamicRenderer");
-                            
-                for (let i = 0; i < dynamicRenderers.length; i++)
+                const renderers = GameObject.FindComponents("Renderer");
+                        
+                for (let i = 0; i < renderers.length; i++)
                 {
-                    if (dynamicRenderers[i].meshChanged) dynamicRenderers[i].ForceMeshUpdate();
+                    if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
                 }
                 
                 const cameras = GameObject.FindComponents("Camera");

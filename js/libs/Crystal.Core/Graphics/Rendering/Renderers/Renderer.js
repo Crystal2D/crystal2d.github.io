@@ -17,10 +17,16 @@ class Renderer extends Component
     
     color = Color.white;
     renderMatrix = new Matrix3x3();
+    onMeshUpdate = new DelegateEvent();
     
     get isLoaded ()
     {
         return this.#loaded;
+    }
+    
+    get meshChanged ()
+    {
+        return false;
     }
     
     get bounds ()
@@ -69,6 +75,22 @@ class Renderer extends Component
         this.aColorID = this.material.GetAttributeNameID("aColor");
         
         this.#loaded = true;
+    }
+
+    RecalcBounds ()
+    {
+        const min = this.bounds.min;
+        const max = this.bounds.max;
+        const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+        this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
+    }
+
+    ForceMeshUpdate ()
+    {
+        this.onMeshUpdate.Invoke();
+        
+        this.RecalcBounds();
     }
     
     Render () { }

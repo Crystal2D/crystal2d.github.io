@@ -1,4 +1,4 @@
-class Text extends DynamicRenderer
+class Text extends Renderer
 {
     #meshChanged = false;
     #remapArrays = false;
@@ -18,6 +18,7 @@ class Text extends DynamicRenderer
     
     #boundsSize = Vector2.zero;
     #boundsOffset = Vector2.zero;
+    #bounds = new Bounds();
     #scale = Vector2.one;
     
     #font = null;
@@ -34,48 +35,7 @@ class Text extends DynamicRenderer
     
     get bounds ()
     {
-        const scale = Vector2.Scale(
-            this.transform.scale,
-            this.#boundsSize
-        );
-        const pivot = this.pivot;
-        const offset = this.#boundsOffset;
-        
-        let pos = this.transform.position;
-        
-        switch (this.horizontalAlign)
-        {
-            case 0:
-                pos.x += offset.x;
-                break;
-            case 2:
-                pos.x -= offset.x;
-                break
-        }
-        
-        switch (this.verticalAlign)
-        {
-            case 0:
-                pos.y += offset.y;
-                break;
-            case 2:
-                pos.y -= offset.y;
-                break
-        }
-        
-        return new Bounds(
-            Vector2.Add(
-                pos,
-                Vector2.Scale(
-                    scale,
-                    new Vector2(
-                        0.5 - pivot.x,
-                        pivot.y - 0.5
-                    )
-                )
-            ),
-            scale
-        );
+        return new Bounds(this.#bounds.center, this.#bounds.size);
     }
     
     get fontSize ()
@@ -447,6 +407,73 @@ class Text extends DynamicRenderer
 
         this.#remapArrays = false;
     }
+
+    RecalcBounds ()
+    {
+        const pivot = this.pivot;
+        const offset = this.#boundsOffset;
+        
+        let pos = Vector2.zero;
+        
+        switch (this.horizontalAlign)
+        {
+            case 0:
+                pos.x += offset.x;
+                break;
+            case 2:
+                pos.x -= offset.x;
+                break
+        }
+        
+        switch (this.verticalAlign)
+        {
+            case 0:
+                pos.y -= offset.y;
+                break;
+            case 2:
+                pos.y += offset.y;
+                break
+        }
+
+        const bounds = new Bounds(
+            Vector2.zero,
+            this.#boundsSize
+        );
+
+        const refMat = this.transform.localToWorldMatrix;
+        const pointA = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(bounds.min));
+        const pointB = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(new Vector2(bounds.min.x, bounds.max.y)));
+        const pointC = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(new Vector2(bounds.max.x, bounds.min.y)));
+        const pointD = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(bounds.max));
+
+        bounds.SetMinMax(
+            new Vector2(
+                Math.min(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.min(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            ),
+            new Vector2(
+                Math.max(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.max(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            )
+        );
+
+        const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(Vector2.Add(
+            pos,
+            Vector2.Scale(
+                new Vector2(
+                    0.5 - pivot.x,
+                    0.5 - pivot.y
+                ),
+                2
+            )
+        )));
+
+        bounds.center = new Vector2(posMat.GetValue(2, 0), -posMat.GetValue(2, 1))
+
+        this.#bounds = bounds;
+
+        super.RecalcBounds();
+    }
     
     ForceMeshUpdate ()
     {
@@ -621,7 +648,7 @@ class Text extends DynamicRenderer
         
         if (currentWidth > bestWidth) bestWidth = currentWidth;
         
-        y += defaultLH;
+        if (this.#overflowY) y += defaultLH;
         
         this.characters = chars;
         this.#widths = widths;
