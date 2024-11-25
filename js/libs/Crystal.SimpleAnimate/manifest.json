@@ -1,0 +1,33 @@
+{
+    "name" : "Crystal.SimpleAnimate",
+    "description" : "",
+    "scripts" : [
+        "AnimationClip",
+        "AnimatorNodeBase",
+        "AnimatorNode",
+        "AnimatorTransition",
+        "AnimatorController",
+        "Animator"
+    ],
+    "classes" : [
+        {
+            "name" : "AnimationClip",
+            "type" : 1,
+            "construction" : "const output = new AnimationClip(); for (let i = 0; i < data.sprites.length; i++) output.sprites.push(await toObject(\"Sprite\", data.sprites[i])); return output;",
+            "args" : [
+                {
+                    "type" : "boolean",
+                    "name" : "loop"
+                },
+                {
+                    "type" : "number",
+                    "name" : "interval"
+                }
+            ]
+        },
+        {
+            "name" : "Animator",
+            "type" : 0
+        }
+    ]
+} 

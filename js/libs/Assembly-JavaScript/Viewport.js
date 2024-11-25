@@ -2,9 +2,7 @@ class Viewport extends GameBehavior
 {
     #fps = 0;
 
-    constructor () { super(); }
-
-    Start ()
+    Awake ()
     {
         Crispixels.effect = true;
 
@@ -33,7 +31,7 @@ class Viewport extends GameBehavior
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F4)) Window.fullScreen = !Window.fullScreen;
+        if (Input.GetKeyDown(KeyCode.F4)) Window.fullscreen = !Window.fullscreen;
         
         if (Input.GetKeyDown(KeyCode.Z)) this.#AddScene(-1);
         else if (Input.GetKeyDown(KeyCode.X)) this.#AddScene(1);

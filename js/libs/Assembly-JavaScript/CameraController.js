@@ -5,12 +5,8 @@ class CameraController extends Viewport
     clampMin = new Vector2(0, 0);
     clampMax = new Vector2(9.5, 0);
     
-    constructor () { super(); }
-    
     Start ()
     {
-        super.Start();
-        
         this.#targetTrans = GameObject.Find("char_yoki").transform;
     }
     

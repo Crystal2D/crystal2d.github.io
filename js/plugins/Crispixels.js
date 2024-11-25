@@ -1,13 +1,13 @@
 /*
 
-An Official BlankEngine plugin that lets you make the pixels in the screen crispier.
+Plugin that lets you make the pixels in the screen crispier.
 
-Version : 1f - Minimized
+Version : 1f
 
 
-Copyright (c) 2023 Desert Lake
+Copyright (c) 2024 Desert Lake
 
-Licensed under MIT (https://github.com/blankengine/extras/blob/main/LICENSE.md)
+Licensed under MIT (https://github.com/crystal2d/extras/blob/main/LICENSE.md)
 
 */
 

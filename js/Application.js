@@ -13,7 +13,8 @@ class Application
     static #gl = null;
     static #gl_md = null;
     
-    static targetFrameRate = -1;
+    static targetFrameRate = 0;
+    static vSyncCount = 0;
 
     static wantsToQuit = null;
     static unloading = null;
@@ -29,7 +30,7 @@ class Application
         return this.#playing;
     }
     
-    static get packageName ()
+    static get name ()
     {
         return this.#name;
     }
@@ -48,12 +49,17 @@ class Application
     {
         return this.#gl_md;
     }
+
+    static isInElectron ()
+    {
+        return navigator.userAgent.indexOf("Electron") >= 0;
+    }
     
-    static Init (packageName)
+    static Init (name)
     {
         if (this.#inited) return;
         
-        this.#name = packageName;
+        this.#name = name;
         
         this.#canvas = document.createElement("canvas");
         

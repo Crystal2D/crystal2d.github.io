@@ -1,0 +1,94 @@
+{
+    "name" : "Crystal.BitmapText",
+    "description" : "Implements text rendering based on bitmaps",
+    "scripts" : [
+        "FontAtlas",
+        "FontGlyph",
+        "TextChar",
+        "Text",
+        "Anchors/TextAnchorX",
+        "Anchors/TextAnchorY"
+    ],
+    "classes" : [
+        {
+            "name" : "FontAtlas",
+            "type" : 1,
+            "construction" : "const texture = new Texture(data.texture); await texture.Load(); texture.pixelPerUnit = data.pixelPerUnit ?? 16; texture.filterMode = +(data.smooth === true); let glyphsData = data.glyphs; if (typeof glyphsData === \"string\") { const request = await fetch(`data/${data.glyphs}.json`); glyphsData = await request.json(); } let glyphs = []; for (let i = 0; i < glyphsData.length; i++) { const glyph = await toObject(\"FontGlyph\", glyphsData[i]); glyphs.push(glyph); } return new FontAtlas(texture, glyphs);",
+            "args" : [
+                {
+                    "name" : "lineHeight",
+                    "type" : "number"
+                }
+            ]
+        },
+        {
+            "name" : "FontGlyph",
+            "type" : 0,
+            "args" : [
+                {
+                    "name" : "character",
+                    "type" : "string"
+                },
+                {
+                    "name" : "rect",
+                    "type" : "Rect"
+                }
+            ]
+        },
+        {
+            "name" : "Text",
+            "type" : 0,
+            "construction" : "return new Text(Resources.Find(data.font), await toObject(\"Material\", data.material));",
+            "args" : [
+                {
+                    "name" : "color",
+                    "type" : "Color"
+                },
+                {
+                    "name" : "sortingLayer",
+                    "type" : "number"
+                },
+                {
+                    "name" : "sortingOrder",
+                    "type" : "number"
+                },
+                {
+                    "name" : "overflowWidth",
+                    "type" : "boolean"
+                },
+                {
+                    "name" : "overflowHeight",
+                    "type" : "boolean"
+                },
+                {
+                    "name" : "width",
+                    "type" : "number"
+                },
+                {
+                    "name" : "height",
+                    "type" : "number"
+                },
+                {
+                    "name" : "text",
+                    "type" : "string"
+                },
+                {
+                    "name" : "pivot",
+                    "type" : "Vector2"
+                },
+                {
+                    "name" : "fontSize",
+                    "type" : "number"
+                },
+                {
+                    "name" : "horizontalAlign",
+                    "type" : "number"
+                },
+                {
+                    "name" : "verticalAlign",
+                    "type" : "number"
+                }
+            ]
+        }
+    ]
+}

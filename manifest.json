@@ -1,0 +1,13 @@
+{
+    "name": "Dweller's Empty Path Remake",
+    "window": {
+        "title": "Dweller's Empty Path",
+        "width": 960,
+        "height": 864,
+        "windowWidth": 470,
+        "windowHeight": 422,
+        "resizable": false,
+        "fillWindow": false,
+        "icon": "icon/icon.png"
+    }
+}

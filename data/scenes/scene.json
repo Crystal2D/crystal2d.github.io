@@ -1,9 +1,11 @@
 {
     "name" : "Scene",
     "resources" : [
-        "sprites/characters/yoki",
         "font_main",
-        "materials/mat_invert"
+        "sprites/square",
+        "sprites/characters/yoki",
+        "animations/characters/yoki",
+        "animations/characters/spin"
     ],
     "gameObjects" : [
         {
@@ -44,6 +46,9 @@
                         },
                         "sortingOrder" : -1
                     }
+                },
+                {
+                    "type" : "Animator"
                 }
             ]
         },
@@ -80,7 +85,7 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Dash",
+                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Run",
                         "fontSize" : 0.5
                     }
                 }
@@ -97,13 +102,34 @@
                     "type" : "Text",
                     "args" : {
                         "font" : "font_main",
-                        "text" : "Nyoooooooooooom.\nRendering is way more faster, there's now QuadTrees :0. And because they broke the rendering order, there's now sorting layers and orders.\n\nNow time to work on \"physics\".\n\nThis project is getting bigger, the amount of files in this thing is absurd.",
+                        "text" : "e",
                         "fontSize" : 0.75,
                         "pivot" : {
                             "x" : 0.5,
                             "y" : 0
                         },
                         "overflowHeight" : true
+                    }
+                }
+            ]
+        },
+        {
+            "name" : "obj_scheme",
+            "id" : 5,
+            "components" : [
+                {
+                    "type" : "SpriteRenderer",
+                    "args" : {
+                        "sprite" : {
+                            "texture" : "sprites/square"
+                        },
+                        "sortingOrder" : -1,
+                        "color" : {
+                            "r" : 255,
+                            "g" : 255,
+                            "b" : 255,
+                            "a" : 120
+                        }
                     }
                 }
             ]

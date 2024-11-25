@@ -1,8 +1,8 @@
 {
     "name" : "Test",
     "resources" : [
-        "sprites/ball",
-        "sprites/characters/yoki"
+        "sprites/square",
+        "sprites/tilesets/yoki_room"
     ],
     "gameObjects" : [
         {
@@ -13,16 +13,68 @@
                     "type" : "Viewport"
                 },
                 {
-                    "type" : "Camera",
+                    "type" : "Camera"
+                }
+            ]
+        },
+        {
+            "name" : "obj_tiles",
+            "id" : 1,
+            "components" : [
+                {
+                    "type" : "Grid"
+                }
+            ]
+        },
+        {
+            "name" : "tile_Background",
+            "id" : 2,
+            "parent" : 1,
+            "active" : true,
+            "components" : [
+                {
+                    "type" : "Tilemap",
                     "args" : {
-                        "orthographicSize" : 6
+                        "tiles" : [
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 1,
+                                "position" : { "x" : -3, "y" : 2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 2,
+                                "position" : { "x" : -2, "y" : 2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 3,
+                                "position" : { "x" : -1, "y" : 2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 9,
+                                "position" : { "x" : -3, "y" : 1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 10,
+                                "position" : { "x" : -2, "y" : 1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 11,
+                                "position" : { "x" : -1, "y" : 1 }
+                            }
+                        ]
                     }
                 }
             ]
         },
         {
-            "name" : "renderer",
-            "id" : 1,
+            "name" : "test",
+            "id" : 3,
+            "active" : false,
             "components" : [
                 {
                     "type" : "Test"
@@ -31,77 +83,8 @@
                     "type" : "SpriteRenderer",
                     "args" : {
                         "sprite" : {
-                            "texture" : "sprites/characters/yoki"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "min",
-            "id" : 2,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "maxX",
-            "id" : 3,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "maxY",
-            "id" : 4,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "max",
-            "id" : 5,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "center",
-            "id" : 6,
-            "components" : [
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/ball"
+                            "texture" : "sprites/tilesets/yoki_room",
+                            "index" : 0
                         }
                     }
                 }

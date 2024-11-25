@@ -1,0 +1,8 @@
+[
+    {
+        "name": "yoki_room",
+        "textures": [
+            "sprites/tilesets/yoki_room"
+        ]
+    }
+]

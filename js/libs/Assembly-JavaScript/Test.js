@@ -1,27 +1,25 @@
 class Test extends GameBehavior
 {
-    #renderer = null;
-    #points = [];
+    i = 0;
 
-    constructor () { super(); }
+    ren = null;
+    spr = null;
 
     Start ()
     {
-        this.#renderer = this.GetComponent("Renderer");
+        this.ren = this.GetComponent("Renderer");
 
-        for (let i = 0; i < 5; i++) this.#points[i] = GameObject.FindByID(i + 2).transform;
+        this.spr = this.ren.sprite.texture.sprites;
     }
 
     Update ()
     {
-        const bounds = this.#renderer.bounds;
-        const min = bounds.min;
-        const max = bounds.max
+        if (Input.GetKeyDown(KeyCode.ArrowRight)) this.i++;
+        else if (Input.GetKeyDown(KeyCode.ArrowLeft)) this.i--;
 
-        this.#points[0].position = min;
-        this.#points[1].position = new Vector2(max.x, min.y);
-        this.#points[2].position = new Vector2(min.x, max.y);
-        this.#points[3].position = max;
-        this.#points[4].position = bounds.center;
+        if (this.i < 0) this.i = this.spr.length - 1;
+        else if (this.i === this.spr.length) this.i = 0;
+
+        this.ren.sprite = this.spr[this.i];
     }
 }
