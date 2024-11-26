@@ -65,6 +65,51 @@
                                 "palette": "yoki_room",
                                 "spriteID" : 11,
                                 "position" : { "x" : -1, "y" : 1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 2, "y" : -1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 3, "y" : -1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 4, "y" : -1 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 2, "y" : -2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 3, "y" : -2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 4, "y" : -2 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 2, "y" : -3 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 3, "y" : -3 }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID" : 48,
+                                "position" : { "x" : 4, "y" : -3 }
                             }
                         ]
                     }
