@@ -5,6 +5,8 @@ class DelegateEvent
     Add (callback)
     {
         this.#calls.push(callback);
+
+        return callback;
     }
 
     Remove (callback)
@@ -14,6 +16,11 @@ class DelegateEvent
         if (index < 0) return;
 
         this.#calls.splice(index, 1);
+    }
+
+    RemoveAll ()
+    {
+        this.#calls = [];
     }
 
     Invoke (...params)
