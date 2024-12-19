@@ -107,6 +107,43 @@
         }
     },
     {
+        "path" : "sprites/tilesets/colors",
+        "type" : "Texture",
+        "args" : {
+            "src" : "tilesets/colors.png",
+            "sprites" : [
+                {
+                    "rect" : {
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                }
+            ]
+        }
+    },
+    {
         "path" : "sprites/tilesets/yoki_room",
         "type" : "Texture",
         "args" : {
@@ -543,6 +580,14 @@
                         "height" : 8
                     }
                 },
+                {
+                    "rect" : {
+                        "x" : 56,
+                        "y" : 48,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
 
                 {
                     "rect" : {
@@ -554,38 +599,6 @@
                 {
                     "rect" : {
                         "x" : 8,
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-                {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-                {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-                {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-                {
-                    "rect" : {
-                        "x" : 40,
                         "y" : 56,
                         "width" : 8,
                         "height" : 8
