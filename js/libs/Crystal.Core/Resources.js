@@ -93,7 +93,7 @@ class Resources
         {
             const data = this.#unloadedRes.find(item => item.path === path[i]);
 
-            if (data == null) continue;
+            if (data == null || this.#resources.find(item => item.path === path) != null) continue;
 
             const obj = await this.#ToObject(
                 path[i].split("/").slice(-1)[0],
