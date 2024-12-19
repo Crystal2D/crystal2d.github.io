@@ -1,0 +1,48 @@
+{
+    "name" : "Crystal.RPGTiles",
+    "description" : "",
+    "scripts" : [
+        "TilePalette",
+        "Tile",
+        "Tilemap"
+    ],
+    "classes" : [
+        {
+            "name" : "Tile",
+            "type" : 0,
+            "args" : [
+                {
+                    "type": "string",
+                    "name": "palette"
+                },
+                {
+                    "type" : "number",
+                    "name" : "spriteID"
+                },
+                {
+                    "type" : "Vector2",
+                    "name" : "position"
+                }
+            ]
+        },
+        {
+            "name" : "Tilemap",
+            "type" : 0,
+            "construction" : "const output = new Tilemap(await toObject(\"Material\", data.material)); for (let i = 0; i < data.tiles?.length ?? 0; i++) output.AddTile(await toObject(\"Tile\", data.tiles[i])); return output;",
+            "args" : [
+                {
+                    "name" : "color",
+                    "type" : "Color"
+                },
+                {
+                    "name" : "sortingLayer",
+                    "type" : "number"
+                },
+                {
+                    "name" : "sortingOrder",
+                    "type" : "number"
+                }
+            ]
+        }
+    ]
+} 
