@@ -348,9 +348,14 @@ class Tilemap extends Renderer
         for (let i = 0; i < this.#rendersets.length; i++) this.#RenderRenderSet(this.#rendersets[i]);
     }
 
+    GetTile (position)
+    {
+        return this.#tiles.find(item => item.position.Equals(position));
+    }
+
     async AddTile (tile)
     {
-        const existed = this.#tiles.find(item => item.position.Equals(tile.position));
+        const existed = this.GetTile(tile.position);
 
         if (existed != null)
         {
@@ -478,7 +483,7 @@ class Tilemap extends Renderer
 
     RemoveTileByPosition (position)
     {
-        const tile = this.#tiles.find(item => item.position.Equals(position));
+        const tile = this.GetTile(position);
 
         if (tile != null) this.RemoveTile(this.#tiles.indexOf(tile));
     }

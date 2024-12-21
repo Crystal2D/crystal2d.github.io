@@ -1,6 +1,5 @@
 class ShaderAttribute
 {
-    #enabled = false;
     #index = 0;
     #type = 0;
     #size = 1;
@@ -8,25 +7,8 @@ class ShaderAttribute
     
     #gl = null;
     #program = null;
-    
-    get enabled ()
-    {
-        return this.#enabled;
-    }
-    
-    set enabled (value)
-    {
-        this.#enabled = value;
-        
-        const gl = this.#gl;
-        
-        gl.useProgram(this.#program);
-        
-        if (value) gl.enableVertexAttribArray(this.#index);
-        else gl.disableVertexAttribArray(this.#index);
-        
-        gl.useProgram(null);
-    }
+
+    enabled = true;
     
     get name ()
     {
@@ -51,8 +33,6 @@ class ShaderAttribute
         const size = parseInt(type[type.length - 1]);
         
         if (!Number.isNaN(size) && size !== 1) this.#size = size;
-        
-        this.enabled = true;
     }
     
     Set (buffer, offset)
@@ -61,6 +41,10 @@ class ShaderAttribute
         
         gl.useProgram(this.#program);
         gl.bindBuffer(gl.ARRAY_BUFFER, buffer.GetNativeBuffer());
+
+        if (this.enabled) gl.enableVertexAttribArray(this.#index);
+        else gl.disableVertexAttribArray(this.#index);
+
         gl.vertexAttribPointer(
             this.#index,
             this.#size,
