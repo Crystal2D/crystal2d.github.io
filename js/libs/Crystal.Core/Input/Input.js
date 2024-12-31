@@ -96,6 +96,8 @@ class Input
             
             this.#keys[keyIndex].active = false;
         });
+
+        GamepadInput.Init();
     }
     
     static Terminate ()
@@ -106,6 +108,8 @@ class Input
     static Update ()
     {
         if (this.#terminated) return;
+
+        GamepadInput.Update();
     }
     
     static End ()
@@ -113,6 +117,8 @@ class Input
         if (this.#terminated) return;
         
         for (let i = 0; i < this.#keys.length; i++) this.#keys[i].lastState = this.#keys[i].active;
+
+        GamepadInput.End();
         
         if (this.#terminating) this.#terminated = true;
     }

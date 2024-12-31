@@ -62,7 +62,13 @@ class Tilemap extends Renderer
             const pos = Vector2.Divide(
                 Vector2.Subtract(
                     this.parent.grid.CellToWorldUnscaled(new Vector2(tile.position.x, -tile.position.y)),
-                    4 / this.texture.pixelPerUnit
+                    Vector2.Divide(
+                        Vector2.Scale(
+                            new Vector2(tile.sprite.rect.width, tile.sprite.rect.height),
+                            tile.sprite.pivot
+                        ),
+                        this.texture.pixelPerUnit
+                    )
                 ),
                 this.scaler
             );
@@ -342,9 +348,14 @@ class Tilemap extends Renderer
         for (let i = 0; i < this.#rendersets.length; i++) this.#RenderRenderSet(this.#rendersets[i]);
     }
 
+    GetTile (position)
+    {
+        return this.#tiles.find(item => item.position.Equals(position));
+    }
+
     async AddTile (tile)
     {
-        const existed = this.#tiles.find(item => item.position.Equals(tile.position));
+        const existed = this.GetTile(tile.position);
 
         if (existed != null)
         {
@@ -381,7 +392,7 @@ class Tilemap extends Renderer
             palette = TilePalette.Find(tile.palette);
         }
 
-        tile.sprite = palette.sprites[tile.spriteID];
+        tile.sprite = palette.sprites.find(item => item.id === tile.spriteID).sprite;
 
         let renderSet = this.#rendersets.find(item => item.texture === tile.sprite.texture);
         const makeSet = renderSet == null;
@@ -472,7 +483,7 @@ class Tilemap extends Renderer
 
     RemoveTileByPosition (position)
     {
-        const tile = this.#tiles.find(item => item.position.Equals(position));
+        const tile = this.GetTile(position);
 
         if (tile != null) this.RemoveTile(this.#tiles.indexOf(tile));
     }

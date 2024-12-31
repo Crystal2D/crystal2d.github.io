@@ -272,10 +272,10 @@ class CrystalEngine
             Window.Init(manifestData.window);
             
             const buildResponse = await fetch("data/build.json");
-            
             this.#buildData = await buildResponse.json();
             
             this.#buildData.libs.unshift("Crystal.Core");
+            this.#buildData.shaders.unshift("vertex", "fragment");
             
             for (let i = 0; i < this.#buildData.libs.length; i++)
             {

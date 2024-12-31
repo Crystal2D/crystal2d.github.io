@@ -1,91 +1,154 @@
 {
-    "name" : "Test",
-    "resources" : [
-        "sprites/square",
+    "name": "Test",
+    "resources": [
+        "sprites/tilesets/colors",
         "sprites/tilesets/yoki_room"
     ],
-    "gameObjects" : [
+    "gameObjects": [
         {
-            "name" : "camera",
-            "id" : 0,
-            "components" : [
+            "name": "camera",
+            "id": 0,
+            "components": [
                 {
-                    "type" : "Viewport"
+                    "type": "Viewport"
                 },
                 {
-                    "type" : "Camera"
+                    "type": "Camera"
                 }
             ]
         },
         {
-            "name" : "obj_tiles",
-            "id" : 1,
-            "components" : [
+            "name": "tilegrid_0",
+            "id": 3,
+            "components": [
                 {
-                    "type" : "Grid"
+                    "type": "Grid"
                 }
             ]
         },
         {
-            "name" : "tile_Background",
-            "id" : 2,
-            "parent" : 1,
-            "active" : true,
-            "components" : [
+            "name": "tile_Background",
+            "id": 2,
+            "parent": 3,
+            "active": true,
+            "components": [
                 {
-                    "type" : "Tilemap",
-                    "args" : {
-                        "tiles" : [
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 1,
-                                "position" : { "x" : -3, "y" : 2 }
+                                "spriteID": 1,
+                                "position": {
+                                    "x": -3,
+                                    "y": 2
+                                }
                             },
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 2,
-                                "position" : { "x" : -2, "y" : 2 }
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 2
+                                }
                             },
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 3,
-                                "position" : { "x" : -1, "y" : 2 }
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": 2
+                                }
                             },
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 9,
-                                "position" : { "x" : -3, "y" : 1 }
+                                "spriteID": 9,
+                                "position": {
+                                    "x": -3,
+                                    "y": 1
+                                }
                             },
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 10,
-                                "position" : { "x" : -2, "y" : 1 }
+                                "spriteID": 10,
+                                "position": {
+                                    "x": -2,
+                                    "y": 1
+                                }
                             },
                             {
                                 "palette": "yoki_room",
-                                "spriteID" : 11,
-                                "position" : { "x" : -1, "y" : 1 }
+                                "spriteID": 11,
+                                "position": {
+                                    "x": -1,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 2,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 3,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 2,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 3,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 4,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 2,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 3,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "yoki_room",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 4,
+                                    "y": -3
+                                }
                             }
                         ]
-                    }
-                }
-            ]
-        },
-        {
-            "name" : "test",
-            "id" : 3,
-            "active" : false,
-            "components" : [
-                {
-                    "type" : "Test"
-                },
-                {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/tilesets/yoki_room",
-                            "index" : 0
-                        }
                     }
                 }
             ]

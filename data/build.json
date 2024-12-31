@@ -14,10 +14,7 @@
         "title",
         "test"
     ],
-    "shaders" : [
-        "vertex",
-        "fragment"
-    ],
+    "shaders" : [],
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
     "debugMode" : false,

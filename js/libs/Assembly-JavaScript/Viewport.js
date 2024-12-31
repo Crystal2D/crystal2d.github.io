@@ -11,7 +11,7 @@ class Viewport extends GameBehavior
 
     Update ()
     {
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.F2) || GamepadInput.GetKeyDown(KeyCode.Select))
         {
             this.#fps++;
 
@@ -31,10 +31,10 @@ class Viewport extends GameBehavior
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F4)) Window.fullscreen = !Window.fullscreen;
+        if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start)) Window.fullscreen = !Window.fullscreen;
         
-        if (Input.GetKeyDown(KeyCode.Z)) this.#AddScene(-1);
-        else if (Input.GetKeyDown(KeyCode.X)) this.#AddScene(1);
+        if (Input.GetKeyDown(KeyCode.Z) || GamepadInput.GetKeyDown(KeyCode.SouthButton)) this.#AddScene(-1);
+        else if (Input.GetKeyDown(KeyCode.X) || GamepadInput.GetKeyDown(KeyCode.EastButton)) this.#AddScene(1);
 
         FPSMeter.Update();
     }

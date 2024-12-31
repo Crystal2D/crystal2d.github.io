@@ -17,7 +17,7 @@ class TilePalette
     {
         if (this.#loaded) return;
 
-        const dataRequest = await fetch(`data/tilepalettes.json`);
+        const dataRequest = await fetch("data/tilepalettes.json");
         this.#unloadedPal = await dataRequest.json();
 
         this.#loaded = true;
@@ -30,19 +30,18 @@ class TilePalette
         const obj = new TilePalette();
         obj.name = name;
 
-        for (let i = 0; i < data.textures?.length; i++)
+        for (let i = 0; i < data.textures.length; i++)
         {
-            const sprites = [...Resources.Find(data.textures[i]).sprites];
-            sprites.shift();
+            if (data.textures.sprites?.length === 0) continue;
 
-            obj.sprites.push(...sprites);
-        }
+            const texture = Resources.Find(data.textures[i].src);
 
-        for (let i = 0; i < data.sprites?.length; i++)
-        {
-            const sprite = await SceneManager.CreateObject("Sprite", data.sprites[i]);
-
-            obj.sprites.push(sprite);
+            obj.sprites.push(...data.textures[i].sprites.map(item => {
+                return {
+                    id: item.id,
+                    sprite: texture.sprites[item.index].Duplicate()
+                };
+            }));
         }
 
         this.#palettes.push(obj);
