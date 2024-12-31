@@ -104,14 +104,6 @@
                                 "palette": "yoki_room",
                                 "spriteID": 40,
                                 "position": {
-                                    "x": 4,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "yoki_room",
-                                "spriteID": 40,
-                                "position": {
                                     "x": 2,
                                     "y": -2
                                 }

@@ -11,6 +11,7 @@
         "Time",
         "Input/Input",
         "Input/KeyCode",
+        "Input/GamepadInput",
         "Scripting/Component",
         "Scripting/Behavior",
         "Scripting/GameBehavior",

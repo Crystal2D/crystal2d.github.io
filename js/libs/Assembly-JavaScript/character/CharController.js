@@ -34,8 +34,8 @@ class CharController extends RPGMovement
         this.#shouldAnim = false;
 
         const input = new Vector2(
-            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft),
-            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown)
+            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft) + +GamepadInput.GetKey(KeyCode.DpadRight) - +GamepadInput.GetKey(KeyCode.DpadLeft) + GamepadInput.GetAxisRaw("left stick horizontal"),
+            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown) + +GamepadInput.GetKey(KeyCode.DpadUp) - +GamepadInput.GetKey(KeyCode.DpadDown) + GamepadInput.GetAxisRaw("left stick vertical")
         );
 
         if (input.x !== 0) this.#xTime++;
@@ -54,7 +54,7 @@ class CharController extends RPGMovement
 
         this.MoveTowards(input);
 
-        this.speedScale = this.#tertriaryInput ? 2 : 1;
+        this.speedScale = (this.#tertriaryInput || GamepadInput.GetKey(KeyCode.WestButton)) ? 2 : 1;
     }
 
     _OnMove ()
