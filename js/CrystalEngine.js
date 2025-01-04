@@ -220,6 +220,7 @@ class CrystalEngine
             document.body.style.userSelect = "none";
             document.body.style.color = "white";
             document.body.style.fontFamily = "monospace";
+            document.body.style.overflow = "clip";
             
             let caughtErr = false;
             let errLogs = null;

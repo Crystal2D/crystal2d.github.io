@@ -606,5 +606,215 @@
                 }
             ]
         }
+    },
+    {
+        "path" : "sprites/tilesets/yoki_house_hallway",
+        "type" : "Texture",
+        "args" : {
+            "src" : "tilesets/yoki_house_hallway.png",
+            "sprites" : [
+                {
+                    "rect" : {
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 24,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 32,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 40,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+
+                {
+                    "rect" : {
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 16,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 24,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 32,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 40,
+                        "y" : 8,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+
+                {
+                    "rect" : {
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 16,
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 24,
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 32,
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 40,
+                        "y" : 16,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+
+                {
+                    "rect" : {
+                        "y" : 24,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "y" : 24,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 16,
+                        "y" : 24,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 24,
+                        "y" : 24,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+
+                {
+                    "rect" : {
+                        "y" : 32,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 8,
+                        "y" : 32,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 16,
+                        "y" : 32,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                },
+                {
+                    "rect" : {
+                        "x" : 24,
+                        "y" : 32,
+                        "width" : 8,
+                        "height" : 8
+                    }
+                }
+            ]
+        }
     }
 ]
