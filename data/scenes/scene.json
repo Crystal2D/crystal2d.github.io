@@ -1,134 +1,142 @@
 {
-    "name" : "Scene",
-    "resources" : [
+    "name": "Scene",
+    "resources": [
         "font_main",
         "sprites/square",
         "sprites/characters/yoki",
         "animations/characters/yoki",
         "animations/characters/spin"
     ],
-    "gameObjects" : [
+    "gameObjects": [
         {
-            "name" : "camera",
-            "id" : 0,
-            "components" : [
+            "name": "camera",
+            "id": 0,
+            "components": [
                 {
-                    "type" : "CameraController"
+                    "type": "CameraController"
                 },
                 {
-                    "type" : "Camera",
-                    "args" : {
-                        "backgroundColor" : {
-                            "r" : 63,
-                            "g" : 63,
-                            "b" : 63
+                    "type": "Camera",
+                    "args": {
+                        "backgroundColor": {
+                            "r": 63,
+                            "g": 63,
+                            "b": 63
                         }
                     }
                 }
             ]
         },
         {
-            "name" : "char_yoki",
-            "id" : 1,
-            "components" : [
+            "name": "char_yoki",
+            "id": 1,
+            "components": [
                 {
-                    "type" : "CharController",
-                    "args" : {
-                        "speed" : 3
+                    "type": "CharController",
+                    "args": {
+                        "speed": 3
                     }
                 },
                 {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/characters/yoki",
-                            "index" : 1
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/characters/yoki",
+                            "index": 1
                         },
-                        "sortingOrder" : -1
+                        "sortingOrder": -1
                     }
                 },
                 {
-                    "type" : "Animator"
+                    "type": "Animator"
                 }
             ]
         },
         {
-            "name" : "text_hi",
-            "id" : 2,
-            "transform" : {
-                "position" : { "y" : 2.5 }
+            "name": "text_hi",
+            "id": 2,
+            "transform": {
+                "position": {
+                    "y": 2.5
+                }
             },
-            "components" : [
+            "components": [
                 {
-                    "type" : "Text",
-                    "args" : {
-                        "font" : "font_main",
-                        "text" : "Welcome to whatever this is!",
-                        "horizontalAlign" : 1,
-                        "color" : {
-                            "r" : 224,
-                            "g" : 248,
-                            "b" : 207
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "Welcome to whatever this is!",
+                        "horizontalAlign": 1,
+                        "color": {
+                            "r": 224,
+                            "g": 248,
+                            "b": 207
                         }
                     }
                 }
             ]
         },
         {
-            "name" : "text_ctrls",
-            "id" : 3,
-            "transform" : {
-                "position" : { "x" : -0.25, "y" : -3.75 }
+            "name": "text_ctrls",
+            "id": 3,
+            "transform": {
+                "position": {
+                    "x": -0.25,
+                    "y": -3.75
+                }
             },
-            "components" : [
+            "components": [
                 {
-                    "type" : "Text",
-                    "args" : {
-                        "font" : "font_main",
-                        "text" : "Ctrls:\n- Arrows: Move\n- Shift: Run",
-                        "fontSize" : 0.5
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "Ctrls:\n- Arrows: Move\n- Shift: Run",
+                        "fontSize": 0.5
                     }
                 }
             ]
         },
         {
-            "name" : "text_updates",
-            "id" : 4,
-            "transform" : {
-                "position" : { "x" : 9.5, "y" : 3.5 }
+            "name": "text_updates",
+            "id": 4,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 3.5
+                }
             },
-            "components" : [
+            "components": [
                 {
-                    "type" : "Text",
-                    "args" : {
-                        "font" : "font_main",
-                        "text" : "e",
-                        "fontSize" : 0.75,
-                        "pivot" : {
-                            "x" : 0.5,
-                            "y" : 0
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "e",
+                        "fontSize": 0.75,
+                        "pivot": {
+                            "x": 0.5,
+                            "y": 0
                         },
-                        "overflowHeight" : true
+                        "overflowHeight": true
                     }
                 }
             ]
         },
         {
-            "name" : "obj_scheme",
-            "id" : 5,
-            "components" : [
+            "name": "obj_scheme",
+            "id": 5,
+            "components": [
                 {
-                    "type" : "SpriteRenderer",
-                    "args" : {
-                        "sprite" : {
-                            "texture" : "sprites/square"
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/square"
                         },
-                        "sortingOrder" : -1,
-                        "color" : {
-                            "r" : 255,
-                            "g" : 255,
-                            "b" : 255,
-                            "a" : 120
+                        "sortingOrder": -1,
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 120
                         }
                     }
                 }
