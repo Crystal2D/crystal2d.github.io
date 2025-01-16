@@ -66,7 +66,11 @@ class Application
         this.#canvas.style.margin = "auto";
         this.#canvas.style.objectFit = "contain";
         
-        this.#gl = this.#canvas.getContext("webgl2");
+        this.#gl = this.#canvas.getContext("webgl2", {
+            antialias: false,
+            powerPreference: "high-performance",
+            preserveDrawingBuffer: true
+        });
         this.#gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         this.#gl_md = this.#gl.getExtension("WEBGL_multi_draw");
