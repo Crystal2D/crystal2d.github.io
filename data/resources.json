@@ -1,817 +1,807 @@
 [
     {
-        "path" : "sprites/square",
-        "type" : "Texture",
-        "args" : {
-            "src" : "square_outline.png",
-            "pixelPerUnit" : 30
+        "path": "sprites/square",
+        "type": "Texture",
+        "args": {
+            "src": "square_outline.png",
+            "pixelPerUnit": 30
         }
     },
     {
-        "path" : "font_main",
-        "type" : "FontAtlas",
-        "args" : {
-            "texture" : "font.png",
-            "glyphs" : "font",
-            "pixelPerUnit" : 30
+        "path": "font_main",
+        "type": "FontAtlas",
+        "args": {
+            "texture": "font.png",
+            "glyphs": "font",
+            "pixelPerUnit": 30
         }
     },
     {
-        "path" : "sprites/title",
-        "type" : "Texture",
-        "args" : {
-            "src" : "title.png"
+        "path": "sprites/title",
+        "type": "Texture",
+        "args": {
+            "src": "title.png"
         }
     },
     {
-        "path" : "sprites/characters/yoki",
-        "type" : "Texture",
-        "args" : {
-            "src" : "characters/yoki.png",
-            "sprites" : [
+        "path": "sprites/characters/yoki",
+        "type": "Texture",
+        "args": {
+            "src": "characters/yoki.png",
+            "sprites": [
                 {
-                    "rect" : {
-                        "width" : 16,
-                        "height" : 16
+                    "rect": {
+                        "width": 16,
+                        "height": 16
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "width" : 16,
-                        "height" : 16
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
                     }
                 },
                 {
-                    "rect" : {
-                        "y" : 16,
-                        "width" : 16,
-                        "height" : 16
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
                     }
                 },
                 {
-                    "rect" : {
-                        "y" : 32,
-                        "width" : 16,
-                        "height" : 16
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
                     }
                 },
                 {
-                    "rect" : {
-                        "y" : 48,
-                        "width" : 16,
-                        "height" : 16
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
                     }
                 }
             ]
         }
     },
     {
-        "path" : "animations/characters/yoki",
-        "type" : "AnimationClip",
-        "args" : {
-            "sprites" : [
+        "path": "animations/characters/yoki",
+        "type": "AnimationClip",
+        "args": {
+            "sprites": [
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 1
+                    "texture": "sprites/characters/yoki",
+                    "index": 1
                 },
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 2
+                    "texture": "sprites/characters/yoki",
+                    "index": 2
                 }
             ]
         }
     },
     {
-        "path" : "animations/characters/spin",
-        "type" : "AnimationClip",
-        "args" : {
-            "sprites" : [
+        "path": "animations/characters/spin",
+        "type": "AnimationClip",
+        "args": {
+            "sprites": [
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 1
+                    "texture": "sprites/characters/yoki",
+                    "index": 1
                 },
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 3
+                    "texture": "sprites/characters/yoki",
+                    "index": 3
                 },
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 4
+                    "texture": "sprites/characters/yoki",
+                    "index": 4
                 },
                 {
-                    "texture" : "sprites/characters/yoki",
-                    "index" : 5
+                    "texture": "sprites/characters/yoki",
+                    "index": 5
                 }
             ]
         }
     },
     {
-        "path" : "sprites/tilesets/colors",
-        "type" : "Texture",
-        "args" : {
-            "src" : "tilesets/colors.png",
-            "sprites" : [
+        "path": "sprites/tilesets/colors",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets/colors.png",
+            "sprites": [
                 {
-                    "rect" : {
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 }
-            ]
+            ],
+            "pixelPerUnit": 16
         }
     },
     {
-        "path" : "sprites/tilesets/yoki_room",
-        "type" : "Texture",
-        "args" : {
-            "src" : "tilesets/yoki_room.png",
-            "sprites" : [
+        "path": "sprites/tilesets/yoki_room",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets/yoki_room.png",
+            "sprites": [
                 {
-                    "rect" : {
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-                
-                {
-                    "rect" : {
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 40,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 48,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 56,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 48,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 56,
-                        "y" : 48,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 56,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 32,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 40,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 56,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 8,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
                     }
                 }
             ]
         }
     },
     {
-        "path" : "sprites/tilesets/yoki_house_hallway",
-        "type" : "Texture",
-        "args" : {
-            "src" : "tilesets/yoki_house_hallway.png",
-            "sprites" : [
+        "path": "sprites/tilesets/yoki_house_hallway",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets/yoki_house_hallway.png",
+            "sprites": [
                 {
-                    "rect" : {
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 8,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 32,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 40,
-                        "y" : 16,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 24,
-                        "width" : 8,
-                        "height" : 8
-                    }
-                },
-
-                {
-                    "rect" : {
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 8,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 16,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
                     }
                 },
                 {
-                    "rect" : {
-                        "x" : 24,
-                        "y" : 32,
-                        "width" : 8,
-                        "height" : 8
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
                     }
                 }
             ]
