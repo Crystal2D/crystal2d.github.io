@@ -14,7 +14,7 @@ class FontAtlas
         
         for (let i = 0; i < glyphs.length; i++)
         {
-            const sprite = new Sprite(this.texture, glyphs[i].rect);
+            const sprite = new Sprite(this.texture.name, this.texture, glyphs[i].rect);
             
             const spriteCount = initSpriteCount + i;
             
