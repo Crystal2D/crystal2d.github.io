@@ -37,7 +37,7 @@ class TilePalette
             const texture = Resources.Find(data.textures[i].src);
 
             obj.sprites.push(...data.textures[i].sprites.map(item => {
-                const sprite = item.name != null ? texture.sprites.find(spr => spr.name === item.name) : texture.sprites[item.index]
+                const sprite = item.name != null ? texture.sprites.find(spr => spr.name === item.name) : texture.sprites[item.index ?? 0]
 
                 return {
                     id: item.id,

@@ -132,7 +132,7 @@ class Texture
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.#width, this.#height, 0, gl.RGBA, gl.UNSIGNED_BYTE, this.#img);
         gl.bindTexture(gl.TEXTURE_2D, null);
         
-        this.sprites[0] = new Sprite(this.name, this);
+        this.sprites[0] = new Sprite(null, this);
         
         this.#loaded = true;
     }

@@ -1,6 +1,8 @@
 {
     "name": "Test",
-    "resources": [],
+    "resources": [
+        "sprites/tilesets/colors"
+    ],
     "gameObjects": [
         {
             "name": "camera",
@@ -11,6 +13,61 @@
                 },
                 {
                     "type": "Camera"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 1,
+            "components": [
+                {
+                    "type": "Grid"
+                }
+            ]
+        },
+        {
+            "name": "tile_Unnamed",
+            "id": 2,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Colors",
+                                "spriteID": 0,
+                                "position": {
+                                    "x": 7,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 9,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 2
+                                }
+                            }
+                        ]
+                    }
                 }
             ]
         }

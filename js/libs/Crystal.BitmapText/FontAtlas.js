@@ -1,7 +1,5 @@
 class FontAtlas
 {
-    #glyphs = [];
-    
     lineHeight = 20;
     
     texture = null;
@@ -10,27 +8,16 @@ class FontAtlas
     {
         this.texture = texture;
         
-        const initSpriteCount = this.texture.sprites.length;
-        
         for (let i = 0; i < glyphs.length; i++)
         {
-            const sprite = new Sprite(this.texture.name, this.texture, glyphs[i].rect);
-            
-            const spriteCount = initSpriteCount + i;
+            const sprite = new Sprite(glyphs[i].character, this.texture, glyphs[i].rect);
             
             this.texture.sprites.push(sprite);
-            
-            this.#glyphs.push({
-                character : glyphs[i].character,
-                index : spriteCount
-            });
         }
     }
     
     GetGlyph (character)
     {
-        const index = this.#glyphs.find(element => element.character === character).index;
-        
-        return this.texture.sprites[index];
+        return this.texture.sprites.find(item => item.name === character);
     }
 }
