@@ -36,34 +36,34 @@
                         "tiles": [
                             {
                                 "palette": "Colors",
-                                "spriteID": 0,
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 7,
-                                    "y": 4
+                                    "x": 0,
+                                    "y": -2
                                 }
                             },
                             {
                                 "palette": "Colors",
                                 "spriteID": 3,
                                 "position": {
-                                    "x": 9,
-                                    "y": 3
+                                    "x": 2,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 0,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0
                                 }
                             },
                             {
                                 "palette": "Colors",
                                 "spriteID": 1,
                                 "position": {
-                                    "x": 9,
-                                    "y": 5
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 2,
-                                "position": {
-                                    "x": 7,
-                                    "y": 2
+                                    "x": 2,
+                                    "y": 1
                                 }
                             }
                         ]
