@@ -248,6 +248,7 @@ class CrystalEngine
                 errWrap.style.marginLeft = "12px";
 
                 errLogs = document.createElement("span");
+                errLogs.style.userSelect = "text";
                 errLogs.append(error.stack);
                 
                 const tip = document.createElement("span");
