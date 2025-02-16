@@ -1,5 +1,6 @@
 class GamepadInput
 {
+    static #eventsUnsupported = false;
     static #gamepads = [];
     static #keys = [];
     static #axes = [];
@@ -78,12 +79,28 @@ class GamepadInput
             new this.#Axis("right stick vertical")
         ];
 
-        window.addEventListener("gamepadconnected", event => this.#gamepads.push(event.gamepad));
-        window.addEventListener("gamepaddisconnected", event => this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1));
+        if ("GamepadEvent" in window)
+        {
+            window.addEventListener("gamepadconnected", event => this.#gamepads.push(event.gamepad));
+            window.addEventListener("gamepaddisconnected", event => this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1));
+        }
+        else if ("WebkitGamepadEvent" in window)
+        {
+            window.addEventListener("webkitgamepadconnected", event => this.#gamepads.push(event.gamepad));
+            window.addEventListener("webkitgamepaddisconnected", event => this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1));
+        }
+        else this.#eventsUnsupported = true;
     }
 
     static Update ()
     {
+        if (this.#eventsUnsupported)
+        {
+            const gamepads = navigator.getGamepads != null ? navigator.getGamepads() : (navigator.webkitGetGamepads != null ? navigator.webkitGetGamepads() : []);
+
+            this.#gamepads = gamepads.filter(item => item != null);
+        }
+
         const processButton = button => button.pressed || button.touched || button.value > 0;
 
         for (let i = 0; i < this.#gamepads.length; i++)
