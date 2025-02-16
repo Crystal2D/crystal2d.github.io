@@ -107,8 +107,6 @@ class GamepadInput
         {
             const gamepad = navigator.getGamepads()[this.#gamepads[i].index];
 
-            if (gamepad.mapping !== "standard") continue;
-
             this.#keys[0].active = processButton(gamepad.buttons[0]);
             this.#keys[1].active = processButton(gamepad.buttons[1]);
             this.#keys[2].active = processButton(gamepad.buttons[2]);
