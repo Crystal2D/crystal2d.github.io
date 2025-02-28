@@ -1,0 +1,54 @@
+{
+    "name": "Exterior - Dragon Shrine",
+    "resources": [
+        "sprites/tilesets/ext_dragonshrine"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 1,
+            "components": [
+                {
+                    "type": "Grid",
+                    "args": {
+                        "cellSize": {
+                            "x": 4,
+                            "y": 6
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Shrine",
+            "id": 2,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Dragon Shrine",
+                                "spriteID": 0,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

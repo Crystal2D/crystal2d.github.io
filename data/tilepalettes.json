@@ -24,5 +24,439 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Exterior - Castle Town - Houses",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_castletown_houses",
+                "sprites": [
+                    {
+                        "name": "0",
+                        "id": 0
+                    },
+                    {
+                        "name": "1",
+                        "id": 1
+                    },
+                    {
+                        "name": "2",
+                        "id": 2
+                    },
+                    {
+                        "name": "3",
+                        "id": 3
+                    },
+                    {
+                        "name": "4",
+                        "id": 4
+                    },
+                    {
+                        "name": "5",
+                        "id": 5
+                    },
+                    {
+                        "name": "6",
+                        "id": 6
+                    },
+                    {
+                        "name": "7",
+                        "id": 7
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Common",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_common",
+                "sprites": [
+                    {
+                        "name": "bush-upleft",
+                        "id": 0
+                    },
+                    {
+                        "name": "bush-upright",
+                        "id": 1
+                    },
+                    {
+                        "name": "bush1-upleft",
+                        "id": 2
+                    },
+                    {
+                        "name": "bush1-upright",
+                        "id": 3
+                    },
+                    {
+                        "name": "bush2-upleft",
+                        "id": 4
+                    },
+                    {
+                        "name": "bush2-upright",
+                        "id": 5
+                    },
+                    {
+                        "name": "flower",
+                        "id": 6
+                    },
+                    {
+                        "name": "flower1",
+                        "id": 7
+                    },
+                    {
+                        "name": "floorwer",
+                        "id": 8
+                    },
+                    {
+                        "name": "bush-downleft",
+                        "id": 9
+                    },
+                    {
+                        "name": "bush-downright",
+                        "id": 10
+                    },
+                    {
+                        "name": "floorwer but bigger",
+                        "id": 11
+                    },
+                    {
+                        "name": "bush1-downright",
+                        "id": 12
+                    },
+                    {
+                        "name": "grasses",
+                        "id": 13
+                    },
+                    {
+                        "name": "grass",
+                        "id": 14
+                    },
+                    {
+                        "name": "plant",
+                        "id": 15
+                    },
+                    {
+                        "name": "dwayne",
+                        "id": 16
+                    },
+                    {
+                        "name": "sign",
+                        "id": 17
+                    },
+                    {
+                        "name": "tree-upleft",
+                        "id": 18
+                    },
+                    {
+                        "name": "tree-up",
+                        "id": 19
+                    },
+                    {
+                        "name": "tree-upright",
+                        "id": 20
+                    },
+                    {
+                        "name": "tree1-upleft",
+                        "id": 21
+                    },
+                    {
+                        "name": "tree1-up",
+                        "id": 22
+                    },
+                    {
+                        "name": "tree1-upright",
+                        "id": 23
+                    },
+                    {
+                        "name": "tree2-upleft",
+                        "id": 24
+                    },
+                    {
+                        "name": "tree2-up",
+                        "id": 25
+                    },
+                    {
+                        "name": "tree2-upright",
+                        "id": 26
+                    },
+                    {
+                        "name": "tree-left",
+                        "id": 27
+                    },
+                    {
+                        "name": "tree-mid",
+                        "id": 28
+                    },
+                    {
+                        "name": "tree-right",
+                        "id": 29
+                    },
+                    {
+                        "name": "tree1-left",
+                        "id": 30
+                    },
+                    {
+                        "name": "tree1-mid",
+                        "id": 31
+                    },
+                    {
+                        "name": "tree1-right",
+                        "id": 32
+                    },
+                    {
+                        "name": "tree2-left",
+                        "id": 33
+                    },
+                    {
+                        "name": "dirtdent",
+                        "id": 34
+                    },
+                    {
+                        "name": "tree2-right",
+                        "id": 35
+                    },
+                    {
+                        "name": "tree-downleft",
+                        "id": 36
+                    },
+                    {
+                        "name": "tree-down",
+                        "id": 37
+                    },
+                    {
+                        "name": "tree-downright",
+                        "id": 38
+                    },
+                    {
+                        "name": "tree1-downleft",
+                        "id": 39
+                    },
+                    {
+                        "name": "tree1-down",
+                        "id": 40
+                    },
+                    {
+                        "name": "tree1-downright",
+                        "id": 41
+                    },
+                    {
+                        "name": "tree2-downleft",
+                        "id": 42
+                    },
+                    {
+                        "name": "plant-top",
+                        "id": 43
+                    },
+                    {
+                        "name": "tree2-downright",
+                        "id": 44
+                    },
+                    {
+                        "name": "tree-root-left",
+                        "id": 45
+                    },
+                    {
+                        "name": "tree-root-mid",
+                        "id": 46
+                    },
+                    {
+                        "name": "tree-root-right",
+                        "id": 47
+                    },
+                    {
+                        "name": "tree1-root-left",
+                        "id": 48
+                    },
+                    {
+                        "name": "tree1-root-mid",
+                        "id": 49
+                    },
+                    {
+                        "name": "tree1-root-right",
+                        "id": 50
+                    },
+                    {
+                        "name": "tree2-root-left",
+                        "id": 51
+                    },
+                    {
+                        "name": "plant-bottom",
+                        "id": 52
+                    },
+                    {
+                        "name": "carrot",
+                        "id": 53
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Dragon Shrine",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_dragonshrine",
+                "sprites": [
+                    {
+                        "name": "shrine",
+                        "id": 0
+                    },
+                    {
+                        "name": "statue",
+                        "id": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Village",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_village",
+                "sprites": [
+                    {
+                        "name": "house 0",
+                        "id": 0
+                    },
+                    {
+                        "name": "house 1",
+                        "id": 1
+                    },
+                    {
+                        "name": "post office",
+                        "id": 2
+                    },
+                    {
+                        "name": "cafe",
+                        "id": 3
+                    },
+                    {
+                        "name": "house 2",
+                        "id": 4
+                    },
+                    {
+                        "name": "minishop 0",
+                        "id": 5
+                    },
+                    {
+                        "name": "minishop 1",
+                        "id": 6
+                    },
+                    {
+                        "name": "minishop 2",
+                        "id": 7
+                    },
+                    {
+                        "name": "minishop 3",
+                        "id": 8
+                    },
+                    {
+                        "name": "fruit stand",
+                        "id": 9
+                    },
+                    {
+                        "name": "minishop 4",
+                        "id": 10
+                    },
+                    {
+                        "name": "minishop 5",
+                        "id": 11
+                    },
+                    {
+                        "name": "mailbox",
+                        "id": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Yoki's House",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_yokihouse",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Zera's Manor",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_zeramanor",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Water",
+        "textures": [
+            {
+                "src": "sprites/tilesets/water",
+                "sprites": [
+                    {
+                        "name": "upleft",
+                        "id": 0
+                    },
+                    {
+                        "name": "up",
+                        "id": 1
+                    },
+                    {
+                        "name": "upright",
+                        "id": 2
+                    },
+                    {
+                        "name": "right",
+                        "id": 3
+                    },
+                    {
+                        "name": "left",
+                        "id": 4
+                    },
+                    {
+                        "name": "downleft",
+                        "id": 5
+                    },
+                    {
+                        "name": "down",
+                        "id": 6
+                    },
+                    {
+                        "name": "downright",
+                        "id": 7
+                    },
+                    {
+                        "name": "in-upleft",
+                        "id": 8
+                    },
+                    {
+                        "name": "in-upright",
+                        "id": 9
+                    },
+                    {
+                        "name": "in-downleft",
+                        "id": 10
+                    },
+                    {
+                        "name": "in-downright",
+                        "id": 11
+                    }
+                ]
+            }
+        ]
     }
 ]

@@ -100,7 +100,7 @@ class Window
         if (document.hasFocus())
         {
             if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
-            else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen();
+            else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
         }
 
         if (this.#sizeChanged)

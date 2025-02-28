@@ -8,7 +8,7 @@ class PlayerLoop
     {
         if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) requestAnimationFrame(this.#Update.bind(this));
         else if (Application.vSyncCount === 2) requestAnimationFrame(() => requestAnimationFrame(this.#Update.bind(this)));
-        else setTimeout(this.#Update.bind(this), 5);
+        else setTimeout(this.#Update.bind(this), 0);
     }
 
     static #TimeUpdateBase ()

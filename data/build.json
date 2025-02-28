@@ -12,7 +12,7 @@
     "scenes" : [
         "scene",
         "title",
-        "test"
+        "ext_yokihouse"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
