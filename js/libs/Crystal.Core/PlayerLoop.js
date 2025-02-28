@@ -8,7 +8,7 @@ class PlayerLoop
     {
         if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) requestAnimationFrame(this.#Update.bind(this));
         else if (Application.vSyncCount === 2) requestAnimationFrame(() => requestAnimationFrame(this.#Update.bind(this)));
-        else setTimeout(this.#Update.bind(this), 5);
+        else setTimeout(this.#Update.bind(this), 0);
     }
 
     static #TimeUpdateBase ()
@@ -37,7 +37,7 @@ class PlayerLoop
             this.#loaded = true;
         }
         
-        if (!Application.isLoaded)
+        if (!Application.isLoaded && !Application.isUnloaded)
         {
             this.#RequestUpdate();
 
@@ -95,13 +95,16 @@ class PlayerLoop
                 gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
 
                 const cameras = GameObject.FindComponents("Camera");
-                const color = cameras[cameras.length - 1].backgroundColor;
 
-                gl.clearColor(color.r, color.g, color.b, color.a);
-                gl.clear(gl.COLOR_BUFFER_BIT);
-                gl.enable(gl.BLEND);
-                gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+                if (cameras.length > 0)
+                {
+                    const color = cameras[cameras.length - 1].backgroundColor;
 
+                    gl.clearColor(color.r, color.g, color.b, color.a);
+                    gl.clear(gl.COLOR_BUFFER_BIT);
+                    gl.enable(gl.BLEND);
+                    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+                }
             }
 
             // UpdateInputManager

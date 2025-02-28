@@ -42,7 +42,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/characters/yoki",
-                            "index": 1
+                            "name": "down-a"
                         },
                         "sortingOrder": -1
                     }

@@ -222,42 +222,44 @@ class CrystalEngine
             document.body.style.fontFamily = "monospace";
             document.body.style.overflow = "clip";
             
-            let caughtErr = false;
             let errLogs = null;
-            
-            window.addEventListener("error", event => {
-                if (caughtErr)
+
+            const onError = error => {
+                if (this.#terminateStart)
                 {
-                    errLogs.append(`\n\n${event.stack}`);
+                    errLogs.append(`\n\n${error.stack}`);
                     
                     return;
                 }
-                
-                caughtErr = true;
                 
                 this.#terminateStart = true;
                 
                 if (Application.isLoaded) Application.Unload();
                 else Application.htmlCanvas.style.display = "none";
                 
-                document.body.style.margin = "12px";
-                document.body.style.display = "block";
+                document.body.style.height = "";
+                document.body.style.overflow = "";
+
+                Window.resizable = true;
                 
                 const errWrap = document.createElement("div");
-                
                 errWrap.style.whiteSpace = "pre-wrap";
-                
+                errWrap.style.marginTop = "12px";
+                errWrap.style.marginLeft = "12px";
+
                 errLogs = document.createElement("span");
-                
-                errLogs.append(event.stack);
+                errLogs.style.userSelect = "text";
+                errLogs.append(error.stack);
                 
                 const tip = document.createElement("span");
-                
                 tip.append("\n\n\n----------\n\nPress F5 to refresh");
                 
                 errWrap.append(errLogs, tip)
                 document.body.append(errWrap);
-            });
+            };
+            
+            window.addEventListener("error", event => onError(event.error));
+            window.addEventListener("unhandledrejection", event => onError(event.reason));
             
             this.#inited = true;
             
@@ -337,10 +339,18 @@ class CrystalEngine
             
             Debug.Set(this.#buildData.debugMode);
             Shader.Set(this.#compiledData.shaders);
+
+            if (this.#terminateStart) return;
+
             Resources.Set(this.#resources);
+
+            if (this.#terminateStart) return;
+
             SortingLayer.Add(this.#buildData.layers);
             SceneManager.Set(this.#buildData.scenes);
-            
+
+            if (this.#terminateStart) return;
+
             Input.Init();
             PlayerLoop.Init();
         }

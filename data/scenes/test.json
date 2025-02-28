@@ -1,8 +1,8 @@
 {
     "name": "Test",
     "resources": [
-        "sprites/tilesets/yoki_room",
-        "sprites/tilesets/colors"
+        "sprites/tilesets/colors",
+        "sprites/tilesets/water"
     ],
     "gameObjects": [
         {
@@ -27,13 +27,13 @@
             ],
             "transform": {
                 "position": {
-                    "x": 0.25,
-                    "y": 0
+                    "x": 0.5,
+                    "y": 0.5
                 }
             }
         },
         {
-            "name": "tile_Background",
+            "name": "tile_Unnamed",
             "id": 2,
             "parent": 1,
             "components": [
@@ -42,759 +42,1583 @@
                     "args": {
                         "tiles": [
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
                                     "x": -5,
-                                    "y": -5
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -4,
-                                    "y": -5
+                                    "y": -11
                                 }
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": -3,
-                                    "y": -5
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": -2,
-                                    "y": -5
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": -1,
-                                    "y": -5
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 0,
-                                    "y": -5
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 33,
-                                "position": {
-                                    "x": -7,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": -6,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 49,
-                                "position": {
-                                    "x": -5,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -4,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -3,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": -1,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 48,
-                                "position": {
-                                    "x": 0,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": 1,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": 2,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": 3,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": 4,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 16,
-                                "position": {
-                                    "x": 5,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 35,
-                                "position": {
-                                    "x": 6,
-                                    "y": -4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -6,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": -5,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 42,
-                                "position": {
-                                    "x": -4,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 20,
-                                "position": {
-                                    "x": -3,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 41,
-                                "position": {
-                                    "x": -1,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": 0,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": 1,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": 2,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": 3,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 34,
-                                "position": {
-                                    "x": 4,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 5,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -6,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 12,
-                                "position": {
-                                    "x": -5,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 13,
-                                "position": {
-                                    "x": -4,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -3,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -1,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 21,
-                                "position": {
-                                    "x": 0,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 1,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 2,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 14,
-                                "position": {
-                                    "x": 3,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 15,
-                                "position": {
-                                    "x": 4,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": 5,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -6,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": -5,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": -4,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -3,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 20,
-                                "position": {
-                                    "x": -1,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 0,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 1,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 2,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 3,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 7,
-                                "position": {
-                                    "x": 4,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": 5,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -6,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -5,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 54,
-                                "position": {
-                                    "x": -4,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 55,
-                                "position": {
-                                    "x": -3,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 0,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 20,
-                                "position": {
-                                    "x": 1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 3,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 40,
-                                "position": {
-                                    "x": 4,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": 5,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -6,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 9,
-                                "position": {
-                                    "x": -5,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 10,
-                                "position": {
-                                    "x": -4,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 11,
-                                "position": {
-                                    "x": -3,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": -1,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 0,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 1,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
-                                "position": {
-                                    "x": 3,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 20,
-                                "position": {
-                                    "x": 4,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
-                                "position": {
-                                    "x": 5,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
-                                "position": {
-                                    "x": -7,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 25,
-                                "position": {
-                                    "x": -6,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -5,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
                                 "spriteID": 2,
                                 "position": {
                                     "x": -4,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -5,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -4,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 7,
+                                "position": {
+                                    "x": -3,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 8,
+                                "position": {
+                                    "x": -3,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -2,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -1,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 0,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 1,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 2,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 3,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 4,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 5,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 7,
+                                "position": {
+                                    "x": 6,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -3,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -2,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -1,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
                                 "spriteID": 3,
                                 "position": {
                                     "x": -3,
@@ -802,80 +1626,1648 @@
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": -2,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 50,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": -1,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 51,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 0,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 43,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 1,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 26,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 2,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 44,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 3,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 45,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 4,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 27,
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 5,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
+                                "palette": "Water",
+                                "spriteID": 3,
                                 "position": {
                                     "x": 6,
                                     "y": 2
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 10,
+                                "position": {
+                                    "x": -4,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": -3,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": -2,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": -1,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 11,
+                                "position": {
+                                    "x": 0,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -5,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -4,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 0,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": -5,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 0,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 1,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 2,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 0,
+                                "position": {
+                                    "x": 0,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 1,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 2,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 3,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 4,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 5,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -5,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -4,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -3,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -2,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -1,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 1,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 2,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -8,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -7,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -6,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -8,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -7,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -6,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -8,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -7,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -6,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 5,
+                                "position": {
+                                    "x": -8,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -7,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": -6,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -7,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": -6,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": -7,
                                     "y": 3
@@ -883,111 +3275,47 @@
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
+                                "spriteID": 3,
                                 "position": {
                                     "x": -6,
                                     "y": 3
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -5,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
-                                "position": {
-                                    "x": -4,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
-                                "position": {
-                                    "x": -3,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 38,
-                                "position": {
-                                    "x": -2,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 39,
-                                "position": {
-                                    "x": -1,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
-                                "position": {
-                                    "x": 0,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
-                                "position": {
-                                    "x": 1,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 18,
-                                "position": {
-                                    "x": 2,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 36,
-                                "position": {
-                                    "x": 3,
-                                    "y": 3
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 37,
-                                "position": {
-                                    "x": 4,
-                                    "y": 3
+                                    "x": -11,
+                                    "y": 4
                                 }
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 5,
-                                    "y": 3
+                                    "x": -10,
+                                    "y": 4
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 6,
-                                    "y": 3
+                                    "x": -9,
+                                    "y": 4
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 8,
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": -8,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
                                 "position": {
                                     "x": -7,
                                     "y": 4
@@ -995,7 +3323,7 @@
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
+                                "spriteID": 3,
                                 "position": {
                                     "x": -6,
                                     "y": 4
@@ -1003,210 +3331,242 @@
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -5,
-                                    "y": 4
+                                    "x": -11,
+                                    "y": 5
                                 }
                             },
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -4,
-                                    "y": 4
+                                    "x": -10,
+                                    "y": 5
                                 }
                             },
                             {
                                 "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 0,
+                                "position": {
+                                    "x": -8,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Water",
                                 "spriteID": 1,
-                                "position": {
-                                    "x": -3,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 30,
-                                "position": {
-                                    "x": -2,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 31,
-                                "position": {
-                                    "x": -1,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 0,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 1,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 2,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 28,
-                                "position": {
-                                    "x": 3,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 29,
-                                "position": {
-                                    "x": 4,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 5,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 24,
-                                "position": {
-                                    "x": 6,
-                                    "y": 4
-                                }
-                            },
-                            {
-                                "palette": "Yoki's room",
-                                "spriteID": 17,
                                 "position": {
                                     "x": -7,
                                     "y": 5
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Water",
+                                "spriteID": 1,
                                 "position": {
                                     "x": -6,
                                     "y": 5
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -5,
-                                    "y": 5
+                                    "x": -11,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -4,
-                                    "y": 5
+                                    "x": -10,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -3,
-                                    "y": 5
+                                    "x": -9,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 22,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -2,
-                                    "y": 5
+                                    "x": -8,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 23,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": -1,
-                                    "y": 5
+                                    "x": -7,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 0,
-                                    "y": 5
+                                    "x": -6,
+                                    "y": 6
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 1,
-                                    "y": 5
+                                    "x": -11,
+                                    "y": 7
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 2,
-                                    "y": 5
+                                    "x": -10,
+                                    "y": 7
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 3,
-                                    "y": 5
+                                    "x": -9,
+                                    "y": 7
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 4,
-                                    "y": 5
+                                    "x": -8,
+                                    "y": 7
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 0,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 5,
-                                    "y": 5
+                                    "x": -7,
+                                    "y": 7
                                 }
                             },
                             {
-                                "palette": "Yoki's room",
-                                "spriteID": 19,
+                                "palette": "Colors",
+                                "spriteID": 2,
                                 "position": {
-                                    "x": 6,
-                                    "y": 5
+                                    "x": -6,
+                                    "y": 7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -8,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -7,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -6,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -11,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -10,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -9,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -8,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -7,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": -6,
+                                    "y": 9
                                 }
                             }
                         ]

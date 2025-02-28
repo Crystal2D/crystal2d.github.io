@@ -100,12 +100,12 @@ class Window
         if (document.hasFocus())
         {
             if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
-            else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen();
+            else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
         }
 
         if (this.#sizeChanged)
         {
-            if (!this.fullscreen)
+            if (!this.fullscreen && !this.#resizable)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
