@@ -401,16 +401,7 @@
                     "rect": {
                         "x": 96,
                         "width": 48,
-                        "height": 40
-                    }
-                },
-                {
-                    "name": "cafe",
-                    "rect": {
-                        "x": 96,
-                        "y": 40,
-                        "width": 48,
-                        "height": 48
+                        "height": 44
                     }
                 },
                 {
@@ -440,6 +431,15 @@
                     }
                 },
                 {
+                    "name": "cafe",
+                    "rect": {
+                        "x": 96,
+                        "y": 44,
+                        "width": 48,
+                        "height": 44
+                    }
+                },
+                {
                     "name": "minishop 2",
                     "rect": {
                         "x": 48,
@@ -458,7 +458,7 @@
                     }
                 },
                 {
-                    "name": "fruit stand",
+                    "name": "fruitstand",
                     "rect": {
                         "y": 96,
                         "width": 32,
@@ -490,6 +490,15 @@
                         "y": 96,
                         "width": 8,
                         "height": 16
+                    }
+                },
+                {
+                    "name": "mailbox-smol",
+                    "rect": {
+                        "x": 88,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
                     }
                 }
             ]
@@ -968,6 +977,1874 @@
                     "rect": {
                         "x": 64,
                         "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_forest",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_forest.png",
+            "sprites": [
+                {
+                    "name": "ext_forest (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (2)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (3)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (4)",
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (5)",
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "shroom",
+                    "rect": {
+                        "x": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (6)",
+                    "rect": {
+                        "x": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (7)",
+                    "rect": {
+                        "x": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (8)",
+                    "rect": {
+                        "x": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (9)",
+                    "rect": {
+                        "x": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (10)",
+                    "rect": {
+                        "x": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (11)",
+                    "rect": {
+                        "x": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump-topleft",
+                    "rect": {
+                        "x": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump-topright",
+                    "rect": {
+                        "x": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (12)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (13)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (14)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (15)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (16)",
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (17)",
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "water pebble",
+                    "rect": {
+                        "x": 48,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (18)",
+                    "rect": {
+                        "x": 56,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (19)",
+                    "rect": {
+                        "x": 64,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (20)",
+                    "rect": {
+                        "x": 72,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (21)",
+                    "rect": {
+                        "x": 80,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (22)",
+                    "rect": {
+                        "x": 88,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (23)",
+                    "rect": {
+                        "x": 96,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump-bottomleft",
+                    "rect": {
+                        "x": 104,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump-bottomright",
+                    "rect": {
+                        "x": 112,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (24)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (25)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (26)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (27)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (28)",
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (29)",
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (30)",
+                    "rect": {
+                        "x": 48,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (31)",
+                    "rect": {
+                        "x": 56,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (32)",
+                    "rect": {
+                        "x": 64,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (33)",
+                    "rect": {
+                        "x": 72,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (34)",
+                    "rect": {
+                        "x": 80,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (35)",
+                    "rect": {
+                        "x": 88,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (36)",
+                    "rect": {
+                        "x": 96,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (37)",
+                    "rect": {
+                        "x": 104,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-topleft",
+                    "rect": {
+                        "x": 112,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-topright",
+                    "rect": {
+                        "x": 120,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (38)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (39)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (40)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (41)",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (42)",
+                    "rect": {
+                        "x": 32,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (43)",
+                    "rect": {
+                        "x": 40,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (44)",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (45)",
+                    "rect": {
+                        "x": 56,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (46)",
+                    "rect": {
+                        "x": 64,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (47)",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (48)",
+                    "rect": {
+                        "x": 80,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (49)",
+                    "rect": {
+                        "x": 88,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (50)",
+                    "rect": {
+                        "x": 96,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (51)",
+                    "rect": {
+                        "x": 104,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-left",
+                    "rect": {
+                        "x": 112,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-right",
+                    "rect": {
+                        "x": 120,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (52)",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (53)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (54)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (55)",
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (56)",
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (57)",
+                    "rect": {
+                        "x": 40,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (58)",
+                    "rect": {
+                        "x": 48,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (59)",
+                    "rect": {
+                        "x": 56,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (60)",
+                    "rect": {
+                        "x": 64,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (61)",
+                    "rect": {
+                        "x": 72,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (62)",
+                    "rect": {
+                        "x": 80,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (63)",
+                    "rect": {
+                        "x": 88,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (64)",
+                    "rect": {
+                        "x": 96,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (65)",
+                    "rect": {
+                        "x": 104,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-bottomleft",
+                    "rect": {
+                        "x": 112,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "well-bottomright",
+                    "rect": {
+                        "x": 120,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (66)",
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (67)",
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (68)",
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (69)",
+                    "rect": {
+                        "x": 24,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (70)",
+                    "rect": {
+                        "x": 32,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (71)",
+                    "rect": {
+                        "x": 40,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (72)",
+                    "rect": {
+                        "x": 48,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (73)",
+                    "rect": {
+                        "x": 56,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (74)",
+                    "rect": {
+                        "x": 64,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (75)",
+                    "rect": {
+                        "x": 72,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (76)",
+                    "rect": {
+                        "x": 80,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (77)",
+                    "rect": {
+                        "x": 88,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (78)",
+                    "rect": {
+                        "x": 96,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (79)",
+                    "rect": {
+                        "x": 104,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (80)",
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (81)",
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (82)",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (83)",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (84)",
+                    "rect": {
+                        "x": 32,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (85)",
+                    "rect": {
+                        "x": 40,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (86)",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (87)",
+                    "rect": {
+                        "x": 56,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (88)",
+                    "rect": {
+                        "x": 64,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (89)",
+                    "rect": {
+                        "x": 72,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (90)",
+                    "rect": {
+                        "x": 80,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (91)",
+                    "rect": {
+                        "x": 88,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (92)",
+                    "rect": {
+                        "x": 96,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-topleft",
+                    "rect": {
+                        "x": 104,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-top",
+                    "rect": {
+                        "x": 112,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (93)",
+                    "rect": {
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (94)",
+                    "rect": {
+                        "x": 8,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (95)",
+                    "rect": {
+                        "x": 16,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (96)",
+                    "rect": {
+                        "x": 24,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (97)",
+                    "rect": {
+                        "x": 32,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (98)",
+                    "rect": {
+                        "x": 40,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (99)",
+                    "rect": {
+                        "x": 48,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (100)",
+                    "rect": {
+                        "x": 56,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (101)",
+                    "rect": {
+                        "x": 64,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (102)",
+                    "rect": {
+                        "x": 72,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (103)",
+                    "rect": {
+                        "x": 80,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (104)",
+                    "rect": {
+                        "x": 88,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (105)",
+                    "rect": {
+                        "x": 96,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-left",
+                    "rect": {
+                        "x": 104,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-mid",
+                    "rect": {
+                        "x": 112,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-right",
+                    "rect": {
+                        "x": 120,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (106)",
+                    "rect": {
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (108)",
+                    "rect": {
+                        "x": 8,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (109)",
+                    "rect": {
+                        "x": 16,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (110)",
+                    "rect": {
+                        "x": 24,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (111)",
+                    "rect": {
+                        "x": 32,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (112)",
+                    "rect": {
+                        "x": 40,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (113)",
+                    "rect": {
+                        "x": 48,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (114)",
+                    "rect": {
+                        "x": 56,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (115)",
+                    "rect": {
+                        "x": 64,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (116)",
+                    "rect": {
+                        "x": 72,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (117)",
+                    "rect": {
+                        "x": 80,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (118)",
+                    "rect": {
+                        "x": 88,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (119)",
+                    "rect": {
+                        "x": 96,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-left1",
+                    "rect": {
+                        "x": 104,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-mid1",
+                    "rect": {
+                        "x": 112,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-right1",
+                    "rect": {
+                        "x": 120,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (120)",
+                    "rect": {
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (121)",
+                    "rect": {
+                        "x": 8,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (122)",
+                    "rect": {
+                        "x": 16,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (123)",
+                    "rect": {
+                        "x": 24,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (124)",
+                    "rect": {
+                        "x": 32,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (125)",
+                    "rect": {
+                        "x": 40,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (126)",
+                    "rect": {
+                        "x": 48,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (127)",
+                    "rect": {
+                        "x": 56,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (128)",
+                    "rect": {
+                        "x": 64,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (129)",
+                    "rect": {
+                        "x": 72,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (130)",
+                    "rect": {
+                        "x": 80,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (131)",
+                    "rect": {
+                        "x": 88,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (132)",
+                    "rect": {
+                        "x": 96,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-bottomleft",
+                    "rect": {
+                        "x": 104,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-bottom",
+                    "rect": {
+                        "x": 112,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "deadtree-bottomright",
+                    "rect": {
+                        "x": 120,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (133)",
+                    "rect": {
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (134)",
+                    "rect": {
+                        "x": 8,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (135)",
+                    "rect": {
+                        "x": 16,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (136)",
+                    "rect": {
+                        "x": 24,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-upleft",
+                    "rect": {
+                        "x": 32,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-up",
+                    "rect": {
+                        "x": 40,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-upright",
+                    "rect": {
+                        "x": 48,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-right",
+                    "rect": {
+                        "x": 56,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "sign-topleft",
+                    "rect": {
+                        "x": 64,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "sign-topright",
+                    "rect": {
+                        "x": 72,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "water dwayne-topleft",
+                    "rect": {
+                        "x": 80,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "water dwayne-topright",
+                    "rect": {
+                        "x": 88,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rabbithole-topleft",
+                    "rect": {
+                        "x": 96,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rabbithole-topright",
+                    "rect": {
+                        "x": 104,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (137)",
+                    "rect": {
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (138)",
+                    "rect": {
+                        "x": 8,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (139)",
+                    "rect": {
+                        "x": 16,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (140)",
+                    "rect": {
+                        "x": 24,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-left",
+                    "rect": {
+                        "x": 32,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-downleft",
+                    "rect": {
+                        "x": 40,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-down",
+                    "rect": {
+                        "x": 48,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "bridge-downright",
+                    "rect": {
+                        "x": 56,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "sign-bottomleft",
+                    "rect": {
+                        "x": 64,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "sign-bottomright",
+                    "rect": {
+                        "x": 72,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "water dwayne-bottomleft",
+                    "rect": {
+                        "x": 80,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "water dwayne-bottomright",
+                    "rect": {
+                        "x": 88,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rabbithole-bottomleft",
+                    "rect": {
+                        "x": 96,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rabbithole-bottomright",
+                    "rect": {
+                        "x": 104,
+                        "y": 88,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (107)",
+                    "rect": {
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (141)",
+                    "rect": {
+                        "x": 8,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (142)",
+                    "rect": {
+                        "x": 16,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (143)",
+                    "rect": {
+                        "x": 24,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (144)",
+                    "rect": {
+                        "x": 32,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (145)",
+                    "rect": {
+                        "x": 40,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (146)",
+                    "rect": {
+                        "x": 48,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (147)",
+                    "rect": {
+                        "x": 56,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (148)",
+                    "rect": {
+                        "x": 64,
+                        "y": 96,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (149)",
+                    "rect": {
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (150)",
+                    "rect": {
+                        "x": 8,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (151)",
+                    "rect": {
+                        "x": 16,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (152)",
+                    "rect": {
+                        "x": 24,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (153)",
+                    "rect": {
+                        "x": 32,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (154)",
+                    "rect": {
+                        "x": 40,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (155)",
+                    "rect": {
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (156)",
+                    "rect": {
+                        "x": 8,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (157)",
+                    "rect": {
+                        "x": 16,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (158)",
+                    "rect": {
+                        "x": 24,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (159)",
+                    "rect": {
+                        "x": 32,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (160)",
+                    "rect": {
+                        "x": 40,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (161)",
+                    "rect": {
+                        "y": 120,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (162)",
+                    "rect": {
+                        "x": 8,
+                        "y": 120,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (163)",
+                    "rect": {
+                        "x": 16,
+                        "y": 120,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (164)",
+                    "rect": {
+                        "x": 24,
+                        "y": 120,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (165)",
+                    "rect": {
+                        "x": 32,
+                        "y": 120,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_forest (166)",
+                    "rect": {
+                        "x": 40,
+                        "y": 120,
                         "width": 8,
                         "height": 8
                     }

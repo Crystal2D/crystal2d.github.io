@@ -12,7 +12,7 @@
     "scenes" : [
         "scene",
         "title",
-        "ext_yokihouse"
+        "forest_barrier"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
