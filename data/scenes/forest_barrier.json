@@ -4,7 +4,8 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/colors",
-        "sprites/tilesets/ext_village"
+        "sprites/tilesets/ext_village",
+        "sprites/tilesets/ext_castletown_sidegates"
     ],
     "gameObjects": [
         {
@@ -28102,6 +28103,46 @@
                                 "position": {
                                     "x": 34,
                                     "y": -39
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Castle Town - Side Gates",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 30,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Castle Town - Side Gates",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 31,
+                                    "y": -21
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Castle Town - Side Gates",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 29,
+                                    "y": -34
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Castle Town - Side Gates",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 10,
+                                    "y": -38
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Castle Town - Side Gates",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 9,
+                                    "y": -37
                                 }
                             }
                         ]

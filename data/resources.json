@@ -2851,5 +2851,544 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/tilesets/ext_castletown_sidegates",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_castletown_sidegates.png",
+            "sprites": [
+                {
+                    "name": "ext_castletown_sidegates (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (2)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (3)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (4)",
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (5)",
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (6)",
+                    "rect": {
+                        "x": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (7)",
+                    "rect": {
+                        "x": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (8)",
+                    "rect": {
+                        "x": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (9)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (10)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (11)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (12)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (13)",
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (14)",
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (15)",
+                    "rect": {
+                        "x": 48,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (16)",
+                    "rect": {
+                        "x": 56,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (17)",
+                    "rect": {
+                        "x": 64,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (18)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (19)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (20)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (21)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (22)",
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (23)",
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (24)",
+                    "rect": {
+                        "x": 48,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (25)",
+                    "rect": {
+                        "x": 56,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (26)",
+                    "rect": {
+                        "x": 64,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (27)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (28)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (29)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (30)",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (31)",
+                    "rect": {
+                        "x": 32,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (32)",
+                    "rect": {
+                        "x": 40,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (33)",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (34)",
+                    "rect": {
+                        "x": 56,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (35)",
+                    "rect": {
+                        "x": 64,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (36)",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (37)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (38)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (39)",
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorwer",
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (40)",
+                    "rect": {
+                        "x": 40,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (41)",
+                    "rect": {
+                        "x": 48,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (42)",
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (43)",
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (44)",
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (45)",
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (46)",
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (47)",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (48)",
+                    "rect": {
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (49)",
+                    "rect": {
+                        "x": 8,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (50)",
+                    "rect": {
+                        "x": 16,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (51)",
+                    "rect": {
+                        "x": 24,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (52)",
+                    "rect": {
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (53)",
+                    "rect": {
+                        "x": 8,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (54)",
+                    "rect": {
+                        "x": 16,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (55)",
+                    "rect": {
+                        "x": 24,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (56)",
+                    "rect": {
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (57)",
+                    "rect": {
+                        "x": 8,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (58)",
+                    "rect": {
+                        "x": 16,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_sidegates (59)",
+                    "rect": {
+                        "x": 24,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
     }
 ]
