@@ -26254,14 +26254,6 @@
                                 "spriteID": 3,
                                 "position": {
                                     "x": 25,
-                                    "y": -33
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 3,
-                                "position": {
-                                    "x": 25,
                                     "y": -34
                                 }
                             },
@@ -28143,6 +28135,14 @@
                                 "position": {
                                     "x": 9,
                                     "y": -37
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 25,
+                                    "y": -33
                                 }
                             }
                         ]
