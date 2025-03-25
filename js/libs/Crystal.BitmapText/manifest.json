@@ -1,6 +1,7 @@
 {
     "name" : "Crystal.BitmapText",
     "description" : "Implements text rendering based on bitmaps",
+    "version": "2025.1f",
     "scripts" : [
         "FontAtlas",
         "FontGlyph",

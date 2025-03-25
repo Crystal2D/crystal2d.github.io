@@ -1,6 +1,7 @@
 {
     "name" : "Crystal.SimpleAnimate",
-    "description" : "",
+    "description" : "Adds a simple animation system",
+    "version": "2025.1a",
     "scripts" : [
         "AnimationClip",
         "AnimatorNodeBase",
