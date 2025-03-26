@@ -1,22 +1,30 @@
-class AnimatorContoller
+class AnimatorController
 {
-    #nodeIndex = 0;
-    
     nodes = [];
+    parameters = [];
 
+    currentNode = null;
+    currentTransition = null;
     renderer = null;
+
+    Start ()
+    {
+        this.currentNode = this.nodes[0];
+        this.currentNode.Start();
+
+        this.currentTransition = this.currentNode.transitions[0];
+    }
 
     Update ()
     {
-        const node = this.nodes[this.#nodeIndex];
+        this.currentNode.Update(this.renderer);
 
-        node.Update(this.renderer);
-
-        if (!node.animation.loop && node.normalizedTime >= node.transitions[0].exitTime)
+        if (!this.currentNode.animation.loop && this.currentNode.normalizedTime >= this.currentTransition.exitTime)
         {
-            this.#nodeIndex = node.transitions[0].nextNode;
+            this.currentNode = this.nodes.find(item => item.name === this.currentTransition.nextNode);
+            this.currentNode.Start();
 
-            this.nodes[this.#nodeIndex].Start();
+            this.currentTransition = this.currentNode.transitions[0];
         }
     }
 }

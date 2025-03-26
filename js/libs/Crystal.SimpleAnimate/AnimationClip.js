@@ -1,6 +1,6 @@
 class AnimationClip
 {
     loop = true;
-    interval = 0.5;
+    interval = 0;
     sprites = [];
 }

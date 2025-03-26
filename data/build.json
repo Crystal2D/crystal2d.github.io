@@ -11,8 +11,7 @@
     ],
     "scenes" : [
         "scene",
-        "title",
-        "forest_barrier"
+        "title"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

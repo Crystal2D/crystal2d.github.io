@@ -72,9 +72,11 @@
         }
     },
     {
-        "path": "animations/characters/yoki",
+        "path": "animations/characters/yoki/yoki",
         "type": "AnimationClip",
         "args": {
+            "loop": false,
+            "interval": 0.5,
             "sprites": [
                 {
                     "texture": "sprites/characters/yoki",
@@ -88,9 +90,11 @@
         }
     },
     {
-        "path": "animations/characters/spin",
+        "path": "animations/characters/yoki/spin",
         "type": "AnimationClip",
         "args": {
+            "loop": true,
+            "interval": 0.5,
             "sprites": [
                 {
                     "texture": "sprites/characters/yoki",
@@ -107,6 +111,39 @@
                 {
                     "texture": "sprites/characters/yoki",
                     "name": "right-a"
+                }
+            ]
+        }
+    },
+    {
+        "path": "animations/characters/yoki/ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "parameters": [
+                {
+                    "name": "toggle"
+                }
+            ],
+            "motions": [
+                {
+                    "name": "yoki",
+                    "speed": -0.5,
+                    "animation": "animations/characters/yoki/yoki",
+                    "transitions": [
+                        {
+                            "nextNode": "spin"
+                        }
+                    ]
+                },
+                {
+                    "name": "spin",
+                    "speed": 10,
+                    "animation": "animations/characters/yoki/spin",
+                    "transitions": [
+                        {
+                            "nextNode": "yoki"
+                        }
+                    ]
                 }
             ]
         }
