@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.SimpleAnimate",
     "description" : "Adds a simple animation system",
-    "version": "2025.2a",
+    "version": "2025.2f",
     "scripts" : [
         "AnimationClip",
         "AnimatorNode",
@@ -48,7 +48,12 @@
         {
             "name": "AnimatorTransition",
             "type": 0,
+            "construction": "const output = new AnimatorTransition(); for (let i = 0; i < data.conditions?.length; i++) output.conditions.push(await toObject(\"AnimatorCondition\", data.conditions[i])); return output;",
             "args": [
+                {
+                    "type": "boolean",
+                    "name": "isExit"
+                },
                 {
                     "type": "number",
                     "name": "exitTime"

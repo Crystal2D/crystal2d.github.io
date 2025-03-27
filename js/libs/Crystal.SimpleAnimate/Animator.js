@@ -24,10 +24,24 @@ class Animator extends GameBehavior
         this.#ctrl.renderer = this.#renderer;
         this.#ctrl.Start();
     }
-
+    
     Update ()
     {
         this.#ctrl?.Update();
+    }
+
+    LateUpdate ()
+    {
+        if (this.#ctrl == null) return;
+
+        const triggers = this.#ctrl.parameters.filter(item => item.type === AnimatorControllerParameterType.Trigger);
+
+        for (let i = 0; i < triggers.length; i++)
+        {
+            if (triggers[i].value && triggers[i].value === triggers[i].lastTriggerState) triggers[i].value = false;
+
+            triggers[i].lastTriggerState = triggers[i].value;
+        }
     }
 
     #GetParam (name, type)
@@ -37,34 +51,26 @@ class Animator extends GameBehavior
 
     GetBool (name)
     {
-        const param = this.#GetParam(name, 0);
-
-        if (param.value == null) param.value = param.defaultBool;
-
-        return param.value;
+        return this.#GetParam(name, AnimatorControllerParameterType.Bool).value;
     }
 
     GetNumber (name)
     {
-        const param = this.#GetParam(name, 1);
-
-        if (param.value == null) param.value = param.defaultNumber;
-
-        return param.value;
+        return this.#GetParam(name, AnimatorControllerParameterType.Number).value;
     }
 
     SetBool (name, value)
     {
-        this.#GetParam(name, 0).value = value;
+        this.#GetParam(name, AnimatorControllerParameterType.Bool).value = value;
     }
 
     SetNumber (name, value)
     {
-        this.#GetParam(name, 1).value = value;
+        this.#GetParam(name, AnimatorControllerParameterType.Number).value = value;
     }
 
-    SetTrigger (name, value)
+    SetTrigger (name)
     {
-        this.#GetParam(name, 2).value = value;
+        this.#GetParam(name, AnimatorControllerParameterType.Trigger).value = true;
     }
 }

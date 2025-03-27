@@ -50,6 +50,9 @@
                     "args": {
                         "controller": "animations/characters/yoki/ctrl"
                     }
+                },
+                {
+                    "type": "Test"
                 }
             ]
         }

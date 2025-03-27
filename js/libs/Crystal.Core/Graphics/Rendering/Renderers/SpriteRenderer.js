@@ -1,5 +1,6 @@
 class SpriteRenderer extends Renderer
 {
+    #updatedSprite = false;
     #meshChanged = true;
     #trisCount = 0;
     
@@ -29,6 +30,7 @@ class SpriteRenderer extends Renderer
     set sprite (value)
     {
         this.#sprite = value;
+        this.#updatedSprite = true;
         
         this.Reload();
     }
@@ -45,7 +47,8 @@ class SpriteRenderer extends Renderer
     {
         super(material);
         
-        this.sprite = sprite;
+        this.#sprite = sprite;
+        this.Reload();
     }
 
     #RemapColors ()
@@ -78,9 +81,10 @@ class SpriteRenderer extends Renderer
             return;
         }
         
-        super.Reload();
-        
+        if (!this.#updatedSprite) super.Reload();
+
         this.#spriteOld = this.#sprite;
+        this.#updatedSprite = false;
         
         const vertices = this.sprite.vertices;
         const vertexPos = vertices[0];
@@ -106,7 +110,7 @@ class SpriteRenderer extends Renderer
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
 
-        this.#RemapColors();
+        if (this.#colorOld == null) this.#RemapColors();
         
         const ppu = this.sprite.pixelPerUnit;
         const texX = this.sprite.texture.width;
