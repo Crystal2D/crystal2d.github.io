@@ -62,8 +62,8 @@ class CrystalEngine
         if (checkIndex >= 0)
         {
             classCheck = classCheck.substring(checkIndex + searchString.length);
-            classCheck = classCheck.substring(0, classCheck.indexOf(" "));
-
+            classCheck = classCheck.substring(0, classCheck.indexOf("{")).trim();
+            
             if (classCheck === "Behavior") return true;
 
             return this.IsBehavior(classCheck);

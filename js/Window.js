@@ -115,7 +115,7 @@ class Window
 
         if (this.#sizeChanged > 0)
         {
-            if (!this.fullscreen && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
+            if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
