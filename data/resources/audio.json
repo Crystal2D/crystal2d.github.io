@@ -1,0 +1,9 @@
+[
+    {
+        "path": "audio/bgm/title",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/title.ogg"
+        }
+    }
+]

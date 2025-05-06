@@ -1,0 +1,55 @@
+{
+    "name" : "Crystal.Audio",
+    "description" : "Adds basic audio implementations",
+    "version": "2025.1f",
+    "scripts" : [
+        "AudioSource",
+        "AudioSettings",
+        "AudioClip"
+    ],
+    "preserve": [
+        "AudioWorker.js"
+    ],
+    "classes" : [
+        {
+            "name" : "AudioClip",
+            "type" : 1,
+            "construction" : "const output = new AudioClip(data.src); await output.Load(); return output;"
+        },
+        {
+            "name" : "AudioClip",
+            "type" : 0,
+            "construction" : "return Resources.Find(data);"
+        },
+        {
+            "name" : "AudioSource",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "AudioClip",
+                    "name": "clip"
+                },
+                {
+                    "type": "boolean",
+                    "name": "playOnAwake"
+                },
+                {
+                    "type": "boolean",
+                    "name": "loop"
+                },
+                {
+                    "type": "number",
+                    "name": "volume"
+                },
+                {
+                    "type": "boolean",
+                    "name": "mute"
+                },
+                {
+                    "type": "number",
+                    "name": "pitch"
+                }
+            ]
+        }
+    ]
+}

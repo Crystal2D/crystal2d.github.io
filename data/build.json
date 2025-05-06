@@ -3,11 +3,18 @@
         "Crystal.BitmapText",
         "Crystal.RPGTiles",
         "Crystal.SimpleAnimate",
+        "Crystal.Audio",
         "Assembly-JavaScript"
     ],
     "scripts" : [
         "plugins/Crispixels",
         "plugins/FPSMeter"
+    ],
+    "resources": [
+        "main",
+        "sprites",
+        "animations",
+        "audio"
     ],
     "scenes" : [
         "scene",
@@ -16,6 +23,7 @@
     "shaders" : [],
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
+    "runInBackground": false,
     "debugMode" : false,
     "time" : {
         "maximumDeltaTime" : 0.3333333,

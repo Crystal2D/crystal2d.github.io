@@ -1,22 +1,5 @@
 [
     {
-        "path": "sprites/square",
-        "type": "Texture",
-        "args": {
-            "src": "square_outline.png",
-            "pixelPerUnit": 30
-        }
-    },
-    {
-        "path": "font_main",
-        "type": "FontAtlas",
-        "args": {
-            "texture": "font.png",
-            "glyphs": "font",
-            "pixelPerUnit": 30
-        }
-    },
-    {
         "path": "sprites/title",
         "type": "Texture",
         "args": {
@@ -67,93 +50,6 @@
                         "width": 16,
                         "height": 16
                     }
-                }
-            ]
-        }
-    },
-    {
-        "path": "animations/characters/yoki/yoki",
-        "type": "AnimationClip",
-        "args": {
-            "loop": true,
-            "interval": 0.5,
-            "sprites": [
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "down-a"
-                },
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "down-b"
-                }
-            ]
-        }
-    },
-    {
-        "path": "animations/characters/yoki/spin",
-        "type": "AnimationClip",
-        "args": {
-            "loop": false,
-            "interval": 0.05,
-            "sprites": [
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "down-a"
-                },
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "left-a"
-                },
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "up-a"
-                },
-                {
-                    "texture": "sprites/characters/yoki",
-                    "name": "right-a"
-                }
-            ]
-        }
-    },
-    {
-        "path": "animations/characters/yoki/ctrl",
-        "type": "AnimatorController",
-        "args": {
-            "parameters": [
-                {
-                    "name": "toggle",
-                    "type": 2
-                }
-            ],
-            "motions": [
-                {
-                    "name": "yoki",
-                    "speed": -0.5,
-                    "animation": "animations/characters/yoki/yoki",
-                    "transitions": [
-                        {
-                            "isExit": false,
-                            "exitTime": 0,
-                            "nextNode": "spin",
-                            "conditions": [
-                                {
-                                    "mode": 3,
-                                    "parameter": "toggle",
-                                    "threshold": 1
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "spin",
-                    "speed": 1,
-                    "animation": "animations/characters/yoki/spin",
-                    "transitions": [
-                        {
-                            "nextNode": "yoki"
-                        }
-                    ]
                 }
             ]
         }

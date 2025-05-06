@@ -4,7 +4,6 @@ class Scene
     #loaded = false;
     #data = null;
     
-    isDirty = false;
     name = "scene";
     gameObjects = [];
 
@@ -91,7 +90,8 @@ class Scene
         }
 
         for (let i = 0; i < this.gameObjects; i++) this.gameObjects[i].BroadcastMessage("Awake", null, {
-            specialCall : 0,
+            specialCall : 1,
+            passActive : true,
             clearAfter : true
         });
     }

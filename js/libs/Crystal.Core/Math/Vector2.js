@@ -297,6 +297,14 @@ class Vector2
         
         return new Vector2(a.x / b.x, a.y / b.y);
     }
+
+    static Lerp (a, b, t)
+    {
+        return new Vector2(
+            Math.Lerp(a.x, b.x, t),
+            Math.Lerp(a.y, b.y, t)
+        );
+    }
     
     
     // Methods

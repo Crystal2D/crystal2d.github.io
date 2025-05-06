@@ -4,6 +4,9 @@ class Input
     static #terminated = false;
     static #mouseOver = false;
     static #keys = [];
+    static #nativeTouches = [];
+    static #changedTouches = [];
+    static #cancelledTouches = [];
     static #touches = [];
     static #mousePos = new Vector2();
     static #mousePosOld = new Vector2();
@@ -108,7 +111,7 @@ class Input
 
         
         document.addEventListener("keydown", event => {
-            if (!document.hasFocus() || this.#terminated) return;
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
             
             const keyIndex = this.#FindKeyByCode(event.key);
             
@@ -119,7 +122,7 @@ class Input
             this.#keys[keyIndex].active = true;
         });
         document.addEventListener("keyup", event => {
-            if (!document.hasFocus() || this.#terminated) return;
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
             
             const keyIndex = this.#FindKeyByCode(event.key);
             
@@ -160,6 +163,8 @@ class Input
         ];
 
         document.addEventListener("mousedown", event => {
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
             event.preventDefault();
 
             setMousePos(event.clientX, event.clientY);
@@ -169,6 +174,8 @@ class Input
             this.#keys[keyIndex].active = true;
         });
         document.addEventListener("mouseup", event => {
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
             event.preventDefault();
 
             setMousePos(event.clientX, event.clientY);
@@ -180,71 +187,45 @@ class Input
 
 
         document.addEventListener("touchstart", event => {
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
             event.preventDefault();
 
-            const contacts = event.changedTouches;
+            this.#nativeTouches = event.touches;
 
-            for (let i = 0; i < contacts.length; i++)
-            {
-                const contact = contacts[i];
+            const changed = event.changedTouches;
+            
+            for (let i = 0; i < changed.length; i++) this.#changedTouches.push(changed[i].identifier);
+        }, { passive: false });
+        document.addEventListener("touchmove", event => {
+            if (!PlayerLoop.isPlaying && this.#terminated) return;
 
-                const touch = new Touch();
-                touch.fingerID = contact.identifier;
-                touch.pressure = contact.force;
-                touch.lastTime = Time.time;
-                touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
-                touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
-                touch.position = getScreenPos(contact.clientX, contact.clientY);
+            event.preventDefault();
 
-                this.#touches.push(touch);
-            }
+            this.#nativeTouches = event.touches;
+
+            const changed = event.changedTouches;
+            
+            for (let i = 0; i < changed.length; i++) this.#changedTouches.push(changed[i].identifier);
         }, { passive: false });
         document.addEventListener("touchend", event => {
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
             event.preventDefault();
 
-            const contacts = event.changedTouches;
+            this.#nativeTouches = event.touches;
 
-            for (let i = 0; i < contacts.length; i++)
-            {
-                const contact = contacts[i];
+            const changed = event.changedTouches;
 
-                const touch = this.#touches.find(item => item.fingerID === contact.identifier);
-                touch.pressure = contact.force;
-                touch.deltaTime = Time.time - touch.lastTime;
-                touch.lastTime = Time.time;
-                touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
-                touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
-
-                const currentPos = getScreenPos(contact.clientX, contact.clientY);
-
-                touch.deltaPosition = Vector2.Subtract(currentPos, touch.position);
-                touch.position = currentPos;
-                touch.phase = event.type === "touchend" ? TouchPhase.Ended : TouchPhase.Cancelled;
-            }
+            if (event.type === "touchcancel") for (let i = 0; i < changed.length; i++) this.#cancelledTouches.push(changed[i].identifier);
         });
-        document.addEventListener("touchmove", event => {
+        document.addEventListener("touchcancel", event => {
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
             event.preventDefault();
 
-            const contacts = event.changedTouches;
-
-            for (let i = 0; i < contacts.length; i++)
-            {
-                const contact = contacts[i];
-
-                const touch = this.#touches.find(item => item.fingerID === contact.identifier);
-                touch.pressure = contact.force;
-                touch.deltaTime = Time.time - touch.lastTime;
-                touch.lastTime = Time.time;
-                touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
-                touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
-
-                const currentPos = getScreenPos(contact.clientX, contact.clientY);
-
-                touch.deltaPosition = Vector2.Subtract(currentPos, touch.position);
-                touch.position = currentPos;
-                touch.phase = TouchPhase.Moved;
-            }
-        }, { passive: false });
+            this.#nativeTouches = event.touches;
+        });
 
         GamepadInput.Init();
     }
@@ -257,6 +238,69 @@ class Input
     static Update ()
     {
         if (this.#terminated) return;
+
+        const getScreenPos = (x, y) => new Vector2(
+            Math.Clamp(x - (window.innerWidth - Window.canvasWidth) * 0.5, 0, Window.canvasWidth),
+            Math.Clamp(y - (window.innerHeight - Window.canvasHeight) * 0.5, 0, Window.canvasHeight)
+        );
+
+        let contacts = [];
+
+        for (let i = 0; i < this.#nativeTouches.length; i++)
+        {
+            const contact = this.#nativeTouches[i];
+
+            if (!this.#cancelledTouches.includes(contact.identifier)) contacts.push(contact);
+        }
+
+        for (let i = 0; i < contacts.length; i++)
+        {
+            const contact = contacts[i];
+
+            if (!this.#changedTouches.includes(contact.identifier)) continue;
+
+            let touch = this.#touches.find(item => item.fingerID === contact.identifier);
+
+            if (touch == null)
+            {
+                touch = new Touch();
+                this.#touches.push(touch);
+
+                touch.fingerID = contact.identifier;
+                touch.pressure = contact.force;
+                touch.lastTime = Time.time;
+                touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
+                touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
+                touch.position = getScreenPos(contact.clientX, contact.clientY);
+
+                continue;
+            }
+            
+            touch.pressure = contact.force;
+            touch.deltaTime = Time.time - touch.lastTime;
+            touch.lastTime = Time.time;
+            touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
+            touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
+
+            const currentPos = getScreenPos(contact.clientX, contact.clientY);
+
+            touch.deltaPosition = Vector2.Subtract(currentPos, touch.position);
+            touch.position = currentPos;
+
+            if (touch.phase === TouchPhase.Began || touch.phase === TouchPhase.Stationary) touch.phase = TouchPhase.Moved;
+        }
+
+        for (let i = 0; i < this.#touches.length; i++)
+        {
+            const touch = this.#touches[i];
+            
+            if (contacts.map(item => item.identifier).includes(touch.fingerID)) continue;
+            
+            touch.phase = this.#cancelledTouches.includes(touch.fingerID) ? TouchPhase.Cancelled : TouchPhase.Ended;
+        }
+
+        this.#changedTouches = [];
+        this.#cancelledTouches = [];
 
         GamepadInput.Update();
     }
@@ -281,7 +325,7 @@ class Input
                     break;
                 case TouchPhase.Ended:
                 case TouchPhase.Cancelled:
-                    removingTouches.push(touch)
+                    removingTouches.push(touch);
                     break;
             }
         }

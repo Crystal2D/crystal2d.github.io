@@ -4,7 +4,7 @@ Application.Bind(async () => {
     SceneManager.SetActiveScene(0);
 }, () => {
     Input.Terminate();
-    SceneManager.Unload();
+    SceneManager.UnloadAll();
     
     Application.htmlCanvas.style.display = "none";
 });

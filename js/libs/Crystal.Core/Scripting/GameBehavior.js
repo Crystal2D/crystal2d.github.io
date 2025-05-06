@@ -12,6 +12,10 @@ class GameBehavior extends Behavior
     
     LateUpdate () { }
     
+    OnApplicationPause (status) { }
+
+    OnApplicationFocus (status) { }
+
     OnApplicationQuit () { }
     
     OnDisable () { }

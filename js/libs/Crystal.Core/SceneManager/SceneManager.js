@@ -21,15 +21,25 @@ class SceneManager
         return this.#scenes.filter(item => item.isLoaded).length;
     }
     
-    static SetActiveScene (index)
+    static async SetActiveScene (index)
     {
-        if (this.GetActiveScene().index === index) return;
-
-        const scene = this.GetScene(index);
+        let scene = this.GetScene(index);
 
         if (scene.isInvalid) return false;
 
-        scene.isDirty = true;
+        const prevScene = this.#activeScene?.index;
+
+        if (this.#activeScene != null)
+        {
+            await this.Unload(this.#activeScene.index);
+
+            if (prevScene === index)
+            {
+                await this.Load(index);
+
+                scene = this.GetScene(index);
+            }
+        }
 
         this.#activeScene = scene;
 
@@ -56,16 +66,39 @@ class SceneManager
 
         this.#inited = true;
     }
-    
-    static Unload (...index)
+
+    static async UnloadAll ()
+    {
+        await this.Unload(...this.#scenes.map(item => item.index));
+    }
+
+    static async Unload (...index)
     {
         for (let iA = 0; iA < index.length; iA++)
         {
-            if (this.GetActiveScene().index === index[iA]) this.#activeScene = null;
+            if (this.GetActiveScene().index === index[iA])
+            {
+                for (let i = 0; i < this.#activeScene.gameObjects.length; i++) GameObject.Destroy(this.#activeScene.gameObjects[i]);
+
+                const loop = callback => {
+                    if (this.#activeScene.gameObjects.length === 0)
+                    {
+                        callback();
+        
+                        return;
+                    }
+        
+                    requestAnimationFrame(loop.bind(this, callback));
+                };
+        
+                await new Promise(resolve => loop(resolve));
+
+                this.#activeScene = null;
+            }
 
             const scene = this.GetScene(index[iA]);
 
-            if (scene.isInvalid) return;
+            if (scene.isInvalid) continue;
 
             for (let iB = 0; iB < scene.resources.length; iB++)
             {
@@ -87,7 +120,7 @@ class SceneManager
     {
         for (let i = 0; i < index.length; i++)
         {
-            if (this.#scenes.find(item => item.index === index[i])) return;
+            if (this.#scenes.find(item => item.index === index[i])) continue;
 
             const path = `data/scenes/${this.#unloadedScenes[index[i]]}.json`;
             const response = await fetch(path);

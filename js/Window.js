@@ -107,7 +107,7 @@ class Window
     
     static #Update ()
     {
-        if (document.hasFocus())
+        if (document.hasFocus() && !Application.isInCordova)
         {
             if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
             else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
@@ -115,7 +115,7 @@ class Window
 
         if (this.#sizeChanged > 0)
         {
-            if (!this.fullscreen && (!this.#resizable || this.#sizeChanged === 1))
+            if (!this.fullscreen && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
@@ -156,7 +156,7 @@ class Window
         this.SetMargin(data.marginWidth, data.marginHeight);
         this.SetWindowSize(data.windowWidth, data.windowHeight);
 
-        if (Application.isInElectron())
+        if (Application.isInElectron)
         {
             const { ipcRenderer } = require("electron");
             this.#ipcRenderer = ipcRenderer;
