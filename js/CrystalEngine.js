@@ -350,9 +350,13 @@ class CrystalEngine
                 this.#compiledData.shaders.push(await shaderResponse.text());
             }
 
-            const resResponse = await fetch("data/resources.json");
+            for (let i = 0; i < this.#buildData.resources.length; i++)
+            {
+                const resResponse = await fetch(`data/resources/${this.#buildData.resources[i]}.json`);
+                const resData = await resResponse.json();
 
-            this.#resources = await resResponse.json();
+                this.#resources.push(...resData);
+            }
             
             this.#Init();
         }
