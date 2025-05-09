@@ -29,7 +29,7 @@ class Camera extends Behavior
     {
         this.#updateProjMat = false;
         
-        this.projMatrix = value;
+        this.#projMatrix = value;
     }
 
     get cameraToWorldMatrix ()
@@ -40,6 +40,22 @@ class Camera extends Behavior
     get worldToCameraMatrix ()
     {
         return this.transform.worldToLocalMatrix;
+    }
+
+    ScreenToWorldPoint (point)
+    {
+        const viewMat = Matrix3x3.TRS(
+            Vector2.Scale(this.transform.position, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.transform.rotation * Math.PI,
+            this.bounds.size
+        );
+        const mouseMat = Matrix3x3.Translate(new Vector2(
+            (point.x / Window.canvasWidth) - 0.5,
+            (point.y / Window.canvasHeight) - 0.5
+        ));
+        const targetMat = Matrix3x3.Multiply(viewMat, mouseMat);
+
+        return new Vector2(targetMat.GetValue(2, 0), -targetMat.GetValue(2, 1));
     }
     
     Render ()

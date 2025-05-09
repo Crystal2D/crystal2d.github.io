@@ -1,0 +1,89 @@
+[
+    {
+        "path": "animations/characters/yoki/yoki",
+        "type": "AnimationClip",
+        "args": {
+            "loop": true,
+            "interval": 0.5,
+            "sprites": [
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "down-a"
+                },
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "down-b"
+                }
+            ]
+        }
+    },
+    {
+        "path": "animations/characters/yoki/spin",
+        "type": "AnimationClip",
+        "args": {
+            "loop": false,
+            "interval": 0.05,
+            "sprites": [
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "down-a"
+                },
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "left-a"
+                },
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "up-a"
+                },
+                {
+                    "texture": "sprites/characters/yoki",
+                    "name": "right-a"
+                }
+            ]
+        }
+    },
+    {
+        "path": "animations/characters/yoki/ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "parameters": [
+                {
+                    "name": "toggle",
+                    "type": 1
+                }
+            ],
+            "motions": [
+                {
+                    "name": "yoki",
+                    "speed": -0.5,
+                    "animation": "animations/characters/yoki/yoki",
+                    "transitions": [
+                        {
+                            "isExit": false,
+                            "exitTime": 0,
+                            "nextNode": "spin",
+                            "conditions": [
+                                {
+                                    "mode": 0,
+                                    "parameter": "toggle",
+                                    "threshold": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "spin",
+                    "speed": 1,
+                    "animation": "animations/characters/yoki/spin",
+                    "transitions": [
+                        {
+                            "nextNode": "yoki"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

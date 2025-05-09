@@ -5,7 +5,8 @@
     },
     "resources": [
         "sprites/title",
-        "font_main"
+        "font_main",
+        "audio/bgm/title"
     ],
     "gameObjects": [
         {
@@ -17,6 +18,14 @@
                 },
                 {
                     "type": "Camera"
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/bgm/title",
+                        "playOnAwake": true,
+                        "loop": true
+                    }
                 }
             ]
         },

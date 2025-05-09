@@ -4,17 +4,15 @@
         "font_main",
         "sprites/square",
         "sprites/characters/yoki",
-        "animations/characters/yoki",
-        "animations/characters/spin"
+        "animations/characters/yoki/yoki",
+        "animations/characters/yoki/spin",
+        "animations/characters/yoki/ctrl"
     ],
     "gameObjects": [
         {
             "name": "camera",
             "id": 0,
             "components": [
-                {
-                    "type": "CameraController"
-                },
                 {
                     "type": "Camera",
                     "args": {
@@ -24,6 +22,9 @@
                             "b": 63
                         }
                     }
+                },
+                {
+                    "type": "Viewport"
                 }
             ]
         },
@@ -48,97 +49,13 @@
                     }
                 },
                 {
-                    "type": "Animator"
-                }
-            ]
-        },
-        {
-            "name": "text_hi",
-            "id": 2,
-            "transform": {
-                "position": {
-                    "y": 2.5
-                }
-            },
-            "components": [
-                {
-                    "type": "Text",
+                    "type": "Animator",
                     "args": {
-                        "font": "font_main",
-                        "text": "Welcome to whatever this is!",
-                        "horizontalAlign": 1,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        }
+                        "controller": "animations/characters/yoki/ctrl"
                     }
-                }
-            ]
-        },
-        {
-            "name": "text_ctrls",
-            "id": 3,
-            "transform": {
-                "position": {
-                    "x": -0.25,
-                    "y": -3.75
-                }
-            },
-            "components": [
+                },
                 {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "Ctrls:\n- Arrows: Move\n- Shift: Run",
-                        "fontSize": 0.5
-                    }
-                }
-            ]
-        },
-        {
-            "name": "text_updates",
-            "id": 4,
-            "transform": {
-                "position": {
-                    "x": 9.5,
-                    "y": 3.5
-                }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "e",
-                        "fontSize": 0.75,
-                        "pivot": {
-                            "x": 0.5,
-                            "y": 0
-                        },
-                        "overflowHeight": true
-                    }
-                }
-            ]
-        },
-        {
-            "name": "obj_scheme",
-            "id": 5,
-            "components": [
-                {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/square"
-                        },
-                        "sortingOrder": -1,
-                        "color": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255,
-                            "a": 120
-                        }
-                    }
+                    "type": "Test"
                 }
             ]
         }

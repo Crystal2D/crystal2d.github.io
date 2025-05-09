@@ -8,11 +8,13 @@ class Application
     static #name = "";
     static #onLoad = () => { };
     static #onUnload = () => { };
+    static #focusedCall = () => document.hasFocus();
     
     static #canvas = null;
     static #gl = null;
     static #gl_md = null;
     
+    static runInBackgroud = false;
     static targetFrameRate = 0;
     static vSyncCount = 0;
 
@@ -55,9 +57,19 @@ class Application
         return this.#gl_md;
     }
 
-    static isInElectron ()
+    static get isInElectron ()
     {
         return navigator.userAgent.indexOf("Electron") >= 0;
+    }
+
+    static get isInCordova ()
+    {
+        return cordova != null;
+    }
+
+    static get isFocused ()
+    {
+        return this.#focusedCall();
     }
     
     static Init (name)
@@ -74,13 +86,23 @@ class Application
         this.#gl = this.#canvas.getContext("webgl2", {
             antialias: false,
             powerPreference: "high-performance",
-            preserveDrawingBuffer: true
+            preserveDrawingBuffer: false
         });
         this.#gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         this.#gl_md = this.#gl.getExtension("WEBGL_multi_draw");
         
         document.body.append(this.#canvas);
+
+        if (this.isInCordova)
+        {
+            let focused = true;
+
+            this.#focusedCall = () => focused;
+
+            document.addEventListener("pause", () => focused = false);
+            document.addEventListener("resume", () => focused = true);
+        }
         
         this.#inited = true;
     }
@@ -129,7 +151,8 @@ class Application
     {
         if (this.#unloaded) return;
 
-        this.unloading.Invoke();
+        try { this.unloading.Invoke(); }
+        catch { }
 
         await this.#onUnload();
 

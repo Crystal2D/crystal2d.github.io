@@ -30,7 +30,7 @@ class Window
     
     static set resizable (value)
     {
-        this.#sizeChanged = true;
+        this.#sizeChanged = 2;
 
         if (this.#ipcRenderer != null) this.#ipcRenderer.invoke("SetResizable", value);
         
@@ -89,6 +89,16 @@ class Window
     {
         return this.#aspect;
     }
+
+    static get canvasWidth ()
+    {
+        return (window.innerWidth / window.innerHeight < this.aspect) ? window.innerWidth : (this.aspect * window.innerHeight);
+    }
+
+    static get canvasHeight ()
+    {
+        return (window.innerWidth / window.innerHeight < this.aspect) ? (window.innerWidth / this.aspect) : window.innerHeight;
+    }
     
     static #RequestUpdate ()
     {
@@ -97,15 +107,15 @@ class Window
     
     static #Update ()
     {
-        if (document.hasFocus())
+        if (document.hasFocus() && !Application.isInCordova)
         {
             if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
             else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
         }
 
-        if (this.#sizeChanged)
+        if (this.#sizeChanged > 0)
         {
-            if (!this.fullscreen && !this.#resizable)
+            if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
@@ -127,7 +137,7 @@ class Window
                 this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
             }
             
-            this.#sizeChanged = false;
+            this.#sizeChanged = 0;
         }
         
         this.#RequestUpdate();
@@ -146,14 +156,14 @@ class Window
         this.SetMargin(data.marginWidth, data.marginHeight);
         this.SetWindowSize(data.windowWidth, data.windowHeight);
 
-        if (Application.isInElectron())
+        if (Application.isInElectron)
         {
             const { ipcRenderer } = require("electron");
             this.#ipcRenderer = ipcRenderer;
         }
         else this.SetIcon(data.icon);
         
-        window.addEventListener("resize", () => { this.#sizeChanged = true; });
+        window.addEventListener("resize", () => { this.#sizeChanged = 2; });
         
         this.#RequestUpdate();
         
@@ -179,7 +189,7 @@ class Window
             this.#aspect = this.#x / this.#y;
         }
         
-        if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = true;
+        if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = 1;
     }
     
     static SetMargin (width, height)
@@ -190,7 +200,7 @@ class Window
         Application.htmlCanvas.style.width = `${100 - 2 * this.#marginX}%`;
         Application.htmlCanvas.style.height =  `${100 - 2 * this.#marginY}%`;
         
-        this.#sizeChanged = true;
+        this.#sizeChanged = 1;
     }
     
     static SetWindowSize (width, height)
@@ -198,7 +208,7 @@ class Window
         this.#winX = width ?? 0;
         this.#winY = height ?? 0;
         
-        this.#sizeChanged = true;
+        this.#sizeChanged = 1;
     }
     
     static SetIcon (src)

@@ -51,6 +51,26 @@ class CrystalEngine
             this.#loaded = true;
         }
     }
+
+    static IsBehavior (className)
+    {
+        let classCheck = eval(className).toString().replace(/\s+/g, " ");
+
+        const searchString = `${className} extends `;
+        const checkIndex = classCheck.indexOf(searchString);
+
+        if (checkIndex >= 0)
+        {
+            classCheck = classCheck.substring(checkIndex + searchString.length);
+            classCheck = classCheck.substring(0, classCheck.indexOf("{")).trim();
+            
+            if (classCheck === "Behavior") return true;
+
+            return this.IsBehavior(classCheck);
+        }
+
+        return false;
+    }
     
     static Inner = class
     {
@@ -129,6 +149,11 @@ class CrystalEngine
                 {
                     if (this.#classes[i].name == null) continue;
                     else if (this.#classes[i].args == null) this.#classes[i].args = [];
+
+                    if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
+                        type: "boolean",
+                        name: "enabled"
+                    });
                     
                     newClasses.push(this.#classes[i]);
                 }
@@ -163,6 +188,11 @@ class CrystalEngine
                 {
                     if (this.#classes[i].name == null) continue;
                     else if (this.#classes[i].args == null) this.#classes[i].args = [];
+
+                    if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
+                        type: "boolean",
+                        name: "enabled"
+                    });
                     
                     newClasses.push(this.#classes[i]);
                 }
@@ -234,7 +264,12 @@ class CrystalEngine
                 
                 this.#terminateStart = true;
                 
-                if (Application.isLoaded) Application.Unload();
+                if (Application.isLoaded)
+                {
+                    PlayerLoop.OnError();
+
+                    Application.Unload();
+                }
                 else Application.htmlCanvas.style.display = "none";
                 
                 document.body.style.height = "";
@@ -244,7 +279,7 @@ class CrystalEngine
                 
                 const errWrap = document.createElement("div");
                 errWrap.style.whiteSpace = "pre-wrap";
-                errWrap.style.marginTop = "12px";
+                errWrap.style.marginTop = cordova == null ? "12px" : "36px";
                 errWrap.style.marginLeft = "12px";
 
                 errLogs = document.createElement("span");
@@ -252,7 +287,7 @@ class CrystalEngine
                 errLogs.append(error.stack);
                 
                 const tip = document.createElement("span");
-                tip.append("\n\n\n----------\n\nPress F5 to refresh");
+                tip.append(`\n\n\n----------\n\n${Application.isInCordova ? "Please report this problem" : "Press F5 to refresh"}`);
                 
                 errWrap.append(errLogs, tip)
                 document.body.append(errWrap);
@@ -260,6 +295,8 @@ class CrystalEngine
             
             window.addEventListener("error", event => onError(event.error));
             window.addEventListener("unhandledrejection", event => onError(event.reason));
+
+            if (Application.isInCordova) window.addEventListener("cordovacallbackerror", event => onError(event.error));
             
             this.#inited = true;
             
@@ -313,9 +350,13 @@ class CrystalEngine
                 this.#compiledData.shaders.push(await shaderResponse.text());
             }
 
-            const resResponse = await fetch("data/resources.json");
+            for (let i = 0; i < this.#buildData.resources.length; i++)
+            {
+                const resResponse = await fetch(`data/resources/${this.#buildData.resources[i]}.json`);
+                const resData = await resResponse.json();
 
-            this.#resources = await resResponse.json();
+                this.#resources.push(...resData);
+            }
             
             this.#Init();
         }
@@ -330,6 +371,7 @@ class CrystalEngine
             
             Application.targetFrameRate = this.#buildData.targetFrameRate;
             Application.vSyncCount = this.#buildData.vSyncCount;
+            Application.runInBackground = this.#buildData.runInBackground;
             
             Time.maximumDeltaTime = this.#buildData.time.maximumDeltaTime;
             Time.timeScale = this.#buildData.time.timeScale;

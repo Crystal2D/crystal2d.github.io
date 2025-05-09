@@ -68,6 +68,260 @@
         ]
     },
     {
+        "name": "Exterior - Castle Town - Side Gates",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_castletown_sidegates",
+                "sprites": [
+                    {
+                        "name": "ext_castletown_sidegates (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (6)",
+                        "id": 6
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (7)",
+                        "id": 7
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (8)",
+                        "id": 8
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (9)",
+                        "id": 9
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (10)",
+                        "id": 10
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (11)",
+                        "id": 11
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (12)",
+                        "id": 12
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (13)",
+                        "id": 13
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (14)",
+                        "id": 14
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (15)",
+                        "id": 15
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (16)",
+                        "id": 16
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (17)",
+                        "id": 17
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (18)",
+                        "id": 18
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (19)",
+                        "id": 19
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (20)",
+                        "id": 20
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (21)",
+                        "id": 21
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (22)",
+                        "id": 22
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (23)",
+                        "id": 23
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (24)",
+                        "id": 24
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (25)",
+                        "id": 25
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (26)",
+                        "id": 26
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (27)",
+                        "id": 27
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (28)",
+                        "id": 28
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (29)",
+                        "id": 29
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (30)",
+                        "id": 30
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (31)",
+                        "id": 31
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (32)",
+                        "id": 32
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (33)",
+                        "id": 33
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (34)",
+                        "id": 34
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (35)",
+                        "id": 35
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (36)",
+                        "id": 36
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (37)",
+                        "id": 37
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (38)",
+                        "id": 38
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (39)",
+                        "id": 39
+                    },
+                    {
+                        "name": "floorwer",
+                        "id": 40
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (40)",
+                        "id": 41
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (41)",
+                        "id": 42
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (42)",
+                        "id": 43
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (43)",
+                        "id": 44
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (44)",
+                        "id": 45
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (45)",
+                        "id": 46
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (46)",
+                        "id": 47
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (47)",
+                        "id": 48
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (48)",
+                        "id": 49
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (49)",
+                        "id": 50
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (50)",
+                        "id": 51
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (51)",
+                        "id": 52
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (52)",
+                        "id": 53
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (53)",
+                        "id": 54
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (54)",
+                        "id": 55
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (55)",
+                        "id": 56
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (56)",
+                        "id": 57
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (57)",
+                        "id": 58
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (58)",
+                        "id": 59
+                    },
+                    {
+                        "name": "ext_castletown_sidegates (59)",
+                        "id": 60
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Common",
         "textures": [
             {
@@ -312,6 +566,856 @@
         ]
     },
     {
+        "name": "Exterior - Forest",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_forest",
+                "sprites": [
+                    {
+                        "name": "ext_forest (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_forest (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_forest (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_forest (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ext_forest (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ext_forest (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "shroom",
+                        "id": 6
+                    },
+                    {
+                        "name": "ext_forest (6)",
+                        "id": 7
+                    },
+                    {
+                        "name": "ext_forest (7)",
+                        "id": 8
+                    },
+                    {
+                        "name": "ext_forest (8)",
+                        "id": 9
+                    },
+                    {
+                        "name": "ext_forest (9)",
+                        "id": 10
+                    },
+                    {
+                        "name": "ext_forest (10)",
+                        "id": 11
+                    },
+                    {
+                        "name": "ext_forest (11)",
+                        "id": 12
+                    },
+                    {
+                        "name": "stump-topleft",
+                        "id": 13
+                    },
+                    {
+                        "name": "stump-topright",
+                        "id": 14
+                    },
+                    {
+                        "name": "ext_forest (12)",
+                        "id": 15
+                    },
+                    {
+                        "name": "ext_forest (13)",
+                        "id": 16
+                    },
+                    {
+                        "name": "ext_forest (14)",
+                        "id": 17
+                    },
+                    {
+                        "name": "ext_forest (15)",
+                        "id": 18
+                    },
+                    {
+                        "name": "ext_forest (16)",
+                        "id": 19
+                    },
+                    {
+                        "name": "ext_forest (17)",
+                        "id": 20
+                    },
+                    {
+                        "name": "water pebble",
+                        "id": 21
+                    },
+                    {
+                        "name": "ext_forest (18)",
+                        "id": 22
+                    },
+                    {
+                        "name": "ext_forest (19)",
+                        "id": 23
+                    },
+                    {
+                        "name": "ext_forest (20)",
+                        "id": 24
+                    },
+                    {
+                        "name": "ext_forest (21)",
+                        "id": 25
+                    },
+                    {
+                        "name": "ext_forest (22)",
+                        "id": 26
+                    },
+                    {
+                        "name": "ext_forest (23)",
+                        "id": 27
+                    },
+                    {
+                        "name": "stump-bottomleft",
+                        "id": 28
+                    },
+                    {
+                        "name": "stump-bottomright",
+                        "id": 29
+                    },
+                    {
+                        "name": "ext_forest (24)",
+                        "id": 30
+                    },
+                    {
+                        "name": "ext_forest (25)",
+                        "id": 31
+                    },
+                    {
+                        "name": "ext_forest (26)",
+                        "id": 32
+                    },
+                    {
+                        "name": "ext_forest (27)",
+                        "id": 33
+                    },
+                    {
+                        "name": "ext_forest (28)",
+                        "id": 34
+                    },
+                    {
+                        "name": "ext_forest (29)",
+                        "id": 35
+                    },
+                    {
+                        "name": "ext_forest (30)",
+                        "id": 36
+                    },
+                    {
+                        "name": "ext_forest (31)",
+                        "id": 37
+                    },
+                    {
+                        "name": "ext_forest (32)",
+                        "id": 38
+                    },
+                    {
+                        "name": "ext_forest (33)",
+                        "id": 39
+                    },
+                    {
+                        "name": "ext_forest (34)",
+                        "id": 40
+                    },
+                    {
+                        "name": "ext_forest (35)",
+                        "id": 41
+                    },
+                    {
+                        "name": "ext_forest (36)",
+                        "id": 42
+                    },
+                    {
+                        "name": "ext_forest (37)",
+                        "id": 43
+                    },
+                    {
+                        "name": "well-topleft",
+                        "id": 44
+                    },
+                    {
+                        "name": "well-topright",
+                        "id": 45
+                    },
+                    {
+                        "name": "ext_forest (38)",
+                        "id": 46
+                    },
+                    {
+                        "name": "ext_forest (39)",
+                        "id": 47
+                    },
+                    {
+                        "name": "ext_forest (40)",
+                        "id": 48
+                    },
+                    {
+                        "name": "ext_forest (41)",
+                        "id": 49
+                    },
+                    {
+                        "name": "ext_forest (42)",
+                        "id": 50
+                    },
+                    {
+                        "name": "ext_forest (43)",
+                        "id": 51
+                    },
+                    {
+                        "name": "ext_forest (44)",
+                        "id": 52
+                    },
+                    {
+                        "name": "ext_forest (45)",
+                        "id": 53
+                    },
+                    {
+                        "name": "ext_forest (46)",
+                        "id": 54
+                    },
+                    {
+                        "name": "ext_forest (47)",
+                        "id": 55
+                    },
+                    {
+                        "name": "ext_forest (48)",
+                        "id": 56
+                    },
+                    {
+                        "name": "ext_forest (49)",
+                        "id": 57
+                    },
+                    {
+                        "name": "ext_forest (50)",
+                        "id": 58
+                    },
+                    {
+                        "name": "ext_forest (51)",
+                        "id": 59
+                    },
+                    {
+                        "name": "well-left",
+                        "id": 60
+                    },
+                    {
+                        "name": "well-right",
+                        "id": 61
+                    },
+                    {
+                        "name": "ext_forest (52)",
+                        "id": 62
+                    },
+                    {
+                        "name": "ext_forest (53)",
+                        "id": 63
+                    },
+                    {
+                        "name": "ext_forest (54)",
+                        "id": 64
+                    },
+                    {
+                        "name": "ext_forest (55)",
+                        "id": 65
+                    },
+                    {
+                        "name": "ext_forest (56)",
+                        "id": 66
+                    },
+                    {
+                        "name": "ext_forest (57)",
+                        "id": 67
+                    },
+                    {
+                        "name": "ext_forest (58)",
+                        "id": 68
+                    },
+                    {
+                        "name": "ext_forest (59)",
+                        "id": 69
+                    },
+                    {
+                        "name": "ext_forest (60)",
+                        "id": 70
+                    },
+                    {
+                        "name": "ext_forest (61)",
+                        "id": 71
+                    },
+                    {
+                        "name": "ext_forest (62)",
+                        "id": 72
+                    },
+                    {
+                        "name": "ext_forest (63)",
+                        "id": 73
+                    },
+                    {
+                        "name": "ext_forest (64)",
+                        "id": 74
+                    },
+                    {
+                        "name": "ext_forest (65)",
+                        "id": 75
+                    },
+                    {
+                        "name": "well-bottomleft",
+                        "id": 76
+                    },
+                    {
+                        "name": "well-bottomright",
+                        "id": 77
+                    },
+                    {
+                        "name": "ext_forest (66)",
+                        "id": 78
+                    },
+                    {
+                        "name": "ext_forest (67)",
+                        "id": 79
+                    },
+                    {
+                        "name": "ext_forest (68)",
+                        "id": 80
+                    },
+                    {
+                        "name": "ext_forest (69)",
+                        "id": 81
+                    },
+                    {
+                        "name": "ext_forest (70)",
+                        "id": 82
+                    },
+                    {
+                        "name": "ext_forest (71)",
+                        "id": 83
+                    },
+                    {
+                        "name": "ext_forest (72)",
+                        "id": 84
+                    },
+                    {
+                        "name": "ext_forest (73)",
+                        "id": 85
+                    },
+                    {
+                        "name": "ext_forest (74)",
+                        "id": 86
+                    },
+                    {
+                        "name": "ext_forest (75)",
+                        "id": 87
+                    },
+                    {
+                        "name": "ext_forest (76)",
+                        "id": 88
+                    },
+                    {
+                        "name": "ext_forest (77)",
+                        "id": 89
+                    },
+                    {
+                        "name": "ext_forest (78)",
+                        "id": 90
+                    },
+                    {
+                        "name": "ext_forest (79)",
+                        "id": 91
+                    },
+                    {
+                        "name": "ext_forest (80)",
+                        "id": 92
+                    },
+                    {
+                        "name": "ext_forest (81)",
+                        "id": 93
+                    },
+                    {
+                        "name": "ext_forest (82)",
+                        "id": 94
+                    },
+                    {
+                        "name": "ext_forest (83)",
+                        "id": 95
+                    },
+                    {
+                        "name": "ext_forest (84)",
+                        "id": 96
+                    },
+                    {
+                        "name": "ext_forest (85)",
+                        "id": 97
+                    },
+                    {
+                        "name": "ext_forest (86)",
+                        "id": 98
+                    },
+                    {
+                        "name": "ext_forest (87)",
+                        "id": 99
+                    },
+                    {
+                        "name": "ext_forest (88)",
+                        "id": 100
+                    },
+                    {
+                        "name": "ext_forest (89)",
+                        "id": 101
+                    },
+                    {
+                        "name": "ext_forest (90)",
+                        "id": 102
+                    },
+                    {
+                        "name": "ext_forest (91)",
+                        "id": 103
+                    },
+                    {
+                        "name": "ext_forest (92)",
+                        "id": 104
+                    },
+                    {
+                        "name": "deadtree-topleft",
+                        "id": 105
+                    },
+                    {
+                        "name": "deadtree-top",
+                        "id": 106
+                    },
+                    {
+                        "name": "ext_forest (93)",
+                        "id": 107
+                    },
+                    {
+                        "name": "ext_forest (94)",
+                        "id": 108
+                    },
+                    {
+                        "name": "ext_forest (95)",
+                        "id": 109
+                    },
+                    {
+                        "name": "ext_forest (96)",
+                        "id": 110
+                    },
+                    {
+                        "name": "ext_forest (97)",
+                        "id": 111
+                    },
+                    {
+                        "name": "ext_forest (98)",
+                        "id": 112
+                    },
+                    {
+                        "name": "ext_forest (99)",
+                        "id": 113
+                    },
+                    {
+                        "name": "ext_forest (100)",
+                        "id": 114
+                    },
+                    {
+                        "name": "ext_forest (101)",
+                        "id": 115
+                    },
+                    {
+                        "name": "ext_forest (102)",
+                        "id": 116
+                    },
+                    {
+                        "name": "ext_forest (103)",
+                        "id": 117
+                    },
+                    {
+                        "name": "ext_forest (104)",
+                        "id": 118
+                    },
+                    {
+                        "name": "ext_forest (105)",
+                        "id": 119
+                    },
+                    {
+                        "name": "deadtree-left",
+                        "id": 120
+                    },
+                    {
+                        "name": "deadtree-mid",
+                        "id": 121
+                    },
+                    {
+                        "name": "deadtree-right",
+                        "id": 122
+                    },
+                    {
+                        "name": "ext_forest (106)",
+                        "id": 123
+                    },
+                    {
+                        "name": "ext_forest (108)",
+                        "id": 124
+                    },
+                    {
+                        "name": "ext_forest (109)",
+                        "id": 125
+                    },
+                    {
+                        "name": "ext_forest (110)",
+                        "id": 126
+                    },
+                    {
+                        "name": "ext_forest (111)",
+                        "id": 127
+                    },
+                    {
+                        "name": "ext_forest (112)",
+                        "id": 128
+                    },
+                    {
+                        "name": "ext_forest (113)",
+                        "id": 129
+                    },
+                    {
+                        "name": "ext_forest (114)",
+                        "id": 130
+                    },
+                    {
+                        "name": "ext_forest (115)",
+                        "id": 131
+                    },
+                    {
+                        "name": "ext_forest (116)",
+                        "id": 132
+                    },
+                    {
+                        "name": "ext_forest (117)",
+                        "id": 133
+                    },
+                    {
+                        "name": "ext_forest (118)",
+                        "id": 134
+                    },
+                    {
+                        "name": "ext_forest (119)",
+                        "id": 135
+                    },
+                    {
+                        "name": "deadtree-left1",
+                        "id": 136
+                    },
+                    {
+                        "name": "deadtree-mid1",
+                        "id": 137
+                    },
+                    {
+                        "name": "deadtree-right1",
+                        "id": 138
+                    },
+                    {
+                        "name": "ext_forest (120)",
+                        "id": 139
+                    },
+                    {
+                        "name": "ext_forest (121)",
+                        "id": 140
+                    },
+                    {
+                        "name": "ext_forest (122)",
+                        "id": 141
+                    },
+                    {
+                        "name": "ext_forest (123)",
+                        "id": 142
+                    },
+                    {
+                        "name": "ext_forest (124)",
+                        "id": 143
+                    },
+                    {
+                        "name": "ext_forest (125)",
+                        "id": 144
+                    },
+                    {
+                        "name": "ext_forest (126)",
+                        "id": 145
+                    },
+                    {
+                        "name": "ext_forest (127)",
+                        "id": 146
+                    },
+                    {
+                        "name": "ext_forest (128)",
+                        "id": 147
+                    },
+                    {
+                        "name": "ext_forest (129)",
+                        "id": 148
+                    },
+                    {
+                        "name": "ext_forest (130)",
+                        "id": 149
+                    },
+                    {
+                        "name": "ext_forest (131)",
+                        "id": 150
+                    },
+                    {
+                        "name": "ext_forest (132)",
+                        "id": 151
+                    },
+                    {
+                        "name": "deadtree-bottomleft",
+                        "id": 152
+                    },
+                    {
+                        "name": "deadtree-bottom",
+                        "id": 153
+                    },
+                    {
+                        "name": "deadtree-bottomright",
+                        "id": 154
+                    },
+                    {
+                        "name": "ext_forest (133)",
+                        "id": 155
+                    },
+                    {
+                        "name": "ext_forest (134)",
+                        "id": 156
+                    },
+                    {
+                        "name": "ext_forest (135)",
+                        "id": 157
+                    },
+                    {
+                        "name": "ext_forest (136)",
+                        "id": 158
+                    },
+                    {
+                        "name": "bridge-upleft",
+                        "id": 159
+                    },
+                    {
+                        "name": "bridge-up",
+                        "id": 160
+                    },
+                    {
+                        "name": "bridge-upright",
+                        "id": 161
+                    },
+                    {
+                        "name": "bridge-right",
+                        "id": 162
+                    },
+                    {
+                        "name": "sign-topleft",
+                        "id": 163
+                    },
+                    {
+                        "name": "sign-topright",
+                        "id": 164
+                    },
+                    {
+                        "name": "water dwayne-topleft",
+                        "id": 165
+                    },
+                    {
+                        "name": "water dwayne-topright",
+                        "id": 166
+                    },
+                    {
+                        "name": "rabbithole-topleft",
+                        "id": 167
+                    },
+                    {
+                        "name": "rabbithole-topright",
+                        "id": 168
+                    },
+                    {
+                        "name": "ext_forest (137)",
+                        "id": 169
+                    },
+                    {
+                        "name": "ext_forest (138)",
+                        "id": 170
+                    },
+                    {
+                        "name": "ext_forest (139)",
+                        "id": 171
+                    },
+                    {
+                        "name": "ext_forest (140)",
+                        "id": 172
+                    },
+                    {
+                        "name": "bridge-left",
+                        "id": 173
+                    },
+                    {
+                        "name": "bridge-downleft",
+                        "id": 174
+                    },
+                    {
+                        "name": "bridge-down",
+                        "id": 175
+                    },
+                    {
+                        "name": "bridge-downright",
+                        "id": 176
+                    },
+                    {
+                        "name": "sign-bottomleft",
+                        "id": 177
+                    },
+                    {
+                        "name": "sign-bottomright",
+                        "id": 178
+                    },
+                    {
+                        "name": "water dwayne-bottomleft",
+                        "id": 179
+                    },
+                    {
+                        "name": "water dwayne-bottomright",
+                        "id": 180
+                    },
+                    {
+                        "name": "rabbithole-bottomleft",
+                        "id": 181
+                    },
+                    {
+                        "name": "rabbithole-bottomright",
+                        "id": 182
+                    },
+                    {
+                        "name": "ext_forest (107)",
+                        "id": 183
+                    },
+                    {
+                        "name": "ext_forest (141)",
+                        "id": 184
+                    },
+                    {
+                        "name": "ext_forest (142)",
+                        "id": 185
+                    },
+                    {
+                        "name": "ext_forest (143)",
+                        "id": 186
+                    },
+                    {
+                        "name": "ext_forest (144)",
+                        "id": 187
+                    },
+                    {
+                        "name": "ext_forest (145)",
+                        "id": 188
+                    },
+                    {
+                        "name": "ext_forest (146)",
+                        "id": 189
+                    },
+                    {
+                        "name": "ext_forest (147)",
+                        "id": 190
+                    },
+                    {
+                        "name": "ext_forest (148)",
+                        "id": 191
+                    },
+                    {
+                        "name": "ext_forest (149)",
+                        "id": 192
+                    },
+                    {
+                        "name": "ext_forest (150)",
+                        "id": 193
+                    },
+                    {
+                        "name": "ext_forest (151)",
+                        "id": 194
+                    },
+                    {
+                        "name": "ext_forest (152)",
+                        "id": 195
+                    },
+                    {
+                        "name": "ext_forest (153)",
+                        "id": 196
+                    },
+                    {
+                        "name": "ext_forest (154)",
+                        "id": 197
+                    },
+                    {
+                        "name": "ext_forest (155)",
+                        "id": 198
+                    },
+                    {
+                        "name": "ext_forest (156)",
+                        "id": 199
+                    },
+                    {
+                        "name": "ext_forest (157)",
+                        "id": 200
+                    },
+                    {
+                        "name": "ext_forest (158)",
+                        "id": 201
+                    },
+                    {
+                        "name": "ext_forest (159)",
+                        "id": 202
+                    },
+                    {
+                        "name": "ext_forest (160)",
+                        "id": 203
+                    },
+                    {
+                        "name": "ext_forest (161)",
+                        "id": 204
+                    },
+                    {
+                        "name": "ext_forest (162)",
+                        "id": 205
+                    },
+                    {
+                        "name": "ext_forest (163)",
+                        "id": 206
+                    },
+                    {
+                        "name": "ext_forest (164)",
+                        "id": 207
+                    },
+                    {
+                        "name": "ext_forest (165)",
+                        "id": 208
+                    },
+                    {
+                        "name": "ext_forest (166)",
+                        "id": 209
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Village",
         "textures": [
             {
@@ -330,19 +1434,19 @@
                         "id": 2
                     },
                     {
-                        "name": "cafe",
+                        "name": "house 2",
                         "id": 3
                     },
                     {
-                        "name": "house 2",
+                        "name": "minishop 0",
                         "id": 4
                     },
                     {
-                        "name": "minishop 0",
+                        "name": "minishop 1",
                         "id": 5
                     },
                     {
-                        "name": "minishop 1",
+                        "name": "cafe",
                         "id": 6
                     },
                     {
@@ -354,7 +1458,7 @@
                         "id": 8
                     },
                     {
-                        "name": "fruit stand",
+                        "name": "fruitstand",
                         "id": 9
                     },
                     {
@@ -368,6 +1472,10 @@
                     {
                         "name": "mailbox",
                         "id": 12
+                    },
+                    {
+                        "name": "mailbox-smol",
+                        "id": 13
                     }
                 ]
             }

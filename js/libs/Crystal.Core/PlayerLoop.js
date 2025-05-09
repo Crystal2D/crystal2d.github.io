@@ -1,8 +1,16 @@
 class PlayerLoop
 {
     static #loaded = false;
+    static #playing = false;
+    static #focused = false;
     static #callUpdate = false;
+    static #crashed = false;
     static #quitState = 0;
+
+    static get isPlaying ()
+    {
+        return this.#playing;
+    }
     
     static #RequestUpdate ()
     {
@@ -39,6 +47,8 @@ class PlayerLoop
         
         if (!Application.isLoaded && !Application.isUnloaded)
         {
+            this.#focused = Application.isFocused;
+
             this.#RequestUpdate();
 
             return;
@@ -49,21 +59,31 @@ class PlayerLoop
         // SetLoopData
         const activeScene = SceneManager.GetActiveScene();
         const gameObjs = activeScene.gameObjects;
+
+        const BroadcastMessage = (method, params, data) => {
+            if (this.#crashed) return;
+
+            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage(method, params, data);
+        };
         
         // PlayerStart
-        if (document.hasFocus())
+        if (this.#playing)
         {
             // ScriptRunBehaviorAwake
-            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Awake", null, {
+            BroadcastMessage("Awake", null, {
                 specialCall : 1,
+                passActive : true,
                 clearAfter : true
             });
 
             // ScriptRunBehaviorOnEnable
-            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("OnEnable", null, { specialCall : 2 });
+            BroadcastMessage("OnEnable", null, {
+                specialCall : 2,
+                passActive : true
+            });
 
             // ScriptRunBehaviorStart
-            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Start", null, { clearAfter : true });
+            BroadcastMessage("Start", null, { clearAfter : true });
         }
 
 
@@ -88,7 +108,7 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // UpdateMainGameViewRect
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
             {
                 const gl = Application.gl;
 
@@ -108,7 +128,7 @@ class PlayerLoop
             }
 
             // UpdateInputManager
-            if (document.hasFocus() && Time.timeScale !== 0) Input.Update();
+            if (this.#playing && Time.timeScale !== 0) Input.Update();
         }
 
 
@@ -121,7 +141,7 @@ class PlayerLoop
             Time.fixedTime += Time.fixedDeltaTime * Time.timeScale;
             
             // ScriptRunBehaviorFixedUpdate
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (this.#playing && Time.timeScale !== 0)
             {
                 for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("FixedUpdate");
             }
@@ -132,9 +152,9 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // ScriptRunBehaviorUpdate
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (this.#playing && Time.timeScale !== 0)
             {
-                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("Update");
+                BroadcastMessage("Update");
             }
         }
 
@@ -143,27 +163,17 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // ScriptRunBehaviorLateUpdate
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (this.#playing && Time.timeScale !== 0)
             {
-                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("LateUpdate");
+                BroadcastMessage("LateUpdate");
             }
-        }
-
-
-        // PostLateUpdate
-        if (this.#callUpdate)
-        {
-            this.#callUpdate = false;
 
             // UpdateAllRenderers
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
             {
                 const renderers = GameObject.FindComponents("Renderer");
                         
-                for (let i = 0; i < renderers.length; i++)
-                {
-                    if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
-                }
+                for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
                 
                 const cameras = GameObject.FindComponents("Camera");
                             
@@ -171,12 +181,35 @@ class PlayerLoop
                             
                 Application.gl.flush();
             }
+        }
 
+
+        // PostLateUpdate
+        if (this.#callUpdate)
+        {
             // InputEndFrame
             Input.End();
 
+
+            // ScriptRunBehaviorOnApplicationPause
+            const playing = Application.isFocused || Application.runInBackgroud;
+
+            if (this.#playing != playing) BroadcastMessage("OnApplicationPause", !playing);
+
+
+            // ScriptRunBehaviorOnApplicationFocus
+            const focused = Application.isFocused;
+
+            if (this.#focused != focused)
+            {
+                this.#focused = focused;
+
+                BroadcastMessage("OnApplicationFocus", focused);
+            }
+
+
             // PlayerEnd
-            if (document.hasFocus() && Time.timeScale !== 0)
+            if (this.#playing && Time.timeScale !== 0)
             {
                 // ScriptRunBehaviorOnApplicationQuit
                 if (this.#quitState === 2)
@@ -197,8 +230,8 @@ class PlayerLoop
                     if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
                     
                     gameObjs[i].BroadcastMessage("OnDisable", null, {
-                        passActive : true,
-                        specialCall : 3
+                        specialCall : 3,
+                        passActive : true
                     });
                 }
     
@@ -208,7 +241,7 @@ class PlayerLoop
     
                 for (let i = 0; i < deadGameObjs.length; i++)
                 {
-                    deadGameObjs[i].BroadcastMessage("OnDestroy");
+                    deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
     
                     tree.Remove(deadGameObjs[i]);
     
@@ -229,7 +262,8 @@ class PlayerLoop
             
                 if (!Application.isPlaying)
                 {
-                    Application.wantsToQuit.Invoke();
+                    try { Application.wantsToQuit.Invoke(); }
+                    catch { }
                     
                     this.#quitState = 1;
                 }
@@ -240,9 +274,24 @@ class PlayerLoop
                     else this.#quitState++;
                 }
             }
+
+
+            this.#playing = playing;
+            this.#callUpdate = false;
         }
 
         
+        this.#RequestUpdate();
+    }
+
+    static OnError ()
+    {
+        if (this.#crashed) return;
+
+        this.#crashed = true;
+
+        Application.vSyncCount = 1;
+
         this.#RequestUpdate();
     }
 

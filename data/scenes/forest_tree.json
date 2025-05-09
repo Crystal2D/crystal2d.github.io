@@ -1,0 +1,3305 @@
+{
+    "name": "Forest - Decaying Tree",
+    "resources": [
+        "sprites/tilesets/ext_forest",
+        "sprites/tilesets/ext_common",
+        "sprites/tilesets/water",
+        "sprites/tilesets/colors"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 1,
+            "components": [
+                {
+                    "type": "Grid"
+                }
+            ]
+        },
+        {
+            "name": "tile_Colors",
+            "id": 3,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 15,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 4,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 3,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 5,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 3,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 1,
+                                "position": {
+                                    "x": 4,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 22,
+                                    "y": -11
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Environment",
+            "id": 2,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 12,
+                                "position": {
+                                    "x": 5,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 5,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 43,
+                                "position": {
+                                    "x": 6,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 59,
+                                "position": {
+                                    "x": 6,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 75,
+                                "position": {
+                                    "x": 6,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 91,
+                                "position": {
+                                    "x": 6,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 104,
+                                "position": {
+                                    "x": 5,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 119,
+                                "position": {
+                                    "x": 5,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 90,
+                                "position": {
+                                    "x": 5,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 74,
+                                "position": {
+                                    "x": 5,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 58,
+                                "position": {
+                                    "x": 5,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 42,
+                                "position": {
+                                    "x": 5,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 118,
+                                "position": {
+                                    "x": 4,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 117,
+                                "position": {
+                                    "x": 3,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 102,
+                                "position": {
+                                    "x": 3,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 88,
+                                "position": {
+                                    "x": 3,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 72,
+                                "position": {
+                                    "x": 3,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 56,
+                                "position": {
+                                    "x": 3,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 40,
+                                "position": {
+                                    "x": 3,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 25,
+                                "position": {
+                                    "x": 3,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 10,
+                                "position": {
+                                    "x": 3,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 11,
+                                "position": {
+                                    "x": 4,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 26,
+                                "position": {
+                                    "x": 4,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 41,
+                                "position": {
+                                    "x": 4,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 57,
+                                "position": {
+                                    "x": 4,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 73,
+                                "position": {
+                                    "x": 4,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 89,
+                                "position": {
+                                    "x": 4,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 103,
+                                "position": {
+                                    "x": 4,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 6,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 6,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 6,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 7,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 7,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 7,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 6,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 7,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 8,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 7,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 45,
+                                "position": {
+                                    "x": 3,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 46,
+                                "position": {
+                                    "x": 4,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 47,
+                                "position": {
+                                    "x": 5,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 38,
+                                "position": {
+                                    "x": 5,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 37,
+                                "position": {
+                                    "x": 4,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 3,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 24,
+                                "position": {
+                                    "x": 3,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 25,
+                                "position": {
+                                    "x": 4,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 20,
+                                "position": {
+                                    "x": 5,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 29,
+                                "position": {
+                                    "x": 5,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 28,
+                                "position": {
+                                    "x": 4,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 3,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 3,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 4,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 5,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 6,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 7,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 8,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 9,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 10,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 11,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 12,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 13,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 14,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 144,
+                                "position": {
+                                    "x": 6,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 145,
+                                "position": {
+                                    "x": 7,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 8,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 147,
+                                "position": {
+                                    "x": 8,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 9,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 37,
+                                "position": {
+                                    "x": 10,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 38,
+                                "position": {
+                                    "x": 11,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 45,
+                                "position": {
+                                    "x": 9,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 46,
+                                "position": {
+                                    "x": 10,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 47,
+                                "position": {
+                                    "x": 11,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 12,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 12,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 45,
+                                "position": {
+                                    "x": 12,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 46,
+                                "position": {
+                                    "x": 13,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 47,
+                                "position": {
+                                    "x": 14,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 38,
+                                "position": {
+                                    "x": 14,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 29,
+                                "position": {
+                                    "x": 14,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 28,
+                                "position": {
+                                    "x": 13,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 37,
+                                "position": {
+                                    "x": 13,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 10,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 11,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 11,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 12,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 13,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 14,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 13,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 14,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 15,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 14,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 13,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 13,
+                                "position": {
+                                    "x": 12,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 9,
+                                "position": {
+                                    "x": 15,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 10,
+                                "position": {
+                                    "x": 16,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 188,
+                                "position": {
+                                    "x": 15,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 191,
+                                "position": {
+                                    "x": 15,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 16,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 17,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 139,
+                                "position": {
+                                    "x": 15,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 123,
+                                "position": {
+                                    "x": 15,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 107,
+                                "position": {
+                                    "x": 15,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 92,
+                                "position": {
+                                    "x": 15,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 93,
+                                "position": {
+                                    "x": 16,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 108,
+                                "position": {
+                                    "x": 16,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 124,
+                                "position": {
+                                    "x": 16,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 140,
+                                "position": {
+                                    "x": 16,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 78,
+                                "position": {
+                                    "x": 17,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 79,
+                                "position": {
+                                    "x": 18,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 80,
+                                "position": {
+                                    "x": 19,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 82,
+                                "position": {
+                                    "x": 21,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 81,
+                                "position": {
+                                    "x": 20,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 83,
+                                "position": {
+                                    "x": 22,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 67,
+                                "position": {
+                                    "x": 22,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 51,
+                                "position": {
+                                    "x": 22,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 35,
+                                "position": {
+                                    "x": 22,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 34,
+                                "position": {
+                                    "x": 21,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 20,
+                                "position": {
+                                    "x": 22,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 19,
+                                "position": {
+                                    "x": 21,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 18,
+                                "position": {
+                                    "x": 20,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 17,
+                                "position": {
+                                    "x": 19,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 16,
+                                "position": {
+                                    "x": 18,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 17,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 30,
+                                "position": {
+                                    "x": 17,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 46,
+                                "position": {
+                                    "x": 17,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 62,
+                                "position": {
+                                    "x": 17,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 63,
+                                "position": {
+                                    "x": 18,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 47,
+                                "position": {
+                                    "x": 18,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 31,
+                                "position": {
+                                    "x": 18,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 32,
+                                "position": {
+                                    "x": 19,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 33,
+                                "position": {
+                                    "x": 20,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 48,
+                                "position": {
+                                    "x": 19,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 49,
+                                "position": {
+                                    "x": 20,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 64,
+                                "position": {
+                                    "x": 19,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 65,
+                                "position": {
+                                    "x": 20,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 66,
+                                "position": {
+                                    "x": 21,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 50,
+                                "position": {
+                                    "x": 21,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 21,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 22,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 18,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 19,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 190,
+                                "position": {
+                                    "x": 20,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 18,
+                                "position": {
+                                    "x": 22,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 18,
+                                "position": {
+                                    "x": 22,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 18,
+                                "position": {
+                                    "x": 22,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 22,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 22,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 27,
+                                "position": {
+                                    "x": 22,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 22,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 22,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 36,
+                                "position": {
+                                    "x": 22,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 45,
+                                "position": {
+                                    "x": 22,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 45,
+                                "position": {
+                                    "x": 22,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Common",
+                                "spriteID": 15,
+                                "position": {
+                                    "x": 22,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 7,
+                                "position": {
+                                    "x": 16,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 15,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 14,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 13,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 12,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 11,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 10,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 9,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 8,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 7,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 6,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 5,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 4,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 3,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 21,
+                                "position": {
+                                    "x": 18,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 187,
+                                "position": {
+                                    "x": 21,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 16,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 4,
+                                "position": {
+                                    "x": 20,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 8,
+                                "position": {
+                                    "x": 16,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 17,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 18,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 6,
+                                "position": {
+                                    "x": 19,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Water",
+                                "spriteID": 9,
+                                "position": {
+                                    "x": 20,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 194,
+                                "position": {
+                                    "x": 15,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 200,
+                                "position": {
+                                    "x": 15,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 14,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 13,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 12,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 11,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 10,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 9,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 8,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 7,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 6,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 5,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 4,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 3,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 3,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 4,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 5,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 6,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 7,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 8,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 9,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 10,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 11,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 12,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 13,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 14,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 16,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 17,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 18,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 19,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 193,
+                                "position": {
+                                    "x": 20,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 16,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 17,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 18,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 18,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 19,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 20,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 20,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 19,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 17,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 199,
+                                "position": {
+                                    "x": 16,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 105,
+                                "position": {
+                                    "x": 10,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 106,
+                                "position": {
+                                    "x": 11,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 120,
+                                "position": {
+                                    "x": 10,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 121,
+                                "position": {
+                                    "x": 11,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 122,
+                                "position": {
+                                    "x": 12,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 136,
+                                "position": {
+                                    "x": 10,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 137,
+                                "position": {
+                                    "x": 11,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 138,
+                                "position": {
+                                    "x": 12,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 154,
+                                "position": {
+                                    "x": 12,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 153,
+                                "position": {
+                                    "x": 11,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 152,
+                                "position": {
+                                    "x": 10,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 12,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 13,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 14,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": -3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": -2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": -1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": 0
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 8,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 6,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": 5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 7,
+                                    "y": 1
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 9,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 11,
+                                    "y": 2
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 3,
+                                "position": {
+                                    "x": 10,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 21,
+                                "position": {
+                                    "x": 4,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 165,
+                                "position": {
+                                    "x": 17,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 166,
+                                "position": {
+                                    "x": 18,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 179,
+                                "position": {
+                                    "x": 17,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "spriteID": 180,
+                                "position": {
+                                    "x": 18,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 18,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 18,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 18,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 17,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 18,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 18,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -5
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -4
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -7
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -8
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -9
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 19,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 16,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 15,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 15,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 14,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 13,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 16,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 12,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 11,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 10,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -11
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 3,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 4,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 5,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 6,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 7,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 8,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 9,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 10,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 11,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 12,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 13,
+                                    "y": -10
+                                }
+                            },
+                            {
+                                "palette": "Colors",
+                                "spriteID": 2,
+                                "position": {
+                                    "x": 14,
+                                    "y": -10
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

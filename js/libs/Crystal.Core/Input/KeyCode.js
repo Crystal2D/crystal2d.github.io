@@ -19,6 +19,9 @@ class KeyCode
     static get F12 () { return 16; }
     static get X () { return 17; }
     static get Z () { return 18; }
+    static get Mouse0 () { return 19; }
+    static get Mouse1 () { return 20; }
+    static get Mouse2 () { return 21; }
 
     static get SouthButton () { return 0; }
     static get EastButton () { return 1; }

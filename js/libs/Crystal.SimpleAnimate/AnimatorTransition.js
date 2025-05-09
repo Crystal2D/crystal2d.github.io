@@ -1,5 +1,7 @@
 class AnimatorTransition
 {
+    isExit = true;
     exitTime = 1;
-    nextNode = 1;
+    nextNode = "";
+    conditions = [];
 }

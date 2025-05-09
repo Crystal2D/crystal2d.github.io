@@ -14,7 +14,7 @@ class GameObject
     
     get activeSelf ()
     {
-        return this.#active;
+        return this.#activeOld && this.#active;
     }
     
     get name ()
@@ -121,12 +121,13 @@ class GameObject
         let args = "";
         let dat = data ?? { };
 
-        // 0 : Awake
-        // 1 : Enable
-        // 2 : Disable
+        // 0 : Normal
+        // 1 : Awake
+        // 2 : Enable
+        // 3 : Disable
         if (dat.specialCall == null) dat.specialCall = 0;
 
-        if (!this.#active && !dat.passActive) return;
+        if (!this.activeSelf && !dat.passActive) return;
 
         switch (dat.specialCall)
         {

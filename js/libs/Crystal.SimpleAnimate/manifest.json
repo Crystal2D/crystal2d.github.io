@@ -1,10 +1,15 @@
 {
     "name" : "Crystal.SimpleAnimate",
-    "description" : "",
+    "description" : "Adds a simple animation system",
+    "version": "2025.2f",
     "scripts" : [
         "AnimationClip",
-        "AnimatorNodeBase",
         "AnimatorNode",
+        "AnimatorMotion",
+        "AnimatorConditionMode",
+        "AnimatorCondition",
+        "AnimatorControllerParameterType",
+        "AnimatorControllerParameter",
         "AnimatorTransition",
         "AnimatorController",
         "Animator"
@@ -26,8 +31,111 @@
             ]
         },
         {
+            "name" : "AnimationClip",
+            "type" : 0,
+            "construction": "return Resources.Find(data)"
+        },
+        {
             "name" : "Animator",
-            "type" : 0
+            "type" : 0,
+            "args": [
+                {
+                    "type": "AnimatorController",
+                    "name": "controller"
+                }
+            ]
+        },
+        {
+            "name": "AnimatorTransition",
+            "type": 0,
+            "construction": "const output = new AnimatorTransition(); for (let i = 0; i < data.conditions?.length; i++) output.conditions.push(await toObject(\"AnimatorCondition\", data.conditions[i])); return output;",
+            "args": [
+                {
+                    "type": "boolean",
+                    "name": "isExit"
+                },
+                {
+                    "type": "number",
+                    "name": "exitTime"
+                },
+                {
+                    "type": "string",
+                    "name": "nextNode"
+                }
+            ]
+        },
+        {
+            "name": "AnimatorMotion",
+            "type": 0,
+            "construction": "const output = new AnimatorMotion(); for (let i = 0; i < data.transitions?.length; i++) output.transitions.push(await toObject(\"AnimatorTransition\", data.transitions[i])); return output;",
+            "args": [
+                {
+                    "type": "number",
+                    "name": "speed"
+                },
+                {
+                    "type": "string",
+                    "name": "name"
+                },
+                {
+                    "type": "boolean",
+                    "name": "reversed"
+                },
+                {
+                    "type": "AnimationClip",
+                    "name": "animation"
+                }
+            ]
+        },
+        {
+            "name": "AnimatorController",
+            "type": 1,
+            "construction": "const output = new AnimatorController(); for (let i = 0; i < data.parameters?.length; i++) output.parameters.push(await toObject(\"AnimatorControllerParameter\", data.parameters[i])); for (let i = 0; i < data.motions?.length; i++) output.nodes.push(await toObject(\"AnimatorMotion\", data.motions[i])); return output;"
+        },
+        {
+            "name" : "AnimatorController",
+            "type" : 0,
+            "construction": "return Resources.Find(data)"
+        },
+        {
+            "name": "AnimatorCondition",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "threshold"
+                },
+                {
+                    "type": "number",
+                    "name": "mode"
+                },
+                {
+                    "type": "string",
+                    "name": "parameter"
+                }
+            ]
+        },
+        {
+            "name": "AnimatorControllerParameter",
+            "type": 0,
+            "args": [
+                {
+                    "type": "string",
+                    "name": "name"
+                },
+                {
+                    "type": "boolean",
+                    "name": "defaultBool"
+                },
+                {
+                    "type": "number",
+                    "name": "defaultNumber"
+                },
+                {
+                    "type": "number",
+                    "name": "type"
+                }
+            ]
         }
     ]
 } 
