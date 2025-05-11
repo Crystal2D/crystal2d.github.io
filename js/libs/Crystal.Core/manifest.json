@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.Core",
     "description" : "The core module that Crystal runs on. We allow modifications, but it may break the engine. Please tamper with care",
-    "version": "2025.3f",
+    "version": "2025.3.1f",
     "scripts" : [
         "bindings",
         "DelegateEvent",

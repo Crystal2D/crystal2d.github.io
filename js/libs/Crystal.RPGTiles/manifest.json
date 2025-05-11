@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.RPGTiles",
     "description" : "Adds fast tiles and tilemap rendering",
-    "version": "2025.1f",
+    "version": "2025.2f",
     "scripts" : [
         "TilePalette",
         "Tile",
@@ -29,7 +29,7 @@
         {
             "name" : "Tilemap",
             "type" : 0,
-            "construction" : "const output = new Tilemap(await toObject(\"Material\", data.material)); for (let i = 0; i < data.tiles?.length ?? 0; i++) output.AddTile(await toObject(\"Tile\", data.tiles[i])); return output;",
+            "construction" : "const output = new Tilemap(await toObject(\"Material\", data.material)); for (let i = 0; i < data.tiles?.length ?? 0; i++) { for (let j = 0; j < data.tiles[i].sprites.length; j++) { const sprite = data.tiles[i].sprites[j]; for (let k = 0; k < sprite.coords.length; k++) output.AddTile(await toObject(\"Tile\", { palette: data.tiles[i].palette, spriteID: sprite.id, position: sprite.coords[k] })); } } return output;",
             "args" : [
                 {
                     "name" : "color",

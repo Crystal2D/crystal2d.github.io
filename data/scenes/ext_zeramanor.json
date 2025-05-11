@@ -54,11 +54,17 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Zera's Manor",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 0,
-                                    "y": 0
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -71,7 +77,10 @@
             "parent": 1,
             "components": [
                 {
-                    "type": "Tilemap"
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": []
+                    }
                 }
             ]
         }

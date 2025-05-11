@@ -18,7 +18,8 @@
     ],
     "scenes" : [
         "scene",
-        "title"
+        "title",
+        "test"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

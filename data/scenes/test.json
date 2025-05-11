@@ -1,0 +1,156 @@
+{
+    "name": "Test",
+    "resources": [
+        "sprites/tilesets/ext_common"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 1,
+            "components": [
+                {
+                    "type": "Grid"
+                }
+            ]
+        },
+        {
+            "name": "tile_Environment",
+            "id": 2,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Common",
+                                "sprites": [
+                                    {
+                                        "id": 18,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 19,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 20,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 29,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 28,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 27,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 36,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": -1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 37,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": -1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 38,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": -1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 47,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": -2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 46,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": -2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 45,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": -2
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

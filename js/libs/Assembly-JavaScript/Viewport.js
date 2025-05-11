@@ -6,7 +6,7 @@ class Viewport extends GameBehavior
     {
         Crispixels.effect = true;
 
-        SceneManager.Load(0, 1);
+        SceneManager.Load(0, 1, 2);
     }
 
     Update ()
