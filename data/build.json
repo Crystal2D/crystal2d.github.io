@@ -13,13 +13,14 @@
     "resources": [
         "main",
         "sprites",
+        "tiles",
         "animations",
         "audio"
     ],
     "scenes" : [
         "scene",
         "title",
-        "test"
+        "forest_pocket"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

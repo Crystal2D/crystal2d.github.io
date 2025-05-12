@@ -1416,6 +1416,428 @@
         ]
     },
     {
+        "name": "Exterior - Graveyard",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_graveyard",
+                "sprites": [
+                    {
+                        "name": "pebbles",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_graveyard (0)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_graveyard (1)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_graveyard (2)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ext_graveyard (3)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ext_graveyard (4)",
+                        "id": 5
+                    },
+                    {
+                        "name": "ext_graveyard (5)",
+                        "id": 6
+                    },
+                    {
+                        "name": "dirtdent",
+                        "id": 7
+                    },
+                    {
+                        "name": "deadtree-topleft",
+                        "id": 8
+                    },
+                    {
+                        "name": "deadtree-topright",
+                        "id": 9
+                    },
+                    {
+                        "name": "pebble",
+                        "id": 10
+                    },
+                    {
+                        "name": "ext_graveyard (6)",
+                        "id": 11
+                    },
+                    {
+                        "name": "ext_graveyard (7)",
+                        "id": 12
+                    },
+                    {
+                        "name": "ext_graveyard (8)",
+                        "id": 13
+                    },
+                    {
+                        "name": "ext_graveyard (9)",
+                        "id": 14
+                    },
+                    {
+                        "name": "ext_graveyard (10)",
+                        "id": 15
+                    },
+                    {
+                        "name": "ext_graveyard (11)",
+                        "id": 16
+                    },
+                    {
+                        "name": "yne",
+                        "id": 17
+                    },
+                    {
+                        "name": "deadtree-left",
+                        "id": 18
+                    },
+                    {
+                        "name": "deadtree-right",
+                        "id": 19
+                    },
+                    {
+                        "name": "ext_graveyard (12)",
+                        "id": 20
+                    },
+                    {
+                        "name": "ext_graveyard (13)",
+                        "id": 21
+                    },
+                    {
+                        "name": "ext_graveyard (14)",
+                        "id": 22
+                    },
+                    {
+                        "name": "ext_graveyard (15)",
+                        "id": 23
+                    },
+                    {
+                        "name": "ext_graveyard (16)",
+                        "id": 24
+                    },
+                    {
+                        "name": "ext_graveyard (17)",
+                        "id": 25
+                    },
+                    {
+                        "name": "ext_graveyard (18)",
+                        "id": 26
+                    },
+                    {
+                        "name": "ext_graveyard (19)",
+                        "id": 27
+                    },
+                    {
+                        "name": "deadtree-left1",
+                        "id": 28
+                    },
+                    {
+                        "name": "deadtree-right1",
+                        "id": 29
+                    },
+                    {
+                        "name": "ext_graveyard (20)",
+                        "id": 30
+                    },
+                    {
+                        "name": "ext_graveyard (21)",
+                        "id": 31
+                    },
+                    {
+                        "name": "ext_graveyard (22)",
+                        "id": 32
+                    },
+                    {
+                        "name": "ext_graveyard (23)",
+                        "id": 33
+                    },
+                    {
+                        "name": "ext_graveyard (24)",
+                        "id": 34
+                    },
+                    {
+                        "name": "ext_graveyard (25)",
+                        "id": 35
+                    },
+                    {
+                        "name": "ext_graveyard (26)",
+                        "id": 36
+                    },
+                    {
+                        "name": "ext_graveyard (27)",
+                        "id": 37
+                    },
+                    {
+                        "name": "deadtree-bottomleft",
+                        "id": 38
+                    },
+                    {
+                        "name": "deadtree-bottomright",
+                        "id": 39
+                    },
+                    {
+                        "name": "ext_graveyard (28)",
+                        "id": 40
+                    },
+                    {
+                        "name": "ext_graveyard (29)",
+                        "id": 41
+                    },
+                    {
+                        "name": "ext_graveyard (30)",
+                        "id": 42
+                    },
+                    {
+                        "name": "ext_graveyard (31)",
+                        "id": 43
+                    },
+                    {
+                        "name": "ext_graveyard (32)",
+                        "id": 44
+                    },
+                    {
+                        "name": "ext_graveyard (33)",
+                        "id": 45
+                    },
+                    {
+                        "name": "ext_graveyard (34)",
+                        "id": 46
+                    },
+                    {
+                        "name": "ext_graveyard (35)",
+                        "id": 47
+                    },
+                    {
+                        "name": "ext_graveyard (36)",
+                        "id": 48
+                    },
+                    {
+                        "name": "ext_graveyard (37)",
+                        "id": 49
+                    },
+                    {
+                        "name": "ext_graveyard (38)",
+                        "id": 50
+                    },
+                    {
+                        "name": "ext_graveyard (39)",
+                        "id": 51
+                    },
+                    {
+                        "name": "ext_graveyard (40)",
+                        "id": 52
+                    },
+                    {
+                        "name": "ext_graveyard (41)",
+                        "id": 53
+                    },
+                    {
+                        "name": "ext_graveyard (42)",
+                        "id": 54
+                    },
+                    {
+                        "name": "ext_graveyard (43)",
+                        "id": 55
+                    },
+                    {
+                        "name": "ext_graveyard (44)",
+                        "id": 56
+                    },
+                    {
+                        "name": "ext_graveyard (45)",
+                        "id": 57
+                    },
+                    {
+                        "name": "ext_graveyard (46)",
+                        "id": 58
+                    },
+                    {
+                        "name": "ext_graveyard (47)",
+                        "id": 59
+                    },
+                    {
+                        "name": "dwayne",
+                        "id": 60
+                    },
+                    {
+                        "name": "ext_graveyard (48)",
+                        "id": 61
+                    },
+                    {
+                        "name": "ext_graveyard (49)",
+                        "id": 62
+                    },
+                    {
+                        "name": "ext_graveyard (50)",
+                        "id": 63
+                    },
+                    {
+                        "name": "ext_graveyard (51)",
+                        "id": 64
+                    },
+                    {
+                        "name": "ext_graveyard (52)",
+                        "id": 65
+                    },
+                    {
+                        "name": "ext_graveyard (53)",
+                        "id": 66
+                    },
+                    {
+                        "name": "ext_graveyard (54)",
+                        "id": 67
+                    },
+                    {
+                        "name": "ext_graveyard (55)",
+                        "id": 68
+                    },
+                    {
+                        "name": "fence-upright",
+                        "id": 69
+                    },
+                    {
+                        "name": "ext_graveyard (56)",
+                        "id": 70
+                    },
+                    {
+                        "name": "ext_graveyard (57)",
+                        "id": 71
+                    },
+                    {
+                        "name": "ext_graveyard (58)",
+                        "id": 72
+                    },
+                    {
+                        "name": "ext_graveyard (59)",
+                        "id": 73
+                    },
+                    {
+                        "name": "ext_graveyard (60)",
+                        "id": 74
+                    },
+                    {
+                        "name": "ext_graveyard (61)",
+                        "id": 75
+                    },
+                    {
+                        "name": "ext_graveyard (62)",
+                        "id": 76
+                    },
+                    {
+                        "name": "ext_graveyard (63)",
+                        "id": 77
+                    },
+                    {
+                        "name": "fence-upleft",
+                        "id": 78
+                    },
+                    {
+                        "name": "fence-up",
+                        "id": 79
+                    },
+                    {
+                        "name": "ext_graveyard (64)",
+                        "id": 80
+                    },
+                    {
+                        "name": "ext_graveyard (65)",
+                        "id": 81
+                    },
+                    {
+                        "name": "ext_graveyard (66)",
+                        "id": 82
+                    },
+                    {
+                        "name": "tombstone-left",
+                        "id": 83
+                    },
+                    {
+                        "name": "tombstone-right",
+                        "id": 84
+                    },
+                    {
+                        "name": "fence-left",
+                        "id": 85
+                    },
+                    {
+                        "name": "fence-mid",
+                        "id": 86
+                    },
+                    {
+                        "name": "ext_graveyard (69)",
+                        "id": 87
+                    },
+                    {
+                        "name": "ext_graveyard (70)",
+                        "id": 88
+                    },
+                    {
+                        "name": "ext_graveyard (71)",
+                        "id": 89
+                    },
+                    {
+                        "name": "ext_graveyard (72)",
+                        "id": 90
+                    },
+                    {
+                        "name": "ext_graveyard (73)",
+                        "id": 91
+                    },
+                    {
+                        "name": "ext_graveyard (74)",
+                        "id": 92
+                    },
+                    {
+                        "name": "ext_graveyard (75)",
+                        "id": 93
+                    },
+                    {
+                        "name": "ext_graveyard (76)",
+                        "id": 94
+                    },
+                    {
+                        "name": "ext_graveyard (77)",
+                        "id": 95
+                    },
+                    {
+                        "name": "ext_graveyard (78)",
+                        "id": 96
+                    },
+                    {
+                        "name": "ext_graveyard (79)",
+                        "id": 97
+                    },
+                    {
+                        "name": "ext_graveyard (80)",
+                        "id": 98
+                    },
+                    {
+                        "name": "ext_graveyard (81)",
+                        "id": 99
+                    },
+                    {
+                        "name": "ext_graveyard (82)",
+                        "id": 100
+                    },
+                    {
+                        "name": "ext_graveyard (83)",
+                        "id": 101
+                    },
+                    {
+                        "name": "ext_graveyard (84)",
+                        "id": 102
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Village",
         "textures": [
             {

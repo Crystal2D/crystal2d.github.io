@@ -1,7 +1,8 @@
 {
     "name": "Test",
     "resources": [
-        "sprites/tilesets/ext_common"
+        "sprites/tilesets/ext_common",
+        "sprites/tilesets/colors"
     ],
     "gameObjects": [
         {
@@ -142,6 +143,20 @@
                                             {
                                                 "x": -2,
                                                 "y": -2
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Colors",
+                                "sprites": [
+                                    {
+                                        "id": 3,
+                                        "coords": [
+                                            {
+                                                "x": 3,
+                                                "y": 0
                                             }
                                         ]
                                     }
