@@ -6,7 +6,8 @@
         "character/RPGMovement",
         "character/CharController",
         "CameraController",
-        "Test"
+        "Test",
+        "Test2"
     ],
     "classes" : [
         {
@@ -29,6 +30,10 @@
         },
         {
             "name" : "Test",
+            "type" : 0
+        },
+        {
+            "name" : "Test2",
             "type" : 0
         }
     ]

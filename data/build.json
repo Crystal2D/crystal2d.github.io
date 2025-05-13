@@ -20,7 +20,7 @@
     "scenes" : [
         "scene",
         "title",
-        "forest_pocket"
+        "test"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
