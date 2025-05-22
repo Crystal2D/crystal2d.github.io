@@ -3,15 +3,34 @@
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         "Viewport",
+        "TitleScreen",
+        "AudioManager",
+        "Transitioner",
+        "Options",
         "character/RPGMovement",
         "character/CharController",
         "CameraController",
-        "Test",
-        "Test2"
+        "Test"
     ],
     "classes" : [
         {
             "name" : "Viewport",
+            "type" : 0
+        },
+        {
+            "name" : "TitleScreen",
+            "type" : 0
+        },
+        {
+            "name" : "AudioManager",
+            "type" : 0
+        },
+        {
+            "name" : "Transitioner",
+            "type" : 0
+        },
+        {
+            "name" : "Options",
             "type" : 0
         },
         {
@@ -30,10 +49,6 @@
         },
         {
             "name" : "Test",
-            "type" : 0
-        },
-        {
-            "name" : "Test2",
             "type" : 0
         }
     ]

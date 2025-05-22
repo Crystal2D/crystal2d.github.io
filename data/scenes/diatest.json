@@ -1,0 +1,88 @@
+{
+    "name": "Test",
+    "resources": [
+        "ref",
+        "sprites/arrows",
+        "font_main"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "ref",
+            "id": 1,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "ref"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingOrder": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 2,
+            "transform": {
+                "position": { "x": 0.526102, "y": -3.42 }
+            },
+            "components": [
+                {
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "Well... I usually don't work on weekends.",
+                        "width": 7,
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "arrow",
+            "id": 3,
+            "transform": {
+                "position": { "x": 0, "y": -4.375 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "down"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 255
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

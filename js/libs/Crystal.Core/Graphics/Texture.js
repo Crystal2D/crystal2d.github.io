@@ -13,6 +13,7 @@ class Texture
     
     pixelPerUnit = 16;
     sprites = [];
+    onUnload = new DelegateEvent();
     
     get isLoaded ()
     {
@@ -135,5 +136,12 @@ class Texture
         this.sprites[0] = new Sprite(null, this);
         
         this.#loaded = true;
+    }
+
+    Unload ()
+    {
+        this.onUnload.Invoke();
+
+        this.#gl.deleteTexture(this.#texture);
     }
 }

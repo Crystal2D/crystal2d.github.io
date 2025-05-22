@@ -19,7 +19,7 @@ class Vector2
      */
     static get zero ()
     {
-        return new Vector2(0, 0);
+        return new Vector2();
     }
     
     /**
@@ -267,33 +267,33 @@ class Vector2
 
     static Abs (value)
     {
-        return new Vector2(Math.abs(value.x), Math.abs(value.y));
+        return value.abs;
     }
     
     static Add (a, b)
     {
-        if (typeof b === "number")  return new Vector2(a.x + b, a.y + b);
+        if (typeof b === "number") return new Vector2(a.x + b, a.y + b);
         
         return new Vector2(a.x + b.x, a.y + b.y);
     }
     
     static Subtract (a, b)
     {
-        if (typeof b === "number")  return new Vector2(a.x - b, a.y - b);
+        if (typeof b === "number") return new Vector2(a.x - b, a.y - b);
         
         return new Vector2(a.x - b.x, a.y - b.y);
     }
     
     static Scale (a, b)
     {
-        if (typeof b === "number")  return new Vector2(a.x * b, a.y * b);
+        if (typeof b === "number") return new Vector2(a.x * b, a.y * b);
         
         return new Vector2(a.x * b.x, a.y * b.y);
     }
     
     static Divide (a, b)
     {
-        if (typeof b === "number")  return new Vector2(a.x / b, a.y / b);
+        if (typeof b === "number") return new Vector2(a.x / b, a.y / b);
         
         return new Vector2(a.x / b.x, a.y / b.y);
     }
@@ -303,6 +303,14 @@ class Vector2
         return new Vector2(
             Math.Lerp(a.x, b.x, t),
             Math.Lerp(a.y, b.y, t)
+        );
+    }
+
+    static LerpUnclamped (a, b, t)
+    {
+        return new Vector2(
+            Math.LerpUnclamped(a.x, b.x, t),
+            Math.LerpUnclamped(a.y, b.y, t)
         );
     }
     
@@ -320,7 +328,7 @@ class Vector2
      */
     toString ()
     {
-        return `(${this.x}, ${this.y})`;
+        return `(${this.x.toFixed(2)}, ${this.y.toFixed(2)})`;
     }
     
     /**
@@ -365,10 +373,10 @@ class Vector2
      */
     Normalize ()
     {
-        const magnitude = this.magnitude;
+        const normed = this.normalized;
         
-        this.x = (this.x / magnitude) || 0;
-        this.y = (this.y / magnitude) || 0;
+        this.x = normed.x;
+        this.y = normed.y;
     }
     
     /**

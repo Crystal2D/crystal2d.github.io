@@ -1,5 +1,6 @@
 class GraphicsBuffer
 {
+    #unloaded = false;
     #stride = 1;
     
     #gl = null;
@@ -8,6 +9,11 @@ class GraphicsBuffer
     target = 0;
     usageType = 0;
     name = "";
+
+    get isUnloaded ()
+    {
+        return this.#unloaded;
+    }
     
     get stride ()
     {
@@ -22,6 +28,15 @@ class GraphicsBuffer
         this.#gl = Application.gl;
         
         this.#buffer = this.#gl.createBuffer();
+    }
+
+    Unload ()
+    {
+        if (this.#unloaded) return;
+
+        this.#unloaded = true;
+
+        this.#gl.deleteBuffer(this.#buffer);
     }
     
     GetNativeBuffer ()

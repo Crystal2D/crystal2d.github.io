@@ -1,5 +1,28 @@
 [
     {
+        "path": "sprites/pixel",
+        "type": "Texture",
+        "args": {
+            "src": "pixel.png"
+        }
+    },
+    {
+        "path": "sprites/box",
+        "type": "Texture",
+        "args": {
+            "src": "box.png",
+            "sprite": {
+                "border": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1,
+                    "w": 1
+                }
+            },
+            "pixelPerUnit": 20
+        }
+    },
+    {
         "path": "sprites/title",
         "type": "Texture",
         "args": {
@@ -52,6 +75,50 @@
                     }
                 }
             ]
+        }
+    },
+    {
+        "path": "sprites/arrows",
+        "type": "Texture",
+        "args": {
+            "src": "arrows.png",
+            "sprites": [
+                {
+                    "name": "up",
+                    "rect": {
+                        "x": 4,
+                        "width": 5,
+                        "height": 4
+                    }
+                },
+                {
+                    "name": "down",
+                    "rect": {
+                        "x": 4,
+                        "y": 9,
+                        "width": 5,
+                        "height": 4
+                    }
+                },
+                {
+                    "name": "left",
+                    "rect": {
+                        "y": 4,
+                        "width": 4,
+                        "height": 5
+                    }
+                },
+                {
+                    "name": "right",
+                    "rect": {
+                        "x": 9,
+                        "y": 4,
+                        "width": 4,
+                        "height": 5
+                    }
+                }
+            ],
+            "pixelPerUnit": 32
         }
     }
 ]

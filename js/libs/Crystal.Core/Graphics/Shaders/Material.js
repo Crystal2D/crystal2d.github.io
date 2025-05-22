@@ -732,6 +732,13 @@ class Material
         
         return this.#buffers.length - 1;
     }
+
+    UnloadBuffer (name)
+    {
+        const buffer = this.GetBuffer(name);
+
+        buffer.Unload();
+    }
     
     SetBuffer (name, data)
     {
@@ -746,5 +753,10 @@ class Material
         const dataBuffer = this.GetBuffer(buffer);
         
         attribute.Set(dataBuffer, offset);
+    }
+
+    Unload ()
+    {
+        for (let i = 0; i < this.#buffers.length; i++) this.#buffers[i].Unload();
     }
 }

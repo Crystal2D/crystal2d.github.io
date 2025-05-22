@@ -132,7 +132,7 @@ class Rect
     
     toString ()
     {
-        return `${this.x}, ${this.y}, ${this.width}, ${this.height}`;
+        return `${this.x.toFixed(2)}, ${this.y.toFixed(2)}, ${this.width.toFixed(2)}, ${this.height.toFixed(2)}`;
     }
     
     Set (x, y, width, height)

@@ -23,6 +23,7 @@ class Text extends Renderer
     
     #font = null;
     #colorOld = null;
+    #lineHeight = null;
 
     characters = [];
     
@@ -167,6 +168,18 @@ class Text extends Renderer
                 this.#scale
             )
         );
+    }
+
+    get lineHeight ()
+    {
+        return this.#lineHeight;
+    }
+
+    set lineHeight (value)
+    {
+        this.#lineHeight = value;
+
+        this.#meshChanged = true;
     }
     
     #Word = class
@@ -477,7 +490,7 @@ class Text extends Renderer
     
     ForceMeshUpdate ()
     {
-        this.#colorOld = this.color;
+        this.#colorOld = this.color.Duplicate();
 
         const ppu = this.pixelPerUnit / this.#size;
         const texX = this.#font.texture.width;
@@ -486,7 +499,7 @@ class Text extends Renderer
         const rescaleH = texY / ppu;
         const maxW = this.#width / rescaleW;
         const maxH = this.#height / rescaleH;
-        const defaultLH = this.font.lineHeight / texY;
+        const defaultLH = (this.#lineHeight ?? this.font.lineHeight) / texY;
         
         let x = 0;
         let y = 0;
@@ -506,6 +519,8 @@ class Text extends Renderer
             
             if (word.lineBreak)
             {
+                if (!this.#overflowY && y + lineHeight * 2 > maxH) break;
+
                 if (x !== 0)
                 {
                     const currentWidth = widths[widths.length - 1].size;
@@ -542,6 +557,13 @@ class Text extends Renderer
                     
                     if (charWX)
                     {
+                        if (!this.#overflowY && y + lineHeight * 2 > maxH)
+                        {
+                            stop = true;
+
+                            break;
+                        }
+
                         const currentWidth = widths[widths.length - 1].size;
                         
                         if (currentWidth > bestWidth) bestWidth = currentWidth;
@@ -558,9 +580,9 @@ class Text extends Renderer
                     
                     const charHeight = sprite.rect.height / texY;
                     
-                    if (lineHeight < charHeight) lineHeight = charHeight;
+                    if (!this.#font.forcedLineHeight && lineHeight < charHeight) lineHeight = charHeight;
                     
-                    if (!this.overflowHeight && y + charHeight > maxH)
+                    if (!this.#overflowY && y + lineHeight > maxH)
                     {
                         stop = true;
                         
@@ -587,6 +609,8 @@ class Text extends Renderer
             
             if (wrapX)
             {
+                if (!this.#overflowY && y + lineHeight * 2 > maxH) break;
+
                 const currentWidth = widths[widths.length - 1].size;
                 
                 if (currentWidth > bestWidth) bestWidth = currentWidth;
@@ -603,7 +627,7 @@ class Text extends Renderer
             
             const height = word.height / texY;
             
-            if (lineHeight < height) lineHeight = height;
+            if (!this.#font.forcedLineHeight && lineHeight < height) lineHeight = height;
             
             if (!this.#overflowY && y + lineHeight > maxH) break;
             
@@ -648,7 +672,7 @@ class Text extends Renderer
         
         if (currentWidth > bestWidth) bestWidth = currentWidth;
         
-        if (this.#overflowY) y += defaultLH;
+        y += defaultLH;
         
         this.characters = chars;
         this.#widths = widths;
@@ -681,10 +705,8 @@ class Text extends Renderer
     }
     
     Render ()
-    {
-        if (!this.isLoaded || !this.gameObject.activeSelf) return;
-        
-        if (this.#colorOld !== this.color) this.ForceMeshUpdate();
+    {   
+        if (!this.#colorOld.Equals(this.color)) this.ForceMeshUpdate();
         
         const chars = this.characters;
         

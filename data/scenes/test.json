@@ -17,10 +17,7 @@
                     "type": "Camera"
                 },
                 {
-                    "type": "Viewport"
-                },
-                {
-                    "type": "Test2"
+                    "type": "CameraController"
                 }
             ]
         },
@@ -28,7 +25,10 @@
             "name": "char_yoki",
             "id": 4,
             "transform": {
-                "position": { "x": 5, "y": 6.3125 }
+                "position": {
+                    "x": 5,
+                    "y": 6.3125
+                }
             },
             "components": [
                 {
@@ -1930,15 +1930,6 @@
                                             },
                                             {
                                                 "x": 6,
-                                                "y": -38
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "id": 38,
-                                        "coords": [
-                                            {
-                                                "x": 7,
                                                 "y": -38
                                             }
                                         ]
@@ -9147,6 +9138,10 @@
                                             {
                                                 "x": 22,
                                                 "y": -31
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -38
                                             }
                                         ]
                                     },

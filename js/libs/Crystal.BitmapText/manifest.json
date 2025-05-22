@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.BitmapText",
     "description" : "Implements text rendering based on bitmaps",
-    "version": "2025.1f",
+    "version": "2025.2f",
     "scripts" : [
         "FontAtlas",
         "FontGlyph",
@@ -16,6 +16,10 @@
             "type" : 1,
             "construction" : "const texture = new Texture(data.texture); await texture.Load(); texture.pixelPerUnit = data.pixelPerUnit ?? 16; texture.filterMode = +(data.smooth === true); let glyphsData = data.glyphs; if (typeof glyphsData === \"string\") { const request = await fetch(`data/${data.glyphs}.json`); glyphsData = await request.json(); } let glyphs = []; for (let i = 0; i < glyphsData.length; i++) { const glyph = await toObject(\"FontGlyph\", glyphsData[i]); glyphs.push(glyph); } return new FontAtlas(texture, glyphs);",
             "args" : [
+                {
+                    "name" : "forcedLineHeight",
+                    "type" : "boolean"
+                },
                 {
                     "name" : "lineHeight",
                     "type" : "number"
@@ -88,6 +92,10 @@
                 {
                     "name" : "verticalAlign",
                     "type" : "number"
+                },
+                {
+                    "name": "lineHeight",
+                    "type": "number"
                 }
             ]
         }

@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.Core",
     "description" : "The core module that Crystal runs on. We allow modifications, but it may break the engine. Please tamper with care",
-    "version": "2025.3.1f",
+    "version": "2025.4f",
     "scripts" : [
         "bindings",
         "DelegateEvent",
@@ -11,6 +11,7 @@
         "Debug",
         "Time",
         "Math/Vector2",
+        "Math/Vector4",
         "Input/Touch/TouchPhase",
         "Input/Touch/Touch",
         "Input/Input",
@@ -38,6 +39,8 @@
         "Graphics/Shaders/GraphicsBuffer",
         "Graphics/Shaders/ShaderAttribute",
         "Graphics/Shaders/Material",
+        "Graphics/TextureWrapMode",
+        "Graphics/FilterMode",
         "Graphics/Texture",
         "Graphics/Sprite",
         "Graphics/Rendering/SortingLayer",
@@ -57,6 +60,28 @@
                 },
                 {
                     "name" : "y",
+                    "type" : "number"
+                }
+            ]
+        },
+        {
+            "name" : "Vector4",
+            "type" : 0,
+            "args" : [
+                {
+                    "name" : "x",
+                    "type" : "number"
+                },
+                {
+                    "name" : "y",
+                    "type" : "number"
+                },
+                {
+                    "name" : "z",
+                    "type" : "number"
+                },
+                {
+                    "name" : "w",
                     "type" : "number"
                 }
             ]
@@ -116,7 +141,7 @@
         {
             "name" : "Texture",
             "type" : 1,
-            "construction" : "const output = new Texture(data.src); await output.Load(); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(sprite.name, output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); output.sprites.push(newSprite); } return output;",
+            "construction" : "const output = new Texture(data.src); await output.Load(); if (data.sprite?.pivot != null) output.sprites[0].pivot = await toObject(\"Vector2\", data.sprite.pivot); if (data.sprite?.border != null) output.sprites[0].border = await toObject(\"Vector4\", data.sprite.border); const sprites = data.sprites ?? []; for (let i = 0; i < sprites.length; i++) { const sprite = sprites[i]; const rect = sprite.rect == null ? null : await toObject(\"Rect\", sprite.rect); const newSprite = new Sprite(sprite.name, output, rect); if (sprite.pivot != null) newSprite.pivot = await toObject(\"Vector2\", sprite.pivot); if (sprite.border != null) newSprite.border = await toObject(\"Vector4\", sprite.border); output.sprites.push(newSprite); } return output;",
             "args" : [
                 {
                     "name" : "pixelPerUnit",
@@ -177,6 +202,14 @@
                 {
                     "name" : "sortingOrder",
                     "type" : "number"
+                },
+                {
+                    "name" : "drawMode",
+                    "type" : "number"
+                },
+                {
+                    "name" : "size",
+                    "type" : "Vector2"
                 }
             ]
         },

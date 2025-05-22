@@ -1,6 +1,7 @@
 class Sprite
 {
     pivot = new Vector2(0.5, 0.5);
+    border = Vector4.zero;
     
     texture = null;
     rect = null;
@@ -47,6 +48,7 @@ class Sprite
         const output = new Sprite(this.name, this.texture, this.rect);
         
         output.pivot = this.pivot;
+        output.border = this.border;
         
         return output;
     }

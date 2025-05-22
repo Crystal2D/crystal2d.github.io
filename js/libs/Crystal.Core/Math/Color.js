@@ -44,7 +44,7 @@ class Color
     
     toString ()
     {
-        return `${this.r}, ${this.g}, ${this.b}, ${this.a}`;
+        return `${this.r.toFixed(2)}, ${this.g.toFixed(2)}, ${this.b.toFixed(2)}, ${this.a.toFixed(2)}`;
     }
     
     Set (r, g, b, a)

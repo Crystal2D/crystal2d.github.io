@@ -65,22 +65,20 @@ class Camera extends Behavior
         if (this.#updateProjMat) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
         
         const mScale = new Vector2(1 / Window.aspect, -1);
-        
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
-
         const min = this.bounds.min;
         const max = this.bounds.max;
 
-        const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y));
-
-        objs.sort((a, b) => a.GetComponent("Renderer").sortingOrder - b.GetComponent("Renderer").sortingOrder);
-        if (SortingLayer.ids.length > 1) objs.sort((a, b) => SortingLayer.ids.indexOf(a.GetComponent("Renderer").sortingLayer) - SortingLayer.ids.indexOf(b.GetComponent("Renderer").sortingLayer));
+        const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y))
+            .filter(item => item.GetComponent("Renderer").isLoaded && item.activeInHierarchy)
+            .map(item => item.GetComponent("Renderer"))
+            .sort((a, b) => a.sortingOrder - b.sortingOrder);
+            
+        if (SortingLayer.ids.length > 1) objs.sort((a, b) => SortingLayer.ids.indexOf(a.sortingLayer) - SortingLayer.ids.indexOf(b.sortingLayer));
 
         for (let i = 0; i < objs.length; i++)
         {
-            const renderer = objs[i].GetComponent("Renderer");
-
-            const lWM = renderer.localToWorldMatrix;
+            const lWM = objs[i].localToWorldMatrix;
             const renM = Matrix3x3.Multiply(
                 Matrix3x3.Multiply(
                     Matrix3x3.Multiply(transM, this.#projMatrix),
@@ -89,8 +87,8 @@ class Camera extends Behavior
                 lWM
             );
             
-            renderer.renderMatrix = renM;
-            renderer.Render();
+            objs[i].renderMatrix = renM;
+            objs[i].Render();
         }
     }
 }

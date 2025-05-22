@@ -1,7 +1,7 @@
 {
     "name" : "Crystal.Audio",
     "description" : "Adds basic audio implementations",
-    "version": "2025.1f",
+    "version": "2025.2f",
     "scripts" : [
         "AudioSource",
         "AudioSettings",

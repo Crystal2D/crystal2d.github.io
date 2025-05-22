@@ -1,8 +1,10 @@
 class SpriteRenderer extends Renderer
 {
-    #updatedSprite = false;
+    #changedDrawMode = false;
     #meshChanged = true;
-    #trisCount = 0;
+    #drawMode = 0;
+    #indexes = [];
+    #trisCounts = [];
     
     #boundsSize = Vector2.zero;
     #bounds = new Bounds();
@@ -11,6 +13,7 @@ class SpriteRenderer extends Renderer
     #sprite = null;
     #spriteOld = null;
     #colorOld = null;
+    #size = null;
 
     get meshChanged ()
     {
@@ -30,8 +33,20 @@ class SpriteRenderer extends Renderer
     set sprite (value)
     {
         this.#sprite = value;
-        this.#updatedSprite = true;
         
+        this.Reload();
+    }
+
+    get drawMode ()
+    {
+        return this.#drawMode;
+    }
+
+    set drawMode (value)
+    {
+        this.#drawMode = value;
+        this.#changedDrawMode = true;
+
         this.Reload();
     }
 
@@ -41,6 +56,18 @@ class SpriteRenderer extends Renderer
             this.transform.localToWorldMatrix,
             this.#transMat
         );
+    }
+
+    get size ()
+    {
+        return this.#size;
+    }
+
+    set size (value)
+    {
+        this.#size = value;
+
+        this.Reload();
     }
     
     constructor (sprite, material)
@@ -53,7 +80,7 @@ class SpriteRenderer extends Renderer
 
     #RemapColors ()
     {
-        this.#colorOld = this.color;
+        this.#colorOld = this.color.Duplicate();
 
         const color = [
             this.color.r,
@@ -61,74 +88,429 @@ class SpriteRenderer extends Renderer
             this.color.b,
             this.color.a
         ];
+        const colorArray = [];
 
-        this.material.SetBuffer(this.colorBufferID, [
+        for (let i = 0; i < this.#indexes.length; i++) colorArray.push(
             ...color,
             ...color,
             ...color,
             ...color,
             ...color,
             ...color
-        ]);
+        );
+
+        this.material.SetBuffer(this.colorBufferID, colorArray);
     }
     
     Reload ()
     {
-        if (!this.#sprite.texture.isLoaded)
-        {
-            requestAnimationFrame(() => this.Reload());
-            
-            return;
-        }
-        
-        if (!this.#updatedSprite) super.Reload();
+        super.Reload();
 
         this.#spriteOld = this.#sprite;
-        this.#updatedSprite = false;
+
+        const ppu = this.sprite.pixelPerUnit;
+
+        if (this.#size == null) this.#size = Vector2.Divide(Vector2.one, ppu);
+
+        this.#indexes = [];
+        this.#trisCounts = [];
         
-        const vertices = this.sprite.vertices;
-        const vertexPos = vertices[0];
+        const verts = this.sprite.vertices;
+        const renderSize = Vector2.Scale(this.#size, ppu);
+
+        if (!renderSize.Equals(Vector2.one))
+        {
+            const vertBounds = new Bounds();
+            vertBounds.SetMinMax(verts[0], verts[3]);
+            vertBounds.extents = Vector2.Scale(vertBounds.extents, renderSize);
+
+            verts[0] = vertBounds.min;
+            verts[1] = new Vector2(vertBounds.max.x, vertBounds.min.y);
+            verts[2] = new Vector2(vertBounds.min.x, vertBounds.max.y);
+            verts[3] = vertBounds.max;
+        }
+
+        const texVerts = this.sprite.vertices;
+
+        const texX = this.sprite.texture.width;
+        const texY = this.sprite.texture.height;
         const tris = this.sprite.triangles;
         
+        let currentIndex = 0;
         let vertexArray = [];
         let textureArray = [];
-        
-        for (let i = 0; i < tris.length; i++)
+        let vertexPos = verts[0];
+
+        const rescaleW = texX / ppu;
+        const rescaleH = texY / ppu;
+
+        this.#boundsSize = new Vector2(
+            rescaleW * (verts[3].x - vertexPos.x),
+            rescaleH * (verts[3].y - vertexPos.y)
+        );
+
+        if (this.#drawMode > 0 && !renderSize.Equals(Vector2.one))
         {
-            const vertex = vertices[tris[i]];
-            const index = i * 2;
-            
-            vertexArray[index] = vertex.x - vertexPos.x;
-            vertexArray[index + 1] = vertex.y - vertexPos.y;
-            
-            textureArray[index] = vertex.x;
-            textureArray[index + 1] = vertex.y;
+            const ends = [
+                Vector2.Add(verts[0], new Vector2(
+                    this.sprite.border.x / texX,
+                    this.sprite.border.y / texY
+                )),
+                Vector2.Add(verts[3], new Vector2(
+                    -this.sprite.border.z / texX,
+                    -this.sprite.border.w / texY
+                ))
+            ];
+            const texEnds = [
+                Vector2.Add(texVerts[0], new Vector2(
+                    this.sprite.border.x / texX,
+                    this.sprite.border.y / texY
+                )),
+                Vector2.Add(texVerts[3], new Vector2(
+                    -this.sprite.border.z / texX,
+                    -this.sprite.border.w / texY
+                ))
+            ];
+            const newVerts = [];
+            const newTexVerts = [];
+
+            vertexPos = Vector2.Add(
+                vertexPos,
+                new Vector2(
+                    this.sprite.border.z / texX,
+                    this.sprite.border.w / texY
+                )
+            );
+
+            // #--
+            // ---
+            // ---
+            newVerts.push([
+                verts[0],
+                new Vector2(ends[0].x, verts[0].y),
+                new Vector2(verts[0].x, ends[0].y),
+                ends[0]
+            ]);
+            newTexVerts.push([
+                texVerts[0],
+                new Vector2(texEnds[0].x, texVerts[0].y),
+                new Vector2(texVerts[0].x, texEnds[0].y),
+                texEnds[0]
+            ]);
+
+            // --#
+            // ---
+            // ---
+            newVerts.push([
+                new Vector2(ends[1].x, verts[1].y),
+                verts[1],
+                new Vector2(ends[1].x, ends[0].y),
+                new Vector2(verts[1].x, ends[0].y)
+            ]);
+            newTexVerts.push([
+                new Vector2(texEnds[1].x, texVerts[1].y),
+                texVerts[1],
+                new Vector2(texEnds[1].x, texEnds[0].y),
+                new Vector2(texVerts[1].x, texEnds[0].y)
+            ]);
+
+            // ---
+            // ---
+            // #--
+            newVerts.push([
+                new Vector2(verts[2].x, ends[1].y),
+                new Vector2(ends[0].x, ends[1].y),
+                verts[2],
+                new Vector2(ends[0].x, verts[2].y)
+            ]);
+            newTexVerts.push([
+                new Vector2(texVerts[2].x, texEnds[1].y),
+                new Vector2(texEnds[0].x, texEnds[1].y),
+                texVerts[2],
+                new Vector2(texEnds[0].x, texVerts[2].y)
+            ]);
+
+            // ---
+            // ---
+            // --#
+            newVerts.push([
+                ends[1],
+                new Vector2(verts[3].x, ends[1].y),
+                new Vector2(ends[1].x, verts[3].y),
+                verts[3]
+            ]);
+            newTexVerts.push([
+                texEnds[1],
+                new Vector2(texVerts[3].x, texEnds[1].y),
+                new Vector2(texEnds[1].x, texVerts[3].y),
+                texVerts[3]
+            ]);
+
+            if (this.#drawMode === 1)
+            {
+                // -#-
+                // ---
+                // ---
+                newVerts.push([
+                    new Vector2(ends[0].x, verts[0].y),
+                    new Vector2(ends[1].x, verts[1].y),
+                    ends[0],
+                    new Vector2(ends[1].x, ends[0].y)
+                ]);
+                newTexVerts.push([
+                    new Vector2(texEnds[0].x, texVerts[0].y),
+                    new Vector2(texEnds[1].x, texVerts[1].y),
+                    texEnds[0],
+                    new Vector2(texEnds[1].x, texEnds[0].y)
+                ]);
+
+                // ---
+                // ---
+                // -#-
+                newVerts.push([
+                    new Vector2(ends[0].x, ends[1].y),
+                    ends[1],
+                    new Vector2(ends[0].x, verts[2].y),
+                    new Vector2(ends[1].x, verts[3].y)
+                ]);
+                newTexVerts.push([
+                    new Vector2(texEnds[0].x, texEnds[1].y),
+                    texEnds[1],
+                    new Vector2(texEnds[0].x, texVerts[2].y),
+                    new Vector2(texEnds[1].x, texVerts[3].y)
+                ]);
+
+                // ---
+                // #--
+                // ---
+                newVerts.push([
+                    new Vector2(verts[0].x, ends[0].y),
+                    ends[0],
+                    new Vector2(verts[2].x, ends[1].y),
+                    new Vector2(ends[0].x, ends[1].y)
+                ]);
+                newTexVerts.push([
+                    new Vector2(texVerts[0].x, texEnds[0].y),
+                    texEnds[0],
+                    new Vector2(texVerts[2].x, texEnds[1].y),
+                    new Vector2(texEnds[0].x, texEnds[1].y)
+                ]);
+
+                // ---
+                // --#
+                // ---
+                newVerts.push([
+                    new Vector2(ends[1].x, ends[0].y),
+                    new Vector2(verts[1].x, ends[0].y),
+                    ends[1],
+                    new Vector2(verts[3].x, ends[1].y)
+                ]);
+                newTexVerts.push([
+                    new Vector2(texEnds[1].x, texEnds[0].y),
+                    new Vector2(texVerts[1].x, texEnds[0].y),
+                    texEnds[1],
+                    new Vector2(texVerts[3].x, texEnds[1].y)
+                ]);
+            }
+            else
+            {
+                const cutSize = Vector2.Subtract(texEnds[1], texEnds[0]);
+                const realCutCount = new Vector2(
+                    ((renderSize.x * (texVerts[3].x - texVerts[0].x)) - (this.sprite.border.x + this.sprite.border.z) / texX) / cutSize.x,
+                    ((renderSize.y * (texVerts[3].y - texVerts[0].y)) - (this.sprite.border.y + this.sprite.border.w) / texY) / cutSize.y
+                );
+                const cutCount = new Vector2(Math.ceil(realCutCount.x), Math.ceil(realCutCount.y));
+                
+                for (let y = 0; y < cutCount.y; y++)
+                {
+                    for (let x = 0; x < cutCount.x; x++)
+                    {
+                        const startPoint = Vector2.Add(ends[0], new Vector2(cutSize.x * x, cutSize.y * y));
+                        const endPoint = Vector2.Min(
+                            Vector2.Add(startPoint, cutSize),
+                            ends[1]
+                        );
+                        const texEndPoint = Vector2.Scale(
+                            texEnds[1],
+                            new Vector2(
+                                x === cutCount.x - 1 ? (realCutCount.x % 1) || 1 : 1,
+                                y === cutCount.y - 1 ? (realCutCount.y % 1) || 1 : 1
+                            )
+                        );
+
+                        // ---
+                        // -#-
+                        // ---
+                        newVerts.push([
+                            startPoint,
+                            new Vector2(endPoint.x, startPoint.y),
+                            new Vector2(startPoint.x, endPoint.y),
+                            endPoint
+                        ]);
+                        newTexVerts.push([
+                            texEnds[0],
+                            new Vector2(texEndPoint.x, texEnds[0].y),
+                            new Vector2(texEnds[0].x, texEndPoint.y),
+                            texEndPoint
+                        ]);
+
+                        // -#-
+                        // ---
+                        // ---
+                        if (y === 0)
+                        {
+                            newVerts.push([
+                                new Vector2(startPoint.x, verts[0].y),
+                                new Vector2(endPoint.x, verts[1].y),
+                                startPoint,
+                                endPoint,
+                            ]);
+                            newTexVerts.push([
+                                new Vector2(texEnds[0].x, texVerts[0].y),
+                                new Vector2(texEndPoint.x, texVerts[1].y),
+                                texEnds[0],
+                                new Vector2(texEndPoint.x, texEnds[1].y),
+                            ]);
+                        }
+                        
+                        // ---
+                        // ---
+                        // -#-
+                        if (y === cutCount.y - 1)
+                        {
+                            newVerts.push([
+                                new Vector2(startPoint.x, endPoint.y),
+                                endPoint,
+                                new Vector2(startPoint.x, verts[2].y),
+                                new Vector2(endPoint.x, verts[3].y)
+                            ]);
+                            newTexVerts.push([
+                                new Vector2(texEnds[0].x, texEnds[1].y),
+                                new Vector2(texEndPoint.x, texEnds[1].y),
+                                new Vector2(texEnds[0].x, texVerts[2].y),
+                                new Vector2(texEndPoint.x, texVerts[3].y)
+                            ]);
+                        }
+
+                        // ---
+                        // #--
+                        // ---
+                        if (x === 0)
+                        {
+                            newVerts.push([
+                                new Vector2(verts[0].x, startPoint.y),
+                                startPoint,
+                                new Vector2(verts[2].x, endPoint.y),
+                                new Vector2(startPoint.x, endPoint.y)
+                            ]);
+                            newTexVerts.push([
+                                new Vector2(texVerts[0].x, texEnds[0].y),
+                                texEnds[0],
+                                new Vector2(texVerts[2].x, texEndPoint.y),
+                                new Vector2(texEnds[0].x, texEndPoint.y)
+                            ]);
+                        }
+
+                        // ---
+                        // --#
+                        // ---
+                        if (x === cutCount.x - 1)
+                        {
+                            newVerts.push([
+                                new Vector2(endPoint.x, startPoint.y),
+                                new Vector2(verts[1].x, startPoint.y),
+                                endPoint,
+                                new Vector2(verts[3].x, endPoint.y)
+                            ]);
+                            newTexVerts.push([
+                                new Vector2(texEnds[1].x, texEnds[0].y),
+                                new Vector2(texVerts[1].x, texEnds[0].y),
+                                new Vector2(texEnds[1].x, texEndPoint.y),
+                                new Vector2(texVerts[3].x, texEndPoint.y)
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            for (let i = 0; i < newVerts.length; i++)
+            {
+                const verts = newVerts[i];
+                const texVerts = newTexVerts[i];
+
+                for (let i = 0; i < tris.length; i++)
+                {
+                    const vert = verts[tris[i]];
+                    const texVert = texVerts[tris[i]];
+
+                    vertexArray.push(
+                        vert.x - vertexPos.x,
+                        vert.y - vertexPos.y
+                    );
+
+                    textureArray.push(
+                        texVert.x,
+                        texVert.y
+                    );
+                }
+
+                this.#indexes.push(currentIndex);
+                this.#trisCounts.push(tris.length - 1);
+
+                currentIndex += tris.length;
+            }
+
+            verts[0] = ends[0];
+            verts[1] = new Vector2(ends[1].x, ends[0].y);
+            verts[2] = new Vector2(ends[0].x, ends[1].y);
+            verts[3] = ends[1];
+
+            if (this.#drawMode === 1)
+            {
+                texVerts[0] = texEnds[0];
+                texVerts[1] = new Vector2(texEnds[1].x, texEnds[0].y);
+                texVerts[2] = new Vector2(texEnds[0].x, texEnds[1].y);
+                texVerts[3] = texEnds[1];
+            }
         }
-        
-        this.#trisCount = tris.length;
+
+        if (this.#drawMode < 2 || renderSize.Equals(Vector2.one))
+        {
+            for (let i = 0; i < tris.length; i++)
+            {
+                const vert = verts[tris[i]];
+                const texVert = texVerts[tris[i]];
+
+                vertexArray.push(
+                    vert.x - vertexPos.x,
+                    vert.y - vertexPos.y
+                );
+
+                textureArray.push(
+                    texVert.x,
+                    texVert.y
+                );
+            }
+
+            this.#indexes.push(currentIndex);
+            this.#trisCounts.push(tris.length - 1);
+        }
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
 
-        if (this.#colorOld == null) this.#RemapColors();
-        
-        const ppu = this.sprite.pixelPerUnit;
-        const texX = this.sprite.texture.width;
-        const texY = this.sprite.texture.height;
-        const rescaleW = texX / ppu;
-        const rescaleH = texY / ppu;
+        if (this.#colorOld == null || this.#changedDrawMode) this.#RemapColors();
 
-        const boundsSize = new Vector2(
-            rescaleW * (vertices[3].x - vertexPos.x),
-            rescaleH * (vertices[3].y - vertexPos.y)
-        );
-
-        this.#boundsSize = boundsSize;
-        
         this.#transMat = Matrix3x3.TRS(
             Vector2.Scale(
                 this.sprite.pivot,
-                Vector2.Scale(boundsSize, -1)
+                Vector2.Scale(
+                    new Vector2(
+                        rescaleW * (verts[3].x - vertexPos.x),
+                        rescaleH * (verts[3].y - vertexPos.y)
+                    ),
+                    -1
+                )
             ),
             0,
             Vector2.Scale(
@@ -136,6 +518,8 @@ class SpriteRenderer extends Renderer
                 texX > texY ? rescaleW : rescaleH
             )
         );
+
+        this.#meshChanged = true;
     }
 
     RecalcBounds ()
@@ -173,9 +557,7 @@ class SpriteRenderer extends Renderer
     
     Render ()
     {
-        if (!this.isLoaded || !this.gameObject.activeSelf) return;
-
-        if (this.#colorOld !== this.color) this.#RemapColors();
+        if (!this.#colorOld.Equals(this.color)) this.#RemapColors();
         
         const gl = this.material.gl;
         
@@ -202,7 +584,15 @@ class SpriteRenderer extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.sprite.texture.GetNativeTexture());
         
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCount - 1);
+        if (this.#drawMode === 0) gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCounts[0]);
+        else Application.gl_multidraw.multiDrawArraysWEBGL(
+            gl.TRIANGLE_STRIP,
+            this.#indexes,
+            0,
+            this.#trisCounts,
+            0,
+            this.#indexes.length
+        );
         
         gl.useProgram(null);
     }

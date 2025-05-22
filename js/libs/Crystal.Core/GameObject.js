@@ -16,6 +16,13 @@ class GameObject
     {
         return this.#activeOld && this.#active;
     }
+
+    get activeInHierarchy ()
+    {
+        if (this.transform.parent == null) return this.activeSelf;
+
+        return this.activeSelf && this.transform.parent.gameObject.activeInHierarchy;
+    }
     
     get name ()
     {
@@ -75,7 +82,7 @@ class GameObject
     
     static Find (name)
     {
-        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name && element.activeSelf);
+        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name && element.activeInHierarchy);
     }
     
     static FindByID (id)
@@ -85,7 +92,7 @@ class GameObject
     
     static FindComponents (type)
     {
-        const gameObjs = SceneManager.GetActiveScene().gameObjects.filter(item => item.activeSelf);
+        const gameObjs = SceneManager.GetActiveScene().gameObjects.filter(item => item.activeInHierarchy);
         
         let output = [];
         
