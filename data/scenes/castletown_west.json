@@ -118,75 +118,49 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": -2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": -1,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 0,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 1,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 3,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 4,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 5,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 6,
-                                    "y": 1
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 4,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 1
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -204,67 +178,45 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": -1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 0,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 3,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 4,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 5,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 6,
-                                    "y": 0
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -282,195 +234,109 @@
                         "tiles": [
                             {
                                 "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -6,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 6,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 10,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 14,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 18,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 22,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -6,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 2,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 6,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 10,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 14,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 18,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 22,
-                                    "y": 1
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -6,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": -2,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 2,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 6,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 10,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 14,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 18,
-                                    "y": 2
-                                }
-                            },
-                            {
-                                "palette": "Colors",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 22,
-                                    "y": 2
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 22,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 22,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 22,
+                                                "y": 2
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -488,75 +354,49 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": -2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": -1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 0,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 1,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 2,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 3,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 4,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 5,
-                                    "y": 0
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 6,
-                                    "y": 0
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 4,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ],
                         "sortingOrder": 1
@@ -575,131 +415,92 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": -1,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 0,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 1,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 2,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 3,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 4,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 5,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 6,
-                                    "y": -1
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": -1,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 0,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 7,
-                                "position": {
-                                    "x": 1,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 2,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 3,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 6,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 4,
-                                    "y": -2
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 5,
-                                    "y": -2
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 5,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": -2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 6,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": -2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 7,
+                                        "coords": [
+                                            {
+                                                "x": 1,
+                                                "y": -2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 4,
+                                        "coords": [
+                                            {
+                                                "x": 3,
+                                                "y": -2
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ],
                         "sortingOrder": 2
@@ -718,51 +519,52 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 0,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 7,
-                                "position": {
-                                    "x": -1,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 2,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 4,
-                                "position": {
-                                    "x": 1,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 6,
-                                "position": {
-                                    "x": 4,
-                                    "y": -3
-                                }
-                            },
-                            {
-                                "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 5,
-                                "position": {
-                                    "x": 3,
-                                    "y": -3
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 6,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": -3
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 7,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": -3
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 4,
+                                        "coords": [
+                                            {
+                                                "x": 1,
+                                                "y": -3
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 5,
+                                        "coords": [
+                                            {
+                                                "x": 3,
+                                                "y": -3
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -780,11 +582,17 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Castle Town - Houses",
-                                "spriteID": 1,
-                                "position": {
-                                    "x": 6,
-                                    "y": -3
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": 6,
+                                                "y": -3
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }

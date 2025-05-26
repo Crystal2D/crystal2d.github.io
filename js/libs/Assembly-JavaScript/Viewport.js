@@ -5,8 +5,6 @@ class Viewport extends GameBehavior
     Awake ()
     {
         Crispixels.effect = true;
-
-        SceneManager.Load(0, 1);
     }
 
     Update ()
@@ -32,21 +30,26 @@ class Viewport extends GameBehavior
             }
         }
         if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start)) Window.fullscreen = !Window.fullscreen;
-        
-        if (Input.GetKeyDown(KeyCode.Z) || GamepadInput.GetKeyDown(KeyCode.SouthButton)) this.#AddScene(-1);
-        else if (Input.GetKeyDown(KeyCode.X) || GamepadInput.GetKeyDown(KeyCode.EastButton)) this.#AddScene(1);
-
-        FPSMeter.Update();
     }
 
-    #AddScene (i)
+    LateUpdate ()
     {
-        if (SceneManager.loadedSceneCount === 0) return;
+        if (Options.resolution === 4)
+        {
+            if (window.innerWidth < window.innerHeight)
+            {
+                const sizer = (window.innerWidth - window.innerWidth % 480) / 480;
 
-        let index = this.gameObject.scene.index + i;
+                Window.SetResolution(480 * sizer, 432 * sizer);
+            }
+            else
+            {
+                const sizer = (window.innerHeight - window.innerHeight % 432) / 432;
 
-        index = Math.Clamp(index, 0, SceneManager.sceneCount - 1);
-        
-        SceneManager.SetActiveScene(index);
+                Window.SetResolution(480 * sizer, 432 * sizer);
+            }
+        }
+
+        FPSMeter.Update();
     }
 }

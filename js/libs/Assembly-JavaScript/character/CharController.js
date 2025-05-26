@@ -10,16 +10,18 @@ class CharController extends RPGMovement
 
     Start ()
     {
-        const sprites = Resources.Find("sprites/characters/yoki").sprites;
+        super.Start();
+
+        // const sprites = Resources.Find("sprites/characters/yoki").sprites;
         
-        for (let i = 0; i < sprites.length; i++)
-        {
-            const sprite = sprites[i].Duplicate();
+        // for (let i = 0; i < sprites.length; i++)
+        // {
+        //     const sprite = sprites[i].Duplicate();
             
-            this.#sprites[i] = sprite;
-        }
+        //     this.#sprites[i] = sprite;
+        // }
         
-        this.#renderer = this.GetComponent("SpriteRenderer");
+        // this.#renderer = this.GetComponent("SpriteRenderer");
     }
     
     Update ()

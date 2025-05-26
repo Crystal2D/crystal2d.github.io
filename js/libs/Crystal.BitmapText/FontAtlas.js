@@ -1,6 +1,7 @@
 class FontAtlas
 {
-    lineHeight = 20;
+    forcedLineHeight = true;
+    lineHeight = 16;
     
     texture = null;
     
@@ -15,6 +16,8 @@ class FontAtlas
             this.texture.sprites.push(sprite);
         }
     }
+
+    Unload () { }
     
     GetGlyph (character)
     {

@@ -97,6 +97,8 @@ class Tilemap extends Renderer
 
         SetMaterial (material)
         {
+            this.material?.Unload();
+
             this.material = material.Duplicate();
 
             this.material.SetSampler2D("uSampler", 0);
@@ -219,7 +221,7 @@ class Tilemap extends Renderer
 
     #RemapColors ()
     {
-        this.#colorOld = this.color;
+        this.#colorOld = this.color.Duplicate();
 
         const color = [
             this.color.r,
@@ -285,7 +287,7 @@ class Tilemap extends Renderer
 
         gl.useProgram(null);
 
-        gl.flush()
+        gl.flush();
     }
 
     Reload ()
@@ -336,12 +338,10 @@ class Tilemap extends Renderer
     }
 
     Render ()
-    {
-        if (!this.isLoaded || !this.gameObject.activeSelf) return;
-        
+    {   
         if (!this.#gridSize.Equals(Vector2.Add(this.grid.cellSize, this.grid.cellGap))) this.ForceMeshUpdate();
 
-        if (this.#colorOld !== this.color) this.#RemapColors();
+        if (!this.#colorOld.Equals(this.color)) this.#RemapColors();
         
         if (this.#rendersets.length === 0) return;
 

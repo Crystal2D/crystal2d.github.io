@@ -39,11 +39,17 @@
                         "tiles": [
                             {
                                 "palette": "Exterior - Dragon Shrine",
-                                "spriteID": 0,
-                                "position": {
-                                    "x": 0,
-                                    "y": 0
-                                }
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }

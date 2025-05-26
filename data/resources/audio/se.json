@@ -1,0 +1,23 @@
+[
+    {
+        "path": "audio/se/select",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/select.ogg"
+        }
+    },
+    {
+        "path": "audio/se/confirm",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/confirm.ogg"
+        }
+    },
+    {
+        "path": "audio/se/no",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/no.ogg"
+        }
+    }
+]

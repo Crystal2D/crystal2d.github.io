@@ -59,11 +59,15 @@ class Renderer extends Component
     }
     
     Reload ()
-    {        
-        this.#material.SetSampler2D("uSampler", 0);
-        
+    {
+        if (this.#materialOld === this.#material) return;
+
+        this.material?.Unload();
+
         this.#materialOld = this.#material;
         
+        this.material.SetSampler2D("uSampler", 0);
+
         this.uMatrixID = this.material.GetPropertyNameID("uMatrix");
         
         this.geometryBufferID = this.material.AddBuffer("geometry", null, 2);

@@ -192,7 +192,7 @@ class PlayerLoop
 
 
             // ScriptRunBehaviorOnApplicationPause
-            const playing = Application.isFocused || Application.runInBackgroud;
+            const playing = Application.isFocused || Application.runInBackground;
 
             if (this.#playing != playing) BroadcastMessage("OnApplicationPause", !playing);
 

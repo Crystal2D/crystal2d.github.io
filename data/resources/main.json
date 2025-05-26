@@ -1,19 +1,19 @@
 [
     {
-        "path": "sprites/square",
-        "type": "Texture",
-        "args": {
-            "src": "square_outline.png",
-            "pixelPerUnit": 30
-        }
-    },
-    {
         "path": "font_main",
         "type": "FontAtlas",
         "args": {
             "texture": "font.png",
             "glyphs": "font",
-            "pixelPerUnit": 30
+            "pixelPerUnit": 48
+        }
+    },
+    {
+        "path": "ref",
+        "type": "Texture",
+        "args": {
+            "src": "ref1.png",
+            "pixelPerUnit": 133.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
         }
     }
 ]

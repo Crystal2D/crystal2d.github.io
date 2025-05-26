@@ -13,11 +13,12 @@
     "resources": [
         "main",
         "sprites",
+        "tiles",
         "animations",
-        "audio"
+        "audio/bgm",
+        "audio/se"
     ],
     "scenes" : [
-        "scene",
         "title"
     ],
     "shaders" : [],
@@ -31,5 +32,11 @@
         "fixedDeltaTime" : 0.02
     },
     "partioningMaxDepth" : 8,
-    "layers" : []
+    "layers" : [
+        {
+            "name": "Transition",
+            "id": 1,
+            "value": 1
+        }
+    ]
 }

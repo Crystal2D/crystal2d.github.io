@@ -85,4 +85,6 @@ class AnimatorController
             this.currentTransition = this.currentNode.transitions.find(item => item.hasExitTime);
         }
     }
+
+    Unload () { }
 }
