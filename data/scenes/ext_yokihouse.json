@@ -19,27 +19,6 @@
         },
         {
             "name": "tilegrid_0",
-            "id": 1,
-            "components": [
-                {
-                    "type": "Grid",
-                    "args": {
-                        "cellSize": {
-                            "x": 3.5,
-                            "y": 4
-                        }
-                    }
-                }
-            ],
-            "transform": {
-                "position": {
-                    "x": 0,
-                    "y": 0.75
-                }
-            }
-        },
-        {
-            "name": "tilegrid_1",
             "id": 5,
             "components": [
                 {
@@ -529,6 +508,27 @@
                                             {
                                                 "x": -2,
                                                 "y": 10
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -16
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -16
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": 6,
+                                                "y": -18
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -18
                                             }
                                         ]
                                     }
@@ -2060,14 +2060,6 @@
                                                 "y": -18
                                             },
                                             {
-                                                "x": 6,
-                                                "y": -18
-                                            },
-                                            {
-                                                "x": 7,
-                                                "y": -18
-                                            },
-                                            {
                                                 "x": -5,
                                                 "y": -17
                                             },
@@ -2262,14 +2254,6 @@
                                             },
                                             {
                                                 "x": 5,
-                                                "y": -16
-                                            },
-                                            {
-                                                "x": 6,
-                                                "y": -16
-                                            },
-                                            {
-                                                "x": 7,
                                                 "y": -16
                                             },
                                             {
@@ -6711,40 +6695,25 @@
                                                 "y": -23
                                             }
                                         ]
-                                    }
-                                ]
-                            },
-                            {
-                                "palette": "Exterior - Village",
-                                "sprites": [
+                                    },
                                     {
-                                        "id": 13,
+                                        "id": 45,
                                         "coords": [
                                             {
-                                                "x": 3,
-                                                "y": -3
+                                                "x": 7,
+                                                "y": -16
                                             }
                                         ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "name": "tile_Well",
-            "id": 3,
-            "parent": 5,
-            "components": [
-                {
-                    "type": "Tilemap",
-                    "args": {
-                        "tiles": [
-                            {
-                                "palette": "Exterior - Forest",
-                                "sprites": [
+                                    },
+                                    {
+                                        "id": 44,
+                                        "coords": [
+                                            {
+                                                "x": 6,
+                                                "y": -16
+                                            }
+                                        ]
+                                    },
                                     {
                                         "id": 76,
                                         "coords": [
@@ -6762,7 +6731,54 @@
                                                 "y": -18
                                             }
                                         ]
-                                    },
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Exterior - Village",
+                                "sprites": [
+                                    {
+                                        "id": 13,
+                                        "coords": [
+                                            {
+                                                "x": 3,
+                                                "y": -3
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Exterior - Yoki's House",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 0,
+                                                "y": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Env 1",
+            "id": 3,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Forest",
+                                "sprites": [
                                     {
                                         "id": 60,
                                         "coords": [
@@ -6778,52 +6794,6 @@
                                             {
                                                 "x": 7,
                                                 "y": -17
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "id": 44,
-                                        "coords": [
-                                            {
-                                                "x": 6,
-                                                "y": -16
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "id": 45,
-                                        "coords": [
-                                            {
-                                                "x": 7,
-                                                "y": -16
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "name": "tile_House",
-            "id": 2,
-            "parent": 1,
-            "components": [
-                {
-                    "type": "Tilemap",
-                    "args": {
-                        "tiles": [
-                            {
-                                "palette": "Exterior - Yoki's House",
-                                "sprites": [
-                                    {
-                                        "id": 0,
-                                        "coords": [
-                                            {
-                                                "x": 0,
-                                                "y": 0
                                             }
                                         ]
                                     }

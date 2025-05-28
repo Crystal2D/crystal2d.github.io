@@ -26,21 +26,6 @@
             ]
         },
         {
-            "name": "tilegrid_1",
-            "id": 6,
-            "transform": {
-                "position": {
-                    "x": 0.25,
-                    "y": 0
-                }
-            },
-            "components": [
-                {
-                    "type": "Grid"
-                }
-            ]
-        },
-        {
             "name": "tile_Color",
             "id": 3,
             "parent": 1,
@@ -2238,7 +2223,7 @@
             ]
         },
         {
-            "name": "tile_Fences",
+            "name": "tile_Manor",
             "id": 4,
             "parent": 1,
             "components": [
@@ -2350,21 +2335,7 @@
                                         ]
                                     }
                                 ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "name": "tile_Manor",
-            "id": 5,
-            "parent": 6,
-            "components": [
-                {
-                    "type": "Tilemap",
-                    "args": {
-                        "tiles": [
+                            },
                             {
                                 "palette": "Exterior - Zera's Manor",
                                 "sprites": [
@@ -2373,7 +2344,7 @@
                                         "coords": [
                                             {
                                                 "x": 3,
-                                                "y": 3
+                                                "y": 2
                                             }
                                         ]
                                     }

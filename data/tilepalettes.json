@@ -566,6 +566,32 @@
         ]
     },
     {
+        "name": "Exterior - f   e   n   c   e",
+        "textures": [
+            {
+                "src": "sprites/tilesets/fence",
+                "sprites": [
+                    {
+                        "name": "side",
+                        "id": 0
+                    },
+                    {
+                        "name": "left",
+                        "id": 1
+                    },
+                    {
+                        "name": "mid",
+                        "id": 2
+                    },
+                    {
+                        "name": "right",
+                        "id": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Forest",
         "textures": [
             {
@@ -1832,6 +1858,28 @@
                     {
                         "name": "ext_graveyard (84)",
                         "id": 102
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Ride",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ride",
+                "sprites": [
+                    {
+                        "name": "carriage",
+                        "id": 0
+                    },
+                    {
+                        "name": "juan in village",
+                        "id": 1
+                    },
+                    {
+                        "name": "juan in town",
+                        "id": 2
                     }
                 ]
             }
