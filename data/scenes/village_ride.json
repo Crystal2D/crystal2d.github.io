@@ -5,8 +5,8 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_village",
-        "sprites/tilesets/fence",
-        "sprites/tilesets/ride"
+        "sprites/tilesets/ext_fence",
+        "sprites/tilesets/ext_ride"
     ],
     "gameObjects": [
         {

@@ -26,6 +26,160 @@
         ]
     },
     {
+        "name": "Exterior - Castle Town",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_castletown",
+                "sprites": [
+                    {
+                        "name": "ext_castletown (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_castletown (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_castletown (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_castletown (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ext_castletown (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ext_castletown (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "ext_castletown (6)",
+                        "id": 6
+                    },
+                    {
+                        "name": "ext_castletown (7)",
+                        "id": 7
+                    },
+                    {
+                        "name": "ext_castletown (8)",
+                        "id": 8
+                    },
+                    {
+                        "name": "ext_castletown (9)",
+                        "id": 9
+                    },
+                    {
+                        "name": "ext_castletown (10)",
+                        "id": 10
+                    },
+                    {
+                        "name": "ext_castletown (11)",
+                        "id": 11
+                    },
+                    {
+                        "name": "ext_castletown (12)",
+                        "id": 12
+                    },
+                    {
+                        "name": "ext_castletown (13)",
+                        "id": 13
+                    },
+                    {
+                        "name": "ext_castletown (14)",
+                        "id": 14
+                    },
+                    {
+                        "name": "ext_castletown (15)",
+                        "id": 15
+                    },
+                    {
+                        "name": "ext_castletown (16)",
+                        "id": 16
+                    },
+                    {
+                        "name": "ext_castletown (17)",
+                        "id": 17
+                    },
+                    {
+                        "name": "ext_castletown (18)",
+                        "id": 18
+                    },
+                    {
+                        "name": "sign",
+                        "id": 19
+                    },
+                    {
+                        "name": "ext_castletown (19)",
+                        "id": 20
+                    },
+                    {
+                        "name": "ext_castletown (20)",
+                        "id": 21
+                    },
+                    {
+                        "name": "ext_castletown (21)",
+                        "id": 22
+                    },
+                    {
+                        "name": "ext_castletown (22)",
+                        "id": 23
+                    },
+                    {
+                        "name": "ext_castletown (23)",
+                        "id": 24
+                    },
+                    {
+                        "name": "ext_castletown (24)",
+                        "id": 25
+                    },
+                    {
+                        "name": "ext_castletown (25)",
+                        "id": 26
+                    },
+                    {
+                        "name": "ext_castletown (26)",
+                        "id": 27
+                    },
+                    {
+                        "name": "ext_castletown (27)",
+                        "id": 28
+                    },
+                    {
+                        "name": "ext_castletown (28)",
+                        "id": 29
+                    },
+                    {
+                        "name": "ext_castletown (29)",
+                        "id": 30
+                    },
+                    {
+                        "name": "ext_castletown (30)",
+                        "id": 31
+                    },
+                    {
+                        "name": "ext_castletown (31)",
+                        "id": 32
+                    },
+                    {
+                        "name": "ext_castletown (32)",
+                        "id": 33
+                    },
+                    {
+                        "name": "ext_castletown (33)",
+                        "id": 34
+                    },
+                    {
+                        "name": "ext_castletown (34)",
+                        "id": 35
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Castle Town - Houses",
         "textures": [
             {
@@ -569,7 +723,7 @@
         "name": "Exterior - f   e   n   c   e",
         "textures": [
             {
-                "src": "sprites/tilesets/fence",
+                "src": "sprites/tilesets/ext_fence",
                 "sprites": [
                     {
                         "name": "side",
@@ -1867,7 +2021,7 @@
         "name": "Exterior - Ride",
         "textures": [
             {
-                "src": "sprites/tilesets/ride",
+                "src": "sprites/tilesets/ext_ride",
                 "sprites": [
                     {
                         "name": "carriage",
