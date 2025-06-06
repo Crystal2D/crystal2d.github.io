@@ -13,7 +13,9 @@
         "audio/se/confirm",
         "audio/se/no",
         "audio/bgm/title",
-        "ctrls/z"
+        "ctrls/f",
+        "ctrls/z",
+        "ctrls/x"
     ],
     "gameObjects": [
         {

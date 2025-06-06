@@ -1,9 +1,23 @@
 [
     {
+        "path": "ctrls/f",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/f.png"
+        }
+    },
+    {
         "path": "ctrls/z",
         "type": "Texture",
         "args": {
             "src": "ctrls/z.png"
+        }
+    },
+    {
+        "path": "ctrls/x",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/x.png"
         }
     }
 ]
