@@ -1,7 +1,7 @@
 {
     "name": "Test",
     "resources": [
-        "sprites/characters/yoki",
+        "sprites/chars/yoki",
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
@@ -41,7 +41,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/characters/yoki",
+                            "texture": "sprites/chars/yoki",
                             "name": "down-a"
                         },
                         "sortingOrder": 1
