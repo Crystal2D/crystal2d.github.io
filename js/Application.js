@@ -57,6 +57,11 @@ class Application
         return this.#gl_md;
     }
 
+    static get isMobilePlatform ()
+    {
+        return navigator.userAgent.toLowerCase().indexOf("mobile") >= 0;
+    }
+
     static get isInElectron ()
     {
         return navigator.userAgent.indexOf("Electron") >= 0;

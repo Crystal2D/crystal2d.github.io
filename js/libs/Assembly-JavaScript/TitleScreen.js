@@ -34,7 +34,7 @@ class TitleScreen extends GameBehavior
         Transitioner.instance.onFadeIn.Add(() => {
             this.#started = true;
 
-            AudioManager.instance.PlayBGM("title");
+            // AudioManager.instance.PlayBGM("title");
         });
         Transitioner.instance.FadeIn();
 
@@ -129,6 +129,11 @@ class TitleScreen extends GameBehavior
                 case 0:
                     this.#Disable(() => {
                         AudioManager.instance.bgm.Stop();
+
+                        Transitioner.instance.onFadeOut.Add(async () => {
+                            await SceneManager.Load(1);
+                            SceneManager.SetActiveScene(1);
+                        });
                         Transitioner.instance.FadeOut(1);
                     });
                     break;

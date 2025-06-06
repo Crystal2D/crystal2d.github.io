@@ -1,0 +1,9 @@
+[
+    {
+        "path": "ctrls/z",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/z.png"
+        }
+    }
+]

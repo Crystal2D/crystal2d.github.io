@@ -4,6 +4,7 @@
         "Crystal.RPGTiles",
         "Crystal.SimpleAnimate",
         "Crystal.Audio",
+        "Crystal.HTMLUI",
         "Assembly-JavaScript"
     ],
     "scripts" : [
@@ -12,6 +13,7 @@
     ],
     "resources": [
         "main",
+        "ctrls",
         "sprites",
         "tiles",
         "animations",
@@ -19,7 +21,8 @@
         "audio/se"
     ],
     "scenes" : [
-        "title"
+        "title",
+        "test"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

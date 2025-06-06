@@ -100,7 +100,7 @@ class Options extends GameBehavior
         {
             this.#selectionIndex++;
             
-            if (this.#selectionIndex > 7) this.#selectionIndex = 0;
+            if (this.#selectionIndex > 8) this.#selectionIndex = 0;
             
             updateChoice = true;
         }
@@ -108,7 +108,7 @@ class Options extends GameBehavior
         {
             this.#selectionIndex--;
 
-            if (this.#selectionIndex < 0) this.#selectionIndex = 7;
+            if (this.#selectionIndex < 0) this.#selectionIndex = 8;
             
             updateChoice = true;
         }
@@ -134,9 +134,12 @@ class Options extends GameBehavior
                 this.#SetFPS();
                 break;
             case 6:
-                this.#SetMusic();
+                this.#SetCrisp();
                 break;
             case 7:
+                this.#SetMusic();
+                break;
+            case 8:
                 this.#SetEffects();
                 break;
         }
@@ -146,7 +149,7 @@ class Options extends GameBehavior
             let pos = this.#selectionIndex;
 
             if (this.#selectionIndex >= 2) pos += 2;
-            if (this.#selectionIndex >= 6) pos += 2;
+            if (this.#selectionIndex >= 7) pos += 2;
 
             this.#selector.transform.position = new Vector2(
                 this.#selector.transform.position.x,
@@ -180,7 +183,7 @@ class Options extends GameBehavior
             Options.run ? 1.32 : 1.2,
             Options.run ? 2.68 : 2.8
         );
-        else if ((this.#selectionIndex === 1 && Options.textSkip) || (this.#selectionIndex === 2 && Window.fullscreen)) pos = new Vector2(1.5, 2.52);
+        else if ((this.#selectionIndex === 1 && Options.textSkip) || (this.#selectionIndex === 2 && Window.fullscreen) || (this.#selectionIndex === 6 && Crispixels.effect)) pos = new Vector2(1.5, 2.52);
         else if (this.#selectionIndex === 3)
         {
             switch (Options.resolution)
@@ -233,9 +236,9 @@ class Options extends GameBehavior
 
             if (Options.fps === 0) pos.x = 5.1;
         }
-        else if ((this.#selectionIndex === 6 && AudioManager.bgmVolume === 0) || (this.#selectionIndex === 7 && AudioManager.seVolume === 0)) pos = new Vector2(5.1, 2.34);
-        else if ((this.#selectionIndex === 6 && AudioManager.bgmVolume === 100) || (this.#selectionIndex === 7 && AudioManager.seVolume === 100)) pos.y = 5.1;
-        else if (this.#selectionIndex === 6 || this.#selectionIndex === 7) pos = new Vector2(1.5, 2.52);
+        else if ((this.#selectionIndex === 7 && AudioManager.bgmVolume === 0) || (this.#selectionIndex === 8 && AudioManager.seVolume === 0)) pos = new Vector2(5.1, 2.34);
+        else if ((this.#selectionIndex === 7 && AudioManager.bgmVolume === 100) || (this.#selectionIndex === 8 && AudioManager.seVolume === 100)) pos.y = 5.1;
+        else if (this.#selectionIndex === 7 || this.#selectionIndex === 8) pos = new Vector2(1.5, 2.52);
 
         this.#leftArrow.transform.localPosition = new Vector2(pos.x, 0);
         this.#rightArrow.transform.localPosition = new Vector2(pos.y, 0);
@@ -254,7 +257,7 @@ class Options extends GameBehavior
         let fps = Application.vSyncCount > 0 ? "V-Synced" : Application.targetFrameRate;
         if (fps < 0) fps = "Unlimited";
 
-        this.#dataText.text = `${Options.run ? "Run" : "Walk"}\n${toggle(Options.textSkip)}\n\n\n${toggle(Window.fullscreen)}\n${res}\n${win}\n${fps}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
+        this.#dataText.text = `${Options.run ? "Run" : "Walk"}\n${toggle(Options.textSkip)}\n\n\n${toggle(Window.fullscreen)}\n${res}\n${win}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
 
         this.#UpdateArrows();
     }
@@ -296,14 +299,14 @@ class Options extends GameBehavior
         if (Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z))
         {
             Options.resolution++;
-            if (Options.resolution > 4) Options.resolution = 0;
+            if (Options.resolution > 4) Options.resolution = 1;
 
             updateRes = true;
         }
         if (Input.GetKeyDown(KeyCode.ArrowLeft))
         {
             Options.resolution--;
-            if (Options.resolution < 0) Options.resolution = 4;
+            if (Options.resolution < 1) Options.resolution = 4;
 
             updateRes = true;
         }
@@ -405,6 +408,16 @@ class Options extends GameBehavior
             Application.vSyncCount = 0;
             Application.targetFrameRate = fpsSet[Options.fps];
         }
+
+        this.#UpdateDataText();
+        AudioManager.instance.PlaySelect();
+    }
+
+    #SetCrisp ()
+    {
+        if (!Input.GetKeyDown(KeyCode.ArrowLeft) && !Input.GetKeyDown(KeyCode.ArrowRight) && !Input.GetKeyDown(KeyCode.Z)) return;
+
+        Crispixels.effect = !Crispixels.effect;
 
         this.#UpdateDataText();
         AudioManager.instance.PlaySelect();

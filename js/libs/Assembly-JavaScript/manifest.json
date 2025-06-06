@@ -7,6 +7,7 @@
         "AudioManager",
         "Transitioner",
         "Options",
+        "InputManager",
         "character/RPGMovement",
         "character/CharController",
         "CameraController",
@@ -31,6 +32,10 @@
         },
         {
             "name" : "Options",
+            "type" : 0
+        },
+        {
+            "name" : "InputManager",
             "type" : 0
         },
         {

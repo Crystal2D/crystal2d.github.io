@@ -149,8 +149,8 @@ class Input
         document.addEventListener("contextmenu", event => event.preventDefault());
 
         const getScreenPos = (x, y) => new Vector2(
-            Math.Clamp(x - (window.innerWidth - Window.canvasWidth) * 0.5, 0, Window.canvasWidth),
-            Math.Clamp(y - (window.innerHeight - Window.canvasHeight) * 0.5, 0, Window.canvasHeight)
+            Math.Clamp(x, 0, window.innerWidth),
+            Math.Clamp(y, 0, window.innerHeight)
         );
         const setMousePos = (x, y) => {
             this.#mousePosOld = this.#mousePos;
@@ -198,7 +198,7 @@ class Input
             for (let i = 0; i < changed.length; i++) this.#changedTouches.push(changed[i].identifier);
         }, { passive: false });
         document.addEventListener("touchmove", event => {
-            if (!PlayerLoop.isPlaying && this.#terminated) return;
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
 
@@ -240,8 +240,8 @@ class Input
         if (this.#terminated) return;
 
         const getScreenPos = (x, y) => new Vector2(
-            Math.Clamp(x - (window.innerWidth - Window.canvasWidth) * 0.5, 0, Window.canvasWidth),
-            Math.Clamp(y - (window.innerHeight - Window.canvasHeight) * 0.5, 0, Window.canvasHeight)
+            Math.Clamp(x, 0, window.innerWidth),
+            Math.Clamp(y, 0, window.innerHeight)
         );
 
         let contacts = [];

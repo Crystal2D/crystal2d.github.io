@@ -543,6 +543,15 @@ class SpriteRenderer extends Renderer
             ),
         );
 
+        const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(
+            Vector2.Scale(
+                Vector2.Add(Vector2.Scale(this.sprite.pivot, -2), 1),
+                0.5
+            )
+        ));
+
+        bounds.center = new Vector2(posMat.GetValue(2, 0), -posMat.GetValue(2, 1));
+
         this.#bounds = bounds;
 
         super.RecalcBounds();

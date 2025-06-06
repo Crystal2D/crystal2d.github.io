@@ -9,6 +9,8 @@ class Viewport extends GameBehavior
 
     Update ()
     {
+        HTMLUI.Update();
+
         if (Input.GetKeyDown(KeyCode.F2) || GamepadInput.GetKeyDown(KeyCode.Select))
         {
             this.#fps++;
@@ -34,22 +36,16 @@ class Viewport extends GameBehavior
 
     LateUpdate ()
     {
-        if (Options.resolution === 4)
+        if (Options.resolution === 3)
         {
-            if (window.innerWidth < window.innerHeight)
-            {
-                const sizer = (window.innerWidth - window.innerWidth % 480) / 480;
+            const width = window.innerWidth * window.devicePixelRatio;
+            const height = window.innerHeight * window.devicePixelRatio;
+            const sizer = Math.max(width < height ? width / 480 : height / 432, 1);
 
-                Window.SetResolution(480 * sizer, 432 * sizer);
-            }
-            else
-            {
-                const sizer = (window.innerHeight - window.innerHeight % 432) / 432;
-
-                Window.SetResolution(480 * sizer, 432 * sizer);
-            }
+            Window.SetResolution(480 * sizer, 432 * sizer);
         }
 
         FPSMeter.Update();
+        HTMLUI.UpdateEnd();
     }
 }

@@ -1,0 +1,17 @@
+{
+    "name" : "Crystal.HTMLUI",
+    "description" : "Adds an easier way to add HTML based UI",
+    "version": "2025.1f",
+    "scripts" : [
+        "HTMLUI",
+        "HUIScaleMode",
+        "HUIMatchMode",
+        "HUIUnit",
+        "Origins/HUIOriginX",
+        "Origins/HUIOriginY",
+        "Elements/Element",
+        "Elements/Image",
+        "Elements/Button"
+    ],
+    "classes" : []
+}

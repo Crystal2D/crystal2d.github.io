@@ -3,8 +3,8 @@ class CameraController extends Viewport
     #cam = null;
     #targetTrans = null;
     
-    clampMin = new Vector2(-0.25, -18.25);
-    clampMax = new Vector2(14.75, 2.75);
+    clampMin = new Vector2(-3.75, -26.75);
+    clampMax = new Vector2(16.25, 4.25);
     
     Start ()
     {
@@ -30,5 +30,7 @@ class CameraController extends Viewport
         newPos.y -= newPos.y % step;
         
         this.transform.position = newPos;
+
+        super.LateUpdate();
     }
 }

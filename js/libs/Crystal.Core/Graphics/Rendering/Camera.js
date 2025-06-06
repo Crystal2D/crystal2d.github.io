@@ -49,11 +49,11 @@ class Camera extends Behavior
             5.555555555555556e-3 * -this.transform.rotation * Math.PI,
             this.bounds.size
         );
-        const mouseMat = Matrix3x3.Translate(new Vector2(
-            (point.x / Window.canvasWidth) - 0.5,
-            (point.y / Window.canvasHeight) - 0.5
+        const pointMat = Matrix3x3.Translate(new Vector2(
+            ((point.x - (window.innerWidth - Window.canvasWidth) * 0.5) / Window.canvasWidth) - 0.5,
+            ((point.y - (window.innerHeight - Window.canvasHeight) * 0.5) / Window.canvasHeight) - 0.5
         ));
-        const targetMat = Matrix3x3.Multiply(viewMat, mouseMat);
+        const targetMat = Matrix3x3.Multiply(viewMat, pointMat);
 
         return new Vector2(targetMat.GetValue(2, 0), -targetMat.GetValue(2, 1));
     }

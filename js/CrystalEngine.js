@@ -287,7 +287,7 @@ class CrystalEngine
                 errLogs.append(error.stack);
                 
                 const tip = document.createElement("span");
-                tip.append(`\n\n\n----------\n\n${Application.isInCordova ? "Please report this problem" : "Press F5 to refresh"}`);
+                tip.append(`\n\n\n----------\n\n${Application.isMobilePlatform ? "Please report this problem" : "Press F5 to refresh"}`);
                 
                 errWrap.append(errLogs, tip)
                 document.body.append(errWrap);

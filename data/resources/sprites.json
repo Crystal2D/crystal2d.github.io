@@ -30,16 +30,20 @@
         }
     },
     {
-        "path": "sprites/characters/yoki",
+        "path": "sprites/chars/yoki",
         "type": "Texture",
         "args": {
-            "src": "characters/yoki.png",
+            "src": "chars/yoki.png",
             "sprites": [
                 {
                     "name": "down-a",
                     "rect": {
                         "width": 16,
                         "height": 16
+                    },
+                    "pivot": {
+                        "x": 1,
+                        "y": 1
                     }
                 },
                 {

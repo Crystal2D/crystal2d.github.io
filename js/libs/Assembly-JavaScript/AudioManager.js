@@ -75,7 +75,7 @@ class AudioManager extends GameBehavior
 
     PlaySelect ()
     {
-        if (Application.isInCordova)
+        if (Application.isMobilePlatform)
         {
             this.#select.PlayOneShot(this.#select.clip);
 
@@ -88,7 +88,7 @@ class AudioManager extends GameBehavior
 
     PlayConfirm ()
     {
-        if (Application.isInCordova)
+        if (Application.isMobilePlatform)
         {
             this.#confirm.PlayOneShot(this.#confirm.clip);
 
@@ -101,7 +101,7 @@ class AudioManager extends GameBehavior
 
     PlayNo ()
     {
-        if (Application.isInCordova)
+        if (Application.isMobilePlatform)
         {
             this.#no.PlayOneShot(this.#no.clip);
 

@@ -41,8 +41,8 @@ class Window
     {
         if (value)
         {
-            Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
-            Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+            Application.htmlCanvas.width = window.devicePixelRatio * (window.innerWidth - 0.01 * this.#marginX * window.innerWidth);
+            Application.htmlCanvas.height = window.devicePixelRatio * (window.innerHeight - 0.01 * this.#marginY * window.innerHeight);
         }
         else
         {
@@ -120,19 +120,16 @@ class Window
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
 
-                if (this.#ipcRenderer != null)
-                {
-                    if (x % 2 !== 0) x += x % 2;
-                    if (y % 2 !== 0) y += y % 2;
-                }
+                if (x % 2 !== 0) x += x % 2;
+                if (y % 2 !== 0) y += y % 2;
                 
                 window.resizeTo(x, y);
             }
             
             if (this.#fillWin)
             {
-                Application.htmlCanvas.width = window.innerWidth - 0.01 * this.#marginX * window.innerWidth;
-                Application.htmlCanvas.height = window.innerHeight - 0.01 * this.#marginY * window.innerHeight;
+                Application.htmlCanvas.width = window.devicePixelRatio * (window.innerWidth - 0.01 * this.#marginX * window.innerWidth);
+                Application.htmlCanvas.height = window.devicePixelRatio * (window.innerHeight - 0.01 * this.#marginY * window.innerHeight);
                 
                 this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
             }
@@ -198,7 +195,7 @@ class Window
         this.#marginY = height ?? 0;
         
         Application.htmlCanvas.style.width = `${100 - 2 * this.#marginX}%`;
-        Application.htmlCanvas.style.height =  `${100 - 2 * this.#marginY}%`;
+        Application.htmlCanvas.style.height = `${100 - 2 * this.#marginY}%`;
         
         this.#sizeChanged = 1;
     }
