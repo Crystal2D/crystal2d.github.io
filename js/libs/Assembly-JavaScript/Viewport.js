@@ -9,8 +9,6 @@ class Viewport extends GameBehavior
 
     Update ()
     {
-        HTMLUI.Update();
-
         if (Input.GetKeyDown(KeyCode.F2) || GamepadInput.GetKeyDown(KeyCode.Select))
         {
             this.#fps++;
@@ -46,6 +44,5 @@ class Viewport extends GameBehavior
         }
 
         FPSMeter.Update();
-        HTMLUI.UpdateEnd();
     }
 }

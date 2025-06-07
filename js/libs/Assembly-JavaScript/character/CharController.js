@@ -36,8 +36,8 @@ class CharController extends RPGMovement
         this.#shouldAnim = false;
 
         const input = new Vector2(
-            +Input.GetKey(KeyCode.ArrowRight) - +Input.GetKey(KeyCode.ArrowLeft) + +GamepadInput.GetKey(KeyCode.DpadRight) - +GamepadInput.GetKey(KeyCode.DpadLeft) + GamepadInput.GetAxisRaw("left stick horizontal"),
-            +Input.GetKey(KeyCode.ArrowUp) - +Input.GetKey(KeyCode.ArrowDown) + +GamepadInput.GetKey(KeyCode.DpadUp) - +GamepadInput.GetKey(KeyCode.DpadDown) + GamepadInput.GetAxisRaw("left stick vertical")
+            +InputManager.GetKey("right") - +InputManager.GetKey("left"),
+            +InputManager.GetKey("up") - +InputManager.GetKey("down")
         );
 
         if (input.x !== 0) this.#xTime++;

@@ -85,7 +85,7 @@ class Options extends GameBehavior
 
         if (!this.#enabled) return;
 
-        if (Input.GetKeyDown(KeyCode.X)) this.#Disable();
+        if (InputManager.GetKeyDown("x")) this.#Disable();
 
         this.#selectorOpacity = Math.Clamp(this.#selectorOpacity + Time.deltaTime * 1.75 * this.#selectorOpacityDir, 0.5, 1);
 
@@ -96,7 +96,7 @@ class Options extends GameBehavior
 
         let updateChoice = false;
 
-        if (Input.GetKeyDown(KeyCode.ArrowDown) || GamepadInput.GetKeyDown(KeyCode.DpadDown))
+        if (InputManager.GetKeyDown("down"))
         {
             this.#selectionIndex++;
             
@@ -104,7 +104,7 @@ class Options extends GameBehavior
             
             updateChoice = true;
         }
-        if (Input.GetKeyDown(KeyCode.ArrowUp) || GamepadInput.GetKeyDown(KeyCode.DpadUp))
+        if (InputManager.GetKeyDown("up"))
         {
             this.#selectionIndex--;
 
@@ -264,7 +264,7 @@ class Options extends GameBehavior
 
     #SetMove ()
     {
-        if (!Input.GetKeyDown(KeyCode.ArrowLeft) && !Input.GetKeyDown(KeyCode.ArrowRight) && !Input.GetKeyDown(KeyCode.Z)) return;
+        if (!InputManager.GetKeyDown("left") && !InputManager.GetKeyDown("right") && !InputManager.GetKeyDown("z")) return;
 
         Options.run = !Options.run;
 
@@ -274,7 +274,7 @@ class Options extends GameBehavior
 
     #SetTextSkip ()
     {
-        if (!Input.GetKeyDown(KeyCode.ArrowLeft) && !Input.GetKeyDown(KeyCode.ArrowRight) && !Input.GetKeyDown(KeyCode.Z)) return;
+        if (!InputManager.GetKeyDown("left") && !InputManager.GetKeyDown("right") && !InputManager.GetKeyDown("z")) return;
 
         Options.textSkip = !Options.textSkip;
 
@@ -284,7 +284,7 @@ class Options extends GameBehavior
 
     #SetFullscreen ()
     {
-        if (!Input.GetKeyDown(KeyCode.ArrowLeft) && !Input.GetKeyDown(KeyCode.ArrowRight) && !Input.GetKeyDown(KeyCode.Z)) return;
+        if (!InputManager.GetKeyDown("left") && !InputManager.GetKeyDown("right") && !InputManager.GetKeyDown("z")) return;
 
         Window.fullscreen = !Window.fullscreen;
 
@@ -296,14 +296,14 @@ class Options extends GameBehavior
     {
         let updateRes = false;
 
-        if (Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z))
+        if (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z"))
         {
             Options.resolution++;
             if (Options.resolution > 4) Options.resolution = 1;
 
             updateRes = true;
         }
-        if (Input.GetKeyDown(KeyCode.ArrowLeft))
+        if (InputManager.GetKeyDown("left"))
         {
             Options.resolution--;
             if (Options.resolution < 1) Options.resolution = 4;
@@ -328,14 +328,14 @@ class Options extends GameBehavior
     {
         let updateSize = false;
 
-        if (Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z))
+        if (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z"))
         {
             Options.windowSize++;
             if (Options.windowSize > 4) Options.windowSize = 0;
 
             updateSize = true;
         }
-        if (Input.GetKeyDown(KeyCode.ArrowLeft))
+        if (InputManager.GetKeyDown("left"))
         {
             Options.windowSize--;
             if (Options.windowSize < 0) Options.windowSize = 4;
@@ -349,7 +349,7 @@ class Options extends GameBehavior
 
         if (size !== 5 && (480 * size > window.screen.width || 432 * size > window.screen.height))
         {
-            if (Input.GetKeyDown(KeyCode.ArrowLeft))
+            if (InputManager.GetKeyDown("left"))
             {
                 Options.windowSize = 0;
                 size = 1;
@@ -376,13 +376,13 @@ class Options extends GameBehavior
     {
         let updateFps = false;
 
-        if (Options.fps < 5 && (Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z)))
+        if (Options.fps < 5 && (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")))
         {
             Options.fps++;
 
             updateFps = true;
         }
-        if (Options.fps > 0 && Input.GetKeyDown(KeyCode.ArrowLeft))
+        if (Options.fps > 0 && InputManager.GetKeyDown("left"))
         {
             Options.fps--;
 
@@ -415,7 +415,7 @@ class Options extends GameBehavior
 
     #SetCrisp ()
     {
-        if (!Input.GetKeyDown(KeyCode.ArrowLeft) && !Input.GetKeyDown(KeyCode.ArrowRight) && !Input.GetKeyDown(KeyCode.Z)) return;
+        if (!InputManager.GetKeyDown("left") && !InputManager.GetKeyDown("right") && !InputManager.GetKeyDown("z")) return;
 
         Crispixels.effect = !Crispixels.effect;
 
@@ -425,7 +425,7 @@ class Options extends GameBehavior
 
     #SetMusic ()
     {
-        const dir = +(Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z)) - +Input.GetKeyDown(KeyCode.ArrowLeft);
+        const dir = +(InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")) - +InputManager.GetKeyDown("left");
 
         if (dir === 0 || dir < 0 && AudioManager.bgmVolume === 0 || dir > 0 && AudioManager.bgmVolume === 100) return;
 
@@ -437,7 +437,7 @@ class Options extends GameBehavior
 
     #SetEffects ()
     {
-        const dir = +(Input.GetKeyDown(KeyCode.ArrowRight) || Input.GetKeyDown(KeyCode.Z)) - +Input.GetKeyDown(KeyCode.ArrowLeft);
+        const dir = +(InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")) - +InputManager.GetKeyDown("left");
 
         if (dir === 0 || dir < 0 && AudioManager.seVolume === 0 || dir > 0 && AudioManager.seVolume === 100) return;
 

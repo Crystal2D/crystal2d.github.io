@@ -6,7 +6,10 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_village",
-        "sprites/tilesets/ext_fence"
+        "sprites/tilesets/ext_fence",
+        "ctrls/f",
+        "ctrls/z",
+        "ctrls/x"
     ],
     "gameObjects": [
         {
@@ -18,6 +21,9 @@
                 },
                 {
                     "type": "CameraController"
+                },
+                {
+                    "type": "InputManager"
                 }
             ]
         },

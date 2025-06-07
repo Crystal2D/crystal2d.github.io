@@ -211,6 +211,11 @@ class HTMLUI
     {
         for (let i = 0; i < this.content.length; i++) this.content[i].UpdateEnd();
     }
+
+    static Clear ()
+    {
+        for (let i = 0; i < this.content.length; i++) this.content[i].Remove();
+    }
 }
 
 HTMLUI.Init();

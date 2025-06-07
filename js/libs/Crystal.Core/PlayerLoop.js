@@ -143,7 +143,7 @@ class PlayerLoop
             // ScriptRunBehaviorFixedUpdate
             if (this.#playing && Time.timeScale !== 0)
             {
-                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("FixedUpdate");
+                BroadcastMessage("FixedUpdate");
             }
         }
 

@@ -160,4 +160,9 @@ HTMLUI.Element = class
     Update () { }
 
     UpdateEnd () { }
+
+    Remove ()
+    {
+        this.htmlElement.remove();
+    }
 }

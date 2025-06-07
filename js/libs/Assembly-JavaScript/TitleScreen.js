@@ -103,7 +103,7 @@ class TitleScreen extends GameBehavior
 
         let updateChoice = false;
 
-        if (Input.GetKeyDown(KeyCode.ArrowDown) || GamepadInput.GetKeyDown(KeyCode.DpadDown))
+        if (InputManager.GetKeyDown("down"))
         {
             this.#selectionIndex++;
 
@@ -111,7 +111,7 @@ class TitleScreen extends GameBehavior
             
             updateChoice = true;
         }
-        else if (Input.GetKeyDown(KeyCode.ArrowUp) || GamepadInput.GetKeyDown(KeyCode.DpadUp))
+        else if (InputManager.GetKeyDown("up"))
         {
             this.#selectionIndex--;
 
@@ -120,7 +120,7 @@ class TitleScreen extends GameBehavior
             updateChoice = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (InputManager.GetKeyDown("z"))
         {
             AudioManager.instance.PlayConfirm();
 
