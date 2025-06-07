@@ -34,7 +34,7 @@ class TitleScreen extends GameBehavior
         Transitioner.instance.onFadeIn.Add(() => {
             this.#started = true;
 
-            // AudioManager.instance.PlayBGM("title");
+            AudioManager.instance.PlayBGM("title");
         });
         Transitioner.instance.FadeIn();
 
