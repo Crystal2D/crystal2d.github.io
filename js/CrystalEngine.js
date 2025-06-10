@@ -377,6 +377,8 @@ class CrystalEngine
             Time.timeScale = this.#buildData.time.timeScale;
             Time.fixedDeltaTime = this.#buildData.time.fixedDeltaTime;
 
+            PlayerLoop.noFixedUpdate = this.#buildData.noFixedUpdate;
+
             QuadTree.maxDepth = this.#buildData.partioningMaxDepth;
             
             Debug.Set(this.#buildData.debugMode);

@@ -103,18 +103,20 @@ class TitleScreen extends GameBehavior
 
         let updateChoice = false;
 
-        if (InputManager.GetKeyDown("down"))
+        if (InputManager.IsRepeated("down"))
         {
             this.#selectionIndex++;
 
+            if (this.#selectionIndex === 2) InputManager.Clear();
             if (this.#selectionIndex > 2) this.#selectionIndex = 0;
             
             updateChoice = true;
         }
-        else if (InputManager.GetKeyDown("up"))
+        else if (InputManager.IsRepeated("up"))
         {
             this.#selectionIndex--;
 
+            if (this.#selectionIndex === 0) InputManager.Clear();
             if (this.#selectionIndex < 0) this.#selectionIndex = 2;
             
             updateChoice = true;

@@ -35,6 +35,36 @@ class Input
     {
         return [...this.#touches];
     }
+
+    static get anyKey ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyDown ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active && !this.#keys[i].lastState) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyUp ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (!this.#keys[i].active && this.#keys[i].lastState) return true;
+        }
+
+        return false;
+    }
     
     static #Key = class
     {
@@ -137,8 +167,6 @@ class Input
         document.addEventListener("mousemove", event => {
             setMousePos(event.clientX, event.clientY);
 
-            if (this.#mouseOver) return;
-
             this.#mouseOver = true;
         });
         document.addEventListener("mouseleave", event => {
@@ -239,6 +267,13 @@ class Input
     {
         if (this.#terminated) return;
 
+        if (!PlayerLoop.isPlaying)
+        {
+            this.Clear();
+
+            return;
+        }
+
         const getScreenPos = (x, y) => new Vector2(
             Math.Clamp(x, 0, window.innerWidth),
             Math.Clamp(y, 0, window.innerHeight)
@@ -307,7 +342,7 @@ class Input
     
     static End ()
     {
-        if (this.#terminated) return;
+        if (this.#terminated || !PlayerLoop.isPlaying) return;
         
         for (let i = 0; i < this.#keys.length; i++) this.#keys[i].lastState = this.#keys[i].active;
 
@@ -335,6 +370,15 @@ class Input
         GamepadInput.End();
         
         if (this.#terminating) this.#terminated = true;
+    }
+
+    static Clear ()
+    {
+        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].active = false;
+
+        this.#nativeTouches = [];
+
+        GamepadInput.Clear();
     }
     
     static GetKey (key)

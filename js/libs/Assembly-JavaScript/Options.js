@@ -96,18 +96,20 @@ class Options extends GameBehavior
 
         let updateChoice = false;
 
-        if (InputManager.GetKeyDown("down"))
+        if (InputManager.IsRepeated("down"))
         {
             this.#selectionIndex++;
             
+            if (this.#selectionIndex === 8) InputManager.Clear();
             if (this.#selectionIndex > 8) this.#selectionIndex = 0;
             
             updateChoice = true;
         }
-        if (InputManager.GetKeyDown("up"))
+        if (InputManager.IsRepeated("up"))
         {
             this.#selectionIndex--;
 
+            if (this.#selectionIndex === 0) InputManager.Clear();
             if (this.#selectionIndex < 0) this.#selectionIndex = 8;
             
             updateChoice = true;
@@ -296,14 +298,14 @@ class Options extends GameBehavior
     {
         let updateRes = false;
 
-        if (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z"))
+        if (InputManager.IsRepeated("right") || InputManager.IsRepeated("z"))
         {
             Options.resolution++;
             if (Options.resolution > 4) Options.resolution = 1;
 
             updateRes = true;
         }
-        if (InputManager.GetKeyDown("left"))
+        if (InputManager.IsRepeated("left"))
         {
             Options.resolution--;
             if (Options.resolution < 1) Options.resolution = 4;
@@ -328,14 +330,14 @@ class Options extends GameBehavior
     {
         let updateSize = false;
 
-        if (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z"))
+        if (InputManager.IsRepeated("right") || InputManager.IsRepeated("z"))
         {
             Options.windowSize++;
             if (Options.windowSize > 4) Options.windowSize = 0;
 
             updateSize = true;
         }
-        if (InputManager.GetKeyDown("left"))
+        if (InputManager.IsRepeated("left"))
         {
             Options.windowSize--;
             if (Options.windowSize < 0) Options.windowSize = 4;
@@ -349,7 +351,7 @@ class Options extends GameBehavior
 
         if (size !== 5 && (480 * size > window.screen.width || 432 * size > window.screen.height))
         {
-            if (InputManager.GetKeyDown("left"))
+            if (InputManager.IsRepeated("left"))
             {
                 Options.windowSize = 0;
                 size = 1;
@@ -376,13 +378,13 @@ class Options extends GameBehavior
     {
         let updateFps = false;
 
-        if (Options.fps < 5 && (InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")))
+        if (Options.fps < 5 && (InputManager.IsRepeated("right") || InputManager.IsRepeated("z")))
         {
             Options.fps++;
 
             updateFps = true;
         }
-        if (Options.fps > 0 && InputManager.GetKeyDown("left"))
+        if (Options.fps > 0 && InputManager.IsRepeated("left"))
         {
             Options.fps--;
 
@@ -425,7 +427,7 @@ class Options extends GameBehavior
 
     #SetMusic ()
     {
-        const dir = +(InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")) - +InputManager.GetKeyDown("left");
+        const dir = +(InputManager.IsRepeated("right") || InputManager.IsRepeated("z")) - +InputManager.IsRepeated("left");
 
         if (dir === 0 || dir < 0 && AudioManager.bgmVolume === 0 || dir > 0 && AudioManager.bgmVolume === 100) return;
 
@@ -437,7 +439,7 @@ class Options extends GameBehavior
 
     #SetEffects ()
     {
-        const dir = +(InputManager.GetKeyDown("right") || InputManager.GetKeyDown("z")) - +InputManager.GetKeyDown("left");
+        const dir = +(InputManager.IsRepeated("right") || InputManager.IsRepeated("z")) - +InputManager.IsRepeated("left");
 
         if (dir === 0 || dir < 0 && AudioManager.seVolume === 0 || dir > 0 && AudioManager.seVolume === 100) return;
 

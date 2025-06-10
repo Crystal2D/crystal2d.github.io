@@ -20,6 +20,13 @@ HTMLUI.Button = class extends HTMLUI.Image
         return !this.#pressed && this.#pressedOld;
     }
 
+    SetActive (state)
+    {
+        super.SetActive(state);
+
+        if (!state) this.#pressed = false;
+    }
+
     Update ()
     {
         const touches = Input.touches;

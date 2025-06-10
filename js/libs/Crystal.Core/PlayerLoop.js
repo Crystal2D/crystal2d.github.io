@@ -7,6 +7,8 @@ class PlayerLoop
     static #crashed = false;
     static #quitState = 0;
 
+    static noFixedUpdate = false;
+
     static get isPlaying ()
     {
         return this.#playing;
@@ -128,12 +130,15 @@ class PlayerLoop
             }
 
             // UpdateInputManager
-            if (this.#playing && Time.timeScale !== 0) Input.Update();
+            Input.Update();
+
+            // ScriptRunBehaviorEarlyUpdate
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("EarlyUpdate");
         }
 
 
         // FixedUpdate
-        while (Time.fixedTime < Time.time)
+        if (!this.noFixedUpdate) while (Time.fixedTime < Time.time)
         {
             Time.fixedUnscaledDeltaTime = (1e-3 * performance.now()) - Time.fixedUnscaledTime;
             Time.fixedUnscaledTime += Time.fixedUnscaledDeltaTime;
@@ -141,10 +146,7 @@ class PlayerLoop
             Time.fixedTime += Time.fixedDeltaTime * Time.timeScale;
             
             // ScriptRunBehaviorFixedUpdate
-            if (this.#playing && Time.timeScale !== 0)
-            {
-                BroadcastMessage("FixedUpdate");
-            }
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("FixedUpdate");
         }
 
 
@@ -152,10 +154,7 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // ScriptRunBehaviorUpdate
-            if (this.#playing && Time.timeScale !== 0)
-            {
-                BroadcastMessage("Update");
-            }
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("Update");
         }
 
 
@@ -163,10 +162,7 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // ScriptRunBehaviorLateUpdate
-            if (this.#playing && Time.timeScale !== 0)
-            {
-                BroadcastMessage("LateUpdate");
-            }
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("LateUpdate");
 
             // UpdateAllRenderers
             if (!this.#crashed && this.#playing && Time.timeScale !== 0)

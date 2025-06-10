@@ -48,6 +48,41 @@ class GamepadInput
         return this.#gamepads.length !== 0;
     }
 
+    static get anyKey ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active) return true;
+        }
+
+        for (let i = 0; i < this.#axes.length; i++)
+        {
+            if (Math.abs(this.#axes[i].value) >= 1e-3) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyDown ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active && !this.#keys[i].lastState) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyUp ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (!this.#keys[i].active && this.#keys[i].lastState) return true;
+        }
+
+        return false;
+    }
+
     static Init ()
     {
         this.#keys = [
@@ -142,6 +177,12 @@ class GamepadInput
 
             this.#keys[i].lastState = this.#keys[i].active;
         }
+    }
+
+    static Clear ()
+    {
+        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].active = false;
+        for (let i = 0; i < this.#axes.length; i++) this.#axes[i].value = 0;
     }
 
     static GetKey (key)

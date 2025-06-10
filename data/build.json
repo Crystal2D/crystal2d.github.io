@@ -34,6 +34,7 @@
         "timeScale" : 1,
         "fixedDeltaTime" : 0.02
     },
+    "noFixedUpdate": true,
     "partioningMaxDepth" : 8,
     "layers" : [
         {

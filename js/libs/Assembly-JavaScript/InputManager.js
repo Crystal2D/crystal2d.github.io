@@ -1,7 +1,15 @@
+// Some things will be weird here
+// just to mimic how dep's og engine did stuff
 class InputManager extends GameBehavior
 {
     static instance = null;
 
+    #touchEnabled = true;
+    #repeated = false;
+    #pressedTime = 0;
+    #repeatWait = 0.4;
+    #repeatInterval = 0.1;
+    #repeatTime = 0;
     #keys = [];
 
     #upBtn = null;
@@ -10,11 +18,13 @@ class InputManager extends GameBehavior
     #rightBtn = null;
     #zBtn = null;
     #xBtn = null;
+    #lastKey = null;
 
     #Key = class
     {
         #inputs = [];
         #gamepadInputs = [];
+        #gamepadAxes = [];
         #touchInputs = [];
 
         name = null;
@@ -29,6 +39,11 @@ class InputManager extends GameBehavior
             for (let i = 0; i < this.#gamepadInputs.length; i++)
             {
                 if (GamepadInput.GetKey(this.#gamepadInputs[i])) return true;
+            }
+
+            for (let i = 0; i < this.#gamepadAxes.length; i++)
+            {
+                if (this.#gamepadAxes[i].state) return true;
             }
             
             for (let i = 0; i < this.#touchInputs.length; i++)
@@ -50,10 +65,40 @@ class InputManager extends GameBehavior
             {
                 if (GamepadInput.GetKeyDown(this.#gamepadInputs[i])) return true;
             }
+
+            for (let i = 0; i < this.#gamepadAxes.length; i++)
+            {
+                if (this.#gamepadAxes[i].state && !this.#gamepadAxes[i].lastState) return true;
+            }
             
             for (let i = 0; i < this.#touchInputs.length; i++)
             {
                 if (this.#touchInputs[i].pressedDown) return true;
+            }
+
+            return false;
+        }
+
+        get pressedUp ()
+        {
+            for (let i = 0; i < this.#inputs.length; i++)
+            {
+                if (Input.GetKeyUp(this.#inputs[i])) return true;
+            }
+
+            for (let i = 0; i < this.#gamepadInputs.length; i++)
+            {
+                if (GamepadInput.GetKeyUp(this.#gamepadInputs[i])) return true;
+            }
+
+            for (let i = 0; i < this.#gamepadAxes.length; i++)
+            {
+                if (!this.#gamepadAxes[i].state && this.#gamepadAxes[i].lastState) return true;
+            }
+            
+            for (let i = 0; i < this.#touchInputs.length; i++)
+            {
+                if (this.#touchInputs[i].pressedUp) return true;
             }
 
             return false;
@@ -74,9 +119,36 @@ class InputManager extends GameBehavior
             this.#gamepadInputs.push(key);
         }
 
+        GamepadAxis (name, dir, threshold)
+        {
+            this.#gamepadAxes.push({
+                name: name,
+                dir: dir,
+                pull: threshold,
+                state: false,
+                lastState: false
+            });
+        }
+
         TouchInput (button)
         {
             this.#touchInputs.push(button);
+        }
+
+        Update ()
+        {
+            for (let i = 0; i < this.#gamepadAxes.length; i++)
+            {
+                const axis = this.#gamepadAxes[i];
+
+                if (axis.dir > 0) axis.state = GamepadInput.GetAxis(axis.name) >= axis.pull;
+                else axis.state = GamepadInput.GetAxis(axis.name) <= -axis.pull;
+            }
+        }
+
+        UpdateEnd ()
+        {
+            for (let i = 0; i < this.#gamepadAxes.length; i++) this.#gamepadAxes[i].lastState = this.#gamepadAxes[i].state;
         }
     }
 
@@ -100,6 +172,44 @@ class InputManager extends GameBehavior
         return this.instance.GetKeyUp(name);
     }
 
+    static IsPressed (name)
+    {
+        return this.instance.IsPressed(name);
+    }
+
+    static IsTriggered (name)
+    {
+        return this.instance.IsTriggered(name);
+    }
+
+    static IsLongPressed (name)
+    {
+        return this.instance.IsLongPressed(name);
+    }
+
+    static IsRepeated (name)
+    {
+        return this.instance.IsRepeated(name);
+    }
+
+    static Clear ()
+    {
+        this.instance.Clear();
+    }
+
+    #SetTouch (state)
+    {
+        if (this.#touchEnabled === state) return;
+
+        this.#upBtn.SetActive(state);
+        this.#downBtn.SetActive(state);
+        this.#leftBtn.SetActive(state);
+        this.#rightBtn.SetActive(state);
+        this.#zBtn.SetActive(state);
+        this.#xBtn.SetActive(state);
+
+        this.#touchEnabled = state;
+    }
 
     Start ()
     {
@@ -146,6 +256,8 @@ class InputManager extends GameBehavior
         this.#xBtn.horizontalOrigin = HUIOriginX.Right;
         this.#xBtn.verticalOrigin = HUIOriginY.Bottom;
 
+        if (!Application.isMobilePlatform) this.#SetTouch(false);
+
         this.#keys = [
             new this.#Key("up"),
             new this.#Key("down"),
@@ -157,18 +269,38 @@ class InputManager extends GameBehavior
 
         this.#keys[0].KeyboardInput(KeyCode.ArrowUp);
         this.#keys[0].GamepadInput(KeyCode.DpadUp);
+        this.#keys[0].GamepadAxis(
+            "left stick vertical",
+            1,
+            0.5
+        );
         this.#keys[0].TouchInput(this.#upBtn);
 
         this.#keys[1].KeyboardInput(KeyCode.ArrowDown);
         this.#keys[1].GamepadInput(KeyCode.DpadDown);
+        this.#keys[1].GamepadAxis(
+            "left stick vertical",
+            -1,
+            0.5
+        );
         this.#keys[1].TouchInput(this.#downBtn);
 
         this.#keys[2].KeyboardInput(KeyCode.ArrowLeft);
-        this.#keys[2].GamepadInput(KeyCode.ArrowLeft);
+        this.#keys[2].GamepadInput(KeyCode.DpadLeft);
+        this.#keys[2].GamepadAxis(
+            "left stick horizontal",
+            -1,
+            0.5
+        );
         this.#keys[2].TouchInput(this.#leftBtn);
 
         this.#keys[3].KeyboardInput(KeyCode.ArrowRight);
         this.#keys[3].GamepadInput(KeyCode.DpadRight);
+        this.#keys[3].GamepadAxis(
+            "left stick horizontal",
+            1,
+            0.5
+        );
         this.#keys[3].TouchInput(this.#rightBtn);
         
         this.#keys[4].KeyboardInput(KeyCode.Z);
@@ -176,35 +308,83 @@ class InputManager extends GameBehavior
         this.#keys[4].TouchInput(this.#zBtn);
 
         this.#keys[5].KeyboardInput(KeyCode.X);
-        this.#keys[5].GamepadInput(KeyCode.WestButton);
+        this.#keys[5].GamepadInput(KeyCode.EastButton);
         this.#keys[5].TouchInput(this.#xBtn);
+    }
+
+    EarlyUpdate ()
+    {
+        HTMLUI.Update();
+
+        let pressed = false;
+
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            const key = this.#keys[i];
+
+            key.Update();
+
+            if (key.pressedDown)
+            {
+                this.#lastKey = key.name;
+                this.#pressedTime = 0;
+                this.#repeatTime = 0;
+            }
+
+            if (this.#lastKey === key.name && key.pressed) pressed = true;
+        }
+
+        if (!pressed) this.#lastKey = null;
+
+        if (this.#lastKey != null)
+        {
+            this.#repeated = false;
+
+            if (this.#pressedTime >= this.#repeatTime)
+            {
+                this.#repeated = true;
+                this.#repeatTime = this.#pressedTime + this.#repeatInterval;
+            }
+
+            this.#pressedTime += Time.deltaTime;
+        }
     }
 
     Update ()
     {
-        if (this.#upBtn.pressedDown)this.#upBtn.opacity = 0.7;
+        if (!this.#touchEnabled)
+        {
+            if (Input.touchCount > 0) this.#SetTouch(true);
+
+            return;
+        }
+
+        if (Input.anyKeyDown || GamepadInput.anyKey) this.#SetTouch(false);
+
+        if (this.#upBtn.pressedDown) this.#upBtn.opacity = 0.7;
         else if (this.#upBtn.pressedUp) this.#upBtn.opacity = 1;
 
-        if (this.#downBtn.pressedDown)this.#downBtn.opacity = 0.7;
+        if (this.#downBtn.pressedDown) this.#downBtn.opacity = 0.7;
         else if (this.#downBtn.pressedUp) this.#downBtn.opacity = 1;
         
-        if (this.#leftBtn.pressedDown)this.#leftBtn.opacity = 0.7;
+        if (this.#leftBtn.pressedDown) this.#leftBtn.opacity = 0.7;
         else if (this.#leftBtn.pressedUp) this.#leftBtn.opacity = 1;
 
-        if (this.#rightBtn.pressedDown)this.#rightBtn.opacity = 0.7;
+        if (this.#rightBtn.pressedDown) this.#rightBtn.opacity = 0.7;
         else if (this.#rightBtn.pressedUp) this.#rightBtn.opacity = 1;
 
-        if (this.#zBtn.pressedDown)this.#zBtn.opacity = 0.7;
+        if (this.#zBtn.pressedDown) this.#zBtn.opacity = 0.7;
         else if (this.#zBtn.pressedUp) this.#zBtn.opacity = 1;
 
-        if (this.#xBtn.pressedDown)this.#xBtn.opacity = 0.7;
+        if (this.#xBtn.pressedDown) this.#xBtn.opacity = 0.7;
         else if (this.#xBtn.pressedUp) this.#xBtn.opacity = 1;
     }
 
     LateUpdate ()
     {
         HTMLUI.UpdateEnd();
-        HTMLUI.Update();
+
+        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].UpdateEnd();
     }
 
     OnDisable ()
@@ -230,5 +410,30 @@ class InputManager extends GameBehavior
     GetKeyUp (name)
     {
         return this.FindKey(name).pressedUp;
+    }
+
+    IsPressed (name)
+    {
+        return this.GetKey(name);
+    }
+
+    IsTriggered (name)
+    {
+        return this.GetKeyDown(name);
+    }
+
+    IsLongPressed (name)
+    {
+        return this.#lastKey === name && this.#pressedTime >= this.#repeatWait;
+    }
+
+    IsRepeated (name)
+    {
+        return this.IsTriggered(name) || (this.IsLongPressed(name) && this.#repeated);
+    }
+
+    Clear ()
+    {
+        this.#lastKey = null;
     }
 }

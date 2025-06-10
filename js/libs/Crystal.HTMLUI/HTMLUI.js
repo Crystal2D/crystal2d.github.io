@@ -23,7 +23,10 @@ class HTMLUI
     {
         this.#ppu = value;
 
-        for (let i = 0; i < this.content.length; i++) this.content[i].Recalc();
+        for (let i = 0; i < this.content.length; i++)
+        {
+            if (this.content[i].activeSelf) this.content[i].Recalc();
+        }
     }
 
     static get scaleMode ()
@@ -47,7 +50,10 @@ class HTMLUI
     {
         this.#scale = value;
 
-        for (let i = 0; i < this.content.length; i++) this.content[i].Recalc();
+        for (let i = 0; i < this.content.length; i++)
+        {
+            if (this.content[i].activeSelf) this.content[i].Recalc();
+        }
     }
 
     static get referenceResolution ()
@@ -154,7 +160,10 @@ class HTMLUI
     {
         if (this.#scaleMode !== 1)
         {
-            for (let i = 0; i < this.content.length; i++) this.content[i].Recalc();
+            for (let i = 0; i < this.content.length; i++)
+            {
+                if (this.content[i].activeSelf) this.content[i].Recalc();
+            }
 
             return;
         }
@@ -204,12 +213,18 @@ class HTMLUI
 
     static Update ()
     {
-        for (let i = 0; i < this.content.length; i++) this.content[i].Update();
+        for (let i = 0; i < this.content.length; i++)
+        {
+            if (this.content[i].activeSelf) this.content[i].Update();
+        }
     }
 
     static UpdateEnd ()
     {
-        for (let i = 0; i < this.content.length; i++) this.content[i].UpdateEnd();
+        for (let i = 0; i < this.content.length; i++)
+        {
+            if (this.content[i].activeSelf) this.content[i].UpdateEnd();
+        }
     }
 
     static Clear ()
