@@ -4,7 +4,6 @@ class RPGMovement extends GameBehavior
     #moveStart = false;
     #currentSpeedScale = 0;
     #moveSpeed = 0;
-    #realPos = Vector2.zero;
     #targetDir = Vector2.zero;
     #movement = Vector2.zero;
     #lastPos = Vector2.zero;
@@ -23,11 +22,6 @@ class RPGMovement extends GameBehavior
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
 
-    get realPos ()
-    {
-        return this.#realPos;
-    }
-
     #GetMovement ()
     {
         this._moveDir = this.#targetDir;
@@ -45,7 +39,7 @@ class RPGMovement extends GameBehavior
         }
 
         const nextPos = Vector2.Add(
-            this.#realPos,
+            this.transform.position,
             Vector2.Scale(this._moveDir, Time.deltaTime * this.#moveSpeed)
         );
 
@@ -54,7 +48,7 @@ class RPGMovement extends GameBehavior
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
-            this.#realPos = Vector2.Add(this.#lastPos, this.#movement);
+            this.transform.position = Vector2.Add(this.#lastPos, this.#movement);
 
             this.#moveStart = false;
 
@@ -67,7 +61,7 @@ class RPGMovement extends GameBehavior
             return;
         }
 
-        this.#realPos = nextPos;
+        this.transform.position = nextPos;
 
         this._OnMove();
     }
@@ -83,8 +77,7 @@ class RPGMovement extends GameBehavior
             this.#currentSpeedScale = this.speedScale;
             this.#moveSpeed = this.speed * this.#currentSpeedScale;
 
-            this.#realPos = Vector2.Add(this.transform.position, 0);
-            this.#lastPos = this.#realPos;
+            this.#lastPos = this.transform.position;
         }
 
         if (!this._moveDir.Equals(Vector2.zero))
@@ -97,16 +90,6 @@ class RPGMovement extends GameBehavior
 
             this._OnStay();
         }
-    }
-
-    LateUpdate ()
-    {
-        const step = 0.0625 * 0.5;
-
-        this.transform.position = new Vector2(
-            this.#realPos.x - (this.#realPos.x % step),
-            this.#realPos.y - (this.#realPos.y % step)
-        );
     }
 
     _OnMovementGet () { }

@@ -14,7 +14,7 @@ class CameraController extends Viewport
     
     LateUpdate ()
     {
-        const charPos = this.#targetTrans.GetComponent("RPGMovement").realPos;
+        const charPos = this.#targetTrans.position;
         
         const newPos = new Vector2(
             // charPos.x,
@@ -23,11 +23,6 @@ class CameraController extends Viewport
             Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
             Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
         );
-
-        const step = 0.0625 * 0.5;
-
-        newPos.x -= newPos.x % step;
-        newPos.y -= newPos.y % step;
         
         this.transform.position = newPos;
 

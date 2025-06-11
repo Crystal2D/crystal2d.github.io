@@ -96,7 +96,7 @@ class Texture
         return this.#img;
     }
     
-    constructor (src)
+    constructor (src, dir)
     {
         this.#img = new Image();
         this.#img.sprite = this;
@@ -108,7 +108,7 @@ class Texture
         this.wrapMode = 0;
         this.filterMode = 0;
         
-        this.#src = src;
+        this.#src = `${dir ?? "img/"}${src}`;
     }
     
     GetNativeTexture ()
@@ -120,7 +120,7 @@ class Texture
     {
         if (this.#loaded) return;
         
-        this.#img.src = `img/${this.#src}`;
+        this.#img.src = this.#src;
         
         await new Promise(resolve => this.#img.onload = resolve);
         

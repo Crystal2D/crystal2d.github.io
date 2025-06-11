@@ -2,14 +2,19 @@ class Tilemap extends Renderer
 {
     #loaded = false;
     #meshChanged = true;
+    #merging = true;
     #tiles = [];
     #rendersets = [];
     #gridSize = Vector2.zero;
     #bounds = new Bounds(new Vector2(NaN, NaN));
+    #transMat = Matrix3x3.identity;
 
     #colorOld = null;
     #min = null;
     #max = null;
+    #sprite = null;
+
+    mergeResolution = 16;
 
     grid = null;
 
@@ -25,7 +30,16 @@ class Tilemap extends Renderer
 
     get localToWorldMatrix ()
     {
-        return this.grid.transform.localToWorldMatrix;
+        return Matrix3x3.Multiply(
+            this.grid.transform.localToWorldMatrix,
+            this.#transMat
+        );
+    }
+
+    // tells if tilemap is binted
+    get mergedRendering ()
+    {
+        return this.#sprite != null;
     }
 
     #RenderSet = class
@@ -230,7 +244,15 @@ class Tilemap extends Renderer
             this.color.a
         ];
 
-        for (let i = 0; i < this.#rendersets.length; i++) this.#rendersets[i].SetColors(color);
+        if (this.#sprite == null) for (let i = 0; i < this.#rendersets.length; i++) this.#rendersets[i].SetColors(color);
+        else this.material.SetBuffer(this.colorBufferID, [
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color,
+            ...color
+        ]);
     }
 
     #RenderRenderSet (renderset)
@@ -340,12 +362,49 @@ class Tilemap extends Renderer
     Render ()
     {   
         if (!this.#gridSize.Equals(Vector2.Add(this.grid.cellSize, this.grid.cellGap))) this.ForceMeshUpdate();
-
         if (!this.#colorOld.Equals(this.color)) this.#RemapColors();
-        
-        if (this.#rendersets.length === 0) return;
 
-        for (let i = 0; i < this.#rendersets.length; i++) this.#RenderRenderSet(this.#rendersets[i]);
+        if (this.#sprite != null)
+        {
+            this.#RenderMerged();
+
+            return;
+        }
+
+        if (this.#rendersets.length > 0) for (let i = 0; i < this.#rendersets.length; i++) this.#RenderRenderSet(this.#rendersets[i]);
+        if (this.#merging) this.#Merge();
+    }
+
+    #RenderMerged ()
+    {
+        const gl = this.material.gl;
+        
+        const renderMatrix = this.renderMatrix;
+        
+        this.material.SetMatrix(this.uMatrixID,
+            renderMatrix.matrix[0][0],
+            renderMatrix.matrix[0][1],
+            renderMatrix.matrix[0][2],
+            renderMatrix.matrix[1][0],
+            renderMatrix.matrix[1][1],
+            renderMatrix.matrix[1][2],
+            renderMatrix.matrix[2][0],
+            renderMatrix.matrix[2][1],
+            renderMatrix.matrix[2][2]
+        );
+
+        this.material.SetAttribute(this.aVertexPosID, this.geometryBufferID);
+        this.material.SetAttribute(this.aTexturePosID, this.textureBufferID);
+        this.material.SetAttribute(this.aColorID, this.colorBufferID);
+        
+        gl.useProgram(this.material.program);
+        
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.#sprite.texture.GetNativeTexture());
+        
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 5);
+        
+        gl.useProgram(null);
     }
 
     GetTile (position)
@@ -486,5 +545,125 @@ class Tilemap extends Renderer
         const tile = this.GetTile(position);
 
         if (tile != null) this.RemoveTile(this.#tiles.indexOf(tile));
+    }
+
+    async #Merge ()
+    {
+        this.#merging = false;
+
+        const res = this.mergeResolution;
+        const canvas = document.createElement("canvas");
+        canvas.width = (this.#max.x - this.#min.x + 1) * this.#gridSize.x * res;
+        canvas.height = (this.#max.y - this.#min.y + 1) * this.#gridSize.y * res;
+        canvas.style.imageRendering = "pixelated";
+        const context = canvas.getContext("2d");
+        
+        for (let i = 0; i < this.#tiles.length; i++)
+        {
+            const sprite = this.#tiles[i].sprite;
+            const texture = sprite.texture;
+            const rect = sprite.rect;
+
+            const pos = new Vector2(
+                (this.#tiles[i].position.x - this.#min.x) * this.#gridSize.x,
+                (this.#tiles[i].position.y - this.#max.y) * this.#gridSize.y
+            )
+            const offset = new Vector2(
+                (rect.width * 0.5 / sprite.pixelPerUnit) - this.#gridSize.x * 0.5,
+                (rect.height * 0.5 / sprite.pixelPerUnit) - this.#gridSize.y * 0.5
+            );
+            const pivotOffset = Vector2.Scale(
+                Vector2.Add(Vector2.Scale(sprite.pivot, -2), 1),
+                new Vector2(
+                    rect.width * 0.5,
+                    rect.height * 0.5
+                )
+            );
+        
+            context.imageSmoothingEnabled = false;
+            context.drawImage(
+                texture.img,
+                rect.x,
+                rect.y,
+                rect.width,
+                rect.height,
+                (pos.x - offset.x) * res + pivotOffset.x,
+                (-pos.y - offset.y) * res + pivotOffset.y,
+                rect.width * res / sprite.pixelPerUnit,
+                rect.height * res / sprite.pixelPerUnit
+            );
+        }
+        
+        const texture = new Texture(canvas.toDataURL("image/png"), "");
+        await texture.Load();
+
+        const sprite = texture.sprites[0];
+        const verts = sprite.vertices;
+        const tris = sprite.triangles;
+
+        let vertexArray = [];
+
+        for (let i = 0; i < tris.length; i++)
+        {
+            const vert = verts[tris[i]];
+
+            vertexArray.push(
+                vert.x,
+                vert.y
+            );
+        }
+
+        const texX = texture.width;
+        const texY = texture.height;
+        const rescaleW = texX / res;
+        const rescaleH = texY / res;
+
+        this.material.SetBuffer(this.geometryBufferID, vertexArray);
+        this.material.SetBuffer(this.textureBufferID, vertexArray);
+        
+        this.#transMat = Matrix3x3.TRS(
+            Vector2.Add(
+                new Vector2(
+                    -0.5 * rescaleW,
+                    -0.5 * rescaleH
+                ),
+                Vector2.Scale(
+                    Vector2.Add(this.#min, this.#max),
+                    Vector2.Scale(
+                        this.#gridSize,
+                        new Vector2(
+                            0.5,
+                            -0.5
+                        )
+                    )
+                )
+            ),
+            0,
+            Vector2.Scale(
+                texX > texY ? new Vector2(1, texY / texX) : new Vector2(texX / texY, 1),
+                texX > texY ? rescaleW : rescaleH
+            )
+        );
+
+        this.#sprite = sprite;
+
+        this.#RemapColors();
+    }
+
+    Merge ()
+    {
+        this.Unmerge();
+
+        this.#merging = true;
+    }
+
+    Unmerge ()
+    {
+        if (!this.mergedRendering) return;
+
+        this.#sprite.texture.Unload();
+        this.#sprite = null;
+
+        this.#transMat = Matrix3x3.identity;
     }
 }
