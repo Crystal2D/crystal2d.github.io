@@ -597,6 +597,11 @@ class Tilemap extends Renderer
         const texture = new Texture(canvas.toDataURL("image/png"), "");
         await texture.Load();
 
+        canvas.width = 0;
+        canvas.height = 0;
+        
+        context.reset();
+
         const sprite = texture.sprites[0];
         const verts = sprite.vertices;
         const tris = sprite.triangles;
