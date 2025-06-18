@@ -471,7 +471,7 @@ class CrystalEngine
             
             await CrystalEngine.Wait(() => libIndex === libCount);
 
-            Window.Title((1e-3 * (performance.now() - last)).toFixed(3));
+            Window.SetTitle((1e-3 * (performance.now() - last)).toFixed(3));
 
             for (let i = 0; i < this.#compiledData.scripts.length; i++) await this.#compiledData.scripts[i].Load();
             
