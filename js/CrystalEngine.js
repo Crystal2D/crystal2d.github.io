@@ -181,16 +181,16 @@ class CrystalEngine
 
                 this.#startedLoading = true;
 
-                // const scriptCount = this.#unloadedScripts.length;
-                // let scriptIndex = 0;
+                const scriptCount = this.#unloadedScripts.length;
+                let scriptIndex = 0;
 
-                // // preload lol
-                // for (let i = 0; i < scriptCount; i++) (async () => {
-                //     await fetch(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
-                //     scriptIndex++;
-                // })();
+                // preload lol
+                for (let i = 0; i < scriptCount; i++) (async () => {
+                    await fetch(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    scriptIndex++;
+                })();
 
-                // await CrystalEngine.Wait(() => scriptIndex === scriptCount);
+                await CrystalEngine.Wait(() => scriptIndex === scriptCount);
 
                 for (let i = 0; i < this.#unloadedScripts.length; i++)
                 {
