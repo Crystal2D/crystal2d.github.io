@@ -80,18 +80,7 @@ class SceneManager
             {
                 for (let i = 0; i < this.#activeScene.gameObjects.length; i++) GameObject.Destroy(this.#activeScene.gameObjects[i]);
 
-                const loop = callback => {
-                    if (this.#activeScene.gameObjects.length === 0)
-                    {
-                        callback();
-        
-                        return;
-                    }
-        
-                    requestAnimationFrame(loop.bind(this, callback));
-                };
-        
-                await new Promise(resolve => loop(resolve));
+                await CrystalEngine.Wait(() => this.#activeScene.gameObjects.length === 0);
 
                 this.#activeScene = null;
             }

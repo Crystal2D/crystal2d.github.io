@@ -71,6 +71,22 @@ class CrystalEngine
 
         return false;
     }
+
+    static async Wait (conditionCall)
+    {
+        const loop = callback => {
+            if (conditionCall())
+            {
+                callback();
+    
+                return;
+            }
+    
+            requestAnimationFrame(loop.bind(this, callback));
+        };
+    
+        await new Promise(resolve => loop(resolve));
+    }
     
     static Inner = class
     {
@@ -87,9 +103,13 @@ class CrystalEngine
         
         static #Lib = class
         {
+            #startedLoading = false;
             #loaded = false;
             #name = "";
+            #id = "";
             #desc = "";
+            #ver = "";
+            #deps = [];
             #unloadedScripts = [];
             #scripts = [];
             #classes = [];
@@ -105,10 +125,20 @@ class CrystalEngine
             {
                 return this.#name;
             }
+
+            get id ()
+            {
+                return this.#id;
+            }
             
             get description ()
             {
                 return this.#desc;
+            }
+
+            get version ()
+            {
+                return this.#ver;
             }
             
             get scripts ()
@@ -120,20 +150,48 @@ class CrystalEngine
             {
                 return this.#classes;
             }
+
+            get deps ()
+            {
+                return this.#deps;
+            }
             
-            constructor (name, desc, scripts, classes, src)
+            constructor (name, id, desc, ver, scripts, classes, src, deps)
             {
                 this.#name =  name;
+                this.#id = id;
                 this.#desc = desc ?? "";
+                this.#ver = ver;
                 this.#unloadedScripts = scripts;
                 this.#classes = classes ?? [];
                 this.#src = src;
+                this.#deps = deps ?? [];
             }
             
             async Load ()
             {
                 if (this.#loaded) return;
-                
+
+                if (this.#startedLoading)
+                {
+                    await CrystalEngine.Wait(() => this.#loaded);
+
+                    return;
+                }
+
+                this.#startedLoading = true;
+
+                const scriptCount = this.#unloadedScripts.length;
+                let scriptIndex = 0;
+
+                // preload lol
+                for (let i = 0; i < scriptCount; i++) (async () => {
+                    await fetch(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    scriptIndex++;
+                })();
+
+                await CrystalEngine.Wait(() => scriptIndex === scriptCount);
+
                 for (let i = 0; i < this.#unloadedScripts.length; i++)
                 {
                     const script = new CrystalEngine.Script(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
@@ -279,7 +337,7 @@ class CrystalEngine
                 
                 const errWrap = document.createElement("div");
                 errWrap.style.whiteSpace = "pre-wrap";
-                errWrap.style.marginTop = cordova == null ? "12px" : "36px";
+                errWrap.style.marginTop = Application.isMobilePlatform ? "12px" : "36px";
                 errWrap.style.marginLeft = "12px";
 
                 errLogs = document.createElement("span");
@@ -305,31 +363,51 @@ class CrystalEngine
         
         static async #LoadData ()
         {
-            const manifestResponse = await fetch("manifest.json");
-            const manifestData = await manifestResponse.json();
-            
-            Application.Init(manifestData.name);
-            Window.Init(manifestData.window);
+            let inited = false;
+
+            (async () => {
+                const manifestResponse = await fetch("manifest.json");
+                const manifestData = await manifestResponse.json();
+                
+                Application.Init(manifestData.name);
+                Window.Init(manifestData.window);
+
+                inited = true;
+            })();
             
             const buildResponse = await fetch("data/build.json");
             this.#buildData = await buildResponse.json();
             
             this.#buildData.libs.unshift("Crystal.Core");
             this.#buildData.shaders.unshift("vertex", "fragment");
+
+            const loadEnd = this.#buildData.libs.length + this.#buildData.shaders.length + this.#buildData.resources.length;
+            let loadCount = 0;
             
-            for (let i = 0; i < this.#buildData.libs.length; i++)
-            {
+            for (let i = 0; i < this.#buildData.libs.length; i++) (async () => {
                 const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/manifest.json`);
                 const libData = await libResponse.json();
-                
+
+                if (libData.id !== "com.crystal.core")
+                {
+                    if (libData.deps == null) libData.deps = [];
+
+                    libData.deps.unshift("com.crystal.core");
+                }
+
                 this.#compiledData.libs.push(new this.#Lib(
                     libData.name,
+                    libData.id,
                     libData.description,
+                    libData.version,
                     libData.scripts,
                     libData.classes,
-                    this.#buildData.libs[i]
+                    this.#buildData.libs[i],
+                    libData.deps
                 ));
-            }
+
+                loadCount++;
+            })();
             
             for (let i = 0; i < this.#buildData.scripts.length; i++)
             {
@@ -342,29 +420,55 @@ class CrystalEngine
                 
                 this.#compiledData.scripts.push(script);
             }
-            
-            for (let i = 0; i < this.#buildData.shaders.length; i++)
-            {
-                const shaderResponse = await fetch(`shaders/${this.#buildData.shaders[i]}.glsl`);
-                
-                this.#compiledData.shaders.push(await shaderResponse.text());
-            }
 
-            for (let i = 0; i < this.#buildData.resources.length; i++)
-            {
+            for (let i = 0; i < this.#buildData.shaders.length; i++) (async () => {
+                const shaderResponse = await fetch(`shaders/${this.#buildData.shaders[i]}.glsl`);
+
+                this.#compiledData.shaders.push(await shaderResponse.text());
+
+                loadCount++;
+            })();
+
+            for (let i = 0; i < this.#buildData.resources.length; i++) (async () => {
                 const resResponse = await fetch(`data/resources/${this.#buildData.resources[i]}.json`);
                 const resData = await resResponse.json();
 
                 this.#resources.push(...resData);
-            }
+
+                loadCount++;
+            })();
+
+            await CrystalEngine.Wait(() => inited && loadCount === loadEnd);
             
             this.#Init();
         }
         
         static async #Init ()
         {
-            for (let i = 0; i < this.#compiledData.libs.length; i++) await this.#compiledData.libs[i].Load();
+            const libCount = this.#compiledData.libs.length;
+            let libIndex = 0;
+
+            for (let i = 0; i < libCount; i++) (async () => {
+                const deps = this.#compiledData.libs[i].deps;
+                let loadCount = 0;
+
+                for (let i = 0; i < deps.length; i++) (async () => {
+                    const lib = this.#compiledData.libs.find(item => item.id === deps[i]);
+
+                    await lib.Load();
+
+                    loadCount++;
+                })();
+
+                await CrystalEngine.Wait(() => loadCount === deps.length);
+
+                await this.#compiledData.libs[i].Load();
+
+                libIndex++;
+            })();
             
+            await CrystalEngine.Wait(() => libIndex === libCount);
+
             for (let i = 0; i < this.#compiledData.scripts.length; i++) await this.#compiledData.scripts[i].Load();
             
             if (this.#terminateStart) return;

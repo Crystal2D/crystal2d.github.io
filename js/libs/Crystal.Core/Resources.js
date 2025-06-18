@@ -93,22 +93,43 @@ class Resources
     
     static async Load (...path)
     {
+        const pathCount = path.length;
+        let pathIndex = 0;
+        
         for (let i = 0; i < path.length; i++)
         {
+            if (Array.isArray(path[i]))
+            {
+                (async () => {
+                    for (let j = 0; j < path[i].length; j++) await this.Load(path[i][j]);
+
+                    pathIndex++;
+                })();
+
+                continue;
+            }
+
             const data = this.#unloadedRes.find(item => item.path === path[i]);
+            const loadedData = this.#resources.find(item => item.path === path);
 
-            if (data == null || this.#resources.find(item => item.path === path) != null) continue;
+            if (data == null || loadedData != null) continue;
 
-            const obj = await this.#ToObject(
-                path[i].split("/").slice(-1)[0],
-                data.type,
-                data.args
-            );
+            (async () => {
+                const obj = await this.#ToObject(
+                    path[i].split("/").slice(-1)[0],
+                    data.type,
+                    data.args
+                );
+            
+                this.#resources.push({
+                    path : path[i],
+                    obj : obj
+                });
 
-            this.#resources.push({
-                path : path[i],
-                obj : obj
-            });
+                pathIndex++;
+            })();
         }
+
+        await CrystalEngine.Wait(() => pathIndex === pathCount);
     }
 }

@@ -1,7 +1,8 @@
 {
     "name" : "Crystal.SimpleAnimate",
+    "id": "com.crystal.simpleanimate",
     "description" : "Adds a simple animation system",
-    "version": "2025.3f",
+    "version": "2025.3.1f",
     "scripts" : [
         "AnimationClip",
         "AnimatorNode",
