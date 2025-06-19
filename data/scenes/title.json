@@ -13,9 +13,18 @@
         "audio/se/confirm",
         "audio/se/no",
         "audio/bgm/title",
-        "ctrls/f",
+        "ctrls/bounds",
+        "ctrls/dpad",
+        "ctrls/dpad/up",
+        "ctrls/dpad/down",
+        "ctrls/dpad/left",
+        "ctrls/dpad/right",
         "ctrls/z",
-        "ctrls/x"
+        "ctrls/z1",
+        "ctrls/x",
+        "ctrls/x1",
+        "ctrls/shift",
+        "ctrls/shift1"
     ],
     "gameObjects": [
         {

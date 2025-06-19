@@ -7,9 +7,18 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_village",
         "sprites/tilesets/ext_fence",
-        "ctrls/f",
+        "ctrls/bounds",
+        "ctrls/dpad",
+        "ctrls/dpad/up",
+        "ctrls/dpad/down",
+        "ctrls/dpad/left",
+        "ctrls/dpad/right",
         "ctrls/z",
-        "ctrls/x"
+        "ctrls/z1",
+        "ctrls/x",
+        "ctrls/x1",
+        "ctrls/shift",
+        "ctrls/shift1"
     ],
     "gameObjects": [
         {

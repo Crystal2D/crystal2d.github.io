@@ -57,7 +57,7 @@ class GamepadInput
 
         for (let i = 0; i < this.#axes.length; i++)
         {
-            if (Math.abs(this.#axes[i].value) >= 1e-3) return true;
+            if (Math.abs(this.#axes[i].value) >= 1e-2) return true;
         }
 
         return false;

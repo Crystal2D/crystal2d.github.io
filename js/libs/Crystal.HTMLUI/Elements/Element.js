@@ -124,6 +124,8 @@ HTMLUI.Element = class
     {
         this.#active = state;
         this.htmlElement.style.opacity = state ? this.#alpha : 0;
+
+        this.Recalc();
     }
 
     Recalc ()

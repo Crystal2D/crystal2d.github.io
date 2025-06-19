@@ -11,13 +11,16 @@ class InputManager extends GameBehavior
     #repeatInterval = 0.1;
     #repeatTime = 0;
     #keys = [];
+    #textures = [];
 
+    #dpad = null;
     #upBtn = null;
     #downBtn = null;
     #leftBtn = null;
     #rightBtn = null;
     #zBtn = null;
     #xBtn = null;
+    #shiftBtn = null;
     #lastKey = null;
 
     #Key = class
@@ -201,60 +204,92 @@ class InputManager extends GameBehavior
     {
         if (this.#touchEnabled === state) return;
 
+        this.#dpad.SetActive(state);
         this.#upBtn.SetActive(state);
         this.#downBtn.SetActive(state);
         this.#leftBtn.SetActive(state);
         this.#rightBtn.SetActive(state);
         this.#zBtn.SetActive(state);
         this.#xBtn.SetActive(state);
+        this.#shiftBtn.SetActive(state);
 
         this.#touchEnabled = state;
     }
 
     Start ()
     {
+        this.#textures = [
+            Resources.Find("ctrls/dpad"),
+            Resources.Find("ctrls/dpad/up"),
+            Resources.Find("ctrls/dpad/down"),
+            Resources.Find("ctrls/dpad/left"),
+            Resources.Find("ctrls/dpad/right"),
+            Resources.Find("ctrls/z"),
+            Resources.Find("ctrls/z1"),
+            Resources.Find("ctrls/x"),
+            Resources.Find("ctrls/x1"),
+            Resources.Find("ctrls/shift"),
+            Resources.Find("ctrls/shift1")
+        ];
+
         InputManager.instance = this;
 
         HTMLUI.referenceResolution = new Vector2(480, 432);
         HTMLUI.scaleMode = HUIScaleMode.Screen;
         HTMLUI.matchMode = HUIMatchMode.Shrink;
 
-        this.#upBtn = new HTMLUI.Button(Resources.Find("ctrls/f"));
-        this.#upBtn.position = new Vector2(2.25, 3);
+        this.#dpad = new HTMLUI.Image(this.#textures[0]);
+        this.#dpad.position = new Vector2(2.25, 2);
+        this.#dpad.horizontalOrigin = HUIOriginX.Left;
+        this.#dpad.verticalOrigin = HUIOriginY.Bottom;
+
+        const boundsTex = Resources.Find("ctrls/bounds");
+
+        this.#upBtn = new HTMLUI.Button(boundsTex);
+        this.#upBtn.position = new Vector2(2.25, 2.8333);
         this.#upBtn.horizontalOrigin = HUIOriginX.Left;
         this.#upBtn.verticalOrigin = HUIOriginY.Bottom;
         this.#upBtn.registerSlide = true;
+        this.#upBtn.opacity = 0;
 
-        this.#downBtn = new HTMLUI.Button(Resources.Find("ctrls/f"));
-        this.#downBtn.position = new Vector2(2.25, 1);
+        this.#downBtn = new HTMLUI.Button(boundsTex);
+        this.#downBtn.position = new Vector2(2.25, 1.1667);
         this.#downBtn.rotation = 180;
         this.#downBtn.horizontalOrigin = HUIOriginX.Left;
         this.#downBtn.verticalOrigin = HUIOriginY.Bottom;
         this.#downBtn.registerSlide = true;
+        this.#downBtn.opacity = 0;
 
-        this.#leftBtn = new HTMLUI.Button(Resources.Find("ctrls/f"));
-        this.#leftBtn.position = new Vector2(1.25, 2);
+        this.#leftBtn = new HTMLUI.Button(boundsTex);
+        this.#leftBtn.position = new Vector2(1.4167, 2);
         this.#leftBtn.rotation = 90;
         this.#leftBtn.horizontalOrigin = HUIOriginX.Left;
         this.#leftBtn.verticalOrigin = HUIOriginY.Bottom;
         this.#leftBtn.registerSlide = true;
+        this.#leftBtn.opacity = 0;
 
-        this.#rightBtn = new HTMLUI.Button(Resources.Find("ctrls/f"));
-        this.#rightBtn.position = new Vector2(3.25, 2);
+        this.#rightBtn = new HTMLUI.Button(boundsTex);
+        this.#rightBtn.position = new Vector2(3.0833, 2);
         this.#rightBtn.rotation = 270;
         this.#rightBtn.horizontalOrigin = HUIOriginX.Left;
         this.#rightBtn.verticalOrigin = HUIOriginY.Bottom;
         this.#rightBtn.registerSlide = true;
+        this.#rightBtn.opacity = 0;
 
-        this.#zBtn = new HTMLUI.Button(Resources.Find("ctrls/z"));
-        this.#zBtn.position = new Vector2(-2.5, 1.5);
+        this.#zBtn = new HTMLUI.Button(this.#textures[5]);
+        this.#zBtn.position = new Vector2(-2.5, 1);
         this.#zBtn.horizontalOrigin = HUIOriginX.Right;
         this.#zBtn.verticalOrigin = HUIOriginY.Bottom;
 
-        this.#xBtn = new HTMLUI.Button(Resources.Find("ctrls/x"));
-        this.#xBtn.position = new Vector2(-1.25, 2.25);
+        this.#xBtn = new HTMLUI.Button(this.#textures[7]);
+        this.#xBtn.position = new Vector2(-1.5, 2);
         this.#xBtn.horizontalOrigin = HUIOriginX.Right;
         this.#xBtn.verticalOrigin = HUIOriginY.Bottom;
+
+        this.#shiftBtn = new HTMLUI.Button(this.#textures[9]);
+        this.#shiftBtn.position = new Vector2(-3.5, 2);
+        this.#shiftBtn.horizontalOrigin = HUIOriginX.Right;
+        this.#shiftBtn.verticalOrigin = HUIOriginY.Bottom;
 
         if (!Application.isMobilePlatform) this.#SetTouch(false);
 
@@ -265,6 +300,7 @@ class InputManager extends GameBehavior
             new this.#Key("right"),
             new this.#Key("z"),
             new this.#Key("x"),
+            new this.#Key("shift")
         ];
 
         this.#keys[0].KeyboardInput(KeyCode.ArrowUp);
@@ -310,6 +346,10 @@ class InputManager extends GameBehavior
         this.#keys[5].KeyboardInput(KeyCode.X);
         this.#keys[5].GamepadInput(KeyCode.EastButton);
         this.#keys[5].TouchInput(this.#xBtn);
+
+        this.#keys[6].KeyboardInput(KeyCode.Shift);
+        this.#keys[6].GamepadInput(KeyCode.WestButton);
+        this.#keys[6].TouchInput(this.#shiftBtn);
     }
 
     EarlyUpdate ()
@@ -361,23 +401,15 @@ class InputManager extends GameBehavior
 
         if (Input.anyKeyDown || GamepadInput.anyKey) this.#SetTouch(false);
 
-        if (this.#upBtn.pressedDown) this.#upBtn.opacity = 0.7;
-        else if (this.#upBtn.pressedUp) this.#upBtn.opacity = 1;
+        if (this.#upBtn.pressed) this.#dpad.texture = this.#textures[1];
+        else if (this.#downBtn.pressed) this.#dpad.texture = this.#textures[2];
+        else if (this.#leftBtn.pressed) this.#dpad.texture = this.#textures[3];
+        else if (this.#rightBtn.pressed) this.#dpad.texture = this.#textures[4];
+        else this.#dpad.texture = this.#textures[0];
 
-        if (this.#downBtn.pressedDown) this.#downBtn.opacity = 0.7;
-        else if (this.#downBtn.pressedUp) this.#downBtn.opacity = 1;
-        
-        if (this.#leftBtn.pressedDown) this.#leftBtn.opacity = 0.7;
-        else if (this.#leftBtn.pressedUp) this.#leftBtn.opacity = 1;
-
-        if (this.#rightBtn.pressedDown) this.#rightBtn.opacity = 0.7;
-        else if (this.#rightBtn.pressedUp) this.#rightBtn.opacity = 1;
-
-        if (this.#zBtn.pressedDown) this.#zBtn.opacity = 0.7;
-        else if (this.#zBtn.pressedUp) this.#zBtn.opacity = 1;
-
-        if (this.#xBtn.pressedDown) this.#xBtn.opacity = 0.7;
-        else if (this.#xBtn.pressedUp) this.#xBtn.opacity = 1;
+        this.#zBtn.texture = this.#textures[5 + +this.#zBtn.pressed];
+        this.#xBtn.texture = this.#textures[7 + +this.#xBtn.pressed];
+        this.#shiftBtn.texture = this.#textures[9 + +this.#shiftBtn.pressed];
     }
 
     LateUpdate ()

@@ -1,9 +1,44 @@
 [
     {
-        "path": "ctrls/f",
+        "path": "ctrls/bounds",
         "type": "Texture",
         "args": {
-            "src": "ctrls/f.png"
+            "src": "ctrls/bounds.png"
+        }
+    },
+    {
+        "path": "ctrls/dpad",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/dpad/0.png"
+        }
+    },
+    {
+        "path": "ctrls/dpad/up",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/dpad/up.png"
+        }
+    },
+    {
+        "path": "ctrls/dpad/down",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/dpad/down.png"
+        }
+    },
+    {
+        "path": "ctrls/dpad/left",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/dpad/left.png"
+        }
+    },
+    {
+        "path": "ctrls/dpad/right",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/dpad/right.png"
         }
     },
     {
@@ -14,10 +49,38 @@
         }
     },
     {
+        "path": "ctrls/z1",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/z1.png"
+        }
+    },
+    {
         "path": "ctrls/x",
         "type": "Texture",
         "args": {
             "src": "ctrls/x.png"
+        }
+    },
+    {
+        "path": "ctrls/x1",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/x1.png"
+        }
+    },
+    {
+        "path": "ctrls/shift",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/shift.png"
+        }
+    },
+    {
+        "path": "ctrls/shift1",
+        "type": "Texture",
+        "args": {
+            "src": "ctrls/shift1.png"
         }
     }
 ]

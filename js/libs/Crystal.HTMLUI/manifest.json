@@ -2,7 +2,7 @@
     "name" : "Crystal.HTMLUI",
     "id": "com.crystal.hui",
     "description" : "Adds an easier way to add HTML based UI",
-    "version": "2025.2.1f",
+    "version": "2025.3f",
     "scripts" : [
         "HTMLUI",
         "HUIScaleMode",

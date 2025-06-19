@@ -12,6 +12,8 @@ HTMLUI.Image = class extends HTMLUI.Element
 
     set texture (value)
     {
+        if (this.#texture === value) return;
+
         this.#texture = value;
 
         this.htmlElement.src = this.#texture.img.src;

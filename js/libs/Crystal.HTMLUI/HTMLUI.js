@@ -1,6 +1,6 @@
 class HTMLUI
 {
-    static #ppu = 29;
+    static #ppu = 12;
     static #scaleMode = 0;
     static #scale = 1;
     static #matchMode = 0;

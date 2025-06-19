@@ -56,7 +56,7 @@ class CharController extends RPGMovement
 
         this.MoveTowards(input);
 
-        this.speedScale = this.#tertriaryInput ? 2 : 1;
+        this.speedScale = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 2 : 1;
     }
 
     _OnMove ()
@@ -91,6 +91,6 @@ class CharController extends RPGMovement
 
     #GetInput ()
     {
-        this.#tertriaryInput = InputManager.GetKey("x");
+        this.#tertriaryInput = InputManager.GetKey("shift");
     }
 }
