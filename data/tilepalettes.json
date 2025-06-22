@@ -2018,6 +2018,20 @@
         ]
     },
     {
+        "name": "Exterior - Graveyard - Shack",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_graveyard_shack",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Ride",
         "textures": [
             {

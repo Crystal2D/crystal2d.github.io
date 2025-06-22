@@ -4677,5 +4677,18 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/tilesets/ext_graveyard_shack",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_graveyard_shack.png",
+            "sprite": {
+                "pivot": {
+                    "x": 0.41667,
+                    "y": 0.41667
+                }
+            }
+        }
     }
 ]
