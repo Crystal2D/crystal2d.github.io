@@ -4690,5 +4690,869 @@
                 }
             }
         }
+    },
+    {
+        "path": "sprites/tilesets/ext_castletown_1",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_castletown_1.png",
+            "sprites": [
+                {
+                    "name": "fountain",
+                    "rect": {
+                        "width": 24,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.625
+                    }
+                },
+                {
+                    "name": "window",
+                    "rect": {
+                        "x": 24,
+                        "width": 16,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.25,
+                        "y": 0.625
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_castletown_alley",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_castletown_alley.png",
+            "sprites": [
+                {
+                    "name": "ext_castletown_alley (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (2)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (3)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (4)",
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (5)",
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (6)",
+                    "rect": {
+                        "x": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (7)",
+                    "rect": {
+                        "x": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (8)",
+                    "rect": {
+                        "x": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (9)",
+                    "rect": {
+                        "x": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (10)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (11)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (12)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (13)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (14)",
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (15)",
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (16)",
+                    "rect": {
+                        "x": 48,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (17)",
+                    "rect": {
+                        "x": 56,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (18)",
+                    "rect": {
+                        "x": 64,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (19)",
+                    "rect": {
+                        "x": 72,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (20)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (21)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (22)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (23)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (24)",
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (25)",
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (26)",
+                    "rect": {
+                        "x": 48,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (27)",
+                    "rect": {
+                        "x": 56,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (28)",
+                    "rect": {
+                        "x": 64,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (29)",
+                    "rect": {
+                        "x": 72,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (30)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (31)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (32)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (33)",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (34)",
+                    "rect": {
+                        "x": 32,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (35)",
+                    "rect": {
+                        "x": 40,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (36)",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (37)",
+                    "rect": {
+                        "x": 56,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (38)",
+                    "rect": {
+                        "x": 64,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (39)",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (40)",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (41)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (42)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (43)",
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (44)",
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (45)",
+                    "rect": {
+                        "x": 40,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (46)",
+                    "rect": {
+                        "x": 48,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (47)",
+                    "rect": {
+                        "x": 56,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (48)",
+                    "rect": {
+                        "x": 64,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (49)",
+                    "rect": {
+                        "x": 72,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (50)",
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (51)",
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (52)",
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (53)",
+                    "rect": {
+                        "x": 24,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (54)",
+                    "rect": {
+                        "x": 32,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (55)",
+                    "rect": {
+                        "x": 40,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (56)",
+                    "rect": {
+                        "x": 48,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (57)",
+                    "rect": {
+                        "x": 56,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (58)",
+                    "rect": {
+                        "x": 64,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (59)",
+                    "rect": {
+                        "x": 72,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (60)",
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (61)",
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (62)",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (63)",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (64)",
+                    "rect": {
+                        "x": 32,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (65)",
+                    "rect": {
+                        "x": 40,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (66)",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (67)",
+                    "rect": {
+                        "x": 56,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (68)",
+                    "rect": {
+                        "x": 64,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (69)",
+                    "rect": {
+                        "x": 72,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (70)",
+                    "rect": {
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (71)",
+                    "rect": {
+                        "x": 8,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (72)",
+                    "rect": {
+                        "x": 16,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (73)",
+                    "rect": {
+                        "x": 24,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (74)",
+                    "rect": {
+                        "x": 32,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (75)",
+                    "rect": {
+                        "x": 40,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (76)",
+                    "rect": {
+                        "x": 48,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (77)",
+                    "rect": {
+                        "x": 56,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (78)",
+                    "rect": {
+                        "x": 64,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (79)",
+                    "rect": {
+                        "x": 72,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (80)",
+                    "rect": {
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (81)",
+                    "rect": {
+                        "x": 8,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (82)",
+                    "rect": {
+                        "x": 16,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (83)",
+                    "rect": {
+                        "x": 24,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (84)",
+                    "rect": {
+                        "x": 32,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (85)",
+                    "rect": {
+                        "x": 40,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (86)",
+                    "rect": {
+                        "x": 48,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (87)",
+                    "rect": {
+                        "x": 56,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (88)",
+                    "rect": {
+                        "x": 64,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_castletown_alley (89)",
+                    "rect": {
+                        "x": 72,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_castletown_alley1",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_castletown_alley1.png",
+            "sprites": [
+                {
+                    "name": "crate",
+                    "rect": {
+                        "width": 16,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.25,
+                        "y": 0.625
+                    }
+                },
+                {
+                    "name": "trapdoor",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    },
+                    "pivot": {
+                        "x": 0.25,
+                        "y": 0.25
+                    }
+                }
+            ]
+        }
     }
 ]

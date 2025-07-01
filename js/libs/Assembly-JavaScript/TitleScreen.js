@@ -16,6 +16,11 @@ class TitleScreen extends GameBehavior
     #selectorSprite = null;
     #options = null;
 
+    Awake ()
+    {
+        Crispixels.effect = true;
+    }
+
     Start ()
     {
         this.#box = GameObject.Find("choicebox");

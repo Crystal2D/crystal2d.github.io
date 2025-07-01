@@ -313,6 +313,8 @@ class CrystalEngine
             let errLogs = null;
 
             const onError = error => {
+                Debug?.ThrowError(error);
+
                 if (this.#terminateStart)
                 {
                     errLogs.append(`\n\n${error.stack}`);
@@ -369,7 +371,11 @@ class CrystalEngine
                 const manifestResponse = await fetch("manifest.json");
                 const manifestData = await manifestResponse.json();
                 
-                Application.Init(manifestData.name);
+                Application.Init(
+                    manifestData.name,
+                    manifestData.developer,
+                    manifestData.version
+                );
                 Window.Init(manifestData.window);
 
                 inited = true;
@@ -476,6 +482,7 @@ class CrystalEngine
             Application.targetFrameRate = this.#buildData.targetFrameRate;
             Application.vSyncCount = this.#buildData.vSyncCount;
             Application.runInBackground = this.#buildData.runInBackground;
+            Application.debugMode = this.#buildData.debugMode;
             
             Time.maximumDeltaTime = this.#buildData.time.maximumDeltaTime;
             Time.timeScale = this.#buildData.time.timeScale;
@@ -484,8 +491,16 @@ class CrystalEngine
             PlayerLoop.noFixedUpdate = this.#buildData.noFixedUpdate;
 
             QuadTree.maxDepth = this.#buildData.partioningMaxDepth;
+
+            GamepadInput.leftStickDeadzone = new Vector2(
+                this.#buildData.input.gamepad.leftStickDeadzone.min,
+                this.#buildData.input.gamepad.leftStickDeadzone.max
+            );
+            GamepadInput.rightStickDeadzone = new Vector2(
+                this.#buildData.input.gamepad.rightStickDeadzone.min,
+                this.#buildData.input.gamepad.rightStickDeadzone.max
+            );
             
-            Debug.Set(this.#buildData.debugMode);
             Shader.Set(this.#compiledData.shaders);
 
             if (this.#terminateStart) return;

@@ -2,11 +2,6 @@ class Viewport extends GameBehavior
 {
     #fps = 0;
 
-    Awake ()
-    {
-        Crispixels.effect = true;
-    }
-
     Update ()
     {
         if (Input.GetKeyDown(KeyCode.F2) || GamepadInput.GetKeyDown(KeyCode.Select))

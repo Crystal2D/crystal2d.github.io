@@ -1,27 +1,126 @@
 class KeyCode
 {
-    static get ArrowUp () { return 0; }
-    static get ArrowDown () { return 1; }
-    static get ArrowLeft () { return 2; }
-    static get ArrowRight () { return 3; }
-    static get Shift () { return 4; }
-    static get F4 () { return 5; }
-    static get F1 () { return 6; }
-    static get F2 () { return 7; }
-    static get F3 () { return 8; }
-    static get F5 () { return 9; }
-    static get F6 () { return 10; }
-    static get F7 () { return 11; }
-    static get F8 () { return 12; }
-    static get F9 () { return 13; }
-    static get F10 () { return 14; }
-    static get F11 () { return 15; }
-    static get F12 () { return 16; }
-    static get X () { return 17; }
-    static get Z () { return 18; }
-    static get Mouse0 () { return 19; }
-    static get Mouse1 () { return 20; }
-    static get Mouse2 () { return 21; }
+    static get Alt () { return 0; }
+    static get AltGr () { return 1; }
+    static get CapsLock () { return 2; }
+    static get NumLock () { return 3; }
+    static get ScrollLock () { return 4; }
+    static get Ctrl () { return 5; }
+    static get Meta () { return 6; }
+    static get Shift () { return 7; }
+
+    static get Enter () { return 8; }
+    static get Tab () { return 9; }
+    static get Space () { return 10; }
+
+    static get ArrowUp () { return 11; }
+    static get ArrowDown () { return 12; }
+    static get ArrowLeft () { return 13; }
+    static get ArrowRight () { return 14; }
+    static get End () { return 15; }
+    static get Home () { return 16; }
+    static get PageDown () { return 17; }
+    static get PageUp () { return 18; }
+
+    static get Backspace () { return 19; }
+    static get Clear () { return 20; }
+    static get Delete () { return 21; }
+    static get Insert () { return 22; }
+
+    static get Menu () { return 23; }
+    static get Esc () { return 24; }
+    static get Help () { return 25; }
+    static get Pause () { return 26; }
+    static get Print () { return 27; }
+    static get PrintScreen () { return 28; }
+
+    static get Num0 () { return 29; }
+    static get Num1 () { return 30; }
+    static get Num2 () { return 31; }
+    static get Num3 () { return 32; }
+    static get Num4 () { return 33; }
+    static get Num5 () { return 34; }
+    static get Num6 () { return 35; }
+    static get Num7 () { return 36; }
+    static get Num8 () { return 37; }
+    static get Num9 () { return 38; }
+
+    static get Tilde () { return 39; }
+    static get Exclaim () { return 40; }
+    static get At () { return 41; }
+    static get Hash () { return 42; }
+    static get Dollar () { return 43; }
+    static get Percent () { return 44; }
+    static get Caret () { return 45; }
+    static get Ampersand () { return 46; }
+    static get Asterisk () { return 47; }
+    static get LeftParen () { return 48; }
+    static get RightParen () { return 49; }
+    static get Minus () { return 50; }
+    static get Underscore () { return 51; }
+    static get Equals () { return 52; }
+    static get Plus () { return 53; }
+    static get Quote () { return 54; }
+    static get DoubleQuote () { return 55; }
+    static get BackQuote () { return 56; }
+    static get LeftBracket () { return 57; }
+    static get RightBracket () { return 58; }
+    static get LeftCurlyBracket () { return 59; }
+    static get RightCurlyBracket () { return 60; }
+    static get Slash () { return 61; }
+    static get Backslash () { return 62; }
+    static get Pipe () { return 63; }
+    static get Colon () { return 64; }
+    static get Semicolon () { return 65; }
+    static get Less () { return 66; }
+    static get Greater () { return 67; }
+    static get Question () { return 68; }
+    static get Period () { return 69; }
+    static get Comma () { return 70; }
+
+    static get F1 () { return 71; }
+    static get F2 () { return 72; }
+    static get F3 () { return 73; }
+    static get F4 () { return 74; }
+    static get F5 () { return 75; }
+    static get F6 () { return 76; }
+    static get F7 () { return 77; }
+    static get F8 () { return 78; }
+    static get F9 () { return 79; }
+    static get F10 () { return 80; }
+    static get F11 () { return 81; }
+    static get F12 () { return 82; }
+
+    static get A () { return 83; }
+    static get B () { return 84; }
+    static get C () { return 85; }
+    static get D () { return 86; }
+    static get E () { return 87; }
+    static get F () { return 88; }
+    static get G () { return 89; }
+    static get H () { return 90; }
+    static get I () { return 91; }
+    static get J () { return 92; }
+    static get K () { return 93; }
+    static get L () { return 94; }
+    static get M () { return 95; }
+    static get N () { return 96; }
+    static get O () { return 97; }
+    static get P () { return 98; }
+    static get Q () { return 99; }
+    static get R () { return 100; }
+    static get S () { return 101; }
+    static get T () { return 102; }
+    static get U () { return 103; }
+    static get V () { return 104; }
+    static get W () { return 105; }
+    static get X () { return 106; }
+    static get Y () { return 107; }
+    static get Z () { return 108; }
+
+    static get Mouse0 () { return 109; }
+    static get Mouse1 () { return 110; }
+    static get Mouse2 () { return 111; }
 
     static get SouthButton () { return 0; }
     static get EastButton () { return 1; }

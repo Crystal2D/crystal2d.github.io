@@ -28,7 +28,7 @@
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
     "runInBackground": false,
-    "debugMode" : false,
+    "debugMode" : true,
     "time" : {
         "maximumDeltaTime" : 0.3333333,
         "timeScale" : 1,
@@ -36,6 +36,18 @@
     },
     "noFixedUpdate": true,
     "partioningMaxDepth" : 8,
+    "input": {
+        "gamepad": {
+            "leftStickDeadzone": {
+                "min": 0.125,
+                "max": 0.925
+            },
+            "rightStickDeadzone": {
+                "min": 0.125,
+                "max": 0.925
+            }
+        }
+    },
     "layers" : [
         {
             "name": "Transition",

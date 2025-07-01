@@ -115,15 +115,88 @@ class Input
     static Init ()
     {
         this.#keys = [
-            new this.#Key("up", "ArrowUp"),
-            new this.#Key("down", "ArrowDown"),
-            new this.#Key("left", "ArrowLeft"),
-            new this.#Key("right", "ArrowRight"),
+            new this.#Key("alt", "Alt"),
+            new this.#Key("altgr", "AltGraph"),
+            new this.#Key("capslock", "CapsLock"),
+            new this.#Key("numlock", "NumLock"),
+            new this.#Key("scrollock", "ScrollLock"),
+            new this.#Key("ctrl", "Control"),
+            new this.#Key("meta", "Meta"),
             new this.#Key("shift", "Shift"),
-            new this.#Key("f4", "F4"),
+
+            new this.#Key("enter", "Enter"),
+            new this.#Key("tab", "Tab"),
+            new this.#Key("space", " "),
+
+            new this.#Key("arrowup", "ArrowUp"),
+            new this.#Key("arrowdown", "ArrowDown"),
+            new this.#Key("arrowleft", "ArrowLeft"),
+            new this.#Key("arrowright", "ArrowRight"),
+            new this.#Key("end", "End"),
+            new this.#Key("home", "Home"),
+            new this.#Key("pagedown", "PageDown"),
+            new this.#Key("pageup", "PageUp"),
+
+            new this.#Key("backspace", "Backspace"),
+            new this.#Key("clear", "Clear"),
+            new this.#Key("delete", "Delete"),
+            new this.#Key("insert", "Insert"),
+
+            new this.#Key("menu", "ContextMenu"),
+            new this.#Key("esc", "Escape"),
+            new this.#Key("help", "Help"),
+            new this.#Key("pause", "Pause"),
+            new this.#Key("print", "Print"),
+            new this.#Key("printscreen", "PrintScreen"),
+
+            new this.#Key("num0", "0"),
+            new this.#Key("num1", "1"),
+            new this.#Key("num2", "2"),
+            new this.#Key("num3", "3"),
+            new this.#Key("num4", "4"),
+            new this.#Key("num5", "5"),
+            new this.#Key("num6", "6"),
+            new this.#Key("num7", "7"),
+            new this.#Key("num8", "8"),
+            new this.#Key("num9", "9"),
+
+            new this.#Key("tilde", "~"),
+            new this.#Key("exclaim", "!"),
+            new this.#Key("at", "@"),
+            new this.#Key("hash", "#"),
+            new this.#Key("dollar", "$"),
+            new this.#Key("percent", "%"),
+            new this.#Key("caret", "^"),
+            new this.#Key("ampersand", "&"),
+            new this.#Key("asterisk", "*"),
+            new this.#Key("leftparen", "("),
+            new this.#Key("rightparen", "("),
+            new this.#Key("minus", "-"),
+            new this.#Key("underscore", "_"),
+            new this.#Key("equals", "="),
+            new this.#Key("plus", "+"),
+            new this.#Key("quote", "'"),
+            new this.#Key("doublequote", "\""),
+            new this.#Key("backquote", "`"),
+            new this.#Key("leftbracket", "["),
+            new this.#Key("rightbracket", "["),
+            new this.#Key("leftcurlybracket", "{"),
+            new this.#Key("rightcurlybracket", "{"),
+            new this.#Key("slash", "/"),
+            new this.#Key("backslash", "\\"),
+            new this.#Key("pipe", "|"),
+            new this.#Key("colon", ":"),
+            new this.#Key("semicolon", ";"),
+            new this.#Key("less", "<"),
+            new this.#Key("greater", ">"),
+            new this.#Key("question", "?"),
+            new this.#Key("period", "."),
+            new this.#Key("comma", ","),
+
             new this.#Key("f1", "F1"),
             new this.#Key("f2", "F2"),
             new this.#Key("f3", "F3"),
+            new this.#Key("f4", "F4"),
             new this.#Key("f5", "F5"),
             new this.#Key("f6", "F6"),
             new this.#Key("f7", "F7"),
@@ -132,35 +205,59 @@ class Input
             new this.#Key("f10", "F10"),
             new this.#Key("f11", "F11"),
             new this.#Key("f12", "F12"),
+
+            new this.#Key("a", "a", true),
+            new this.#Key("b", "b", true),
+            new this.#Key("c", "c", true),
+            new this.#Key("d", "d", true),
+            new this.#Key("e", "e", true),
+            new this.#Key("f", "f", true),
+            new this.#Key("g", "g", true),
+            new this.#Key("h", "h", true),
+            new this.#Key("i", "i", true),
+            new this.#Key("j", "j", true),
+            new this.#Key("k", "k", true),
+            new this.#Key("l", "l", true),
+            new this.#Key("m", "m", true),
+            new this.#Key("n", "n", true),
+            new this.#Key("o", "o", true),
+            new this.#Key("p", "p", true),
+            new this.#Key("q", "q", true),
+            new this.#Key("r", "r", true),
+            new this.#Key("s", "s", true),
+            new this.#Key("t", "t", true),
+            new this.#Key("u", "u", true),
+            new this.#Key("v", "v", true),
+            new this.#Key("w", "w", true),
             new this.#Key("x", "x", true),
+            new this.#Key("y", "y", true),
             new this.#Key("z", "z", true),
+
             new this.#Key("mouse0", "mouse0"),
             new this.#Key("mouse1", "mouse1"),
-            new this.#Key("mouse2", "mouse2")
+            new this.#Key("mouse2", "mouse2"),
         ];
 
         
         document.addEventListener("keydown", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
-            
-            const keyIndex = this.#FindKeyByCode(event.key);
-            
-            if (keyIndex === -1) return;
+
+            if (Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase())) return;
             
             event.preventDefault();
+
+            const keyIndex = this.#FindKeyByCode(event.key);
             
-            this.#keys[keyIndex].active = true;
+            if (keyIndex >= 0) this.#keys[keyIndex].active = true;
         });
         document.addEventListener("keyup", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
             
+            event.preventDefault();
+
             const keyIndex = this.#FindKeyByCode(event.key);
             
-            if (keyIndex === -1) return;
-            
-            event.preventDefault();
-            
-            this.#keys[keyIndex].active = false;
+            if (keyIndex >= 0) this.#keys[keyIndex].active = false;
         });
 
 

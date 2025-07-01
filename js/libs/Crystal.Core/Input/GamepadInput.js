@@ -43,6 +43,9 @@ class GamepadInput
         return output;
     }
 
+    static leftStickDeadzone = new Vector2(0.125, 0.925);
+    static rightStickDeadzone = new Vector2(0.125, 0.925);
+
     static get isConnected ()
     {
         return this.#gamepads.length !== 0;
@@ -57,7 +60,7 @@ class GamepadInput
 
         for (let i = 0; i < this.#axes.length; i++)
         {
-            if (Math.abs(this.#axes[i].value) >= 1e-2) return true;
+            if (Math.abs(this.#axes[i].value) > 0) return true;
         }
 
         return false;
@@ -170,12 +173,32 @@ class GamepadInput
             this.#keys[15].active = processButton(gamepad.buttons[15]);
             this.#keys[16].active = processButton(gamepad.buttons[16]);
 
-            this.#axes[0].value = gamepad.buttons[6].value;
+            this.#axes[0].value = gamepad.buttons[6].value; 
             this.#axes[1].value = gamepad.buttons[7].value;
-            this.#axes[2].value = gamepad.axes[0];
-            this.#axes[3].value = -gamepad.axes[1];
-            this.#axes[4].value = gamepad.axes[2];
-            this.#axes[5].value = -gamepad.axes[3];
+
+            let leftX = gamepad.axes[0];
+            let leftY = -gamepad.axes[1];
+
+            if (Math.abs(leftX) <= this.leftStickDeadzone.x) leftX = 0;
+            else if (Math.abs(leftX) >= this.leftStickDeadzone.y) leftX = leftX / Math.abs(leftX);
+
+            if (Math.abs(leftY) <= this.leftStickDeadzone.x) leftY = 0;
+            else if (Math.abs(leftY) >= this.leftStickDeadzone.y) leftY = leftY / Math.abs(leftY);
+
+            this.#axes[2].value = leftX;
+            this.#axes[3].value = leftY;
+
+            let rightX = gamepad.axes[2];
+            let rightY = -gamepad.axes[3];
+
+            if (Math.abs(rightX) <= this.rightStickDeadzone.x) rightX = 0;
+            else if (Math.abs(rightX) >= this.rightStickDeadzone.y) rightX = rightX / Math.abs(rightX);
+
+            if (Math.abs(rightY) <= this.rightStickDeadzone.x) rightY = 0;
+            else if (Math.abs(rightY) >= this.rightStickDeadzone.y) rightY = rightY / Math.abs(rightY);
+
+            this.#axes[4].value = rightX;
+            this.#axes[5].value = rightY;
         }
     }
 
@@ -240,10 +263,5 @@ class GamepadInput
         const axis = this.#axes.find(item => item.name === name);
 
         return axis.value;
-    }
-
-    static GetAxisRaw (name)
-    {
-        return Math.round(this.GetAxis(name));
     }
 }

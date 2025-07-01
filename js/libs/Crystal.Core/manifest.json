@@ -9,7 +9,6 @@
         "Application.bindings",
         "Object.bindings",
         "Resources",
-        "Debug",
         "Time",
         "Math/Vector2",
         "Math/Vector4",

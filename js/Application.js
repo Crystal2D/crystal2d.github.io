@@ -6,6 +6,8 @@ class Application
     static #unloaded = false;
     static #binded = false;
     static #name = "";
+    static #dev = "";
+    static #ver = "";
     static #onLoad = () => { };
     static #onUnload = () => { };
     static #focusedCall = () => document.hasFocus();
@@ -15,12 +17,28 @@ class Application
     static #gl_md = null;
     
     static runInBackgroud = false;
+    static debugMode = false;
     static targetFrameRate = 0;
     static vSyncCount = 0;
 
     static wantsToQuit = null;
     static unloading = null;
     static quitting = null;
+
+    static get engineVersion ()
+    {
+        return "2025.6a";
+    }
+
+    static get developer ()
+    {
+        return this.#dev;
+    }
+
+    static get version ()
+    {
+        return this.#ver;
+    }
     
     static get isLoaded ()
     {
@@ -77,11 +95,13 @@ class Application
         return this.#focusedCall();
     }
     
-    static Init (name)
+    static Init (name, dev, ver)
     {
         if (this.#inited) return;
         
         this.#name = name;
+        this.#dev = dev;
+        this.#ver = ver;
         
         this.#canvas = document.createElement("canvas");
         
@@ -130,6 +150,22 @@ class Application
     static CancelQuit ()
     {
         if (!this.#playing) this.#playing = true;
+    }
+
+    static CompareVersion (a, b)
+    {
+        const setA = (a ?? "").split(".");
+        const setB = (b ?? "").split(".");
+        const maxParts = Math.max(setA.length, setB.length);
+
+        for (let i = 0; i < maxParts; i++)
+        {
+            const diff = Math.max(Math.min((parseInt(setA[i]) || 0) - (parseInt(setB[i]) || 0), 1), -1);
+
+            if (diff !== 0) return diff;
+        }
+
+        return 0;
     }
     
     static async Load ()
