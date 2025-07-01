@@ -29,7 +29,7 @@ class Viewport extends GameBehavior
 
     LateUpdate ()
     {
-        if (Options.resolution === 3)
+        if (Options.resolution === 4)
         {
             const width = window.innerWidth * window.devicePixelRatio;
             const height = window.innerHeight * window.devicePixelRatio;
