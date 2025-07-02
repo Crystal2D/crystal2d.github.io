@@ -29,4 +29,9 @@ class Ray
     {
         return `Origin: ${this.origin.toString()}, Dir: ${this.#direction.toString()}`;
     }
+
+    Duplicate ()
+    {
+        return new Ray(this.origin.Duplicate(), this.#direction.Duplicate());
+    }
 }

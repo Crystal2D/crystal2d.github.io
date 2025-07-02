@@ -73,4 +73,13 @@ class Animator extends GameBehavior
     {
         this.#GetParam(name, AnimatorControllerParameterType.Trigger).value = true;
     }
+
+    Duplicate ()
+    {
+        const output = new Animator();
+
+        output.controller = this.controller.Duplicate();
+
+        return output;
+    }
 }

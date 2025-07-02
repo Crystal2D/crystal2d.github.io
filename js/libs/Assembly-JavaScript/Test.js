@@ -1,14 +1,14 @@
 class Test extends GameBehavior
 {
-    #animator = null;
-
-    Start ()
+    Awake ()
     {
-        this.#animator = this.GetComponent("Animator");
+        SceneManager.Load(1);
+
+        this.DontDestroyOnLoad(this, ["sprites/title"]);
     }
 
     Update ()
     {
-        if (Input.GetMouseButtonDown(0)) this.#animator.SetTrigger("toggle");
+        if (Input.GetKeyDown(KeyCode.Z)) SceneManager.SetActiveScene(1);
     }
 }

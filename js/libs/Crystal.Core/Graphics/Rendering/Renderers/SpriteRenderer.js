@@ -605,4 +605,17 @@ class SpriteRenderer extends Renderer
         
         gl.useProgram(null);
     }
+
+    Duplicate ()
+    {
+        const output = new SpriteRenderer(this.sprite.Duplicate(), this.material.Duplicate());
+
+        output.color = this.color.Duplicate();
+        output.sortingLayer = this.sortingLayer;
+        output.sortingOrder = this.sortingOrder;
+        output.drawMode = this.drawMode;
+        output.size = this.size.Duplicate();
+
+        return output;
+    }
 }

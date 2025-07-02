@@ -18,10 +18,11 @@
         "tiles",
         "animations",
         "audio/bgm",
-        "audio/se"
+        "audio/se",
+        "prefabs"
     ],
     "scenes" : [
-        "title",
+        "testScene",
         "test"
     ],
     "shaders" : [],

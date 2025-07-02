@@ -91,4 +91,14 @@ class Camera extends Behavior
             objs[i].Render();
         }
     }
+
+    Duplicate ()
+    {
+        const output = new Camera();
+
+        output.orthographicSize = this.orthographicSize;
+        output.backgroundColor = this.backgroundColor.Duplicate();
+
+        return output;
+    }
 }

@@ -2,6 +2,9 @@ class Resources
 {
     static #unloadedRes = [];
     static #resources = [];
+    static #prefabs = [];
+
+    static keepOnLoad = [];
     
     static async #ToObject (name, type, data)
     {
@@ -57,8 +60,18 @@ class Resources
     static Set (resources)
     {
         this.UnloadAll();
-        
-        this.#unloadedRes = resources;
+
+        this.#prefabs = resources.filter(item => item.type === "GameObject").map(item => {
+            const obj = item.args;
+            obj.__isPrefab = true;
+
+            return {
+                path: item.path,
+                obj: obj
+            };
+        });
+
+        this.#unloadedRes = resources.filter(item => item.type !== "GameObject");
     }
     
     static Unload (...path)
@@ -71,9 +84,11 @@ class Resources
 
             res.obj.Unload();
 
-            const index = this.#resources.indexOf(res);
+            const keepinIndex = this.keepOnLoad.indexOf(path[i]);
+            this.keepOnLoad.splice(keepinIndex, 1);
 
-            this.#resources.splice(index, 1);
+            const resIndex = this.#resources.indexOf(res);
+            this.#resources.splice(resIndex, 1);
         }
     }
     
@@ -82,6 +97,7 @@ class Resources
         for (let i = 0; i < this.#resources.length; i++) this.#resources[i].obj.Unload();
 
         this.#resources = [];
+        this.keepOnLoad = [];
     }
     
     static Find (path)
@@ -89,6 +105,13 @@ class Resources
         const res = this.#resources.find(item => item.path === path);
         
         return res?.obj;
+    }
+
+    static FindPrefab (path)
+    {
+        const prefab = this.#prefabs.find(item => item.path === path);
+
+        return prefab?.obj;
     }
     
     static async Load (...path)
@@ -131,5 +154,10 @@ class Resources
         }
 
         await CrystalEngine.Wait(() => pathIndex === pathCount);
+    }
+
+    static DontDestroyOnLoad (...path)
+    {
+        this.keepOnLoad.push(...path);
     }
 }

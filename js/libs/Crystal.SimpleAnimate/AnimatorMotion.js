@@ -89,4 +89,17 @@ class AnimatorMotion extends AnimatorNode
 
         if (this.animation.loop) this.#started = false;
     }
+
+    Duplicate ()
+    {
+        const output = new AnimatorMotion();
+
+        output.transitions = this.transitions;
+        output.speed = this.speed;
+        output.name = this.name;
+        output.reversed = this.reversed;
+        output.animation = this.animation;
+
+        return output;
+    }
 }

@@ -169,4 +169,9 @@ class Vector4
         this.z = z;
         this.w = w;
     }
+
+    Duplicate ()
+    {
+        return new Vector4(this.x, this.y, this.z, this.w);
+    }
 }

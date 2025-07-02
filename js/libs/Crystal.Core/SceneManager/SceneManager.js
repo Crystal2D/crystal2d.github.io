@@ -27,13 +27,25 @@ class SceneManager
 
         if (scene.isInvalid) return false;
 
-        const prevScene = this.#activeScene?.index;
+        const prevScene = this.#activeScene;
+        const prevSceneID = this.#activeScene?.index;
 
-        if (this.#activeScene != null)
+        let keepOnLoad = [];
+
+        if (prevScene != null)
         {
-            await this.Unload(this.#activeScene.index);
+            keepOnLoad = prevScene.gameObjects.filter(item => item.keepOnLoad);
 
-            if (prevScene === index)
+            for (let i = 0; i < keepOnLoad.length; i++)
+            {
+                const index = prevScene.gameObjects.indexOf(keepOnLoad[i]);
+
+                prevScene.gameObjects.splice(index, 1);
+            }
+
+            await this.Unload(prevSceneID);
+
+            if (prevSceneID === index)
             {
                 await this.Load(index);
 
@@ -42,6 +54,24 @@ class SceneManager
         }
 
         this.#activeScene = scene;
+
+        for (let i = 0; i < keepOnLoad.length; i++)
+        {
+            prevScene?.tree.Remove(keepOnLoad[i]);
+
+            const renderer = keepOnLoad[i].GetComponent("Renderer");
+
+            if (renderer != null)
+            {
+                const min = renderer.bounds.min;
+                const max = renderer.bounds.max;
+                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                this.#activeScene.tree.Insert(keepOnLoad[i], rect);
+            }
+
+            this.#activeScene.gameObjects.push(keepOnLoad[i]);
+        }
 
         this.activeSceneChanged.Invoke();
 
@@ -92,6 +122,9 @@ class SceneManager
             for (let iB = 0; iB < scene.resources.length; iB++)
             {
                 const res = scene.resources[iB];
+                
+                if (Resources.keepOnLoad.includes(res)) continue;
+
                 const noRes = (this.#scenes.find(item => item.index !== index[iA] && item.resources.find(resItem => resItem === res) != null)) == null;
 
                 if (noRes) Resources.Unload(res);

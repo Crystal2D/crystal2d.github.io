@@ -50,6 +50,17 @@ class Scene
         
         return output;
     }
+
+    #ChangeArgs (a, b)
+    {
+        const keys = Object.getOwnPropertyNames(b);
+
+        for (let i = 0; i < keys.length; i++)
+        {
+            if (typeof eval(`b.${keys[i]}`) === "object") this.#ChangeArgs(eval(`a.${keys[i]}`), eval(`b.${keys[i]}`));
+            else eval(`a.${keys[i]} = b.${keys[i]}`);
+        }
+    }
     
     async #LoadObjects ()
     {
@@ -58,17 +69,51 @@ class Scene
         for (let i = 0; i < this.#data.gameObjects.length; i++)
         {
             const objData = this.#data.gameObjects[i];
-            const components = await this.#LoadComponents(objData.components ?? []);
+            let prefabData = { };
+
+            if (objData.prefab != null) prefabData = Resources.FindPrefab(objData.prefab);
+
+            const rawComponents = structuredClone(prefabData.components ?? []);
+            const objComponents = structuredClone(objData.components ?? []);
+
+            for (let i = 0; i < objComponents.length; i++)
+            {
+                const match = rawComponents.find(item => item.type === objComponents[i].type);
+
+                if (match == null)
+                {
+                    rawComponents.push(objComponents[i])
+
+                    continue;
+                }
+                
+                if (match.args == null)
+                {
+                    match.args = objComponents[i].args;
+
+                    continue;
+                }
+
+                this.#ChangeArgs(match.args, objComponents[i].args);
+            }
+
+            const components = await this.#LoadComponents(rawComponents);
+
+            const transform = {
+                position: objData.transform?.position ?? prefabData.transform?.position,
+                rotation: objData.transform?.rotation ?? prefabData.transform?.rotation,
+                scale: objData.transform?.scale ?? prefabData.transform?.scale
+            };
             
             let objParent = null;
             
             if (objData.parent != null) objParent = this.gameObjects.find(element => element.GetSceneID() === objData.parent).transform;
             
             const gameObj = await SceneManager.CreateObject("GameObject", {
-                name : objData.name,
+                name : objData.name ?? prefabData.name,
                 components : components,
-                active : objData.active,
-                transform : objData.transform,
+                active : objData.active ?? prefabData.active,
+                transform : transform,
                 id : objData.id,
                 parent : objParent
             });

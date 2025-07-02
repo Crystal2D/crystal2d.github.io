@@ -1,0 +1,20 @@
+[
+    {
+        "path": "pref",
+        "type": "GameObject",
+        "args": {
+            "name": "obj",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/yoki",
+                            "name": "down-a"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

@@ -395,4 +395,9 @@ class Vector2
         this.x = x;
         this.y = y;
     }
+
+    Duplicate ()
+    {
+        return new Vector2(this.x, this.y);
+    }
 }

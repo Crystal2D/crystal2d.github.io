@@ -206,7 +206,9 @@ class CrystalEngine
                 for (let i = 0; i < this.#classes.length; i++)
                 {
                     if (this.#classes[i].name == null) continue;
-                    else if (this.#classes[i].args == null) this.#classes[i].args = [];
+
+                    if (this.#classes[i].args == null) this.#classes[i].args = [];
+                    if (this.#classes[i].keys == null) this.#classes[i].keys = [];
 
                     if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
                         type: "boolean",
@@ -245,7 +247,9 @@ class CrystalEngine
                 for (let i = 0; i < this.#classes.length; i++)
                 {
                     if (this.#classes[i].name == null) continue;
-                    else if (this.#classes[i].args == null) this.#classes[i].args = [];
+
+                    if (this.#classes[i].args == null) this.#classes[i].args = [];
+                    if (this.#classes[i].keys == null) this.#classes[i].keys = [];
 
                     if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
                         type: "boolean",
@@ -313,8 +317,6 @@ class CrystalEngine
             let errLogs = null;
 
             const onError = error => {
-                Debug?.ThrowError(error);
-
                 if (this.#terminateStart)
                 {
                     errLogs.append(`\n\n${error.stack}`);

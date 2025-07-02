@@ -96,7 +96,7 @@
         {
             "name" : "AnimatorController",
             "type" : 0,
-            "construction": "return Resources.Find(data)"
+            "construction": "return Resources.Find(data).Duplicate()"
         },
         {
             "name": "AnimatorCondition",

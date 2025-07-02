@@ -71,6 +71,9 @@ class PlayerLoop
         // PlayerStart
         if (this.#playing)
         {
+            Object.InstantiationQueue.Invoke();
+            Object.InstantiationQueue.RemoveAll();
+
             // ScriptRunBehaviorAwake
             BroadcastMessage("Awake", null, {
                 specialCall : 1,

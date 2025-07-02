@@ -257,4 +257,17 @@ class Transform extends Component
         
         return GameObject.FindByID(id).transform;
     }
+
+    Duplicate ()
+    {
+        const output = new Transform();
+
+        output.localPosition = this.#position.Duplicate();
+        output.localRotation = this.#rotation;
+        output.localScale = this.#scale.Duplicate();
+
+        for (let i = 0; i < this.childCount; i++) this.Instantiate(GameObject.FindByID(this.#child[i]), output);
+
+        return output;
+    }
 }

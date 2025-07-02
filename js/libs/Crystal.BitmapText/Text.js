@@ -750,4 +750,25 @@ class Text extends Renderer
         
         gl.useProgram(null);
     }
+
+    Duplicate ()
+    {
+        const output = new Text(this.font, this.material.Duplicate());
+
+        output.color = this.color.Duplicate();
+        output.sortingLayer = this.sortingLayer;
+        output.sortingOrder = this.sortingOrder;
+        output.overflowWidth = this.overflowWidth;
+        output.overflowHeight = this.overflowHeight;
+        output.width = this.width;
+        output.height = this.height;
+        output.text = this.text;
+        output.pivot = this.pivot;
+        output.fontSize = this.fontSize;
+        output.horizontalAlign = this.horizontalAlign;
+        output.verticalAlign = this.verticalAlign;
+        output.lineHeight = this.lineHeight;
+
+        return output;
+    }
 }

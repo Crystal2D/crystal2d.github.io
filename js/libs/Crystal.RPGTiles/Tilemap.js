@@ -341,7 +341,7 @@ class Tilemap extends Renderer
 
     RecalcBounds ()
     {
-        if (this.#min == null && this.#max == null)
+        if (this.grid == null || (this.#min == null && this.#max == null))
         {
             super.RecalcBounds();
 
@@ -670,5 +670,21 @@ class Tilemap extends Renderer
         this.#sprite = null;
 
         this.#transMat = Matrix3x3.identity;
+    }
+
+    Duplicate ()
+    {
+        const output = new Tilemap(this.material.Duplicate());
+
+        for (let i = 0; i < this.#tiles.length; i++) output.AddTile(this.#tiles[i].Duplicate());
+        
+        if (this.mergedRendering) output.Merge();
+
+        output.color = this.color.Duplicate();
+        output.sortingLayer = this.sortingLayer;
+        output.sortingOrder = this.sortingOrder;
+        output.mergeResolution = this.mergeResolution;
+
+        return output
     }
 }

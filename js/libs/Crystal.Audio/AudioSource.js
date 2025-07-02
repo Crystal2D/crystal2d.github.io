@@ -267,4 +267,18 @@ class AudioSource extends Behavior
         };
         source.start();
     }
+
+    Duplicate ()
+    {
+        const output = new AudioSource();
+
+        output.clip = this.clip;
+        output.playOnAwake = this.playOnAwake;
+        output.loop = this.loop;
+        output.volume = this.volume;
+        output.mute = this.mute;
+        output.pitch = this.pitch;
+
+        return output;
+    }
 }

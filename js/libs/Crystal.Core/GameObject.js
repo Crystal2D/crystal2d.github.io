@@ -8,6 +8,7 @@ class GameObject
     #id = null;
 
     destroying = false;
+    keepOnLoad = false;
 
     scene = null;
     sceneTreeNode = null;
