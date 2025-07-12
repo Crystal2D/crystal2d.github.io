@@ -25,10 +25,13 @@ class Resources
             
             object = await evalCall(dat, async (type, data) => await SceneManager.CreateObject(type, data));
         }
+        else object = eval(`new ${type}()`);
         
         for (let i = 0; i < properties.length; i++)
         {
-            if (typeof properties[i] !== "object" || eval(`dat.${properties[i].name}`) === undefined) continue;
+            const dataIn = eval(`dat.${properties[i].name}`);
+            
+            if (typeof properties[i] !== "object" || dataIn === undefined) continue;
             
             let subObj = null;
             
@@ -36,18 +39,18 @@ class Resources
             {
                 const evalCall = new AsyncFunction("data", properties[i].evaluation);
                 
-                subObj = await evalCall(eval(`dat.${properties[i].name}`));
+                subObj = await evalCall(dataIn);
             }
             else if (properties[i].evalType != null)
             {
                 const evalCall = new AsyncFunction("data", properties[i].evalType);
-                const objType = await evalCall(eval(`dat.${properties[i].name}`));
+                const objType = await evalCall(dataIn);
                 
-                subObj = await SceneManager.CreateObject(objType, eval(`dat.${properties[i].name}`));
+                subObj = await SceneManager.CreateObject(objType, dataIn);
             }
-            else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
-            else if (properties[i].type === "array") subObj = await SceneManager.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await SceneManager.CreateObject(properties[i].type, eval(`dat.${properties[i].name}`));
+            else if ((["bool", "number", "string", "object"]).includes(properties[i].type)) subObj = dataIn;
+            else if (properties[i].array) subObj = await SceneManager.CreateObjectArray(properties[i].type, dataIn);
+            else subObj = await SceneManager.CreateObject(properties[i].type, dataIn);
             
             eval(`object.${properties[i].name} = subObj`);
         }

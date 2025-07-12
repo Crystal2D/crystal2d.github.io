@@ -119,6 +119,8 @@ class Texture
     async Load ()
     {
         if (this.#loaded) return;
+
+        await FetchFile(this.#src);
         
         this.#img.src = this.#src;
         

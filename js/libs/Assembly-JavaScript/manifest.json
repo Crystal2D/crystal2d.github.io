@@ -11,7 +11,8 @@
         "character/RPGMovement",
         "character/CharController",
         "CameraController",
-        "Test"
+        "Test",
+        "JumpTest"
     ],
     "classes" : [
         {
@@ -54,6 +55,10 @@
         },
         {
             "name" : "Test",
+            "type" : 0
+        },
+        {
+            "name" : "JumpTest",
             "type" : 0
         }
     ]

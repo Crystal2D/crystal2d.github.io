@@ -19,6 +19,7 @@ class TitleScreen extends GameBehavior
     Awake ()
     {
         Crispixels.effect = true;
+        Cursor.visible = false;
     }
 
     Start ()

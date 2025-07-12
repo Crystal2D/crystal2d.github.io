@@ -15,17 +15,22 @@
         {
             "name" : "FontAtlas",
             "type" : 1,
-            "construction" : "const texture = new Texture(data.texture); await texture.Load(); texture.pixelPerUnit = data.pixelPerUnit ?? 16; texture.filterMode = +(data.smooth === true); let glyphsData = data.glyphs; if (typeof glyphsData === \"string\") { const request = await fetch(`data/${data.glyphs}.json`); glyphsData = await request.json(); } let glyphs = []; for (let i = 0; i < glyphsData.length; i++) { const glyph = await toObject(\"FontGlyph\", glyphsData[i]); glyphs.push(glyph); } return new FontAtlas(texture, glyphs);",
+            "construction" : "const texture = new Texture(data.texture); await texture.Load(); texture.pixelPerUnit = data.pixelPerUnit ?? 16; texture.filterMode = +(data.smooth === true); let glyphsData = data.glyphs; if (typeof glyphsData === \"string\") { const request = await FetchFile(`data/${data.glyphs}.json`); glyphsData = await request.json(); } let glyphs = []; for (let i = 0; i < glyphsData.length; i++) { const glyph = await toObject(\"FontGlyph\", glyphsData[i]); glyphs.push(glyph); } return new FontAtlas(texture, glyphs);",
             "args" : [
                 {
                     "name" : "forcedLineHeight",
-                    "type" : "boolean"
+                    "type" : "bool"
                 },
                 {
                     "name" : "lineHeight",
                     "type" : "number"
                 }
             ]
+        },
+        {
+            "name" : "FontAtlas",
+            "type" : 0,
+            "construction": "return Resources.Find(data)"
         },
         {
             "name" : "FontGlyph",
@@ -44,7 +49,7 @@
         {
             "name" : "Text",
             "type" : 0,
-            "construction" : "return new Text(Resources.Find(data.font), await toObject(\"Material\", data.material));",
+            "construction" : "return new Text(await toObject(\"FontAtlas\", data.font), await toObject(\"Material\", data.material));",
             "args" : [
                 {
                     "name" : "color",
@@ -60,11 +65,11 @@
                 },
                 {
                     "name" : "overflowWidth",
-                    "type" : "boolean"
+                    "type" : "bool"
                 },
                 {
                     "name" : "overflowHeight",
-                    "type" : "boolean"
+                    "type" : "bool"
                 },
                 {
                     "name" : "width",
@@ -97,6 +102,16 @@
                 {
                     "name": "lineHeight",
                     "type": "number"
+                }
+            ],
+            "keys": [
+                {
+                    "name": "font",
+                    "type": "FontAtlas"
+                },
+                {
+                    "name": "material",
+                    "type": "Material"
                 }
             ]
         }

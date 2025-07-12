@@ -42,7 +42,7 @@ class AudioClip
 
     async Load ()
     {
-        const audio = await fetch(`audio/${this.#src}`);
+        const audio = await FetchFile(`audio/${this.#src}`);
         const arrayBuffer = await audio.arrayBuffer();
         
         this.#buffer = await AudioSettings.DecodeBuffer(arrayBuffer);

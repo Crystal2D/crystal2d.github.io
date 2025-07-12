@@ -1,40 +1,17 @@
 class Animator extends GameBehavior
 {
-    #renderer = null;
-    #ctrl = null;
-
-    get controller ()
-    {
-        return this.#ctrl;
-    }
-
-    set controller (value)
-    {
-        this.#ctrl = value;
-
-        this.#ctrl.renderer = this.#renderer;
-
-        if (this.#renderer != null) this.#ctrl.Start();
-    }
-
-    Start ()
-    {
-        this.#renderer = this.GetComponent("SpriteRenderer");
-
-        this.#ctrl.renderer = this.#renderer;
-        this.#ctrl.Start();
-    }
+    controller = null;
     
     Update ()
     {
-        this.#ctrl?.Update();
+        this.controller?.Update(this.gameObject);
     }
 
     LateUpdate ()
     {
-        if (this.#ctrl == null) return;
+        if (this.controller == null) return;
 
-        const triggers = this.#ctrl.parameters.filter(item => item.type === AnimatorControllerParameterType.Trigger);
+        const triggers = this.controller.parameters.filter(item => item.type === AnimatorControllerParameterType.Trigger);
 
         for (let i = 0; i < triggers.length; i++)
         {
@@ -46,7 +23,7 @@ class Animator extends GameBehavior
 
     #GetParam (name, type)
     {
-        return this.#ctrl.parameters.find(item => item.name === name && item.type === type);
+        return this.controller.parameters.find(item => item.name === name && item.type === type);
     }
 
     GetBool (name)

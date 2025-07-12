@@ -43,7 +43,7 @@ class AudioManager extends GameBehavior
         AudioManager.instance = this;
 
         const sources = this.GetComponents("AudioSource");
-
+        
         this.bgm = sources[0];
         this.bgm.volume = 0.24;
 

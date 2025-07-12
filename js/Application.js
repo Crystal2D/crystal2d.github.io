@@ -15,6 +15,7 @@ class Application
     static #canvas = null;
     static #gl = null;
     static #gl_md = null;
+    static #ipc = null;
     
     static runInBackgroud = false;
     static debugMode = false;
@@ -82,7 +83,12 @@ class Application
 
     static get isInElectron ()
     {
-        return navigator.userAgent.indexOf("Electron") >= 0;
+        return this.#ipc != null;
+    }
+
+    static get electronIPC ()
+    {
+        return this.#ipc;
     }
 
     static get isInCordova ()
@@ -127,6 +133,14 @@ class Application
 
             document.addEventListener("pause", () => focused = false);
             document.addEventListener("resume", () => focused = true);
+        }
+
+        if (navigator.userAgent.indexOf("Electron") >= 0)
+        {
+            const { ipcRenderer } = require("electron");
+            this.#ipc = ipcRenderer;
+
+            ipcRenderer.on("eval", (event, data) => eval(data));
         }
         
         this.#inited = true;

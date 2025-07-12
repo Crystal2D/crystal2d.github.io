@@ -31,11 +31,11 @@
                     "name": "clip"
                 },
                 {
-                    "type": "boolean",
+                    "type": "bool",
                     "name": "playOnAwake"
                 },
                 {
-                    "type": "boolean",
+                    "type": "bool",
                     "name": "loop"
                 },
                 {
@@ -43,7 +43,7 @@
                     "name": "volume"
                 },
                 {
-                    "type": "boolean",
+                    "type": "bool",
                     "name": "mute"
                 },
                 {

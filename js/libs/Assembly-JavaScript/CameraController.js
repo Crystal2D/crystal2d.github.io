@@ -16,15 +16,15 @@ class CameraController extends Viewport
     {
         const charPos = this.#targetTrans.position;
         
-        const newPos = new Vector2(
-            // charPos.x,
-            // charPos.y
+        // const newPos = new Vector2(
+        //     // charPos.x,
+        //     // charPos.y
 
-            Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
-            Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
-        );
+        //     Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
+        //     Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
+        // );
         
-        this.transform.position = newPos;
+        this.transform.position = charPos;
 
         super.LateUpdate();
     }

@@ -9,7 +9,7 @@ class Input
     static #cancelledTouches = [];
     static #touches = [];
     static #mousePos = new Vector2();
-    static #mousePosOld = new Vector2();
+    static #mouseDelta = new Vector2();
 
     static get mousePresent ()
     {
@@ -18,12 +18,12 @@ class Input
 
     static get mousePosition ()
     {
-        return new Vector2(this.#mousePos.x, this.#mousePos.y);
+        return this.#mousePos.Duplicate();
     }
 
     static get mousePositionDelta ()
     {
-        return Vector2.Subtract(this.#mousePos, this.#mousePosOld);
+        return this.#mouseDelta.Duplicate();
     }
     
     static get touchCount ()
@@ -242,7 +242,12 @@ class Input
         document.addEventListener("keydown", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
-            if (Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase())) return;
+            if (Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase()))
+            {
+                if (Application.isInElectron) Application.electronIPC.invoke("OpenDevtools");
+
+                return;
+            }
             
             event.preventDefault();
 
@@ -262,12 +267,12 @@ class Input
 
 
         document.addEventListener("mousemove", event => {
-            setMousePos(event.clientX, event.clientY);
+            setMousePos(event);
 
             this.#mouseOver = true;
         });
         document.addEventListener("mouseleave", event => {
-            setMousePos(event.clientX, event.clientY);
+            setMousePos(event);
 
             this.#mouseOver = false;
         });
@@ -277,9 +282,9 @@ class Input
             Math.Clamp(x, 0, window.innerWidth),
             Math.Clamp(y, 0, window.innerHeight)
         );
-        const setMousePos = (x, y) => {
-            this.#mousePosOld = this.#mousePos;
-            this.#mousePos = getScreenPos(x, y);
+        const setMousePos = event => {
+            this.#mouseDelta = new Vector2(event.movementX, event.movementY);
+            this.#mousePos = getScreenPos(event.clientX, event.clientY);
         };
         const mouseKeys = [
             "mouse0",
@@ -292,7 +297,7 @@ class Input
 
             event.preventDefault();
 
-            setMousePos(event.clientX, event.clientY);
+            setMousePos(event);
 
             const keyIndex = this.#FindKeyByCode(mouseKeys[event.button]);
             
@@ -303,7 +308,7 @@ class Input
 
             event.preventDefault();
 
-            setMousePos(event.clientX, event.clientY);
+            setMousePos(event);
 
             const keyIndex = this.#FindKeyByCode(mouseKeys[event.button]);
             
@@ -435,6 +440,7 @@ class Input
         this.#cancelledTouches = [];
 
         GamepadInput.Update();
+        Cursor.Update();
     }
     
     static End ()
@@ -442,6 +448,8 @@ class Input
         if (this.#terminated || !PlayerLoop.isPlaying) return;
         
         for (let i = 0; i < this.#keys.length; i++) this.#keys[i].lastState = this.#keys[i].active;
+
+        this.#mouseDelta = Vector2.zero;
 
         let removingTouches = [];
 

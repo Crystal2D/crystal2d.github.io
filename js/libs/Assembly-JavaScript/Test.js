@@ -1,14 +1,14 @@
 class Test extends GameBehavior
 {
-    Awake ()
-    {
-        SceneManager.Load(1);
+    #a = null;
 
-        this.DontDestroyOnLoad(this, ["sprites/title"]);
+    Start ()
+    {
+        this.#a = GameObject.Find("obj").GetComponent("Animator");
     }
 
     Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) SceneManager.SetActiveScene(1);
+        this.#a.SetBool("turn", Input.GetKey(KeyCode.Z));
     }
 }

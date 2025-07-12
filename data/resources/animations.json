@@ -4,41 +4,71 @@
         "type": "AnimationClip",
         "args": {
             "loop": true,
-            "interval": 0.5,
-            "sprites": [
+            "framerate": 3,
+            "duration": 2,
+            "frames": [
                 {
-                    "texture": "sprites/chars/yoki",
-                    "name": "down-a"
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-a"
+                            }
+                        }
+                    ]
                 },
                 {
-                    "texture": "sprites/chars/yoki",
-                    "name": "down-b"
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
                 }
             ]
         }
     },
     {
-        "path": "animations/chars/yoki/spin",
+        "path": "animations/chars/yoki/yoki1",
         "type": "AnimationClip",
         "args": {
-            "loop": false,
-            "interval": 0.05,
-            "sprites": [
+            "loop": true,
+            "framerate": 3,
+            "duration": 2,
+            "frames": [
                 {
-                    "texture": "sprites/chars/yoki",
-                    "name": "down-a"
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-a"
+                            }
+                        }
+                    ]
                 },
                 {
-                    "texture": "sprites/chars/yoki",
-                    "name": "left-a"
-                },
-                {
-                    "texture": "sprites/chars/yoki",
-                    "name": "up-a"
-                },
-                {
-                    "texture": "sprites/chars/yoki",
-                    "name": "right-a"
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
                 }
             ]
         }
@@ -49,24 +79,24 @@
         "args": {
             "parameters": [
                 {
-                    "name": "toggle",
-                    "type": 1
+                    "name": "turn",
+                    "type": 0
                 }
             ],
             "motions": [
                 {
                     "name": "yoki",
-                    "speed": -0.5,
+                    "speed": 1,
                     "animation": "animations/chars/yoki/yoki",
                     "transitions": [
                         {
                             "isExit": false,
                             "exitTime": 0,
-                            "nextNode": "spin",
+                            "nextNode": "yoki1",
                             "conditions": [
                                 {
-                                    "mode": 0,
-                                    "parameter": "toggle",
+                                    "mode": 4,
+                                    "parameter": "turn",
                                     "threshold": 1
                                 }
                             ]
@@ -74,12 +104,21 @@
                     ]
                 },
                 {
-                    "name": "spin",
+                    "name": "yoki1",
                     "speed": 1,
-                    "animation": "animations/chars/yoki/spin",
+                    "animation": "animations/chars/yoki/yoki1",
                     "transitions": [
                         {
-                            "nextNode": "yoki"
+                            "isExit": false,
+                            "exitTime": 0,
+                            "nextNode": "yoki",
+                            "conditions": [
+                                {
+                                    "mode": 5,
+                                    "parameter": "turn",
+                                    "threshold": 1
+                                }
+                            ]
                         }
                     ]
                 }

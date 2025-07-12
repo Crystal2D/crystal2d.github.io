@@ -1,23 +1,26 @@
 class AnimatorController
 {
+    #started = false;
+
     nodes = [];
     parameters = [];
 
     currentNode = null;
     currentTransition = null;
-    renderer = null;
 
-    Start ()
+    Update (gameObject)
     {
-        this.currentNode = this.nodes[0].Duplicate();
-        this.currentNode.Start();
+        if (!this.#started)
+        {
+            this.#started = true;
 
-        this.currentTransition = this.currentNode.transitions.find(item => item.isExit);
-    }
+            this.currentNode = this.nodes[0].Duplicate();
+            this.currentNode.Start();
 
-    Update ()
-    {
-        this.currentNode.Update(this.renderer);
+            this.currentTransition = this.currentNode.transitions.find(item => item.isExit);
+        }
+
+        this.currentNode.Update(gameObject);
 
         if (this.currentTransition == null)
         {

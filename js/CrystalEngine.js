@@ -87,6 +87,15 @@ class CrystalEngine
     
         await new Promise(resolve => loop(resolve));
     }
+
+    static async FetchFile (src)
+    {
+        const response = await fetch(src);
+    
+        if (response.ok) return response;
+        
+        throw new Error(`${response.statusText} (${src})`);
+    }
     
     static Inner = class
     {
@@ -186,7 +195,7 @@ class CrystalEngine
 
                 // preload lol
                 for (let i = 0; i < scriptCount; i++) (async () => {
-                    await fetch(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
+                    await CrystalEngine.FetchFile(`js/libs/${this.#src}/${this.#unloadedScripts[i]}.js`);
                     scriptIndex++;
                 })();
 
@@ -370,7 +379,7 @@ class CrystalEngine
             let inited = false;
 
             (async () => {
-                const manifestResponse = await fetch("manifest.json");
+                const manifestResponse = await CrystalEngine.FetchFile("manifest.json");
                 const manifestData = await manifestResponse.json();
                 
                 Application.Init(
@@ -383,7 +392,7 @@ class CrystalEngine
                 inited = true;
             })();
             
-            const buildResponse = await fetch("data/build.json");
+            const buildResponse = await CrystalEngine.FetchFile("data/build.json");
             this.#buildData = await buildResponse.json();
             
             this.#buildData.libs.unshift("Crystal.Core");
@@ -393,7 +402,7 @@ class CrystalEngine
             let loadCount = 0;
             
             for (let i = 0; i < this.#buildData.libs.length; i++) (async () => {
-                const libResponse = await fetch(`js/libs/${this.#buildData.libs[i]}/manifest.json`);
+                const libResponse = await CrystalEngine.FetchFile(`js/libs/${this.#buildData.libs[i]}/manifest.json`);
                 const libData = await libResponse.json();
 
                 if (libData.id !== "com.crystal.core")
@@ -430,7 +439,7 @@ class CrystalEngine
             }
 
             for (let i = 0; i < this.#buildData.shaders.length; i++) (async () => {
-                const shaderResponse = await fetch(`shaders/${this.#buildData.shaders[i]}.glsl`);
+                const shaderResponse = await CrystalEngine.FetchFile(`shaders/${this.#buildData.shaders[i]}.glsl`);
 
                 this.#compiledData.shaders.push(await shaderResponse.text());
 
@@ -438,7 +447,7 @@ class CrystalEngine
             })();
 
             for (let i = 0; i < this.#buildData.resources.length; i++) (async () => {
-                const resResponse = await fetch(`data/resources/${this.#buildData.resources[i]}.json`);
+                const resResponse = await CrystalEngine.FetchFile(`data/resources/${this.#buildData.resources[i]}.json`);
                 const resData = await resResponse.json();
 
                 this.#resources.push(...resData);

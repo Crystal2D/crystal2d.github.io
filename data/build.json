@@ -22,7 +22,6 @@
         "prefabs"
     ],
     "scenes" : [
-        "testScene",
         "test"
     ],
     "shaders" : [],

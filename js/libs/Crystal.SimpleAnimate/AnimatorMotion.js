@@ -2,9 +2,8 @@ class AnimatorMotion extends AnimatorNode
 {
     #started = false;
     #end = false;
-    #frameTime = 0;
     #time = 0;
-    #frame = 0;
+    #frame = -1;
 
     speed = 1;
     name = "animation";
@@ -21,19 +20,36 @@ class AnimatorMotion extends AnimatorNode
         return this.#end;
     }
 
-    get currentTime ()
+    get framerate ()
+    {
+        return this.animation.framerate;
+    }
+
+    get time ()
     {
         return Math.min(this.#time, this.duration);
     }
 
+    get frameTime ()
+    {
+        return Math.min(this.#frame, this.frameDuration);
+    }
+
+    get frameDuration ()
+    {
+        return this.animation.duration;
+    }
+    
     get duration ()
     {
-        return this.animation.sprites.length * this.animation.interval;
+        return this.frameDuration / this.framerate;
     }
 
     get normalizedTime ()
     {
-        return this.currentTime / this.duration;
+        if (this.reversed) return (this.duration - this.#time) / this.duration;
+
+        return this.time / this.duration;
     }
 
     get reversed ()
@@ -46,31 +62,29 @@ class AnimatorMotion extends AnimatorNode
         this.speed = Math.abs(this.speed) * (value ? -1 : 1);
     }
 
-    Update (renderer)
+    Update (gameObject)
     {
-        if (this.#end || this.speed === 0 || this.animation.sprites.length === 0) return;
-
-        if (this.#frameTime > 0)
-        {
-            const deltaT = Time.deltaTime * Math.abs(this.speed);
-
-            this.#frameTime -= deltaT;
-            this.#time += deltaT;
-
-            return;
-        }
-
-        if (this.reversed && this.#frame < 0) this.End();
-        else if (this.#frame >= this.animation.sprites.length) this.End();
-
         if (!this.#started) this.Start();
-        else if (this.#end) return;
 
-        renderer.sprite = this.animation.sprites[this.#frame];
+        if (this.#end || this.speed === 0 || this.animation.frames.length === 0) return;
+
+        const deltaT = Time.deltaTime * this.speed;
+        this.#time += deltaT;
+
+        const currentFrame = Math.floor(this.#time * this.animation.framerate);
+
+        if (this.reversed && currentFrame < 0) this.End();
+        else if (currentFrame >= this.frameDuration) this.End();
+
+        if (this.#frame !== currentFrame)
+        {
+            if (this.speed > 0) this.animation.InvokeFrames(this.#frame, currentFrame, gameObject);
+            else this.animation.InvokeFramesReverse(this.#frame, currentFrame, gameObject);
+
+            this.#frame = currentFrame;
+        }
         
-        this.#frame += this.reversed ? -1 : 1;
-
-        this.#frameTime = this.animation.interval;
+        if (this.#end) return;
     }
 
     Start ()
@@ -78,9 +92,8 @@ class AnimatorMotion extends AnimatorNode
         this.#started = true;
         this.#end = false;
 
-        this.#time = 0;
-
-        this.#frame = this.reversed ? this.animation.sprites.length - 1 : 0;
+        this.#time = this.reversed ? this.duration : 0;
+        this.#frame = this.reversed ? this.frameDuration : -1;
     }
 
     End ()

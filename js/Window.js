@@ -3,6 +3,7 @@ class Window
     static #loaded = false;
     static #resizable = true;
     static #fillWin = true;
+    static #electronFullscreen = false;
     static #sizeChanged = 0;
     static #x = 0;
     static #y = 0;
@@ -14,7 +15,9 @@ class Window
     static #title = "";
     
     static #icon = null;
-    static #ipcRenderer = null;
+    static #ipc = null;
+
+    static _electronMoving = false;
     
     static fullscreen = false;
     
@@ -32,7 +35,7 @@ class Window
     {
         this.#sizeChanged = 2;
 
-        if (this.#ipcRenderer != null) this.#ipcRenderer.invoke("SetResizable", value);
+        if (this.#ipc != null) this.#ipc.invoke("SetResizable", value);
         
         this.#resizable = value;
     }
@@ -109,13 +112,21 @@ class Window
     {
         if (document.hasFocus() && !Application.isInCordova)
         {
-            if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
+            if (this.#ipc != null)
+            {
+                if (this.#electronFullscreen !== this.fullscreen)
+                {
+                    this.#ipc.invoke("SetFullscreen", this.fullscreen);
+                    this.#electronFullscreen = this.fullscreen;
+                }
+            }
+            else if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
             else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
         }
 
         if (this.#sizeChanged > 0)
         {
-            if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
+            if (!document.fullscreenElement && ((!this._electronMoving && !this.#resizable) || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
@@ -153,14 +164,11 @@ class Window
         this.SetMargin(data.marginWidth, data.marginHeight);
         this.SetWindowSize(data.windowWidth, data.windowHeight);
 
-        if (Application.isInElectron)
-        {
-            const { ipcRenderer } = require("electron");
-            this.#ipcRenderer = ipcRenderer;
-        }
-        else this.SetIcon(data.icon);
+        this.#ipc = Application.electronIPC;
+
+        this.SetIcon(data.icon);
         
-        window.addEventListener("resize", () => { this.#sizeChanged = 2; });
+        window.addEventListener("resize", () => this.#sizeChanged = 2);
         
         this.#RequestUpdate();
         
@@ -214,9 +222,9 @@ class Window
         
         if (this.#icon == null) return;
 
-        if (this.#ipcRenderer != null)
+        if (this.#ipc != null)
         {
-            this.#ipcRenderer.invoke("SetIcon", this.#icon);
+            this.#ipc.invoke("SetIcon", this.#icon);
 
             return;
         }

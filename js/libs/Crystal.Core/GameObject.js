@@ -81,9 +81,50 @@ class GameObject
         this.components = components ?? [];
     }
     
-    static Find (name)
+    static Find (path)
     {
-        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name && element.activeInHierarchy);
+        const pathArray = path.split("/");
+
+        if (pathArray.length === 0) return;
+
+        if (pathArray[0] === "")
+        {
+            const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[1] && item.activeInHierarchy && item.transform.parent == null);
+
+            if (pathArray.length > 2 && list.length > 0)
+            {
+                for (let i = 0; i < list.length; i++)
+                {
+                    const item = list[i].transform.Find(pathArray.slice(2).join("/"));
+                
+                    if (item == null) continue;
+                
+                    return item.gameObject;
+                }
+
+                return;
+            }
+
+            return list[0];
+        }
+
+        const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[0] && item.activeInHierarchy);
+
+        if (pathArray.length > 1 && list.length > 0)
+        {
+            for (let i = 0; i < list.length; i++)
+            {
+                const item = list[i].transform.Find(pathArray.slice(1).join("/"));
+
+                if (item == null) continue;
+
+                return item.gameObject;
+            }
+
+            return;
+        }
+
+        return list[0];
     }
     
     static FindByID (id)

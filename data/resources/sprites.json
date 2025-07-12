@@ -7,6 +7,13 @@
         }
     },
     {
+        "path": "wha",
+        "type": "Texture",
+        "args": {
+            "src": "roomba_zmf.png"
+        }
+    },
+    {
         "path": "sprites/box",
         "type": "Texture",
         "args": {
@@ -69,6 +76,323 @@
                 {
                     "name": "up-a",
                     "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/roombawoof",
+        "type": "Texture",
+        "args": {
+            "src": "chars/roombawoof.png",
+            "sprites": [
+                {
+                    "name": "down",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/claire",
+        "type": "Texture",
+        "args": {
+            "src": "chars/claire.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/eepywoof",
+        "type": "Texture",
+        "args": {
+            "src": "chars/eepywoof.png",
+            "sprites": [
+                {
+                    "name": "0",
+                    "rect": {
+                        "width": 17,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "1",
+                    "rect": {
+                        "x": 17,
+                        "width": 17,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/zera",
+        "type": "Texture",
+        "args": {
+            "src": "chars/zera.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/maid_familiar",
+        "type": "Texture",
+        "args": {
+            "src": "chars/maid_familiar.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
                         "y": 48,
                         "width": 16,
                         "height": 16

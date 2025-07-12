@@ -33,7 +33,7 @@ class Transform extends Component
     {
         if (this.#position.Equals(value)) return;
 
-        this.#position = value;
+        this.#position = value.Duplicate();
         
         this.Recalc();
     }
@@ -47,7 +47,7 @@ class Transform extends Component
     {
         if (this.#scale.Equals(value)) return;
 
-        this.#scale = value;
+        this.#scale = value.Duplicate();
         
         this.Recalc();
     }
@@ -167,21 +167,38 @@ class Transform extends Component
         return this.#parent === parent;
     }
     
-    Find (name)
+    Find (path)
     {
-        let output = null;
+        const pathArray = path.split("/");
+
+        if (pathArray.length === 0) return;
+
+        if (pathArray[0] === "") return GameObject.Find(path);
+
+        const list = [];
+
+        for (let i = 0; i < this.childCount; i++)
+        {
+            const gameObj = GameObject.FindByID(this.#child[i]);
+
+            if (gameObj.name === pathArray[0]) list.push(gameObj.transform);
+        }
+
+        if (pathArray.length > 1 && list.length > 0)
+        {
+            for (let i = 0; i < list.length; i++)
+            {
+                const item = list[i].Find(pathArray.slice(1).join("/"));
+
+                if (item == null) continue;
+
+                return item;
+            }
+
+            return;
+        }
         
-        this.#child.find(element => {
-            const gameObj = GameObject.FindByID(element);
-            
-            if (gameObj.name !== name) return false;
-            
-            output = gameObj.transform;
-            
-            return true;
-        });
-        
-        return output;
+        return list[0];
     }
     
     DetachChildByID (id)

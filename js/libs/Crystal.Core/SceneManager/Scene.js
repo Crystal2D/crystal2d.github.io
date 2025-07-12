@@ -78,7 +78,7 @@ class Scene
 
             for (let i = 0; i < objComponents.length; i++)
             {
-                const match = rawComponents.find(item => item.type === objComponents[i].type);
+                const match = objComponents[i].replace ? rawComponents.find(item => item.type === objComponents[i].type) : null;
 
                 if (match == null)
                 {

@@ -48,6 +48,12 @@
                     "name" : "mergeResolution",
                     "type" : "number"
                 }
+            ],
+            "keys": [
+                {
+                    "name": "material",
+                    "type": "Material"
+                }
             ]
         }
     ]

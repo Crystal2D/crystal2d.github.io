@@ -17,6 +17,7 @@
         "Input/Input",
         "Input/KeyCode",
         "Input/GamepadInput",
+        "Input/Cursor",
         "Scripting/Component",
         "Scripting/Behavior",
         "Scripting/GameBehavior",
@@ -90,7 +91,25 @@
         {
             "name" : "Color",
             "type" : 0,
-            "construction" : "return new Color((data.r ?? 0) / 255, (data.g ?? 0) / 255, (data.b ?? 0) / 255, (data.a ?? 255) / 255);"
+            "construction" : "return new Color((data.r ?? 0) / 255, (data.g ?? 0) / 255, (data.b ?? 0) / 255, (data.a ?? 255) / 255);",
+            "keys": [
+                {
+                    "name" : "r",
+                    "type" : "number"
+                },
+                {
+                    "name" : "g",
+                    "type" : "number"
+                },
+                {
+                    "name" : "b",
+                    "type" : "number"
+                },
+                {
+                    "name" : "a",
+                    "type" : "number"
+                }
+            ]
         },
         {
             "name" : "Rect",
@@ -117,7 +136,23 @@
         {
             "name" : "Transform",
             "type" : 0,
-            "construction" : "const output = new Transform(); if (data.rotation != null) output.localRotation = data.rotation; if (data.position != null) output.localPosition = await toObject(\"Vector2\", data.position); if (data.scale != null) output.localScale = await toObject(\"Vector2\", data.scale); return output;"
+            "args": [
+                {
+                    "realName": "localRotation",
+                    "name" : "rotation",
+                    "type" : "number"
+                },
+                {
+                    "realName": "localPosition",
+                    "name" : "position",
+                    "type" : "Vector2"
+                },
+                {
+                    "realName": "localScale",
+                    "name" : "scale",
+                    "type" : "Vector2"
+                }
+            ]
         },
         {
             "name" : "GameObject",
@@ -211,6 +246,16 @@
                 {
                     "name" : "size",
                     "type" : "Vector2"
+                }
+            ],
+            "keys": [
+                {
+                    "name": "sprite",
+                    "type": "Sprite"
+                },
+                {
+                    "name": "material",
+                    "type": "Material"
                 }
             ]
         },
