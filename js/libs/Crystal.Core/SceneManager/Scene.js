@@ -2,6 +2,8 @@ class Scene
 {
     #invalid = false;
     #loaded = false;
+    #res = [];
+
     #data = null;
     
     name = "scene";
@@ -33,11 +35,22 @@ class Scene
     {
         return this.#data.resources ?? [];
     }
+
+    get resourceList ()
+    {
+        return this.#res;
+    }
     
     constructor (name, data, invalid)
     {
         this.name = name ?? "Scene";
         this.#data = data ?? { };
+
+        for (let i = 0; i < this.resources.length; i++)
+        {
+            if (Array.isArray(this.resources[i])) this.#res.push(...this.resources[i]);
+            else this.#res.push(this.resources[i]);
+        }
 
         this.#invalid = invalid ?? false;
     }

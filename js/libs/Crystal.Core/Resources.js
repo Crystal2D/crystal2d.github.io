@@ -14,7 +14,7 @@ class Resources
         
         const foundClass = CrystalEngine.Inner.GetClassOfType(type, 1);
         
-        if (foundClass == null) return new Object();
+        if (foundClass == null) return;
         
         const construction = foundClass.construction;
         const properties = foundClass.args;
@@ -135,10 +135,11 @@ class Resources
                 continue;
             }
 
-            const data = this.#unloadedRes.find(item => item.path === path[i]);
-            const loadedData = this.#resources.find(item => item.path === path);
+            if (this.#resources.find(item => item.path === path) != null) continue;
 
-            if (data == null || loadedData != null) continue;
+            const data = this.#unloadedRes.find(item => item.path === path[i]);
+
+            if (data == null) throw new Error(`Resource Non-existent "${path[i]}"`);
 
             (async () => {
                 const obj = await this.#ToObject(
@@ -162,5 +163,14 @@ class Resources
     static DontDestroyOnLoad (...path)
     {
         this.keepOnLoad.push(...path);
+    }
+
+    static DestroyOnLoad (...path)
+    {
+        for (let i = 0; i < path.length; i++)
+        {
+            const index = this.keepOnLoad.indexOf(path[i]);
+            this.keepOnLoad.splice(index, 1);
+        }
     }
 }

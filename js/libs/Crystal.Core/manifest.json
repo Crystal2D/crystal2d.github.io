@@ -44,6 +44,10 @@
         "Graphics/FilterMode",
         "Graphics/Texture",
         "Graphics/Sprite",
+        "Graphics/SpriteLibrary/SpriteLibraryCategory",
+        "Graphics/SpriteLibrary/SpriteLibraryAsset",
+        "Graphics/SpriteLibrary/SpriteLibrary",
+        "Graphics/SpriteLibrary/SpriteResolver",
         "Graphics/Rendering/SortingLayer",
         "Graphics/Rendering/Camera",
         "Graphics/Rendering/Renderers/Renderer",
@@ -205,6 +209,60 @@
                 {
                     "name" : "rect",
                     "type" : "Rect"
+                }
+            ]
+        },
+        {
+            "name" : "SpriteLibraryCategory",
+            "type" : 0,
+            "construction" : "const output = new SpriteLibraryCategory(); for (let i = 0; i < data.entries?.length ?? 0; i++) output.entries.push({ label: data.entries[i].label, sprite: await toObject(\"Sprite\", data.entries[i].sprite) }); return output;"
+        },
+        {
+            "name": "SpriteLibraryAsset",
+            "type": 1,
+            "args": [
+                {
+                    "name": "categories",
+                    "array": true,
+                    "type": "SpriteLibraryCategory"
+                },
+                {
+                    "name": "mainLibrary",
+                    "type": "SpriteLibraryAsset"
+                }
+            ]
+        },
+        {
+            "name": "SpriteLibraryAsset",
+            "type": 0,
+            "construction" : "return Resources.Find(data);"
+        },
+        {
+            "name": "SpriteLibrary",
+            "type": 0,
+            "args": [
+                {
+                    "name": "asset",
+                    "type": "SpriteLibraryAsset"
+                },
+                {
+                    "name": "categories",
+                    "array": true,
+                    "type": "SpriteLibraryCategory"
+                }
+            ]
+        },
+        {
+            "name": "SpriteResolver",
+            "type": 0,
+            "args": [
+                {
+                    "name": "category",
+                    "type": "string"
+                },
+                {
+                    "name": "label",
+                    "type": "string"
                 }
             ]
         },

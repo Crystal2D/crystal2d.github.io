@@ -10,13 +10,15 @@ class RPGMovement extends GameBehavior
 
     _moveDir = Vector2.zero;
 
+    _sprResolver = null;
+
     get _shouldMove ()
     {
         return this.updateMovement;
     }
 
     updateMovement = true;
-    speed = 1;
+    speed = 4;
     speedScale = 1;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
@@ -34,6 +36,11 @@ class RPGMovement extends GameBehavior
         if (!this.#moveStart)
         {
             this.#moveStart = true;
+
+            if (this._moveDir.Equals(Vector2.up)) this._sprResolver.category = "up";
+            else if (this._moveDir.Equals(Vector2.down)) this._sprResolver.category = "down";
+            else if (this._moveDir.Equals(Vector2.left)) this._sprResolver.category = "left";
+            else if (this._moveDir.Equals(Vector2.right)) this._sprResolver.category = "right";
 
             this.onMoveStart.Invoke();
         }
@@ -64,6 +71,11 @@ class RPGMovement extends GameBehavior
         this.transform.position = nextPos;
 
         this._OnMove();
+    }
+
+    Start ()
+    {
+        this._sprResolver = this.GetComponent("SpriteResolver");
     }
 
     Update ()

@@ -216,6 +216,24 @@ class InputManager extends GameBehavior
         this.#touchEnabled = state;
     }
 
+    Awake ()
+    {
+        this.DontDestroyOnLoad(this, [
+            "ctrls/bounds",
+            "ctrls/dpad",
+            "ctrls/dpad/up",
+            "ctrls/dpad/down",
+            "ctrls/dpad/left",
+            "ctrls/dpad/right",
+            "ctrls/z",
+            "ctrls/z1",
+            "ctrls/x",
+            "ctrls/x1",
+            "ctrls/shift",
+            "ctrls/shift1"
+        ]);
+    }
+
     Start ()
     {
         this.#textures = [

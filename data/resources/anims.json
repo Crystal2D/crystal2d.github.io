@@ -1,0 +1,111 @@
+[
+    {
+        "path": "anims/player/idle",
+        "type": "AnimationClip",
+        "args": {
+            "loop": false,
+            "framerate": 3,
+            "duration": 1,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "a"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/player/walk",
+        "type": "AnimationClip",
+        "args": {
+            "loop": false,
+            "framerate": 3,
+            "duration": 2,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "a"
+                        }
+                    ]
+                },
+                {
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "b"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/player/ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "motions": [
+                {
+                    "name": "idle",
+                    "speed": 1,
+                    "animation": "anims/player/idle"
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/npc",
+        "type": "AnimationClip",
+        "args": {
+            "loop": true,
+            "framerate": 3,
+            "duration": 2,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "a"
+                        }
+                    ]
+                },
+                {
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "b"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/npc_ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "motions": [
+                {
+                    "name": "main",
+                    "speed": 1,
+                    "animation": "anims/npc"
+                }
+            ]
+        }
+    }
+]

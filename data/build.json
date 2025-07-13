@@ -15,13 +15,15 @@
         "main",
         "ctrls",
         "sprites",
+        "spritelibs",
         "tiles",
-        "animations",
+        "anims",
         "audio/bgm",
         "audio/se",
         "prefabs"
     ],
     "scenes" : [
+        "title",
         "test"
     ],
     "shaders" : [],

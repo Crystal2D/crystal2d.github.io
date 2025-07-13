@@ -1,4 +1,4 @@
-class CameraController extends Viewport
+class CamCtrl extends Viewport
 {
     #cam = null;
     #targetTrans = null;

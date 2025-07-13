@@ -136,7 +136,7 @@ class TitleScreen extends GameBehavior
             {
                 case 0:
                     this.#Disable(() => {
-                        AudioManager.instance.bgm.Stop();
+                        AudioManager.instance.StopBGM();
 
                         Transitioner.instance.onFadeOut.Add(async () => {
                             await SceneManager.Load(1);

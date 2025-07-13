@@ -9,8 +9,8 @@
         "Options",
         "InputManager",
         "character/RPGMovement",
-        "character/CharController",
-        "CameraController",
+        "character/CharCtrl",
+        "CamCtrl",
         "Test",
         "JumpTest"
     ],
@@ -40,7 +40,7 @@
             "type" : 0
         },
         {
-            "name" : "CharController",
+            "name" : "CharCtrl",
             "type" : 0,
             "args" : [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "name" : "CameraController",
+            "name" : "CamCtrl",
             "type" : 0
         },
         {

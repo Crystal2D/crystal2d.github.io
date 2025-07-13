@@ -3,9 +3,12 @@
     "resources": [
         [
             "sprites/chars/yoki",
-            "animations/chars/yoki/yoki",
-            "animations/chars/yoki/yoki1",
-            "animations/chars/yoki/ctrl"
+            "spritelibs/chars/yoki"
+        ],
+        [
+            "anims/player/idle",
+            "anims/player/walk",
+            "anims/player/ctrl"
         ]
     ],
     "gameObjects": [
@@ -18,14 +21,11 @@
                 },
                 {
                     "type": "Viewport"
-                },
-                {
-                    "type": "Test"
                 }
             ]
         },
         {
-            "name": "obj",
+            "name": "char_yoki",
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -37,10 +37,26 @@
                     }
                 },
                 {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/yoki"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "a"
+                    }
+                },
+                {
                     "type": "Animator",
                     "args": {
-                        "controller": "animations/chars/yoki/ctrl"
+                        "controller": "anims/player/ctrl"
                     }
+                },
+                {
+                    "type": "CharCtrl"
                 }
             ]
         }

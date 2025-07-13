@@ -94,7 +94,7 @@ class CrystalEngine
     
         if (response.ok) return response;
         
-        throw new Error(`${response.statusText} (${src})`);
+        throw new Error(`${response.statusText} "${src}"`);
     }
     
     static Inner = class

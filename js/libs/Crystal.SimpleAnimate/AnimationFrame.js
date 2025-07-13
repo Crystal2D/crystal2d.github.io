@@ -24,9 +24,8 @@ class AnimationFrame
 
             this.#cachedActions.push({
                 component: this.#actions[i].component,
-                type: propData.type,
-                value: this.#actions[i].value,
-                name: propData.realName ?? propData.name,
+                propData: propData,
+                value: this.#actions[i].value
             });
         }
     }
@@ -37,9 +36,8 @@ class AnimationFrame
         {
             const action = this.#cachedActions[i];
             const component = gameObject.GetComponent(action.component);
-            const newObj = await SceneManager.CreateObject(action.type, action.value);
-
-            eval(`component.${action.name} = newObj`);
+            
+            await SceneManager.EvalProperty(action.propData, action.value, component);
         }
     }
 }

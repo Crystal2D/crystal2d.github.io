@@ -1,0 +1,86 @@
+[
+    {
+        "path": "spritelibs/chars/yoki",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "a",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "b",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "a",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "b",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "a",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "b",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "a",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "b",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

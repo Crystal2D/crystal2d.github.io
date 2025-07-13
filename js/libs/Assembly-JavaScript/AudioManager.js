@@ -32,11 +32,21 @@ class AudioManager extends GameBehavior
         this.onSEVolumeChange.Invoke(value / 100);
     }
 
+    #clipName = null;
     #select = null;
     #confirm = null;
     #no = null;
 
     bgm = null;
+
+    Awake ()
+    {
+        this.DontDestroyOnLoad(this, [
+            "audio/se/select",
+            "audio/se/confirm",
+            "audio/se/no"
+        ]);
+    }
 
     Start ()
     {
@@ -69,8 +79,20 @@ class AudioManager extends GameBehavior
 
     PlayBGM (name)
     {
-        this.bgm.clip = Resources.Find(`audio/bgm/${name}`);
+        this.#clipName = `audio/bgm/${name}`;
+
+        Resources.DontDestroyOnLoad(this.#clipName);
+
+        this.bgm.clip = Resources.Find(this.#clipName);
         this.bgm.Play();
+    }
+
+    StopBGM ()
+    {
+        this.bgm.Stop();
+        Resources.DestroyOnLoad(this.#clipName);
+
+        this.#clipName = null;
     }
 
     PlaySelect ()

@@ -82,7 +82,7 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
     return gameObj;
 };
 
-Object.prototype.DontDestroyOnLoad = function (obj, res)
+Object.prototype.DontDestroyOnLoad = function (obj, res = [])
 {
     if (!(obj instanceof GameObject) && !(obj instanceof Component)) return null;
 
@@ -92,3 +92,14 @@ Object.prototype.DontDestroyOnLoad = function (obj, res)
 
     Resources.DontDestroyOnLoad(...res);
 };
+
+Object.prototype.DestroyOnLoad = function (obj, res = [])
+{
+    if (!(obj instanceof GameObject) && !(obj instanceof Component)) return null;
+
+    if (obj instanceof Component) obj = obj.gameObject;
+
+    obj.keepOnLoad = false;
+
+    Resources.DestroyOnLoad(...res);
+}
