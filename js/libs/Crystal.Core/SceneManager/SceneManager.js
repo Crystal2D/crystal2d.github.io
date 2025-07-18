@@ -166,7 +166,7 @@ class SceneManager
 
         if (propData.gameObject)
         {
-            PlayerLoop.onBeforeAwake.Add(() => {
+            const call = () => {
                 if (data.prefab != null) output = Resources.FindPrefab(data.prefab);
                 else
                 {
@@ -175,14 +175,20 @@ class SceneManager
                 }
 
                 eval(`out.${propData.realName ?? propData.name} = output`);
-            });
+
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+
+            PlayerLoop.onBeforeAwake.Add(call);
 
             return;
         }
 
         if (propData.component)
         {
-            if (propData.explicit) PlayerLoop.onBeforeAwake.Add(() => {
+            let call = null
+
+            if (propData.explicit) call = () => {
                 let gameObj = null;
 
                 if (typeof data.gameObject === "number") gameObj = GameObject.FindByID(data.gameObject);
@@ -191,8 +197,10 @@ class SceneManager
                 output = gameObj.GetComponent(data.type);
 
                 eval(`out.${propData.realName ?? propData.name} = output`);
-            });
-            else PlayerLoop.onBeforeAwake.Add(() => {
+                
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+            else call = () => {
                 let gameObj = null;
 
                 if (typeof data === "number") gameObj = GameObject.FindByID(data);
@@ -201,7 +209,11 @@ class SceneManager
                 output = gameObj.GetComponent(propData.type);
 
                 eval(`out.${propData.realName ?? propData.name} = output`);
-            });
+
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+
+            PlayerLoop.onBeforeAwake.Add(call);
 
             return;
         }

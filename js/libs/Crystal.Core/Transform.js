@@ -124,9 +124,21 @@ class Transform extends Component
         if (this.#parent == null || this.gameObject == null) return;
         
         this.#parent.AttachChild(this);
+        
+        const rotation = this.#parent.rotation / (180 / Math.PI);
+        const pos = Vector2.Add(
+            this.#parent.position,
+            Vector2.Scale(
+                new Vector2(
+                    this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
+                    this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
+                ),
+                this.#parent.scale
+            )
+        );
 
         this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(this.position, new Vector2(1, -1)),
+            Vector2.Scale(pos, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.rotation * Math.PI,
             this.scale
         );
@@ -135,8 +147,27 @@ class Transform extends Component
     
     Recalc ()
     {
+        let pos = null;
+
+        if (this.#parent != null)
+        {
+            const rotation = this.#parent.rotation / (180 / Math.PI);
+
+            pos = Vector2.Add(
+                this.#parent.position,
+                Vector2.Scale(
+                    new Vector2(
+                        this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
+                        this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
+                    ),
+                    this.#parent.scale
+                )
+            );
+        }
+        else pos = this.localPosition;
+
         this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(this.position, new Vector2(1, -1)),
+            Vector2.Scale(pos, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.rotation * Math.PI,
             this.scale
         );

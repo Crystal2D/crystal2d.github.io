@@ -2,7 +2,7 @@
     "name" : "Crystal.Audio",
     "id": "com.crystal.chimes",
     "description" : "Adds basic audio implementations",
-    "version": "2025.3f",
+    "version": "2025.3.1f",
     "scripts" : [
         "AudioSource",
         "AudioSettings",

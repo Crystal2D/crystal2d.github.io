@@ -54,7 +54,7 @@ class GameObject
     
     get components ()
     {
-        return this.#components;
+        return [...this.#components];
     }
     
     set components (value)

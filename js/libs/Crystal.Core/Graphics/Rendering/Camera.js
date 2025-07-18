@@ -57,6 +57,22 @@ class Camera extends Behavior
 
         return new Vector2(targetMat.GetValue(2, 0), -targetMat.GetValue(2, 1));
     }
+
+    WorldToScreenPoint (point)
+    {
+        const viewMat = Matrix3x3.TRS(
+            Vector2.Scale(this.transform.position, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.transform.rotation * Math.PI,
+            this.bounds.size
+        );
+        const pointMat = Matrix3x3.Multiply(viewMat.inverse, Matrix3x3.Translate(point));
+        const targetMat = Matrix3x3.Translate(new Vector2(
+            ((pointMat.GetValue(2, 0) + 0.5) * Window.canvasWidth) + (window.innerWidth - Window.canvasWidth) * 0.5,
+            ((-pointMat.GetValue(2, 1) + 0.5) * Window.canvasHeight) + (window.innerHeight - Window.canvasHeight) * 0.5
+        ));
+
+        return new Vector2(targetMat.GetValue(2, 0), targetMat.GetValue(2, 1));
+    }
     
     Render ()
     {

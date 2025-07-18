@@ -9,6 +9,8 @@ class PlayerLoop
 
     static noFixedUpdate = false;
     static onBeforeAwake = new DelegateEvent();
+    static onAfterFixedUpdate = new DelegateEvent();
+    static onAfterUpdate = new DelegateEvent();
 
     static get isPlaying ()
     {
@@ -75,10 +77,8 @@ class PlayerLoop
             Object.InstantiationQueue.Invoke();
             Object.InstantiationQueue.RemoveAll();
 
-            PlayerLoop.onBeforeAwake.Invoke();
-            PlayerLoop.onBeforeAwake.RemoveAll();
-
             // ScriptRunBehaviorAwake
+            this.onBeforeAwake.Invoke();
             BroadcastMessage("Awake", null, {
                 specialCall : 1,
                 passActive : true,
@@ -153,7 +153,11 @@ class PlayerLoop
             Time.fixedTime += Time.fixedDeltaTime * Time.timeScale;
             
             // ScriptRunBehaviorFixedUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("FixedUpdate");
+            if (this.#playing && Time.timeScale !== 0)
+            {
+                BroadcastMessage("FixedUpdate");
+                this.onAfterFixedUpdate.Invoke();
+            }
         }
 
 
@@ -161,7 +165,11 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // ScriptRunBehaviorUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("Update");
+            if (this.#playing && Time.timeScale !== 0)
+            {
+                BroadcastMessage("Update");
+                this.onAfterUpdate.Invoke();
+            }
         }
 
 
@@ -231,7 +239,7 @@ class PlayerLoop
                 for (let i = 0; i < gameObjs.length; i++)
                 {
                     if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
-                    
+
                     gameObjs[i].BroadcastMessage("OnDisable", null, {
                         specialCall : 3,
                         passActive : true
