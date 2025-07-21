@@ -46,7 +46,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "down",
-                        "label": "a"
+                        "label": "0"
                     }
                 },
                 {

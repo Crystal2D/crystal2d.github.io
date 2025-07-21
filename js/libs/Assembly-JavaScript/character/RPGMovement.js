@@ -18,7 +18,7 @@ class RPGMovement extends GameBehavior
     }
 
     updateMovement = true;
-    speed = 4;
+    speed = 1.875;
     speedScale = 1;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();

@@ -8,14 +8,14 @@
                     "name": "up",
                     "entries": [
                         {
-                            "label": "a",
+                            "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "up-a"
                             }
                         },
                         {
-                            "label": "b",
+                            "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "up-b"
@@ -27,14 +27,14 @@
                     "name": "down",
                     "entries": [
                         {
-                            "label": "a",
+                            "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "down-a"
                             }
                         },
                         {
-                            "label": "b",
+                            "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "down-b"
@@ -46,14 +46,14 @@
                     "name": "left",
                     "entries": [
                         {
-                            "label": "a",
+                            "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "left-a"
                             }
                         },
                         {
-                            "label": "b",
+                            "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "left-b"
@@ -65,14 +65,14 @@
                     "name": "right",
                     "entries": [
                         {
-                            "label": "a",
+                            "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "right-a"
                             }
                         },
                         {
-                            "label": "b",
+                            "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/yoki",
                                 "name": "right-b"
