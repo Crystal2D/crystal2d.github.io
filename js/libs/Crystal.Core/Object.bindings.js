@@ -38,8 +38,7 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
     
     let objID = 0;
 
-    do objID++;
-    while (GameObject.FindByID(objID) != null)
+    while (GameObject.FindByID(objID) != null) objID++;
 
     let trans = null;
 

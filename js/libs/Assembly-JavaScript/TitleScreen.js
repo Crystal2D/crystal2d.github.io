@@ -45,6 +45,11 @@ class TitleScreen extends GameBehavior
         Transitioner.instance.FadeIn();
 
         this.Enable();
+
+        // (async () => {
+        //     await SceneManager.Load(1);
+        //     SceneManager.SetActiveScene(1);
+        // })();
     }
 
     Enable ()

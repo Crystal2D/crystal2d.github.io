@@ -2,13 +2,13 @@ class GameObject
 {
     #active = false;
     #activeOld = false;
+    #persistent = false;
     #name = "Empty Object";
     #components = [];
     
     #id = null;
 
     destroying = false;
-    keepOnLoad = false;
 
     scene = null;
     sceneTreeNode = null;
@@ -70,6 +70,24 @@ class GameObject
             this.#components[i].gameObject = this;
             this.#components[i].name = this.name;
         }
+    }
+
+    get keepOnLoad ()
+    {
+        return this.#persistent;
+    }
+
+    set keepOnLoad (value)
+    {
+        this.#persistent = value;
+
+        if (!value || this.#id < 0) return;
+        
+        let objID = -1;
+
+        while (GameObject.FindByID(objID) != null) objID--;
+        
+        this.#id = objID;
     }
     
     constructor (name, components, active, transform, id)

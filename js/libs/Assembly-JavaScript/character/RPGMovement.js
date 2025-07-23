@@ -4,6 +4,8 @@ class RPGMovement extends GameBehavior
     #moveStart = false;
     #currentSpeedScale = 0;
     #moveSpeed = 0;
+    #animCount = 0;
+    #animState = 0;
     #targetDir = Vector2.zero;
     #movement = Vector2.zero;
     #lastPos = Vector2.zero;
@@ -101,6 +103,22 @@ class RPGMovement extends GameBehavior
             this.#allowDirChange = true;
 
             this._OnStay();
+        }
+
+        this.#Animate();
+    }
+
+    #Animate ()
+    {
+        if (!this._moveDir.Equals(Vector2.zero)) this.#animCount += 1.5 * Time.deltaTime;
+        else if (this.#animState === 1) this.#animCount += Time.deltaTime;
+
+        if (this.#animCount >= (this.#currentSpeedScale === 2 ? 0.2 : 0.25))
+        {
+            this.#animState = +(this.#animState === 0);
+            this._sprResolver.label = `${this.#animState}`;
+
+            this.#animCount = 0;
         }
     }
 

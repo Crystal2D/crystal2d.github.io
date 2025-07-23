@@ -41,17 +41,26 @@
         },
         {
             "name" : "CharCtrl",
-            "type" : 0,
-            "args" : [
-                {
-                    "name" : "speed",
-                    "type" : "number"
-                }
-            ]
+            "type" : 0
         },
         {
             "name" : "CamCtrl",
-            "type" : 0
+            "type" : 0,
+            "args": [
+                {
+                    "component": true,
+                    "type": "Transform",
+                    "name": "target"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "clampMin"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "clampMax"
+                }
+            ]
         },
         {
             "name" : "Test",

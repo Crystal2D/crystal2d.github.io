@@ -1,6 +1,7 @@
 class SceneManager
 {
     static #inited = false;
+    static #inactive = true;
     static #emptyScene = new Scene();
     static #unloadedScenes = [];
     static #scenes = [];
@@ -19,6 +20,11 @@ class SceneManager
     static get loadedSceneCount ()
     {
         return this.#scenes.filter(item => item.isLoaded).length;
+    }
+
+    static get currentlyInactive ()
+    {
+        return this.#inactive;
     }
     
     static async SetActiveScene (index)
@@ -75,6 +81,8 @@ class SceneManager
 
         this.activeSceneChanged.Invoke();
 
+        this.#inactive = false;
+
         return true;
     }
 
@@ -108,6 +116,8 @@ class SceneManager
         {
             if (this.GetActiveScene().index === index[i])
             {
+                this.#inactive = true;
+
                 for (let i = 0; i < this.#activeScene.gameObjects.length; i++) GameObject.Destroy(this.#activeScene.gameObjects[i]);
 
                 await CrystalEngine.Wait(() => this.#activeScene.gameObjects.length === 0);
@@ -167,6 +177,8 @@ class SceneManager
         if (propData.gameObject)
         {
             const call = () => {
+                if (this.#inactive) return;
+
                 if (data.prefab != null) output = Resources.FindPrefab(data.prefab);
                 else
                 {
@@ -189,6 +201,8 @@ class SceneManager
             let call = null
 
             if (propData.explicit) call = () => {
+                if (this.#inactive) return;
+
                 let gameObj = null;
 
                 if (typeof data.gameObject === "number") gameObj = GameObject.FindByID(data.gameObject);
@@ -201,6 +215,8 @@ class SceneManager
                 PlayerLoop.onBeforeAwake.Remove(call);
             };
             else call = () => {
+                if (this.#inactive) return;
+                
                 let gameObj = null;
 
                 if (typeof data === "number") gameObj = GameObject.FindByID(data);

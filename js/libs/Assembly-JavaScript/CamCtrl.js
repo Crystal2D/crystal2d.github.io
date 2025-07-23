@@ -1,30 +1,14 @@
 class CamCtrl extends Viewport
-{
-    #cam = null;
-    #targetTrans = null;
-    
-    clampMin = new Vector2(-3.75, -26.75);
-    clampMax = new Vector2(16.25, 4.25);
-    
-    Start ()
-    {
-        this.#cam = this.GetComponent("Camera");
-        this.#targetTrans = GameObject.Find("char_yoki").transform;
-    }
+{   
+    clampMin = Vector2.zero;
+    clampMax = Vector2.zero;
+
+    target = null;
     
     LateUpdate ()
     {
-        const charPos = this.#targetTrans.position;
-        
-        // const newPos = new Vector2(
-        //     // charPos.x,
-        //     // charPos.y
-
-        //     Math.Clamp(charPos.x, this.clampMin.x, this.clampMax.x),
-        //     Math.Clamp(charPos.y, this.clampMin.y, this.clampMax.y)
-        // );
-        
-        this.transform.position = charPos;
+        const charPos = this.target.position;
+        this.transform.position = Vector2.Clamp(charPos, this.clampMin, this.clampMax);
 
         super.LateUpdate();
     }
