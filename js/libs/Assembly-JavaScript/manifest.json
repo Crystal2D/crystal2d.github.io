@@ -11,6 +11,9 @@
         "character/RPGMovement",
         "character/CharCtrl",
         "CamCtrl",
+        "MapGrid/MapNode",
+        "MapGrid/MapGrid",
+        "MapGrid/TilemapCollider",
         "Test",
         "JumpTest"
     ],
@@ -61,6 +64,14 @@
                     "name": "clampMax"
                 }
             ]
+        },
+        {
+            "name" : "MapGrid",
+            "type" : 0
+        },
+        {
+            "name" : "TilemapCollider",
+            "type" : 0
         },
         {
             "name" : "Test",

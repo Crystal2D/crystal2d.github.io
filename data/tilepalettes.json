@@ -26,6 +26,20 @@
         ]
     },
     {
+        "name": "Dev - Collider",
+        "textures": [
+            {
+                "src": "sprites/collider",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Castle Town",
         "textures": [
             {

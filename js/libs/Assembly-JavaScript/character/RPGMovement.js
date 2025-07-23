@@ -1,14 +1,19 @@
 class RPGMovement extends GameBehavior
 {
     #allowDirChange = true;
+    #checkedDir = false;
     #moveStart = false;
     #currentSpeedScale = 0;
     #moveSpeed = 0;
     #animCount = 0;
     #animState = 0;
     #targetDir = Vector2.zero;
+    #lookDir = Vector2.down;
     #movement = Vector2.zero;
     #lastPos = Vector2.zero;
+
+    #lastNode = null;
+    #node = null;
 
     _moveDir = Vector2.zero;
 
@@ -17,6 +22,16 @@ class RPGMovement extends GameBehavior
     get _shouldMove ()
     {
         return this.updateMovement;
+    }
+
+    get lookingAt ()
+    {
+        return this.#lookDir;
+    }
+
+    set lookingAt (value)
+    {
+        this.LookAt(value);
     }
 
     updateMovement = true;
@@ -33,16 +48,36 @@ class RPGMovement extends GameBehavior
         this.#movement = Vector2.Scale(this._moveDir, this.tileSize);
     }
 
+    #DirBlocked ()
+    {
+        const checkedNode = MapGrid.current.NodeOn(Vector2.Add(this.#node.pos, this._moveDir));
+
+        if (checkedNode.collider) return true;
+
+        this.#lastNode = this.#node;
+        this.#node = checkedNode;
+        this.#node.owner = this;
+    }
+
     #Move ()
     {
+        if (!this.#checkedDir)
+        {
+            this.#checkedDir = true;
+
+            if (this.#DirBlocked())
+            {
+                this.lookingAt = this._moveDir;
+                this._moveDir = Vector2.zero;
+                this.transform.position = this.#lastPos;
+
+                return;
+            }
+        }
+
         if (!this.#moveStart)
         {
             this.#moveStart = true;
-
-            if (this._moveDir.Equals(Vector2.up)) this._sprResolver.category = "up";
-            else if (this._moveDir.Equals(Vector2.down)) this._sprResolver.category = "down";
-            else if (this._moveDir.Equals(Vector2.left)) this._sprResolver.category = "left";
-            else if (this._moveDir.Equals(Vector2.right)) this._sprResolver.category = "right";
 
             this.onMoveStart.Invoke();
         }
@@ -54,6 +89,9 @@ class RPGMovement extends GameBehavior
 
         if (Vector2.Abs(Vector2.Subtract(nextPos, this.#lastPos)).Greater(Vector2.Abs(this.#movement)))
         {
+            this.#lastNode.owner = null;
+            this.#lastNode = null;
+
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
@@ -70,6 +108,8 @@ class RPGMovement extends GameBehavior
             return;
         }
 
+        this.lookingAt = this._moveDir;
+
         this.transform.position = nextPos;
 
         this._OnMove();
@@ -78,6 +118,11 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent("SpriteResolver");
+
+        this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
+        this.#node.owner = this;
+
+        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
     }
 
     Update ()
@@ -92,6 +137,8 @@ class RPGMovement extends GameBehavior
             this.#moveSpeed = this.speed * this.#currentSpeedScale;
 
             this.#lastPos = this.transform.position;
+
+            this.#checkedDir = false;
         }
 
         if (!this._moveDir.Equals(Vector2.zero))
@@ -130,12 +177,24 @@ class RPGMovement extends GameBehavior
 
     _OnStay () { }
 
-    MoveTowards (direction)
+    MoveTowards (dir)
     {
         if (!this.#allowDirChange) return;
 
         this.#allowDirChange = true;
 
-        this.#targetDir = Vector2.Clamp(direction, Vector2.Scale(Vector2.one, -1), Vector2.one);
+        this.#targetDir = Vector2.Clamp(dir, Vector2.Scale(Vector2.one, -1), Vector2.one);
+    }
+
+    LookAt (dir)
+    {
+        if (this.#lookDir.Equals(dir)) return;
+
+        this.#lookDir = dir;
+
+        if (dir.y > 0) this._sprResolver.category = "up";
+        else if (dir.y < 0) this._sprResolver.category = "down";
+        else if (dir.x < 0) this._sprResolver.category = "left";
+        else if (dir.x > 0) this._sprResolver.category = "right";
     }
 }

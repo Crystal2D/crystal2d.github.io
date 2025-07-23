@@ -46,10 +46,10 @@ class TitleScreen extends GameBehavior
 
         this.Enable();
 
-        // (async () => {
-        //     await SceneManager.Load(1);
-        //     SceneManager.SetActiveScene(1);
-        // })();
+        (async () => {
+            await SceneManager.Load(1);
+            SceneManager.SetActiveScene(1);
+        })();
     }
 
     Enable ()

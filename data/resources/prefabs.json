@@ -1,16 +1,27 @@
 [
     {
-        "path": "pref",
+        "path": "box",
         "type": "GameObject",
         "args": {
-            "name": "obj",
+            "name": "box",
             "components": [
                 {
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/yoki",
-                            "name": "down-a"
+                            "texture": "sprites/box"
+                        },
+                        "sortingOrder": 2,
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 182
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 0.125,
+                            "y": 0.125
                         }
                     }
                 }

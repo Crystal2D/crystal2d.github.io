@@ -5554,5 +5554,12 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/collider",
+        "type": "Texture",
+        "args": {
+            "src": "collider.png"
+        }
     }
 ]
