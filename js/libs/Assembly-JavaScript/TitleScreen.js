@@ -37,12 +37,12 @@ class TitleScreen extends GameBehavior
 
         this.#options = GameObject.Find("options").GetComponent("Options");
 
-        // (async () => {
-        //     Loader.Ready(3);
-        //     Loader.Switch();
-        // })();
+        (async () => {
+            Loader.Ready(3);
+            Loader.Switch();
+        })();
 
-        // return;
+        return;
 
         Transitioner.instance.onFadeIn.Add(() => {
             this.#started = true;

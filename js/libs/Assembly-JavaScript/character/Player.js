@@ -34,7 +34,7 @@ class Player extends RPGMovement
         if (node.owner instanceof MapTransfer)
         {
             this.#transfer = node.owner
-            this.#transfer.Load();
+            Loader.Ready(this.#transfer.scene);
         }
 
         return false;
@@ -68,8 +68,10 @@ class Player extends RPGMovement
     {
         if (this.#transfer != null)
         {
-            this.#transfer.Invoke(this);
+            MapTransfer.last = this.#transfer;
             this.#transfer = null;
+
+            Loader.Switch();
         }
     }
 
