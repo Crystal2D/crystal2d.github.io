@@ -1,14 +1,43 @@
-class CharCtrl extends RPGMovement
+class Player extends RPGMovement
 {
+    static instance = null;
+
     #tertriaryInput = false;
     #xTime = 0;
     #yTime = 0;
+
+    #transfer = null;
+
+    Start ()
+    {
+        Player.instance = this;
+
+        super.Start();
+
+        this.DontDestroyOnLoad(this, [
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        ]);
+    }
     
     Update ()
     {
         this.#GetInput();
 
         super.Update();
+    }
+
+    _DirCheck (node)
+    {
+        if (node.collider) return true;
+
+        if (node.owner instanceof MapTransfer)
+        {
+            this.#transfer = node.owner
+            this.#transfer.Load();
+        }
+
+        return false;
     }
 
     _OnMovementGet ()
@@ -33,6 +62,15 @@ class CharCtrl extends RPGMovement
         this.MoveTowards(input);
 
         this.speedScale = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 2 : 1;
+    }
+
+    _OnStop ()
+    {
+        if (this.#transfer != null)
+        {
+            this.#transfer.Invoke(this);
+            this.#transfer = null;
+        }
     }
 
     #GetInput ()

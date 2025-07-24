@@ -76,6 +76,8 @@ class SceneManager
                 this.#activeScene.tree.Insert(keepOnLoad[i], rect);
             }
 
+            keepOnLoad[i].scene = this.#activeScene;
+
             this.#activeScene.gameObjects.push(keepOnLoad[i]);
         }
 
@@ -183,7 +185,7 @@ class SceneManager
                 else
                 {
                     if (typeof data === "number") output = GameObject.FindByID(data);
-                    else output = GameObject.Find(data);
+                    else output = GameObject.Find(data, true);
                 }
 
                 eval(`out.${propData.realName ?? propData.name} = output`);
@@ -206,7 +208,7 @@ class SceneManager
                 let gameObj = null;
 
                 if (typeof data.gameObject === "number") gameObj = GameObject.FindByID(data.gameObject);
-                else gameObj = GameObject.Find(data.gameObject);
+                else gameObj = GameObject.Find(data.gameObject, true);
 
                 output = gameObj.GetComponent(data.type);
 
@@ -220,7 +222,7 @@ class SceneManager
                 let gameObj = null;
 
                 if (typeof data === "number") gameObj = GameObject.FindByID(data);
-                else gameObj = GameObject.Find(data);
+                else gameObj = GameObject.Find(data, true);
 
                 output = gameObj.GetComponent(propData.type);
 

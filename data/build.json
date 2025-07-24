@@ -24,7 +24,8 @@
     ],
     "scenes" : [
         "title",
-        "test"
+        "test",
+        "forest_barrier"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
@@ -54,6 +55,11 @@
         {
             "name": "Transition",
             "id": 1,
+            "value": 2
+        },
+        {
+            "name": " Collider",
+            "id": 2,
             "value": 1
         }
     ]

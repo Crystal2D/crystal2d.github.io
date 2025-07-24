@@ -99,7 +99,7 @@ class GameObject
         this.components = components ?? [];
     }
     
-    static Find (path)
+    static Find (path, includeInactive)
     {
         const pathArray = path.split("/");
 
@@ -107,7 +107,7 @@ class GameObject
 
         if (pathArray[0] === "")
         {
-            const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[1] && item.activeInHierarchy && item.transform.parent == null);
+            const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[1] && (includeInactive || item.activeInHierarchy) && item.transform.parent == null);
 
             if (pathArray.length > 2 && list.length > 0)
             {
@@ -126,7 +126,7 @@ class GameObject
             return list[0];
         }
 
-        const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[0] && item.activeInHierarchy);
+        const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[0] && (includeInactive || item.activeInHierarchy));
 
         if (pathArray.length > 1 && list.length > 0)
         {

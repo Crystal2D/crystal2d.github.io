@@ -4,8 +4,8 @@ class MapGrid extends GameBehavior
 
     #grid = null;
 
-    min = new Vector2(-12, -23);
-    max = new Vector2(11, 16);
+    min = Vector2.zero;
+    max = Vector2.zero;
     nodes = [];
 
     Awake ()

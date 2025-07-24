@@ -9,11 +9,13 @@
         "Options",
         "InputManager",
         "character/RPGMovement",
-        "character/CharCtrl",
+        "character/Player",
         "CamCtrl",
         "MapGrid/MapNode",
         "MapGrid/MapGrid",
         "MapGrid/TilemapCollider",
+        "MapConfig/MapConfig",
+        "MapConfig/MapTransfer",
         "Test",
         "JumpTest"
     ],
@@ -43,7 +45,7 @@
             "type" : 0
         },
         {
-            "name" : "CharCtrl",
+            "name" : "Player",
             "type" : 0
         },
         {
@@ -67,11 +69,54 @@
         },
         {
             "name" : "MapGrid",
-            "type" : 0
+            "type" : 0,
+            "args": [
+                {
+                    "type": "Vector2",
+                    "name": "min"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "max"
+                }
+            ]
         },
         {
             "name" : "TilemapCollider",
             "type" : 0
+        },
+        {
+            "name": "MapConfig",
+            "type": 0,
+            "args": [
+                {
+                    "type": "MapTransfer",
+                    "array": true,
+                    "name": "transfers"
+                }
+            ]
+        },
+        {
+            "name": "MapTransfer",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "scene"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "min"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "max"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "pos"
+                }
+            ]
         },
         {
             "name" : "Test",

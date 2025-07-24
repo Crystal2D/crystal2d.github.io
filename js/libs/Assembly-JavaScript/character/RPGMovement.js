@@ -52,7 +52,7 @@ class RPGMovement extends GameBehavior
     {
         const checkedNode = MapGrid.current.NodeOn(Vector2.Add(this.#node.pos, this._moveDir));
 
-        if (checkedNode.collider) return true;
+        if (this._DirCheck(checkedNode)) return true;
 
         this.#lastNode = this.#node;
         this.#node = checkedNode;
@@ -92,6 +92,8 @@ class RPGMovement extends GameBehavior
             this.#lastNode.owner = null;
             this.#lastNode = null;
 
+            Window.SetTitle(`${this.#node.gridPos.toString()} ${this.transform.localPosition.x} ${this.transform.localPosition.y}`);
+
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
@@ -118,7 +120,10 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent("SpriteResolver");
+    }
 
+    OnEnable ()
+    {
         this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
         this.#node.owner = this;
 
@@ -169,6 +174,8 @@ class RPGMovement extends GameBehavior
         }
     }
 
+    _DirCheck (node) { return node.collider; }
+
     _OnMovementGet () { }
 
     _OnMove () { }
@@ -196,5 +203,15 @@ class RPGMovement extends GameBehavior
         else if (dir.y < 0) this._sprResolver.category = "down";
         else if (dir.x < 0) this._sprResolver.category = "left";
         else if (dir.x > 0) this._sprResolver.category = "right";
+    }
+
+    TP (pos)
+    {
+        this.transform.position = pos;
+        
+        this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
+        this.#node.owner = this;
+
+        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
     }
 }

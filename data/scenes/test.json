@@ -11,7 +11,6 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_village",
         "sprites/box",
-        "sprites/chars/yoki",
         "sprites/collider"
     ],
     "gameObjects": [
@@ -25,15 +24,9 @@
                 {
                     "type": "CamCtrl",
                     "args": {
-                        "target": 1,
-                        "clampMin": {
-                            "x": -3.75,
-                            "y": -7.25
-                        },
-                        "clampMax": {
-                            "x": 3.75,
-                            "y": 3.75
-                        }
+                        "target": "char_yoki",
+                        "clampMin": { "x": -3.75, "y": -7.25 },
+                        "clampMax": { "x": 3.75, "y": 3.75 }
                     }
                 }
             ]
@@ -55,7 +48,7 @@
                             "texture": "sprites/chars/yoki",
                             "name": "down-a"
                         },
-                        "sortingOrder": 1
+                        "sortingLayer": 1
                     }
                 },
                 {
@@ -72,7 +65,26 @@
                     }
                 },
                 {
-                    "type": "CharCtrl"
+                    "type": "Player"
+                }
+            ]
+        },
+        {
+            "name": "mapconfig",
+            "id": 7,
+            "components": [
+                {
+                    "type": "MapConfig",
+                    "args": {
+                        "transfers": [
+                            {
+                                "scene": 2,
+                                "min": { "x": -6, "y": -23 },
+                                "max": { "x": -1, "y": -23 },
+                                "pos": { "x": -1, "y": 9 }
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -84,7 +96,11 @@
                     "type": "Grid"
                 },
                 {
-                    "type": "MapGrid"
+                    "type": "MapGrid",
+                    "args": {
+                        "min": { "x": -12, "y": -23 },
+                        "max": { "x": 11, "y": 16 }
+                    }
                 }
             ]
         },
@@ -7732,13 +7748,17 @@
                                             {
                                                 "x": 3,
                                                 "y": 3
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": -20
                                             }
                                         ]
                                     }
                                 ]
                             }
                         ],
-                        "sortingOrder": 99999
+                        "sortingLayer": 2
                     }
                 },
                 {
