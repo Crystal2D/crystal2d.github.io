@@ -38,8 +38,8 @@ class TitleScreen extends GameBehavior
         this.#options = GameObject.Find("options").GetComponent("Options");
 
         // (async () => {
-        //     await SceneManager.Load(1);
-        //     SceneManager.SetActiveScene(1);
+        //     Loader.Ready(3);
+        //     Loader.Switch();
         // })();
 
         // return;
@@ -146,8 +146,8 @@ class TitleScreen extends GameBehavior
                         AudioManager.instance.StopBGM();
 
                         Transitioner.instance.onFadeOut.Add(async () => {
-                            await SceneManager.Load(1);
-                            SceneManager.SetActiveScene(1);
+                            Loader.Ready(3);
+                            Loader.Switch();
                         });
                         Transitioner.instance.FadeOut(1);
                     });

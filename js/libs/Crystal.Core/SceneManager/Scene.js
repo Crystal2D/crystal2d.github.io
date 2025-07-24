@@ -75,7 +75,7 @@ class Scene
         }
     }
     
-    async #LoadObjects ()
+    async LoadGameObjects ()
     {
         if (this.#data.gameObjects == null) return;
 
@@ -180,8 +180,6 @@ class Scene
         if (this.#data.partioning?.maxDepth != null) QuadTree.maxDepth = this.#data.partioning?.maxDepth;
 
         this.tree = new QuadTree(new Rect(pos.x, pos.y, size.x, size.y));
-        
-        await this.#LoadObjects();
         
         this.#loaded = true;
     }

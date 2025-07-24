@@ -1,7 +1,16 @@
 class Loader extends GameBehavior
 {
+    static #loaderLoaded = false;
+
     static loaded = false;
     static index = 0;
+
+    static async ReadyLoader ()
+    {
+        await SceneManager.Load(1);
+
+        this.#loaderLoaded = true;
+    }
 
     static async Ready (index)
     {
@@ -11,6 +20,15 @@ class Loader extends GameBehavior
         await SceneManager.Load(index);
 
         this.loaded = true;
+    }
+
+    static async Switch ()
+    {
+        await CrystalEngine.Wait(() => this.#loaderLoaded);
+
+        this.#loaderLoaded = false;
+
+        SceneManager.SetActiveScene(1);
     }
 
     #t = 0;
@@ -25,10 +43,13 @@ class Loader extends GameBehavior
 
     Update ()
     {
-        if (Loader.loaded) SceneManager.SetActiveScene(Loader.index);
+        if (Loader.loaded) (async () => {
+            await SceneManager.SetActiveScene(Loader.index);
+            Loader.ReadyLoader();
+        })();
 
+        if (this.#t >= 0.3333) this.#spr.color.a = Math.min((this.#t - 0.3333) * 2, 1);
+        
         this.#t += Time.deltaTime;
-
-        this.#spr.color.a = Math.min(this.#t * 2, 1);
     }
 }

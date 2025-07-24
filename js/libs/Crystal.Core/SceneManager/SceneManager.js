@@ -61,6 +61,8 @@ class SceneManager
 
         this.#activeScene = scene;
 
+        await scene.LoadGameObjects();
+
         for (let i = 0; i < keepOnLoad.length; i++)
         {
             prevScene?.tree.Remove(keepOnLoad[i]);
@@ -82,7 +84,7 @@ class SceneManager
         }
 
         this.activeSceneChanged.Invoke();
-
+        
         this.#inactive = false;
 
         return true;
