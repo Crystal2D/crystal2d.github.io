@@ -7,6 +7,14 @@
         }
     },
     {
+        "path": "sprites/loading",
+        "type": "Texture",
+        "args": {
+            "src": "loading.png",
+            "pixelPerUnit": 24
+        }
+    },
+    {
         "path": "wha",
         "type": "Texture",
         "args": {

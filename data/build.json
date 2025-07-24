@@ -23,6 +23,8 @@
         "prefabs"
     ],
     "scenes" : [
+        "init",
+        "loading",
         "title",
         "test",
         "forest_barrier"

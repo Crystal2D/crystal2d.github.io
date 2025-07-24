@@ -2,6 +2,8 @@
     "name" : "Assembly-JavaScript",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
+        "Loader",
+        "Init",
         "Viewport",
         "TitleScreen",
         "AudioManager",
@@ -20,6 +22,14 @@
         "JumpTest"
     ],
     "classes" : [
+        {
+            "name" : "Loader",
+            "type" : 0
+        },
+        {
+            "name" : "Init",
+            "type" : 0
+        },
         {
             "name" : "Viewport",
             "type" : 0
