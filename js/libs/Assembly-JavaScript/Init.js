@@ -4,6 +4,6 @@ class Init extends GameBehavior
     {
         Loader.ReadyLoader();
         Loader.Ready(2);
-        Loader.Switch();
+        Loader.Switch(2);
     }
 }

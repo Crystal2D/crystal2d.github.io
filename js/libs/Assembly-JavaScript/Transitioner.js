@@ -19,13 +19,13 @@ class Transitioner extends GameBehavior
         this.#sprite = this.GetComponent("SpriteRenderer");
     }
 
-    FadeIn (time = 0.5)
+    FadeIn (time = 0.4)
     {
         this.#inTime = time,
         this.#inTimeSet = time;
     }
 
-    FadeOut (time = 0.5)
+    FadeOut (time = 0.8)
     {
         this.#outTime = time,
         this.#outTimeSet = time;

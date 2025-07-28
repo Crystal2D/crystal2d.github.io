@@ -2,7 +2,10 @@ class Scene
 {
     #invalid = false;
     #loaded = false;
+    #loadedGameObjs = 0;
+    #loadedComponents = 0;
     #res = [];
+    #loadComponentCalls = new DelegateEvent();
 
     #data = null;
     
@@ -14,6 +17,11 @@ class Scene
     get isLoaded ()
     {
         return this.#loaded;
+    }
+
+    get loadedComponents ()
+    {
+        return this.#loadedComponents === this.#loadComponentCalls.count;
     }
 
     get isInvalid ()
@@ -52,6 +60,8 @@ class Scene
             else this.#res.push(this.resources[i]);
         }
 
+        if (this.#data.gameObjects == null) this.#data.gameObjects = [];
+
         this.#invalid = invalid ?? false;
     }
     
@@ -74,11 +84,18 @@ class Scene
             else eval(`a.${keys[i]} = b.${keys[i]}`);
         }
     }
-    
-    async LoadGameObjects ()
-    {
-        if (this.#data.gameObjects == null) return;
 
+    async LoadComponents ()
+    {
+        if (this.loadedComponents) return;
+
+        this.#loadComponentCalls.Invoke();
+
+        await CrystalEngine.Wait(() => this.loadedComponents);
+    }
+    
+    async #LoadGameObjects ()
+    {
         for (let i = 0; i < this.#data.gameObjects.length; i++)
         {
             const objData = this.#data.gameObjects[i];
@@ -110,8 +127,6 @@ class Scene
                 this.#ChangeArgs(match.args, objComponents[i].args);
             }
 
-            const components = await this.#LoadComponents(rawComponents);
-
             const transform = {
                 position: objData.transform?.position ?? prefabData.transform?.position,
                 rotation: objData.transform?.rotation ?? prefabData.transform?.rotation,
@@ -124,7 +139,6 @@ class Scene
             
             const gameObj = await SceneManager.CreateObject("GameObject", {
                 name : objData.name ?? prefabData.name,
-                components : components,
                 active : objData.active ?? prefabData.active,
                 transform : transform,
                 id : objData.id,
@@ -132,26 +146,28 @@ class Scene
             });
 
             gameObj.scene = this;
-
-            const renderer = gameObj.GetComponent("Renderer");
-
-            if (renderer != null)
-            {
-                const min = renderer.bounds.min;
-                const max = renderer.bounds.max;
-                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
-
-                this.tree.Insert(gameObj, rect);
-            }
             
             this.gameObjects.push(gameObj);
-        }
 
-        for (let i = 0; i < this.gameObjects; i++) this.gameObjects[i].BroadcastMessage("Awake", null, {
-            specialCall : 1,
-            passActive : true,
-            clearAfter : true
-        });
+            this.#loadComponentCalls.Add(async () => {
+                gameObj.components = await this.#LoadComponents(rawComponents);
+
+                const renderer = gameObj.GetComponent("Renderer");
+
+                if (renderer != null)
+                {
+                    const min = renderer.bounds.min;
+                    const max = renderer.bounds.max;
+                    const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                    this.tree.Insert(gameObj, rect);
+                }
+
+                this.#loadedComponents++;
+            });
+
+            this.#loadedGameObjs++;
+        }
     }
 
     async Load ()
@@ -180,6 +196,10 @@ class Scene
         if (this.#data.partioning?.maxDepth != null) QuadTree.maxDepth = this.#data.partioning?.maxDepth;
 
         this.tree = new QuadTree(new Rect(pos.x, pos.y, size.x, size.y));
+        
+        this.#LoadGameObjects();
+
+        await CrystalEngine.Wait(() => this.#loadedGameObjs === this.#data.gameObjects.length);
         
         this.#loaded = true;
     }

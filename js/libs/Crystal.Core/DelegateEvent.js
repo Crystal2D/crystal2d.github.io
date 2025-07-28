@@ -2,6 +2,11 @@ class DelegateEvent
 {
     #calls = [];
 
+    get count ()
+    {
+        return this.#calls.length;
+    }
+
     Add (callback)
     {
         this.#calls.push(callback);

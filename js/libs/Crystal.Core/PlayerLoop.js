@@ -11,6 +11,7 @@ class PlayerLoop
     static onBeforeAwake = new DelegateEvent();
     static onAfterFixedUpdate = new DelegateEvent();
     static onAfterUpdate = new DelegateEvent();
+    static onFrameEnd = new DelegateEvent();
 
     static get isPlaying ()
     {
@@ -66,7 +67,7 @@ class PlayerLoop
         const gameObjs = activeScene.gameObjects;
 
         const BroadcastMessage = (method, params, data) => {
-            if (this.#crashed) return;
+            if (this.#crashed || !SceneManager.active) return;
 
             for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage(method, params, data);
         };
@@ -284,6 +285,8 @@ class PlayerLoop
                     if (Application.isPlaying) this.#quitState = 0;
                     else this.#quitState++;
                 }
+
+                this.onFrameEnd.Invoke();
             }
 
 

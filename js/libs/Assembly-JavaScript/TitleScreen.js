@@ -37,12 +37,7 @@ class TitleScreen extends GameBehavior
 
         this.#options = GameObject.Find("options").GetComponent("Options");
 
-        (async () => {
-            Loader.Ready(3);
-            Loader.Switch();
-        })();
-
-        return;
+        Loader.Ready(3);
 
         Transitioner.instance.onFadeIn.Add(() => {
             this.#started = true;
@@ -145,10 +140,7 @@ class TitleScreen extends GameBehavior
                     this.#Disable(() => {
                         AudioManager.instance.StopBGM();
 
-                        Transitioner.instance.onFadeOut.Add(async () => {
-                            Loader.Ready(3);
-                            Loader.Switch();
-                        });
+                        Transitioner.instance.onFadeOut.Add(() => Loader.Switch(3));
                         Transitioner.instance.FadeOut(1);
                     });
                     break;

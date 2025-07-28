@@ -68,10 +68,10 @@ class Player extends RPGMovement
     {
         if (this.#transfer != null)
         {
+            Loader.Switch(this.#transfer.scene);
             MapTransfer.last = this.#transfer;
-            this.#transfer = null;
 
-            Loader.Switch();
+            this.#transfer = null;
         }
     }
 

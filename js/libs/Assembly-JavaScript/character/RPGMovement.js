@@ -162,7 +162,7 @@ class RPGMovement extends GameBehavior
 
     #Animate ()
     {
-        if (!this._moveDir.Equals(Vector2.zero)) this.#animCount += 1.5 * Time.deltaTime;
+        if (this.#moveStart) this.#animCount += 1.5 * Time.deltaTime;
         else if (this.#animState === 1) this.#animCount += Time.deltaTime;
 
         if (this.#animCount >= (this.#currentSpeedScale === 2 ? 0.2 : 0.25))
