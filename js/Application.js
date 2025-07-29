@@ -28,7 +28,7 @@ class Application
 
     static get engineVersion ()
     {
-        return "2025.6.2a";
+        return "2025.6.3a";
     }
 
     static get developer ()

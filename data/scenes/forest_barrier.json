@@ -20,8 +20,14 @@
                     "type": "CamCtrl",
                     "args": {
                         "target": "char_yoki",
-                        "clampMin": { "x": -6.75, "y": -15.25 },
-                        "clampMax": { "x": 8.25, "y": 5.75 }
+                        "clampMin": {
+                            "x": -6.75,
+                            "y": -15.25
+                        },
+                        "clampMax": {
+                            "x": 8.25,
+                            "y": 5.75
+                        }
                     }
                 }
             ]
@@ -36,21 +42,14 @@
                 {
                     "type": "MapGrid",
                     "args": {
-                        "min": { "x": -21, "y": -39 },
-                        "max": { "x": 26, "y": 20 }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "mapconfig",
-            "id": 5,
-            "components": [
-                {
-                    "type": "MapConfig",
-                    "args": {
-                        "transfers": [
-                        ]
+                        "min": {
+                            "x": -21,
+                            "y": -39
+                        },
+                        "max": {
+                            "x": 26,
+                            "y": 20
+                        }
                     }
                 }
             ]
@@ -16061,7 +16060,20 @@
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        "sortingLayer": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mapconfig",
+            "id": 5,
+            "components": [
+                {
+                    "type": "MapConfig",
+                    "args": {
+                        "transfers": []
                     }
                 }
             ]
