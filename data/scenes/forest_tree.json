@@ -4,7 +4,8 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/water",
-        "sprites/tilesets/colors"
+        "sprites/tilesets/colors",
+        "sprites/collider"
     ],
     "gameObjects": [
         {
@@ -2160,6 +2161,122 @@
                                             {
                                                 "x": 14,
                                                 "y": -10
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision",
+            "id": 4,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 6,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": 13,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 6
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -3
                                             }
                                         ]
                                     }
