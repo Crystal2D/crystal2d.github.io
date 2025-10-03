@@ -13,6 +13,11 @@ class PlayerLoop
     static onAfterUpdate = new DelegateEvent();
     static onFrameEnd = new DelegateEvent();
 
+    static get #supportsScheduler ()
+    {
+        return scheduler != null;
+    }
+
     static get isPlaying ()
     {
         return this.#playing;
@@ -22,7 +27,8 @@ class PlayerLoop
     {
         if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) requestAnimationFrame(this.#Update.bind(this));
         else if (Application.vSyncCount === 2) requestAnimationFrame(() => requestAnimationFrame(this.#Update.bind(this)));
-        else setTimeout(this.#Update.bind(this), 0);
+        else if (Application.targetFrameRate === -1 || !this.#supportsScheduler) setTimeout(this.#Update.bind(this), 0);
+        else scheduler.postTask(this.#Update.bind(this));
     }
 
     static #TimeUpdateBase ()
@@ -100,7 +106,7 @@ class PlayerLoop
         // TimeUpdate
         if (Application.targetFrameRate > 0 && Application.vSyncCount === 0)
         {
-            const slice = (1 / Application.targetFrameRate) - 5e-3;
+            const slice = (1 / Application.targetFrameRate) - (+!this.#supportsScheduler * 5e-3);
                     
             let accumulator = (1e-3 * performance.now()) - Time.unscaledTime;
         

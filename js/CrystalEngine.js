@@ -320,7 +320,7 @@ class CrystalEngine
             document.body.style.display = "flex";
             document.body.style.userSelect = "none";
             document.body.style.color = "white";
-            document.body.style.fontFamily = "monospace";
+            document.body.style.fontFamily = "Consolas, \"Courier New\", monospace";
             document.body.style.overflow = "clip";
             
             let errLogs = null;
@@ -349,16 +349,16 @@ class CrystalEngine
                 Window.resizable = true;
                 
                 const errWrap = document.createElement("div");
-                errWrap.style.whiteSpace = "pre-wrap";
-                errWrap.style.marginTop = Application.isMobilePlatform ? "12px" : "36px";
-                errWrap.style.marginLeft = "12px";
+                errWrap.style.whiteSpace = "pre";
+                errWrap.style.padding = "12px 24px";
+                errWrap.style.paddingTop = Application.isMobilePlatform ? "12px" : "24px";
 
                 errLogs = document.createElement("span");
                 errLogs.style.userSelect = "text";
                 errLogs.append(error.stack);
                 
                 const tip = document.createElement("span");
-                tip.append(`\n\n\n----------\n\n${Application.isMobilePlatform ? "Please report this problem" : "Press F5 to refresh"}`);
+                tip.append(`\n\n\n----------\n\nPlease report this problem`);
                 
                 errWrap.append(errLogs, tip)
                 document.body.append(errWrap);
