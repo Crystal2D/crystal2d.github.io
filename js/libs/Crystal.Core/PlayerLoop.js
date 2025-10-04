@@ -5,6 +5,7 @@ class PlayerLoop
     static #focused = false;
     static #callUpdate = false;
     static #crashed = false;
+    static #noRAF = false;
     static #quitState = 0;
 
     static noFixedUpdate = false;
@@ -25,8 +26,13 @@ class PlayerLoop
     
     static #RequestUpdate ()
     {
-        if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) requestAnimationFrame(this.#Update.bind(this));
-        else if (Application.vSyncCount === 2) requestAnimationFrame(() => requestAnimationFrame(this.#Update.bind(this)));
+        const vsyncCall = callback => {
+            if (this.#noRAF) setTimeout(callback, 0);
+            else requestAnimationFrame(callback);
+        };
+
+        if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) vsyncCall(this.#Update.bind(this));
+        else if (Application.vSyncCount === 2) vsyncCall(() => vsyncCall(this.#Update.bind(this)));
         else if (Application.targetFrameRate === -1 || !this.#supportsScheduler) setTimeout(this.#Update.bind(this), 0);
         else scheduler.postTask(this.#Update.bind(this));
     }
@@ -168,21 +174,27 @@ class PlayerLoop
         }
 
 
-        // Update
-        if (this.#callUpdate)
+        if (!this.#callUpdate)
         {
+            this.#RequestUpdate();
+
+            return
+        }
+
+
+        // Update
+        (() => {
             // ScriptRunBehaviorUpdate
             if (this.#playing && Time.timeScale !== 0)
             {
                 BroadcastMessage("Update");
                 this.onAfterUpdate.Invoke();
             }
-        }
+        })();
 
 
         // PreLateUpdate
-        if (this.#callUpdate)
-        {
+        (() => {
             // ScriptRunBehaviorLateUpdate
             if (this.#playing && Time.timeScale !== 0) BroadcastMessage("LateUpdate");
 
@@ -199,12 +211,11 @@ class PlayerLoop
                             
                 Application.gl.flush();
             }
-        }
+        })();
 
 
         // PostLateUpdate
-        if (this.#callUpdate)
-        {
+        (() => {
             // InputEndFrame
             Input.End();
 
@@ -225,82 +236,78 @@ class PlayerLoop
                 BroadcastMessage("OnApplicationFocus", focused);
             }
 
-
-            // PlayerEnd
-            if (this.#playing && Time.timeScale !== 0)
+            
+            // ScriptRunBehaviorOnApplicationQuit
+            if (this.#quitState === 2)
             {
-                // ScriptRunBehaviorOnApplicationQuit
-                if (this.#quitState === 2)
-                {
-                    for (let i = 0; i < gameObjs.length; i++)
-                    {
-                        gameObjs[i].BroadcastMessage("OnApplicationQuit");
-
-                        GameObject.Destroy(gameObjs[i]);
-                    }
-
-                    Application.quitting.Invoke();
-                }
-
-                // ScriptRunBehaviorOnDisable
                 for (let i = 0; i < gameObjs.length; i++)
                 {
-                    if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
+                    gameObjs[i].BroadcastMessage("OnApplicationQuit");
 
-                    gameObjs[i].BroadcastMessage("OnDisable", null, {
-                        specialCall : 3,
-                        passActive : true
-                    });
-                }
-    
-                // ScriptRunBehaviorOnDestroy
-                const tree = activeScene.tree;
-                const deadGameObjs = gameObjs.filter(item => item.destroying);
-    
-                for (let i = 0; i < deadGameObjs.length; i++)
-                {
-                    deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
-    
-                    tree.Remove(deadGameObjs[i]);
-    
-                    const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);
-    
-                    activeScene.gameObjects.splice(index, 1);
-                }
-    
-                // ApplicationQuit
-                if (this.#quitState === 2)
-                {
-                    Application.Unload();
-                
-                    window.close();
-                
-                    return;
-                }
-            
-                if (!Application.isPlaying)
-                {
-                    try { Application.wantsToQuit.Invoke(); }
-                    catch { }
-                    
-                    this.#quitState = 1;
-                }
-            
-                if (this.#quitState === 1)
-                {
-                    if (Application.isPlaying) this.#quitState = 0;
-                    else this.#quitState++;
+                    GameObject.Destroy(gameObjs[i]);
                 }
 
-                this.onFrameEnd.Invoke();
+                Application.quitting.Invoke();
             }
+
+            // ScriptRunBehaviorOnDisable
+            for (let i = 0; i < gameObjs.length; i++)
+            {
+                if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
+
+                gameObjs[i].BroadcastMessage("OnDisable", null, {
+                    specialCall : 3,
+                    passActive : true
+                });
+            }
+    
+            // ScriptRunBehaviorOnDestroy
+            const tree = activeScene.tree;
+            const deadGameObjs = gameObjs.filter(item => item.destroying);
+    
+            for (let i = 0; i < deadGameObjs.length; i++)
+            {
+                deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
+    
+                tree.Remove(deadGameObjs[i]);
+    
+                const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);
+    
+                activeScene.gameObjects.splice(index, 1);
+            }
+    
+            // ApplicationQuit
+            if (this.#quitState === 2)
+            {
+                Application.Unload();
+            
+                window.close();
+            
+                return;
+            }
+        
+            if (!Application.isPlaying)
+            {
+                try { Application.wantsToQuit.Invoke(); }
+                catch { }
+                
+                this.#quitState = 1;
+            }
+        
+            if (this.#quitState === 1)
+            {
+                if (Application.isPlaying) this.#quitState = 0;
+                else this.#quitState++;
+            }
+
+            this.onFrameEnd.Invoke();
 
 
             this.#playing = playing;
             this.#callUpdate = false;
-        }
+        })();
 
-        
+
         this.#RequestUpdate();
     }
 
@@ -318,6 +325,8 @@ class PlayerLoop
     static Init ()
     {
         if (this.#loaded) return;
+
+        setInterval(() => this.#noRAF = Application.isFocused, 0);
         
         this.#RequestUpdate();
     }
