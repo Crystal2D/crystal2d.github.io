@@ -54,8 +54,10 @@ class PlayerLoop
         this.#callUpdate = true;
     }
     
-    static async #Update ()
+    static async #Update (vsyncTime)
     {
+        if (vsyncTime > 0 && this.#noRAF) return;
+
         if (!this.#loaded && !Application.isLoaded)
         {
             Application.Load();
@@ -326,7 +328,13 @@ class PlayerLoop
     {
         if (this.#loaded) return;
 
-        setInterval(() => this.#noRAF = Application.isFocused, 0);
+        setInterval(() => {
+            if (this.#noRAF === !Application.isFocused) return;
+
+            this.#noRAF = !Application.isFocused;
+
+            if (Application.vSyncCount > 0 && this.#noRAF) this.#RequestUpdate();
+        }, 0);
         
         this.#RequestUpdate();
     }
