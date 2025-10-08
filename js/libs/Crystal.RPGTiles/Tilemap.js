@@ -2,7 +2,7 @@ class Tilemap extends Renderer
 {
     #loaded = false;
     #meshChanged = true;
-    #merging = true;
+    #merging = false;
     #tiles = [];
     #rendersets = [];
     #gridSize = Vector2.zero;
