@@ -193,6 +193,8 @@ class FPSMeter
             this.#text.style.whiteSpace = "pre-wrap";
 
             document.body.append(this.#text);
+
+            Application.unloading.Add(() => FPSMeter.enabled = false);
         }
         else this.#text.style.display = state ? "block" : "none";
 
