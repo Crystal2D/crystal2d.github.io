@@ -2,7 +2,7 @@
     "name" : "Crystal.BitmapText",
     "id": "com.crystal.bitext",
     "description" : "Implements text rendering based on bitmaps",
-    "version": "2025.3f",
+    "version": "2025.4f",
     "scripts" : [
         "FontAtlas",
         "FontGlyph",
@@ -23,6 +23,10 @@
                 },
                 {
                     "name" : "lineHeight",
+                    "type" : "number"
+                },
+                {
+                    "name" : "charSpacing",
                     "type" : "number"
                 }
             ]
@@ -102,6 +106,10 @@
                 {
                     "name": "lineHeight",
                     "type": "number"
+                },
+                {
+                    "name" : "charSpacing",
+                    "type" : "number"
                 }
             ],
             "keys": [

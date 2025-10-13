@@ -2,6 +2,7 @@ class FontAtlas
 {
     forcedLineHeight = true;
     lineHeight = 16;
+    charSpacing = 1;
     
     texture = null;
     

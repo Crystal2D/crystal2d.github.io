@@ -166,12 +166,12 @@
         {
             "name" : "Material",
             "type" : 0,
-            "construction" : "if (typeof data === \"string\") Resources.Find(data).Duplicate(); else if (typeof data === \"object\") new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+            "construction" : "const output = (typeof data === \"string\") ? Resources.Find(data).Duplicate() : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Material",
             "type" : 1,
-            "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+            "construction" : "const output = new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Texture",
