@@ -546,7 +546,7 @@ class Text extends Renderer
                 continue;
             }
             
-            const width = word.width / texX;
+            const width = (word.width - charSpacing) / texX;
             const wrapX = !this.#overflowX && x + width > maxW;
             
             if (x === 0 && wrapX && !word.space)
@@ -644,7 +644,7 @@ class Text extends Renderer
                 {
                     const nextWord = this.#words[iA + 1];
                     
-                    if (nextWord == null || x + width + nextWord.width / texX > maxW)
+                    if (nextWord == null || x + width + (nextWord.width - charSpacing) / texX > maxW)
                     {
                         const currentWidth = widths[widths.length - 1].size;
                         

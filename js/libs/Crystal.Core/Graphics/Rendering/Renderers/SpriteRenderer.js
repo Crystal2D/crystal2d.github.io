@@ -6,6 +6,7 @@ class SpriteRenderer extends Renderer
     #indexes = [];
     #trisCounts = [];
     
+    #texSize = Vector2.zero;
     #boundsSize = Vector2.zero;
     #bounds = new Bounds();
     #transMat = new Matrix3x3();
@@ -144,6 +145,7 @@ class SpriteRenderer extends Renderer
         const rescaleW = texX / ppu;
         const rescaleH = texY / ppu;
 
+        this.#texSize = new Vector2(rescaleW, rescaleH);
         this.#boundsSize = new Vector2(
             rescaleW * (verts[3].x - vertexPos.x),
             rescaleH * (verts[3].y - vertexPos.y)
@@ -544,10 +546,10 @@ class SpriteRenderer extends Renderer
         );
 
         const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(
-            Vector2.Scale(
-                Vector2.Add(Vector2.Scale(this.sprite.pivot, -2), 1),
-                0.5
-            )
+            new Vector2(
+                (0.5 - this.sprite.pivot.x) * this.#texSize.x,
+                (0.5 - this.sprite.pivot.y) * this.#texSize.y
+            ),
         ));
 
         bounds.center = new Vector2(posMat.GetValue(2, 0), -posMat.GetValue(2, 1));
