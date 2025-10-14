@@ -558,7 +558,7 @@ class Text extends Renderer
                 for (let iB = 0; iB < sprites.length; iB++)
                 {
                     const sprite = sprites[iB];
-                    const charWidth = (sprite.rect.width - charSpacing) / texX;
+                    const charWidth = (sprite.rect.width + charSpacing) / texX;
                     const charWX = !this.overflowWidth && x + charWidth > maxW;
                     
                     if (charWX)
