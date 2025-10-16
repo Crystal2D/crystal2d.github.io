@@ -240,14 +240,23 @@ class PlayerLoop
 
             
             // ScriptRunBehaviorOnApplicationQuit
-            if (this.#quitState === 2)
+            if (!Application.isPlaying && this.#quitState === 0)
             {
-                for (let i = 0; i < gameObjs.length; i++)
-                {
-                    gameObjs[i].BroadcastMessage("OnApplicationQuit");
+                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("OnApplicationQuit");
 
-                    GameObject.Destroy(gameObjs[i]);
+                try {
+                    if (Application.wantsToQuit.Invoke().includes(false)) Application.CancelQuit();
                 }
+                catch { }
+            }
+
+            // ApplicationVerifyQuit
+            if (!Application.isPlaying && this.#quitState === 0) this.#quitState = 1;
+
+            // DecommissionStart
+            if (this.#quitState === 1)
+            {
+                for (let i = 0; i < gameObjs.length; i++) GameObject.Destroy(gameObjs[i]);
 
                 Application.quitting.Invoke();
             }
@@ -279,28 +288,16 @@ class PlayerLoop
             }
     
             // ApplicationQuit
-            if (this.#quitState === 2)
+            if (this.#quitState === 1)
             {
                 Application.Unload();
             
+                this.#quitState = 2;
                 window.close();
             
                 return;
             }
-        
-            if (!Application.isPlaying)
-            {
-                try { Application.wantsToQuit.Invoke(); }
-                catch { }
-                
-                this.#quitState = 1;
-            }
-        
-            if (this.#quitState === 1)
-            {
-                if (Application.isPlaying) this.#quitState = 0;
-                else this.#quitState++;
-            }
+
 
             this.onFrameEnd.Invoke();
 
@@ -335,6 +332,13 @@ class PlayerLoop
 
             if (Application.vSyncCount > 0 && this.#noRAF) this.#RequestUpdate();
         }, 0);
+
+        if (Application.isInElectron) window.addEventListener("beforeunload", event => {
+            if (this.#quitState === 2) return;
+            
+            event.preventDefault();
+            Application.Quit();
+        });
         
         this.#RequestUpdate();
     }

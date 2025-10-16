@@ -31,14 +31,20 @@ class DelegateEvent
     Invoke (...params)
     {
         const calls = [...this.#calls];
+        let output = [];
 
-        for (let i = 0; i < calls.length; i++) calls[i](...params);
+        for (let i = 0; i < calls.length; i++) output.push(calls[i](...params));
+
+        return output;
     }
 
     InvokeReversed (...params)
     {
         const calls = [...this.#calls];
+        let output = [];
         
-        for (let i = calls.length - 1; i >= 0; i--) calls[i](...params);
+        for (let i = calls.length - 1; i >= 0; i--) output.push(calls[i](...params));
+
+        return output;
     }
 }
