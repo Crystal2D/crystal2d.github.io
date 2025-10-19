@@ -41,6 +41,16 @@ class Color
     {
         this.Set(r, g, b, a ?? 1);
     }
+
+    static Lerp (a, b, t)
+    {
+        return new Color(
+            Math.Lerp(a.r, b.r, t),
+            Math.Lerp(a.g, b.g, t),
+            Math.Lerp(a.b, b.b, t),
+            Math.Lerp(a.a, b.a, t)
+        );
+    }
     
     toString ()
     {
