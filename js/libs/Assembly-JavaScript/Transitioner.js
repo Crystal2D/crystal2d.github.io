@@ -195,11 +195,8 @@ class Transitioner extends GameBehavior
         for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 0, 0, 0, 0);
     }
 
-    Update ()
+    #UpdateTint ()
     {
-        this.#UpdateFade();
-        this.#UpdateTintBase();
-
         if (this.#tintInTime === 3 && this.#tintInState === 3) this.#StartTintBase(new Color(
             20 / 255,
             10 / 255,
@@ -256,5 +253,17 @@ class Transitioner extends GameBehavior
                 }
             }
         }
+    }
+
+    Update ()
+    {
+        this.#UpdateFade();
+        this.#UpdateTintBase();
+        this.#UpdateTint();
+    }
+
+    LateUpdate ()
+    {
+        if (CamCtrl.current != null) this.transform.position = CamCtrl.current.transform.position;
     }
 }

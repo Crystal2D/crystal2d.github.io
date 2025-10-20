@@ -36,7 +36,6 @@ class Player extends RPGMovement
         {
             this.avoidInputs = true;
             this.#transfer = node.owner
-            Loader.Ready(this.#transfer.scene);
         }
 
         return false;

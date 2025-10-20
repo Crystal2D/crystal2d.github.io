@@ -94,7 +94,7 @@
                         "sprite": {
                             "texture": "sprites/pixel"
                         },
-                        "sortingLayer": 1,
+                        "sortingLayer": 3,
                         "size": { "x": 10, "y": 9 },
                         "color": {
                             "r": 0,

@@ -6,6 +6,8 @@ class MapConfig extends GameBehavior
     {
         for (let i = 0; i < this.transfers.length; i++)
         {
+            Loader.Ready(this.transfers[i].scene);
+            
             const min = this.transfers[i].min;
             const max = this.transfers[i].max;
             

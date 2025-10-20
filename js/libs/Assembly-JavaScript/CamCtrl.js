@@ -1,9 +1,16 @@
 class CamCtrl extends Viewport
-{   
+{
+    static current = null;
+
     clampMin = Vector2.zero;
     clampMax = Vector2.zero;
 
     target = null;
+
+    Awake ()
+    {
+        CamCtrl.current = this;
+    }
     
     LateUpdate ()
     {
