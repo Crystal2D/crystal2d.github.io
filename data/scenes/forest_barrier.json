@@ -16073,7 +16073,14 @@
                 {
                     "type": "MapConfig",
                     "args": {
-                        "transfers": []
+                        "transfers": [
+                            {
+                                "scene": 4,
+                                "min": { "x": -5, "y": 20 },
+                                "max": { "x": 0, "y": 20 },
+                                "pos": { "x": -3, "y": -22 }
+                            }
+                        ]
                     }
                 }
             ]

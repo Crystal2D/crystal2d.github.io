@@ -39,12 +39,11 @@ class TitleScreen extends GameBehavior
 
         Loader.Ready(3);
 
-        Transitioner.instance.onFadeIn.Add(() => {
+        Transitioner.instance.FadeIn(() => {
             this.#started = true;
 
-            AudioManager.instance.PlayBGM("title");
+            // AudioManager.instance.PlayBGM("title");
         });
-        Transitioner.instance.FadeIn();
 
         this.Enable();
     }
@@ -140,8 +139,15 @@ class TitleScreen extends GameBehavior
                     this.#Disable(() => {
                         AudioManager.instance.StopBGM();
 
-                        Transitioner.instance.onFadeOut.Add(() => Loader.Switch(3));
-                        Transitioner.instance.FadeOut(1);
+                        Transitioner.instance.FadeOut(() => {
+                            const clearCall = () => {
+                                Loader.onSwitchStart.Remove(clearCall);
+                                Transitioner.instance.Clear();
+                            };
+                            Loader.onSwitchStart.Add(clearCall);
+
+                            Loader.Switch(3);
+                        });
                     });
                     break;
                 case 1:

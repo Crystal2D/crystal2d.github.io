@@ -4,6 +4,7 @@
     "scripts" : [
         "Loader",
         "Init",
+        "MapInit",
         "Viewport",
         "TitleScreen",
         "AudioManager",
@@ -28,6 +29,10 @@
         },
         {
             "name" : "Init",
+            "type" : 0
+        },
+        {
+            "name" : "MapInit",
             "type" : 0
         },
         {

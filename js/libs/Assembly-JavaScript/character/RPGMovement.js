@@ -207,11 +207,10 @@ class RPGMovement extends GameBehavior
 
     TP (pos)
     {
-        this.transform.position = pos;
-        
-        this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
+        this.#node = MapGrid.current.NodeOnGrid(pos);
         this.#node.owner = this;
 
+        this.transform.position = MapGrid.current.CellToWorld(pos);
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
     }
 }

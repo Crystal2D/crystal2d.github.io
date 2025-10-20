@@ -169,6 +169,8 @@ class Resources
     {
         for (let i = 0; i < path.length; i++)
         {
+            if (path[i] == null) continue;
+ 
             const index = this.keepOnLoad.indexOf(path[i]);
             this.keepOnLoad.splice(index, 1);
         }

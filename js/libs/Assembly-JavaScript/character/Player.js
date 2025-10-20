@@ -8,12 +8,13 @@ class Player extends RPGMovement
 
     #transfer = null;
 
+    avoidInputs = true;
+
     Start ()
     {
-        Player.instance = this;
-
         super.Start();
 
+        Player.instance = this;
         this.DontDestroyOnLoad(this, [
             "sprites/chars/yoki",
             "spritelibs/chars/yoki"
@@ -33,6 +34,7 @@ class Player extends RPGMovement
 
         if (node.owner instanceof MapTransfer)
         {
+            this.avoidInputs = true;
             this.#transfer = node.owner
             Loader.Ready(this.#transfer.scene);
         }
@@ -42,6 +44,8 @@ class Player extends RPGMovement
 
     _OnMovementGet ()
     {
+        if (this.avoidInputs) return;
+
         const input = new Vector2(
             +InputManager.GetKey("right") - +InputManager.GetKey("left"),
             +InputManager.GetKey("up") - +InputManager.GetKey("down")
@@ -68,10 +72,18 @@ class Player extends RPGMovement
     {
         if (this.#transfer != null)
         {
-            Loader.Switch(this.#transfer.scene);
             MapTransfer.last = this.#transfer;
-
             this.#transfer = null;
+
+            Transitioner.instance.TintIn(() => {
+                const transCall = () => {
+                    Loader.onSwitchEnd.Remove(transCall);
+                    Transitioner.instance.TintOut(() => this.avoidInputs = false);
+                };
+                Loader.onSwitchEnd.Add(transCall);
+
+                Loader.Switch(MapTransfer.last.scene);
+            });
         }
     }
 

@@ -52,6 +52,11 @@ class MapGrid extends GameBehavior
         return this.NodeOnGrid(this.#grid.WorldToCell(pos));
     }
 
+    CellToWorld (pos)
+    {
+        return this.#grid.CellToWorld(pos);
+    }
+
     NodeOn (pos)
     {
         const xArray = this.nodes[pos.x];

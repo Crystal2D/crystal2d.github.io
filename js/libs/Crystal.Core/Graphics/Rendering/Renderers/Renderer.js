@@ -1,6 +1,7 @@
 class Renderer extends Component
 {
     #loaded = false;
+    #updatedMaterial = false;
     
     #material = null;
     #materialOld = null;
@@ -42,6 +43,7 @@ class Renderer extends Component
     set material (value)
     {
         this.#material = value;
+        this.#updatedMaterial = true;
         
         this.Reload();
     }
@@ -49,6 +51,11 @@ class Renderer extends Component
     get localToWorldMatrix ()
     {
         return Matrix3x3.identity;
+    }
+
+    get updatedMaterial ()
+    {
+        return this.#updatedMaterial;
     }
     
     constructor (material)
@@ -61,6 +68,8 @@ class Renderer extends Component
     Reload ()
     {
         if (this.#materialOld === this.#material) return;
+
+        this.#updatedMaterial = false;
 
         this.material?.Unload();
 

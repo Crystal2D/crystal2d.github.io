@@ -1,6 +1,6 @@
 class SpriteRenderer extends Renderer
 {
-    #changedDrawMode = false;
+    #remapColors = false;
     #meshChanged = true;
     #drawMode = 0;
     #indexes = [];
@@ -45,8 +45,10 @@ class SpriteRenderer extends Renderer
 
     set drawMode (value)
     {
+        if (this.#drawMode === value) return;
+
         this.#drawMode = value;
-        this.#changedDrawMode = true;
+        this.#remapColors = true;
 
         this.Reload();
     }
@@ -66,7 +68,11 @@ class SpriteRenderer extends Renderer
 
     set size (value)
     {
+        if (this.#size.Equals(value)) return;
+
         this.#size = value;
+
+        if (this.#drawMode > 0) this.#remapColors = true;
 
         this.Reload();
     }
@@ -105,6 +111,8 @@ class SpriteRenderer extends Renderer
     
     Reload ()
     {
+        if (this.updatedMaterial) this.#remapColors = true;
+
         super.Reload();
 
         this.#spriteOld = this.#sprite;
@@ -501,7 +509,11 @@ class SpriteRenderer extends Renderer
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
 
-        if (this.#colorOld == null || this.#changedDrawMode) this.#RemapColors();
+        if (this.#colorOld == null || this.#remapColors)
+        {
+            this.#RemapColors();
+            this.#remapColors = false;
+        }
 
         this.#transMat = Matrix3x3.TRS(
             Vector2.Scale(

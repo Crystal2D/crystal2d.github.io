@@ -1,0 +1,58 @@
+{
+    "name": "Map Init",
+    "resources": [
+        [
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        ]
+    ],
+    "gameObjects": [
+        {
+            "name": "init",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Grid"
+                },
+                {
+                    "type": "MapGrid"
+                },
+                {
+                    "type": "MapInit"
+                }
+            ]
+        },
+        {
+            "name": "char_yoki",
+            "id": 1,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/yoki",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/yoki"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Player"
+                }
+            ]
+        }
+    ]
+}

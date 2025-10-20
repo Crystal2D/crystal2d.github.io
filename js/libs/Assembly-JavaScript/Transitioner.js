@@ -6,34 +6,46 @@ class Transitioner extends GameBehavior
     #inTimeSet = 0;
     #outTime = 0;
     #outTimeSet = 0;
+    #onFadeIn = () => { };
+    #onFadeOut = () => { };
 
     #tint = new Color(0, 0, 0, 0);
     #tintTarget = new Color(0, 0, 0, 0);
     #tintDuration = 0;
     #tintTime = 0;
+    #materials = [];
+    #tintInTime = 0;
+    #tintInState = -1;
+    #tintOutTime = 0;
+    #tintOutState = -1;
+    #onTintIn = () => { };
+    #onTintOut = () => { };
 
     #sprite = null;
-
-    onFadeIn = new DelegateEvent();
-    onFadeOut = new DelegateEvent();
 
     Awake ()
     {
         Transitioner.instance = this;
         
         this.#sprite = this.GetComponent("SpriteRenderer");
+
+        this.DontDestroyOnLoad(this, [
+            "sprites/pixel"
+        ]);
     }
 
-    FadeIn (time = 0.4)
+    FadeIn (callback = () => { })
     {
-        this.#inTime = time,
-        this.#inTimeSet = time;
+        this.#inTime = 0.4,
+        this.#inTimeSet = 0.4;
+        this.#onFadeIn = callback;
     }
 
-    FadeOut (time = 0.8)
+    FadeOut (callback = () => { })
     {
-        this.#outTime = time,
-        this.#outTimeSet = time;
+        this.#outTime = 1,
+        this.#outTimeSet = 1;
+        this.#onFadeOut = callback;
     }
 
     #UpdateFade ()
@@ -46,8 +58,8 @@ class Transitioner extends GameBehavior
 
             if (this.#inTime <= 0)
             {
-                this.onFadeIn.Invoke();
-                this.onFadeIn.RemoveAll();
+                this.#onFadeIn();
+                this.#onFadeIn = () => { };
             }
 
             return;
@@ -61,31 +73,44 @@ class Transitioner extends GameBehavior
 
             if (this.#outTime <= 0)
             {
-                this.onFadeOut.Invoke();
-                this.onFadeOut.RemoveAll();
+                this.#onFadeOut();
+                this.#onFadeOut = () => { };
             }
 
             return;
         }
     }
 
-    #UpdateTint ()
+    #UpdateTintBase ()
     {
         if (this.#tintTime <= 0) return;
 
         this.#tintTime -= Time.deltaTime;
-        this.#sprite.color = Color.Lerp(
+
+        this.#tint = Color.Lerp(
             this.#tintTarget,
             this.#tint,
             this.#tintTime / this.#tintDuration
         );
+
+        for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 
+            this.#tint.r,
+            this.#tint.g,
+            this.#tint.b,
+            0
+        );
     }
 
-    StartTint (color, duration)
+    #StartTintBase (color, duration)
     {
-        if (this.#tintDuration === 0)
+        if (duration === 0)
         {
-            this.#sprite.color = this.#tintTarget.Duplicate();
+            for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 
+                color.r,
+                color.g,
+                color.b,
+                0
+            );
 
             return;
         }
@@ -95,17 +120,141 @@ class Transitioner extends GameBehavior
         this.#tintDuration = duration;
     }
 
-    // StTin (color, duration)
-    // {
-    //     startTint(this._params[0], this._params[1]);
-    //     if (this._params[2]) {
-    //         this.wait(this._params[1]);
-    //     }
-    // }
+    TintIn (callback = () => { })
+    {
+        this.#materials = [];
+        const renderers = GameObject.FindComponents("Renderer");
+
+        for (let i = 0; i < renderers.length; i++)
+        {
+            const renderer = renderers[i];
+
+            if (renderer === this.#sprite) continue;
+
+            const material = new Material(null, Shader.Find("DEP/Tinted", "FRAGMENT"));
+            renderer.material = material;
+            material.SetVector("uTint", 0, 0, 0, 0);
+            this.#materials.push(material);
+        }
+
+        this.#tintInTime = 3;
+        this.#tintInState = 3;
+        this.#onTintIn = callback;
+    }
+
+    TintOut (callback = () => { })
+    {
+        this.#materials = [];
+        const renderers = GameObject.FindComponents("Renderer");
+
+        for (let i = 0; i < renderers.length; i++)
+        {
+            const renderer = renderers[i];
+
+            if (renderer === this.#sprite) continue;
+
+            const material = new Material(null, Shader.Find("DEP/Tinted", "FRAGMENT"));
+            renderer.material = material;
+            material.SetVector("uTint",
+                130 / 255,
+                120 / 255,
+                90 / 255,
+                0
+            );
+            this.#materials.push(material);
+
+            if (renderer instanceof Tilemap)
+            {
+                const materials = renderer.materials;
+
+                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint",
+                    130 / 255,
+                    120 / 255,
+                    90 / 255,
+                    0
+                );
+
+                this.#materials.push(...materials);
+            }
+        }
+
+        this.#tintOutTime = 3;
+        this.#tintOutState = 2;
+        this.#onTintOut = callback;
+    }
+
+    Clear ()
+    {
+        this.#inTime = 0;
+        this.#outTime = 0;
+        this.#tintInState = -1;
+        this.#tintOutState = -1;
+
+        this.#sprite.color.a = 0;
+
+        for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 0, 0, 0, 0);
+    }
 
     Update ()
     {
         this.#UpdateFade();
-        this.#UpdateTint();
+        this.#UpdateTintBase();
+
+        if (this.#tintInTime === 3 && this.#tintInState === 3) this.#StartTintBase(new Color(
+            20 / 255,
+            10 / 255,
+            10 / 255
+        ), 1 / 60);
+        else if (this.#tintInTime === 3 && this.#tintInState === 2) this.#StartTintBase(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255
+        ), 1 / 60);
+        else if (this.#tintInTime === 3 && this.#tintInState === 1) this.#StartTintBase(new Color(
+            130 / 255,
+            120 / 255,
+            90 / 255
+        ), 1 / 60);
+
+        if (this.#tintInState > 0)
+        {
+            this.#tintInTime -= Time.deltaTime * 60;
+
+            if (this.#tintInTime <= 0)
+            {
+                this.#tintInState--;
+
+                if (this.#tintInState > 0) this.#tintInTime = 3;
+                else
+                {
+                    this.#onTintIn();
+                    this.#onTintIn = () => { };
+                }
+            }
+        }
+
+        if (this.#tintOutTime === 3 && this.#tintOutState === 2) this.#StartTintBase(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255
+        ), 1 / 60);
+        else if (this.#tintOutTime === 3 && this.#tintOutState === 1) this.#StartTintBase(new Color(0, 0, 0), 1 / 60);
+
+        if (this.#tintOutState > 0)
+        {
+            this.#tintOutTime -= Time.deltaTime * 60;
+
+            if (this.#tintOutTime <= 0)
+            {
+                this.#tintOutState--;
+                
+                if (this.#tintOutState > 0) this.#tintOutTime = 3;
+                else
+                {
+                    this.#onTintOut();
+                    this.#onTintOut = () => { };
+                }
+            }
+        }
     }
 }

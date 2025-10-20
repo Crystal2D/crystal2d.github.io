@@ -13,6 +13,7 @@ class Tilemap extends Renderer
     #min = null;
     #max = null;
     #sprite = null;
+    #vertexArray = null;
 
     mergeResolution = 16;
 
@@ -40,6 +41,11 @@ class Tilemap extends Renderer
     get mergedRendering ()
     {
         return this.#sprite != null;
+    }
+
+    get materials ()
+    {
+        return this.#rendersets.map(item => item.material);
     }
 
     #RenderSet = class
@@ -126,6 +132,8 @@ class Tilemap extends Renderer
             this.aVertexPosID = this.material.GetAttributeNameID("aVertexPos");
             this.aTexturePosID = this.material.GetAttributeNameID("aTexturePos");
             this.aColorID = this.material.GetAttributeNameID("aColor");
+
+            this.arraysUpdated = true;
         }
 
         SetColors (color)
@@ -314,9 +322,22 @@ class Tilemap extends Renderer
 
     Reload ()
     {
+        const updatedMaterial = this.updatedMaterial;
+
         super.Reload();
 
         for (let i = 0; i < this.#rendersets.length; i++) this.#rendersets[i].SetMaterial(this.material);
+
+        if (updatedMaterial)
+        {
+            if (this.#sprite != null)
+            {
+                this.material.SetBuffer(this.geometryBufferID, this.#vertexArray);
+                this.material.SetBuffer(this.textureBufferID, this.#vertexArray);
+            }
+            
+            this.#RemapColors();
+        }
     }
 
     ForceMeshUpdate ()
@@ -622,6 +643,8 @@ class Tilemap extends Renderer
         const texY = texture.height;
         const rescaleW = texX / res;
         const rescaleH = texY / res;
+
+        this.#vertexArray = vertexArray;
 
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, vertexArray);

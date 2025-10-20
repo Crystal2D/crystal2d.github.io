@@ -146,7 +146,12 @@ class SceneManager
 
             if (scene.isInvalid) continue;
 
-            const resources = scene.resourceList.filter(item => !Resources.keepOnLoad.includes(item) && (this.#scenes.find(subItem => subItem.index !== index[i] && subItem.resourceList.find(resItem => resItem === item) != null)) == null);
+            const resources = scene.resourceList.filter(item => {
+                const weak = !Resources.keepOnLoad.includes(item)
+                const notOnNext = (this.#scenes.find(subItem => subItem.index !== index[i] && subItem.resourceList.find(resItem => resItem === item) != null)) == null;
+
+                return weak && notOnNext;
+            });
             Resources.Unload(...resources);
 
             const itemIndex = this.#scenes.indexOf(scene);

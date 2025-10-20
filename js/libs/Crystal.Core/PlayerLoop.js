@@ -12,6 +12,7 @@ class PlayerLoop
     static onBeforeAwake = new DelegateEvent();
     static onAfterFixedUpdate = new DelegateEvent();
     static onAfterUpdate = new DelegateEvent();
+    static onAfterMeshUpdate = new DelegateEvent();
     static onFrameEnd = new DelegateEvent();
 
     static get #supportsScheduler ()
@@ -206,6 +207,8 @@ class PlayerLoop
                 const renderers = GameObject.FindComponents("Renderer");
                         
                 for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
+
+                this.onAfterMeshUpdate.Invoke();
                 
                 const cameras = GameObject.FindComponents("Camera");
                             

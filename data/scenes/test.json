@@ -1,10 +1,6 @@
 {
     "name": "Test",
     "resources": [
-        [
-            "sprites/chars/yoki",
-            "spritelibs/chars/yoki"
-        ],
         "sprites/tilesets/ext_yokihouse",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
@@ -32,56 +28,18 @@
             ]
         },
         {
-            "name": "char_yoki",
-            "id": 1,
-            "transform": {
-                "position": {
-                    "x": 1,
-                    "y": -1.5
-                }
-            },
-            "components": [
-                {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/chars/yoki",
-                            "name": "down-a"
-                        },
-                        "sortingLayer": 1
-                    }
-                },
-                {
-                    "type": "SpriteLibrary",
-                    "args": {
-                        "asset": "spritelibs/chars/yoki"
-                    }
-                },
-                {
-                    "type": "SpriteResolver",
-                    "args": {
-                        "category": "down",
-                        "label": "0"
-                    }
-                },
-                {
-                    "type": "Player"
-                }
-            ]
-        },
-        {
             "name": "mapconfig",
-            "id": 7,
+            "id": 1,
             "components": [
                 {
                     "type": "MapConfig",
                     "args": {
                         "transfers": [
                             {
-                                "scene": 4,
+                                "scene": 5,
                                 "min": { "x": -6, "y": -23 },
                                 "max": { "x": -1, "y": -23 },
-                                "pos": { "x": -1, "y": 9 }
+                                "pos": { "x": -2, "y": 18 }
                             }
                         ]
                     }

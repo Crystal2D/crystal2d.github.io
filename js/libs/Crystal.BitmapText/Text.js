@@ -429,6 +429,13 @@ class Text extends Renderer
         this.#remapArrays = false;
     }
 
+    Reload ()
+    {
+        if (this.updatedMaterial) this.#meshChanged = true;
+
+        super.Reload();
+    }
+
     RecalcBounds ()
     {
         const pivot = this.pivot;

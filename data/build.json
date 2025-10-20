@@ -26,10 +26,13 @@
         "init",
         "loading",
         "title",
+        "map_init",
         "test",
         "forest_barrier"
     ],
-    "shaders" : [],
+    "shaders" : [
+        "tinted"
+    ],
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
     "runInBackground": false,
