@@ -1,6 +1,7 @@
 class Loader extends GameBehavior
 {
     static #loaderLoaded = false;
+    static #loadingScenes = [];
 
     static readyScenes = [];
     static target = null;
@@ -19,18 +20,21 @@ class Loader extends GameBehavior
 
     static async Ready (index)
     {
-        if (Loader.readyScenes.includes(index)) return;
+        if (this.#loadingScenes.includes(index) || this.readyScenes.includes(index)) return;
+
+        this.#loadingScenes.push(index);
 
         await SceneManager.Load(index);
 
+        this.#loadingScenes.splice(this.#loadingScenes.indexOf(index), 1);
         this.readyScenes.push(index);
     }
 
     static async SwitchBase (instant)
     {
-        Loader.readyScenes.splice(Loader.readyScenes.indexOf(Loader.target), 1);
+        this.readyScenes.splice(this.readyScenes.indexOf(this.target), 1);
 
-        await SceneManager.SetActiveScene(Loader.target);
+        await SceneManager.SetActiveScene(this.target);
 
         const frameCall = () => {
             PlayerLoop.onAfterMeshUpdate.Remove(frameCall);
@@ -40,15 +44,15 @@ class Loader extends GameBehavior
         };
         PlayerLoop.onAfterMeshUpdate.Add(frameCall);
 
-        Loader.target = null;
-        Loader.ReadyLoader();
+        this.target = null;
+        this.ReadyLoader();
     }
 
     static async Switch (index)
     {
         this.target = index;
 
-        if (!Loader.readyScenes.includes(index))
+        if (!this.readyScenes.includes(index))
         {
             await CrystalEngine.Wait(() => this.#loaderLoaded);
             this.#loaderLoaded = false;
