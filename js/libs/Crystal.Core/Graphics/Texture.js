@@ -8,6 +8,7 @@ class Texture
     #src = "";
     
     #img = null;
+    #bitmap = null;
     #gl = null;
     #texture = null;
     
@@ -90,19 +91,21 @@ class Texture
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, mode);
         gl.bindTexture(gl.TEXTURE_2D, null);
     }
-    
+
     get img ()
     {
         return this.#img;
+    }
+
+    get bitmap ()
+    {
+        return this.#bitmap;
     }
     
     constructor (src, dir)
     {
         this.#img = new Image();
-        this.#img.sprite = this;
-        
         this.#gl = Application.gl;
-        
         this.#texture = this.#gl.createTexture();
         
         this.wrapMode = 0;
@@ -121,18 +124,20 @@ class Texture
         if (this.#loaded) return;
 
         await FetchFile(this.#src);
-        
+
         this.#img.src = this.#src;
         
         await new Promise(resolve => this.#img.onload = resolve);
+
+        this.#bitmap = await window.createImageBitmap(this.#img);
         
-        this.#width = this.#img.width;
-        this.#height = this.#img.height;
+        this.#width = this.#bitmap.width;
+        this.#height = this.#bitmap.height;
         
         const gl = this.#gl;
         
         gl.bindTexture(gl.TEXTURE_2D, this.#texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.#width, this.#height, 0, gl.RGBA, gl.UNSIGNED_BYTE, this.#img);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.#width, this.#height, 0, gl.RGBA, gl.UNSIGNED_BYTE, this.#bitmap);
         gl.bindTexture(gl.TEXTURE_2D, null);
         
         this.sprites[0] = new Sprite(null, this);

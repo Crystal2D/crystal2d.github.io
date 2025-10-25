@@ -82,7 +82,8 @@ class CrystalEngine
                 return;
             }
     
-            requestAnimationFrame(loop.bind(this, callback));
+            if (scheduler != null) scheduler.postTask(loop.bind(this, callback));
+            else setTimeout(loop.bind(this, callback), 0);
         };
     
         await new Promise(resolve => loop(resolve));
@@ -121,7 +122,8 @@ class CrystalEngine
             #deps = [];
             #unloadedScripts = [];
             #scripts = [];
-            #classes = [];
+            #unloadedClasses = [];
+            #classes = new Map();
             
             #src = null;
             
@@ -157,7 +159,7 @@ class CrystalEngine
             
             get classes ()
             {
-                return this.#classes;
+                return Array.from(this.#classes).map(item => item[1]);;
             }
 
             get deps ()
@@ -172,7 +174,7 @@ class CrystalEngine
                 this.#desc = desc ?? "";
                 this.#ver = ver;
                 this.#unloadedScripts = scripts;
-                this.#classes = classes ?? [];
+                this.#unloadedClasses = classes ?? [];
                 this.#src = src;
                 this.#deps = deps ?? [];
             }
@@ -210,71 +212,73 @@ class CrystalEngine
                     this.#scripts.push(script);
                 }
                 
-                let newClasses = [];
-                
-                for (let i = 0; i < this.#classes.length; i++)
+                for (let i = 0; i < this.#unloadedClasses.length; i++)
                 {
-                    if (this.#classes[i].name == null) continue;
+                    const classs = this.#unloadedClasses[i];
 
-                    if (this.#classes[i].args == null) this.#classes[i].args = [];
-                    if (this.#classes[i].keys == null) this.#classes[i].keys = [];
+                    if (classs.type == null || classs.name == null) continue;
 
-                    if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
+                    if (classs.args == null) classs.args = [];
+                    if (classs.keys == null) classs.keys = [];
+
+                    if (classs.type === 0 && CrystalEngine.IsBehavior(classs.name)) classs.args.push({
                         type: "boolean",
                         name: "enabled"
                     });
                     
-                    newClasses.push(this.#classes[i]);
+                    this.#classes.set(`${classs.type}+${classs.name}`, classs);
                 }
                 
-                this.#classes = newClasses;
-                
                 this.#loaded = true;
+            }
+
+            GetClassOfType (name, type)
+            {
+                return this.#classes.get(`${type}+${name}`);
             }
         }
         
         static #Script = class extends CrystalEngine.Script
         {
-            #classes = [];
+            #unloadedClasses = [];
+            #classes = new Map();
             
             get classes ()
             {
-                return this.#classes;
+                return Array.from(this.#classes).map(item => item[1]);
             }
             
             constructor (src, classes)
             {
                 super(src);
                 
-                this.#classes = classes ?? [];
+                this.#unloadedClasses = classes ?? [];
             }
             
             OnLoad ()
-            {
-                let newClasses = [];
-                
-                for (let i = 0; i < this.#classes.length; i++)
+            {   
+                for (let i = 0; i < this.#unloadedClasses.length; i++)
                 {
-                    if (this.#classes[i].name == null) continue;
+                    const classs = this.#unloadedClasses[i];
 
-                    if (this.#classes[i].args == null) this.#classes[i].args = [];
-                    if (this.#classes[i].keys == null) this.#classes[i].keys = [];
+                    if (classs.type == null || classs.name == null) continue;
 
-                    if (this.#classes[i].type === 0 && CrystalEngine.IsBehavior(this.#classes[i].name)) this.#classes[i].args.push({
+                    if (classs.args == null) classs.args = [];
+                    if (classs.keys == null) classs.keys = [];
+
+                    if (classs.type === 0 && CrystalEngine.IsBehavior(classs.name)) classs.args.push({
                         type: "boolean",
                         name: "enabled"
                     });
                     
-                    newClasses.push(this.#classes[i]);
+                    this.#classes.set(`${classs.type}+${classs.name}`, classs);
                 }
-                
-                this.#classes = newClasses;
             }
-        }
-        
-        static #IsClassOfType (item, name, type)
-        {
-            return item.name === name && item.type === type;
+
+            GetClassOfType (name, type)
+            {
+                return this.#classes.get(`${type}+${name}`);
+            }
         }
         
         static GetClassOfType (name, type)
@@ -283,10 +287,10 @@ class CrystalEngine
             const scripts = this.#compiledData.scripts;
             
             let output = null;
-            
-            for (let i = 0; i < libs.length; i++)
-            {
-                const currentClass = libs[i].classes.find(element => this.#IsClassOfType(element, name, type));
+
+            for (let i = 0; i < scripts.length; i++)
+            {   
+                const currentClass = scripts[i].GetClassOfType(name, type);
                 
                 if (currentClass == null) continue;
                 
@@ -295,11 +299,11 @@ class CrystalEngine
                 break;
             }
             
-            for (let i = 0; i < scripts.length; i++)
+            for (let i = 0; i < libs.length; i++)
             {
                 if (output != null) break;
-                
-                const currentClass = scripts[i].classes.find(element => this.#IsClassOfType(element, name, type));
+
+                const currentClass = libs[i].GetClassOfType(name, type);
                 
                 if (currentClass == null) continue;
                 
@@ -328,7 +332,7 @@ class CrystalEngine
             const onError = error => {
                 if (this.#terminateStart)
                 {
-                    errLogs.append(`\n\n${error.stack}`);
+                    errLogs.append(`\n\n${error?.stack ?? "Unidentified error :("}`);
                     
                     return;
                 }
@@ -355,7 +359,7 @@ class CrystalEngine
 
                 errLogs = document.createElement("span");
                 errLogs.style.userSelect = "text";
-                errLogs.append(error.stack);
+                errLogs.append(error?.stack ?? "Unidentified error :(");
                 
                 const tip = document.createElement("span");
                 tip.append(`\n\n\n----------\n\nPlease report this problem`);

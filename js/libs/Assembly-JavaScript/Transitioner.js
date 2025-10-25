@@ -131,10 +131,19 @@ class Transitioner extends GameBehavior
 
             if (renderer === this.#sprite) continue;
 
-            const material = new Material(null, Shader.Find("DEP/Tinted", "FRAGMENT"));
+            const material = new Material(null, Shader.Find("Default/Tinted", "FRAGMENT"));
             renderer.material = material;
             material.SetVector("uTint", 0, 0, 0, 0);
             this.#materials.push(material);
+
+            if (renderer instanceof Tilemap)
+            {
+                const materials = renderer.materials;
+
+                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 0, 0, 0, 0);
+
+                this.#materials.push(...materials);
+            }
         }
 
         this.#tintInTime = 3;
@@ -153,7 +162,7 @@ class Transitioner extends GameBehavior
 
             if (renderer === this.#sprite) continue;
 
-            const material = new Material(null, Shader.Find("DEP/Tinted", "FRAGMENT"));
+            const material = new Material(null, Shader.Find("Default/Tinted", "FRAGMENT"));
             renderer.material = material;
             material.SetVector("uTint",
                 130 / 255,

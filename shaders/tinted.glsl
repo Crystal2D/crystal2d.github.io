@@ -1,7 +1,7 @@
 #version 300 es
 
 //
-// NAME : "DEP/Tinted"
+// NAME : "Default/Tinted"
 // TYPE : FRAGMENT
 //
 

@@ -2,11 +2,15 @@
     "name" : "Crystal.RPGTiles",
     "id": "com.crystal.rpgtiles",
     "description" : "Adds fast tiles and tilemap rendering",
-    "version": "2025.5.1f",
+    "version": "2025.6f",
     "scripts" : [
         "TilePalette",
         "Tile",
-        "Tilemap"
+        "Tilemap",
+        "TilemapMerger"
+    ],
+    "preserve": [
+        "MergeWorker.js"
     ],
     "classes" : [
         {

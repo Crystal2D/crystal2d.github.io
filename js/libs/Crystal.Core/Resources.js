@@ -1,7 +1,7 @@
 class Resources
 {
-    static #unloadedRes = [];
-    static #resources = [];
+    static #unloadedRes = new Map();
+    static #resources = new Map();
     static #prefabs = [];
 
     static keepOnLoad = [];
@@ -74,40 +74,37 @@ class Resources
             };
         });
 
-        this.#unloadedRes = resources.filter(item => item.type !== "GameObject");
+        this.#unloadedRes = new Map(resources.filter(item => item.type !== "GameObject").map(item => [item.path, item]));
     }
     
     static Unload (...path)
     {
         for (let i = 0; i < path.length; i++)
         {
-            const res = this.#resources.find(item => item.path === path[i]);
+            const res = this.#resources.get(path[i]);
 
             if (res == null) continue;
 
-            res.obj.Unload();
+            res.Unload();
 
             const keepinIndex = this.keepOnLoad.indexOf(path[i]);
-            this.keepOnLoad.splice(keepinIndex, 1);
+            if (keepinIndex != null) this.keepOnLoad.splice(keepinIndex, 1);
 
-            const resIndex = this.#resources.indexOf(res);
-            this.#resources.splice(resIndex, 1);
+            this.#resources.delete(path[i]);
         }
     }
     
     static UnloadAll ()
     {
-        for (let i = 0; i < this.#resources.length; i++) this.#resources[i].obj.Unload();
+        this.#resources.forEach(item => item.Unload())
 
-        this.#resources = [];
+        this.#resources = new Map();
         this.keepOnLoad = [];
     }
     
     static Find (path)
     {
-        const res = this.#resources.find(item => item.path === path);
-        
-        return res?.obj;
+        return this.#resources.get(path);
     }
 
     static FindPrefab (path)
@@ -135,9 +132,9 @@ class Resources
                 continue;
             }
 
-            if (this.#resources.find(item => item.path === path) != null) continue;
+            if (this.#resources.has(path)) continue;
 
-            const data = this.#unloadedRes.find(item => item.path === path[i]);
+            const data = this.#unloadedRes.get(path[i]);
 
             if (data == null) throw new Error(`Resource Non-existent "${path[i]}"`);
 
@@ -148,10 +145,7 @@ class Resources
                     data.args
                 );
             
-                this.#resources.push({
-                    path : path[i],
-                    obj : obj
-                });
+                this.#resources.set(path[i], obj);
 
                 pathIndex++;
             })();
