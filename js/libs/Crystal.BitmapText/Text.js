@@ -4,6 +4,7 @@ class Text extends Renderer
     #remapArrays = false;
     #overflowX = false;
     #overflowY = false;
+    #noCollapse = false;
     #alignX = 0;
     #alignY = 0;
     #tempHeight = 0;
@@ -183,6 +184,17 @@ class Text extends Renderer
     {
         this.#charSpacing = value;
         this.#ReloadWords();
+    }
+
+    get noCollapse ()
+    {
+        return this.#noCollapse;
+    }
+
+    set noCollapse (value)
+    {
+        this.#noCollapse = value;
+        this.#meshChanged = true;
     }
     
     #Word = class
@@ -556,7 +568,7 @@ class Text extends Renderer
             const width = (word.width - charSpacing) / texX;
             const wrapX = !this.#overflowX && x + width > maxW;
             
-            if (x === 0 && wrapX && !word.space)
+            if (x === 0 && wrapX && !(word.space && !this.#noCollapse))
             {
                 const sprites = word.sprites;
                 
@@ -646,7 +658,7 @@ class Text extends Renderer
             
             if (word.space)
             {
-                if (x === 0) continue;
+                if (x === 0 && !this.#noCollapse) continue;
                 else if (!this.#overflowX)
                 {
                     const nextWord = this.#words[iA + 1];

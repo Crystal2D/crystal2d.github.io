@@ -24,7 +24,8 @@
         "ctrls/x",
         "ctrls/x1",
         "ctrls/shift",
-        "ctrls/shift1"
+        "ctrls/shift1",
+        "ref"
     ],
     "gameObjects": [
         {
@@ -176,22 +177,49 @@
             "id": 8,
             "parent": 6,
             "transform": {
-                "position": { "x": 2.11, "y": 2.14 }
+                "position": { "x": 1.91, "y": 2.3825 }
             },
             "components": [
                 {
                     "type": "Text",
                     "args": {
                         "font": "font_main",
-                        "text": "Start",
-                        "width": 1.4,
-                        "height": 0.5,
+                        "text": "   Start\nContinue\n Options",
+                        "width": 2.25,
+                        "height": 10,
                         "color": {
                             "r": 224,
                             "g": 248,
                             "b": 207
                         },
-                        "sortingOrder": 1
+                        "sortingOrder": 1,
+                        "pivot": {
+                            "x": 0.5,
+                            "y": 0
+                        },
+                        "noCollapse": true,
+                        "lineHeight": 18
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ref",
+            "id": 2123567,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "ref"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 100
+                        },
+                        "sortingOrder": 1125476
                     }
                 }
             ]
@@ -201,14 +229,14 @@
             "id": 9,
             "parent": 6,
             "transform": {
-                "position": { "x": 1.91, "y": 1.76 }
+                "position": { "x": 1.91, "y": 1.765 }
             },
             "components": [
                 {
                     "type": "Text",
                     "args": {
                         "font": "font_main",
-                        "text": "Continue",
+                        "text": "",
                         "width": 2.25,
                         "height": 0.5,
                         "color": {
@@ -226,15 +254,15 @@
             "id": 10,
             "parent": 6,
             "transform": {
-                "position": { "x": 2.04, "y": 1.39 }
+                "position": { "x": 1.91, "y": 1.39 }
             },
             "components": [
                 {
                     "type": "Text",
                     "args": {
                         "font": "font_main",
-                        "text": "Options",
-                        "width": 2.1,
+                        "text": "",
+                        "width": 2.25,
                         "height": 0.5,
                         "color": {
                             "r": 224,
@@ -264,7 +292,8 @@
                         },
                         "size": { "x": 3.05, "y": 1.95 },
                         "drawMode": 1,
-                        "sortingOrder": 2
+                        "sortingOrder": 2,
+                        "noCollapse": true
                     }
                 }
             ]

@@ -110,6 +110,10 @@
                 {
                     "name" : "charSpacing",
                     "type" : "number"
+                },
+                {
+                    "name": "noCollapse",
+                    "type": "bool"
                 }
             ],
             "keys": [

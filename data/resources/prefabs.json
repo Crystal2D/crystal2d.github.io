@@ -1,5 +1,14 @@
 [
     {
+        "path": "choicebox_text",
+        "type": "GameObject",
+        "args": {
+            "name": "choicebox_text",
+            "components": [
+            ]
+        }
+    },
+    {
         "path": "box",
         "type": "GameObject",
         "args": {

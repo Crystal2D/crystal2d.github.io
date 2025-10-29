@@ -19,10 +19,20 @@
         "MapGrid/TilemapCollider",
         "MapConfig/MapConfig",
         "MapConfig/MapTransfer",
+        "Box/ItsABox",
+        "Box/ChoiceBox",
         "Test",
         "JumpTest"
     ],
     "classes" : [
+        {
+            "name" : "ItsABox",
+            "type" : 0
+        },
+        {
+            "name" : "ChoiceBox",
+            "type" : 0
+        },
         {
             "name" : "Loader",
             "type" : 0

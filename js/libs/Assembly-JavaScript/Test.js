@@ -1,14 +1,16 @@
 class Test extends GameBehavior
 {
-    #a = null;
+    #box = null;
 
     Start ()
     {
-        this.#a = GameObject.Find("obj").GetComponent("Animator");
+        Crispixels.effect = true;
+        this.#box = this.GetComponent("ItsABox");
+        this.#box.AddChoice()
     }
 
     Update ()
     {
-        this.#a.SetBool("turn", Input.GetKey(KeyCode.Z));
+        if (Input.GetMouseButtonDown(0)) this.#box.Toggle();
     }
 }

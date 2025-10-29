@@ -25,9 +25,10 @@
     "scenes" : [
         "init",
         "loading",
+        "test",
         "title",
         "map_init",
-        "test",
+        "yokihouse",
         "forest_barrier",
         "forest_barrier_edge",
         "cliffs",

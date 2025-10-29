@@ -187,7 +187,7 @@ class Transitioner extends GameBehavior
             }
         }
 
-        this.#tintOutTime = 3;
+        this.#tintOutTime = 4;
         this.#tintOutState = 2;
         this.#onTintOut = callback;
     }
@@ -211,12 +211,12 @@ class Transitioner extends GameBehavior
             10 / 255,
             10 / 255
         ), 1 / 60);
-        else if (this.#tintInTime === 3 && this.#tintInState === 2) this.#StartTintBase(new Color(
+        else if (this.#tintInTime === 4 && this.#tintInState === 2) this.#StartTintBase(new Color(
             90 / 255,
             80 / 255,
             50 / 255
         ), 1 / 60);
-        else if (this.#tintInTime === 3 && this.#tintInState === 1) this.#StartTintBase(new Color(
+        else if (this.#tintInTime === 4 && this.#tintInState === 1) this.#StartTintBase(new Color(
             130 / 255,
             120 / 255,
             90 / 255
@@ -230,7 +230,7 @@ class Transitioner extends GameBehavior
             {
                 this.#tintInState--;
 
-                if (this.#tintInState > 0) this.#tintInTime = 3;
+                if (this.#tintInState > 0) this.#tintInTime = 4;
                 else
                 {
                     this.#onTintIn();
@@ -239,12 +239,12 @@ class Transitioner extends GameBehavior
             }
         }
 
-        if (this.#tintOutTime === 3 && this.#tintOutState === 2) this.#StartTintBase(new Color(
+        if (this.#tintOutTime === 4 && this.#tintOutState === 2) this.#StartTintBase(new Color(
             90 / 255,
             80 / 255,
             50 / 255
         ), 1 / 60);
-        else if (this.#tintOutTime === 3 && this.#tintOutState === 1) this.#StartTintBase(new Color(0, 0, 0), 1 / 60);
+        else if (this.#tintOutTime === 4 && this.#tintOutState === 1) this.#StartTintBase(new Color(0, 0, 0), 1 / 60);
 
         if (this.#tintOutState > 0)
         {
@@ -254,7 +254,7 @@ class Transitioner extends GameBehavior
             {
                 this.#tintOutState--;
                 
-                if (this.#tintOutState > 0) this.#tintOutTime = 3;
+                if (this.#tintOutState > 0) this.#tintOutTime = 4;
                 else
                 {
                     this.#onTintOut();
