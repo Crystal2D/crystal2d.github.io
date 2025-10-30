@@ -179,16 +179,13 @@ class Transform extends Component
     }
     
     SetParent (parent)
-    {
+    {   
         if (this.#parent === parent) return;
         
         const parentOld = this.#parent;
-        
         this.#parent = parent;
         
         if (this.gameObject != null) parentOld?.DetachChildByID(this.gameObject.GetSceneID());
-        
-        this.#parent = parent;
         
         this.#BindData();
     }
@@ -234,27 +231,14 @@ class Transform extends Component
     
     DetachChildByID (id)
     {
-        let newChild = [];
-        
-        for (let i = 0; i < this.childCount; i++)
-        {
-            const child = this.#child[i];
+        this.#child.splice(this.#child.indexOf(id), 1);
+
+        const child = GameObject.FindByID(id);
+
+        if (child.parent !== this) return;
             
-            if (child === id)
-            {
-                const target = this.GetChild(i);
-                
-                target.parent = null;
-                
-                target.Recalc();
-                
-                continue;
-            }
-            
-            newChild.push(child);
-        }
-        
-        this.#child = newChild;
+        child.parent = null;
+        child.Recalc();
     }
     
     DetachChild (index)
@@ -269,9 +253,7 @@ class Transform extends Component
         for (let i = 0; i < this.childCount; i++)
         {
             const child = this.GetChild(i);
-            
             child.parent = null;
-            
             child.Recalc();
         }
         
@@ -280,16 +262,17 @@ class Transform extends Component
     
     AttachChild (child)
     {
+        const id = child.gameObject.GetSceneID();
+
+        if (this.HasChild(id)) return;
+
         if (child.parent !== this)
         {
-            child.parent = this;
-            
+            child.parent = this;    
             child.Recalc();
         }
         
-        const id = child.gameObject.GetSceneID();
-        
-        this.#child.push(id);
+        if (!this.HasChild(id)) this.#child.push(id);
     }
     
     AttachChildByID (id)
@@ -306,6 +289,16 @@ class Transform extends Component
         return GameObject.FindByID(id).transform;
     }
 
+    HasChild (id)
+    {
+        return this.#child.includes(id);
+    }
+
+    GetChildren ()
+    {
+        return this.#child.map(item => GameObject.FindByID(item).transform);
+    }
+
     Duplicate ()
     {
         const output = new Transform();
@@ -314,7 +307,7 @@ class Transform extends Component
         output.localRotation = this.#rotation;
         output.localScale = this.#scale.Duplicate();
 
-        for (let i = 0; i < this.childCount; i++) this.Instantiate(GameObject.FindByID(this.#child[i]), output);
+        for (let i = 0; i < this.childCount; i++) this.Instantiate(GameObject.FindByID(this.#child[i]), output, null, null, true);
 
         return output;
     }

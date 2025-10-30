@@ -5,8 +5,9 @@ Object.prototype.toString = function () { return this.name; };
 Object.prototype.Duplicate = () => null;
 
 Object.InstantiationQueue = new DelegateEvent();
+Object.InstantiationIDs = [];
 
-Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
+Object.prototype.Instantiate = async function (obj, parent, transform, rotation, skipComplete)
 {
     if (!(obj instanceof GameObject) && !(obj instanceof Component) && !obj.__isPrefab) return null;
 
@@ -18,7 +19,7 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
     const scene = SceneManager.GetActiveScene();
     const components = [];
 
-    for (let i = +!isPrefab; i < obj.components.length; i++)
+    for (let i = +!isPrefab; i < obj.components?.length ?? 0; i++)
     {
         if (isPrefab)
         {
@@ -31,14 +32,13 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
 
         if (classData == null) return;
         
-        const newComp = obj.components[i].Duplicate();
-
-        if (newComp != null) components.push(newComp);
+        const newComp = obj.components[i].Duplicate() ?? eval(`new ${obj.components[i].constructor.name}()`);
+        components.push(newComp);
     }
     
     let objID = 0;
-
-    while (GameObject.FindByID(objID) != null) objID++;
+    while (GameObject.FindByID(objID) != null || Object.InstantiationIDs.includes(objID)) objID++;
+    Object.InstantiationIDs.push(objID);
 
     let trans = null;
 
@@ -75,8 +75,12 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation)
         
         scene.gameObjects.push(gameObj);
 
-        parent?.AttachChild(transform);
+        parent?.AttachChild(trans);
     });
+
+    if (isPrefab) for (let i = 0; i < obj.children?.length ?? 0; i++) await this.Instantiate(obj.children[i], trans, null, null, true);
+
+    if (!skipComplete) await new Promise(resolve => Object.InstantiationQueue.Add(resolve));
 
     return gameObj;
 };

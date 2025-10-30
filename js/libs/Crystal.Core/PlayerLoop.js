@@ -92,6 +92,7 @@ class PlayerLoop
         {
             Object.InstantiationQueue.Invoke();
             Object.InstantiationQueue.RemoveAll();
+            Object.InstantiationIDs = [];
 
             // ScriptRunBehaviorAwake
             this.onBeforeAwake.Invoke();

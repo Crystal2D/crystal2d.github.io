@@ -27,23 +27,33 @@ class Component
         this.#gameObj.BroadcastMessage(method, params, data);
     }
     
-    GetComponent (type)
+    GetComponent (type, includeInactive)
     {
-        return this.#gameObj.GetComponent(type);
+        return this.#gameObj.GetComponent(type, includeInactive);
     }
     
-    GetComponents (type)
+    GetComponents (type, includeInactive)
     {
-        return this.#gameObj.GetComponents(type);
+        return this.#gameObj.GetComponents(type, includeInactive);
     }
 
-    GetComponentInParent (type)
+    GetComponentInParent (type, includeInactive)
     {
-        return this.#gameObj.GetComponentInParent(type);
+        return this.#gameObj.GetComponentInParent(type, includeInactive);
     }
 
-    GetComponentsInParent (type)
+    GetComponentsInParent (type, includeInactive)
     {
-        return this.#gameObj.GetComponentsInParent(type);
+        return this.#gameObj.GetComponentsInParent(type, includeInactive);
+    }
+
+    GetComponentInChildren (type, includeInactive)
+    {
+        return this.#gameObj.GetComponentInChildren(type, includeInactive);
+    }
+
+    GetComponentsInChildren (type, includeInactive)
+    {
+        return this.#gameObj.GetComponentsInChildren(type, includeInactive);
     }
 }

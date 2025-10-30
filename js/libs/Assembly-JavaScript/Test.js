@@ -2,11 +2,20 @@ class Test extends GameBehavior
 {
     #box = null;
 
-    Start ()
+    async Start ()
     {
         Crispixels.effect = true;
         this.#box = this.GetComponent("ItsABox");
-        this.#box.AddChoice()
+        // this.#box.AddChoice("Yes", () => { });
+        // this.#box.AddChoice("No", () => { });
+
+        // this.#box.AddChoice("Sure", () => { });
+        // this.#box.AddChoice("Not right now", () => { });
+
+        // this.#box.AddChoice("   Start", () => { });
+        // this.#box.AddChoice("Continue", () => { });
+        // this.#box.AddChoice(" Options", () => { });
+        // this.#box.padding = new Vector2(0.375, 0);
     }
 
     Update ()

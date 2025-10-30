@@ -277,7 +277,7 @@ class Text extends Renderer
     
     #ReloadWords ()
     {
-        const text = this.#text;
+        const text = this.#text.trimEnd();
         
         let newWords = [new this.#Word()];
         

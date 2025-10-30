@@ -1,10 +1,57 @@
 [
     {
-        "path": "choicebox_text",
+        "path": "boxcontent/choice",
         "type": "GameObject",
         "args": {
-            "name": "choicebox_text",
-            "components": [
+            "name": "choicebox_content",
+            "children": [
+                {
+                    "name": "text",
+                    "components": [
+                        {
+                            "type": "Text",
+                            "args": {
+                                "font": "font_main",
+                                "text": "",
+                                "width": 0,
+                                "height": 0,
+                                "color": {
+                                    "r": 224,
+                                    "g": 248,
+                                    "b": 207,
+                                    "a": 0
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4,
+                                "overflowWidth": true,
+                                "overflowHeight": true,
+                                "noCollapse": true,
+                                "lineHeight": 18
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selector",
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/pixel"
+                                },
+                                "color": {
+                                    "r": 134,
+                                    "g": 192,
+                                    "b": 108,
+                                    "a": 0
+                                },
+                                "sortingOrder": 1,
+                                "sortingLayer": 4
+                            }
+                        }
+                    ]
+                }
             ]
         }
     },

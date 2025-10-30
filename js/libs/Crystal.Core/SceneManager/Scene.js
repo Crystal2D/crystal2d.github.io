@@ -93,79 +93,136 @@ class Scene
 
         await CrystalEngine.Wait(() => this.loadedComponents);
     }
+
+    async #LoadGameObjectsBase (data, fromPrefab)
+    {
+        let prefabData = { };
+
+        if (!fromPrefab && data.prefab != null) prefabData = Resources.FindPrefab(data.prefab);
+
+        const rawComponents = prefabData.components ?? [];
+        const objComponents = data.components ?? [];
+
+        for (let i = 0; i < objComponents.length; i++)
+        {
+            const match = objComponents[i].replace ? rawComponents.find(item => item.type === objComponents[i].type) : null;
+
+            if (match == null)
+            {
+                rawComponents.push(objComponents[i]);
+
+                continue;
+            }
+            
+            if (match.args == null)
+            {
+                match.args = objComponents[i].args;
+
+                continue;
+            }
+
+            this.#ChangeArgs(match.args, objComponents[i].args);
+        }
+
+        let objID = data.id ?? 0;
+
+        while (this.gameObjects.find(item => item.GetSceneID() === objID) != null) objID++;
+
+        const transform = {
+            position: data.transform?.position ?? prefabData.transform?.position,
+            rotation: data.transform?.rotation ?? prefabData.transform?.rotation,
+            scale: data.transform?.scale ?? prefabData.transform?.scale
+        };
+        
+        let objParent = null;
+        
+        if (data.parent != null) objParent = this.gameObjects.find(element => element.GetSceneID() === data.parent).transform;
+        
+        const gameObj = await SceneManager.CreateObject("GameObject", {
+            name : data.name ?? prefabData.name,
+            active : data.active ?? prefabData.active,
+            transform : transform,
+            id : objID,
+            parent : objParent
+        });
+
+        gameObj.scene = this;
+        this.gameObjects.push(gameObj);
+        
+        this.#loadComponentCalls.Add(async () => {
+            gameObj.components = await this.#LoadComponents(rawComponents);
+
+            const renderer = gameObj.GetComponent("Renderer");
+
+            if (renderer != null)
+            {
+                const min = renderer.bounds.min;
+                const max = renderer.bounds.max;
+                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                this.tree.Insert(gameObj, rect);
+            }
+
+            this.#loadedComponents++;
+        });
+
+        if (data.prefab == null && !fromPrefab) return;
+
+        const rawChildren = prefabData.children ?? [];
+        const objChildren = data.children ?? [];
+
+        for (let i = 0; i < rawChildren.length; i++)
+        {
+            const child = rawChildren[i];
+            child.parent = objID;
+
+            const match = objChildren.find(item => item.name === child.name);
+
+            if (match != null)
+            {
+                child.active = match.active ?? child.active;
+                child.id = match.id ?? child.id;
+
+                if (child.transform == null) child.transform = match.transform;
+                else this.#ChangeArgs(child.transform, match.transform);
+
+                const rawComponents = child.components ?? [];
+                const objComponents = match.components ?? [];
+
+                for (let i = 0; i < objComponents.length; i++)
+                {
+                    const match = objComponents[i].replace ? rawComponents.find(item => item.type === objComponents[i].type) : null;
+                
+                    if (match == null)
+                    {
+                        rawComponents.push(objComponents[i]);
+                    
+                        continue;
+                    }
+
+                    if (match.args == null)
+                    {
+                        match.args = objComponents[i].args;
+                    
+                        continue;
+                    }
+                
+                    this.#ChangeArgs(match.args, objComponents[i].args);
+                }
+
+                child.components = rawComponents;
+            }
+
+            await this.#LoadGameObjectsBase(child, true);
+        }
+    }
     
     async #LoadGameObjects ()
     {
         for (let i = 0; i < this.#data.gameObjects.length; i++)
         {
-            const objData = this.#data.gameObjects[i];
-            let prefabData = { };
-
-            if (objData.prefab != null) prefabData = Resources.FindPrefab(objData.prefab);
-
-            const rawComponents = structuredClone(prefabData.components ?? []);
-            const objComponents = structuredClone(objData.components ?? []);
-
-            for (let i = 0; i < objComponents.length; i++)
-            {
-                const match = objComponents[i].replace ? rawComponents.find(item => item.type === objComponents[i].type) : null;
-
-                if (match == null)
-                {
-                    rawComponents.push(objComponents[i])
-
-                    continue;
-                }
-                
-                if (match.args == null)
-                {
-                    match.args = objComponents[i].args;
-
-                    continue;
-                }
-
-                this.#ChangeArgs(match.args, objComponents[i].args);
-            }
-
-            const transform = {
-                position: objData.transform?.position ?? prefabData.transform?.position,
-                rotation: objData.transform?.rotation ?? prefabData.transform?.rotation,
-                scale: objData.transform?.scale ?? prefabData.transform?.scale
-            };
-            
-            let objParent = null;
-            
-            if (objData.parent != null) objParent = this.gameObjects.find(element => element.GetSceneID() === objData.parent).transform;
-            
-            const gameObj = await SceneManager.CreateObject("GameObject", {
-                name : objData.name ?? prefabData.name,
-                active : objData.active ?? prefabData.active,
-                transform : transform,
-                id : objData.id,
-                parent : objParent
-            });
-
-            gameObj.scene = this;
-            
-            this.gameObjects.push(gameObj);
-
-            this.#loadComponentCalls.Add(async () => {
-                gameObj.components = await this.#LoadComponents(rawComponents);
-
-                const renderer = gameObj.GetComponent("Renderer");
-
-                if (renderer != null)
-                {
-                    const min = renderer.bounds.min;
-                    const max = renderer.bounds.max;
-                    const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
-
-                    this.tree.Insert(gameObj, rect);
-                }
-
-                this.#loadedComponents++;
-            });
-
+            const data = structuredClone(this.#data.gameObjects[i]);
+            await this.#LoadGameObjectsBase(data);
             this.#loadedGameObjs++;
         }
     }

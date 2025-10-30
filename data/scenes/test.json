@@ -7,7 +7,24 @@
         "sprites/box",
         "font_main",
         "sprites/chars/yoki",
-        "ref"
+        "ref",
+        "sprites/pixel",
+        "audio/se/select",
+        "audio/se/confirm",
+        "audio/se/no",
+        "audio/bgm/title",
+        "ctrls/bounds",
+        "ctrls/dpad",
+        "ctrls/dpad/up",
+        "ctrls/dpad/down",
+        "ctrls/dpad/left",
+        "ctrls/dpad/right",
+        "ctrls/z",
+        "ctrls/z1",
+        "ctrls/x",
+        "ctrls/x1",
+        "ctrls/shift",
+        "ctrls/shift1"
     ],
     "gameObjects": [
         {
@@ -19,6 +36,9 @@
                 },
                 {
                     "type": "Viewport"
+                },
+                {
+                    "type": "InputManager"
                 }
             ]
         },
@@ -59,7 +79,40 @@
                             "b": 0,
                             "a": 100
                         },
-                        "sortingOrder": 1
+                        "sortingOrder": 100
+                    }
+                }
+            ]
+        },
+        {
+            "name": "audiomanager",
+            "id": 3,
+            "components": [
+                {
+                    "type": "AudioManager"
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "loop": true
+                    }
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/select"
+                    }
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/confirm"
+                    }
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/no"
                     }
                 }
             ]

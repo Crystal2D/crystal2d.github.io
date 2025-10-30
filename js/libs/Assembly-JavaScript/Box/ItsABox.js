@@ -4,11 +4,10 @@ class ItsABox extends GameBehavior
     #openness = 0;
     #state = 0;
     #targetState = 0;
+    #onOpen = () => { };
+    #onClose = () => { };
 
-    onOpen = () => { };
-    onClose = () => { };
-
-    content = null;
+    spriteRenderer = null;
 
     get isClosed ()
     {
@@ -17,21 +16,22 @@ class ItsABox extends GameBehavior
 
     get isClosing ()
     {
-        return this.#state === 1 && this.#targetState === 0;
+        return this.isOpen && this.#targetState === 0;
     }
 
     get isOpening ()
     {
-        return this.#state === 0 && this.#targetState === 1;
+        return this.isClosed && this.#targetState === 1;
     }
 
     get isOpen ()
     {
-        return this.#state === 1;
+        return !this.isClosed;
     }
 
     Start ()
     {
+        this.spriteRenderer = this.GetComponent("SpriteRenderer");
         this.transform.scale = new Vector2(1, 0);
     }
     
@@ -47,25 +47,36 @@ class ItsABox extends GameBehavior
         {
             this.#state = 1;
             this.OnOpen();
-            this.onOpen();
+
+            this.#onOpen();
+            this.#onOpen = () => { };
         }
-        else if (this.#openness === 0 && !this.isClosed) this.#state = 0;
+        else if (this.#openness === 0 && !this.isClosed)
+        {
+            this.#state = 0;
+
+            this.#onClose();
+            this.#onClose = () => { };
+        }
 
         this.transform.scale = new Vector2(1, this.#openness / 255);
     }
 
-    Open ()
+    Open (callback = () => { })
     {
-        if (!this.isOpen) this.#targetState = 1;
+        if (this.isOpen) return;
+        
+        this.#targetState = 1;
+        this.#onOpen = () => callback();
     }
 
-    Close ()
+    Close (callback = () => { })
     {
         if (this.isClosed) return;
 
         this.#targetState = 0;
         this.OnClose();
-        this.onClose();
+        this.#onClose = () => callback();
     }
 
     Toggle ()

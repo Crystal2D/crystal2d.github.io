@@ -64,9 +64,15 @@ class Resources
     {
         this.UnloadAll();
 
+        const applyPrefab = obj => {
+            obj.__isPrefab = true;
+
+            for (let i = 0; i < obj.children?.length ?? 0; i++) applyPrefab(obj.children[i]);
+        };
+
         this.#prefabs = resources.filter(item => item.type === "GameObject").map(item => {
             const obj = item.args;
-            obj.__isPrefab = true;
+            applyPrefab(obj);
 
             return {
                 path: item.path,
@@ -111,7 +117,7 @@ class Resources
     {
         const prefab = this.#prefabs.find(item => item.path === path);
 
-        return prefab?.obj;
+        return structuredClone(prefab?.obj);
     }
     
     static async Load (...path)

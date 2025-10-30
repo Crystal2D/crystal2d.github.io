@@ -118,14 +118,18 @@ class SpriteRenderer extends Renderer
         this.#spriteOld = this.#sprite;
 
         const ppu = this.sprite.pixelPerUnit;
+        const sizeBase = new Vector2(
+            ppu / this.sprite.rect.width,
+            ppu / this.sprite.rect.height,
+        );
 
-        if (this.#size == null) this.#size = Vector2.Divide(Vector2.one, ppu);
+        if (this.#size == null) this.#size = Vector2.Divide(Vector2.one, sizeBase);
 
         this.#indexes = [];
         this.#trisCounts = [];
         
         const verts = this.sprite.vertices;
-        const renderSize = Vector2.Scale(this.#size, ppu);
+        const renderSize = Vector2.Scale(this.#size, sizeBase);
 
         if (!renderSize.Equals(Vector2.one))
         {

@@ -25,7 +25,6 @@
     "scenes" : [
         "init",
         "loading",
-        "test",
         "title",
         "map_init",
         "yokihouse",
@@ -74,6 +73,11 @@
         {
             "name": "Transitioner",
             "id": 3,
+            "value": 4
+        },
+        {
+            "name": "UI",
+            "id": 4,
             "value": 3
         }
     ]

@@ -234,23 +234,49 @@ class GameObject
         }
     }
     
-    GetComponent (type)
+    GetComponent (type, includeInactive)
     {
-        return this.#components.find(item => this.#IsComponent(item, type, false));
+        return this.#components.find(item => this.#IsComponent(item, type, includeInactive));
     }
     
-    GetComponents (type)
+    GetComponents (type, includeInactive)
     {
-        return this.#components.filter(item => this.#IsComponent(item, type, false));
+        return this.#components.filter(item => this.#IsComponent(item, type, includeInactive));
     }
 
-    GetComponentInParent (type)
+    GetComponentInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponent(type);
+        return this.transform.parent.GetComponent(type, includeInactive);
     }
 
-    GetComponentsInParent (type)
+    GetComponentsInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponents(type);
+        return this.transform.parent.GetComponents(type, includeInactive);
+    }
+
+    GetComponentInChildren (type, includeInactive)
+    {
+        const children = this.transform.GetChildren();
+
+        for (let i = 0; i < children.length; i++)
+        {
+            const component = children[i].GetComponent(type, includeInactive) ?? children[i].GetComponentInChildren(type, includeInactive);
+
+            if (component != null) return component;
+        }
+    }
+
+    GetComponentsInChildren (type, includeInactive)
+    {
+        const children = this.transform.GetChildren();
+        let components = [];
+
+        for (let i = 0; i < children.length; i++)
+        {
+            components.push(children[i].GetComponent(type, includeInactive));
+            components.push(...children[i].GetComponentsInChildren(type, includeInactive));
+        }
+
+        return components.filter(item => item != null);
     }
 }
