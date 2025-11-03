@@ -3,12 +3,15 @@ class ChoiceBox extends ItsABox
     #updateDimensions = 0;
     #cursorTime = 0;
     #selected = 0;
-    #initialPos = 0;
+    #max = 0;
+    _initialPos = 0;
     #padding = Vector2.zero;
     #choices = [];
 
-    #text = null;
-    #selector = null;
+    #min = null;
+
+    _text = null;
+    _selector = null;
 
     get selected ()
     {
@@ -19,23 +22,27 @@ class ChoiceBox extends ItsABox
     {
         if (value === this.#selected) return;
 
-        const max = this.#choices.length - 1;
-
         if (value > this.#selected)
         {
-            if (value === max) InputManager.Clear();
-            if (value > max) value = 0;
+            while (this.#choices[value]?.skip) value++;
+
+            if (value === this.#max) InputManager.Clear();
+            if (value > this.#max) value = this.#min;
         }
         else
         {
-            if (value === 0) InputManager.Clear();
-            if (value < 0) value = max;
+            while (this.#choices[value]?.skip) value--;
+
+            if (value === this.#min) InputManager.Clear();
+            if (value < this.#min) value = this.#max;
         }
         
         this.#selected = value;
-        this.#selector.transform.localPosition = new Vector2(0, this.#initialPos - 0.375 * this.#selected);
+        this._selector.transform.localPosition = new Vector2(0, this._initialPos - 0.375 * this.#selected);
         
         AudioManager.instance.PlaySelect();
+
+        this._OnSelect();
     }
 
     get padding ()
@@ -49,19 +56,42 @@ class ChoiceBox extends ItsABox
 
         this.#padding = value.Duplicate();
         
-        if (this.#text != null) this.#updateDimensions = true;
+        if (this._text != null) this.#updateDimensions = true;
     }
 
-    AddChoice (label, callback)
+    get choiceCount ()
+    {
+        return this.#choices.length;
+    }
+
+    AddText (label)
     {
         this.#choices.push({
             label: label,
-            callback: callback
+            skip: true
+        });
+    }
+
+    AddChoice (label, callback, directional = 0)
+    {
+        this.#choices.push({
+            label: label,
+            callback: callback,
+            dired: directional
         });
 
-        if (this.#text != null)
+        const index = this.#choices.length - 1;
+        this.#max = index;
+
+        if (this.#min == null)
         {
-            this.#text.text += `${label}\n`;
+            this.#min = index;
+            this.#selected = index;
+        }
+
+        if (this._text != null)
+        {
+            this._text.text += `${label}\n`;
             this.#updateDimensions = 1;
         }
     }
@@ -71,37 +101,26 @@ class ChoiceBox extends ItsABox
         super.Start();
 
         const content = await this.Instantiate(Resources.FindPrefab("boxcontent/choice"), this.transform);
-        this.#text = content.GetComponentInChildren("Text");
-        this.#selector = content.GetComponentInChildren("SpriteRenderer");
+        this._text = content.GetComponentInChildren("Text");
+        this._selector = content.GetComponentInChildren("SpriteRenderer");
 
-        for (let i = 0; i < this.#choices.length; i++) this.#text.text += `${this.#choices[i].label}\n`;
+        for (let i = 0; i < this.#choices.length; i++) this._text.text += `${this.#choices[i].label}\n`;
 
         this.#updateDimensions = 1;
     }
 
-    #UpdateDimensions ()
+    _UpdateDimensions ()
     {
-        if (this.#updateDimensions === 1)
-        {
-            this.#updateDimensions++;
-
-            return;
-        }
-
-        if (this.#updateDimensions === 0) return;
-
-        this.#updateDimensions = 0;
-
-        this.#text.width = this.#text.bounds.size.x + this.#padding.x;
-        this.#text.height = 0.375 * this.#choices.length + this.#padding.y;
+        this._text.width = this._text.bounds.size.x + this.#padding.x;
+        this._text.height = 0.375 * this.choiceCount + this.#padding.y;
 
         this.spriteRenderer.size = new Vector2(
-            this.#text.width + 0.575 * 2,
-            this.#text.height + 0.575
+            this._text.width + 0.575 * 2,
+            this._text.height + 0.575
         );
-        this.#initialPos = (this.#text.height - 0.375) * 0.5;
-        this.#selector.size = new Vector2(
-            this.#text.width + 0.575,
+        this._initialPos = (this._text.height - 0.375) * 0.5;
+        this._selector.size = new Vector2(
+            this._text.width + 0.575,
             0.375
         );
     }
@@ -119,40 +138,65 @@ class ChoiceBox extends ItsABox
         if (this.#cursorTime < 20) opacity -= this.#cursorTime * 8;
         else opacity -= (40 - this.#cursorTime) * 8;
 
-        this.#selector.color.a = opacity / 255;
+        this._selector.color.a = opacity / 255;
     }
 
     Update ()
     {
         super.Update();
 
-        this.#UpdateDimensions();
+        if (this.#updateDimensions === 2)
+        {
+            this._UpdateDimensions();
+
+            this.#updateDimensions = 0;
+        }
+        else if (this.#updateDimensions === 1) this.#updateDimensions++;
+
         this.#AnimateCursor();
         
         if (this.isClosed || this.isClosing) return;
 
         this.selected += +InputManager.IsRepeated("down") - +InputManager.IsRepeated("up");
 
-        if (InputManager.GetKeyDown("z"))
-        {
-            AudioManager.instance.PlayConfirm();
+        const item = this.#choices[this.#selected];
 
-            this.#choices[this.#selected].callback();
+        if (item.dired === 0)
+        {
+            if (InputManager.GetKeyDown("z"))
+            {
+                AudioManager.instance.PlayConfirm();
+                item.callback();
+            }
+
+            return;
+        }
+
+        let dir = null;
+
+        if (item.dired === 1) dir = +(InputManager.GetKeyDown("z") || InputManager.GetKeyDown("right")) - InputManager.GetKeyDown("left");
+        else dir = +(InputManager.GetKeyDown("z") || InputManager.IsRepeated("right")) - InputManager.IsRepeated("left");
+
+        if (dir !== 0)
+        {
+            if (item.callback(dir) !== false) AudioManager.instance.PlayConfirm();
         }
     }
 
     OnOpen ()
     {
-        this.#text.color.a = 1;
-        this.#selector.color.a = 1;
+        this._text.color.a = 1;
+        this._selector.color.a = 1;
         this.#cursorTime = 0;
 
-        this.#selector.transform.localPosition = new Vector2(0, this.#initialPos - 0.375 * this.#selected);
+        this._selector.transform.localPosition = new Vector2(0, this._initialPos - 0.375 * this.#selected);
     }
 
     OnClose ()
     {
-        this.#text.color.a = 0;
-        this.#selector.color.a = 0;
+        this._text.color.a = 0;
+        this._selector.color.a = 0;
     }
+
+    _OnSelect () { }
 }

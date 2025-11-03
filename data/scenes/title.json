@@ -37,9 +37,6 @@
                 },
                 {
                     "type": "Viewport"
-                },
-                {
-                    "type": "TitleScreen"
                 }
             ]
         },
@@ -138,11 +135,98 @@
                             "texture": "sprites/box"
                         },
                         "drawMode": 1,
-                        "sortingOrder": -1
+                        "sortingLayer": 4
                     }
                 },
                 {
-                    "type": "ChoiceBox"
+                    "type": "TitleScreen"
+                }
+            ]
+        },
+        {
+            "name": "options",
+            "id": 6,
+            "components": [
+                {
+                    "type": "Options"
+                },
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "sortingOrder": 0,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "options_leftarrow",
+            "id": 11,
+            "transform": {
+                "position": { "x": 0.325 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "left"
+                        },
+                        "sortingOrder": 5,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "options_rightarrow",
+            "id": 12,
+            "transform": {
+                "position": { "x": 3.75 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "right"
+                        },
+                        "sortingOrder": 5,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "options_data",
+            "id": 13,
+            "transform": {
+                "position": { "x": 2.125 }
+            },
+            "components": [
+                {
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "overflowWidth": true,
+                        "overflowHeight": true,
+                        "width": 0,
+                        "horizontalAlign": 1,
+                        "color": {
+                            "r": 224,
+                            "g": 248,
+                            "b": 207
+                        },
+                        "sortingOrder": 5,
+                        "sortingLayer": 4,
+                        "lineHeight": 18
+                    }
                 }
             ]
         }

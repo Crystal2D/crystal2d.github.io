@@ -1,8 +1,5 @@
-class TitleScreen extends GameBehavior
+class TitleScreen extends ChoiceBox
 {
-    #box = null;
-    #options = null;
-
     Awake ()
     {
         Crispixels.effect = true;
@@ -11,8 +8,9 @@ class TitleScreen extends GameBehavior
 
     Start ()
     {
-        this.#box = GameObject.Find("choicebox").GetComponent("ItsABox");
-        this.#box.AddChoice("   Start", () => this.#box.Close(() => {
+        super.Start();
+
+        this.AddChoice("   Start", () => this.Close(() => {
             AudioManager.instance.StopBGM();
 
             Transitioner.instance.FadeOut(() => {
@@ -25,16 +23,17 @@ class TitleScreen extends GameBehavior
                 Loader.Switch(3);
             });
         }));
-        this.#box.AddChoice("Continue", () => { });
-        this.#box.AddChoice(" Options", () => this.#box.Close(() => this.#options.Enable()));
-        this.#box.padding = new Vector2(0.375, 0);
+        this.AddChoice("Continue", () => { });
 
-        // this.#options = GameObject.Find("options").GetComponent("Options");
+        const options = GameObject.Find("options").GetComponent("Options");
+
+        this.AddChoice(" Options", () => this.Close(() => options.Open()));
+        this.padding = new Vector2(0.375, 0);
 
         Loader.Ready(3);
 
         Transitioner.instance.FadeIn(() => {
-            this.#box.Open();
+            this.Open();
 
             // AudioManager.instance.PlayBGM("title");
         });
