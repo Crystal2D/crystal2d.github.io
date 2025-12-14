@@ -312,6 +312,8 @@ class Options extends ChoiceBox
 
         if (!this.isClosed && InputManager.GetKeyDown("x"))
         {
+            AudioManager.instance.PlayNo();
+
             this.Close();
             this.#mainStuff.Open();
         }

@@ -456,5 +456,123 @@
             ],
             "pixelPerUnit": 32
         }
+    },
+    {
+        "path": "sprites/faces/yoki",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\yoki.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "annoyed",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "disheartened",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "dizzy",
+                    "rect": {
+                        "x": 72,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 96,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "meditative",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "smile",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "surprised",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sweat drop",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "think",
+                    "rect": {
+                        "x": 96,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "unsure",
+                    "rect": {
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "unsure smile",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "upset",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
     }
 ]

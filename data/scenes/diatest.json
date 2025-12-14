@@ -3,6 +3,8 @@
     "resources": [
         "ref",
         "sprites/arrows",
+        "sprites/box",
+        "sprites/faces/yoki",
         "font_main"
     ],
     "gameObjects": [
@@ -40,11 +42,65 @@
             ]
         },
         {
-            "name": "text",
+            "name": "dialogue_box",
             "id": 2,
             "transform": {
-                "position": { "x": 0.526102, "y": -3.42 }
+                "position": { "x": 0, "y": -3.46875 }
             },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 10,
+                            "y": 2.0625
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 128
+                        }
+                    }
+                },
+                {
+                    "type": "ItsABox"
+                },
+                {
+                    "type": "Test"
+                }
+            ]
+        },
+        {
+            "name": "face",
+            "id": 3,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/faces/yoki",
+                            "name": "unsure smile"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 200
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 4,
+            "parent": 2,
             "components": [
                 {
                     "type": "Text",
@@ -56,6 +112,10 @@
                             "r": 255,
                             "g": 255,
                             "b": 0
+                        },
+                        "pivot": {
+                            "x": 0,
+                            "y": 0
                         }
                     }
                 }
@@ -63,7 +123,7 @@
         },
         {
             "name": "arrow",
-            "id": 3,
+            "id": 5,
             "transform": {
                 "position": { "x": 0, "y": -4.375 }
             },

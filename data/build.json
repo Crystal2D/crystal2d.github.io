@@ -25,6 +25,7 @@
     "scenes" : [
         "init",
         "loading",
+        "diatest",
         "title",
         "map_init",
         "yokihouse",
