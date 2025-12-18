@@ -469,22 +469,21 @@ class CrystalEngine
             const libCount = this.#compiledData.libs.length;
             let libIndex = 0;
 
-            for (let i = 0; i < libCount; i++) (async () => {
-                const deps = this.#compiledData.libs[i].deps;
+            const loadLib = async lib => {
                 let loadCount = 0;
 
-                for (let i = 0; i < deps.length; i++) (async () => {
-                    const lib = this.#compiledData.libs.find(item => item.id === deps[i]);
-
-                    await lib.Load();
-
+                for (let i = 0; i < lib.deps.length; i++) (async () => {
+                    await loadLib(this.#compiledData.libs.find(item => item.id === lib.deps[i]));
                     loadCount++;
                 })();
 
-                await CrystalEngine.Wait(() => loadCount === deps.length);
+                await CrystalEngine.Wait(() => loadCount === lib.deps.length);
 
-                await this.#compiledData.libs[i].Load();
+                await lib.Load();
+            };
 
+            for (let i = 0; i < libCount; i++) (async () => {
+                await loadLib(this.#compiledData.libs[i]);
                 libIndex++;
             })();
             

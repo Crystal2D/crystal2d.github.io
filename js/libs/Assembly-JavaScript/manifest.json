@@ -1,5 +1,6 @@
 {
     "name" : "Assembly-JavaScript",
+    "id": "main",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
         "Loader",

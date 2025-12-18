@@ -16,13 +16,13 @@ class Test extends GameBehavior
     {
         if (Input.GetMouseButtonDown(0)) this.#box.Toggle();
 
-        this.#text.transform.position = new Vector2(
-            -2.975,
-            this.#box.spriteRenderer.bounds.max.y - (0.5725 * 0.4)
-        );
         this.#face.transform.position = new Vector2(
             -3 * 1.325,
             this.#box.spriteRenderer.bounds.center.y
+        );
+        this.#text.transform.position = new Vector2(
+            this.#face.bounds.max.x + (0.375 * 0.65),
+            this.#box.spriteRenderer.bounds.max.y - (0.5725 * 0.4)
         );
     }
 }

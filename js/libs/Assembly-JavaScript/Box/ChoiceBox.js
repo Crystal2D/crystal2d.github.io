@@ -70,6 +70,12 @@ class ChoiceBox extends ItsABox
             label: label,
             skip: true
         });
+
+        if (this._text != null)
+        {
+            this._text.text += `${label}\n`;
+            this.#updateDimensions = 1;
+        }
     }
 
     AddChoice (label, callback, directional = 0)

@@ -19,5 +19,12 @@
         "args": {
             "src": "se/no.ogg"
         }
+    },
+    {
+        "path": "audio/se/dialogue_3",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/dialogue_3.ogg"
+        }
     }
 ]

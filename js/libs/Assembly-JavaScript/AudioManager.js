@@ -38,6 +38,7 @@ class AudioManager extends GameBehavior
     #no = null;
 
     bgm = null;
+    se = null;
 
     Awake ()
     {
@@ -59,18 +60,22 @@ class AudioManager extends GameBehavior
 
         AudioManager.onBGMVolumeChange.Add(vol => this.bgm.volume = 0.24 * vol);
 
+        this.se = sources[1];
+        this.se.volume = 0.6;
+
         // Yes these are separate sources
         // just to replicate how RPG Maker MV does "AudioManager.playStaticSe"
-        this.#select = sources[1];
+        this.#select = sources[2];
         this.#select.volume = 0.4;
 
-        this.#confirm = sources[2];
+        this.#confirm = sources[3];
         this.#confirm.volume = 0.4;
 
-        this.#no = sources[3];
+        this.#no = sources[4];
         this.#no.volume = 0.6;
 
         AudioManager.onSEVolumeChange.Add(vol => {
+            this.se.volume = 0.6 * vol;
             this.#select.volume = 0.4 * vol;
             this.#confirm.volume = 0.4 * vol;
             this.#no.volume = 0.6 * vol;
@@ -93,6 +98,11 @@ class AudioManager extends GameBehavior
         Resources.DestroyOnLoad(this.#clipName);
 
         this.#clipName = null;
+    }
+
+    PlaySE (name)
+    {
+        this.se.PlayOneShot(Resources.Find(`audio/se/${name}`));
     }
 
     PlaySelect ()
