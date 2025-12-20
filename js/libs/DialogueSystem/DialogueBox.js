@@ -2,11 +2,16 @@ class DialogueBox extends ItsABox
 {
     #startedTyping = false;
     #typing = false;
+    #canUnpause = false;
+    #showFace = false;
     #speed = 1 / 60;
+    #playIndex = 0;
+    #pauseCount = 0;
     #chars = [];
 
     #face = null;
     #text = null;
+    #arrow = null;
 
     async Start ()
     {
@@ -15,7 +20,7 @@ class DialogueBox extends ItsABox
         Crispixels.effect = true;
         this.#text = this.GetComponentInChildren("Text");
         this.#face = this.transform.Find("face").GetComponent("SpriteRenderer");
-        this.#face.gameObject.SetActive(false);
+        this.#arrow = this.transform.Find("arrow").GetComponent("SpriteRenderer");
     }
 
     #UpdateTyping ()
@@ -26,22 +31,18 @@ class DialogueBox extends ItsABox
 
         for (let i = 0; i < this.#chars.length; i++)
         {
-            if (this.#chars[i].shown) continue;
+            if (this.#chars[i].done) continue;
 
             done = false;
+
+            if (this.#chars[i].playIndex > this.#playIndex) continue;
+
             this.#chars[i].time -= Time.deltaTime;
 
             if (this.#chars[i].time > 0) continue;
 
-            this.#chars[i].char.color = new Color(
-                this.#chars[i].char.color.r,
-                this.#chars[i].char.color.g,
-                this.#chars[i].char.color.b,
-                1
-            );
-            this.#chars[i].shown = true;
-            
-            if (this.#chars[i].audio != null) AudioManager.instance.PlaySE(this.#chars[i].audio);
+            this.#chars[i].callback();
+            this.#chars[i].done = true;
         }
 
         if (done)
@@ -51,33 +52,33 @@ class DialogueBox extends ItsABox
         }
     }
 
+    #AllowUnpause ()
+    {
+        this.#canUnpause = true;
+        this.#arrow.color.a = 1;
+    }
+
     Update ()
     {
         super.Update();
 
-        if (Input.GetMouseButtonDown(0)) this.Type("Chirp! Chirp!");
+        if (Input.GetMouseButtonDown(0))
+        {
+            this.SetFace(Resources.Find("sprites/faces/yoki").sprites[1]);
+            this.Type("I don't need to change\nclothes...\\.\\. What I'm wearing \nright now is fine.");
+        }
 
         this.#UpdateTyping();
-
-        // this.#face.transform.position = new Vector2(
-        //     -3 * 1.325,
-        //     this.spriteRenderer.bounds.center.y
-        // );
-        // this.#text.transform.position = new Vector2(
-        //     // this.#face.bounds.max.x + (0.375 * 0.65),
-        //     this.spriteRenderer.bounds.min.x + (0.375 * 0.75),
-        //     this.spriteRenderer.bounds.max.y - (0.5725 * 0.4)
-        // );
-    }
-
-    OnOpen ()
-    {
-        this.#face.color.a = 1;
     }
 
     OnClose ()
     {
-        this.#face.color.a = 0;
+    }
+
+    SetFace (sprite)
+    {
+        this.#face.sprite = sprite;
+        this.#showFace = true;
     }
     
     async Type (text)
@@ -93,32 +94,104 @@ class DialogueBox extends ItsABox
         this.#text.text = "";
         this.#chars = [];
 
+        this.#face.transform.position = new Vector2(
+            -3 * 1.325,
+            this.spriteRenderer.bounds.center.y
+        );
         this.#text.transform.position = new Vector2(
-            // this.#face.bounds.max.x + (0.375 * 0.65),
-            this.spriteRenderer.bounds.min.x + (0.375 * 0.75),
+            this.#showFace ? (this.#face.bounds.max.x + (0.375 * 0.65)) : (this.spriteRenderer.bounds.min.x + (0.375 * 0.75)),
             this.spriteRenderer.bounds.max.y - (0.5725 * 0.4)
         );
-        this.#text.text = text;
 
-        await new Promise(resolve => requestAnimationFrame(resolve));
-
+        let escaping = false;
         let currentTime = 0;
+        let textIndex = 0;
 
-        for (let i = 0; i < this.#text.characters.length; i++)
+        for (let i = 0; i < text.length; i++)
         {
+            if (text[i] === "\\" && !escaping)
+            {
+                escaping = true;
+                continue;
+            }
+
             const charData = {
-                char: this.#text.characters[i],
+                callback: () => { },
                 time: currentTime,
-                shown: false
+                done: false,
+                playIndex: this.#pauseCount
             };
-
-            if (i % 3 === 0) charData.audio = "dialogue_3";
-
             this.#chars.push(charData);
 
+            let typeText = true;
+
+            if (escaping) switch (text[i])
+            {
+                case ".":
+                    currentTime += 0.25;
+                    charData.time = currentTime;
+                    typeText = false;
+                    break;
+                case "|":
+                    currentTime += 1;
+                    charData.time = currentTime;
+                    typeText = false;
+                    break;
+                case "!":
+                    currentTime = 0;
+                    charData.time += 1 / 6;
+                    this.#pauseCount++;
+
+                    charData.callback = () => this.#AllowUnpause();
+
+                    typeText = false;
+                    break;
+            }
+
+            escaping = false;
+
+            if (!typeText) continue;
+
+            const index = textIndex;
+            const currentI = i;
+            this.#text.text += text[i];
+            charData.callback = () => {
+                if (index === 0)
+                {
+                    this.#face.color.a = +this.#showFace;
+                    this.#showFace = false;
+                }
+                
+                if (text[currentI] !== "\n")
+                {
+                    const char = this.#text.characters[index];
+                    char.color = new Color(
+                        char.color.r,
+                        char.color.g,
+                        char.color.b,
+                        1
+                    );
+                }
+
+                if (index !== 0 && index % 3 === 0) AudioManager.instance.PlaySE("dialogue_3");
+            };
+
             currentTime += this.#speed;
+
+            if (text[i] !== "\n") textIndex++;
         }
+
+        await new Promise(resolve => requestAnimationFrame(resolve));
         
         this.#typing = true;
+    }
+
+    Unpause ()
+    {
+        if (!this.#canUnpause || this.#playIndex >= this.#pauseCount) return;
+            
+        this.#playIndex++;
+        this.#arrow.color.a = 0;
+        this.#canUnpause = false;
     }
 }
