@@ -56,29 +56,29 @@ class AudioManager extends GameBehavior
         const sources = this.GetComponents("AudioSource");
         
         this.bgm = sources[0];
-        this.bgm.volume = 0.24;
+        this.bgm.volume = 0.003 * AudioManager.bgmVolume;
 
-        AudioManager.onBGMVolumeChange.Add(vol => this.bgm.volume = 0.24 * vol);
+        AudioManager.onBGMVolumeChange.Add(vol => this.bgm.volume = 0.3 * vol);
 
         this.se = sources[1];
-        this.se.volume = 0.6;
+        this.se.volume = 0.006 * AudioManager.seVolume;
 
         // Yes these are separate sources
         // just to replicate how RPG Maker MV does "AudioManager.playStaticSe"
         this.#select = sources[2];
-        this.#select.volume = 0.4;
+        this.#select.volume = 0.006 * AudioManager.seVolume;
 
         this.#confirm = sources[3];
-        this.#confirm.volume = 0.4;
+        this.#confirm.volume = 0.006 * AudioManager.seVolume;
 
         this.#no = sources[4];
-        this.#no.volume = 0.6;
+        this.#no.volume = 0.009 * AudioManager.seVolume;
 
         AudioManager.onSEVolumeChange.Add(vol => {
             this.se.volume = 0.6 * vol;
-            this.#select.volume = 0.4 * vol;
-            this.#confirm.volume = 0.4 * vol;
-            this.#no.volume = 0.6 * vol;
+            this.#select.volume = 0.6 * vol;
+            this.#confirm.volume = 0.6 * vol;
+            this.#no.volume = 0.9 * vol;
         });
     }
 

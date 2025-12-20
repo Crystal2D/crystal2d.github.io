@@ -1,6 +1,7 @@
 class MapConfig extends GameBehavior
 {
     transfers = [];
+    interactables = [];
 
     Start ()
     {
@@ -15,6 +16,13 @@ class MapConfig extends GameBehavior
             {
                 for (let y = min.y; y <= max.y; y++) MapGrid.current.NodeOnGrid(new Vector2(x, y)).owner = this.transfers[i];
             }
+        }
+
+        for (let i = 0; i < this.interactables.length; i++)
+        {
+            const pos = this.interactables[i].pos;
+
+            MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).owner = this.interactables[i];
         }
 
         if (MapTransfer.last != null)

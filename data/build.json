@@ -6,7 +6,7 @@
         "Crystal.Audio",
         "Crystal.HTMLUI",
         "Assembly-JavaScript",
-        "DialogueSystem"
+        "EventSystem"
     ],
     "scripts" : [
         "plugins/Crispixels",
@@ -26,7 +26,6 @@
     "scenes" : [
         "init",
         "loading",
-        "diatest",
         "title",
         "map_init",
         "yokihouse",

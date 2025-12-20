@@ -2,11 +2,13 @@ class Player extends RPGMovement
 {
     static instance = null;
 
+    #primaryInput = false;
     #tertriaryInput = false;
     #xTime = 0;
     #yTime = 0;
 
     #transfer = null;
+    #interactable = null;
 
     avoidInputs = true;
 
@@ -23,13 +25,17 @@ class Player extends RPGMovement
     
     Update ()
     {
-        this.#GetInput();
+        this.#primaryInput = InputManager.GetKey("z");
+        this.#tertriaryInput = InputManager.GetKey("shift");
 
         super.Update();
     }
 
     _DirCheck (node)
     {
+        if (node.owner instanceof Interactable) this.#interactable = node.owner;
+        else this.#interactable = null;
+
         if (node.collider) return true;
 
         if (node.owner instanceof MapTransfer)
@@ -44,6 +50,8 @@ class Player extends RPGMovement
     _OnMovementGet ()
     {
         if (this.avoidInputs) return;
+
+        if (this.#primaryInput) this.#Interact()
 
         const input = new Vector2(
             +InputManager.GetKey("right") - +InputManager.GetKey("left"),
@@ -86,8 +94,14 @@ class Player extends RPGMovement
         }
     }
 
-    #GetInput ()
+    async #Interact ()
     {
-        this.#tertriaryInput = InputManager.GetKey("shift");
+        if (this.#interactable == null) return;
+
+        // this.avoidInputs = true;
+
+        await this.#interactable.Invoke();
+
+        this.avoidInputs = false;
     }
 }

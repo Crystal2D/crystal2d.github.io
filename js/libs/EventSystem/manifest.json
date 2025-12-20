@@ -1,0 +1,33 @@
+{
+    "name" : "EventSystem",
+    "id": "events",
+    "version": "2025.0a",
+    "deps": [
+        "main"
+    ],
+    "scripts" : [
+        "EventSystem",
+        "Interactable",
+        "DialogueBox"
+    ],
+    "classes" : [
+        {
+            "name": "DialogueBox",
+            "type": 0
+        },
+        {
+            "name": "Interactable",
+            "type": 0,
+            "args": [
+                {
+                    "type": "Vector2",
+                    "name": "pos"
+                },
+                {
+                    "type": "string",
+                    "name": "event"
+                }
+            ]
+        }
+    ]
+} 

@@ -4,6 +4,7 @@ class DialogueBox extends ItsABox
     #typing = false;
     #canUnpause = false;
     #showFace = false;
+    #skipPause = false;
     #speed = 1 / 60;
     #playIndex = 0;
     #pauseCount = 0;
@@ -21,6 +22,16 @@ class DialogueBox extends ItsABox
         this.#text = this.GetComponentInChildren("Text");
         this.#face = this.transform.Find("face").GetComponent("SpriteRenderer");
         this.#arrow = this.transform.Find("arrow").GetComponent("SpriteRenderer");
+
+        EventSystem.dialogueBox = this;
+
+        this.DontDestroyOnLoad(this, [
+            "font_main",
+            "sprites/box",
+            "sprites/arrows",
+            "sprites/faces/yoki",
+            "audio/se/dialogue_3"
+        ]);
     }
 
     #UpdateTyping ()
@@ -45,7 +56,7 @@ class DialogueBox extends ItsABox
             this.#chars[i].done = true;
         }
 
-        if (done)
+        if (this.#playIndex >= this.#pauseCount && done)
         {
             this.#startedTyping = false;
             this.#typing = false;
@@ -56,27 +67,37 @@ class DialogueBox extends ItsABox
     {
         this.#canUnpause = true;
         this.#arrow.color.a = 1;
+
+        if (this.#skipPause)
+        {
+            this.Unpause();
+            this.#skipPause = false;
+        }
     }
 
     Update ()
     {
         super.Update();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.SetFace(Resources.Find("sprites/faces/yoki").sprites[1]);
-            this.Type("I don't need to change\nclothes...\\.\\. What I'm wearing \nright now is fine.");
-        }
-
         this.#UpdateTyping();
+    }
+
+    Close ()
+    {
+        if (!this.#startedTyping) super.Close();
     }
 
     OnClose ()
     {
+        this.#face.color.a = 0;
+        this.#text.text = '';
     }
 
-    SetFace (sprite)
+    SetFace (char, name)
     {
+        if (this.#startedTyping) return;
+
+        const sprite = Resources.Find(`sprites/faces/${char}`).sprites.find(item => item.name === name).Duplicate();
+
         this.#face.sprite = sprite;
         this.#showFace = true;
     }
@@ -85,12 +106,17 @@ class DialogueBox extends ItsABox
     {
         if (this.#startedTyping) return;
 
+        this.transform.position = GameObject.Find("camera")?.transform.position;
+
         this.#startedTyping = true;
 
         this.Open();
 
         await CrystalEngine.Wait(() => this.isOpen);
 
+        text += "\\!";
+
+        this.#arrow.color.a = 0;
         this.#text.text = "";
         this.#chars = [];
 
@@ -104,6 +130,7 @@ class DialogueBox extends ItsABox
         );
 
         let escaping = false;
+        let showLineFast = false;
         let currentTime = 0;
         let textIndex = 0;
 
@@ -117,7 +144,7 @@ class DialogueBox extends ItsABox
 
             const charData = {
                 callback: () => { },
-                time: currentTime,
+                time: showLineFast ? 0 : currentTime,
                 done: false,
                 playIndex: this.#pauseCount
             };
@@ -129,21 +156,33 @@ class DialogueBox extends ItsABox
             {
                 case ".":
                     currentTime += 0.25;
-                    charData.time = currentTime;
                     typeText = false;
                     break;
                 case "|":
                     currentTime += 1;
-                    charData.time = currentTime;
                     typeText = false;
                     break;
                 case "!":
                     currentTime = 0;
-                    charData.time += 1 / 6;
                     this.#pauseCount++;
 
                     charData.callback = () => this.#AllowUnpause();
 
+                    typeText = false;
+                    break;
+                case ">":
+                    showLineFast = true;
+
+                    charData.callback = () => AudioManager.instance.PlaySE("dialogue_3");
+
+                    typeText = false;
+                    break;
+                case "<":
+                    showLineFast = false;
+                    typeText = false;
+                    break;
+                case "^":
+                    this.#skipPause = true;
                     typeText = false;
                     break;
             }
@@ -154,16 +193,17 @@ class DialogueBox extends ItsABox
 
             const index = textIndex;
             const currentI = i;
+            const shownFast = showLineFast;
             this.#text.text += text[i];
             charData.callback = () => {
-                if (index === 0)
-                {
-                    this.#face.color.a = +this.#showFace;
-                    this.#showFace = false;
-                }
-                
                 if (text[currentI] !== "\n")
                 {
+                    if (index === 0)
+                    {
+                        this.#face.color.a = +this.#showFace;
+                        this.#showFace = false;
+                    }
+                    
                     const char = this.#text.characters[index];
                     char.color = new Color(
                         char.color.r,
@@ -173,17 +213,27 @@ class DialogueBox extends ItsABox
                     );
                 }
 
-                if (index !== 0 && index % 3 === 0) AudioManager.instance.PlaySE("dialogue_3");
+                if (!shownFast && (index !== 0 && index % 3 === 0)) AudioManager.instance.PlaySE("dialogue_3");
             };
 
             currentTime += this.#speed;
 
-            if (text[i] !== "\n") textIndex++;
+            if (text[i] !== "\n")
+            {
+                textIndex++;
+                continue;
+            }
+
+            showLineFast = false;
         }
 
-        await new Promise(resolve => requestAnimationFrame(resolve));
+        this.#text.ForceMeshUpdate();
+
+        await CrystalEngine.Wait(() => this.#text.characters.length === textIndex);
         
         this.#typing = true;
+
+        await CrystalEngine.Wait(() => !this.#startedTyping);
     }
 
     Unpause ()

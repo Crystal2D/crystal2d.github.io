@@ -63,7 +63,10 @@
                     }
                 },
                 {
-                    "type": "AudioSource"
+                    "type": "AudioSource",
+                    "args": {
+                        "pitch": "0.9"
+                    }
                 },
                 {
                     "type": "AudioSource",

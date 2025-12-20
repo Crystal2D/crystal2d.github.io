@@ -4,7 +4,12 @@
         [
             "sprites/chars/yoki",
             "spritelibs/chars/yoki"
-        ]
+        ],
+        "font_main",
+        "sprites/box",
+        "sprites/arrows",
+        "sprites/faces/yoki",
+        "audio/se/dialogue_3"
     ],
     "gameObjects": [
         {
@@ -51,6 +56,107 @@
                 },
                 {
                     "type": "Player"
+                }
+            ]
+        },
+        {
+            "name": "dialogue_box",
+            "id": 2,
+            "transform": {
+                "position": { "x": 0, "y": -3.46875 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 10,
+                            "y": 2.0625
+                        },
+                        "sortingLayer": 4
+                    }
+                },
+                {
+                    "type": "DialogueBox"
+                }
+            ]
+        },
+        {
+            "name": "face",
+            "id": 3,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/faces/yoki",
+                            "name": "unsure smile"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 4,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "",
+                        "width": 7,
+                        "noCollapse": true,
+                        "overflowWidth": true,
+                        "pivot": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "color": {
+                            "r": 224,
+                            "g": 248,
+                            "b": 207,
+                            "a": 0
+                        },
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "arrow",
+            "id": 5,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "down"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 0
+                        },
+                        "sortingLayer": 4,
+                        "sortingOrder": 100
+                    }
                 }
             ]
         }

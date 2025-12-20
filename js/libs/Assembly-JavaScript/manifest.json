@@ -23,7 +23,8 @@
         "MapConfig/MapConfig",
         "MapConfig/MapTransfer",
         "Test",
-        "JumpTest"
+        "JumpTest",
+        "LocaleManager"
     ],
     "classes" : [
         {
@@ -119,6 +120,11 @@
                     "type": "MapTransfer",
                     "array": true,
                     "name": "transfers"
+                },
+                {
+                    "type": "Interactable",
+                    "array": true,
+                    "name": "interactables"
                 }
             ]
         },
