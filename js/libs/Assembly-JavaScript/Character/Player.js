@@ -2,7 +2,6 @@ class Player extends RPGMovement
 {
     static instance = null;
 
-    #primaryInput = false;
     #tertriaryInput = false;
     #xTime = 0;
     #yTime = 0;
@@ -25,7 +24,6 @@ class Player extends RPGMovement
     
     Update ()
     {
-        this.#primaryInput = InputManager.GetKey("z");
         this.#tertriaryInput = InputManager.GetKey("shift");
 
         super.Update();
@@ -51,7 +49,7 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
-        if (this.#primaryInput) this.#Interact()
+        if (InputManager.GetKeyDown("z")) this.#Interact();
 
         const input = new Vector2(
             +InputManager.GetKey("right") - +InputManager.GetKey("left"),
@@ -98,7 +96,7 @@ class Player extends RPGMovement
     {
         if (this.#interactable == null) return;
 
-        // this.avoidInputs = true;
+        this.avoidInputs = true;
 
         await this.#interactable.Invoke();
 

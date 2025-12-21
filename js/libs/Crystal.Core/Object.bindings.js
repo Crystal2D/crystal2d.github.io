@@ -92,9 +92,15 @@ Object.prototype.DontDestroyOnLoad = function (obj, res = [])
     if (obj instanceof Component) obj = obj.gameObject;
 
     const child = obj.transform.GetChildren();
-    for (let i = 0; i < child.length; i++) this.DontDestroyOnLoad(child[i]);
+    for (let i = 0; i < child.length; i++)
+    {
+        child[i].parent = null;
+        this.DontDestroyOnLoad(child[i]);
+    }
 
     obj.keepOnLoad = true;
+
+    for (let i = 0; i < child.length; i++) child[i].parent = obj.transform;
 
     Resources.DontDestroyOnLoad(...res);
 };

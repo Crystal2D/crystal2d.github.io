@@ -78,12 +78,19 @@ class DialogueBox extends ItsABox
     Update ()
     {
         super.Update();
+
+        if (InputManager.IsRepeated("z")) this.Unpause();
+
         this.#UpdateTyping();
     }
 
-    Close ()
+    async Close ()
     {
-        if (!this.#startedTyping) super.Close();
+        if (this.#startedTyping) return;
+        
+        super.Close();
+
+        await CrystalEngine.Wait(() => this.isClosed);
     }
 
     OnClose ()
@@ -106,7 +113,7 @@ class DialogueBox extends ItsABox
     {
         if (this.#startedTyping) return;
 
-        this.transform.position = GameObject.Find("camera")?.transform.position;
+        this.transform.parent = GameObject.Find("camera")?.transform;
 
         this.#startedTyping = true;
 
@@ -120,10 +127,7 @@ class DialogueBox extends ItsABox
         this.#text.text = "";
         this.#chars = [];
 
-        this.#face.transform.position = new Vector2(
-            -3 * 1.325,
-            this.spriteRenderer.bounds.center.y
-        );
+        this.#face.transform.localPosition = new Vector2(-3 * 1.325, 0);
         this.#text.transform.position = new Vector2(
             this.#showFace ? (this.#face.bounds.max.x + (0.375 * 0.65)) : (this.spriteRenderer.bounds.min.x + (0.375 * 0.75)),
             this.spriteRenderer.bounds.max.y - (0.5725 * 0.4)

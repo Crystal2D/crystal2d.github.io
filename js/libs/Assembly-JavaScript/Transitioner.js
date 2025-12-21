@@ -123,7 +123,7 @@ class Transitioner extends GameBehavior
     TintIn (callback = () => { })
     {
         this.#materials = [];
-        const renderers = GameObject.FindComponents("Renderer");
+        const renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
 
         for (let i = 0; i < renderers.length; i++)
         {
@@ -154,7 +154,7 @@ class Transitioner extends GameBehavior
     TintOut (callback = () => { })
     {
         this.#materials = [];
-        const renderers = GameObject.FindComponents("Renderer");
+        const renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
 
         for (let i = 0; i < renderers.length; i++)
         {
