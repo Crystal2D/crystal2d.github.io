@@ -21,10 +21,31 @@
         }
     },
     {
+        "path": "audio/se/dialogue_1",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/dialogue_1.ogg"
+        }
+    },
+    {
+        "path": "audio/se/dialogue_2",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/dialogue_2.ogg"
+        }
+    },
+    {
         "path": "audio/se/dialogue_3",
         "type": "AudioClip",
         "args": {
             "src": "se/dialogue_3.ogg"
+        }
+    },
+    {
+        "path": "audio/se/dialogue_4",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/dialogue_4.ogg"
         }
     }
 ]

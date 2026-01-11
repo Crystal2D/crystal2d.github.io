@@ -31,9 +31,6 @@ class Player extends RPGMovement
 
     _DirCheck (node)
     {
-        if (node.owner instanceof Interactable) this.#interactable = node.owner;
-        else this.#interactable = null;
-
         if (node.collider) return true;
 
         if (node.owner instanceof MapTransfer)
@@ -48,6 +45,11 @@ class Player extends RPGMovement
     _OnMovementGet ()
     {
         if (this.avoidInputs) return;
+
+        const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.gridPos, this.lookingAt));
+
+        if (lookedNode.owner instanceof Interactable) this.#interactable = lookedNode.owner;
+        else this.#interactable = null;
 
         if (InputManager.GetKeyDown("z")) this.#Interact();
 

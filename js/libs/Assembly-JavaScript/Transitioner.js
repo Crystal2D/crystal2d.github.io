@@ -13,7 +13,7 @@ class Transitioner extends GameBehavior
     #tintTarget = new Color(0, 0, 0, 0);
     #tintDuration = 0;
     #tintTime = 0;
-    #materials = [];
+    #renderers = [];
     #tintInTime = 0;
     #tintInState = -1;
     #tintOutTime = 0;
@@ -93,24 +93,53 @@ class Transitioner extends GameBehavior
             this.#tintTime / this.#tintDuration
         );
 
-        for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 
-            this.#tint.r,
-            this.#tint.g,
-            this.#tint.b,
-            0
-        );
+        for (let i = 0; i < this.#renderers.length; i++)
+        {
+            this.#renderers[i].material.SetVector("uTint", 
+                this.#tint.r,
+                this.#tint.g,
+                this.#tint.b,
+                0
+            );
+
+            if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
+            {
+                const materials = this.#renderers[i].materials;
+                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 
+                    this.#tint.r,
+                    this.#tint.g,
+                    this.#tint.b,
+                    0
+                );
+            }
+        }
     }
 
     #StartTintBase (color, duration)
     {
         if (duration === 0)
         {
-            for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 
-                color.r,
-                color.g,
-                color.b,
-                0
-            );
+            for (let i = 0; i < this.#renderers.length; i++)
+            {
+
+                this.#renderers[i].material.SetVector("uTint", 
+                    color.r,
+                    color.g,
+                    color.b,
+                    0
+                );
+
+                if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
+                {
+                    const materials = this.#renderers[i].materials;
+                    for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 
+                        color.r,
+                        color.g,
+                        color.b,
+                        0
+                    );
+                }
+            }
 
             return;
         }
@@ -122,27 +151,22 @@ class Transitioner extends GameBehavior
 
     TintIn (callback = () => { })
     {
-        this.#materials = [];
-        const renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
+        this.#renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
 
-        for (let i = 0; i < renderers.length; i++)
+        for (let i = 0; i < this.#renderers.length; i++)
         {
-            const renderer = renderers[i];
+            const renderer = this.#renderers[i];
 
             if (renderer === this.#sprite) continue;
 
             const material = new Material(null, Shader.Find("Default/Tinted", "FRAGMENT"));
             renderer.material = material;
             material.SetVector("uTint", 0, 0, 0, 0);
-            this.#materials.push(material);
 
             if (renderer instanceof Tilemap)
             {
                 const materials = renderer.materials;
-
                 for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 0, 0, 0, 0);
-
-                this.#materials.push(...materials);
             }
         }
 
@@ -153,12 +177,11 @@ class Transitioner extends GameBehavior
 
     TintOut (callback = () => { })
     {
-        this.#materials = [];
-        const renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
+        this.#renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
 
-        for (let i = 0; i < renderers.length; i++)
+        for (let i = 0; i < this.#renderers.length; i++)
         {
-            const renderer = renderers[i];
+            const renderer = this.#renderers[i];
 
             if (renderer === this.#sprite) continue;
 
@@ -170,20 +193,16 @@ class Transitioner extends GameBehavior
                 90 / 255,
                 0
             );
-            this.#materials.push(material);
 
             if (renderer instanceof Tilemap)
             {
                 const materials = renderer.materials;
-
                 for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint",
                     130 / 255,
                     120 / 255,
                     90 / 255,
                     0
                 );
-
-                this.#materials.push(...materials);
             }
         }
 
@@ -201,7 +220,16 @@ class Transitioner extends GameBehavior
 
         this.#sprite.color.a = 0;
 
-        for (let i = 0; i < this.#materials.length; i++) this.#materials[i].SetVector("uTint", 0, 0, 0, 0);
+        for (let i = 0; i < this.#renderers.length; i++)
+        {
+            this.#renderers[i].material.SetVector("uTint", 0, 0, 0, 0);
+
+            if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
+            {
+                const materials = this.#renderers[i].materials;
+                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 0, 0, 0, 0);
+            }
+        }
     }
 
     #UpdateTint ()

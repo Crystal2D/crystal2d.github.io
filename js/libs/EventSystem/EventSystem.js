@@ -13,26 +13,19 @@ class EventSystem
                 break;
             case "EV025":
                 this.dialogueBox.SetFace("yoki", "look");
-                // await this.dialogueBox.Type(LocaleManager.Find("EV025"));
-                await this.dialogueBox.Type("Carrots.");
-                this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type("They keep on disappearing.");
+                await this.dialogueBox.Type(LocaleManager.Find("EV025"));
                 await this.dialogueBox.Close();
                 break;
             case "EV029":
                 this.dialogueBox.SetFace("yoki", "look");
                 await this.dialogueBox.Type(LocaleManager.Find("EV029")[0]);
-                this.dialogueBox.SetFace("yoki", "smile");
-                // this.dialogueBox.SetFace("yoki", "look");
-                // await this.dialogueBox.Type(LocaleManager.Find("EV029")[1]);
-                await this.dialogueBox.Type("Zera is still here.");
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find("EV029")[1]);
                 await this.dialogueBox.Close();
                 break;
             case "EV054":
-                // this.dialogueBox.SetFace("yoki", "look");
-                this.dialogueBox.SetFace("yoki", "sweat drop");
-                // await this.dialogueBox.Type(LocaleManager.Find("EV054"));
-                await this.dialogueBox.Type("There's a pipe bomb!");
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find("EV054"));
                 await this.dialogueBox.Close();
                 break;
             

@@ -243,7 +243,7 @@ class AudioSource extends Behavior
         this.#paused = false;
     }
 
-    PlayOneShot (clip, volumeScale)
+    PlayOneShot (clip, volumeScale, pitchScale)
     {
         const gain = this.#context.createGain();
         gain.connect(this.#context.destination);
@@ -254,7 +254,7 @@ class AudioSource extends Behavior
 
         const updateParams = () => {
             gain.gain.value = this.volume * Math.max(volumeScale ?? 1, 0);
-            source.playbackRate.value = this.#pitch;
+            source.playbackRate.value = this.#pitch * Math.max(pitchScale ?? 1, 0);
         };
         updateParams();
         this.#onParamUpdate.Add(updateParams);

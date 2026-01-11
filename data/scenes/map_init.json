@@ -5,11 +5,18 @@
             "sprites/chars/yoki",
             "spritelibs/chars/yoki"
         ],
+        [
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl"
+        ],
         "font_main",
         "sprites/box",
         "sprites/arrows",
         "sprites/faces/yoki",
-        "audio/se/dialogue_3"
+        "audio/se/dialogue_1",
+        "audio/se/dialogue_2",
+        "audio/se/dialogue_3",
+        "audio/se/dialogue_4"
     ],
     "gameObjects": [
         {
@@ -141,7 +148,7 @@
             "id": 5,
             "parent": 2,
             "transform": {
-                "position": { "x": 0, "y": -0.9125 }
+                "position": { "x": 0, "y": -0.925 }
             },
             "components": [
                 {
@@ -158,6 +165,12 @@
                             "a": 0
                         },
                         "sortingLayer": 4
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/dialogue_arrow_ctrl"
                     }
                 }
             ]

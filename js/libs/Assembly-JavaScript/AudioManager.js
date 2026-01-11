@@ -100,9 +100,9 @@ class AudioManager extends GameBehavior
         this.#clipName = null;
     }
 
-    PlaySE (name)
+    PlaySE (name, volume, pitch)
     {
-        this.se.PlayOneShot(Resources.Find(`audio/se/${name}`));
+        this.se.PlayOneShot(Resources.Find(`audio/se/${name}`), volume, pitch);
     }
 
     PlaySelect ()

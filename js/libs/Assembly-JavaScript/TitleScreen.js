@@ -34,7 +34,7 @@ class TitleScreen extends ChoiceBox
 
         Transitioner.instance.FadeIn(() => {
             this.Open();
-            AudioManager.instance.PlayBGM("title");
+            // AudioManager.instance.PlayBGM("title");
         });
     }
 }

@@ -34,6 +34,11 @@ class RPGMovement extends GameBehavior
         this.LookAt(value);
     }
 
+    get gridPos ()
+    {
+        return this.#node.pos;
+    }
+
     updateMovement = true;
     speed = 1.875;
     speedScale = 1;
@@ -50,7 +55,7 @@ class RPGMovement extends GameBehavior
 
     #DirBlocked ()
     {
-        const checkedNode = MapGrid.current.NodeOn(Vector2.Add(this.#node.pos, this._moveDir));
+        const checkedNode = MapGrid.current.NodeOn(Vector2.Add(this.gridPos, this._moveDir));
 
         if (this._DirCheck(checkedNode)) return true;
 
@@ -92,7 +97,7 @@ class RPGMovement extends GameBehavior
             this.#lastNode.owner = null;
             this.#lastNode = null;
 
-            Window.SetTitle(`${this.#node.gridPos.toString()} ${this.transform.localPosition.x} ${this.transform.localPosition.y}`);
+            // Window.SetTitle(`${this.#node.gridPos.toString()} ${this.transform.localPosition.x} ${this.transform.localPosition.y}`);
 
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;

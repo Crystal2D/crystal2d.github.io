@@ -2,13 +2,78 @@ class DialogueBox extends ItsABox
 {
     #startedTyping = false;
     #typing = false;
+    #shouldUnpause = false;
     #canUnpause = false;
     #showFace = false;
     #skipPause = false;
     #speed = 1 / 60;
     #playIndex = 0;
     #pauseCount = 0;
+    #pauseTime = 0;
     #chars = [];
+    #se = 1;
+    #ses = [
+        {
+            name: "dialogue_3",
+            pitch: 0.9
+        },
+        {
+            name: "dialogue_3",
+            pitch: 1.1
+        },
+        {
+            name: "dialogue_1",
+            pitch: 0.8
+        },
+        {
+            name: "dialogue_3",
+            pitch: 1.25
+        },
+        {
+            name: "dialogue_1",
+            pitch: 1.2
+        },
+        {
+            name: "dialogue_4",
+            pitch: 1.4
+        },
+        {
+            name: "dialogue_4",
+            pitch: 0.6
+        },
+        {
+            name: "dialogue_1",
+            pitch: 1.1
+        },
+        {
+            name: "dialogue_1",
+            pitch: 1
+        },
+        {
+            name: "dialogue_3",
+            pitch: 1.15
+        },
+        {
+            name: "dialogue_4",
+            pitch: 1.6
+        },
+        {
+            name: "dialogue_4",
+            pitch: 0.7
+        },
+        {
+            name: "dialogue_3",
+            pitch: 1
+        },
+        {
+            name: "dialogue_4",
+            pitch: 1.6
+        },
+        {
+            name: "dialogue_3",
+            pitch: 1.25
+        }
+    ]
 
     #face = null;
     #text = null;
@@ -30,7 +95,12 @@ class DialogueBox extends ItsABox
             "sprites/box",
             "sprites/arrows",
             "sprites/faces/yoki",
-            "audio/se/dialogue_3"
+            "audio/se/dialogue_1",
+            "audio/se/dialogue_2",
+            "audio/se/dialogue_3",
+            "audio/se/dialogue_4",
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl"
         ]);
     }
 
@@ -65,8 +135,7 @@ class DialogueBox extends ItsABox
 
     #AllowUnpause ()
     {
-        this.#canUnpause = true;
-        this.#arrow.color.a = 1;
+        this.#shouldUnpause = true;
 
         if (this.#skipPause)
         {
@@ -78,6 +147,14 @@ class DialogueBox extends ItsABox
     Update ()
     {
         super.Update();
+
+        if (this.#shouldUnpause && this.#pauseTime > 0)
+        {
+            this.#pauseTime -= Time.deltaTime;
+            this.#arrow.color.a = Math.max(0, (1 / 6) - this.#pauseTime) * 6;
+
+            if (this.#pauseTime <= 0) this.#canUnpause = true;
+        }
 
         if (InputManager.IsRepeated("z")) this.Unpause();
 
@@ -96,7 +173,7 @@ class DialogueBox extends ItsABox
     OnClose ()
     {
         this.#face.color.a = 0;
-        this.#text.text = '';
+        this.#text.text = "";
     }
 
     SetFace (char, name)
@@ -116,6 +193,8 @@ class DialogueBox extends ItsABox
         this.transform.parent = GameObject.Find("camera")?.transform;
 
         this.#startedTyping = true;
+        this.#arrow.color.a = 0;
+        this.#pauseTime = 1 / 6;
 
         this.Open();
 
@@ -123,7 +202,6 @@ class DialogueBox extends ItsABox
 
         text += "\\!";
 
-        this.#arrow.color.a = 0;
         this.#text.text = "";
         this.#chars = [];
 
@@ -137,6 +215,7 @@ class DialogueBox extends ItsABox
         let showLineFast = false;
         let currentTime = 0;
         let textIndex = 0;
+        let se = this.#se;
 
         for (let i = 0; i < text.length; i++)
         {
@@ -189,6 +268,17 @@ class DialogueBox extends ItsABox
                     this.#skipPause = true;
                     typeText = false;
                     break;
+                case "S":
+                    const matched = text.substring(i).match(/^SE\[[0-9]+\]/)[0];
+
+                    if (matched != null)
+                    {
+                        se = parseInt(matched.slice(3, -1));
+                        this.#se = se;
+                        i += matched.length - 1;
+                        typeText = false;
+                    }
+                    break;
             }
 
             escaping = false;
@@ -197,8 +287,11 @@ class DialogueBox extends ItsABox
 
             const index = textIndex;
             const currentI = i;
+            const currentSE = se;
             const shownFast = showLineFast;
+
             this.#text.text += text[i];
+
             charData.callback = () => {
                 if (text[currentI] !== "\n")
                 {
@@ -216,9 +309,14 @@ class DialogueBox extends ItsABox
                         1
                     );
                 }
-
-                if (!shownFast && (index !== 0 && index % 3 === 0)) AudioManager.instance.PlaySE("dialogue_3");
             };
+
+            if (currentSE > 0 && text[i] !== "\n" && !shownFast && (index !== 0 && index % 4 === 0)) this.#chars.push({
+                callback: () => AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch),
+                time: currentTime - AudioSettings.latency,
+                done: false,
+                playIndex: this.#pauseCount
+            });
 
             currentTime += this.#speed;
 
@@ -246,6 +344,8 @@ class DialogueBox extends ItsABox
             
         this.#playIndex++;
         this.#arrow.color.a = 0;
+        this.#pauseTime = 1 / 6;
+        this.#shouldUnpause = false;
         this.#canUnpause = false;
     }
 }
