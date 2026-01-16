@@ -82,5 +82,89 @@
                 }
             ]
         }
+    },
+    {
+        "path": "spritelibs/chars/zera",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/zera",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     }
 ]

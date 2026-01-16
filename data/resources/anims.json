@@ -76,7 +76,7 @@
         }
     },
     {
-        "path": "anims/npc",
+        "path": "anims/entity",
         "type": "AnimationClip",
         "args": {
             "loop": true,
@@ -107,14 +107,14 @@
         }
     },
     {
-        "path": "anims/npc_ctrl",
+        "path": "anims/entity_ctrl",
         "type": "AnimatorController",
         "args": {
             "motions": [
                 {
                     "name": "main",
                     "speed": 1,
-                    "animation": "anims/npc"
+                    "animation": "anims/entity"
                 }
             ]
         }

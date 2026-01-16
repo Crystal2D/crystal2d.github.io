@@ -6,7 +6,12 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_village",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/zera",
+            "spritelibs/chars/zera"
+        ],
+        "sprites/faces/zera"
     ],
     "gameObjects": [
         {
@@ -76,11 +81,9 @@
                                 "pos": { "x": 7, "y": -18 },
                                 "event": "EV029"
                             },
-
-
                             {
-                                "pos": { "x": 2, "y": -2 },
-                                "event": "WHAT"
+                                "pos": { "x": -1, "y": -3 },
+                                "event": "Zera"
                             }
                         ]
                     }
@@ -7762,6 +7765,41 @@
                 },
                 {
                     "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "char_zera",
+            "id": 7,
+            "transform": {
+                "position": { "x": -0.5, "y": -1.5 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/zera",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/zera"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
                 }
             ]
         }

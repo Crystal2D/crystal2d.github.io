@@ -6,6 +6,7 @@ class DialogueBox extends ItsABox
     #canUnpause = false;
     #showFace = false;
     #skipPause = false;
+    #showFast = false;
     #speed = 1 / 60;
     #playIndex = 0;
     #pauseCount = 0;
@@ -73,7 +74,7 @@ class DialogueBox extends ItsABox
             name: "dialogue_3",
             pitch: 1.25
         }
-    ]
+    ];
 
     #face = null;
     #text = null;
@@ -120,7 +121,13 @@ class DialogueBox extends ItsABox
 
             this.#chars[i].time -= Time.deltaTime;
 
-            if (this.#chars[i].time > 0) continue;
+            if (!this.#showFast && this.#chars[i].time > 0) continue;
+
+            if (i === 0)
+            {
+                this.#face.color.a = +this.#showFace;
+                this.#showFace = false;
+            }
 
             this.#chars[i].callback();
             this.#chars[i].done = true;
@@ -156,7 +163,11 @@ class DialogueBox extends ItsABox
             if (this.#pauseTime <= 0) this.#canUnpause = true;
         }
 
-        if (InputManager.IsRepeated("z")) this.Unpause();
+        if (InputManager.IsRepeated("z") || InputManager.IsRepeated("x"))
+        {
+            if (!this.#shouldUnpause) this.ShowFast();
+            else this.Unpause();
+        }
 
         this.#UpdateTyping();
     }
@@ -233,6 +244,7 @@ class DialogueBox extends ItsABox
             };
             this.#chars.push(charData);
 
+            const currentSE = se;
             let typeText = true;
 
             if (escaping) switch (text[i])
@@ -256,7 +268,9 @@ class DialogueBox extends ItsABox
                 case ">":
                     showLineFast = true;
 
-                    charData.callback = () => AudioManager.instance.PlaySE("dialogue_3");
+                    charData.callback = () => {
+                        if (!this.#showFast) AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch);
+                    };
 
                     typeText = false;
                     break;
@@ -283,11 +297,12 @@ class DialogueBox extends ItsABox
 
             escaping = false;
 
+            currentTime += this.#speed;
+
             if (!typeText) continue;
 
             const index = textIndex;
             const currentI = i;
-            const currentSE = se;
             const shownFast = showLineFast;
 
             this.#text.text += text[i];
@@ -295,12 +310,6 @@ class DialogueBox extends ItsABox
             charData.callback = () => {
                 if (text[currentI] !== "\n")
                 {
-                    if (index === 0)
-                    {
-                        this.#face.color.a = +this.#showFace;
-                        this.#showFace = false;
-                    }
-                    
                     const char = this.#text.characters[index];
                     char.color = new Color(
                         char.color.r,
@@ -312,13 +321,13 @@ class DialogueBox extends ItsABox
             };
 
             if (currentSE > 0 && text[i] !== "\n" && !shownFast && (index !== 0 && index % 4 === 0)) this.#chars.push({
-                callback: () => AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch),
+                callback: () => {
+                    if (!this.#showFast) AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch);
+                },
                 time: currentTime - AudioSettings.latency,
                 done: false,
                 playIndex: this.#pauseCount
             });
-
-            currentTime += this.#speed;
 
             if (text[i] !== "\n")
             {
@@ -333,6 +342,7 @@ class DialogueBox extends ItsABox
 
         await CrystalEngine.Wait(() => this.#text.characters.length === textIndex);
         
+        this.#showFast = false;
         this.#typing = true;
 
         await CrystalEngine.Wait(() => !this.#startedTyping);
@@ -347,5 +357,13 @@ class DialogueBox extends ItsABox
         this.#pauseTime = 1 / 6;
         this.#shouldUnpause = false;
         this.#canUnpause = false;
+        this.#showFast = false;
+    }
+
+    ShowFast ()
+    {
+        if (this.#shouldUnpause) return;
+
+        this.#showFast = true;
     }
 }

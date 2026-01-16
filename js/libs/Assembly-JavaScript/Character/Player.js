@@ -9,6 +9,7 @@ class Player extends RPGMovement
     #transfer = null;
     #interactable = null;
 
+    animateWalk = true;
     avoidInputs = true;
 
     Start ()
@@ -24,6 +25,8 @@ class Player extends RPGMovement
     
     Update ()
     {
+        Window.SetTitle(`${this.gridPos.toString()} ${this.transform.position.x} ${this.transform.position.y}`);
+
         this.#tertriaryInput = InputManager.GetKey("shift");
 
         super.Update();
@@ -46,12 +49,14 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
-        const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.gridPos, this.lookingAt));
+        const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
 
         if (lookedNode.owner instanceof Interactable) this.#interactable = lookedNode.owner;
         else this.#interactable = null;
 
         if (InputManager.GetKeyDown("z")) this.#Interact();
+
+        if (this.avoidInputs) return;
 
         const input = new Vector2(
             +InputManager.GetKey("right") - +InputManager.GetKey("left"),

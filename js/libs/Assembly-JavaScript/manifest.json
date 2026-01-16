@@ -72,6 +72,10 @@
             "type" : 0
         },
         {
+            "name" : "RPGMovement",
+            "type" : 0
+        },
+        {
             "name" : "Player",
             "type" : 0
         },

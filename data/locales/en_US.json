@@ -6,6 +6,11 @@
     "Our well...",
     "I don't really need any \nwater right now."
 ],
-"EV054": "Nothing to deliver today."
+"EV054": "Nothing to deliver today.",
+"Zera": [
+    "\\SE[1]How long are you gonna\nstand next to the house?",
+    "\\SE[3]How long would you like me \nto stay?",
+    "\\SE[1]You could leave now if you'd \nlike."
+]
 
 }

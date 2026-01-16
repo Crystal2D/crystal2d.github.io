@@ -28,14 +28,16 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find("EV054"));
                 await this.dialogueBox.Close();
                 break;
-            
-            case "WHAT":
-                this.dialogueBox.SetFace("yoki", "sweat drop");
-                await this.dialogueBox.Type("Its...\\.\\. locked!?");
-                this.dialogueBox.SetFace("yoki", "meditative");
-                await this.dialogueBox.Type(".\\|.\\|.");
-                this.dialogueBox.SetFace("yoki", "upset");
-                await this.dialogueBox.Type("CLAAAAAAAAIIIIIIREEEEEE!!!\\!\nOPEN\\.\\. THE\\.\\. DOOR!!!!");
+            case "Zera":
+                const zera = GameObject.Find("char_zera").GetComponent("RPGMovement");
+                zera.LookAt(Vector2.Subtract(Player.instance.gridPos, zera.gridPos));
+
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find("Zera")[0]);
+                this.dialogueBox.SetFace("zera", "look");
+                await this.dialogueBox.Type(LocaleManager.Find("Zera")[1]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find("Zera")[2]);
                 await this.dialogueBox.Close();
                 break;
         }
