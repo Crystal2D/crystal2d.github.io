@@ -1,5 +1,7 @@
 class Renderer extends Component
 {
+    static sortingAxis = Vector2.zero;
+
     #loaded = false;
     #updatedMaterial = false;
     

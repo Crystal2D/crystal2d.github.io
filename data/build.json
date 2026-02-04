@@ -81,5 +81,6 @@
             "id": 4,
             "value": 3
         }
-    ]
+    ],
+    "sortingAxis" : { "x": 0, "y": 1 }
 }

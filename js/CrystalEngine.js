@@ -526,6 +526,8 @@ class CrystalEngine
             SortingLayer.Add(this.#buildData.layers);
             SceneManager.Set(this.#buildData.scenes);
 
+            Camera.sortingAxis = await SceneManager.CreateObject("Vector2", this.#buildData.sortingAxis);
+
             if (this.#terminateStart) return;
 
             Input.Init();

@@ -29,8 +29,7 @@ class EventSystem
                 await this.dialogueBox.Close();
                 break;
             case "Zera":
-                const zera = GameObject.Find("char_zera").GetComponent("RPGMovement");
-                zera.LookAt(Vector2.Subtract(Player.instance.gridPos, zera.gridPos));
+                GameObject.Find("char_zera").GetComponent("RPGMovement").LookAtChar(Player.instance);
 
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find("Zera")[0]);
@@ -38,6 +37,14 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find("Zera")[1]);
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find("Zera")[2]);
+                await this.dialogueBox.Close();
+                break;
+            case "Hint Bird":
+                // GameObject.Find("char_zera").GetComponent("RPGMovement").LookAtChar(Player.instance);
+
+                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[0]);
+                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[1]);
+                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[2]);
                 await this.dialogueBox.Close();
                 break;
         }

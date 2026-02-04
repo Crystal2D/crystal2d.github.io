@@ -11,6 +11,11 @@
     "\\SE[1]How long are you gonna\nstand next to the house?",
     "\\SE[3]How long would you like me \nto stay?",
     "\\SE[1]You could leave now if you'd \nlike."
+],
+"Hint Bird": [
+    "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
+    "I'm here to help!",
+    "Would you like a hint?"
 ]
 
 }

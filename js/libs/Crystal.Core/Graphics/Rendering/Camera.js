@@ -1,11 +1,19 @@
 class Camera extends Behavior
 {
+    static sortingAxis = Vector2.zero;
+
     #updateProjMat = true;
     
     #projMatrix = null;
+
+    get #sortingDir ()
+    {
+        return this.sortingAxis ?? Camera.sortingAxis;
+    }
     
     orthographicSize = 9;
     backgroundColor = new Color();
+    sortingAxis = null;
     
     get bounds ()
     {
@@ -85,9 +93,17 @@ class Camera extends Behavior
         const min = this.bounds.min;
         const max = this.bounds.max;
 
+        const sortingDir = this.#sortingDir;
+
         const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y))
             .filter(item => item.GetComponent("Renderer").isLoaded && item.activeInHierarchy)
             .map(item => item.GetComponent("Renderer"))
+            .sort((a, b) => {
+                const x = (a.transform.position.x - b.transform.position.x) * -sortingDir.x;
+                const y = (a.transform.position.y - b.transform.position.y) * -sortingDir.y;
+
+                return x + y; // idk lol
+            })
             .sort((a, b) => a.sortingOrder - b.sortingOrder);
             
         if (SortingLayer.ids.length > 1) objs.sort((a, b) => SortingLayer.ids.indexOf(a.sortingLayer) - SortingLayer.ids.indexOf(b.sortingLayer));

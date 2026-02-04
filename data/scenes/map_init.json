@@ -110,7 +110,8 @@
                             "b": 255,
                             "a": 0
                         },
-                        "sortingLayer": 4
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
                     }
                 }
             ]
@@ -138,7 +139,8 @@
                             "b": 207,
                             "a": 0
                         },
-                        "sortingLayer": 4
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
                     }
                 }
             ]
@@ -164,7 +166,8 @@
                             "b": 255,
                             "a": 0
                         },
-                        "sortingLayer": 4
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
                     }
                 },
                 {

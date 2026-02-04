@@ -299,7 +299,11 @@ class Input
 
             setMousePos(event);
 
-            const keyIndex = this.#FindKeyByCode(mouseKeys[event.button]);
+            const key = mouseKeys[event.button];
+
+            if (key == null) return;
+
+            const keyIndex = this.#FindKeyByCode(key);
             
             this.#keys[keyIndex].active = true;
         });
@@ -310,7 +314,11 @@ class Input
 
             setMousePos(event);
 
-            const keyIndex = this.#FindKeyByCode(mouseKeys[event.button]);
+            const key = mouseKeys[event.button];
+
+            if (key == null) return;
+
+            const keyIndex = this.#FindKeyByCode(key);
             
             this.#keys[keyIndex].active = false;
         });

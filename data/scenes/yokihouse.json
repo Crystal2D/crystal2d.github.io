@@ -11,7 +11,8 @@
             "sprites/chars/zera",
             "spritelibs/chars/zera"
         ],
-        "sprites/faces/zera"
+        "sprites/faces/zera",
+        "sprites/chars/zera"
     ],
     "gameObjects": [
         {
@@ -25,8 +26,14 @@
                     "type": "CamCtrl",
                     "args": {
                         "target": "char_yoki",
-                        "clampMin": { "x": -3.75, "y": -7.25 },
-                        "clampMax": { "x": 3.75, "y": 3.75 }
+                        "clampMin": {
+                            "x": -3.75,
+                            "y": -7.25
+                        },
+                        "clampMax": {
+                            "x": 3.75,
+                            "y": 3.75
+                        }
                     }
                 }
             ]
@@ -41,49 +48,112 @@
                         "transfers": [
                             {
                                 "scene": 5,
-                                "min": { "x": -6, "y": -23 },
-                                "max": { "x": -4, "y": -23 },
-                                "pos": { "x": -3, "y": 18 }
+                                "min": {
+                                    "x": -6,
+                                    "y": -23
+                                },
+                                "max": {
+                                    "x": -4,
+                                    "y": -23
+                                },
+                                "pos": {
+                                    "x": -3,
+                                    "y": 18
+                                }
                             },
                             {
                                 "scene": 5,
-                                "min": { "x": -3, "y": -23 },
-                                "max": { "x": -1, "y": -23 },
-                                "pos": { "x": -2, "y": 18 }
+                                "min": {
+                                    "x": -3,
+                                    "y": -23
+                                },
+                                "max": {
+                                    "x": -1,
+                                    "y": -23
+                                },
+                                "pos": {
+                                    "x": -2,
+                                    "y": 18
+                                }
                             }
                         ],
                         "interactables": [
                             {
-                                "pos": { "x": 3, "y": -3 },
+                                "pos": {
+                                    "x": 3,
+                                    "y": -3
+                                },
                                 "event": "EV024"
                             },
                             {
-                                "pos": { "x": -11, "y": -2 },
+                                "pos": {
+                                    "x": -11,
+                                    "y": -2
+                                },
                                 "event": "EV025"
                             },
                             {
-                                "pos": { "x": -9, "y": -2 },
+                                "pos": {
+                                    "x": -9,
+                                    "y": -2
+                                },
                                 "event": "EV025"
                             },
                             {
-                                "pos": { "x": 6, "y": -17 },
+                                "pos": {
+                                    "x": 6,
+                                    "y": -17
+                                },
                                 "event": "EV029"
                             },
                             {
-                                "pos": { "x": 7, "y": -17 },
+                                "pos": {
+                                    "x": 7,
+                                    "y": -17
+                                },
                                 "event": "EV029"
                             },
                             {
-                                "pos": { "x": 6, "y": -18 },
+                                "pos": {
+                                    "x": 6,
+                                    "y": -18
+                                },
                                 "event": "EV029"
                             },
                             {
-                                "pos": { "x": 7, "y": -18 },
+                                "pos": {
+                                    "x": 7,
+                                    "y": -18
+                                },
                                 "event": "EV029"
                             },
                             {
-                                "pos": { "x": -1, "y": -3 },
+                                "pos": {
+                                    "x": -1,
+                                    "y": -3
+                                },
                                 "event": "Zera"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -3
+                                },
+                                "event": "Zera"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -3
+                                },
+                                "event": "Zera"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": -19
+                                },
+                                "event": "Hint Bird"
                             }
                         ]
                     }
@@ -100,8 +170,14 @@
                 {
                     "type": "MapGrid",
                     "args": {
-                        "min": { "x": -12, "y": -23 },
-                        "max": { "x": 11, "y": 16 }
+                        "min": {
+                            "x": -12,
+                            "y": -23
+                        },
+                        "max": {
+                            "x": 11,
+                            "y": 16
+                        }
                     }
                 }
             ]
@@ -7754,6 +7830,50 @@
                                             {
                                                 "x": -12,
                                                 "y": -20
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": -19
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision Zera",
+            "id": 8,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -1,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -3
                                             }
                                         ]
                                     }
@@ -7772,7 +7892,10 @@
             "name": "char_zera",
             "id": 7,
             "transform": {
-                "position": { "x": -0.5, "y": -1.5 }
+                "position": {
+                    "x": -0.5,
+                    "y": -1.5
+                }
             },
             "components": [
                 {

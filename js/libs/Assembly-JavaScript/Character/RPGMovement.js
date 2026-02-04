@@ -214,6 +214,11 @@ class RPGMovement extends GameBehavior
         else if (dir.x > 0) this._sprResolver.category = "right";
     }
 
+    LookAtChar (char)
+    {
+        this.LookAt(Vector2.Subtract(char.gridPos, this.gridPos));
+    }
+
     TP (pos)
     {
         this.#node = MapGrid.current.NodeOnGrid(pos);
