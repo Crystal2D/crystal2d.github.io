@@ -7968,6 +7968,12 @@
                 },
                 {
                     "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
                 }
             ]
         }
