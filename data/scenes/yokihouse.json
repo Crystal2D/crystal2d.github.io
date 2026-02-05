@@ -12,8 +12,10 @@
             "spritelibs/chars/zera"
         ],
         "sprites/faces/zera",
-        "sprites/chars/zera",
-        "sprites/chars/bird",
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
         [
             "anims/entity",
             "anims/entity_ctrl"
