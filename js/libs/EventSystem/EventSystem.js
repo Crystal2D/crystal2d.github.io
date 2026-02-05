@@ -40,7 +40,7 @@ class EventSystem
                 await this.dialogueBox.Close();
                 break;
             case "Hint Bird":
-                // GameObject.Find("char_zera").GetComponent("RPGMovement").LookAtChar(Player.instance);
+                GameObject.Find("char_bird").GetComponent("RPGMovement").LookAtChar(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[0]);
                 await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[1]);

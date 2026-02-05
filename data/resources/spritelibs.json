@@ -166,5 +166,89 @@
                 }
             ]
         }
+    },
+    {
+        "path": "spritelibs/chars/bird",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/bird",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     }
 ]

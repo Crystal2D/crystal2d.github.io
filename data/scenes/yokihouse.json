@@ -12,7 +12,12 @@
             "spritelibs/chars/zera"
         ],
         "sprites/faces/zera",
-        "sprites/chars/zera"
+        "sprites/chars/zera",
+        "sprites/chars/bird",
+        [
+            "anims/entity",
+            "anims/entity_ctrl"
+        ]
     ],
     "gameObjects": [
         {
@@ -7912,6 +7917,44 @@
                     "type": "SpriteLibrary",
                     "args": {
                         "asset": "spritelibs/chars/zera"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -9
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
                     }
                 },
                 {
