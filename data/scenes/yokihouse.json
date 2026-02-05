@@ -7935,10 +7935,10 @@
         },
         {
             "name": "char_bird",
-            "id": 8,
+            "id": 9,
             "transform": {
                 "position": {
-                    "x": 0,
+                    "x": 2.5,
                     "y": -9
                 }
             },
