@@ -89,7 +89,7 @@
                         {
                             "component": "SpriteResolver",
                             "property": "label",
-                            "value": "a"
+                            "value": "0"
                         }
                     ]
                 },
@@ -99,7 +99,7 @@
                         {
                             "component": "SpriteResolver",
                             "property": "label",
-                            "value": "b"
+                            "value": "1"
                         }
                     ]
                 }
