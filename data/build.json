@@ -32,7 +32,12 @@
         "forest_barrier",
         "forest_barrier_edge",
         "cliffs",
-        "forest_tree"
+        "forest_tree",
+        "forest_mid",
+        "forest_fork",
+        "forest_path",
+        "forest_deep",
+        "forest_deeper"
     ],
     "shaders" : [
         "tinted"
