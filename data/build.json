@@ -37,7 +37,10 @@
         "forest_fork",
         "village_path",
         "village",
-        "dragonshrine"
+        "dragonshrine",
+        "territory",
+        "village_ride",
+        "forest_path"
     ],
     "shaders" : [
         "tinted"
