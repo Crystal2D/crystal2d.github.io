@@ -35,9 +35,9 @@
         "forest_tree",
         "forest_mid",
         "forest_fork",
-        "forest_path",
-        "forest_deep",
-        "forest_deeper"
+        "village_path",
+        "village",
+        "dragonshrine"
     ],
     "shaders" : [
         "tinted"
