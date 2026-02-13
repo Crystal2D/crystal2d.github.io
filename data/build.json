@@ -40,7 +40,9 @@
         "dragonshrine",
         "territory",
         "village_ride",
-        "forest_path"
+        "forest_path",
+        "forest_deep",
+        "forest_pocket"
     ],
     "shaders" : [
         "tinted"

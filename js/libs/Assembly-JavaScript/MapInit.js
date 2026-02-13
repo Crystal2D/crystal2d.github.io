@@ -5,7 +5,7 @@ class MapInit extends GameBehavior
     Awake ()
     {
         // Loader.Ready(4);
-        Loader.Ready(9);
+        Loader.Ready(17);
     }
 
     Update ()
@@ -16,7 +16,7 @@ class MapInit extends GameBehavior
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(2, -3);
-        transfer.pos = new Vector2(23, 14);
+        transfer.pos = new Vector2(16, 12);
         MapTransfer.last = transfer;
 
         const renderer = Player.instance.GetComponent("SpriteRenderer");
@@ -31,6 +31,6 @@ class MapInit extends GameBehavior
         Loader.onSwitchEnd.Add(switchCall);
 
         // Loader.Switch(4);
-        Loader.Switch(9);
+        Loader.Switch(17);
     }
 }
