@@ -25,7 +25,7 @@ class Player extends RPGMovement
     
     Update ()
     {
-        Window.SetTitle(`${this.gridPos.toString()} ${this.transform.position.x} ${this.transform.position.y}`);
+        Window.SetTitle(`${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y}`);
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 

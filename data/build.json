@@ -44,7 +44,9 @@
         "forest_deep",
         "forest_pocket",
         "forest_deeper",
-        "forest_cove"
+        "forest_cove",
+        "forest_view",
+        "town_path"
     ],
     "shaders" : [
         "tinted"
