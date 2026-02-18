@@ -42,7 +42,9 @@
         "village_ride",
         "forest_path",
         "forest_deep",
-        "forest_pocket"
+        "forest_pocket",
+        "forest_deeper",
+        "forest_cove"
     ],
     "shaders" : [
         "tinted"
