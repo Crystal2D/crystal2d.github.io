@@ -80,7 +80,7 @@
         "type": "AnimationClip",
         "args": {
             "loop": true,
-            "framerate": 3,
+            "framerate": 3.333333333333333333333333333333,
             "duration": 2,
             "frames": [
                 {

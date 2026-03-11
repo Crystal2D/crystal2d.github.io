@@ -180,77 +180,77 @@
                                     "x": 3,
                                     "y": -3
                                 },
-                                "event": "EV024"
+                                "event": "yolkhouse_mail"
                             },
                             {
                                 "pos": {
                                     "x": -11,
                                     "y": -2
                                 },
-                                "event": "EV025"
+                                "event": "yolkhouse_veggie"
                             },
                             {
                                 "pos": {
                                     "x": -9,
                                     "y": -2
                                 },
-                                "event": "EV025"
+                                "event": "yolkhouse_veggie"
                             },
                             {
                                 "pos": {
                                     "x": 6,
                                     "y": -17
                                 },
-                                "event": "EV029"
+                                "event": "yolkhouse_well"
                             },
                             {
                                 "pos": {
                                     "x": 7,
                                     "y": -17
                                 },
-                                "event": "EV029"
+                                "event": "yolkhouse_well"
                             },
                             {
                                 "pos": {
                                     "x": 6,
                                     "y": -18
                                 },
-                                "event": "EV029"
+                                "event": "yolkhouse_well"
                             },
                             {
                                 "pos": {
                                     "x": 7,
                                     "y": -18
                                 },
-                                "event": "EV029"
+                                "event": "yolkhouse_well"
                             },
                             {
                                 "pos": {
                                     "x": -1,
                                     "y": -3
                                 },
-                                "event": "Zera"
+                                "event": "yolkhouse_zera"
                             },
                             {
                                 "pos": {
                                     "x": -2,
                                     "y": -3
                                 },
-                                "event": "Zera"
+                                "event": "yolkhouse_zera"
                             },
                             {
                                 "pos": {
                                     "x": 0,
                                     "y": -3
                                 },
-                                "event": "Zera"
+                                "event": "yolkhouse_zera"
                             },
                             {
                                 "pos": {
                                     "x": 5,
                                     "y": -19
                                 },
-                                "event": "Hint Bird"
+                                "event": "yolkhouse_bird"
                             }
                         ]
                     }

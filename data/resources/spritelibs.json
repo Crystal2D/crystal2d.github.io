@@ -250,5 +250,89 @@
                 }
             ]
         }
+    },
+    {
+        "path": "spritelibs/chars/fox",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/fox",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     }
 ]

@@ -1,21 +1,25 @@
 {
 
-"EV024": "No mail today.",
-"EV025": "Some vegetables me and\nClaire have been growing.",
-"EV029": [
+"yokihouse": "----------------------------------------------------------------------",
+"yolkhouse_mail": "No mail today.",
+"yolkhouse_veggie": "Some vegetables me and\nClaire have been growing.",
+"yolkhouse_well": [
     "Our well...",
     "I don't really need any \nwater right now."
 ],
-"EV054": "Nothing to deliver today.",
-"Zera": [
+"yolkhouse_zera": [
     "\\SE[1]How long are you gonna\nstand next to the house?",
     "\\SE[3]How long would you like me \nto stay?",
     "\\SE[1]You could leave now if you'd \nlike."
 ],
-"Hint Bird": [
+"yolkhouse_bird": [
     "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
     "I'm here to help!",
     "Would you like a hint?"
-]
+],
+
+"forest_barrier": "----------------------------------------------------------------------",
+"aimmy_mail": "Nothing to deliver today.",
+"forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]"
 
 }

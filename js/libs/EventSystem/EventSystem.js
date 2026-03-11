@@ -6,45 +6,59 @@ class EventSystem
     {
         switch (id)
         {
-            case "EV024":
+            // yokihouse
+            case "yolkhouse_mail":
                 this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("EV024"));
+                await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();
                 break;
-            case "EV025":
+            case "yolkhouse_veggie":
                 this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("EV025"));
+                await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();
                 break;
-            case "EV029":
+            case "yolkhouse_well":
                 this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("EV029")[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("EV029")[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 await this.dialogueBox.Close();
                 break;
-            case "EV054":
-                this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("EV054"));
-                await this.dialogueBox.Close();
-                break;
-            case "Zera":
+            case "yolkhouse_zera":
                 GameObject.Find("char_zera").GetComponent("RPGMovement").LookAtChar(Player.instance);
 
                 this.dialogueBox.SetFace("yoki", "annoyed");
-                await this.dialogueBox.Type(LocaleManager.Find("Zera")[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 this.dialogueBox.SetFace("zera", "look");
-                await this.dialogueBox.Type(LocaleManager.Find("Zera")[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.SetFace("yoki", "annoyed");
-                await this.dialogueBox.Type(LocaleManager.Find("Zera")[2]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
                 await this.dialogueBox.Close();
                 break;
-            case "Hint Bird":
-                GameObject.Find("char_bird").GetComponent("RPGMovement").LookAtChar(Player.instance);
+            case "yolkhouse_bird":
+                // GameObject.Find("char_bird").GetComponent("RPGMovement").LookAtChar(Player.instance);
 
-                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[0]);
-                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[1]);
-                await this.dialogueBox.Type(LocaleManager.Find("Hint Bird")[2]);
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+
+                await this.dialogueBox.Type("aaaaaaaaaaaaaaaaaaaaa");
+                await this.dialogueBox.Close();
+                break;
+
+            // forest_barrier
+            case "aimmy_mail":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+                break;
+            case "forestbarrier_fox1":
+                GameObject.Find("char_fox1").GetComponent("RPGMovement").LookAtChar(Player.instance);
+                break;
+            case "forestbarrier_fox2":
+                GameObject.Find("char_fox2").GetComponent("RPGMovement").LookAtChar(Player.instance);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();
                 break;
         }

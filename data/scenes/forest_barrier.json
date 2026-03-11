@@ -6,7 +6,16 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_village",
         "sprites/tilesets/ext_castletown_sidegates",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "anims/entity",
+            "anims/entity_ctrl"
+        ],
+        [
+            "sprites/chars/fox",
+            "spritelibs/chars/fox"
+        ],
+        "sprites/chars/fox"
     ],
     "gameObjects": [
         {
@@ -14409,10 +14418,6 @@
                                                 "y": -27
                                             },
                                             {
-                                                "x": 10,
-                                                "y": -27
-                                            },
-                                            {
                                                 "x": 11,
                                                 "y": -27
                                             },
@@ -16055,6 +16060,30 @@
                                             {
                                                 "x": 1,
                                                 "y": 20
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 13
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 13
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 13
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": -28
+                                            },
+                                            {
+                                                "x": 13,
+                                                "y": -28
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": -28
                                             }
                                         ]
                                     }
@@ -16076,59 +16105,264 @@
                         "transfers": [
                             {
                                 "scene": 4,
-                                "min": { "x": -5, "y": 20 },
-                                "max": { "x": -5, "y": 20 },
-                                "pos": { "x": -6, "y": -22 }
+                                "min": {
+                                    "x": -5,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": -5,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -6,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 4,
-                                "min": { "x": -4, "y": 20 },
-                                "max": { "x": -4, "y": 20 },
-                                "pos": { "x": -5, "y": -22 }
+                                "min": {
+                                    "x": -4,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": -4,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -5,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 4,
-                                "min": { "x": -3, "y": 20 },
-                                "max": { "x": -3, "y": 20 },
-                                "pos": { "x": -4, "y": -22 }
+                                "min": {
+                                    "x": -3,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": -3,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -4,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 4,
-                                "min": { "x": -2, "y": 20 },
-                                "max": { "x": -2, "y": 20 },
-                                "pos": { "x": -3, "y": -22 }
+                                "min": {
+                                    "x": -2,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": -2,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -3,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 4,
-                                "min": { "x": -1, "y": 20 },
-                                "max": { "x": -1, "y": 20 },
-                                "pos": { "x": -2, "y": -22 }
+                                "min": {
+                                    "x": -1,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": -1,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -2,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 4,
-                                "min": { "x": 0, "y": 20 },
-                                "max": { "x": 0, "y": 20 },
-                                "pos": { "x": -1, "y": -22 }
+                                "min": {
+                                    "x": 0,
+                                    "y": 20
+                                },
+                                "max": {
+                                    "x": 0,
+                                    "y": 20
+                                },
+                                "pos": {
+                                    "x": -1,
+                                    "y": -22
+                                }
                             },
                             {
                                 "scene": 6,
-                                "min": { "x": -18, "y": -39 },
-                                "max": { "x": -17, "y": -39 },
-                                "pos": { "x": 9, "y": 19 }
+                                "min": {
+                                    "x": -18,
+                                    "y": -39
+                                },
+                                "max": {
+                                    "x": -17,
+                                    "y": -39
+                                },
+                                "pos": {
+                                    "x": 9,
+                                    "y": 19
+                                }
                             },
                             {
                                 "scene": 6,
-                                "min": { "x": -16, "y": -39 },
-                                "max": { "x": -15, "y": -39 },
-                                "pos": { "x": 10, "y": 19 }
+                                "min": {
+                                    "x": -16,
+                                    "y": -39
+                                },
+                                "max": {
+                                    "x": -15,
+                                    "y": -39
+                                },
+                                "pos": {
+                                    "x": 10,
+                                    "y": 19
+                                }
                             }
                         ],
                         "interactables": [
                             {
-                                "pos": { "x": -5, "y": 3 },
-                                "event": "EV054"
+                                "pos": {
+                                    "x": -5,
+                                    "y": 3
+                                },
+                                "event": "aimmy_mail"
+                            },
+                            {
+                                "pos": {
+                                    "x": -10,
+                                    "y": 13
+                                },
+                                "event": "forestbarrier_fox1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 13
+                                },
+                                "event": "forestbarrier_fox1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -8,
+                                    "y": 13
+                                },
+                                "event": "forestbarrier_fox1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 11,
+                                    "y": -28
+                                },
+                                "event": "forestbarrier_fox2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 12,
+                                    "y": -28
+                                },
+                                "event": "forestbarrier_fox2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 13,
+                                    "y": -28
+                                },
+                                "event": "forestbarrier_fox2"
                             }
                         ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_fox1",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": 6.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fox",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fox"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_fox2",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 6,
+                    "y": -14
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fox",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fox"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
                     }
                 }
             ]
