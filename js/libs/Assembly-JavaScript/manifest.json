@@ -73,7 +73,13 @@
         },
         {
             "name" : "RPGMovement",
-            "type" : 0
+            "type" : 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "speedScale"
+                }
+            ]
         },
         {
             "name" : "Player",

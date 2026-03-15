@@ -29,6 +29,8 @@ class Player extends RPGMovement
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 
+        if (Input.GetKeyDown(KeyCode.A)) this.Jump();
+
         super.Update();
     }
 
@@ -39,7 +41,7 @@ class Player extends RPGMovement
         if (node.owner instanceof MapTransfer)
         {
             this.avoidInputs = true;
-            this.#transfer = node.owner
+            this.#transfer = node.owner;
         }
 
         return false;

@@ -47,5 +47,12 @@
         "args": {
             "src": "se/dialogue_4.ogg"
         }
+    },
+    {
+        "path": "audio/se/jump",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/jump.ogg"
+        }
     }
 ]

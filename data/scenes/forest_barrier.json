@@ -15,7 +15,8 @@
             "sprites/chars/fox",
             "spritelibs/chars/fox"
         ],
-        "sprites/chars/fox"
+        "sprites/chars/fox",
+        "audio/se/jump"
     ],
     "gameObjects": [
         {
@@ -16313,7 +16314,10 @@
                     }
                 },
                 {
-                    "type": "RPGMovement"
+                    "type": "RPGMovement",
+                    "args": {
+                        "speedScale": 0.5
+                    }
                 },
                 {
                     "type": "Animator",

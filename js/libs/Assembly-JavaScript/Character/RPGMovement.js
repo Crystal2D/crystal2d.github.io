@@ -7,6 +7,9 @@ class RPGMovement extends GameBehavior
     #moveSpeed = 0;
     #animCount = 0;
     #animState = 0;
+    #jumpPeak = 0;
+    #jumpDuration = 0;
+    #jumpTime = 0;
     #targetDir = Vector2.zero;
     #lookDir = Vector2.down;
     #movement = Vector2.zero;
@@ -18,6 +21,13 @@ class RPGMovement extends GameBehavior
     _moveDir = Vector2.zero;
 
     _sprResolver = null;
+
+    get #jumpHeight ()
+    {
+        const timePeak = 2 * this.#jumpPeak * (this.#jumpTime / this.#jumpDuration);
+
+        return (Math.pow(this.#jumpPeak, 2) - Math.pow(Math.abs(timePeak - this.#jumpPeak), 2)) * 0.25;
+    }
 
     get _shouldMove ()
     {
@@ -42,6 +52,11 @@ class RPGMovement extends GameBehavior
     get gridPos ()
     {
         return this.#node.gridPos;
+    }
+
+    get isJumping ()
+    {
+        return this.#jumpTime > 0;
     }
 
     updateMovement = true;
@@ -141,6 +156,37 @@ class RPGMovement extends GameBehavior
 
     Update ()
     {
+        if (this.isJumping) this.#UpdateJump();
+        else this.#UpdateMove();
+
+        if (this.animateWalk) this.#Animate();
+    }
+
+    #UpdateJump ()
+    {
+        this.#jumpTime -= Time.deltaTime;
+
+        this.transform.localPosition = new Vector2(
+            this.#lastPos.x,
+            this.#lastPos.y + this.#jumpHeight
+        );
+
+        if (this.#jumpTime <= 0)
+        {
+            this.transform.localPosition = this.#lastPos;
+        }
+
+        // this._realX = (this._realX * this._jumpCount + this._x) / (this._jumpCount + 1.0);
+        // this._realY = (this._realY * this._jumpCount + this._y) / (this._jumpCount + 1.0);
+        // this.refreshBushDepth();
+        // if (this._jumpCount === 0) {
+        //     this._realX = this._x = $gameMap.roundX(this._x);
+        //     this._realY = this._y = $gameMap.roundY(this._y);
+        // }
+    }
+
+    #UpdateMove ()
+    {
         if (this._moveDir.Equals(Vector2.zero))
         {
             this._OnMovementGet();
@@ -165,8 +211,6 @@ class RPGMovement extends GameBehavior
 
             this._OnStay();
         }
-
-        if (this.animateWalk) this.#Animate();
     }
 
     #Animate ()
@@ -204,6 +248,8 @@ class RPGMovement extends GameBehavior
 
     LookAt (dir)
     {
+        dir = dir.normalized;
+
         if (this.#lookDir.Equals(dir)) return;
 
         this.#lookDir = dir;
@@ -226,5 +272,21 @@ class RPGMovement extends GameBehavior
 
         this.transform.position = MapGrid.current.CellToWorld(pos);
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
+    }
+
+    async Jump (by = Vector2.zero)
+    {
+        this.#animCount = 0;
+        this.#animState = 0;
+        this._sprResolver.label = `${this.#animState}`;
+
+        if (!by.Equals(Vector2.zero)) this.LookAt(by);
+
+        const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));
+        this.#jumpPeak = 1 + by.magnitude - (this.#moveSpeed / 60);
+        this.#jumpDuration = ((10 + by.magnitude - moveSpeed) / 60) * 2;
+        this.#jumpTime = this.#jumpDuration;
+
+        await CrystalEngine.Wait(() => this.#jumpTime <= 0);
     }
 }
