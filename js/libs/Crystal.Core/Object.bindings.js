@@ -6,10 +6,13 @@ Object.prototype.Duplicate = () => null;
 
 Object.InstantiationQueue = new DelegateEvent();
 Object.InstantiationIDs = [];
+Object.InstantiationCount = 0;
 
 Object.prototype.Instantiate = async function (obj, parent, transform, rotation, skipComplete)
 {
     if (!(obj instanceof GameObject) && !(obj instanceof Component) && !obj.__isPrefab) return null;
+
+    Object.InstantiationCount++;
 
     let isPrefab = false;
 
@@ -30,7 +33,7 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation,
 
         const classData = CrystalEngine.Inner.GetClassOfType(obj.components[i].constructor.name, 0);
 
-        if (classData == null) return;
+        if (classData == null) continue;
         
         const newComp = obj.components[i].Duplicate() ?? eval(`new ${obj.components[i].constructor.name}()`);
         components.push(newComp);
@@ -82,6 +85,10 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation,
 
     if (!skipComplete) await new Promise(resolve => Object.InstantiationQueue.Add(resolve));
 
+    if (parent?.gameObject.keepOnLoad) this.DontDestroyOnLoad(gameObj);
+
+    Object.InstantiationCount--;
+
     return gameObj;
 };
 
@@ -91,16 +98,17 @@ Object.prototype.DontDestroyOnLoad = function (obj, res = [])
 
     if (obj instanceof Component) obj = obj.gameObject;
 
+    const parent = obj.transform.parent;
+    
+    if (parent != null) obj.transform.parent = null;
+
     const child = obj.transform.GetChildren();
-    for (let i = 0; i < child.length; i++)
-    {
-        child[i].parent = null;
-        this.DontDestroyOnLoad(child[i]);
-    }
+
+    for (let i = 0; i < child.length; i++) this.DontDestroyOnLoad(child[i]);
 
     obj.keepOnLoad = true;
 
-    for (let i = 0; i < child.length; i++) child[i].parent = obj.transform;
+    obj.transform.parent = parent;
 
     Resources.DontDestroyOnLoad(...res);
 };

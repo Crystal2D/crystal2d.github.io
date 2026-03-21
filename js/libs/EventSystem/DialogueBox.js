@@ -90,6 +90,7 @@ class DialogueBox extends ItsABox
         this.#arrow = this.transform.Find("arrow").GetComponent("SpriteRenderer");
 
         EventSystem.dialogueBox = this;
+        EventSystem.dialogueChoiceBox = GameObject.Find("dialogue_choicebox").GetComponent("ChoiceBox");
 
         this.DontDestroyOnLoad(this, [
             "font_main",
@@ -103,6 +104,7 @@ class DialogueBox extends ItsABox
             "anims/dialogue_arrow",
             "anims/dialogue_arrow_ctrl"
         ]);
+        this.DontDestroyOnLoad(EventSystem.dialogueChoiceBox);
     }
 
     #UpdateTyping ()
@@ -197,7 +199,7 @@ class DialogueBox extends ItsABox
         this.#showFace = true;
     }
     
-    async Type (text)
+    async Type (text, noEndWait)
     {
         if (this.#startedTyping) return;
 
@@ -211,7 +213,7 @@ class DialogueBox extends ItsABox
 
         await CrystalEngine.Wait(() => this.isOpen);
 
-        text += "\\!";
+        if (!noEndWait) text += "\\!";
 
         this.#text.text = "";
         this.#chars = [];

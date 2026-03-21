@@ -351,6 +351,10 @@ class CrystalEngine
                 document.body.style.overflow = "";
 
                 Window.resizable = true;
+                Window.fullScreen = false;
+
+                Cursor.locked = false;
+                Cursor.visible = true;
                 
                 const errWrap = document.createElement("div");
                 errWrap.style.whiteSpace = "pre";

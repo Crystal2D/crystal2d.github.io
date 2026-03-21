@@ -10,6 +10,8 @@ class ChoiceBox extends ItsABox
 
     #min = null;
 
+    nahChoice = null;
+
     _text = null;
     _selector = null;
 
@@ -64,6 +66,11 @@ class ChoiceBox extends ItsABox
         return this.#choices.length;
     }
 
+    get setDimensions ()
+    {
+        return this.#updateDimensions === 0;
+    }
+
     AddText (label)
     {
         this.#choices.push({
@@ -100,6 +107,16 @@ class ChoiceBox extends ItsABox
             this._text.text += `${label}\n`;
             this.#updateDimensions = 1;
         }
+    }
+
+    Clear ()
+    {
+        this.Close();
+
+        this.#choices = [];
+        this.#selected = 0;
+        this._text.text = "";
+        this.#updateDimensions = 1;
     }
 
     async Start ()
@@ -167,12 +184,20 @@ class ChoiceBox extends ItsABox
 
         const item = this.#choices[this.#selected];
 
+        if (this.nahChoice != null && InputManager.GetKeyDown("x"))
+        {
+            AudioManager.instance.PlayNo();
+            this.#choices[this.nahChoice].callback(0);
+
+            return;
+        }
+
         if (item.dired === 0)
         {
             if (InputManager.GetKeyDown("z"))
             {
                 AudioManager.instance.PlayConfirm();
-                item.callback();
+                item.callback(0);
             }
 
             return;

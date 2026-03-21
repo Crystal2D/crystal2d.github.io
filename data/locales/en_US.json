@@ -1,5 +1,103 @@
 {
 
+"hintbird": [
+    "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
+    "I'm here to help!",
+    "Would you like a hint?"
+],
+"hintbird_choices": [
+    "Yes",
+    "No"
+],
+"hintbird_zera": [
+    "Have you spoken to Zera\nwhile he was at your house..?",
+    "If you haven't...\\.\\.\nYou might want to start\nyour journey over..."
+],
+"hintbird_traveller": "Have you helped the Lost \nTraveller find his way?",
+"hintbird_carriage": [
+    "Why not take a Carriage ride?",
+    "You can find the Carriage Service \nin the Village or at the Castle \nTown gate."
+],
+"hintbird_claire": "Why not say good morning\nto Claire?",
+"hintbird_claire_quest": "Maybe you should talk to\nClaire again.",
+"hintbird_claire_quest_wait": [
+    "Have you visited the Doctor\nin the Castle Town?",
+    "I think Claire is waiting on\nher order..."
+],
+"hintbird_claire_fly": "Why not go on a broom flight \nwith Claire?",
+"hintbird_woof": "Maybe you should check on\nthe Wolf girl by the cliffs?",
+"hintbird_aimmy": "Did you visit Aimottle's room?\\.\\. \nHer room is located south of your\nhouse!",
+"hintbird_view": "Did you take a look at the pretty \nscenic view north of your house?",
+"hintbird_claire_poster": "You should look at the poster \nhanging up in Claire's room!",
+"hintbird_stump": "Did you check out the tree stump\ndeep in the forest, surrounded\nby many animals?",
+"hintbird_caina_cafe": "Have you said hello to Caina at her \ncafe yet?\\.\\. You can find the cafe \nin the village!",
+"hintbird_sign": [
+    "Did you take a look at the sign \nin the fork in the road?",
+    "It's the large arrow signpost that \npoints East and West to the \nVillage and Castle Town."
+],
+"hintbird_letter": [
+    "Have you seen the letter attached \nto the decaying tree in the Cliff \narea?",
+    "You know,\\.\\. near the Wolf girl's cave."
+],
+"hintbird_snek": [
+    "Have you seen the giant serpent \nlocated in the Wolf girl's cave?",
+    "You know where the Wolf girl's \ncave is..right? ",
+    "It's by the Cliff area!"
+],
+"hintbird_lighthouse": [
+    "You should look out the window \nfrom the top of the Lighthouse!",
+    "You can find the Lighthouse at the\npier in the Castle Town."
+],
+"hintbird_pier": "Why not have a seat at the Castle \nTown pier and look off into the \nsea?",
+"hintbird_prince": "Have you spoken to the Prince yet?\\.\\. \nHe's located at the Castle of \ncourse.",
+"hintbird_prince_index": "Have you taken a peek at the book \nin the Prince's room?",
+"hintbird_dress": "Why not try on some clothes at the \nTailors' store in the Castle Town?",
+"hintbird_butterfly": [
+    "Have you seen the odd butterfly \nthat's flying in the middle of a \nring of flowers deep in the forest?",
+    "You can find it near Aimottle's \nplace!"
+],
+"hintbird_treasure": "Have you looked in the treasure\nchests located underneath the\nshack in the Graveyard?",
+"hintbird_prince_parents": "You should check out the statues \nof the previous King and Queen \nat the Castle.",
+"hintbird_???": [
+    "Have you seen the mysterious\ncorpse at the secluded grave?",
+    "You can find it by traversing the \nunderground maze.",
+    "Where is the underground maze?\\.\\.\nHave you looked carefully through\nthe Castle Town?"
+],
+"hintbird_caina_spar": [
+    "Have you met up with Caina at the \nold stump in the forest for a \nlittle spar?",
+    "The stump is surrounded by lots of \nother animals."
+],
+"hintbird_j*b": [
+    "Have you met up with Este at the \nPost Office in the Village?",
+    "You should check his desk after \ncompleting his task!"
+],
+"hintbird_kitty": [
+    "Have you met the Tiger Centaur \nBEAST-Type in the forest yet?",
+    "You can find her near the entrance \nto the Cliff area."
+],
+"hintbird_shrine": [
+    "Have you visited the Dragon Shrine \nyet?",
+    "It's located West of the Village."
+],
+"hintbird_dragon": [
+    "Maybe you should follow the man \nyou saw at the Dragon Shrine.",
+    "I believe he went near Aimottle's \nplace..."
+],
+"hintbird_drink": "Why not grab a drink at the bar \nlocated on the ship in Castle Town?",
+"hintbird_adventure": [
+    "Wanna have some fun on an \nadventure?",
+    "Why not follow some Heroes on a \ngrand quest?",
+    "You should be able to find them if\nyou keep walking west of the \nVillage."
+],
+"hintbird_journal": [
+    "You've collected plenty of journal \npages, right?",
+    "Maybe you should put them\ntogether and read them at the \nGraveyard shack."
+],
+"hintbird_done": [
+    "Chirp!\\.\\.\nYou've had a long day!",
+    "Maybe you should head home and \nget some sleep?"
+],
+
 "yokihouse": "----------------------------------------------------------------------",
 "yolkhouse_mail": "No mail today.",
 "yolkhouse_veggie": "Some vegetables me and\nClaire have been growing.",
@@ -11,11 +109,6 @@
     "\\SE[1]How long are you gonna\nstand next to the house?",
     "\\SE[3]How long would you like me \nto stay?",
     "\\SE[1]You could leave now if you'd \nlike."
-],
-"yolkhouse_bird": [
-    "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
-    "I'm here to help!",
-    "Would you like a hint?"
 ],
 
 "forest_barrier": "----------------------------------------------------------------------",

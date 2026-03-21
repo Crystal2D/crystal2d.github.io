@@ -177,6 +177,25 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "dialogue_choicebox",
+            "id": 6,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "sortingLayer": 4
+                    }
+                },
+                {
+                    "type": "ChoiceBox"
+                }
+            ]
         }
     ]
 }

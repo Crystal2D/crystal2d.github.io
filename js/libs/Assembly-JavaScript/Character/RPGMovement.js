@@ -276,6 +276,8 @@ class RPGMovement extends GameBehavior
 
     async Jump (by = Vector2.zero)
     {
+        if (this.#jumpTime > 0) return;
+
         this.#animCount = 0;
         this.#animState = 0;
         this._sprResolver.label = `${this.#animState}`;
