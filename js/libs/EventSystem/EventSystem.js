@@ -71,9 +71,9 @@ class EventSystem
                 fox.LookAtChar(Player.instance);
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
-                await fox.Jump();
+                await fox.Jump(new Vector2(1, 0));
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
-                await fox.Jump();
+                await fox.Jump(new Vector2(-1, 0));
                 } break;
             case "forestbarrier_fox2":
                 GameObject.Find("char_fox2").GetComponent("RPGMovement").LookAtChar(Player.instance);

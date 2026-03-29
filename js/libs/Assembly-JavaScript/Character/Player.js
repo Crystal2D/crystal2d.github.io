@@ -29,8 +29,6 @@ class Player extends RPGMovement
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 
-        if (Input.GetKeyDown(KeyCode.A)) this.Jump();
-
         super.Update();
     }
 

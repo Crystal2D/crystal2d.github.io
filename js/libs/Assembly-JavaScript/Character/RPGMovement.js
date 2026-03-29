@@ -14,6 +14,7 @@ class RPGMovement extends GameBehavior
     #lookDir = Vector2.down;
     #movement = Vector2.zero;
     #lastPos = Vector2.zero;
+    #jumpTo = Vector2.zero;
 
     #lastNode = null;
     #node = null;
@@ -166,6 +167,11 @@ class RPGMovement extends GameBehavior
     {
         this.#jumpTime -= Time.deltaTime;
 
+        this.#lastPos = new Vector2(
+            (this.#lastPos.x * this.#jumpTime + this.#jumpTo.x) / (this.#jumpTime + 1),
+            (this.#lastPos.y * this.#jumpTime + this.#jumpTo.y) / (this.#jumpTime + 1)
+        );
+
         this.transform.localPosition = new Vector2(
             this.#lastPos.x,
             this.#lastPos.y + this.#jumpHeight
@@ -173,16 +179,9 @@ class RPGMovement extends GameBehavior
 
         if (this.#jumpTime <= 0)
         {
+            this.#lastPos = this.#jumpTo;
             this.transform.localPosition = this.#lastPos;
         }
-
-        // this._realX = (this._realX * this._jumpCount + this._x) / (this._jumpCount + 1.0);
-        // this._realY = (this._realY * this._jumpCount + this._y) / (this._jumpCount + 1.0);
-        // this.refreshBushDepth();
-        // if (this._jumpCount === 0) {
-        //     this._realX = this._x = $gameMap.roundX(this._x);
-        //     this._realY = this._y = $gameMap.roundY(this._y);
-        // }
     }
 
     #UpdateMove ()
@@ -276,13 +275,21 @@ class RPGMovement extends GameBehavior
 
     async Jump (by = Vector2.zero)
     {
-        if (this.#jumpTime > 0) return;
+        if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
         this.#animCount = 0;
         this.#animState = 0;
         this._sprResolver.label = `${this.#animState}`;
 
         if (!by.Equals(Vector2.zero)) this.LookAt(by);
+
+        const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
+
+        this.#node.owner = null;
+        this.#lastNode = null;
+        this.#node = targetNode;
+        this.#node.owner = this;
+        this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));
         this.#jumpPeak = 1 + by.magnitude - (this.#moveSpeed / 60);

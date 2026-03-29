@@ -23,7 +23,6 @@
         "MapConfig/MapConfig",
         "MapConfig/MapTransfer",
         "Test",
-        "JumpTest",
         "LocaleManager"
     ],
     "classes" : [
@@ -162,10 +161,6 @@
         },
         {
             "name" : "Test",
-            "type" : 0
-        },
-        {
-            "name" : "JumpTest",
             "type" : 0
         }
     ]
