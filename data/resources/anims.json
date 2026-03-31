@@ -3,7 +3,6 @@
         "path": "anims/dialogue_arrow",
         "type": "AnimationClip",
         "args": {
-            "loop": true,
             "framerate": 3.75,
             "duration": 4,
             "frames": [
@@ -79,7 +78,6 @@
         "path": "anims/entity",
         "type": "AnimationClip",
         "args": {
-            "loop": true,
             "framerate": 3.333333333333333333333333333333,
             "duration": 2,
             "frames": [
@@ -107,14 +105,65 @@
         }
     },
     {
+        "path": "anims/entity_jump",
+        "type": "AnimationClip",
+        "args": {
+            "loop": false,
+            "framerate": 60,
+            "duration": 1,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "0"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
         "path": "anims/entity_ctrl",
         "type": "AnimatorController",
         "args": {
+            "parameters": [
+                {
+                    "name": "jump",
+                    "type": 1
+                }
+            ],
             "motions": [
                 {
                     "name": "main",
                     "speed": 1,
-                    "animation": "anims/entity"
+                    "animation": "anims/entity",
+                    "transitions": [
+                        {
+                            "isExit": false,
+                            "exitTime": 0,
+                            "nextNode": "jump",
+                            "conditions": [
+                                {
+                                    "parameter": "jump",
+                                    "mode": 0,
+                                    "threshold": 1
+                                }
+                            ] 
+                        }
+                    ]
+                },
+                {
+                    "name": "jump",
+                    "speed": 1,
+                    "animation": "anims/entity_jump",
+                    "transitions": [
+                        {
+                            "nextNode": "main"
+                        }
+                    ]
                 }
             ]
         }

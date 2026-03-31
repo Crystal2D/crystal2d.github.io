@@ -27,7 +27,7 @@ class RPGMovement extends GameBehavior
     {
         const timePeak = 2 * this.#jumpPeak * (this.#jumpTime / this.#jumpDuration);
 
-        return (Math.pow(this.#jumpPeak, 2) - Math.pow(Math.abs(timePeak - this.#jumpPeak), 2)) * 0.25;
+        return (Math.pow(this.#jumpPeak, 2) - Math.pow(Math.abs(timePeak - this.#jumpPeak), 2));
     }
 
     get _shouldMove ()
@@ -167,9 +167,10 @@ class RPGMovement extends GameBehavior
     {
         this.#jumpTime -= Time.deltaTime;
 
+        const timePeak = 30 * this.#jumpPeak * (this.#jumpTime / this.#jumpDuration);
         this.#lastPos = new Vector2(
-            (this.#lastPos.x * this.#jumpTime + this.#jumpTo.x) / (this.#jumpTime + 1),
-            (this.#lastPos.y * this.#jumpTime + this.#jumpTo.y) / (this.#jumpTime + 1)
+            (this.#lastPos.x * timePeak + this.#jumpTo.x) / (timePeak + 1),
+            (this.#lastPos.y * timePeak + this.#jumpTo.y) / (timePeak + 1)
         );
 
         this.transform.localPosition = new Vector2(
@@ -277,9 +278,15 @@ class RPGMovement extends GameBehavior
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        this.#animCount = 0;
-        this.#animState = 0;
-        this._sprResolver.label = `${this.#animState}`;
+        const animator = this.GetComponent("Animator");
+
+        if (animator != null) animator.SetTrigger("jump");
+        else
+        {
+            this.#animCount = 0;
+            this.#animState = 0;
+            this._sprResolver.label = `${this.#animState}`;
+        }
 
         if (!by.Equals(Vector2.zero)) this.LookAt(by);
 
@@ -292,7 +299,7 @@ class RPGMovement extends GameBehavior
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));
-        this.#jumpPeak = 1 + by.magnitude - (this.#moveSpeed / 60);
+        this.#jumpPeak = 0.5 + by.magnitude - moveSpeed;
         this.#jumpDuration = ((10 + by.magnitude - moveSpeed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
 

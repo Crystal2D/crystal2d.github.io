@@ -15,10 +15,6 @@
         [
             "sprites/chars/bird",
             "spritelibs/chars/bird"
-        ],
-        [
-            "anims/entity",
-            "anims/entity_ctrl"
         ]
     ],
     "gameObjects": [

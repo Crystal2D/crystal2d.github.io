@@ -8,10 +8,6 @@
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/collider",
         [
-            "anims/entity",
-            "anims/entity_ctrl"
-        ],
-        [
             "sprites/chars/fox",
             "spritelibs/chars/fox"
         ],

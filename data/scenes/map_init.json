@@ -16,7 +16,12 @@
         "audio/se/dialogue_1",
         "audio/se/dialogue_2",
         "audio/se/dialogue_3",
-        "audio/se/dialogue_4"
+        "audio/se/dialogue_4",
+        [
+            "anims/entity",
+            "anims/entity_jump",
+            "anims/entity_ctrl"
+        ]
     ],
     "gameObjects": [
         {

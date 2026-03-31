@@ -54,6 +54,7 @@ class AnimatorController
                     if (param.type === AnimatorControllerParameterType.Trigger)
                     {
                         const value = +param.value === condition.threshold;
+                        param.value = false;
 
                         if (condition.mode === AnimatorConditionMode.If && !value) useTransition = false;
                         else if (condition.mode === AnimatorConditionMode.IfNot && value) useTransition = false;
@@ -85,7 +86,7 @@ class AnimatorController
             this.currentNode = this.nodes.find(item => item.name === this.currentTransition.nextNode).Duplicate();
             this.currentNode.Start();
 
-            this.currentTransition = this.currentNode.transitions.find(item => item.hasExitTime);
+            this.currentTransition = this.currentNode.transitions.find(item => item.isExit);
         }
     }
 
