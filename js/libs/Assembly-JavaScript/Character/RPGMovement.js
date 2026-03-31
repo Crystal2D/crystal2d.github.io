@@ -299,7 +299,7 @@ class RPGMovement extends GameBehavior
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));
-        this.#jumpPeak = 0.5 + by.magnitude - moveSpeed;
+        this.#jumpPeak = 0.5;
         this.#jumpDuration = ((10 + by.magnitude - moveSpeed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
 
