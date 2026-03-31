@@ -83,7 +83,7 @@ class RPGMovement extends GameBehavior
 
         this.#lastNode = this.#node;
         this.#node = checkedNode;
-        this.#node.owner = this;
+        this.#node.AddOwner(this);
     }
 
     #Move ()
@@ -116,7 +116,7 @@ class RPGMovement extends GameBehavior
 
         if (Vector2.Abs(Vector2.Subtract(nextPos, this.#lastPos)).Greater(Vector2.Abs(this.#movement)))
         {
-            this.#lastNode.owner = null;
+            this.#lastNode.RemoveOwner(this);
             this.#lastNode = null;
 
             this.#targetDir = Vector2.zero;
@@ -150,7 +150,7 @@ class RPGMovement extends GameBehavior
     OnEnable ()
     {
         this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
-        this.#node.owner = this;
+        this.#node.AddOwner(this);
 
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
     }
@@ -267,8 +267,9 @@ class RPGMovement extends GameBehavior
 
     TP (pos)
     {
+        this.#node.RemoveOwner(this);
         this.#node = MapGrid.current.NodeOnGrid(pos);
-        this.#node.owner = this;
+        this.#node.AddOwner(this);
 
         this.transform.position = MapGrid.current.CellToWorld(pos);
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
@@ -292,10 +293,10 @@ class RPGMovement extends GameBehavior
 
         const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
 
-        this.#node.owner = null;
+        this.#node.RemoveOwner(this);
         this.#lastNode = null;
         this.#node = targetNode;
-        this.#node.owner = this;
+        this.#node.AddOwner(this);
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));

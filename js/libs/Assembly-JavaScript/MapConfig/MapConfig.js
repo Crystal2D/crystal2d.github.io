@@ -14,7 +14,7 @@ class MapConfig extends GameBehavior
             
             for (let x = min.x; x <= max.x; x++)
             {
-                for (let y = min.y; y <= max.y; y++) MapGrid.current.NodeOnGrid(new Vector2(x, y)).owner = this.transfers[i];
+                for (let y = min.y; y <= max.y; y++) MapGrid.current.NodeOnGrid(new Vector2(x, y)).AddOwner(this.transfers[i]);
             }
         }
 
@@ -22,7 +22,7 @@ class MapConfig extends GameBehavior
         {
             const pos = this.interactables[i].pos;
 
-            MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).owner = this.interactables[i];
+            MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).AddOwner(this.interactables[i]);
         }
 
         if (MapTransfer.last != null)

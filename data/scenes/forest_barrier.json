@@ -7,12 +7,27 @@
         "sprites/tilesets/ext_village",
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/collider",
+        "audio/se/jump",
         [
             "sprites/chars/fox",
             "spritelibs/chars/fox"
         ],
-        "sprites/chars/fox",
-        "audio/se/jump"
+        [
+            "sprites/chars/butterfly",
+            "spritelibs/chars/butterfly"
+        ],
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        [
+            "sprites/chars/deer",
+            "spritelibs/chars/deer"
+        ],
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ]
     ],
     "gameObjects": [
         {
@@ -16291,7 +16306,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/fox",
-                            "name": "down-a"
+                            "name": "left-a"
                         },
                         "sortingLayer": 1
                     }
@@ -16305,7 +16320,7 @@
                 {
                     "type": "SpriteResolver",
                     "args": {
-                        "category": "down",
+                        "category": "left",
                         "label": "0"
                     }
                 },
@@ -16353,6 +16368,182 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -5.5,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel3",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": -11.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_deer",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 6,
+                    "y": 6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/deer",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/deer"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
                         "label": "0"
                     }
                 },

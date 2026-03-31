@@ -36,10 +36,12 @@ class Player extends RPGMovement
     {
         if (node.collider) return true;
 
-        if (node.owner instanceof MapTransfer)
+        const transfer = node.GetOwnerOfType(MapTransfer);
+
+        if (transfer != null)
         {
             this.avoidInputs = true;
-            this.#transfer = node.owner;
+            this.#transfer = transfer;
         }
 
         return false;
@@ -50,8 +52,9 @@ class Player extends RPGMovement
         if (this.avoidInputs) return;
 
         const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
+        const interactable = lookedNode.GetOwnerOfType(Interactable)
 
-        if (lookedNode.owner instanceof Interactable) this.#interactable = lookedNode.owner;
+        if (interactable != null) this.#interactable = interactable;
         else this.#interactable = null;
 
         if (InputManager.GetKeyDown("z")) this.#Interact();
