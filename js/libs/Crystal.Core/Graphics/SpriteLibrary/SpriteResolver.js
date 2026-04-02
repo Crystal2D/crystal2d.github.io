@@ -28,9 +28,9 @@ class SpriteResolver extends GameBehavior
 
     Start ()
     {
-        this.#sprRen = this.GetComponent("SpriteRenderer");
+        this.#sprRen = this.GetComponent(SpriteRenderer);
         this.#ogSpr = this.#sprRen.sprite.Duplicate();
-        this.#lib = this.GetComponent("SpriteLibrary");
+        this.#lib = this.GetComponent(SpriteLibrary);
     }
 
     Update ()

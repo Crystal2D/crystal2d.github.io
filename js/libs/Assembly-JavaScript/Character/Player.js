@@ -34,7 +34,7 @@ class Player extends RPGMovement
 
     _DirCheck (node)
     {
-        if (node.collider) return true;
+        if (super._DirCheck(node)) return true;
 
         const transfer = node.GetOwnerOfType(MapTransfer);
 

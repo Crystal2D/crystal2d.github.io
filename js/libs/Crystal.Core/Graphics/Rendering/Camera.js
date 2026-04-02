@@ -96,8 +96,8 @@ class Camera extends Behavior
         const sortingDir = this.#sortingDir;
 
         const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y))
-            .filter(item => item.GetComponent("Renderer").isLoaded && item.activeInHierarchy)
-            .map(item => item.GetComponent("Renderer"))
+            .filter(item => item.GetComponent(Renderer).isLoaded && item.activeInHierarchy)
+            .map(item => item.GetComponent(Renderer))
             .sort((a, b) => {
                 const x = (a.transform.position.x - b.transform.position.x) * -sortingDir.x;
                 const y = (a.transform.position.y - b.transform.position.y) * -sortingDir.y;

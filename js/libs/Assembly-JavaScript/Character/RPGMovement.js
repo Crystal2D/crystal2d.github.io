@@ -144,7 +144,7 @@ class RPGMovement extends GameBehavior
 
     Start ()
     {
-        this._sprResolver = this.GetComponent("SpriteResolver");
+        this._sprResolver = this.GetComponent(SpriteResolver);
     }
 
     OnEnable ()
@@ -227,7 +227,7 @@ class RPGMovement extends GameBehavior
         }
     }
 
-    _DirCheck (node) { return node.collider; }
+    _DirCheck (node) { return node.collider || node.GetOwnerOfType(RPGMovement) != null; }
 
     _OnMovementGet () { }
 
@@ -241,6 +241,8 @@ class RPGMovement extends GameBehavior
     {
         if (!this.#allowDirChange) return;
 
+        if (dir.x !== 0) dir.y = 0;
+
         this.#allowDirChange = true;
 
         this.#targetDir = Vector2.Clamp(dir, Vector2.Scale(Vector2.one, -1), Vector2.one);
@@ -248,6 +250,8 @@ class RPGMovement extends GameBehavior
 
     LookAt (dir)
     {
+        if (dir.x !== 0) dir.y = 0;
+        
         dir = dir.normalized;
 
         if (this.#lookDir.Equals(dir)) return;
@@ -279,7 +283,7 @@ class RPGMovement extends GameBehavior
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        const animator = this.GetComponent("Animator");
+        const animator = this.GetComponent(Animator);
 
         if (animator != null) animator.SetTrigger("jump");
         else

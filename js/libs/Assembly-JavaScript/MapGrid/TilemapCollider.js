@@ -4,7 +4,7 @@ class TilemapCollider extends GameBehavior
 
     Start ()
     {
-        const tilemap = this.GetComponent("Tilemap");
+        const tilemap = this.GetComponent(Tilemap);
         const size = Vector2.Subtract(MapGrid.current.max, MapGrid.current.min);
 
         for (let x = 0; x <= size.x; x++)

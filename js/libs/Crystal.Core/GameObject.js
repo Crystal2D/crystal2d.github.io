@@ -168,7 +168,9 @@ class GameObject
     
     #IsComponent (item, type, includeInactive)
     {
-        if (!(eval(`item instanceof ${type}`)) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
+        if (typeof type === "string") type = eval(type);
+
+        if (!(item instanceof type) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
         
         return true;
     }

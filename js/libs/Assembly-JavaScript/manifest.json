@@ -16,6 +16,7 @@
         "InputManager",
         "Character/RPGMovement",
         "Character/Player",
+        "Character/RandomMove",
         "CamCtrl",
         "MapGrid/MapNode",
         "MapGrid/MapGrid",
@@ -83,6 +84,20 @@
         {
             "name" : "Player",
             "type" : 0
+        },
+        {
+            "name" : "RandomMove",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "bool",
+                    "name": "turnOnly"
+                },
+                {
+                    "type": "number",
+                    "name": "interval"
+                }
+            ]
         },
         {
             "name" : "CamCtrl",

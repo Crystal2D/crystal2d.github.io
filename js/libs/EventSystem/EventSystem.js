@@ -8,7 +8,7 @@ class EventSystem
         switch (id)
         {
             case "hintbird": {
-                GameObject.Find("char_bird").GetComponent("RPGMovement").LookAtChar(Player.instance);
+                GameObject.Find("char_bird").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -48,7 +48,7 @@ class EventSystem
                 await this.dialogueBox.Close();
                 break;
             case "yolkhouse_zera":
-                GameObject.Find("char_zera").GetComponent("RPGMovement").LookAtChar(Player.instance);
+                GameObject.Find("char_zera").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
@@ -66,7 +66,7 @@ class EventSystem
                 await this.dialogueBox.Close();
                 break;
             case "forestbarrier_fox1": {
-                const fox = GameObject.Find("char_fox1").GetComponent("RPGMovement");
+                const fox = GameObject.Find("char_fox1").GetComponent(RPGMovement);
                 
                 fox.LookAtChar(Player.instance);
 
@@ -76,7 +76,7 @@ class EventSystem
                 await fox.Jump();
                 } break;
             case "forestbarrier_fox2":
-                GameObject.Find("char_fox2").GetComponent("RPGMovement").LookAtChar(Player.instance);
+                GameObject.Find("char_fox2").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();

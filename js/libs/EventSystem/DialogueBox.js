@@ -85,12 +85,12 @@ class DialogueBox extends ItsABox
         super.Start();
 
         Crispixels.effect = true;
-        this.#text = this.GetComponentInChildren("Text");
-        this.#face = this.transform.Find("face").GetComponent("SpriteRenderer");
-        this.#arrow = this.transform.Find("arrow").GetComponent("SpriteRenderer");
+        this.#text = this.GetComponentInChildren(Text);
+        this.#face = this.transform.Find("face").GetComponent(SpriteRenderer);
+        this.#arrow = this.transform.Find("arrow").GetComponent(SpriteRenderer);
 
         EventSystem.dialogueBox = this;
-        EventSystem.dialogueChoiceBox = GameObject.Find("dialogue_choicebox").GetComponent("ChoiceBox");
+        EventSystem.dialogueChoiceBox = GameObject.Find("dialogue_choicebox").GetComponent(ChoiceBox);
 
         this.DontDestroyOnLoad(this, [
             "font_main",

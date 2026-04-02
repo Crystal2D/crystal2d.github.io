@@ -222,7 +222,7 @@ class CrystalEngine
                     if (classs.keys == null) classs.keys = [];
 
                     if (classs.type === 0 && CrystalEngine.IsBehavior(classs.name)) classs.args.push({
-                        type: "boolean",
+                        type: "bool",
                         name: "enabled"
                     });
                     
@@ -267,7 +267,7 @@ class CrystalEngine
                     if (classs.keys == null) classs.keys = [];
 
                     if (classs.type === 0 && CrystalEngine.IsBehavior(classs.name)) classs.args.push({
-                        type: "boolean",
+                        type: "bool",
                         name: "enabled"
                     });
                     

@@ -27,7 +27,7 @@ class Transitioner extends GameBehavior
     {
         Transitioner.instance = this;
         
-        this.#sprite = this.GetComponent("SpriteRenderer");
+        this.#sprite = this.GetComponent(SpriteRenderer);
 
         this.DontDestroyOnLoad(this, [
             "sprites/pixel"
@@ -151,7 +151,7 @@ class Transitioner extends GameBehavior
 
     TintIn (callback = () => { })
     {
-        this.#renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
+        this.#renderers = GameObject.FindComponents(Renderer).filter(item => item.sortingLayer !== 4);
 
         for (let i = 0; i < this.#renderers.length; i++)
         {
@@ -177,7 +177,7 @@ class Transitioner extends GameBehavior
 
     TintOut (callback = () => { })
     {
-        this.#renderers = GameObject.FindComponents("Renderer").filter(item => item.sortingLayer !== 4);
+        this.#renderers = GameObject.FindComponents(Renderer).filter(item => item.sortingLayer !== 4);
 
         for (let i = 0; i < this.#renderers.length; i++)
         {

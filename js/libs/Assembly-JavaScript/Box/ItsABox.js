@@ -31,7 +31,7 @@ class ItsABox extends GameBehavior
 
     Start ()
     {
-        this.spriteRenderer = this.GetComponent("SpriteRenderer");
+        this.spriteRenderer = this.GetComponent(SpriteRenderer);
         this.transform.scale = new Vector2(1, 0);
     }
     

@@ -140,7 +140,7 @@ class PlayerLoop
 
                 gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
 
-                const cameras = GameObject.FindComponents("Camera");
+                const cameras = GameObject.FindComponents(Camera);
 
                 if (cameras.length > 0)
                 {
@@ -205,13 +205,13 @@ class PlayerLoop
             // UpdateAllRenderers
             if (!this.#crashed && this.#playing && Time.timeScale !== 0)
             {
-                const renderers = GameObject.FindComponents("Renderer");
+                const renderers = GameObject.FindComponents(Renderer);
                         
                 for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
 
                 this.onAfterMeshUpdate.Invoke();
                 
-                const cameras = GameObject.FindComponents("Camera");
+                const cameras = GameObject.FindComponents(Camera);
                             
                 for (let i = 0; i < cameras.length; i++) cameras[i].Render();
                             

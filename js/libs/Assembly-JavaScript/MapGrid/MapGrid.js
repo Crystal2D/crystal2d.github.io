@@ -12,7 +12,7 @@ class MapGrid extends GameBehavior
     {
         MapGrid.current = this;
         
-        this.#grid = this.GetComponent("Grid");
+        this.#grid = this.GetComponent(Grid);
 
         this.#Generate();
     }

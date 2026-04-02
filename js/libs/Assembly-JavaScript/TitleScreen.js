@@ -25,7 +25,7 @@ class TitleScreen extends ChoiceBox
         }));
         this.AddChoice("Continue", () => { });
 
-        const options = GameObject.Find("options").GetComponent("Options");
+        const options = GameObject.Find("options").GetComponent(Options);
 
         this.AddChoice(" Options", () => this.Close(() => options.Open()));
         this.padding = new Vector2(0.375, 0);

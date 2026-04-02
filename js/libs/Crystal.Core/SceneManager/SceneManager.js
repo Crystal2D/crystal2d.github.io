@@ -58,7 +58,7 @@ class SceneManager
         {
             prevScene?.tree.Remove(this.#keptObjs[i]);
 
-            const renderer = this.#keptObjs[i].GetComponent("Renderer");
+            const renderer = this.#keptObjs[i].GetComponent(Renderer);
 
             if (renderer != null)
             {

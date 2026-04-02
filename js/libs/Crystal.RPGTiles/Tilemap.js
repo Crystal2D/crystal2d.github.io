@@ -342,7 +342,7 @@ class Tilemap extends Renderer
 
     ForceMeshUpdate ()
     {
-        if (!this.#loaded) this.grid = this.GetComponentInParent("Grid");
+        if (!this.#loaded) this.grid = this.GetComponentInParent(Grid);
 
         this.#gridSize = Vector2.Add(this.grid.cellSize, this.grid.cellGap);
 

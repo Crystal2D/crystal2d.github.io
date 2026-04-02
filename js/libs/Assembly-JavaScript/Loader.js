@@ -71,7 +71,7 @@ class Loader extends GameBehavior
 
     Awake ()
     {
-        this.#spr = this.GetComponent("SpriteRenderer");
+        this.#spr = this.GetComponent(SpriteRenderer);
         this.#spr.color.a = 0;
         Loader.onSwitchStart.Invoke();
     }

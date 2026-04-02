@@ -12,3 +12,8 @@ Math.Lerp = function (a, b, t)
 {
     return this.LerpUnclamped(a, b, Math.Clamp(t, 0, 1));
 };
+
+Math.RandomInt = function (max, min)
+{
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

@@ -152,7 +152,7 @@ class Scene
         this.#loadComponentCalls.Add(async () => {
             gameObj.components = await this.#LoadComponents(rawComponents);
 
-            const renderer = gameObj.GetComponent("Renderer");
+            const renderer = gameObj.GetComponent(Renderer);
 
             if (renderer != null)
             {

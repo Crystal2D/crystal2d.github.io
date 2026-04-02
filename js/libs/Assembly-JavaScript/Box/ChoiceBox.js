@@ -124,8 +124,8 @@ class ChoiceBox extends ItsABox
         super.Start();
 
         const content = await this.Instantiate(Resources.FindPrefab("boxcontent/choice"), this.transform);
-        this._text = content.GetComponentInChildren("Text");
-        this._selector = content.GetComponentInChildren("SpriteRenderer");
+        this._text = content.GetComponentInChildren(Text);
+        this._selector = content.GetComponentInChildren(SpriteRenderer);
 
         for (let i = 0; i < this.#choices.length; i++) this._text.text += `${this.#choices[i].label}\n`;
 

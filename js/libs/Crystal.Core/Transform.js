@@ -173,7 +173,7 @@ class Transform extends Component
         );
         this.#lWMatInv = this.#lWMat.inverse;
 
-        if (this.gameObject != null) this.GetComponent("Renderer")?.RecalcBounds();
+        if (this.gameObject != null) this.GetComponent(Renderer)?.RecalcBounds();
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }

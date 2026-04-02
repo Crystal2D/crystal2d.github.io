@@ -27,7 +27,11 @@
         [
             "sprites/chars/squirrel",
             "spritelibs/chars/squirrel"
-        ]
+        ],
+        "sprites/chars/fox",
+        "sprites/chars/squirrel",
+        "sprites/chars/deer",
+        "sprites/chars/bird"
     ],
     "gameObjects": [
         {
@@ -11128,6 +11132,10 @@
                                             {
                                                 "x": 15,
                                                 "y": 14
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -6
                                             }
                                         ]
                                     },
@@ -12451,10 +12459,6 @@
                                             },
                                             {
                                                 "x": -9,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": -8,
                                                 "y": -6
                                             },
                                             {
@@ -16423,6 +16427,12 @@
                     "args": {
                         "controller": "anims/entity_ctrl"
                     }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
                 }
             ]
         },
@@ -16555,6 +16565,53 @@
                     "args": {
                         "controller": "anims/entity_ctrl"
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": -3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove"
                 }
             ]
         }

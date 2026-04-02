@@ -25,7 +25,7 @@ class MapInit extends GameBehavior
         transfer.pos = new Vector2(-10, 14);
         MapTransfer.last = transfer;
 
-        const renderer = Player.instance.GetComponent("SpriteRenderer");
+        const renderer = Player.instance.GetComponent(SpriteRenderer);
         
         Loader.onSwitchStart.Add(() => renderer.color.a = 0);
         Loader.onSwitchEnd.Add(() => renderer.color.a = 1);
