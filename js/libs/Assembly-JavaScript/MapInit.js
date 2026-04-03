@@ -36,7 +36,7 @@ class MapInit extends GameBehavior
             const switchCallB = () => {
                 Loader.onSwitchEnd.Remove(switchCallB);
                 Transitioner.instance.FadeIn(() => Player.instance.avoidInputs = false);
-                // AudioManager.instance.PlayBGM("forest", 0.2);
+                AudioManager.instance.PlayBGM("forest", 0.2);
             };
             Loader.onSwitchEnd.Add(switchCallB);
         };
