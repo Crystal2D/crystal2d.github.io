@@ -16,7 +16,6 @@ class RPGMovement extends GameBehavior
     #lastPos = Vector2.zero;
     #jumpTo = Vector2.zero;
 
-    #lastNode = null;
     #node = null;
 
     _moveDir = Vector2.zero;
@@ -37,7 +36,7 @@ class RPGMovement extends GameBehavior
 
     get lookingAt ()
     {
-        return this.#lookDir;
+        return this.#lookDir.Duplicate();
     }
 
     set lookingAt (value)
@@ -61,12 +60,22 @@ class RPGMovement extends GameBehavior
     }
 
     updateMovement = true;
+    charCollision = true;
     animateWalk = false;
     speed = 1.875;
-    speedScale = 1;
+    speedScale = 0.5;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
+
+    event = null;
+
+    async Invoke ()
+    {
+        if (this.event == null) return;
+
+        await EventSystem.Run(this.event);
+    }
 
     #GetMovement ()
     {
@@ -81,9 +90,11 @@ class RPGMovement extends GameBehavior
 
         if (this._DirCheck(checkedNode)) return true;
 
-        this.#lastNode = this.#node;
+        this.#node.RemoveOwner(this);
         this.#node = checkedNode;
         this.#node.AddOwner(this);
+
+        return false;
     }
 
     #Move ()
@@ -116,9 +127,6 @@ class RPGMovement extends GameBehavior
 
         if (Vector2.Abs(Vector2.Subtract(nextPos, this.#lastPos)).Greater(Vector2.Abs(this.#movement)))
         {
-            this.#lastNode.RemoveOwner(this);
-            this.#lastNode = null;
-
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
@@ -145,6 +153,12 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent(SpriteResolver);
+        
+        const sprDir = this._sprResolver.category;
+
+        if (sprDir === "up") this.#lookDir = Vector2.up;
+        else if (sprDir === "left") this.#lookDir = Vector2.left;
+        else if (sprDir === "right") this.#lookDir = Vector2.right;
     }
 
     OnEnable ()
@@ -153,6 +167,23 @@ class RPGMovement extends GameBehavior
         this.#node.AddOwner(this);
 
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
+
+        const animator = this.GetComponent(Animator);
+
+        if (animator != null)
+        {
+            const duration = Math.random() * 0.5;
+            let time = 0;
+            const updateCallback = () => {
+                time += Time.deltaTime;
+
+                if (time < duration) return;
+
+                PlayerLoop.onAfterUpdate.Remove(updateCallback);
+                animator.SetTrigger("reset");
+            };
+            PlayerLoop.onAfterUpdate.Add(updateCallback);
+        }
     }
 
     Update ()
@@ -227,7 +258,16 @@ class RPGMovement extends GameBehavior
         }
     }
 
-    _DirCheck (node) { return node.collider || node.GetOwnerOfType(RPGMovement) != null; }
+    _DirCheck (node)
+    {
+        if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
+
+        const char = node.GetOwnerOfType(RPGMovement);
+
+        if (char != null) return this.charCollision && char.charCollision;
+
+        return false;
+    }
 
     _OnMovementGet () { }
 
@@ -250,8 +290,6 @@ class RPGMovement extends GameBehavior
 
     LookAt (dir)
     {
-        if (dir.x !== 0) dir.y = 0;
-        
         dir = dir.normalized;
 
         if (this.#lookDir.Equals(dir)) return;
@@ -285,7 +323,7 @@ class RPGMovement extends GameBehavior
 
         const animator = this.GetComponent(Animator);
 
-        if (animator != null) animator.SetTrigger("jump");
+        if (animator != null) animator.SetTrigger("reset");
         else
         {
             this.#animCount = 0;
@@ -293,14 +331,17 @@ class RPGMovement extends GameBehavior
             this._sprResolver.label = `${this.#animState}`;
         }
 
-        if (!by.Equals(Vector2.zero)) this.LookAt(by);
-
         const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
 
-        this.#node.RemoveOwner(this);
-        this.#lastNode = null;
-        this.#node = targetNode;
-        this.#node.AddOwner(this);
+        if (!by.Equals(Vector2.zero))
+        {
+            this.LookAt(by);
+
+            this.#node.RemoveOwner(this);
+            this.#node = targetNode;
+            this.#node.AddOwner(this);
+        }
+
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));

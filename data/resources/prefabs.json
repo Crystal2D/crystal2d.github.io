@@ -83,5 +83,98 @@
                 }
             ]
         }
+    },
+    {
+        "path": "enities/butterfly",
+        "type": "GameObject",
+        "args": {
+            "name": "butterfly",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/butterfly",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/butterfly"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "charCollision": false
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        }
+    },
+    {
+        "path": "enities/static_butterfly",
+        "type": "GameObject",
+        "args": {
+            "name": "butterfly",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/butterfly",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/butterfly"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "charCollision": false
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        }
     }
 ]

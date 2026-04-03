@@ -1,6 +1,6 @@
 class MapNode
 {
-    collider = false;
+    collider = 0;
     x = 0;
     y = 0;
     gridX = 0;
@@ -17,7 +17,7 @@ class MapNode
         return new Vector2(this.gridX, this.gridY);
     }
 
-    constructor (collider = false)
+    constructor (collider = 0)
     {
         this.collider = collider;
     }

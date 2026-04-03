@@ -22,7 +22,7 @@ class MapInit extends GameBehavior
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(17, -26);
-        transfer.pos = new Vector2(-10, 14);
+        transfer.pos = new Vector2(12, 11);
         MapTransfer.last = transfer;
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);

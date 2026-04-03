@@ -5,6 +5,8 @@ class Interactable
 
     async Invoke ()
     {
+        if (this.event == null) return;
+
         await EventSystem.Run(this.event);
     }
 }

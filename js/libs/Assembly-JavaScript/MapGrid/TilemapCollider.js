@@ -1,6 +1,7 @@
 class TilemapCollider extends GameBehavior
 {
     removeTilemap = true;
+    type = 0;
 
     Start ()
     {
@@ -13,7 +14,7 @@ class TilemapCollider extends GameBehavior
             {
                 const node = MapGrid.current.NodeOn(new Vector2(x, y));
 
-                if (tilemap.GetTile(node.gridPos) != null) node.collider = true;
+                if (tilemap.GetTile(node.gridPos) != null) node.collider = this.type + 1;
             }
         }
 

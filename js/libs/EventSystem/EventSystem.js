@@ -8,7 +8,7 @@ class EventSystem
         switch (id)
         {
             case "hintbird": {
-                GameObject.Find("char_bird").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                GameObject.Find("char_hintbird").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -81,6 +81,68 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();
                 break;
+            case "forestbarrier_squirrel1": {
+                const squirrel = GameObject.Find("char_squirrel1").GetComponent(RPGMovement);
+                const randMove = squirrel.GetComponent(RandomMove);
+
+                randMove.enabled = false;
+                squirrel.LookAtChar(Player.instance);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await squirrel.Jump();
+                randMove.enabled = true;
+                randMove.ResetTime();
+                } break;
+            case "forestbarrier_squirrel2":
+                GameObject.Find("char_squirrel2").GetComponent(RPGMovement).LookAtChar(Player.instance);
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+                break;
+            case "forestbarrier_squirrel3": {
+                const squirrel = GameObject.Find("char_squirrel3").GetComponent(RPGMovement);
+                const randMove = squirrel.GetComponent(RandomMove);
+
+                randMove.enabled = false;
+                squirrel.LookAt(Vector2.left);
+                await this.Timer(1/30);
+                squirrel.LookAt(Vector2.up);
+                await this.Timer(1/30);
+                squirrel.LookAt(Vector2.right);
+                await this.Timer(1/30);
+                squirrel.LookAt(Vector2.down);
+                await this.Timer(1/30);
+                squirrel.LookAtChar(Player.instance);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await squirrel.Jump();
+                randMove.enabled = true;
+                randMove.ResetTime();
+                } break;
+            case "forestbarrier_deer": {
+                const deer = GameObject.Find("char_deer").GetComponent(RPGMovement);
+
+                deer.LookAtChar(Player.instance);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+                } break;
+            case "forestbarrier_bird": {
+                const bird = GameObject.Find("char_bird").GetComponent(RPGMovement);
+                const randMove = bird.GetComponent(RandomMove);
+
+                randMove.enabled = false;
+                const lookingAt = bird.lookingAt;
+                bird.LookAtChar(Player.instance);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+
+                bird.LookAt(lookingAt);
+                randMove.enabled = true;
+                randMove.ResetTime();
+                } break;
         }
     }
 
@@ -112,5 +174,25 @@ class EventSystem
         this.dialogueChoiceBox.Close();
 
         return output;
+    }
+
+    static async Timer (duration)
+    {
+        if (duration < Time.deltaTime) return;
+
+        let time = 0;
+        let endCallback = () => { };
+
+        const updateCallback = () => {
+            time += Time.deltaTime;
+
+            if (time < duration) return;
+
+            PlayerLoop.onAfterUpdate.Remove(updateCallback);
+            endCallback();
+        };
+        PlayerLoop.onAfterUpdate.Add(updateCallback);
+
+        await new Promise(resolve => endCallback = resolve);
     }
 }

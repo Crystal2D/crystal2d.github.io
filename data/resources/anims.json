@@ -105,7 +105,7 @@
         }
     },
     {
-        "path": "anims/entity_jump",
+        "path": "anims/entity_reset",
         "type": "AnimationClip",
         "args": {
             "loop": false,
@@ -131,7 +131,7 @@
         "args": {
             "parameters": [
                 {
-                    "name": "jump",
+                    "name": "reset",
                     "type": 1
                 }
             ],
@@ -144,10 +144,10 @@
                         {
                             "isExit": false,
                             "exitTime": 0,
-                            "nextNode": "jump",
+                            "nextNode": "reset",
                             "conditions": [
                                 {
-                                    "parameter": "jump",
+                                    "parameter": "reset",
                                     "mode": 0,
                                     "threshold": 1
                                 }
@@ -156,9 +156,9 @@
                     ]
                 },
                 {
-                    "name": "jump",
+                    "name": "reset",
                     "speed": 1,
-                    "animation": "anims/entity_jump",
+                    "animation": "anims/entity_reset",
                     "transitions": [
                         {
                             "nextNode": "main"

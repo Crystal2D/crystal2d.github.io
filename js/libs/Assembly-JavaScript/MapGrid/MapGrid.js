@@ -61,8 +61,8 @@ class MapGrid extends GameBehavior
     {
         const xArray = this.nodes[pos.x];
 
-        if (xArray == null) return new MapNode(true);
+        if (xArray == null) return new MapNode(1);
 
-        return xArray[pos.y] ?? new MapNode(true);
+        return xArray[pos.y] ?? new MapNode(1);
     }
 }

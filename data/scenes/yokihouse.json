@@ -15,7 +15,9 @@
         [
             "sprites/chars/bird",
             "spritelibs/chars/bird"
-        ]
+        ],
+        "sprites/chars/zera",
+        "sprites/chars/bird"
     ],
     "gameObjects": [
         {
@@ -222,13 +224,6 @@
                             },
                             {
                                 "pos": {
-                                    "x": -1,
-                                    "y": -3
-                                },
-                                "event": "yolkhouse_zera"
-                            },
-                            {
-                                "pos": {
                                     "x": -2,
                                     "y": -3
                                 },
@@ -240,13 +235,6 @@
                                     "y": -3
                                 },
                                 "event": "yolkhouse_zera"
-                            },
-                            {
-                                "pos": {
-                                    "x": 5,
-                                    "y": -19
-                                },
-                                "event": "hintbird"
                             }
                         ]
                     }
@@ -7923,10 +7911,6 @@
                                             {
                                                 "x": -12,
                                                 "y": -20
-                                            },
-                                            {
-                                                "x": 5,
-                                                "y": -19
                                             }
                                         ]
                                     }
@@ -7957,10 +7941,6 @@
                                         "id": 0,
                                         "coords": [
                                             {
-                                                "x": -1,
-                                                "y": -3
-                                            },
-                                            {
                                                 "x": -2,
                                                 "y": -3
                                             },
@@ -7977,7 +7957,10 @@
                     }
                 },
                 {
-                    "type": "TilemapCollider"
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -8015,12 +7998,15 @@
                     }
                 },
                 {
-                    "type": "RPGMovement"
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "yolkhouse_zera"
+                    }
                 }
             ]
         },
         {
-            "name": "char_bird",
+            "name": "char_hintbird",
             "id": 9,
             "transform": {
                 "position": {
@@ -8053,7 +8039,10 @@
                     }
                 },
                 {
-                    "type": "RPGMovement"
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "hintbird"
+                    }
                 },
                 {
                     "type": "Animator",

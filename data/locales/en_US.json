@@ -113,6 +113,8 @@
 
 "forest_barrier": "----------------------------------------------------------------------",
 "aimmy_mail": "Nothing to deliver today.",
-"forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]"
+"forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]",
+"forestbarrier_squirrel2": "(He has an acorn in his\nmouth.)",
+"forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]"
 
 }

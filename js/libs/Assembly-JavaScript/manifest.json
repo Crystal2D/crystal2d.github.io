@@ -78,6 +78,14 @@
                 {
                     "type": "number",
                     "name": "speedScale"
+                },
+                {
+                    "type": "string",
+                    "name": "event"
+                },
+                {
+                    "type": "bool",
+                    "name": "charCollision"
                 }
             ]
         },
@@ -134,7 +142,13 @@
         },
         {
             "name" : "TilemapCollider",
-            "type" : 0
+            "type" : 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "type"
+                }
+            ]
         },
         {
             "name": "MapConfig",

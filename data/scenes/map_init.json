@@ -19,7 +19,7 @@
         "audio/se/dialogue_4",
         [
             "anims/entity",
-            "anims/entity_jump",
+            "anims/entity_reset",
             "anims/entity_ctrl"
         ]
     ],
