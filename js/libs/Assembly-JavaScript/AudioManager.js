@@ -17,7 +17,7 @@ class AudioManager extends GameBehavior
     {
         this.#bgVol = value;
 
-        this.onBGMVolumeChange.Invoke(value / 100);
+        this.onBGMVolumeChange.Invoke(0.01 * value);
     }
 
     static get seVolume ()
@@ -29,13 +29,22 @@ class AudioManager extends GameBehavior
     {
         this.#seVol = value;
 
-        this.onSEVolumeChange.Invoke(value / 100);
+        this.onSEVolumeChange.Invoke(0.01 * value);
     }
+
+    #localBgVol = 1;
+    #bgFadeDuration = 0;
+    #bgFadeTime = 0;
 
     #clipName = null;
     #select = null;
     #confirm = null;
     #no = null;
+
+    get #bgFadeVol ()
+    {
+        return (this.#bgFadeDuration - this.#bgFadeTime) / this.#bgFadeDuration || 1;
+    }
 
     bgm = null;
     se = null;
@@ -56,23 +65,24 @@ class AudioManager extends GameBehavior
         const sources = this.GetComponents(AudioSource);
         
         this.bgm = sources[0];
-        this.bgm.volume = 0.003 * AudioManager.bgmVolume;
 
-        AudioManager.onBGMVolumeChange.Add(vol => this.bgm.volume = 0.3 * vol);
+        AudioManager.onBGMVolumeChange.Add(vol => this.bgm.volume = this.#localBgVol * this.#bgFadeVol * vol);
+
+        const seVol = 0.01 * AudioManager.seVolume;
 
         this.se = sources[1];
-        this.se.volume = 0.006 * AudioManager.seVolume;
+        this.se.volume = 0.6 * seVol;
 
         // Yes these are separate sources
         // just to replicate how RPG Maker MV does "AudioManager.playStaticSe"
         this.#select = sources[2];
-        this.#select.volume = 0.006 * AudioManager.seVolume;
+        this.#select.volume = 0.6 * seVol;
 
         this.#confirm = sources[3];
-        this.#confirm.volume = 0.006 * AudioManager.seVolume;
+        this.#confirm.volume = 0.6 * seVol;
 
         this.#no = sources[4];
-        this.#no.volume = 0.009 * AudioManager.seVolume;
+        this.#no.volume = 0.9 * seVol;
 
         AudioManager.onSEVolumeChange.Add(vol => {
             this.se.volume = 0.6 * vol;
@@ -82,20 +92,46 @@ class AudioManager extends GameBehavior
         });
     }
 
-    PlayBGM (name)
+    Update ()
     {
-        this.#clipName = `audio/bgm/${name}`;
+        if (this.#bgFadeTime >= this.#bgFadeDuration) return;
 
-        Resources.DontDestroyOnLoad(this.#clipName);
+        this.#bgFadeTime += Time.deltaTime;
+        this.bgm.volume = this.#localBgVol * this.#bgFadeVol * 0.01 * AudioManager.bgmVolume;
 
-        this.bgm.clip = Resources.Find(this.#clipName);
+        if (this.#bgFadeTime < this.#bgFadeDuration) return;
+
+        this.StopBGM();
+        this.#bgFadeDuration = 0;
+        this.#bgFadeTime = 0;
+    }
+
+    async PlayBGM (name, volume, pitch)
+    {
+        this.#localBgVol = volume ?? 1;
+        this.bgm.volume = this.#localBgVol * this.#bgFadeVol * 0.01 * AudioManager.bgmVolume;
+        this.bgm.pitch = pitch ?? 1;
+
+        if (name === this.#clipName) return;
+
+        this.#clipName = name;
+        Resources.DontDestroyOnLoad(`audio/bgm/${this.#clipName}`);
+
+        this.bgm.clip = Resources.Find(`audio/bgm/${this.#clipName}`);
         this.bgm.Play();
+    }
+
+    FadeOutBGM (duration)
+    {
+        if (this.#bgFadeDuration > 0) return;
+
+        this.#bgFadeDuration = duration;
     }
 
     StopBGM ()
     {
         this.bgm.Stop();
-        Resources.DestroyOnLoad(this.#clipName);
+        Resources.DestroyOnLoad(`audio/bgm/${this.#clipName}`);
 
         this.#clipName = null;
     }

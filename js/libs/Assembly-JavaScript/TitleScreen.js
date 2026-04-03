@@ -11,7 +11,7 @@ class TitleScreen extends ChoiceBox
         super.Start();
 
         this.AddChoice("   Start", () => this.Close(() => {
-            AudioManager.instance.StopBGM();
+            AudioManager.instance.FadeOutBGM(1);
 
             Transitioner.instance.FadeOut(() => {
                 const clearCall = () => {
@@ -34,7 +34,7 @@ class TitleScreen extends ChoiceBox
 
         Transitioner.instance.FadeIn(() => {
             this.Open();
-            // AudioManager.instance.PlayBGM("title");
+            AudioManager.instance.PlayBGM("title", 0.3);
         });
     }
 }
