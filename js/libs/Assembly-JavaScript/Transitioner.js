@@ -232,6 +232,11 @@ class Transitioner extends GameBehavior
         }
     }
 
+    SetFadeIn ()
+    {
+        this.#sprite.color.a = 1;
+    }
+
     #UpdateTint ()
     {
         if (this.#tintInTime === 3 && this.#tintInState === 3) this.#StartTintBase(new Color(

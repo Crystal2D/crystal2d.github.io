@@ -86,6 +86,7 @@ class EventSystem
                 const randMove = squirrel.GetComponent(RandomMove);
 
                 randMove.enabled = false;
+                await this.WaitFrameEnd();
                 squirrel.LookAtChar(Player.instance);
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
@@ -105,6 +106,7 @@ class EventSystem
                 const randMove = squirrel.GetComponent(RandomMove);
 
                 randMove.enabled = false;
+                await this.WaitFrameEnd();
                 squirrel.LookAt(Vector2.left);
                 await this.Timer(1/30);
                 squirrel.LookAt(Vector2.up);
@@ -133,6 +135,7 @@ class EventSystem
                 const randMove = bird.GetComponent(RandomMove);
 
                 randMove.enabled = false;
+                await this.WaitFrameEnd();
                 const lookingAt = bird.lookingAt;
                 bird.LookAtChar(Player.instance);
 
@@ -194,5 +197,16 @@ class EventSystem
         PlayerLoop.onAfterUpdate.Add(updateCallback);
 
         await new Promise(resolve => endCallback = resolve);
+    }
+
+    static async WaitFrameEnd ()
+    {
+        await new Promise(resolve => {
+            const callback = () => {
+                PlayerLoop.onFrameEnd.Remove(callback);
+                resolve();
+            };
+            PlayerLoop.onFrameEnd.Add(callback);
+        });
     }
 }

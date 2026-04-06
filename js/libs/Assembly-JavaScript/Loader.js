@@ -7,6 +7,7 @@ class Loader extends GameBehavior
     static target = null;
 
     static onSwitchStart = new DelegateEvent();
+    static onSwitching = new DelegateEvent();
     static onSwitchEnd = new DelegateEvent();
 
     static async ReadyLoader ()
@@ -33,13 +34,17 @@ class Loader extends GameBehavior
     static async SwitchBase (instant)
     {
         this.readyScenes.splice(this.readyScenes.indexOf(this.target), 1);
+        
+        this.onSwitching.Invoke();
 
         await SceneManager.SetActiveScene(this.target);
 
+        if (instant) this.onSwitchStart.Invoke();
+
         const frameCall = () => {
+            if (this.target != null) return;
+
             PlayerLoop.onAfterMeshUpdate.Remove(frameCall);
-            
-            if (instant) this.onSwitchStart.Invoke();
             this.onSwitchEnd.Invoke();
         };
         PlayerLoop.onAfterMeshUpdate.Add(frameCall);

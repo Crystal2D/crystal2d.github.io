@@ -4,6 +4,8 @@ class TitleScreen extends ChoiceBox
     {
         Crispixels.effect = true;
         Cursor.visible = false;
+
+        Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
 
     Start ()
@@ -13,15 +15,7 @@ class TitleScreen extends ChoiceBox
         this.AddChoice("   Start", () => this.Close(() => {
             AudioManager.instance.FadeOutBGM(1);
 
-            Transitioner.instance.FadeOut(() => {
-                const clearCall = () => {
-                    Loader.onSwitchStart.Remove(clearCall);
-                    Transitioner.instance.Clear();
-                };
-                Loader.onSwitchStart.Add(clearCall);
-
-                Loader.Switch(3);
-            });
+            Transitioner.instance.FadeOut(() => Loader.Switch(3));
         }));
         this.AddChoice("Continue", () => { });
 

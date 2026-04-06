@@ -30,17 +30,18 @@ class MapInit extends GameBehavior
         Loader.onSwitchStart.Add(() => renderer.color.a = 0);
         Loader.onSwitchEnd.Add(() => renderer.color.a = 1);
 
-        const switchCallA = () => {
-            Loader.onSwitchEnd.Remove(switchCallA);
-
-            const switchCallB = () => {
-                Loader.onSwitchEnd.Remove(switchCallB);
-                Transitioner.instance.FadeIn(() => Player.instance.avoidInputs = false);
-                AudioManager.instance.PlayBGM("forest", 0.2);
-            };
-            Loader.onSwitchEnd.Add(switchCallB);
+        const switchingCall = () => {
+            Loader.onSwitching.Remove(switchingCall);
+            Transitioner.instance.SetFadeIn();
         };
-        Loader.onSwitchEnd.Add(switchCallA);
+        Loader.onSwitching.Add(switchingCall);
+
+        const switchCall = () => {
+            Loader.onSwitchEnd.Remove(switchCall);
+            Transitioner.instance.FadeIn(() => Player.instance.avoidInputs = false);
+            AudioManager.instance.PlayBGM("forest", 0.2);
+        };
+        Loader.onSwitchEnd.Add(switchCall);
 
         Loader.Switch(5);
         // Loader.Switch(10);
