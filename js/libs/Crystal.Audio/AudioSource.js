@@ -207,8 +207,6 @@ class AudioSource extends Behavior
     PlayDelayed (delay)
     {
         this.#scheduledPlay = AudioSettings.dspTime + delay;
-
-        console.log(this.#scheduledPlay);
     }
 
     Pause ()

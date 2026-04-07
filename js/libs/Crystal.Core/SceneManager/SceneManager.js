@@ -7,6 +7,7 @@ class SceneManager
     static #unloadedScenes = [];
     static #scenes = [];
     static #keptObjs = [];
+    static #loadingRes = [];
     
     static #activeScene = null;
 
@@ -150,10 +151,11 @@ class SceneManager
             if (scene.isInvalid) continue;
 
             const resources = scene.resourceList.filter(item => {
-                const weak = !Resources.keepOnLoad.includes(item)
-                const notOnNext = (this.#scenes.find(subItem => subItem.index !== index[i] && subItem.resourceList.find(resItem => resItem === item) != null)) == null;
+                const weak = !Resources.keepOnLoad.includes(item);
+                const notOnNext = (this.#scenes.find(scene => scene.index !== index[i] && scene.resourceList.find(resItem => resItem === item) != null)) == null;
+                const notOnLoading = this.#loadingRes.find(res => res === item) == null;
 
-                return weak && notOnNext;
+                return weak && notOnNext && notOnLoading;
             });
             Resources.Unload(...resources);
 
@@ -186,6 +188,7 @@ class SceneManager
             let loadCount = 0;
 
             (async () => {
+                this.#loadingRes.push(...scene.resourceList);
                 await Resources.Load(...scene.resources);
                 loadCount++;
             })();
@@ -196,6 +199,8 @@ class SceneManager
             })();
 
             await CrystalEngine.Wait(() => loadCount === 2);
+
+            for (let i = 0; i < scene.resourceList.length; i++) this.#loadingRes.splice(this.#loadingRes.indexOf(scene.resourceList[i]), 1);
 
             this.#scenes.push(scene);
 

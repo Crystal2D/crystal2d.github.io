@@ -206,7 +206,7 @@ class Application
     {
         if (this.#unloaded) return;
 
-        try { this.unloading.Invoke(); }
+        try { await this.unloading.AsyncInvoke(); }
         catch { }
 
         await this.#onUnload();

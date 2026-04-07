@@ -342,7 +342,6 @@ class CrystalEngine
                 if (Application.isLoaded)
                 {
                     PlayerLoop.OnError();
-
                     Application.Unload();
                 }
                 else Application.htmlCanvas.style.display = "none";
@@ -351,7 +350,7 @@ class CrystalEngine
                 document.body.style.overflow = "";
 
                 Window.resizable = true;
-                Window.fullScreen = false;
+                Window.fullscreen = false;
 
                 Cursor.locked = false;
                 Cursor.visible = true;

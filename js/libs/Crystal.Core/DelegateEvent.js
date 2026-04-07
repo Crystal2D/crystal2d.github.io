@@ -47,4 +47,24 @@ class DelegateEvent
 
         return output;
     }
+
+    async AsyncInvoke (...params)
+    {
+        const calls = [...this.#calls];
+        let output = [];
+
+        for (let i = 0; i < calls.length; i++) output.push(await calls[i](...params));
+
+        return output;
+    }
+
+    async AsyncInvokeReversed (...params)
+    {
+        const calls = [...this.#calls];
+        let output = [];
+        
+        for (let i = calls.length - 1; i >= 0; i--) output.push(await calls[i](...params));
+
+        return output;
+    }
 }

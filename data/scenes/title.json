@@ -24,8 +24,7 @@
         "ctrls/x",
         "ctrls/x1",
         "ctrls/shift",
-        "ctrls/shift1",
-        "ref"
+        "ctrls/shift1"
     ],
     "gameObjects": [
         {

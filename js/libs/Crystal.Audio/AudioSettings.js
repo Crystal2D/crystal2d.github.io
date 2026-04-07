@@ -40,7 +40,7 @@ class AudioSettings
                 sources[i].Update();
             }
 
-            if (gameObj.destroying)
+            if (this.#terminating || gameObj.destroying)
             {
                 sources[i].Stop();
                 sources[i].Update();

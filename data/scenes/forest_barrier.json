@@ -28,12 +28,7 @@
         [
             "sprites/chars/squirrel",
             "spritelibs/chars/squirrel"
-        ],
-        "sprites/chars/fox",
-        "sprites/chars/squirrel",
-        "sprites/chars/deer",
-        "sprites/chars/bird",
-        "sprites/chars/butterfly"
+        ]
     ],
     "gameObjects": [
         {
@@ -16756,7 +16751,7 @@
         {
             "name": "char_butterfly2",
             "prefab": "enities/butterfly",
-            "id": 14,
+            "id": 15,
             "transform": {
                 "position": {
                     "x": -9.5,
@@ -16767,7 +16762,7 @@
         {
             "name": "char_butterfly3",
             "prefab": "enities/butterfly",
-            "id": 15,
+            "id": 16,
             "transform": {
                 "position": {
                     "x": -5,
@@ -16778,7 +16773,7 @@
         {
             "name": "char_butterfly4",
             "prefab": "enities/butterfly",
-            "id": 16,
+            "id": 17,
             "transform": {
                 "position": {
                     "x": 7,
@@ -16789,7 +16784,7 @@
         {
             "name": "char_butterfly5",
             "prefab": "enities/static_butterfly",
-            "id": 17,
+            "id": 18,
             "transform": {
                 "position": {
                     "x": 8,
@@ -16800,7 +16795,7 @@
         {
             "name": "char_butterfly6",
             "prefab": "enities/butterfly",
-            "id": 18,
+            "id": 19,
             "transform": {
                 "position": {
                     "x": 6.5,
@@ -16811,7 +16806,7 @@
         {
             "name": "char_butterfly7",
             "prefab": "enities/butterfly",
-            "id": 19,
+            "id": 20,
             "transform": {
                 "position": {
                     "x": 8.5,
@@ -16822,7 +16817,7 @@
         {
             "name": "char_butterfly8",
             "prefab": "enities/butterfly",
-            "id": 20,
+            "id": 21,
             "transform": {
                 "position": {
                     "x": 7,
@@ -16833,7 +16828,7 @@
         {
             "name": "char_butterfly9",
             "prefab": "enities/butterfly",
-            "id": 21,
+            "id": 22,
             "transform": {
                 "position": {
                     "x": 8,
@@ -16844,7 +16839,7 @@
         {
             "name": "char_butterfly10",
             "prefab": "enities/butterfly",
-            "id": 22,
+            "id": 23,
             "transform": {
                 "position": {
                     "x": -3.5,
@@ -16855,7 +16850,7 @@
         {
             "name": "char_butterfly11",
             "prefab": "enities/butterfly",
-            "id": 23,
+            "id": 24,
             "transform": {
                 "position": {
                     "x": -10,

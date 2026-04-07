@@ -84,7 +84,7 @@ class Resources
     }
     
     static Unload (...path)
-    {
+    {        
         for (let i = 0; i < path.length; i++)
         {
             const res = this.#resources.get(path[i]);
@@ -138,7 +138,11 @@ class Resources
                 continue;
             }
 
-            if (this.#resources.has(path)) continue;
+            if (this.#resources.has(path[i]))
+            {
+                pathIndex++;
+                continue;
+            }
 
             const data = this.#unloadedRes.get(path[i]);
 
