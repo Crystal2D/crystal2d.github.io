@@ -1,5 +1,29 @@
 [
     {
+        "path": "illust",
+        "type": "GameObject",
+        "args": {
+            "name": "illust",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/pixel"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingLayer": 5
+                    }
+                }
+            ]
+        }
+    },
+    {
         "path": "boxcontent/choice",
         "type": "GameObject",
         "args": {

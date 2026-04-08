@@ -15,7 +15,7 @@ class SpriteResolver extends GameBehavior
 
         if (value) return;
 
-        this.#sprRen.sprite = this.#ogSpr.Duplicate();
+        this.#sprRen.sprite = this.#ogSpr;
 
         this.#lastCategory = null;
         this.#lastLabel = null;
@@ -29,7 +29,7 @@ class SpriteResolver extends GameBehavior
     Start ()
     {
         this.#sprRen = this.GetComponent(SpriteRenderer);
-        this.#ogSpr = this.#sprRen.sprite.Duplicate();
+        this.#ogSpr = this.#sprRen.sprite;
         this.#lib = this.GetComponent(SpriteLibrary);
     }
 

@@ -16,8 +16,10 @@
             "sprites/chars/bird",
             "spritelibs/chars/bird"
         ],
-        "sprites/chars/zera",
-        "sprites/chars/bird"
+        "audio/bgm/forest",
+        "sprites/illusts/zera_talk_1",
+        "sprites/illusts/zera_talk_2",
+        "sprites/illusts/zera_talk_3"
     ],
     "gameObjects": [
         {

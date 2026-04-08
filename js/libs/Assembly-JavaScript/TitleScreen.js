@@ -12,16 +12,16 @@ class TitleScreen extends ChoiceBox
     {
         super.Start();
 
-        this.AddChoice("   Start", () => this.Close(() => {
+        this.AddChoice(LocaleManager.Find("title_start"), () => this.Close(() => {
             AudioManager.instance.FadeOutBGM(1);
 
             Transitioner.instance.FadeOut(() => Loader.Switch(3));
         }));
-        this.AddChoice("Continue", () => { });
+        this.AddChoice(LocaleManager.Find("title_continue"), () => { });
 
         const options = GameObject.Find("options").GetComponent(Options);
 
-        this.AddChoice(" Options", () => this.Close(() => options.Open()));
+        this.AddChoice(LocaleManager.Find("title_options"), () => this.Close(() => options.Open()));
         this.padding = new Vector2(0.375, 0);
 
         Loader.Ready(3);

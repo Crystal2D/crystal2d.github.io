@@ -13,6 +13,71 @@ class Options extends ChoiceBox
     #leftArrow = null;
     #rightArrow = null;
 
+    static async Load ()
+    {
+        let counter = 0;
+
+        (async () => {
+            const config = await RPGSave.Load(-2);
+        
+            if (config != null)
+            {
+                this.run = config.alwaysDash;
+                AudioManager.bgmVolume = config.bgmVolume;
+                AudioManager.seVolume = config.seVolume;
+            }
+
+            counter++;
+        })();
+
+        (async () => {
+            const config_more = await RPGSave.Load(-1);
+
+            if (config_more != null)
+            {
+                Window.fullscreen = config_more.fullscreen;
+                this.textSkip = config_more.textSkip;
+                this.resolution = config_more.resolution;
+                this.windowSize = config_more.windowSize;
+                this.fps = config_more.fps;
+            }
+
+            counter++;
+        })();
+
+        await CrystalEngine.Wait(() => counter === 2);
+    }
+
+    static async Save ()
+    {
+        let counter = 0;
+
+        (async () => {
+            await RPGSave.Save(-2, {
+                alwaysDash: this.run,
+                commandRemember: false, 
+                bgmVolume: AudioManager.bgmVolume,
+                bgsVolume: 100,
+                meVolume: 100,
+                seVolume: AudioManager.seVolume
+            });
+            counter++;
+        })();
+
+        (async () => {
+            await RPGSave.Save(-1, {
+                fullscreen: Window.fullscreen,
+                textSkip: this.textSkip,
+                resolution: this.resolution,
+                windowSize: this.windowSize,
+                fps: this.fps
+            });
+            counter++;
+        })();
+
+        await CrystalEngine.Wait(() => counter === 2);
+    }
+
     async Start ()
     {
         this.#mainStuff = GameObject.Find("choicebox").GetComponent(TitleScreen);
@@ -25,37 +90,43 @@ class Options extends ChoiceBox
         this.#leftArrow.SetActive(false);
         this.#rightArrow.SetActive(false);
 
-        this.AddText("General");
-        this.AddChoice(" Movement", () => {
+        this.AddText(LocaleManager.Find("options_gen"));
+        this.AddChoice(LocaleManager.Find("options_gen_move"), () => {
             Options.run = !Options.run;
             this.#UpdateDataText();
         }, 1);
-        this.AddChoice(" Text Skip", () => {
+        this.AddChoice(LocaleManager.Find("options_gen_txtskip"), () => {
             Options.textSkip = !Options.textSkip;
             this.#UpdateDataText();
         }, 1);
         this.AddText("");
 
-        this.AddText("Graphics");
+        this.AddText(LocaleManager.Find("options_graphics"));
 
         this.#arrowCalls.push(
             null,
             () => new Vector2(
-                Options.run ? 1.445 : 1.325,
-                Options.run ? 2.825 : 2.925
+                Options.run ? LocaleManager.Find("options_gen_move_run_aleft") : LocaleManager.Find("options_gen_move_walk_aleft"),
+                Options.run ? LocaleManager.Find("options_gen_move_run_aright") : LocaleManager.Find("options_gen_move_walk_aright")
             ),
-            () => Options.textSkip ? new Vector2(1.625, 2.645) : new Vector2(1.505, 2.75),
+            () => Options.textSkip ? new Vector2(
+                LocaleManager.Find("options_on_aleft"),
+                LocaleManager.Find("options_on_aright")
+            ) : new Vector2(
+                LocaleManager.Find("options_off_aleft"),
+                LocaleManager.Find("options_off_aright")
+            ),
             null,
             null
         );
 
         if (!Application.isInCordova)
         {
-            this.AddChoice(" Fullscreen", () => {
+            this.AddChoice(LocaleManager.Find("options_graphics_fullscreen"), () => {
                 Window.fullscreen = !Window.fullscreen;
                 this.#UpdateDataText();
             }, 1);
-            this.AddChoice(" Window Size", dir => {
+            this.AddChoice(LocaleManager.Find("options_graphics_winsize"), dir => {
                 Options.windowSize += dir;
 
                 if (Options.windowSize > 4) Options.windowSize = 0;
@@ -88,7 +159,13 @@ class Options extends ChoiceBox
             }, 2);
 
             this.#arrowCalls.push(
-                () => Window.fullscreen ? new Vector2(1.625, 2.645) : new Vector2(1.505, 2.75),
+                () => Window.fullscreen ? new Vector2(
+                    LocaleManager.Find("options_on_aleft"),
+                    LocaleManager.Find("options_on_aright")
+                ) : new Vector2(
+                    LocaleManager.Find("options_off_aleft"),
+                    LocaleManager.Find("options_off_aright")
+                ),
                 () => {
                     switch (Options.windowSize)
                     {
@@ -96,7 +173,10 @@ class Options extends ChoiceBox
                         case 3:
                             return new Vector2(0.325, 3.9);
                         case 4:
-                            return new Vector2(0.7125, 3.5125);
+                            return new Vector2(
+                                LocaleManager.Find("options_graphics_winsize_any_aleft"),
+                                LocaleManager.Find("options_graphics_winsize_any_aright")
+                            );
                     }
 
                     return new Vector2(0.625, 3.625);
@@ -104,7 +184,7 @@ class Options extends ChoiceBox
             );
         }
 
-        this.AddChoice(" Resolution", dir => {
+        this.AddChoice(LocaleManager.Find("options_graphics_res"), dir => {
             Options.resolution += dir;
 
             if (Options.resolution > 4) Options.resolution = 1;
@@ -119,7 +199,7 @@ class Options extends ChoiceBox
 
             this.#UpdateDataText();
         }, 2);
-        this.AddChoice(" Framerate", dir => {
+        this.AddChoice(LocaleManager.Find("options_graphics_fps"), dir => {
             let updateFps = false;
 
             if (Options.fps < 5 && dir > 0)
@@ -157,20 +237,20 @@ class Options extends ChoiceBox
 
             this.#UpdateDataText();
         }, 2);
-        this.AddChoice(" Crisp Pixels", () => {
+        this.AddChoice(LocaleManager.Find("options_graphics_crispixels"), () => {
             Crispixels.effect = !Crispixels.effect;
             this.#UpdateDataText();
         }, 1);
         this.AddText("");
 
-        this.AddText("Audio");
-        this.AddChoice(" Music", dir => {
+        this.AddText(LocaleManager.Find("options_audio"));
+        this.AddChoice(LocaleManager.Find("options_audio_bgm"), dir => {
             if (dir === 0 || dir < 0 && AudioManager.bgmVolume === 0 || dir > 0 && AudioManager.bgmVolume === 100) return false;
         
             AudioManager.bgmVolume = Math.Clamp(AudioManager.bgmVolume + 20 * dir, 0, 100);
             this.#UpdateDataText();
         }, 2);
-        this.AddChoice(" Effects", dir => {
+        this.AddChoice(LocaleManager.Find("options_audio_se"), dir => {
             if (dir === 0 || dir < 0 && AudioManager.seVolume === 0 || dir > 0 && AudioManager.seVolume === 100) return false;
 
             AudioManager.seVolume = Math.Clamp(AudioManager.seVolume + 20 * dir, 0, 100);
@@ -185,7 +265,10 @@ class Options extends ChoiceBox
                     case 3:
                         return new Vector2(0.32, 3.9);
                     case 4:
-                        return new Vector2(0.125, 4.05);
+                        return new Vector2(
+                            LocaleManager.Find("options_graphics_res_match_aleft"),
+                            LocaleManager.Find("options_graphics_res_match_aright")
+                        );
                 }
 
                 return new Vector2(0.625, 3.625);
@@ -199,10 +282,16 @@ class Options extends ChoiceBox
                         pos = new Vector2(1.425, 2.825);
                         break;
                     case 4:
-                        pos = new Vector2(0.725, 3.525);
+                        pos = new Vector2(
+                            LocaleManager.Find("options_graphics_fps_unli_aleft"),
+                            LocaleManager.Find("options_graphics_fps_unli_aright")
+                        );
                         break;
                     case 5:
-                        pos = new Vector2(0.6, 5.1);
+                        pos = new Vector2(
+                            LocaleManager.Find("options_graphics_fps_vsync_aleft"),
+                            5.1
+                        );
                         break;
                     default:
                         pos = new Vector2(1.625, 2.625);
@@ -213,7 +302,13 @@ class Options extends ChoiceBox
 
                 return pos;
             },
-            () => Crispixels.effect ? new Vector2(1.625, 2.645) : new Vector2(1.505, 2.75),
+            () => Crispixels.effect ? new Vector2(
+                LocaleManager.Find("options_on_aleft"),
+                LocaleManager.Find("options_on_aright")
+            ) : new Vector2(
+                LocaleManager.Find("options_off_aleft"),
+                LocaleManager.Find("options_off_aright")
+            ),
             null,
             null,
             () => {
@@ -282,19 +377,19 @@ class Options extends ChoiceBox
 
     #UpdateDataText ()
     {
-        const toggle = state => state ? "On" : "Off";
+        const toggle = state => state ? LocaleManager.Find("options_on") : LocaleManager.Find("options_off");
 
         const resSize = Options.resolution + 1;
-        const res = resSize > 4 ? `Match ${Window.fullscreen ? "Screen" : "Window"}` : `${480 * resSize} x ${432 * resSize}`;
+        const res = resSize > 4 ? `${LocaleManager.Find("options_graphics_res_match")} ${Window.fullscreen ? LocaleManager.Find("options_graphics_res_screen") : LocaleManager.Find("options_graphics_res_window")}` : `${480 * resSize} x ${432 * resSize}`;
 
         const winSize = Options.windowSize + 1;
-        const win = winSize > 4 ? "Whatever" : `${480 * winSize} x ${432 * winSize}`;
+        const win = winSize > 4 ? LocaleManager.Find("options_graphics_winsize_any") : `${480 * winSize} x ${432 * winSize}`;
 
-        let fps = Application.vSyncCount > 0 ? "V-Synced" : Application.targetFrameRate;
-        if (fps < 0) fps = "Unlimited";
+        let fps = Application.vSyncCount > 0 ? LocaleManager.Find("options_graphics_fps_vsync") : Application.targetFrameRate;
+        if (fps < 0) fps = LocaleManager.Find("options_graphics_fps_unli");
 
-        if (Application.isInCordova) this.#dataText.text = `\n${Options.run ? "Run" : "Walk"}\n${toggle(Options.textSkip)}\n\n\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
-        else this.#dataText.text = `\n${Options.run ? "Run" : "Walk"}\n${toggle(Options.textSkip)}\n\n\n${toggle(Window.fullscreen)}\n${win}\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
+        if (Application.isInCordova) this.#dataText.text = `\n${Options.run ? LocaleManager.Find("options_gen_move_run") : LocaleManager.Find("options_gen_move_walk")}\n${toggle(Options.textSkip)}\n\n\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
+        else this.#dataText.text = `\n${Options.run ? LocaleManager.Find("options_gen_move_run") : LocaleManager.Find("options_gen_move_walk")}\n${toggle(Options.textSkip)}\n\n\n${toggle(Window.fullscreen)}\n${win}\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
 
         this.#UpdateArrows();
     }
@@ -313,6 +408,8 @@ class Options extends ChoiceBox
         if (!this.isClosed && InputManager.GetKeyDown("x"))
         {
             AudioManager.instance.PlayNo();
+
+            Options.Save();
 
             this.Close();
             this.#mainStuff.Open();

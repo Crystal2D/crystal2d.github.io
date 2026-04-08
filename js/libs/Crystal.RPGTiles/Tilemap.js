@@ -48,6 +48,23 @@ class Tilemap extends Renderer
         return Array.from(this.#rendersets).map(item => item[1].material);
     }
 
+    set tint (value)
+    {
+        super.tint = value;
+
+        this.#rendersets.forEach(item => item.SetTint([
+            value.r,
+            value.g,
+            value.b,
+            value.a
+        ]));
+    }
+
+    get tint ()
+    {
+        return super.tint;
+    }
+
     #RenderSet = class
     {
         colorsUpdated = false;
@@ -65,6 +82,7 @@ class Tilemap extends Renderer
         textureArray = [];
         color = [];
         colorArray = [];
+        tint = [];
         indexes = [];
         trisCounts = [];
         scaler = Vector2.zero;
@@ -154,6 +172,13 @@ class Tilemap extends Renderer
             this.colorsUpdated = true;
         }
 
+        SetTint (color)
+        {
+            this.tint = color;
+
+            this.material.SetVector("uTint", ...color);
+        }
+
         UpdateMesh ()
         {
             const ppu = this.texture.pixelPerUnit;
@@ -187,6 +212,7 @@ class Tilemap extends Renderer
             this.arraysUpdated = true;
 
             this.SetColors(this.color);
+            this.SetTint(this.tint);
         }
 
         Add (tile)
@@ -337,6 +363,7 @@ class Tilemap extends Renderer
             }
             
             this.#RemapColors();
+            this.tint = this.tint;
         }
     }
 
@@ -477,6 +504,12 @@ class Tilemap extends Renderer
                 this.color.g,
                 this.color.b,
                 this.color.a
+            ];
+            renderSet.tint = [
+                this.tint.r,
+                this.tint.g,
+                this.tint.b,
+                this.tint.a
             ];
             renderSet.parent = this;
 
@@ -641,7 +674,7 @@ class Tilemap extends Renderer
 
     Duplicate ()
     {
-        const output = new Tilemap(this.material.Duplicate());
+        const output = new Tilemap(this.material);
 
         this.#tiles.forEach(item => output.AddTile(item.Duplicate()));
         

@@ -8,7 +8,8 @@
     "scripts" : [
         "EventSystem",
         "Interactable",
-        "DialogueBox"
+        "DialogueBox",
+        "Illustrator"
     ],
     "classes" : [
         {
@@ -26,6 +27,16 @@
                 {
                     "type": "string",
                     "name": "event"
+                }
+            ]
+        },
+        {
+            "name": "Illustrator",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "min"
                 }
             ]
         }

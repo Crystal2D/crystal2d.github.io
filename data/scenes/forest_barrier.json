@@ -7,7 +7,6 @@
         "sprites/tilesets/ext_village",
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/collider",
-        "audio/bgm/forest",
         "audio/se/jump",
         [
             "sprites/chars/fox",

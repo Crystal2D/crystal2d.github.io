@@ -1,7 +1,25 @@
 class EventSystem
 {
+    static #switches = [];
+    static #variables = [];
+
     static dialogueBox = null;
     static dialogueChoiceBox = null;
+    static illustrator = null;
+
+    static #AddSwitch (name)
+    {
+    }
+
+    static #AddVariable (name)
+    {
+        
+    }
+
+    static Init ()
+    {
+
+    }
 
     static async Run (id)
     {
@@ -50,13 +68,157 @@ class EventSystem
             case "yolkhouse_zera":
                 GameObject.Find("char_zera").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
-                this.dialogueBox.SetFace("yoki", "annoyed");
+                this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await EventSystem.Timer(9);
+                this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await EventSystem.Timer(9);
+                this.TintAll(new Color(-1, -1, -1, 0));
+                await EventSystem.Timer(1);
+
+                this.illustrator.Set(0, "zera_talk_1", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(0, "zera_talk_1", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(0, "zera_talk_1", 1);
+                await EventSystem.Timer(21);
+                
+                this.dialogueBox.SetFace("yoki", "upset");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
-                this.dialogueBox.SetFace("zera", "look");
+
+                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(1, "zera_talk_2", 1);
+                this.illustrator.Clear(0);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
-                await this.dialogueBox.Close();
+
+                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(0, "zera_talk_3", 1);
+                this.illustrator.Clear(1);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "pout");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+
+                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(1, "zera_talk_2", 1);
+                this.illustrator.Clear(0);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+
+                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(0, "zera_talk_3", 1);
+                this.illustrator.Clear(1);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "pout");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+
+                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(1, "zera_talk_2", 1);
+                this.illustrator.Clear(0);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "pout");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+
+                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await EventSystem.Timer(8);
+                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(0, "zera_talk_3", 1);
+                this.illustrator.Clear(1);
+                await EventSystem.Timer(21);
+
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+
+                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await EventSystem.Timer(9);
+                this.illustrator.Clear(0);
+                await EventSystem.Timer(20);
+
+                this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await EventSystem.Timer(9);
+                this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await EventSystem.Timer(9);
+                this.TintAll(Color.clear);
+                await EventSystem.Timer(1);
+                
+
+                // this.dialogueBox.SetFace("yoki", "annoyed");
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                // this.dialogueBox.SetFace("zera", "look");
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                // this.dialogueBox.SetFace("yoki", "annoyed");
+                // await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                // await this.dialogueBox.Close();
                 break;
 
             // forest_barrier
@@ -108,13 +270,13 @@ class EventSystem
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
                 squirrel.LookAt(Vector2.left);
-                await this.Timer(1/30);
+                await this.Timer(2);
                 squirrel.LookAt(Vector2.up);
-                await this.Timer(1/30);
+                await this.Timer(2);
                 squirrel.LookAt(Vector2.right);
-                await this.Timer(1/30);
+                await this.Timer(2);
                 squirrel.LookAt(Vector2.down);
-                await this.Timer(1/30);
+                await this.Timer(2);
                 squirrel.LookAtChar(Player.instance);
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
@@ -181,6 +343,8 @@ class EventSystem
 
     static async Timer (duration)
     {
+        duration = duration / 60;
+
         if (duration < Time.deltaTime) return;
 
         let time = 0;
@@ -209,4 +373,13 @@ class EventSystem
             PlayerLoop.onFrameEnd.Add(callback);
         });
     }
+
+    static TintAll (color)
+    {
+        const renderers = GameObject.FindComponents(Renderer).filter(item => !([4, 5]).includes(item.sortingLayer));
+
+        for (let i = 0; i < renderers.length; i++) renderers[i].tint = color;
+    }
 }
+
+EventSystem.Init();

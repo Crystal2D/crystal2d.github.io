@@ -8,19 +8,7 @@ class Transitioner extends GameBehavior
     #outTimeSet = 0;
     #onFadeIn = () => { };
     #onFadeOut = () => { };
-
-    #tint = new Color(0, 0, 0, 0);
-    #tintTarget = new Color(0, 0, 0, 0);
-    #tintDuration = 0;
-    #tintTime = 0;
-    #renderers = [];
-    #tintInTime = 0;
-    #tintInState = -1;
-    #tintOutTime = 0;
-    #tintOutState = -1;
-    #onTintIn = () => { };
-    #onTintOut = () => { };
-
+    
     #sprite = null;
 
     Awake ()
@@ -29,9 +17,7 @@ class Transitioner extends GameBehavior
         
         this.#sprite = this.GetComponent(SpriteRenderer);
 
-        this.DontDestroyOnLoad(this, [
-            "sprites/pixel"
-        ]);
+        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
     }
 
     FadeIn (callback = () => { })
@@ -81,155 +67,53 @@ class Transitioner extends GameBehavior
         }
     }
 
-    #UpdateTintBase ()
+    async TintIn (callback = () => { })
     {
-        if (this.#tintTime <= 0) return;
+        EventSystem.TintAll(new Color(
+            20 / 255,
+            10 / 255,
+            10 / 255,
+            0
+        ));
+        await EventSystem.Timer(3);
+        EventSystem.TintAll(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255,
+            0
+        ));
+        await EventSystem.Timer(4);
+        EventSystem.TintAll(new Color(
+            130 / 255,
+            120 / 255,
+            90 / 255,
+            0
+        ));
+        await EventSystem.Timer(4);
 
-        this.#tintTime -= Time.deltaTime;
-
-        this.#tint = Color.Lerp(
-            this.#tintTarget,
-            this.#tint,
-            this.#tintTime / this.#tintDuration
-        );
-
-        for (let i = 0; i < this.#renderers.length; i++)
-        {
-            this.#renderers[i].material.SetVector("uTint", 
-                this.#tint.r,
-                this.#tint.g,
-                this.#tint.b,
-                0
-            );
-
-            if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
-            {
-                const materials = this.#renderers[i].materials;
-                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 
-                    this.#tint.r,
-                    this.#tint.g,
-                    this.#tint.b,
-                    0
-                );
-            }
-        }
+        callback();
     }
 
-    #StartTintBase (color, duration)
+    async TintOut (callback = () => { })
     {
-        if (duration === 0)
-        {
-            for (let i = 0; i < this.#renderers.length; i++)
-            {
+        EventSystem.TintAll(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255,
+            0
+        ));
+        await EventSystem.Timer(4);
+        EventSystem.TintAll(Color.clear);
+        await EventSystem.Timer(4);
 
-                this.#renderers[i].material.SetVector("uTint", 
-                    color.r,
-                    color.g,
-                    color.b,
-                    0
-                );
-
-                if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
-                {
-                    const materials = this.#renderers[i].materials;
-                    for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 
-                        color.r,
-                        color.g,
-                        color.b,
-                        0
-                    );
-                }
-            }
-
-            return;
-        }
-
-        this.#tintTarget = color.Duplicate();
-        this.#tintTime = duration;
-        this.#tintDuration = duration;
-    }
-
-    TintIn (callback = () => { })
-    {
-        this.#renderers = GameObject.FindComponents(Renderer).filter(item => item.sortingLayer !== 4);
-
-        for (let i = 0; i < this.#renderers.length; i++)
-        {
-            const renderer = this.#renderers[i];
-
-            if (renderer === this.#sprite) continue;
-
-            const material = new Material(null, Shader.Find("Default/Tinted", "FRAGMENT"));
-            renderer.material = material;
-            material.SetVector("uTint", 0, 0, 0, 0);
-
-            if (renderer instanceof Tilemap)
-            {
-                const materials = renderer.materials;
-                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 0, 0, 0, 0);
-            }
-        }
-
-        this.#tintInTime = 3;
-        this.#tintInState = 3;
-        this.#onTintIn = callback;
-    }
-
-    TintOut (callback = () => { })
-    {
-        this.#renderers = GameObject.FindComponents(Renderer).filter(item => item.sortingLayer !== 4);
-
-        for (let i = 0; i < this.#renderers.length; i++)
-        {
-            const renderer = this.#renderers[i];
-
-            if (renderer === this.#sprite) continue;
-
-            const material = new Material(null, Shader.Find("Default/Tinted", "FRAGMENT"));
-            renderer.material = material;
-            material.SetVector("uTint",
-                130 / 255,
-                120 / 255,
-                90 / 255,
-                0
-            );
-
-            if (renderer instanceof Tilemap)
-            {
-                const materials = renderer.materials;
-                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint",
-                    130 / 255,
-                    120 / 255,
-                    90 / 255,
-                    0
-                );
-            }
-        }
-
-        this.#tintOutTime = 4;
-        this.#tintOutState = 2;
-        this.#onTintOut = callback;
+        callback();
     }
 
     Clear ()
     {
         this.#inTime = 0;
         this.#outTime = 0;
-        this.#tintInState = -1;
-        this.#tintOutState = -1;
-
         this.#sprite.color.a = 0;
-
-        for (let i = 0; i < this.#renderers.length; i++)
-        {
-            this.#renderers[i].material.SetVector("uTint", 0, 0, 0, 0);
-
-            if ((this.#renderers[i] instanceof Tilemap) && !this.#renderers[i].mergedRendering)
-            {
-                const materials = this.#renderers[i].materials;
-                for (let i = 0; i < materials.length; i++) materials[i].SetVector("uTint", 0, 0, 0, 0);
-            }
-        }
     }
 
     SetFadeIn ()
@@ -237,71 +121,9 @@ class Transitioner extends GameBehavior
         this.#sprite.color.a = 1;
     }
 
-    #UpdateTint ()
-    {
-        if (this.#tintInTime === 3 && this.#tintInState === 3) this.#StartTintBase(new Color(
-            20 / 255,
-            10 / 255,
-            10 / 255
-        ), 1 / 60);
-        else if (this.#tintInTime === 4 && this.#tintInState === 2) this.#StartTintBase(new Color(
-            90 / 255,
-            80 / 255,
-            50 / 255
-        ), 1 / 60);
-        else if (this.#tintInTime === 4 && this.#tintInState === 1) this.#StartTintBase(new Color(
-            130 / 255,
-            120 / 255,
-            90 / 255
-        ), 1 / 60);
-
-        if (this.#tintInState > 0)
-        {
-            this.#tintInTime -= Time.deltaTime * 60;
-
-            if (this.#tintInTime <= 0)
-            {
-                this.#tintInState--;
-
-                if (this.#tintInState > 0) this.#tintInTime = 4;
-                else
-                {
-                    this.#onTintIn();
-                    this.#onTintIn = () => { };
-                }
-            }
-        }
-
-        if (this.#tintOutTime === 4 && this.#tintOutState === 2) this.#StartTintBase(new Color(
-            90 / 255,
-            80 / 255,
-            50 / 255
-        ), 1 / 60);
-        else if (this.#tintOutTime === 4 && this.#tintOutState === 1) this.#StartTintBase(new Color(0, 0, 0), 1 / 60);
-
-        if (this.#tintOutState > 0)
-        {
-            this.#tintOutTime -= Time.deltaTime * 60;
-
-            if (this.#tintOutTime <= 0)
-            {
-                this.#tintOutState--;
-                
-                if (this.#tintOutState > 0) this.#tintOutTime = 4;
-                else
-                {
-                    this.#onTintOut();
-                    this.#onTintOut = () => { };
-                }
-            }
-        }
-    }
-
     Update ()
     {
         this.#UpdateFade();
-        this.#UpdateTintBase();
-        this.#UpdateTint();
     }
 
     LateUpdate ()

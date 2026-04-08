@@ -176,7 +176,7 @@ class DialogueBox extends ItsABox
 
     async Close ()
     {
-        if (this.#startedTyping) return;
+        if (this.#startedTyping || this.isClosed) return;
         
         super.Close();
 
@@ -322,7 +322,7 @@ class DialogueBox extends ItsABox
                 }
             };
 
-            if (currentSE > 0 && text[i] !== "\n" && !shownFast && (index !== 0 && index % 4 === 0)) this.#chars.push({
+            if (currentSE > 0 && !shownFast && (i !== 0 && i % 4 === 0)) this.#chars.push({
                 callback: () => {
                     if (!this.#showFast) AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch);
                 },

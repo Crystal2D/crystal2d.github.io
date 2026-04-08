@@ -111,7 +111,7 @@ class Texture
         this.wrapMode = 0;
         this.filterMode = 0;
         
-        this.#src = `${dir ?? "img/"}${src}`;
+        this.#src = `${dir ?? "img\\"}${src}`;
     }
     
     GetNativeTexture ()

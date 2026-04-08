@@ -10,7 +10,8 @@
     ],
     "scripts" : [
         "plugins/Crispixels",
-        "plugins/FPSMeter"
+        "plugins/FPSMeter",
+        "plugins/LZString"
     ],
     "resources": [
         "main",
@@ -48,9 +49,7 @@
         "forest_view",
         "town_path"
     ],
-    "shaders" : [
-        "tinted"
-    ],
+    "shaders" : [],
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
     "runInBackground": false,
@@ -81,18 +80,23 @@
             "value": 2
         },
         {
-            "name": "Collider",
+            "name": "Colliders",
             "id": 2,
             "value": 1
         },
         {
             "name": "Transitioner",
             "id": 3,
-            "value": 4
+            "value": 5
         },
         {
             "name": "UI",
             "id": 4,
+            "value": 4
+        },
+        {
+            "name": "Illustrations",
+            "id": 5,
             "value": 3
         }
     ],

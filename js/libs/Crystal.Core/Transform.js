@@ -143,6 +143,8 @@ class Transform extends Component
             this.scale
         );
         this.#lWMatInv = this.#lWMat.inverse;
+
+        for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
     
     Recalc ()

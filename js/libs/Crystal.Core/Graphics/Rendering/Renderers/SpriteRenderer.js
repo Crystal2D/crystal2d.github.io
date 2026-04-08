@@ -15,6 +15,7 @@ class SpriteRenderer extends Renderer
     #spriteOld = null;
     #colorOld = null;
     #size = null;
+    #sizeBase = null;
 
     get meshChanged ()
     {
@@ -33,7 +34,7 @@ class SpriteRenderer extends Renderer
     
     set sprite (value)
     {
-        this.#sprite = value;
+        this.#sprite = value.Duplicate();
         
         this.Reload();
     }
@@ -63,12 +64,13 @@ class SpriteRenderer extends Renderer
 
     get size ()
     {
-        return this.#size;
+        return this.#size ?? Vector2.Divide(Vector2.one, this.#sizeBase);
     }
 
     set size (value)
     {
-        if (this.#size.Equals(value)) return;
+        if (this.#size instanceof Vector2 && this.#size.Equals(value)) return;
+        if (this.#size === value) return;
 
         this.#size = value;
 
@@ -81,7 +83,7 @@ class SpriteRenderer extends Renderer
     {
         super(material);
         
-        this.#sprite = sprite;
+        this.#sprite = sprite.Duplicate();
         this.Reload();
     }
 
@@ -118,18 +120,16 @@ class SpriteRenderer extends Renderer
         this.#spriteOld = this.#sprite;
 
         const ppu = this.sprite.pixelPerUnit;
-        const sizeBase = new Vector2(
+        this.#sizeBase = new Vector2(
             ppu / this.sprite.rect.width,
             ppu / this.sprite.rect.height,
         );
-
-        if (this.#size == null) this.#size = Vector2.Divide(Vector2.one, sizeBase);
 
         this.#indexes = [];
         this.#trisCounts = [];
         
         const verts = this.sprite.vertices;
-        const renderSize = Vector2.Scale(this.#size, sizeBase);
+        const renderSize = Vector2.Scale(this.size, this.#sizeBase);
 
         if (!renderSize.Equals(Vector2.one))
         {
@@ -626,7 +626,7 @@ class SpriteRenderer extends Renderer
 
     Duplicate ()
     {
-        const output = new SpriteRenderer(this.sprite.Duplicate(), this.material.Duplicate());
+        const output = new SpriteRenderer(this.sprite, this.material);
 
         output.color = this.color.Duplicate();
         output.sortingLayer = this.sortingLayer;

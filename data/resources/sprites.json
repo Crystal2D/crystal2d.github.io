@@ -1,5 +1,26 @@
 [
     {
+        "path": "sprites/illusts/zera_talk_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_1.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_2.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_3.png"
+        }
+    },
+    {
         "path": "sprites/pixel",
         "type": "Texture",
         "args": {
@@ -806,7 +827,7 @@
                 {
                     "name": "down",
                     "rect": {
-                        "y": 15,
+                        "y": 16,
                         "width": 15,
                         "height": 16
                     }
@@ -829,17 +850,17 @@
                 {
                     "name": "down-1",
                     "rect": {
-                        "y": 15,
+                        "y": 16,
                         "width": 15,
                         "height": 16,
-                        "x": 15
+                        "x": 16
                     }
                 },
                 {
                     "name": "down-2",
                     "rect": {
-                        "x": 30,
-                        "y": 15,
+                        "x": 32,
+                        "y": 16,
                         "width": 15,
                         "height": 16
                     }
