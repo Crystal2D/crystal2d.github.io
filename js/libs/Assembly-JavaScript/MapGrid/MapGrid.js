@@ -1,6 +1,7 @@
 class MapGrid extends GameBehavior
 {
     static current = null;
+    static id = null;
 
     #grid = null;
 
@@ -11,6 +12,7 @@ class MapGrid extends GameBehavior
     Awake ()
     {
         MapGrid.current = this;
+        MapGrid.scene = SceneManager.GetActiveScene().index;
         
         this.#grid = this.GetComponent(Grid);
 

@@ -15,67 +15,33 @@ class Options extends ChoiceBox
 
     static async Load ()
     {
-        let counter = 0;
-
-        (async () => {
-            const config = await RPGSave.Load(-2);
+        const config = await RPGSave.Load(-1);
         
-            if (config != null)
-            {
-                this.run = config.alwaysDash;
-                AudioManager.bgmVolume = config.bgmVolume;
-                AudioManager.seVolume = config.seVolume;
-            }
-
-            counter++;
-        })();
-
-        (async () => {
-            const config_more = await RPGSave.Load(-1);
-
-            if (config_more != null)
-            {
-                Window.fullscreen = config_more.fullscreen;
-                this.textSkip = config_more.textSkip;
-                this.resolution = config_more.resolution;
-                this.windowSize = config_more.windowSize;
-                this.fps = config_more.fps;
-            }
-
-            counter++;
-        })();
-
-        await CrystalEngine.Wait(() => counter === 2);
+        if (config != null)
+        {
+            this.run = config.run;
+            Window.fullscreen = config.fullscreen;
+            this.textSkip = config.textSkip;
+            this.resolution = config.resolution;
+            this.windowSize = config.windowSize;
+            this.fps = config.fps;
+            AudioManager.bgmVolume = config.bgmVolume;
+            AudioManager.seVolume = config.seVolume;
+        }
     }
 
     static async Save ()
     {
-        let counter = 0;
-
-        (async () => {
-            await RPGSave.Save(-2, {
-                alwaysDash: this.run,
-                commandRemember: false, 
-                bgmVolume: AudioManager.bgmVolume,
-                bgsVolume: 100,
-                meVolume: 100,
-                seVolume: AudioManager.seVolume
-            });
-            counter++;
-        })();
-
-        (async () => {
-            await RPGSave.Save(-1, {
-                fullscreen: Window.fullscreen,
-                textSkip: this.textSkip,
-                resolution: this.resolution,
-                windowSize: this.windowSize,
-                fps: this.fps
-            });
-            counter++;
-        })();
-
-        await CrystalEngine.Wait(() => counter === 2);
+        await RPGSave.Save(-1, {
+            run: this.run,
+            fullscreen: Window.fullscreen,
+            textSkip: this.textSkip,
+            resolution: this.resolution,
+            windowSize: this.windowSize,
+            fps: this.fps,
+            bgmVolume: AudioManager.bgmVolume,
+            seVolume: AudioManager.seVolume
+        });
     }
 
     async Start ()

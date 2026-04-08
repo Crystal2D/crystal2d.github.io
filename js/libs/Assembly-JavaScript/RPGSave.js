@@ -1,11 +1,12 @@
 class RPGSave
 {
     static #webDB = null;
+    
+    static global = null;
 
     static #GetSrc (index)
     {
-        if (index === -2) return "config";
-        if (index === -1) return "config_more";
+        if (index < 0) return "config";
         if (index === 0) return "global";
         
         return `file${index}`;
@@ -13,21 +14,23 @@ class RPGSave
 
     static async Init ()
     {
-        if (Application.isInElectron || Application.isInCordova) return;
+        if (!Application.isInCordova && !Application.isInElectron)
+        {
+            // window.indexedDB.deleteDatabase("save");
 
-        // window.indexedDB.deleteDatabase("save");
+            const dbRequest = window.indexedDB.open("save");
+            dbRequest.onupgradeneeded = () => {
+                dbRequest.result.createObjectStore("config");
+                dbRequest.result.createObjectStore("global");
 
-        const dbRequest = window.indexedDB.open("save");
-        dbRequest.onupgradeneeded = () => {
-            dbRequest.result.createObjectStore("config");
-            dbRequest.result.createObjectStore("config_more");
-            dbRequest.result.createObjectStore("global");
-            
-            for (let i = 1; i <= 20; i++) dbRequest.result.createObjectStore(`file${i}`);
-        };
+                for (let i = 1; i <= 20; i++) dbRequest.result.createObjectStore(`file${i}`);
+            };
 
-        await new Promise(resolve => dbRequest.onsuccess = resolve);
-        this.#webDB = dbRequest.result;
+            await new Promise(resolve => dbRequest.onsuccess = resolve);
+            this.#webDB = dbRequest.result;
+        }
+
+        this.global = (await this.Load(0)) ?? [];
     }
 
     static async Save (index, data)
@@ -61,5 +64,23 @@ class RPGSave
         if (data == null) return null;
 
         return JSON.parse(LZString.decompressFromBase64(data));
+    }
+
+    static CreateSave ()
+    {
+        return {
+            scene: MapGrid.scene,
+            pos: {
+                x: Player.instance.gridPos.x,
+                y: Player.instance.gridPos.y
+            },
+            dir: {
+                x: Player.instance.lookingAt.x,
+                y: Player.instance.lookingAt.y
+            },
+            bgm: AudioManager.instance.BGMSave(),
+            switches: EventSystem.SwitchesSave(),
+            variables: EventSystem.VariablesSave(),
+        }
     }
 }

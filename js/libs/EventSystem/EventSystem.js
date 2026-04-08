@@ -9,16 +9,44 @@ class EventSystem
 
     static #AddSwitch (name)
     {
+        this.#switches.push({
+            name: name,
+            on: false
+        });
     }
 
     static #AddVariable (name)
     {
-        
+        this.#variables.push({
+            name: name,
+            value: 0
+        });
     }
 
     static Init ()
     {
-
+        this.#AddSwitch("harp");
+        this.#AddSwitch("traveller");
+        this.#AddSwitch("traveller_help");
+        this.#AddSwitch("traveller_done");
+        this.#AddSwitch("traveller_no");
+        this.#AddSwitch("traveller_lake");
+        this.#AddSwitch("lake_creature");
+        this.#AddSwitch("traveller_c1");
+        this.#AddSwitch("traveller_c2");
+        this.#AddSwitch("traveller_c3");
+        this.#AddSwitch("cave_secret");
+        this.#AddSwitch("carriaged");
+        this.#AddSwitch("fire_wall_1");
+        this.#AddSwitch("fire_wall_2");
+        this.#AddSwitch("fire_chestb4solve");
+        this.#AddSwitch("fire_enemy_talk1");
+        this.#AddSwitch("fire_enemy_talk2");
+        this.#AddSwitch("fire_puzzlereset");
+        this.#AddSwitch("touchedgrass");
+        
+        this.#AddSwitch("zera_left");
+        this.#AddSwitch("claire_talk");
     }
 
     static async Run (id)

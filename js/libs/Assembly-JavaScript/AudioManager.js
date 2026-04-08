@@ -136,6 +136,17 @@ class AudioManager extends GameBehavior
         this.#clipName = null;
     }
 
+    BGMSave ()
+    {
+        if (this.#clipName == null) return null;
+
+        return {
+            name: this.#clipName,
+            volume: this.#localBgVol * 100,
+            pitch: this.bgm.pitch * 100
+        };
+    }
+
     PlaySE (name, volume, pitch)
     {
         this.se.PlayOneShot(Resources.Find(`audio/se/${name}`), volume, pitch);
