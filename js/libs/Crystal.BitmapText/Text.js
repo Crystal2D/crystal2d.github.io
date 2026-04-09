@@ -5,6 +5,7 @@ class Text extends Renderer
     #overflowX = false;
     #overflowY = false;
     #noCollapse = false;
+    #trim = true;
     #alignX = 0;
     #alignY = 0;
     #tempHeight = 0;
@@ -196,6 +197,17 @@ class Text extends Renderer
         this.#noCollapse = value;
         this.#meshChanged = true;
     }
+
+    get trimEnd ()
+    {
+        return this.#trim;
+    }
+
+    set trimEnd (value)
+    {
+        this.#trim = value;
+        this.#meshChanged = true;
+    }
     
     #Word = class
     {
@@ -277,7 +289,7 @@ class Text extends Renderer
     
     #ReloadWords ()
     {
-        const text = this.#text;
+        const text = this.#trim ? this.#text.trimEnd() : this.#text;
         
         let newWords = [new this.#Word()];
         

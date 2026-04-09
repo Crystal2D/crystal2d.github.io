@@ -67,7 +67,7 @@ class Transitioner extends GameBehavior
         }
     }
 
-    async TintIn (callback = () => { })
+    async TintIn ()
     {
         EventSystem.TintAll(new Color(
             20 / 255,
@@ -90,11 +90,9 @@ class Transitioner extends GameBehavior
             0
         ));
         await EventSystem.Timer(4);
-
-        callback();
     }
 
-    async TintOut (callback = () => { })
+    async TintOut ()
     {
         EventSystem.TintAll(new Color(
             90 / 255,
@@ -105,8 +103,6 @@ class Transitioner extends GameBehavior
         await EventSystem.Timer(4);
         EventSystem.TintAll(Color.clear);
         await EventSystem.Timer(4);
-
-        callback();
     }
 
     Clear ()

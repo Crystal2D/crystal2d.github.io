@@ -133,6 +133,7 @@
                         "text": "",
                         "width": 7,
                         "noCollapse": true,
+                        "trimEnd": false,
                         "overflowWidth": true,
                         "pivot": {
                             "x": 0,

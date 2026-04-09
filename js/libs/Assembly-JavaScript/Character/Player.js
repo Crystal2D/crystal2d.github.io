@@ -84,22 +84,29 @@ class Player extends RPGMovement
         this.speedScale = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 2 : 1;
     }
 
-    _OnStop ()
+    async _OnStop ()
     {
         if (this.#transfer != null)
         {
             MapTransfer.last = this.#transfer;
             this.#transfer = null;
 
-            Transitioner.instance.TintIn(() => {
-                const transCall = () => {
-                    Loader.onSwitchEnd.Remove(transCall);
-                    Transitioner.instance.TintOut(() => this.avoidInputs = false);
-                };
-                Loader.onSwitchEnd.Add(transCall);
+            // MapTransfer.last.onStart();
 
-                Loader.Switch(MapTransfer.last.scene);
-            });
+            await Transitioner.instance.TintIn();
+
+            const transCall = async () => {
+                Loader.onSwitchEnd.Remove(transCall);
+                // MapTransfer.last.onTransfer();
+
+                await Transitioner.instance.TintOut();
+
+                this.avoidInputs = false;
+                // MapTransfer.last.onEnd();
+            };
+            Loader.onSwitchEnd.Add(transCall);
+
+            Loader.Switch(MapTransfer.last.scene);
         }
     }
 

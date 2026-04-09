@@ -70,7 +70,7 @@
 ],
 "hintbird_claire_fly": "Why not go on a broom flight \nwith Claire?",
 "hintbird_woof": "Maybe you should check on\nthe Wolf girl by the cliffs?",
-"hintbird_aimmy": "Did you visit Aimottle's room?\\.\\. \nHer room is located south of your\nhouse!",
+"hintbird_aimottle": "Did you visit Aimottle's room?\\.\\. \nHer room is located south of your\nhouse!",
 "hintbird_view": "Did you take a look at the pretty \nscenic view north of your house?",
 "hintbird_claire_poster": "You should look at the poster \nhanging up in Claire's room!",
 "hintbird_stump": "Did you check out the tree stump\ndeep in the forest, surrounded\nby many animals?",
@@ -178,7 +178,7 @@
 ],
 
 "forest_barrier": "----------------------------------------------------------------------",
-"aimmy_mail": "Nothing to deliver today.",
+"aimottle_mail": "Nothing to deliver today.",
 "forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]",
 "forestbarrier_squirrel2": "(He has an acorn in his\nmouth.)",
 "forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]"

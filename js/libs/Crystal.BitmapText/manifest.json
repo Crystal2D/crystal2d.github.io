@@ -114,6 +114,10 @@
                 {
                     "name": "noCollapse",
                     "type": "bool"
+                },
+                {
+                    "name": "trimEnd",
+                    "type": "bool"
                 }
             ],
             "keys": [
