@@ -20,6 +20,8 @@ class MapConfig extends GameBehavior
 
         for (let i = 0; i < this.interactables.length; i++)
         {
+            if (!this.interactables[i].isEnabled) continue;
+
             const pos = this.interactables[i].pos;
 
             MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).AddOwner(this.interactables[i]);

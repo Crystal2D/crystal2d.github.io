@@ -1,5 +1,108 @@
 [
     {
+        "path": "sprites/pixel",
+        "type": "Texture",
+        "args": {
+            "src": "pixel.png"
+        }
+    },
+    {
+        "path": "sprites/loading",
+        "type": "Texture",
+        "args": {
+            "src": "loading.png",
+            "pixelPerUnit": 24
+        }
+    },
+    {
+        "path": "sprites/box",
+        "type": "Texture",
+        "args": {
+            "src": "box.png",
+            "sprite": {
+                "border": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1,
+                    "w": 1
+                },
+                "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "pixelPerUnit": 20
+        }
+    },
+    {
+        "path": "sprites/title",
+        "type": "Texture",
+        "args": {
+            "src": "title.png"
+        }
+    },
+    {
+        "path": "sprites/arrows",
+        "type": "Texture",
+        "args": {
+            "src": "arrows.png",
+            "sprites": [
+                {
+                    "name": "up",
+                    "rect": {
+                        "x": 15,
+                        "width": 15,
+                        "height": 12,
+                        "y": 1
+                    }
+                },
+                {
+                    "name": "down",
+                    "rect": {
+                        "y": 16,
+                        "width": 15,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left",
+                    "rect": {
+                        "width": 12,
+                        "height": 15
+                    }
+                },
+                {
+                    "name": "right",
+                    "rect": {
+                        "x": 33,
+                        "width": 12,
+                        "height": 15
+                    }
+                },
+                {
+                    "name": "down-1",
+                    "rect": {
+                        "y": 16,
+                        "width": 15,
+                        "height": 16,
+                        "x": 16
+                    }
+                },
+                {
+                    "name": "down-2",
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 15,
+                        "height": 16
+                    }
+                }
+            ],
+            "pixelPerUnit": 96
+        }
+    },
+
+    {
         "path": "font_main",
         "type": "FontAtlas",
         "args": {
@@ -14,6 +117,227 @@
         "args": {
             "src": "ref5.png",
             "pixelPerUnit": 133.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+        }
+    },
+
+    {
+        "path": "illust",
+        "type": "GameObject",
+        "args": {
+            "name": "illust",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/pixel"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingLayer": 5
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "parallax_image",
+        "type": "GameObject",
+        "args": {
+            "name": "parallax_image",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/pixel"
+                        },
+                        "sortingLayer": 6
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "boxcontent/choice",
+        "type": "GameObject",
+        "args": {
+            "name": "choicebox_content",
+            "children": [
+                {
+                    "name": "text",
+                    "components": [
+                        {
+                            "type": "Text",
+                            "args": {
+                                "font": "font_main",
+                                "text": "",
+                                "width": 0,
+                                "height": 0,
+                                "color": {
+                                    "r": 224,
+                                    "g": 248,
+                                    "b": 207,
+                                    "a": 0
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4,
+                                "overflowWidth": true,
+                                "overflowHeight": true,
+                                "noCollapse": true,
+                                "lineHeight": 18
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selector",
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/pixel"
+                                },
+                                "color": {
+                                    "r": 134,
+                                    "g": 192,
+                                    "b": 108,
+                                    "a": 0
+                                },
+                                "sortingOrder": 1,
+                                "sortingLayer": 4
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "box",
+        "type": "GameObject",
+        "args": {
+            "name": "box",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "sortingOrder": 2,
+                        "color": {
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 182
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 0.125,
+                            "y": 0.125
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "enities/butterfly",
+        "type": "GameObject",
+        "args": {
+            "name": "butterfly",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/butterfly",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/butterfly"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "charCollision": false
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        }
+    },
+    {
+        "path": "enities/static_butterfly",
+        "type": "GameObject",
+        "args": {
+            "name": "butterfly",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/butterfly",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/butterfly"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "charCollision": false
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
         }
     }
 ]

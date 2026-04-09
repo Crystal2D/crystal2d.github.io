@@ -174,6 +174,26 @@ class GameObject
         
         return true;
     }
+
+    AddComponent (component)
+    {
+        component.gameObject = this;
+        component.name = this.name;
+
+        this.#components.push(component);
+    }
+
+    RemoveComponent (component)
+    {
+        const index = this.#components.indexOf(component);
+
+        if (index < 0) return;
+
+        this.#components.splice(index, 1);
+
+        component.gameObject = null;
+        component.name = null;
+    }
     
     GetSceneID ()
     {

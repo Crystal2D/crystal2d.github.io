@@ -33,6 +33,16 @@ class AudioSettings
         {
             const gameObj = sources[i].gameObject;
 
+            if (gameObj == null)
+            {
+                sources[i].Stop();
+                sources[i].Update();
+
+                removing.push(sources[i]);
+
+                continue;
+            }
+
             if (gameObj.activeInHierarchy && sources[i].enabled) sources[i].Update();
             else if (sources[i].isPlaying)
             {

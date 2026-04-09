@@ -1,0 +1,23 @@
+[
+    {
+        "path": "sprites/illusts/zera_talk_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_1.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_2.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_3.png"
+        }
+    }
+]

@@ -2389,6 +2389,14 @@
                             }
                         ]
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 1, "name": "zera_manor", "threshold": 4 }
+                        ]
+                    }
                 }
             ]
         },
@@ -2653,6 +2661,14 @@
                 },
                 {
                     "type": "TilemapCollider"
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 1, "name": "zera_manor", "threshold": 4 }
+                        ]
+                    }
                 }
             ]
         },

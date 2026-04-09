@@ -88,21 +88,23 @@ class Player extends RPGMovement
     {
         if (this.#transfer != null)
         {
+            const lastScene = MapGrid.scene;
+
             MapTransfer.last = this.#transfer;
             this.#transfer = null;
 
-            // MapTransfer.last.onStart();
+            EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 0);
 
             await Transitioner.instance.TintIn();
 
             const transCall = async () => {
                 Loader.onSwitchEnd.Remove(transCall);
-                // MapTransfer.last.onTransfer();
+                EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 1);
 
                 await Transitioner.instance.TintOut();
 
                 this.avoidInputs = false;
-                // MapTransfer.last.onEnd();
+                EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 2);
             };
             Loader.onSwitchEnd.Add(transCall);
 

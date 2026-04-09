@@ -229,14 +229,20 @@
                                     "x": -2,
                                     "y": -3
                                 },
-                                "event": "yolkhouse_zera"
+                                "event": "yolkhouse_zera",
+                                "conditions": [
+                                    { "type": 1, "name": "zera_athouse" }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 0,
                                     "y": -3
                                 },
-                                "event": "yolkhouse_zera"
+                                "event": "yolkhouse_zera",
+                                "conditions": [
+                                    { "type": 1, "name": "zera_athouse" }
+                                ]
                             }
                         ]
                     }
@@ -7963,6 +7969,14 @@
                     "args": {
                         "type": 1
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 1, "name": "zera_athouse" }
+                        ]
+                    }
                 }
             ]
         },
@@ -8003,6 +8017,14 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "yolkhouse_zera"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 1, "name": "zera_athouse" }
+                        ]
                     }
                 }
             ]

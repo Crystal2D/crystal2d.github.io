@@ -56,12 +56,6 @@
                     "type": "AudioManager"
                 },
                 {
-                    "type": "AudioSource",
-                    "args": {
-                        "loop": true
-                    }
-                },
-                {
                     "type": "AudioSource"
                 },
                 {

@@ -203,7 +203,7 @@ class DialogueBox extends ItsABox
     {
         if (this.#startedTyping) return;
 
-        this.transform.parent = GameObject.Find("camera")?.transform;
+        this.transform.parent = Camera.main?.transform;
 
         this.#startedTyping = true;
         this.#arrow.color.a = 0;

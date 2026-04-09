@@ -5,7 +5,8 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_graveyard",
-        "sprites/collider"
+        "sprites/collider",
+        "audio/bgm/forest"
     ],
     "gameObjects": [
         {

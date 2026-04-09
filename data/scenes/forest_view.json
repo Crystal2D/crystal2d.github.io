@@ -5,7 +5,8 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_graveyard",
-        "sprites/collider"
+        "sprites/collider",
+        "sprites/parallaxes/sky_2"
     ],
     "gameObjects": [
         {
@@ -1452,6 +1453,27 @@
                             }
                         ],
                         "interactables": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "bg",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "Parallax",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/parallaxes/sky_2"
+                        },
+                        "speed": { "x": -2 }
                     }
                 }
             ]

@@ -1,0 +1,741 @@
+[
+    {
+        "path": "sprites/faces/yoki",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\yoki.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "annoyed",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "disheartened",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "dizzy",
+                    "rect": {
+                        "x": 72,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 96,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "meditative",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "smile",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "surprised",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sweatdrop",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "think",
+                    "rect": {
+                        "x": 96,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "unsure",
+                    "rect": {
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "unsure smile",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "upset",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/aimottle",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\aimottle.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "angry",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "unsure",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/caina",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\caina.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "concerned",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "disapproval",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "down",
+                    "rect": {
+                        "x": 72,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "laugh",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "smile",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sneer",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/charles",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\charles.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look down",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sweatdrop",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/claire",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\claire.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "aghast",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "dizzy",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "down",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "happy",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "mad",
+                    "rect": {
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sad",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sigh",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/dragon",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\dragon.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "familiar",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "dismiss",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "stern",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "smile",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "reveal",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/este",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\este.png"
+        }
+    },
+    {
+        "path": "sprites/faces/fountain",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\fountain.png",
+            "sprites": [
+                {
+                    "name": "krys",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "zusy",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "lerias",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/harp",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\harp.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "excited",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/heroes",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\heroes.png",
+            "sprites": [
+                {
+                    "name": "chosen one",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "cleric",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "knight",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "rogue",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/prince",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\prince.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look down",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "head turn",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "appalled",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/tem",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\tem.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "down",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/tigertaur",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\tigertaur.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "grin",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/woof",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\woof.png",
+            "sprites": [
+                {
+                    "name": "awake",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sleep",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "knocked out",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/youngyoki",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\youngyoki.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sigh",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "happy",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "concern",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/faces/zera",
+        "type": "Texture",
+        "args": {
+            "src": "faces\\zera.png",
+            "sprites": [
+                {
+                    "name": "neutral",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "sneer",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "smile",
+                    "rect": {
+                        "x": 48,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "pout",
+                    "rect": {
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                },
+                {
+                    "name": "look",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 24,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    }
+]

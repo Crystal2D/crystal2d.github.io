@@ -2,6 +2,11 @@ class Camera extends Behavior
 {
     static sortingAxis = Vector2.zero;
 
+    static get main ()
+    {
+        return GameObject.FindComponents(Camera)[0];
+    }
+
     #updateProjMat = true;
     
     #projMatrix = null;

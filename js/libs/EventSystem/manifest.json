@@ -9,7 +9,9 @@
         "EventSystem",
         "Interactable",
         "DialogueBox",
-        "Illustrator"
+        "Illustrator",
+        "condition/EventCondition",
+        "condition/EventConditioner"
     ],
     "classes" : [
         {
@@ -27,6 +29,11 @@
                 {
                     "type": "string",
                     "name": "event"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
                 }
             ]
         },
@@ -37,6 +44,35 @@
                 {
                     "type": "number",
                     "name": "min"
+                }
+            ]
+        },
+        {
+            "name": "EventCondition",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "type"
+                },
+                {
+                    "type": "string",
+                    "name": "name"
+                },
+                {
+                    "type": "number",
+                    "name": "threshold"
+                }
+            ]
+        },
+        {
+            "name": "EventConditioner",
+            "type": 0,
+            "args": [
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
                 }
             ]
         }

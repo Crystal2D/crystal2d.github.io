@@ -41,7 +41,7 @@ class Illustrator extends GameBehavior
     {
         EventSystem.dialogueBox.Close();
 
-        this.transform.parent = GameObject.Find("camera")?.transform;
+        this.transform.parent = Camera.main?.transform;
 
         if (this.#last != null)
         {

@@ -1,7 +1,7 @@
 class MapGrid extends GameBehavior
 {
     static current = null;
-    static id = null;
+    static scene = null;
 
     #grid = null;
 

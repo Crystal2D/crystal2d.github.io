@@ -25,7 +25,8 @@
         "MapConfig/MapConfig",
         "MapConfig/MapTransfer",
         "Test",
-        "LocaleManager"
+        "LocaleManager",
+        "Parallax"
     ],
     "classes" : [
         {
@@ -186,6 +187,17 @@
                 {
                     "type": "Vector2",
                     "name": "pos"
+                }
+            ]
+        },
+        {
+            "name" : "Parallax",
+            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "Vector2",
+                    "name": "speed"
                 }
             ]
         },

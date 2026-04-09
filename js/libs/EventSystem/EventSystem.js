@@ -612,11 +612,46 @@ class EventSystem
         }
     }
 
-    static async 
+    static async TransferEvent (from, to, event)
+    {
+        const id = `${from}_${to}`;
+
+        switch (id)
+        {
+            case "4_5":
+                if (event === 2)
+                {
+                    this.AddToVariable("zera_athouse", -1);
+                    this.SetSwitch("zera_left", true);
+                }
+                break;
+
+            case "16_20":
+                if (event === 0)
+                {
+                    this.SetVariable("zera_manor", Math.RandomInt(1, 4));
+
+                    if (this.GetVariable("zera_manor") >= 4) AudioManager.instance.FadeOutBGM(1);
+                }
+                break;
+            case "20_16":
+                if (event === 1 && this.GetVariable("zera_manor") >= 4) AudioManager.instance.PlayBGM("forest", 0.2);
+                break;
+
+            case "11_12":
+                if (event === 0) AudioManager.instance.FadeOutBGM(10);
+                else if (event === 1) AudioManager.instance.PlayBGM("village", 0.2);
+                break;
+            case "12_11":
+                if (event === 0) AudioManager.instance.FadeOutBGM(1);
+                else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
+                break;
+        }
+    }
 
     static async DialogueChoice (choices, nahChoice)
     {
-        this.dialogueChoiceBox.transform.parent = GameObject.Find("camera")?.transform;
+        this.dialogueChoiceBox.transform.parent = Camera.main?.transform;
         this.dialogueChoiceBox.Clear();
         this.dialogueChoiceBox.nahChoice = nahChoice;
 

@@ -27,8 +27,8 @@ class RandomMove extends GameBehavior
         this.ResetTime();
 
         const dir = new Vector2(
-            Math.RandomInt(1, -1),
-            Math.RandomInt(1, -1)
+            Math.RandomInt(-1, 1),
+            Math.RandomInt(-1, 1)
         );
 
         if (Math.RandomInt(1) > 0) dir.x = 0;

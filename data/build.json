@@ -15,14 +15,16 @@
     ],
     "resources": [
         "main",
-        "ctrls",
-        "sprites",
+        "sprites/ctrls",
+        "sprites/chars",
+        "sprites/faces",
+        "sprites/illusts",
+        "sprites/parallaxes",
+        "sprites/tiles",
         "spritelibs",
-        "tiles",
         "anims",
         "audio/bgm",
-        "audio/se",
-        "prefabs"
+        "audio/se"
     ],
     "scenes" : [
         "init",
@@ -98,6 +100,11 @@
             "name": "Illustrations",
             "id": 5,
             "value": 3
+        },
+        {
+            "name": "Parallax",
+            "id": 6,
+            "value": -1
         }
     ],
     "sortingAxis" : { "x": 0, "y": 1 }
