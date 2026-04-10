@@ -1,5 +1,7 @@
 class Parallax extends GameBehavior
 {
+    #tileSize = 0.5;
+    #tileSizeOG = 48;
     #camBounds = new Bounds(
         Vector2.zero,
         new Vector2(10, 9)
@@ -7,6 +9,7 @@ class Parallax extends GameBehavior
     #sprSize = Vector2.zero;
     #count = Vector2.zero;
     #pos = Vector2.zero;
+    #threshold = Vector2.zero;
     #renderers = new Map();
 
     speed = Vector2.zero;
@@ -22,10 +25,19 @@ class Parallax extends GameBehavior
             this.sprite.rect.width / this.sprite.pixelPerUnit,
             this.sprite.rect.height / this.sprite.pixelPerUnit
         );
-
         this.#count = Vector2.Add(
             Vector2.Divide(this.#camBounds.size, this.#sprSize),
             Vector2.one
+        );
+        this.#threshold = Vector2.Divide(
+            Vector2.one,
+            Vector2.Divide(
+                Vector2.Scale(
+                    Vector2.one,
+                    0.5 * this.#tileSize
+                ),
+                this.#sprSize
+            )
         );
 
         const targetCount = this.#count.x * this.#count.y;
@@ -75,21 +87,23 @@ class Parallax extends GameBehavior
 
     Update ()
     {
-        const speed = new Vector2(
-            
-        );
-
         this.#pos = Vector2.Add(
             this.#pos,
             Vector2.Scale(
-                speed,
-                1// Time.deltaTime
+                this.speed,
+                (0.5 / this.#tileSizeOG) * (Time.deltaTime * 60)
             )
         );
 
-        if (Math.abs(this.#pos.x) >= this.#sprSize.x) this.#pos.x = (this.#pos.x % this.#sprSize.x);
-        if (Math.abs(this.#pos.y) >= this.#sprSize.y) this.#pos.y = (this.#pos.y % this.#sprSize.y);
+        if (Math.abs(this.#pos.x) >= this.#threshold.x) this.#pos.x = (this.#pos.x % this.#threshold.x);
+        if (Math.abs(this.#pos.y) >= this.#threshold.y) this.#pos.y = (this.#pos.y % this.#threshold.y);
 
-        this.transform.position = Vector2.Add(this.#pos, this.offset);
+        this.transform.position = Vector2.Add(
+            Vector2.Scale(
+                Vector2.Scale(this.#pos, this.#tileSize),
+                0.5
+            ),
+            this.offset
+        );
     }
 }
