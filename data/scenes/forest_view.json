@@ -99,6 +99,10 @@
                                             {
                                                 "x": 9,
                                                 "y": -3
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -7
                                             }
                                         ]
                                     },
@@ -1460,12 +1464,6 @@
         {
             "name": "bg",
             "id": 6,
-            "transform": {
-                "position": {
-                    "x": 0,
-                    "y": 0
-                }
-            },
             "components": [
                 {
                     "type": "Parallax",
@@ -1473,7 +1471,9 @@
                         "sprite": {
                             "texture": "sprites/parallaxes/sky_2"
                         },
-                        "speed": { "x": -2 }
+                        "speed": {
+                            "x": -2
+                        }
                     }
                 }
             ]

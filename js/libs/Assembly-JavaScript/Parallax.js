@@ -6,9 +6,11 @@ class Parallax extends GameBehavior
     );
     #sprSize = Vector2.zero;
     #count = Vector2.zero;
+    #pos = Vector2.zero;
     #renderers = new Map();
 
     speed = Vector2.zero;
+    offset = Vector2.zero;
 
     sprite = null;
 
@@ -21,7 +23,10 @@ class Parallax extends GameBehavior
             this.sprite.rect.height / this.sprite.pixelPerUnit
         );
 
-        this.#count = Vector2.Divide(this.#camBounds.size, this.#sprSize);
+        this.#count = Vector2.Add(
+            Vector2.Divide(this.#camBounds.size, this.#sprSize),
+            Vector2.one
+        );
 
         const targetCount = this.#count.x * this.#count.y;
         let loadedRenderers = 0;
@@ -41,18 +46,50 @@ class Parallax extends GameBehavior
         await CrystalEngine.Wait(() => targetCount === loadedRenderers);
     }
 
-    async Awake ()
+    Awake ()
     {
+        this.transform.position = this.offset;
+
+        const dir = new Vector2(
+            (-this.speed.x / Math.abs(this.speed.x)) || 1,
+            (this.speed.y / Math.abs(this.speed.y)) || 1,
+        );
+
         for (let y = 0; y < this.#count.y; y++)
         {
             for (let x = 0; x < this.#count.x; x++) (async () => {
                 const renderer = this.#renderers.get(`${x}_${y}`);
                 renderer.transform.parent = this.transform;
                 renderer.transform.localPosition = new Vector2(
-                    0.5 * (this.#sprSize.x - this.#camBounds.size.x) + x * this.#sprSize.x,
-                    0.5 * (this.#camBounds.size.y - this.#sprSize.y) - y * this.#sprSize.y
+                    0.5 * (this.#sprSize.x - this.#camBounds.size.x) + (x * this.#sprSize.x * dir.x),
+                    0.5 * (this.#camBounds.size.y - this.#sprSize.y) - (y * this.#sprSize.y * dir.y)
                 );
             })();
         }
+    }
+
+    Start ()
+    {
+        this.transform.parent = Camera.main.transform;
+    }
+
+    Update ()
+    {
+        const speed = new Vector2(
+            
+        );
+
+        this.#pos = Vector2.Add(
+            this.#pos,
+            Vector2.Scale(
+                speed,
+                1// Time.deltaTime
+            )
+        );
+
+        if (Math.abs(this.#pos.x) >= this.#sprSize.x) this.#pos.x = (this.#pos.x % this.#sprSize.x);
+        if (Math.abs(this.#pos.y) >= this.#sprSize.y) this.#pos.y = (this.#pos.y % this.#sprSize.y);
+
+        this.transform.position = Vector2.Add(this.#pos, this.offset);
     }
 }

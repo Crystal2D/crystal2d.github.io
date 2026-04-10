@@ -2816,6 +2816,42 @@
                         "width": 8,
                         "height": 8
                     }
+                },
+                {
+                    "name": "stump2-topleft",
+                    "rect": {
+                        "x": 48,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump2-topright",
+                    "rect": {
+                        "x": 56,
+                        "y": 104,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump2-bottomleft",
+                    "rect": {
+                        "x": 48,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stump2-bottomright",
+                    "rect": {
+                        "x": 56,
+                        "y": 112,
+                        "width": 8,
+                        "height": 8
+                    }
                 }
             ]
         }

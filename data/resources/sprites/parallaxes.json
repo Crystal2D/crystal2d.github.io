@@ -3,8 +3,7 @@
         "path": "sprites/parallaxes/sky_2",
         "type": "Texture",
         "args": {
-            "src": "parallaxes\\sky_2.png",
-            "pixelPerUnit": 32
+            "src": "parallaxes\\sky_2.png"
         }
     }
 ]

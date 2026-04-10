@@ -198,6 +198,10 @@
                 {
                     "type": "Vector2",
                     "name": "speed"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "offset"
                 }
             ]
         },

@@ -2010,6 +2010,22 @@
                     {
                         "name": "ext_forest (166)",
                         "id": 209
+                    },
+                    {
+                        "name": "stump2-topleft",
+                        "id": 210
+                    },
+                    {
+                        "name": "stump2-topright",
+                        "id": 211
+                    },
+                    {
+                        "name": "stump2-bottomleft",
+                        "id": 212
+                    },
+                    {
+                        "name": "stump2-bottomright",
+                        "id": 213
                     }
                 ]
             }
