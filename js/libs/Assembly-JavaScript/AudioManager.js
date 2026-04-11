@@ -76,6 +76,7 @@ class AudioManager extends GameBehavior
             this.done = true;
 
             AudioManager.instance.gameObject.RemoveComponent(this.source);
+            Resources.DestroyOnLoad(this.name);
         }
     }
 

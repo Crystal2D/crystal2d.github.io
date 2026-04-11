@@ -219,7 +219,8 @@ class EventSystem
         switch (id)
         {
             case "hintbird": {
-                GameObject.Find("char_hintbird").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                const bird = GameObject.Find("char_hintbird").GetComponent(RPGMovement);
+                bird.LookAtCharTemp(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -338,6 +339,8 @@ class EventSystem
                 }
 
                 await this.dialogueBox.Close();
+
+                bird.Unlook();
                 } break;
 
             // ------------------------------------------------------- yokihouse
@@ -380,34 +383,34 @@ class EventSystem
                     -50 / 255,
                     0
                 ));
-                await EventSystem.Timer(9);
+                await this.Timer(9);
                 this.TintAll(new Color(
                     -80 / 255,
                     -100 / 255,
                     -100 / 255,
                     0
                 ));
-                await EventSystem.Timer(9);
+                await this.Timer(9);
                 this.TintAll(new Color(-1, -1, -1, 0));
-                await EventSystem.Timer(1);
+                await this.Timer(1);
 
                 this.illustrator.Set(0, "zera_talk_1", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(0, "zera_talk_1", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(0, "zera_talk_1", 1);
-                await EventSystem.Timer(21);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
                 
                 this.dialogueBox.SetFace("yoki", "upset");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
 
                 this.illustrator.Set(1, "zera_talk_2", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(1, "zera_talk_2", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
                 this.illustrator.Clear(0);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -415,12 +418,12 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
 
                 this.illustrator.Set(0, "zera_talk_3", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(0, "zera_talk_3", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
                 this.illustrator.Clear(1);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "pout");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
@@ -428,12 +431,12 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
 
                 this.illustrator.Set(1, "zera_talk_2", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(1, "zera_talk_2", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
                 this.illustrator.Clear(0);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "smile");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
@@ -441,12 +444,12 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
 
                 this.illustrator.Set(0, "zera_talk_3", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(0, "zera_talk_3", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
                 this.illustrator.Clear(1);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "pout");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
@@ -470,12 +473,12 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
 
                 this.illustrator.Set(1, "zera_talk_2", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(1, "zera_talk_2", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(1, "zera_talk_2", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
                 this.illustrator.Clear(0);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "pout");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
@@ -483,22 +486,22 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
 
                 this.illustrator.Set(0, "zera_talk_3", 50 / 255);
-                await EventSystem.Timer(8);
-                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(0, "zera_talk_3", 1);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
                 this.illustrator.Clear(1);
-                await EventSystem.Timer(21);
+                await this.Timer(20);
 
                 this.dialogueBox.SetFace("zera", "smile");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
 
-                this.illustrator.Set(0, "zera_talk_3", 100 / 255);
-                await EventSystem.Timer(9);
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
-                await EventSystem.Timer(9);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
                 this.illustrator.Clear(0);
-                await EventSystem.Timer(20);
+                await this.Timer(20);
 
                 this.TintAll(new Color(
                     -80 / 255,
@@ -506,21 +509,186 @@ class EventSystem
                     -100 / 255,
                     0
                 ));
-                await EventSystem.Timer(9);
+                await this.Timer(9);
                 this.TintAll(new Color(
                     -40 / 255,
                     -50 / 255,
                     -50 / 255,
                     0
                 ));
-                await EventSystem.Timer(9);
+                await this.Timer(9);
                 this.TintAll(Color.clear);
-                await EventSystem.Timer(1);
+                await this.Timer(1);
 
                 this.SetSwitch("zera_athousescene", true);
                 this.AddToVariable("zera_talkcount");
                 this.AddToVariable("illusts");
                 break;
+
+            // ------------------------------------------------------- forest_view
+            case "forestview_view":
+                this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(-1, -1, -1, 0));
+                await this.Timer(41);
+
+                this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(30);
+                await this.illustrator.Move(0, 1, Vector2.zero, 160);
+
+                await this.WaitOk();
+
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(60);
+
+                this.TintAll(new Color(
+                    -153 / 255,
+                    -153 / 255,
+                    -170 / 255,
+                    0
+                ));
+                await this.Timer(13);
+                this.TintAll(new Color(
+                    -85 / 255,
+                    -85 / 255,
+                    -103 / 255,
+                    0
+                ));
+                await this.Timer(13);
+                this.TintAll(Color.clear);
+                await this.Timer(1);
+
+                if (this.GetSwitch("viewed"))
+                {
+                    this.SetSwitch("viewed", true);
+                    this.AddToVariable("illusts", 1);
+                }
+                break;
+            case "forestview_este": {
+                GameObject.Find("char_este").GetComponent(RPGMovement).LookAtChar(Player.instance);
+
+                if (this.GetSwitch("este_warp"))
+                {
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_warped`), true);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3], true);
+                }
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                this.dialogueBox.SetFace("yoki", "smile");
+
+                if (choice === 1)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_no`));
+                    await this.dialogueBox.Close();
+
+                    this.SetSwitch("este_warp", true);
+                    return;
+                }
+
+                Loader.Ready(12);
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`));
+                await this.dialogueBox.Close();
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.TintAll(new Color(
+                    -68 / 255,
+                    -68 / 255,
+                    -68 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(
+                    -102 / 255,
+                    -102 / 255,
+                    -102 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(9);
+
+                await this.BlackSwitch(12);
+
+                await this.Timer(41);
+                Transitioner.instance.Clear();
+                this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(
+                    -102 / 255,
+                    -102 / 255,
+                    -102 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(new Color(
+                    -68 / 255,
+                    -68 / 255,
+                    -68 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                this.TintAll(Color.clear);
+                await this.Timer(9);
+
+                AudioManager.instance.PlayBGM("village", 0.2);
+
+                this.SetSwitch("este_warp", true);
+                } break;
 
             // ------------------------------------------------------- forest_barrier
             case "aimottle_mail":
@@ -599,13 +767,12 @@ class EventSystem
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                const lookingAt = bird.lookingAt;
-                bird.LookAtChar(Player.instance);
+                bird.LookAtCharTemp(Player.instance);
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 await this.dialogueBox.Close();
 
-                bird.LookAt(lookingAt);
+                bird.Unlook();
                 randMove.enabled = true;
                 randMove.ResetTime();
                 } break;
@@ -710,6 +877,43 @@ class EventSystem
             };
             PlayerLoop.onFrameEnd.Add(callback);
         });
+    }
+
+    static async WaitOk ()
+    {
+        let endCallback = () => { };
+        
+        const updateCallback = () => {
+            if (!InputManager.IsPressed("ok")) return;
+
+            PlayerLoop.onAfterUpdate.Remove(updateCallback);
+            endCallback();
+        };
+        PlayerLoop.onAfterUpdate.Add(updateCallback);
+
+        await new Promise(resolve => endCallback = resolve);
+    }
+
+    static async BlackSwitch ()
+    {
+        Transitioner.instance.SetFadeIn();
+        const switchingCall = () => {
+            Loader.onSwitching.Remove(switchingCall);
+            Transitioner.instance.SetFadeIn();
+        };
+        Loader.onSwitching.Add(switchingCall);
+        
+        let resolveCall = () => { };
+        const switchCall = () => {
+            Loader.onSwitchEnd.Remove(switchCall);
+            Transitioner.instance.SetFadeIn();
+            resolveCall();
+        };
+        Loader.onSwitchEnd.Add(switchCall);
+
+        Loader.Switch(12);
+
+        await new Promise(resolve => resolveCall = resolve);
     }
 
     static TintAll (color)

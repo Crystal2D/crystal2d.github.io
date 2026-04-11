@@ -2,10 +2,7 @@ class Parallax extends GameBehavior
 {
     #tileSize = 0.5;
     #tileSizeOG = 48;
-    #camBounds = new Bounds(
-        Vector2.zero,
-        new Vector2(10, 9)
-    );
+    #camSize = new Vector2(10, 9);
     #sprSize = Vector2.zero;
     #count = Vector2.zero;
     #pos = Vector2.zero;
@@ -26,7 +23,7 @@ class Parallax extends GameBehavior
             this.sprite.rect.height / this.sprite.pixelPerUnit
         );
         this.#count = Vector2.Add(
-            Vector2.Divide(this.#camBounds.size, this.#sprSize),
+            Vector2.Divide(this.#camSize, this.#sprSize),
             Vector2.one
         );
         this.#threshold = Vector2.Divide(
@@ -73,8 +70,8 @@ class Parallax extends GameBehavior
                 const renderer = this.#renderers.get(`${x}_${y}`);
                 renderer.transform.parent = this.transform;
                 renderer.transform.localPosition = new Vector2(
-                    0.5 * (this.#sprSize.x - this.#camBounds.size.x) + (x * this.#sprSize.x * dir.x),
-                    0.5 * (this.#camBounds.size.y - this.#sprSize.y) - (y * this.#sprSize.y * dir.y)
+                    0.5 * (this.#sprSize.x - this.#camSize.x) + (x * this.#sprSize.x * dir.x),
+                    0.5 * (this.#camSize.y - this.#sprSize.y) - (y * this.#sprSize.y * dir.y)
                 );
             })();
         }

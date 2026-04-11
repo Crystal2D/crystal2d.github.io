@@ -19,5 +19,12 @@
         "args": {
             "src": "illusts\\zera_talk_3.png"
         }
+    },
+    {
+        "path": "sprites/illusts/forest_view",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\forest_view.png"
+        }
     }
 ]

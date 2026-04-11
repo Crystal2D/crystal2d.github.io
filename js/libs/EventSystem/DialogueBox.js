@@ -165,7 +165,7 @@ class DialogueBox extends ItsABox
             if (this.#pauseTime <= 0) this.#canUnpause = true;
         }
 
-        if (InputManager.IsRepeated("z") || InputManager.IsRepeated("x"))
+        if (InputManager.IsRepeated("ok") || InputManager.IsRepeated("cancel"))
         {
             if (!this.#shouldUnpause) this.ShowFast();
             else this.Unpause();

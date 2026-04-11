@@ -26,7 +26,7 @@ class Player extends RPGMovement
     
     Update ()
     {
-        Window.SetTitle(`${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x.toFixed(1)} ${(this.transform.position.y - 0.3125).toFixed(1)}`);
+        Window.SetTitle(`${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y - 0.3125}`);
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 
@@ -58,7 +58,7 @@ class Player extends RPGMovement
         if (interactable != null) this.#interactable = interactable;
         else this.#interactable = null;
 
-        if (InputManager.GetKeyDown("z")) this.#Interact();
+        if (InputManager.GetKeyDown("ok")) this.#Interact();
 
         if (this.avoidInputs) return;
 

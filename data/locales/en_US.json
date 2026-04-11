@@ -177,6 +177,21 @@
     "\\SE[1]You could leave now if you'd \nlike."
 ],
 
+"forest_view": "----------------------------------------------------------------------",
+"forestview_este": [
+    "Oh...\\.\\.\nHere's where you went.",
+    "(Why'd you come all the\nway up here..?)",
+    "\\SE[6]Good work today.",
+    "If you want, I can fly\nyou down the mountain."
+],
+"forestview_este_warped": "\\SE[6]Do you want me to fly you \ndown the mountain?",
+"forestview_este_choices": [
+    "Ok",
+    "Not right now"
+],
+"forestview_este_ok": "\\SE[1]Sure, I'd appreciate that.",
+"forestview_este_no": "\\SE[1]I'm good at the moment,\nthanks though.",
+
 "forest_barrier": "----------------------------------------------------------------------",
 "aimottle_mail": "Nothing to deliver today.",
 "forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]",

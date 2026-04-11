@@ -206,11 +206,6 @@
         {
             "name": "illustrator",
             "id": 7,
-            "transform": {
-                "position": {
-                    "y": 1.03125
-                }
-            },
             "components": [
                 {
                     "type": "Illustrator"

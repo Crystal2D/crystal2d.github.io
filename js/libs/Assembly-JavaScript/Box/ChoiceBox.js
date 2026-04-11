@@ -184,7 +184,7 @@ class ChoiceBox extends ItsABox
 
         const item = this.#choices[this.#selected];
 
-        if (this.nahChoice != null && InputManager.GetKeyDown("x"))
+        if (this.nahChoice != null && InputManager.GetKeyDown("cancel"))
         {
             AudioManager.instance.PlayNo();
             this.#choices[this.nahChoice].callback(0);
@@ -194,7 +194,7 @@ class ChoiceBox extends ItsABox
 
         if (item.dired === 0)
         {
-            if (InputManager.GetKeyDown("z"))
+            if (InputManager.GetKeyDown("ok"))
             {
                 AudioManager.instance.PlayConfirm();
                 item.callback(0);
@@ -205,8 +205,8 @@ class ChoiceBox extends ItsABox
 
         let dir = null;
 
-        if (item.dired === 1) dir = +(InputManager.GetKeyDown("z") || InputManager.GetKeyDown("right")) - InputManager.GetKeyDown("left");
-        else dir = +(InputManager.GetKeyDown("z") || InputManager.IsRepeated("right")) - InputManager.IsRepeated("left");
+        if (item.dired === 1) dir = +(InputManager.GetKeyDown("ok") || InputManager.GetKeyDown("right")) - InputManager.GetKeyDown("left");
+        else dir = +(InputManager.GetKeyDown("ok") || InputManager.IsRepeated("right")) - InputManager.IsRepeated("left");
 
         if (dir !== 0)
         {

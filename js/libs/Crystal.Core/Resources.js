@@ -94,7 +94,7 @@ class Resources
             res.Unload();
 
             const keepinIndex = this.keepOnLoad.indexOf(path[i]);
-            if (keepinIndex != null) this.keepOnLoad.splice(keepinIndex, 1);
+            if (keepinIndex >= 0) this.keepOnLoad.splice(keepinIndex, 1);
 
             this.#resources.delete(path[i]);
         }

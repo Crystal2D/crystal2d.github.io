@@ -172,15 +172,17 @@ class RPGMovement extends GameBehavior
 
         if (animator != null)
         {
+            animator.enabled = false;
+
             const duration = Math.random() * 0.5;
             let time = 0;
             const updateCallback = () => {
                 time += Time.deltaTime;
 
-                if (time < duration) return;
+                if (time <= duration) return;
 
                 PlayerLoop.onAfterUpdate.Remove(updateCallback);
-                animator.SetTrigger("reset");
+                animator.enabled = true;
             };
             PlayerLoop.onAfterUpdate.Add(updateCallback);
         }
@@ -288,6 +290,16 @@ class RPGMovement extends GameBehavior
         this.#targetDir = Vector2.Clamp(dir, Vector2.Scale(Vector2.one, -1), Vector2.one);
     }
 
+    LookAtTemp (dir)
+    {
+        dir = dir.normalized;
+
+        if (dir.y > 0) this._sprResolver.category = "up";
+        else if (dir.y < 0) this._sprResolver.category = "down";
+        else if (dir.x < 0) this._sprResolver.category = "left";
+        else if (dir.x > 0) this._sprResolver.category = "right";
+    }
+
     LookAt (dir)
     {
         dir = dir.normalized;
@@ -296,15 +308,22 @@ class RPGMovement extends GameBehavior
 
         this.#lookDir = dir;
 
-        if (dir.y > 0) this._sprResolver.category = "up";
-        else if (dir.y < 0) this._sprResolver.category = "down";
-        else if (dir.x < 0) this._sprResolver.category = "left";
-        else if (dir.x > 0) this._sprResolver.category = "right";
+        this.LookAtTemp(dir)
     }
 
     LookAtChar (char)
     {
         this.LookAt(Vector2.Subtract(char.gridPos, this.gridPos));
+    }
+
+    LookAtCharTemp (char)
+    {
+        this.LookAtTemp(Vector2.Subtract(char.gridPos, this.gridPos));
+    }
+
+    Unlook ()
+    {
+        this.LookAtTemp(this.#lookDir);
     }
 
     TP (pos)

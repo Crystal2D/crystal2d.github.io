@@ -6,7 +6,13 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_graveyard",
         "sprites/collider",
-        "sprites/parallaxes/sky_2"
+        "sprites/parallaxes/sky_2",
+        "sprites/illusts/forest_view",
+        [
+            "sprites/chars/este",
+            "spritelibs/chars/este"
+        ],
+        "sprites/faces/este"
     ],
     "gameObjects": [
         {
@@ -43,7 +49,7 @@
                         },
                         "max": {
                             "x": 6,
-                            "y": -3
+                            "y": -2
                         }
                     }
                 }
@@ -1403,6 +1409,38 @@
                                             {
                                                 "x": 4,
                                                 "y": -3
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": -2
                                             }
                                         ]
                                     }
@@ -1414,6 +1452,53 @@
                 },
                 {
                     "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision Este",
+            "id": 7,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 3,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": -4
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 0, "name": "j*bbed_good", "threshold": 1 }
+                        ]
+                    }
                 }
             ]
         },
@@ -1456,7 +1541,84 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -2
+                                },
+                                "event": "forestview_view"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": -4
+                                },
+                                "event": "forestview_este",
+                                "conditions": [
+                                    { "type": 0, "name": "j*bbed_good", "threshold": 1 }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -4
+                                },
+                                "event": "forestview_este",
+                                "conditions": [
+                                    { "type": 0, "name": "j*bbed_good", "threshold": 1 }
+                                ]
+                            }
+                        ]
                     }
                 }
             ]
@@ -1474,6 +1636,61 @@
                         "speed": {
                             "x": -2
                         }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_este",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 1.25,
+                    "y": -1.75
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/este",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/este"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestview_este"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            { "type": 0, "name": "j*bbed_good", "threshold": 1 }
+                        ]
                     }
                 }
             ]

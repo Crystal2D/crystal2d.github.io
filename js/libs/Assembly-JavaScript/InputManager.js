@@ -316,8 +316,8 @@ class InputManager extends GameBehavior
             new this.#Key("down"),
             new this.#Key("left"),
             new this.#Key("right"),
-            new this.#Key("z"),
-            new this.#Key("x"),
+            new this.#Key("ok"),
+            new this.#Key("cancel"),
             new this.#Key("shift")
         ];
 
