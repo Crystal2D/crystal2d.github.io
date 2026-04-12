@@ -4,7 +4,10 @@ class EventCondition
     // 1: Variable
     type = 0;
 
+    equal = false;
+    not = false;
     name = "";
+    or = [];
 
     // If Switch, then
     // 0: false
@@ -13,8 +16,23 @@ class EventCondition
 
     Check ()
     {
-        if (this.type === 0) return +EventSystem.GetSwitch(this.name) === this.threshold;
+        let met = false;
+        
+        if (this.type === 0) met = +EventSystem.GetSwitch(this.name) === this.threshold;
+        else if (this.equal) met = EventSystem.GetVariable(this.name) === this.threshold;
+        else met = EventSystem.GetVariable(this.name) >= this.threshold;
 
-        return EventSystem.GetVariable(this.name) >= this.threshold; 
+        if (this.not) met = !met;
+
+        if (met) return true;
+
+        if (this.or.length === 0) return false;
+
+        for (let i = 0; i < this.or.length; i++)
+        {
+            if (!this.or[i].Check()) return false;
+        }
+
+        return true;
     }
 }

@@ -19,7 +19,12 @@
         "audio/bgm/forest",
         "sprites/illusts/zera_talk_1",
         "sprites/illusts/zera_talk_2",
-        "sprites/illusts/zera_talk_3"
+        "sprites/illusts/zera_talk_3",
+        [
+            "sprites/chars/harp",
+            "spritelibs/chars/harp"
+        ],
+        "sprites/faces/harp"
     ],
     "gameObjects": [
         {
@@ -180,49 +185,175 @@
                                     "x": 3,
                                     "y": -3
                                 },
-                                "event": "yolkhouse_mail"
+                                "event": "yolkhouse_mail",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": -11,
                                     "y": -2
                                 },
-                                "event": "yolkhouse_veggie"
+                                "event": "yolkhouse_veggie",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": -9,
                                     "y": -2
                                 },
-                                "event": "yolkhouse_veggie"
+                                "event": "yolkhouse_veggie",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 6,
                                     "y": -17
                                 },
-                                "event": "yolkhouse_well"
+                                "event": "yolkhouse_well",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 7,
                                     "y": -17
                                 },
-                                "event": "yolkhouse_well"
+                                "event": "yolkhouse_well",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 6,
                                     "y": -18
                                 },
-                                "event": "yolkhouse_well"
+                                "event": "yolkhouse_well",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 7,
                                     "y": -18
                                 },
-                                "event": "yolkhouse_well"
+                                "event": "yolkhouse_well",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
@@ -231,7 +362,26 @@
                                 },
                                 "event": "yolkhouse_zera",
                                 "conditions": [
-                                    { "type": 1, "name": "zera_athouse" }
+                                    {
+                                        "type": 1,
+                                        "name": "zera_athouse"
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
                                 ]
                             },
                             {
@@ -241,10 +391,95 @@
                                 },
                                 "event": "yolkhouse_zera",
                                 "conditions": [
-                                    { "type": 1, "name": "zera_athouse" }
+                                    {
+                                        "type": 1,
+                                        "name": "zera_athouse"
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 8
+                                },
+                                "event": "yolkhouse_harp",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "harp",
+                                        "threshold": 5
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 8
+                                },
+                                "event": "yolkhouse_harp",
+                                "conditions": [
+                                    {
+                                        "type": 1,
+                                        "name": "harp",
+                                        "threshold": 5
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "yolkhouse_harp_set"
                     }
                 }
             ]
@@ -3370,10 +3605,6 @@
                                             },
                                             {
                                                 "x": -6,
-                                                "y": -22
-                                            },
-                                            {
-                                                "x": -6,
                                                 "y": -21
                                             },
                                             {
@@ -3395,6 +3626,10 @@
                                             {
                                                 "x": -8,
                                                 "y": 16
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -22
                                             }
                                         ]
                                     },
@@ -4910,15 +5145,6 @@
                                         ]
                                     },
                                     {
-                                        "id": 94,
-                                        "coords": [
-                                            {
-                                                "x": -8,
-                                                "y": 14
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "id": 95,
                                         "coords": [
                                             {
@@ -4969,15 +5195,6 @@
                                             {
                                                 "x": -8,
                                                 "y": 12
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "id": 109,
-                                        "coords": [
-                                            {
-                                                "x": -8,
-                                                "y": 13
                                             }
                                         ]
                                     },
@@ -6976,6 +7193,24 @@
                                                 "y": -18
                                             }
                                         ]
+                                    },
+                                    {
+                                        "id": 109,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 94,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 14
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -7569,22 +7804,6 @@
                                                 "y": 2
                                             },
                                             {
-                                                "x": 10,
-                                                "y": 6
-                                            },
-                                            {
-                                                "x": 11,
-                                                "y": 6
-                                            },
-                                            {
-                                                "x": 11,
-                                                "y": 5
-                                            },
-                                            {
-                                                "x": 11,
-                                                "y": 4
-                                            },
-                                            {
                                                 "x": 11,
                                                 "y": 3
                                             },
@@ -7934,6 +8153,57 @@
             ]
         },
         {
+            "name": "tile_Collision HarP",
+            "id": 10,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 1,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 8
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "harp",
+                                "threshold": 5
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "tile_Collision Zera",
             "id": 8,
             "parent": 5,
@@ -7974,7 +8244,1052 @@
                     "type": "EventConditioner",
                     "args": {
                         "conditions": [
-                            { "type": 1, "name": "zera_athouse" }
+                            {
+                                "type": 1,
+                                "name": "zera_athouse"
+                            },
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Zerad Color",
+            "id": 9,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Colors",
+                                "sprites": [
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": -17,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -16,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -15,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -15,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -14,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -13,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -11,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 17,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 16,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 13,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 15
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "equal": true,
+                                "threshold": 28
+                            },
+                            {
+                                "type": 1,
+                                "name": "zera_talkcount",
+                                "equal": true,
+                                "threshold": 0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Zerad Env",
+            "id": 12,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Common",
+                                "sprites": [
+                                    {
+                                        "id": 33,
+                                        "coords": [
+                                            {
+                                                "x": -17,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -14,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -11,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 13,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 16,
+                                                "y": 15
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 24,
+                                        "coords": [
+                                            {
+                                                "x": -17,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -14,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -11,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 4,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 13,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 16,
+                                                "y": 16
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 25,
+                                        "coords": [
+                                            {
+                                                "x": -16,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -13,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 14,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 17,
+                                                "y": 16
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 26,
+                                        "coords": [
+                                            {
+                                                "x": -15,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 16
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 35,
+                                        "coords": [
+                                            {
+                                                "x": -15,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 15,
+                                                "y": 15
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 28,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 8,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": -20
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Exterior - Forest",
+                                "sprites": [
+                                    {
+                                        "id": 33,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 34,
+                                        "coords": [
+                                            {
+                                                "x": -7,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 19,
+                                        "coords": [
+                                            {
+                                                "x": -7,
+                                                "y": 15
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 50,
+                                        "coords": [
+                                            {
+                                                "x": -7,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 66,
+                                        "coords": [
+                                            {
+                                                "x": -7,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 82,
+                                        "coords": [
+                                            {
+                                                "x": -7,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 81,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 65,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 49,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 83,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 67,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 51,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 35,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 30,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 46,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 62,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 78,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 79,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 63,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 47,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 31,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 16,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": 15
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 32,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": 14
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 48,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": 13
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 64,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": 12
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 80,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": 11
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 144,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -21
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 145,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": -21
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 97,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": -21
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 146,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": -21
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 147,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": -21
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 22,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 2,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 24,
+                                        "coords": [
+                                            {
+                                                "x": -4,
+                                                "y": -23
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 143,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -20
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 127,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -19
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 113,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": -19
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Colors",
+                                "sprites": [
+                                    {
+                                        "id": 3,
+                                        "coords": [
+                                            {
+                                                "x": -2,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": -22
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 1,
+                                        "coords": [
+                                            {
+                                                "x": -5,
+                                                "y": -20
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "equal": true,
+                                "threshold": 28
+                            },
+                            {
+                                "type": 1,
+                                "name": "zera_talkcount",
+                                "equal": true,
+                                "threshold": 0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Zerad Collision",
+            "id": 13,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": -23
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": -23
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -23
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider"
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "equal": true,
+                                "threshold": 28
+                            },
+                            {
+                                "type": 1,
+                                "name": "zera_talkcount",
+                                "equal": true,
+                                "threshold": 0
+                            }
                         ]
                     }
                 }
@@ -8023,7 +9338,107 @@
                     "type": "EventConditioner",
                     "args": {
                         "conditions": [
-                            { "type": 1, "name": "zera_athouse" }
+                            {
+                                "type": 1,
+                                "name": "zera_athouse"
+                            },
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_harp",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/harp",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/harp"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "yolkhouse_harp"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "harp",
+                                "threshold": 5
+                            },
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
                         ]
                     }
                 }
@@ -8031,7 +9446,7 @@
         },
         {
             "name": "char_hintbird",
-            "id": 9,
+            "id": 13,
             "transform": {
                 "position": {
                     "x": 2.5,
@@ -8072,6 +9487,29 @@
                     "type": "Animator",
                     "args": {
                         "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 }
             ]

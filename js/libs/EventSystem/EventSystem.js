@@ -524,6 +524,63 @@ class EventSystem
                 this.AddToVariable("zera_talkcount");
                 this.AddToVariable("illusts");
                 break;
+            case "yolkhouse_harp":{
+                const harp = GameObject.Find("char_harp").GetComponent(RPGMovement);
+                const randMove = harp.GetComponent(RandomMove);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                harp.LookAtChar(Player.instance);
+
+                if (this.GetSwitch("harp"))
+                {
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_met`)[0]);
+                    this.dialogueBox.SetFace("harp", "excited");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_met`)[1]);
+                    this.dialogueBox.SetFace("yoki", "annoyed");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_met`)[2]);
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_met`)[3]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_met`)[4]);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    this.dialogueBox.SetFace("harp", "excited");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                    this.dialogueBox.SetFace("yoki", "annoyed");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                    this.dialogueBox.SetFace("harp", "excited");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                    this.dialogueBox.SetFace("harp", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                    this.dialogueBox.SetFace("yoki", "surprised");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                }
+
+                await this.dialogueBox.Close();
+
+                this.SetSwitch("harp", true);
+
+                randMove.enabled = true;
+                randMove.ResetTime();
+                } break;
+            case  "yolkhouse_harp_set":
+                this.SetVariable("harp", Math.RandomInt(1, 5));
+                break;
 
             // ------------------------------------------------------- forest_view
             case "forestview_view":
@@ -589,7 +646,7 @@ class EventSystem
                 if (this.GetSwitch("viewed"))
                 {
                     this.SetSwitch("viewed", true);
-                    this.AddToVariable("illusts", 1);
+                    this.AddToVariable("illusts");
                 }
                 break;
             case "forestview_este": {
@@ -791,6 +848,12 @@ class EventSystem
                     this.AddToVariable("zera_athouse", -1);
                     this.SetSwitch("zera_left", true);
                 }
+                break;
+            case "5_4":
+                if (event === 1 && this.GetVariable("illusts") === 28 && this.GetVariable("zera_talkcount") === 0) Player.instance.TP(new Vector2(-4, -20));
+                break;
+            case "21_4":
+                if (event === 1 && this.GetVariable("illusts") === 28 && this.GetVariable("zera_talkcount") === 0) Player.instance.TP(Vector2.Add(Player.instance.gridPos, new Vector2(0, -3)));
                 break;
 
             case "16_20":

@@ -176,6 +176,26 @@
     "\\SE[3]How long would you like me \nto stay?",
     "\\SE[1]You could leave now if you'd \nlike."
 ],
+"yolkhouse_harp": [
+    "\\SE[9]Ohhhh it's you!",
+    "I've known you since you \nwere very little.",
+    "I've been watching you \nover the years.",
+    "You've grown so much...",
+    "...and look sooooo much \nmore tasty.",
+    "\\SE[1]I think I remember you...",
+    "I don't recall you ever\nwanting to eat me though.",
+    "I thought you were a more\npeaceful BEAST-Type.",
+    "\\SE[9]I am peaceful!",
+    "I won't eat anything that's\nalive. I only eat what's\nalready dead.",
+    "\\SE[1]Ah... So you're a scavenger."
+],
+"yolkhouse_harp_met": [
+    "\\SE[9]I've been waiting for you \nto die ever since I laid \nmy eyes on you.",
+    "I can't wait for that day!",
+    "\\SE[1]Don't look so enthusiastic...",
+    "\\SE[9]The man who visits you...\nHe also looks sooo tasty.",
+    "\\SE[1](Is she talking about Zera?)"
+],
 
 "forest_view": "----------------------------------------------------------------------",
 "forestview_este": [

@@ -563,8 +563,8 @@ class SpriteRenderer extends Renderer
 
         const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(
             new Vector2(
-                (0.5 - this.sprite.pivot.x) * this.#texSize.x,
-                (0.5 - this.sprite.pivot.y) * this.#texSize.y
+                (0.5 - this.sprite.pivot.x) * this.#boundsSize.x,
+                (0.5 - this.sprite.pivot.y) * this.#boundsSize.y
             ),
         ));
 

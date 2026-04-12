@@ -813,5 +813,112 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/chars/harp",
+        "type": "Texture",
+        "args": {
+            "src": "chars/harp.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 32,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 64,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 96,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 32,
+                        "y": 64,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 32,
+                        "y": 96,
+                        "width": 32,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                }
+            ]
+        }
     }
 ]

@@ -10,6 +10,7 @@
         "Interactable",
         "DialogueBox",
         "Illustrator",
+        "EventAutostart",
         "condition/EventCondition",
         "condition/EventConditioner"
     ],
@@ -48,6 +49,16 @@
             ]
         },
         {
+            "name": "EventAutostart",
+            "type": 0,
+            "args": [
+                {
+                    "type": "string",
+                    "name": "event"
+                }
+            ]
+        },
+        {
             "name": "EventCondition",
             "type": 0,
             "args": [
@@ -62,6 +73,19 @@
                 {
                     "type": "number",
                     "name": "threshold"
+                },
+                {
+                    "type": "bool",
+                    "name": "not"
+                },
+                {
+                    "type": "bool",
+                    "name": "equal"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "or"
                 }
             ]
         },
