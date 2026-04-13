@@ -349,8 +349,8 @@ class CrystalEngine
                 document.body.style.height = "";
                 document.body.style.overflow = "";
 
-                Window.resizable = true;
-                Window.fullscreen = false;
+                GameWindow.resizable = true;
+                GameWindow.fullscreen = false;
 
                 Cursor.locked = false;
                 Cursor.visible = true;
@@ -394,7 +394,7 @@ class CrystalEngine
                     manifestData.developer,
                     manifestData.version
                 );
-                Window.Init(manifestData.window);
+                GameWindow.Init(manifestData.window);
 
                 inited = true;
             })();

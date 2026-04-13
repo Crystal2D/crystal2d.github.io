@@ -14,7 +14,7 @@ class RPGSave
 
     static async Init ()
     {
-        if (!Application.isInCordova && !Application.isInElectron)
+        if (!GameStorage.isActive)
         {
             // window.indexedDB.deleteDatabase("save");
 
@@ -38,8 +38,11 @@ class RPGSave
         const src = this.#GetSrc(index);
         const compressed = LZString.compressToBase64(JSON.stringify(data));
 
-        if (Application.isInCordova) return;
-        else if (Application.isInElectron) return;
+        if (GameStorage.isActive)
+        {
+            await GameStorage.WriteFile(`${src}.tem`, compressed);
+            return;
+        }
 
         const transaction = this.#webDB.transaction(src, "readwrite");
         const request = transaction.objectStore(src).put(compressed, 0);
@@ -51,8 +54,14 @@ class RPGSave
         const src = this.#GetSrc(index);
         let data = null;
 
-        if (Application.isInCordova);
-        else if (Application.isInElectron);
+        if (GameStorage.isActive)
+        {
+            try
+            {
+                data = await GameStorage.ReadFile(`${src}.tem`);
+            }
+            catch { }
+        }
         else
         {
             const transaction = this.#webDB.transaction(src, "readonly");

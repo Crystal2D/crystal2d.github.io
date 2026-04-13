@@ -27,7 +27,7 @@ class Camera extends Behavior
         return new Bounds(
             this.transform.position,
             new Vector2(
-                Window.aspect * size,
+                GameWindow.aspect * size,
                 1 * size
             )
         );
@@ -63,8 +63,8 @@ class Camera extends Behavior
             this.bounds.size
         );
         const pointMat = Matrix3x3.Translate(new Vector2(
-            ((point.x - (window.innerWidth - Window.canvasWidth) * 0.5) / Window.canvasWidth) - 0.5,
-            ((point.y - (window.innerHeight - Window.canvasHeight) * 0.5) / Window.canvasHeight) - 0.5
+            ((point.x - (window.innerWidth - GameWindow.canvasWidth) * 0.5) / GameWindow.canvasWidth) - 0.5,
+            ((point.y - (window.innerHeight - GameWindow.canvasHeight) * 0.5) / GameWindow.canvasHeight) - 0.5
         ));
         const targetMat = Matrix3x3.Multiply(viewMat, pointMat);
 
@@ -80,8 +80,8 @@ class Camera extends Behavior
         );
         const pointMat = Matrix3x3.Multiply(viewMat.inverse, Matrix3x3.Translate(point));
         const targetMat = Matrix3x3.Translate(new Vector2(
-            ((pointMat.GetValue(2, 0) + 0.5) * Window.canvasWidth) + (window.innerWidth - Window.canvasWidth) * 0.5,
-            ((-pointMat.GetValue(2, 1) + 0.5) * Window.canvasHeight) + (window.innerHeight - Window.canvasHeight) * 0.5
+            ((pointMat.GetValue(2, 0) + 0.5) * GameWindow.canvasWidth) + (window.innerWidth - GameWindow.canvasWidth) * 0.5,
+            ((-pointMat.GetValue(2, 1) + 0.5) * GameWindow.canvasHeight) + (window.innerHeight - GameWindow.canvasHeight) * 0.5
         ));
 
         return new Vector2(targetMat.GetValue(2, 0), targetMat.GetValue(2, 1));
@@ -93,7 +93,7 @@ class Camera extends Behavior
         
         if (this.#updateProjMat) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);
         
-        const mScale = new Vector2(1 / Window.aspect, -1);
+        const mScale = new Vector2(1 / GameWindow.aspect, -1);
         const transM = Matrix3x3.TRS(mScale, 0, mScale);
         const min = this.bounds.min;
         const max = this.bounds.max;

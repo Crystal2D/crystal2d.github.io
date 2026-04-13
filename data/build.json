@@ -1,5 +1,6 @@
 {
     "libs" : [
+        "Crystal.Storage",
         "Crystal.BitmapText",
         "Crystal.RPGTiles",
         "Crystal.SimpleAnimate",

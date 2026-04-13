@@ -1,7 +1,5 @@
 Object.prototype.name = null;
 
-Object.prototype.toString = function () { return this.name; };
-
 Object.prototype.Duplicate = () => null;
 
 Object.InstantiationQueue = new DelegateEvent();

@@ -1,4 +1,4 @@
-class Window
+class GameWindow
 {
     static #loaded = false;
     static #resizable = true;
@@ -156,7 +156,7 @@ class Window
         if (this.#loaded) return;
 
         this.#resizable = data.resizable ?? true;
-        this.fullscreen = data.fullscreen ?? false;
+        this.fullscreen = data.fullscreen ?? Application.isInCordova;
         this.fillWindow = data.fillWindow ?? true;
   
         this.SetTitle(data.title);
@@ -240,5 +240,17 @@ class Window
         }
         
         icon.href = this.#icon;
+    }
+
+    static async Center ()
+    {
+        if (Application.isInCordova) return;
+
+        await CrystalEngine.Wait(() => this.#sizeChanged === 0);
+
+        window.moveTo(
+            0.5 * (window.screen.availWidth - window.outerWidth),
+            0.5 * (window.screen.availHeight - window.outerHeight)
+        );
     }
 }

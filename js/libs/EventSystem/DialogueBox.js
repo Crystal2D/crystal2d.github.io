@@ -84,7 +84,6 @@ class DialogueBox extends ItsABox
     {
         super.Start();
 
-        Crispixels.effect = true;
         this.#text = this.GetComponentInChildren(Text);
         this.#face = this.transform.Find("face").GetComponent(SpriteRenderer);
         this.#arrow = this.transform.Find("arrow").GetComponent(SpriteRenderer);
@@ -364,7 +363,7 @@ class DialogueBox extends ItsABox
 
     ShowFast ()
     {
-        if (this.#shouldUnpause) return;
+        if (this.#shouldUnpause || !Options.textSkip) return;
 
         this.#showFast = true;
     }

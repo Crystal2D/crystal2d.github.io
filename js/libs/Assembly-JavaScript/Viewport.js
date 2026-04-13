@@ -24,7 +24,11 @@ class Viewport extends GameBehavior
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start)) Window.fullscreen = !Window.fullscreen;
+        if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start))
+        {
+            GameWindow.fullscreen = !GameWindow.fullscreen;
+            Options.Save();
+        }
     }
 
     LateUpdate ()
@@ -35,7 +39,7 @@ class Viewport extends GameBehavior
             const height = window.innerHeight * window.devicePixelRatio;
             const sizer = Math.max(width < height ? width / 480 : height / 432, 1);
 
-            Window.SetResolution(480 * sizer, 432 * sizer);
+            GameWindow.SetResolution(480 * sizer, 432 * sizer);
         }
 
         FPSMeter.Update();

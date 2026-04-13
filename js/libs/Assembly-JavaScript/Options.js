@@ -20,11 +20,57 @@ class Options extends ChoiceBox
         if (config != null)
         {
             this.run = config.run;
-            Window.fullscreen = config.fullscreen;
+            GameWindow.fullscreen = config.fullscreen;
+            Crispixels.effect = config.crispixels;
             this.textSkip = config.textSkip;
+
+
             this.resolution = config.resolution;
+
+            if (this.resolution < 4)
+            {
+                const size = this.resolution + 1;
+                GameWindow.SetResolution(480 * size, 432 * size);
+            }
+
+
             this.windowSize = config.windowSize;
+
+            if (!Application.isInCordova)
+            {
+                let size = this.windowSize + 1;
+
+                if (size < 5)
+                {
+                    GameWindow.resizable = false;
+                    GameWindow.SetWindowSize(480 * size, 432 * size);
+                    GameWindow.Center();
+                }
+                else GameWindow.resizable = true;
+            }
+
+
             this.fps = config.fps;
+
+            const fpsSet = [
+                30,
+                60,
+                90,
+                120,
+                -1
+            ];
+
+            if (this.fps > 4)
+            {
+                Application.vSyncCount = 1;
+            }
+            else
+            {
+                Application.vSyncCount = 0;
+                Application.targetFrameRate = fpsSet[this.fps];
+            }
+
+
             AudioManager.bgmVolume = config.bgmVolume;
             AudioManager.seVolume = config.seVolume;
         }
@@ -34,7 +80,8 @@ class Options extends ChoiceBox
     {
         await RPGSave.Save(-1, {
             run: this.run,
-            fullscreen: Window.fullscreen,
+            fullscreen: GameWindow.fullscreen,
+            crispixels: Crispixels.effect,
             textSkip: this.textSkip,
             resolution: this.resolution,
             windowSize: this.windowSize,
@@ -89,7 +136,7 @@ class Options extends ChoiceBox
         if (!Application.isInCordova)
         {
             this.AddChoice(LocaleManager.Find("options_graphics_fullscreen"), () => {
-                Window.fullscreen = !Window.fullscreen;
+                GameWindow.fullscreen = !GameWindow.fullscreen;
                 this.#UpdateDataText();
             }, 1);
             this.AddChoice(LocaleManager.Find("options_graphics_winsize"), dir => {
@@ -104,8 +151,11 @@ class Options extends ChoiceBox
                 {
                     if (dir < 0)
                     {
-                        Options.windowSize = 0;
-                        size = 1;
+                        while (480 * size > window.screen.width || 432 * size > window.screen.height)
+                        {
+                            Options.windowSize--;
+                            size--;
+                        }
                     }
                     else
                     {
@@ -116,16 +166,17 @@ class Options extends ChoiceBox
 
                 if (size < 5)
                 {
-                    Window.resizable = false;
-                    Window.SetWindowSize(480 * size, 432 * size);
+                    GameWindow.resizable = false;
+                    GameWindow.SetWindowSize(480 * size, 432 * size);
+                    GameWindow.Center();
                 }
-                else Window.resizable = true;
+                else GameWindow.resizable = true;
 
                 this.#UpdateDataText();
             }, 2);
 
             this.#arrowCalls.push(
-                () => Window.fullscreen ? new Vector2(
+                () => GameWindow.fullscreen ? new Vector2(
                     LocaleManager.Find("options_on_aleft"),
                     LocaleManager.Find("options_on_aright")
                 ) : new Vector2(
@@ -159,8 +210,7 @@ class Options extends ChoiceBox
             if (Options.resolution < 4)
             {
                 const size = Options.resolution + 1;
-
-                Window.SetResolution(480 * size, 432 * size);
+                GameWindow.SetResolution(480 * size, 432 * size);
             }
 
             this.#UpdateDataText();
@@ -346,7 +396,7 @@ class Options extends ChoiceBox
         const toggle = state => state ? LocaleManager.Find("options_on") : LocaleManager.Find("options_off");
 
         const resSize = Options.resolution + 1;
-        const res = resSize > 4 ? `${LocaleManager.Find("options_graphics_res_match")} ${Window.fullscreen ? LocaleManager.Find("options_graphics_res_screen") : LocaleManager.Find("options_graphics_res_window")}` : `${480 * resSize} x ${432 * resSize}`;
+        const res = resSize > 4 ? `${LocaleManager.Find("options_graphics_res_match")} ${GameWindow.fullscreen ? LocaleManager.Find("options_graphics_res_screen") : LocaleManager.Find("options_graphics_res_window")}` : `${480 * resSize} x ${432 * resSize}`;
 
         const winSize = Options.windowSize + 1;
         const win = winSize > 4 ? LocaleManager.Find("options_graphics_winsize_any") : `${480 * winSize} x ${432 * winSize}`;
@@ -355,7 +405,7 @@ class Options extends ChoiceBox
         if (fps < 0) fps = LocaleManager.Find("options_graphics_fps_unli");
 
         if (Application.isInCordova) this.#dataText.text = `\n${Options.run ? LocaleManager.Find("options_gen_move_run") : LocaleManager.Find("options_gen_move_walk")}\n${toggle(Options.textSkip)}\n\n\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
-        else this.#dataText.text = `\n${Options.run ? LocaleManager.Find("options_gen_move_run") : LocaleManager.Find("options_gen_move_walk")}\n${toggle(Options.textSkip)}\n\n\n${toggle(Window.fullscreen)}\n${win}\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
+        else this.#dataText.text = `\n${Options.run ? LocaleManager.Find("options_gen_move_run") : LocaleManager.Find("options_gen_move_walk")}\n${toggle(Options.textSkip)}\n\n\n${toggle(GameWindow.fullscreen)}\n${win}\n${res}\n${fps}\n${toggle(Crispixels.effect)}\n\n\n${AudioManager.bgmVolume}\n${AudioManager.seVolume}`;
 
         this.#UpdateArrows();
     }

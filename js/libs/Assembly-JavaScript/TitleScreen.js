@@ -2,9 +2,6 @@ class TitleScreen extends ChoiceBox
 {
     Awake ()
     {
-        Crispixels.effect = true;
-        Cursor.visible = false;
-
         Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
 
