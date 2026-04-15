@@ -22,11 +22,11 @@ class AnimatorNode
         return 0;
     }
     
-    Update (gameObject) { }
+    Update (gameObject, animator) { }
 
-    Start () { }
+    Start (gameObject, animator) { }
 
-    End () { }
+    End (gameObject, animator) { }
 
     Duplicate () { }
 }

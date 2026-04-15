@@ -5,7 +5,35 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_castletown_sidegates",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/fox",
+            "spritelibs/chars/fox"
+        ],
+        [
+            "sprites/chars/raccoon",
+            "spritelibs/chars/raccoon"
+        ],
+        [
+            "sprites/chars/butterfly",
+            "spritelibs/chars/butterfly"
+        ],
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ],
+        [
+            "sprites/chars/rabbit",
+            "spritelibs/chars/rabbit"
+        ],
+        [
+            "sprites/chars/boar",
+            "spritelibs/chars/boar"
+        ],
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ]
     ],
     "gameObjects": [
         {
@@ -12529,6 +12557,132 @@
                                             {
                                                 "x": 13,
                                                 "y": 20
+                                            },
+                                            {
+                                                "x": -27,
+                                                "y": -13
+                                            },
+                                            {
+                                                "x": -27,
+                                                "y": -12
+                                            },
+                                            {
+                                                "x": -27,
+                                                "y": -11
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Char Collision",
+            "id": 6,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -21,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -23,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": 20,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": 21,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": 23,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": -23,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -21,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 14
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 14
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -3,
+                                                "y": 2
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision Tigertaur",
+            "id": 7,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 19,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 21,
+                                                "y": 0
                                             }
                                         ]
                                     }
@@ -12698,10 +12852,518 @@
                                     "y": 19
                                 }
                             }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 18,
+                                    "y": 11
+                                },
+                                "event": "forestbarrieredge_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 20,
+                                    "y": 11
+                                },
+                                "event": "forestbarrieredge_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 21,
+                                    "y": 10
+                                },
+                                "event": "forestbarrieredge_raccoon2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 23,
+                                    "y": 10
+                                },
+                                "event": "forestbarrieredge_raccoon2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": -14
+                                },
+                                "event": "forestbarrieredge_raccoon3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -21,
+                                    "y": -14
+                                },
+                                "event": "forestbarrieredge_raccoon3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": 14
+                                },
+                                "event": "forestbarrieredge_boar"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": 14
+                                },
+                                "event": "forestbarrieredge_boar"
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": 11
+                                },
+                                "event": "forestbarrieredge_fox"
+                            },
+                            {
+                                "pos": {
+                                    "x": -21,
+                                    "y": 11
+                                },
+                                "event": "forestbarrieredge_fox"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": 2
+                                },
+                                "event": "forestbarrieredge_squirrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 2
+                                },
+                                "event": "forestbarrieredge_squirrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -9
+                                },
+                                "event": "forestbarrieredge_rabbit"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -9
+                                },
+                                "event": "forestbarrieredge_rabbit"
+                            }
                         ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_raccoon1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_raccoon1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 11,
+                    "y": 5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_raccoon2"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon3",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -11,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_raccoon3"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_boar",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": -3,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/boar",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/boar"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_boar"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_fox",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -11,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fox",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fox"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_fox"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -10.5,
+                    "y": 4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 6,
+                        "event": "forestbarrieredge_bird"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -2,
+                    "y": 1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_squirrel"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rabbit",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/rabbit",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/rabbit"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_rabbit"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_butterfly1",
+            "prefab": "enities/butterfly",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 6.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly2",
+            "prefab": "enities/butterfly",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": 5.5
+                }
+            }
         }
     ]
 }

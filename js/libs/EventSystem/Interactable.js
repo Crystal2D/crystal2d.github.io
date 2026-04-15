@@ -1,5 +1,9 @@
 class Interactable
 {
+    // 0: Key
+    // 1: Touch
+    trigger = 0;
+    
     pos = Vector2.zero;
     conditions = [];
 

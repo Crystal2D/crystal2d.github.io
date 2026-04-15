@@ -1,17 +1,37 @@
 class Animator extends GameBehavior
 {
-    controller = null;
+    #ctrl = null;
+
+    speed = 1;
+
+    get parameters ()
+    {
+        return this.#ctrl.parameters.map(item => item.Duplicate());
+    }
+
+    constructor (ctrl)
+    {
+        super();
+
+        this.#ctrl = ctrl;
+        ctrl.animator = this;
+    }
+
+    Awake ()
+    {
+        this.#ctrl.gameObject = this.gameObject;
+    }
     
     Update ()
     {
-        this.controller?.Update(this.gameObject);
+        this.#ctrl?.Update();
     }
 
     LateUpdate ()
     {
-        if (this.controller == null) return;
+        if (this.#ctrl == null) return;
 
-        const triggers = this.controller.parameters.filter(item => item.type === AnimatorControllerParameterType.Trigger);
+        const triggers = this.#ctrl.parameters.filter(item => item.type === AnimatorControllerParameterType.Trigger);
 
         for (let i = 0; i < triggers.length; i++)
         {
@@ -23,7 +43,7 @@ class Animator extends GameBehavior
 
     #GetParam (name, type)
     {
-        return this.controller.parameters.find(item => item.name === name && item.type === type);
+        return this.#ctrl.parameters.find(item => item.name === name && item.type === type);
     }
 
     GetBool (name)
@@ -53,10 +73,6 @@ class Animator extends GameBehavior
 
     Duplicate ()
     {
-        const output = new Animator();
-
-        output.controller = this.controller.Duplicate();
-
-        return output;
+        return new Animator(this.#ctrl.Duplicate());
     }
 }

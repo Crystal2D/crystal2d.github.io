@@ -40,4 +40,9 @@ class MapNode
     {
         return this.owners.find(item => (item instanceof type));
     }
+
+    GetOwnersOfType (type)
+    {
+        return this.owners.filter(item => (item instanceof type));
+    }
 }

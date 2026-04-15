@@ -216,6 +216,9 @@
 "aimottle_mail": "Nothing to deliver today.",
 "forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]",
 "forestbarrier_squirrel2": "(He has an acorn in his\nmouth.)",
-"forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]"
+"forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]",
+"forestbarrier_blockerfly": "They won't let me through...",
+"forestbarrier_sbutterfly": "I feel.\\.\\..\\.\\.. Pleasant...",
+"forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?"
 
 }

@@ -24,6 +24,10 @@
             "type": 0,
             "args": [
                 {
+                    "type": "number",
+                    "name": "trigger"
+                },
+                {
                     "type": "Vector2",
                     "name": "pos"
                 },

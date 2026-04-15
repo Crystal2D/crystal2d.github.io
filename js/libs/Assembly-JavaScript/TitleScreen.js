@@ -2,12 +2,16 @@ class TitleScreen extends ChoiceBox
 {
     Awake ()
     {
+        Loader.Ready(3);
         Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
 
     Start ()
     {
         super.Start();
+
+        Loader.Switch(3);
+        return;
 
         this.AddChoice(LocaleManager.Find("title_start"), () => this.Close(() => {
             AudioManager.instance.FadeOutBGM(1);
@@ -20,8 +24,6 @@ class TitleScreen extends ChoiceBox
 
         this.AddChoice(LocaleManager.Find("title_options"), () => this.Close(() => options.Open()));
         this.padding = new Vector2(0.375, 0);
-
-        Loader.Ready(3);
 
         Transitioner.instance.FadeIn(() => {
             this.Open();

@@ -7,11 +7,11 @@ class MapInit extends GameBehavior
         Resources.DontDestroyOnLoad(
             "anims/entity",
             "anims/entity_ctrl",
-            "anims/entity_jump"
+            "anims/entity_reset"
         );
 
-        Loader.Ready(4);
-        // Loader.Ready(21);
+        // Loader.Ready(4);
+        Loader.Ready(6);
     }
 
     Update ()
@@ -21,8 +21,8 @@ class MapInit extends GameBehavior
         this.#inited = true;
 
         const transfer = new MapTransfer();
-        transfer.pos = new Vector2(2, -3);
-        // transfer.pos = new Vector2(0, -7);
+        // transfer.pos = new Vector2(2, -3);
+        transfer.pos = new Vector2(11, 11);
         MapTransfer.last = transfer;
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);
@@ -43,8 +43,8 @@ class MapInit extends GameBehavior
         };
         Loader.onSwitchEnd.Add(switchCall);
 
-        Loader.Switch(4);
-        // Loader.Switch(21);
+        // Loader.Switch(4);
+        Loader.Switch(6);
 
         // 22
     }

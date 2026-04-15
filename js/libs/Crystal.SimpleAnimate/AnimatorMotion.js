@@ -62,23 +62,26 @@ class AnimatorMotion extends AnimatorNode
         this.speed = Math.abs(this.speed) * (value ? -1 : 1);
     }
 
-    Update (gameObject)
+    Update (gameObject, animator)
     {
-        if (!this.#started) this.Start();
+        if (!this.#started) this.Start(gameObject, animator);
 
-        if (this.#end || this.speed === 0 || this.animation.frames.length === 0) return;
+        const speed = this.speed * animator.speed;
+        const reversed = speed < 0;
 
-        const deltaT = Time.deltaTime * this.speed;
+        if (this.#end || speed === 0 || this.animation.frames.length === 0) return;
+
+        const deltaT = Time.deltaTime * speed;
         this.#time += deltaT;
 
         const currentFrame = Math.floor(this.#time * this.animation.framerate);
 
-        if (this.reversed && currentFrame < 0) this.End();
-        else if (currentFrame >= this.frameDuration) this.End();
+        if (reversed && currentFrame < 0) this.End(gameObject, animator);
+        else if (currentFrame >= this.frameDuration) this.End(gameObject, animator);
 
         if (this.#frame !== currentFrame)
         {
-            if (this.speed > 0) this.animation.InvokeFrames(this.#frame, currentFrame, gameObject);
+            if (speed > 0) this.animation.InvokeFrames(this.#frame, currentFrame, gameObject);
             else this.animation.InvokeFramesReverse(this.#frame, currentFrame, gameObject);
 
             this.#frame = currentFrame;
@@ -87,16 +90,18 @@ class AnimatorMotion extends AnimatorNode
         if (this.#end) return;
     }
 
-    Start ()
+    Start (gameObject, animator)
     {
         this.#started = true;
         this.#end = false;
 
-        this.#time = this.reversed ? this.duration : 0;
-        this.#frame = this.reversed ? this.frameDuration : -1;
+        const reversed = (this.speed * animator.speed) < 0;
+
+        this.#time = reversed ? this.duration : 0;
+        this.#frame = reversed ? this.frameDuration : -1;
     }
 
-    End ()
+    End (gameObject, animator)
     {
         this.#end = true;
 

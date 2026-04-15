@@ -78,7 +78,7 @@
         "path": "anims/entity",
         "type": "AnimationClip",
         "args": {
-            "framerate": 3.333333333333333333333333333333,
+            "framerate": 4,
             "duration": 2,
             "frames": [
                 {

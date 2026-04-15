@@ -364,7 +364,8 @@
                                 "conditions": [
                                     {
                                         "type": 1,
-                                        "name": "zera_athouse"
+                                        "name": "zera_athouse",
+                                        "threshold": 0
                                     },
                                     {
                                         "type": 1,
@@ -393,7 +394,8 @@
                                 "conditions": [
                                     {
                                         "type": 1,
-                                        "name": "zera_athouse"
+                                        "name": "zera_athouse",
+                                        "threshold": 0
                                     },
                                     {
                                         "type": 1,
@@ -8246,7 +8248,8 @@
                         "conditions": [
                             {
                                 "type": 1,
-                                "name": "zera_athouse"
+                                "name": "zera_athouse",
+                                "threshold": 0
                             },
                             {
                                 "type": 1,
@@ -9340,7 +9343,8 @@
                         "conditions": [
                             {
                                 "type": 1,
-                                "name": "zera_athouse"
+                                "name": "zera_athouse",
+                                "threshold": 0
                             },
                             {
                                 "type": 1,
@@ -9445,7 +9449,7 @@
             ]
         },
         {
-            "name": "char_hintbird",
+            "prefab": "enities/hintbird",
             "id": 13,
             "transform": {
                 "position": {
@@ -9454,41 +9458,6 @@
                 }
             },
             "components": [
-                {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/chars/bird",
-                            "name": "down-a"
-                        },
-                        "sortingLayer": 1
-                    }
-                },
-                {
-                    "type": "SpriteLibrary",
-                    "args": {
-                        "asset": "spritelibs/chars/bird"
-                    }
-                },
-                {
-                    "type": "SpriteResolver",
-                    "args": {
-                        "category": "down",
-                        "label": "0"
-                    }
-                },
-                {
-                    "type": "RPGMovement",
-                    "args": {
-                        "event": "hintbird"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
-                },
                 {
                     "type": "EventConditioner",
                     "args": {

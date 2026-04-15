@@ -258,7 +258,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/butterfly",
-                            "name": "down-a"
+                            "name": "a"
                         },
                         "sortingLayer": 1,
                         "sortingOrder": 1
@@ -306,7 +306,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/butterfly",
-                            "name": "down-a"
+                            "name": "a"
                         },
                         "sortingLayer": 1,
                         "sortingOrder": 1
@@ -329,6 +329,50 @@
                     "type": "RPGMovement",
                     "args": {
                         "charCollision": false
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "enities/hintbird",
+        "type": "GameObject",
+        "args": {
+            "name": "char_hintbird",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "hintbird"
                     }
                 },
                 {

@@ -377,22 +377,21 @@ class EventSystem
                     return;
                 }
 
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -40 / 255,
                     -50 / 255,
                     -50 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -80 / 255,
                     -100 / 255,
                     -100 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(-1, -1, -1, 0));
-                await this.Timer(1);
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
 
                 this.illustrator.Set(0, "zera_talk_1", 50 / 255);
                 await this.Timer(8);
@@ -503,22 +502,21 @@ class EventSystem
                 this.illustrator.Clear(0);
                 await this.Timer(20);
 
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -80 / 255,
                     -100 / 255,
                     -100 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -40 / 255,
                     -50 / 255,
                     -50 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(Color.clear);
-                await this.Timer(1);
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
 
                 this.SetSwitch("zera_athousescene", true);
                 this.AddToVariable("zera_talkcount");
@@ -578,28 +576,28 @@ class EventSystem
                 randMove.enabled = true;
                 randMove.ResetTime();
                 } break;
-            case  "yolkhouse_harp_set":
+            case "yolkhouse_harp_set":
                 this.SetVariable("harp", Math.RandomInt(1, 5));
                 break;
 
             // ------------------------------------------------------- forest_view
             case "forestview_view":
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -40 / 255,
                     -50 / 255,
                     -50 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -80 / 255,
                     -100 / 255,
                     -100 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(-1, -1, -1, 0));
-                await this.Timer(41);
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+                await this.Timer(40);
 
                 this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
                 await this.Timer(8);
@@ -626,22 +624,21 @@ class EventSystem
                 this.illustrator.Clear(0);
                 await this.Timer(60);
 
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -153 / 255,
                     -153 / 255,
                     -170 / 255,
                     0
                 ));
-                await this.Timer(13);
-                this.TintAll(new Color(
+                await this.Timer(12);
+                await this.TintAll(new Color(
                     -85 / 255,
                     -85 / 255,
                     -103 / 255,
                     0
                 ));
-                await this.Timer(13);
-                this.TintAll(Color.clear);
-                await this.Timer(1);
+                await this.Timer(12);
+                await this.TintAll(Color.clear);
 
                 if (this.GetSwitch("viewed"))
                 {
@@ -692,55 +689,55 @@ class EventSystem
 
                 AudioManager.instance.FadeOutBGM(1);
 
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -68 / 255,
                     -68 / 255,
                     -68 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -102 / 255,
                     -102 / 255,
                     -102 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -187 / 255,
                     -187 / 255,
                     -187 / 255,
                     0
                 ));
-                await this.Timer(9);
+                await this.Timer(8);
 
                 await this.BlackSwitch(12);
 
-                await this.Timer(41);
+                await this.Timer(40);
                 Transitioner.instance.Clear();
-                this.TintAll(new Color(
+                await this.TintAll(new Color(
                     -187 / 255,
                     -187 / 255,
                     -187 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -102 / 255,
                     -102 / 255,
                     -102 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(new Color(
+                await this.Timer(8);
+                await this.TintAll(new Color(
                     -68 / 255,
                     -68 / 255,
                     -68 / 255,
                     0
                 ));
-                await this.Timer(9);
-                this.TintAll(Color.clear);
-                await this.Timer(9);
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(8);
 
                 AudioManager.instance.PlayBGM("village", 0.2);
 
@@ -832,6 +829,95 @@ class EventSystem
                 bird.Unlook();
                 randMove.enabled = true;
                 randMove.ResetTime();
+                } break;
+            case "forestbarrier_blockerfly":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+                break;
+            case "forestbarrier_sbutterfly":
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(9);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Set(0, "flower_ring", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+ 
+                GameObject.Find("char_sbutterfly").SetActive(false);
+                await this.WaitOk();
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+
+                this.SetSwitch("butterfly", true);
+                this.AddToVariable("illusts");
+                break;
+            case "forestbarrier_dragon": {
+                if (this.GetSwitch("dragon_deeper")) return;
+
+                AudioManager.instance.FadeOutBGM(3);
+
+                await this.Timer(30);
+                CamCtrl.current.Scroll(new Vector2(7 + 9 - Player.instance.gridPos.x, 0), 4);
+                await this.Timer(140);
+
+                const dragon = GameObject.Find("char_dragon").GetComponent(RPGMovement);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                dragon.gameObject.SetActive(false);
+
+                await this.Timer(30);
+                CamCtrl.current.Scroll(new Vector2(-(7 + 9 - Player.instance.gridPos.x), 0), 4);
+                await this.Timer(140);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                await this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("forest", 0.2);
+                this.SetSwitch("dragon_deeper", true);
                 } break;
         }
     }
@@ -977,13 +1063,16 @@ class EventSystem
         Loader.Switch(12);
 
         await new Promise(resolve => resolveCall = resolve);
+        await this.Timer(1);
     }
 
-    static TintAll (color)
+    static async TintAll (color)
     {
         const renderers = GameObject.FindComponents(Renderer).filter(item => !([4, 5]).includes(item.sortingLayer));
 
         for (let i = 0; i < renderers.length; i++) renderers[i].tint = color;
+
+        await this.Timer(1);
     }
 
     static GetSwitch (name)

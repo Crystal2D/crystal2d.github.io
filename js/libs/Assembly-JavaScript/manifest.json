@@ -79,7 +79,7 @@
             "args": [
                 {
                     "type": "number",
-                    "name": "speedScale"
+                    "name": "moveSpeed"
                 },
                 {
                     "type": "string",
@@ -88,6 +88,10 @@
                 {
                     "type": "bool",
                     "name": "charCollision"
+                },
+                {
+                    "type": "bool",
+                    "name": "animateWalk"
                 }
             ]
         },

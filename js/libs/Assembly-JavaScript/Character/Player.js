@@ -7,11 +7,10 @@ class Player extends RPGMovement
     #yTime = 0;
 
     #transfer = null;
-    #interactable = null;
+    #keyInteractable = null;
+    #touchInteractable = null;
 
-    animateWalk = true;
     avoidInputs = true;
-    speedScale = 1;
 
     Start ()
     {
@@ -39,10 +38,16 @@ class Player extends RPGMovement
 
         const transfer = node.GetOwnerOfType(MapTransfer);
 
-        if (transfer != null)
+        if (transfer != null) this.#transfer = transfer;
+
+        const interactables = node.GetOwnersOfType(Interactable);
+
+        for (let i = 0; i < interactables.length; i++)
         {
-            this.avoidInputs = true;
-            this.#transfer = transfer;
+            if (interactables[i].trigger !== 1) continue;
+
+            this.#touchInteractable = interactables[i];
+            break;
         }
 
         return false;
@@ -53,10 +58,22 @@ class Player extends RPGMovement
         if (this.avoidInputs) return;
 
         const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
-        const interactable = lookedNode.GetOwnerOfType(Interactable) ??  lookedNode.GetOwnerOfType(RPGMovement);
+        const interactables = lookedNode.GetOwnersOfType(Interactable);
 
-        if (interactable != null) this.#interactable = interactable;
-        else this.#interactable = null;
+        let interactable = null;
+
+        for (let i = 0; i < interactables.length; i++)
+        {
+            if (interactables[i].trigger !== 0) continue;
+
+            interactable = interactables[i];
+            break;
+        }
+
+        if (interactable == null) interactable = lookedNode.GetOwnerOfType(RPGMovement);
+
+        if (interactable != null) this.#keyInteractable = interactable;
+        else this.#keyInteractable = null;
 
         if (InputManager.GetKeyDown("ok")) this.#Interact();
 
@@ -81,13 +98,15 @@ class Player extends RPGMovement
 
         this.MoveTowards(input);
 
-        this.speedScale = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 2 : 1;
+        this.moveSpeed = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 5 : 4;
     }
 
     async _OnStop ()
     {
         if (this.#transfer != null)
         {
+            this.avoidInputs = true;
+
             const lastScene = MapGrid.scene;
 
             MapTransfer.last = this.#transfer;
@@ -110,15 +129,25 @@ class Player extends RPGMovement
 
             Loader.Switch(MapTransfer.last.scene);
         }
+
+        if (this.#touchInteractable != null)
+        {
+            this.avoidInputs = true;
+
+            await this.#touchInteractable.Invoke();
+
+            this.avoidInputs = false;
+            this.#touchInteractable = null;
+        }
     }
 
     async #Interact ()
     {
-        if (this.#interactable == null) return;
+        if (this.#keyInteractable == null) return;
 
         this.avoidInputs = true;
 
-        await this.#interactable.Invoke();
+        await this.#keyInteractable.Invoke();
 
         this.avoidInputs = false;
     }

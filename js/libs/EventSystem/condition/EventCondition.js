@@ -12,7 +12,7 @@ class EventCondition
     // If Switch, then
     // 0: false
     // 1: true
-    threshold = 0;
+    threshold = 1;
 
     Check ()
     {

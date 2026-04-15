@@ -26,5 +26,12 @@
         "args": {
             "src": "illusts\\forest_view.png"
         }
+    },
+    {
+        "path": "sprites/illusts/flower_ring",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\flower_ring.png"
+        }
     }
 ]

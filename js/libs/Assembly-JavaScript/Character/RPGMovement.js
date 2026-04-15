@@ -3,8 +3,9 @@ class RPGMovement extends GameBehavior
     #allowDirChange = true;
     #checkedDir = false;
     #moveStart = false;
-    #currentSpeedScale = 0;
-    #moveSpeed = 0;
+    #speed = 3;
+    #currentSpeed = 0;
+    #currentFrameSpeed = 0;
     #animCount = 0;
     #animState = 0;
     #jumpPeak = 0;
@@ -15,12 +16,15 @@ class RPGMovement extends GameBehavior
     #movement = Vector2.zero;
     #lastPos = Vector2.zero;
     #jumpTo = Vector2.zero;
+    #onJumpEnd = () => { };
 
     #node = null;
 
+    _frameSpeed = 30 * Math.pow(2, 3) / 256;
     _moveDir = Vector2.zero;
 
     _sprResolver = null;
+    _animator = null;
 
     get #jumpHeight ()
     {
@@ -59,14 +63,32 @@ class RPGMovement extends GameBehavior
         return this.#jumpTime > 0;
     }
 
+    get moveSpeed ()
+    {
+        return this.#speed;
+    }
+
+    set moveSpeed (value)
+    {
+        if (this.#speed === value) return;
+
+        this.#speed = value;
+        this._frameSpeed = 30 * Math.pow(2, value) / 256;
+
+        if (this._animator != null)
+        {
+            const duration = (9 - value) * 3;
+            this._animator.speed = 15 / duration;
+        }
+    }
+
     updateMovement = true;
     charCollision = true;
-    animateWalk = false;
-    speed = 1.875;
-    speedScale = 0.5;
+    animateWalk = true;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
+    onStay = new DelegateEvent();
 
     event = null;
 
@@ -108,6 +130,7 @@ class RPGMovement extends GameBehavior
                 this.lookingAt = this._moveDir;
                 this._moveDir = Vector2.zero;
                 this.transform.position = this.#lastPos;
+                this.#allowDirChange = true;
 
                 return;
             }
@@ -116,16 +139,15 @@ class RPGMovement extends GameBehavior
         if (!this.#moveStart)
         {
             this.#moveStart = true;
-
             this.onMoveStart.Invoke();
         }
 
         const nextPos = Vector2.Add(
             this.transform.position,
-            Vector2.Scale(this._moveDir, Time.deltaTime * this.#moveSpeed)
+            Vector2.Scale(this._moveDir, Time.deltaTime * this.#currentFrameSpeed)
         );
 
-        if (Vector2.Abs(Vector2.Subtract(nextPos, this.#lastPos)).Greater(Vector2.Abs(this.#movement)))
+        if (Vector2.Abs(Vector2.Subtract(nextPos, this.#lastPos)).GreaterEquals(Vector2.Abs(this.#movement)))
         {
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
@@ -133,18 +155,15 @@ class RPGMovement extends GameBehavior
             this.transform.position = Vector2.Add(this.#lastPos, this.#movement);
 
             this.#moveStart = false;
-
             this.#allowDirChange = true;
 
             this._OnStop();
-
             this.onStop.Invoke();
 
             return;
         }
 
         this.lookingAt = this._moveDir;
-
         this.transform.position = nextPos;
 
         this._OnMove();
@@ -153,6 +172,27 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent(SpriteResolver);
+        this._animator = this.GetComponent(Animator);
+
+        if (this._animator != null)
+        {
+            const duration = (9 - this.#speed) * 3;
+            this._animator.speed = 15 / duration;
+
+            let animateWalk = false;
+
+            this.onMoveStart.Add(() => {
+                animateWalk = this.animateWalk;
+
+                if (animateWalk) this._animator.enabled = false;
+            });
+            this.onStay.Add(() => {
+                if (!animateWalk) return;
+                
+                this._animator.enabled = false;
+                this._animator.SetTrigger("reset");
+            });
+        }
         
         const sprDir = this._sprResolver.category;
 
@@ -168,24 +208,28 @@ class RPGMovement extends GameBehavior
 
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
 
-        const animator = this.GetComponent(Animator);
+        // if (this._animator != null)
+        // {
+        //     this._animator.enabled = false;
 
-        if (animator != null)
-        {
-            animator.enabled = false;
+        //     const duration = Math.random() * 0.5;
+        //     let time = 0;
+        //     const updateCallback = () => {
+        //         time += Time.deltaTime;
 
-            const duration = Math.random() * 0.5;
-            let time = 0;
-            const updateCallback = () => {
-                time += Time.deltaTime;
+        //         if (time <= duration) return;
 
-                if (time <= duration) return;
+        //         PlayerLoop.onAfterUpdate.Remove(updateCallback);
+        //         this._animator.enabled = true;
+        //     };
+        //     PlayerLoop.onAfterUpdate.Add(updateCallback);
+        // }
+    }
 
-                PlayerLoop.onAfterUpdate.Remove(updateCallback);
-                animator.enabled = true;
-            };
-            PlayerLoop.onAfterUpdate.Add(updateCallback);
-        }
+    OnDisable ()
+    {
+        this.#node.RemoveOwner(this);
+        this.#node = null;
     }
 
     Update ()
@@ -215,6 +259,7 @@ class RPGMovement extends GameBehavior
         {
             this.#lastPos = this.#jumpTo;
             this.transform.localPosition = this.#lastPos;
+            this.#onJumpEnd();
         }
     }
 
@@ -226,8 +271,8 @@ class RPGMovement extends GameBehavior
 
             this.#GetMovement();
 
-            this.#currentSpeedScale = this.speedScale;
-            this.#moveSpeed = this.speed * this.#currentSpeedScale;
+            this.#currentSpeed = this.#speed;
+            this.#currentFrameSpeed = this._frameSpeed;
 
             this.#lastPos = this.transform.position;
 
@@ -241,17 +286,19 @@ class RPGMovement extends GameBehavior
         else
         {
             this.#allowDirChange = true;
-
             this._OnStay();
+            this.onStay.Invoke();
         }
     }
 
     #Animate ()
     {
-        if (this.#moveStart) this.#animCount += 1.5 * Time.deltaTime;
-        else if (this.#animState === 1) this.#animCount += Time.deltaTime;
+        if (this.#moveStart) this.#animCount += 1.5 * Time.deltaTime * 60;
+        else if (this._animator != null || this.#animState !== 0) this.#animCount += Time.deltaTime * 60;
 
-        if (this.#animCount >= (this.#currentSpeedScale === 2 ? 0.2 : 0.25))
+        const duration = (9 - this.#currentSpeed) * 3;
+
+        if (this.#animCount >= duration)
         {
             this.#animState = +(this.#animState === 0);
             this._sprResolver.label = `${this.#animState}`;
@@ -279,15 +326,23 @@ class RPGMovement extends GameBehavior
 
     _OnStay () { }
 
-    MoveTowards (dir)
+    async MoveTowards (dir)
     {
         if (!this.#allowDirChange) return;
 
         if (dir.x !== 0) dir.y = 0;
 
-        this.#allowDirChange = true;
+        this.#allowDirChange = false;
 
         this.#targetDir = Vector2.Clamp(dir, Vector2.Scale(Vector2.one, -1), Vector2.one);
+
+        await new Promise(resolve => {
+            const callback = () => {
+                this.onStay.Remove(callback);
+                resolve();
+            };
+            this.onStay.Add(callback);
+        });
     }
 
     LookAtTemp (dir)
@@ -340,9 +395,7 @@ class RPGMovement extends GameBehavior
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        const animator = this.GetComponent(Animator);
-
-        if (animator != null) animator.SetTrigger("reset");
+        if (this._animator != null) this._animator.SetTrigger("reset");
         else
         {
             this.#animCount = 0;
@@ -363,11 +416,10 @@ class RPGMovement extends GameBehavior
 
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
-        const moveSpeed = (Math.log(this.#moveSpeed / 30 * 256) / Math.log(2));
-        this.#jumpPeak = (10 + by.magnitude - moveSpeed / 60) * 0.05;
-        this.#jumpDuration = ((10 + by.magnitude - moveSpeed) / 60) * 2;
+        this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
+        this.#jumpDuration = ((10 + by.magnitude - this.#speed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
 
-        await CrystalEngine.Wait(() => this.#jumpTime <= 0);
+        await new Promise(resolve => this.#onJumpEnd = resolve);
     }
 }

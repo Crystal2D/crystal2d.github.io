@@ -362,6 +362,21 @@ class Vector2
 
         return output[0] || output[1];
     }
+
+    GreaterEquals (other)
+    {
+        const inv = [
+            this.x <= other.x,
+            this.y <= other.y
+        ];
+
+        const output = [
+            this.x >= other.x && !inv[0],
+            this.y >= other.y && !inv[1]
+        ];
+
+        return output[0] || output[1];
+    }
     
     /**
      * Makes this vector have a magnitude of 1

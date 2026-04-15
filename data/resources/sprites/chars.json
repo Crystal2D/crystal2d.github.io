@@ -521,67 +521,40 @@
             "src": "chars/butterfly.png",
             "sprites": [
                 {
-                    "name": "down-a",
+                    "name": "a",
                     "rect": {
                         "width": 16,
                         "height": 16
                     }
                 },
                 {
-                    "name": "down-b",
+                    "name": "b",
                     "rect": {
                         "x": 16,
                         "width": 16,
                         "height": 16
                     }
-                },
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sbutterfly",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sbutterfly.png",
+            "sprites": [
                 {
-                    "name": "left-a",
+                    "name": "a",
                     "rect": {
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
                 },
                 {
-                    "name": "right-a",
-                    "rect": {
-                        "y": 32,
-                        "width": 16,
-                        "height": 16
-                    }
-                },
-                {
-                    "name": "up-a",
-                    "rect": {
-                        "y": 48,
-                        "width": 16,
-                        "height": 16
-                    }
-                },
-                {
-                    "name": "left-b",
+                    "name": "b",
                     "rect": {
                         "x": 16,
-                        "y": 16,
-                        "width": 16,
-                        "height": 16
-                    }
-                },
-                {
-                    "name": "right-b",
-                    "rect": {
-                        "x": 16,
-                        "y": 32,
-                        "width": 16,
-                        "height": 16
-                    }
-                },
-                {
-                    "name": "up-b",
-                    "rect": {
-                        "x": 16,
-                        "y": 48,
                         "width": 16,
                         "height": 16
                     }
@@ -916,6 +889,306 @@
                     "pivot": {
                         "x": 0.5,
                         "y": 0.75
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/dragon_human",
+        "type": "Texture",
+        "args": {
+            "src": "chars/dragon_human.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/raccoon",
+        "type": "Texture",
+        "args": {
+            "src": "chars/raccoon.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/rabbit",
+        "type": "Texture",
+        "args": {
+            "src": "chars/rabbit.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/boar",
+        "type": "Texture",
+        "args": {
+            "src": "chars/boar.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
                     }
                 }
             ]

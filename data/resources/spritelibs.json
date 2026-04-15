@@ -515,14 +515,14 @@
                             "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "up-a"
+                                "name": "a"
                             }
                         },
                         {
                             "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "up-b"
+                                "name": "b"
                             }
                         }
                     ]
@@ -534,14 +534,14 @@
                             "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "down-a"
+                                "name": "a"
                             }
                         },
                         {
                             "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "down-b"
+                                "name": "b"
                             }
                         }
                     ]
@@ -553,14 +553,14 @@
                             "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "left-a"
+                                "name": "a"
                             }
                         },
                         {
                             "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "left-b"
+                                "name": "b"
                             }
                         }
                     ]
@@ -572,14 +572,98 @@
                             "label": "0",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "right-a"
+                                "name": "a"
                             }
                         },
                         {
                             "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/butterfly",
-                                "name": "right-b"
+                                "name": "b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/sbutterfly",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/sbutterfly",
+                                "name": "b"
                             }
                         }
                     ]
@@ -747,6 +831,342 @@
                             "label": "1",
                             "sprite": {
                                 "texture": "sprites/chars/harp",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/dragon_human",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/dragon_human",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/raccoon",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/raccoon",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/rabbit",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/rabbit",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/boar",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/boar",
                                 "name": "right-b"
                             }
                         }
