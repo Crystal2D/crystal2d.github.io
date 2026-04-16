@@ -24,7 +24,6 @@ class RPGMovement extends GameBehavior
     _moveDir = Vector2.zero;
 
     _sprResolver = null;
-    _animator = null;
 
     get #jumpHeight ()
     {
@@ -74,17 +73,12 @@ class RPGMovement extends GameBehavior
 
         this.#speed = value;
         this._frameSpeed = 30 * Math.pow(2, value) / 256;
-
-        if (this._animator != null)
-        {
-            const duration = (9 - value) * 3;
-            this._animator.speed = 15 / duration;
-        }
     }
 
     updateMovement = true;
     charCollision = true;
     animateWalk = true;
+    animateIdle = true;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
@@ -172,27 +166,6 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent(SpriteResolver);
-        this._animator = this.GetComponent(Animator);
-
-        if (this._animator != null)
-        {
-            const duration = (9 - this.#speed) * 3;
-            this._animator.speed = 15 / duration;
-
-            let animateWalk = false;
-
-            this.onMoveStart.Add(() => {
-                animateWalk = this.animateWalk;
-
-                if (animateWalk) this._animator.enabled = false;
-            });
-            this.onStay.Add(() => {
-                if (!animateWalk) return;
-                
-                this._animator.enabled = false;
-                this._animator.SetTrigger("reset");
-            });
-        }
         
         const sprDir = this._sprResolver.category;
 
@@ -207,23 +180,6 @@ class RPGMovement extends GameBehavior
         this.#node.AddOwner(this);
 
         this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
-
-        // if (this._animator != null)
-        // {
-        //     this._animator.enabled = false;
-
-        //     const duration = Math.random() * 0.5;
-        //     let time = 0;
-        //     const updateCallback = () => {
-        //         time += Time.deltaTime;
-
-        //         if (time <= duration) return;
-
-        //         PlayerLoop.onAfterUpdate.Remove(updateCallback);
-        //         this._animator.enabled = true;
-        //     };
-        //     PlayerLoop.onAfterUpdate.Add(updateCallback);
-        // }
     }
 
     OnDisable ()
@@ -237,7 +193,7 @@ class RPGMovement extends GameBehavior
         if (this.isJumping) this.#UpdateJump();
         else this.#UpdateMove();
 
-        if (this.animateWalk) this.#Animate();
+        this.#Animate();
     }
 
     #UpdateJump ()
@@ -293,8 +249,8 @@ class RPGMovement extends GameBehavior
 
     #Animate ()
     {
-        if (this.#moveStart) this.#animCount += 1.5 * Time.deltaTime * 60;
-        else if (this._animator != null || this.#animState !== 0) this.#animCount += Time.deltaTime * 60;
+        if (this.animateWalk && this.#moveStart) this.#animCount += 1.5 * Time.deltaTime * 60;
+        else if (this.animateIdle || this.#animState !== 0) this.#animCount += Time.deltaTime * 60;
 
         const duration = (9 - this.#currentSpeed) * 3;
 
@@ -395,13 +351,9 @@ class RPGMovement extends GameBehavior
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        if (this._animator != null) this._animator.SetTrigger("reset");
-        else
-        {
-            this.#animCount = 0;
-            this.#animState = 0;
-            this._sprResolver.label = `${this.#animState}`;
-        }
+        this.#animCount = 0;
+        this.#animState = 0;
+        this._sprResolver.label = `${this.#animState}`;
 
         const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
 

@@ -14,9 +14,7 @@
         ],
         [
             "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly"
-        ],
-        [
+            "spritelibs/chars/butterfly",
             "sprites/chars/sbutterfly",
             "spritelibs/chars/sbutterfly"
         ],
@@ -16478,12 +16476,6 @@
                     "args": {
                         "event": "forestbarrier_fox1"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -16525,12 +16517,6 @@
                     "args": {
                         "event": "forestbarrier_fox2"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -16571,12 +16557,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrier_squirrel1"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 },
                 {
@@ -16625,12 +16605,6 @@
                     "args": {
                         "event": "forestbarrier_squirrel2"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -16671,12 +16645,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrier_squirrel3"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 },
                 {
@@ -16725,12 +16693,6 @@
                     "args": {
                         "event": "forestbarrier_deer"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -16771,12 +16733,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrier_bird"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 },
                 {
@@ -17088,6 +17044,7 @@
                 {
                     "type": "RPGMovement",
                     "args": {
+                        "moveSpeed": 2,
                         "charCollision": true,
                         "event": "forestbarrier_blockerfly"
                     },
@@ -17186,12 +17143,6 @@
                     }
                 },
                 {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
-                },
-                {
                     "type": "EventConditioner",
                     "args": {
                         "conditions": [
@@ -17241,7 +17192,7 @@
                     "type": "RPGMovement",
                     "args": {
                         "charCollision": false,
-                        "animateWalk": true
+                        "animateIdle": false
                     }
                 },
                 {

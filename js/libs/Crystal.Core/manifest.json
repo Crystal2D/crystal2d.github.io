@@ -219,18 +219,8 @@
         },
         {
             "name": "SpriteLibraryAsset",
-            "type": 1,
-            "args": [
-                {
-                    "name": "categories",
-                    "array": true,
-                    "type": "SpriteLibraryCategory"
-                },
-                {
-                    "name": "mainLibrary",
-                    "type": "SpriteLibraryAsset"
-                }
-            ]
+            "construction": "let categories = []; for (let i = 0; i < data.categories?.length ?? 0; i++) categories.push(await toObject(\"SpriteLibraryCategory\", data.categories[i])); let mainLib = null; let tex = null; if (data.mainLibrary != null) { mainLib = await toObject(\"SpriteLibraryAsset\", data.mainLibrary); if (data.texture != null) tex = await toObject(\"Texture\", data.texture); } return new SpriteLibraryAsset(categories, mainLib, tex);",
+            "type": 1
         },
         {
             "name": "SpriteLibraryAsset",

@@ -284,12 +284,6 @@
                     }
                 },
                 {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
-                },
-                {
                     "type": "RandomMove"
                 }
             ]
@@ -330,12 +324,6 @@
                     "args": {
                         "charCollision": false
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         }
@@ -373,12 +361,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "hintbird"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 }
             ]

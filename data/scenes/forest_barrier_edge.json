@@ -12993,6 +12993,7 @@
                 {
                     "type": "RPGMovement",
                     "args": {
+                        "animateIdle": false,
                         "event": "forestbarrieredge_raccoon1"
                     }
                 }
@@ -13036,12 +13037,6 @@
                     "args": {
                         "event": "forestbarrieredge_raccoon2"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -13082,12 +13077,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrieredge_raccoon3"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 }
             ]
@@ -13130,12 +13119,6 @@
                     "args": {
                         "event": "forestbarrieredge_boar"
                     }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
                 }
             ]
         },
@@ -13176,12 +13159,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrieredge_fox"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 },
                 {
@@ -13233,12 +13210,6 @@
                     }
                 },
                 {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
-                },
-                {
                     "type": "RandomMove"
                 }
             ]
@@ -13280,12 +13251,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrieredge_squirrel"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 },
                 {
@@ -13333,12 +13298,6 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestbarrieredge_rabbit"
-                    }
-                },
-                {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
                     }
                 }
             ]

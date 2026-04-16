@@ -11,6 +11,7 @@ class Player extends RPGMovement
     #touchInteractable = null;
 
     avoidInputs = true;
+    animateIdle = false;
 
     Start ()
     {

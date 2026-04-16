@@ -1680,12 +1680,6 @@
                     }
                 },
                 {
-                    "type": "Animator",
-                    "args": {
-                        "controller": "anims/entity_ctrl"
-                    }
-                },
-                {
                     "type": "EventConditioner",
                     "args": {
                         "conditions": [
