@@ -166,7 +166,8 @@ class Resources
 
     static DontDestroyOnLoad (...path)
     {
-        this.keepOnLoad.push(...path);
+        const filtered = path.filter(item => !this.keepOnLoad.includes(item));
+        this.keepOnLoad.push(...filtered);
     }
 
     static DestroyOnLoad (...path)
@@ -176,7 +177,8 @@ class Resources
             if (path[i] == null) continue;
  
             const index = this.keepOnLoad.indexOf(path[i]);
-            this.keepOnLoad.splice(index, 1);
+
+            if (index >= 0) this.keepOnLoad.splice(index, 1);
         }
     }
 }

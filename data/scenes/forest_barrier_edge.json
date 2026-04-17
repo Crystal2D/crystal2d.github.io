@@ -33,7 +33,13 @@
         [
             "sprites/chars/bird",
             "spritelibs/chars/bird"
-        ]
+        ],
+        "sprites/chars/raccoon",
+        "sprites/chars/boar",
+        "sprites/chars/fox",
+        "sprites/chars/bird",
+        "sprites/chars/squirrel",
+        "sprites/chars/rabbit"
     ],
     "gameObjects": [
         {
@@ -12569,6 +12575,74 @@
                                             {
                                                 "x": -27,
                                                 "y": -11
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -6
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -7
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -8
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -11
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": 7
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": 9
+                                            },
+                                            {
+                                                "x": 27,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": 17,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 17,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": 1
                                             }
                                         ]
                                     }
@@ -13315,14 +13389,57 @@
         },
         {
             "name": "char_butterfly2",
-            "prefab": "enities/butterfly",
+            "prefab": "enities/static_butterfly",
             "id": 17,
             "transform": {
                 "position": {
                     "x": -6,
                     "y": 5.5
                 }
-            }
+            },
+            "components": [
+                {
+                    "type": "ToPlayerMove"
+                }
+            ]
+        },
+        {
+            "name": "a",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/yoki",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/yoki"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
         }
     ]
 }

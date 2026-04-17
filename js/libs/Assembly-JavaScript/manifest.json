@@ -17,7 +17,11 @@
         "InputManager",
         "Character/RPGMovement",
         "Character/Player",
-        "Character/RandomMove",
+        "Character/SnekChar",
+        "Character/Party",
+        "Character/Moves/MovesBase",
+        "Character/Moves/RandomMove",
+        "Character/Moves/ToPlayerMove",
         "CamCtrl",
         "MapGrid/MapNode",
         "MapGrid/MapGrid",
@@ -104,6 +108,14 @@
             "type" : 0
         },
         {
+            "name" : "SnekChar",
+            "type" : 0
+        },
+        {
+            "name" : "Party",
+            "type" : 0
+        },
+        {
             "name" : "RandomMove",
             "type" : 0,
             "args": [
@@ -114,6 +126,24 @@
                 {
                     "type": "number",
                     "name": "interval"
+                }
+            ]
+        },
+        {
+            "name" : "ToPlayerMove",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "bool",
+                    "name": "turnOnly"
+                },
+                {
+                    "type": "number",
+                    "name": "interval"
+                },
+                {
+                    "type": "bool",
+                    "name": "away"
                 }
             ]
         },

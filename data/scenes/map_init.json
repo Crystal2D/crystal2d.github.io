@@ -68,6 +68,9 @@
                 },
                 {
                     "type": "Player"
+                },
+                {
+                    "type": "Party"
                 }
             ]
         },

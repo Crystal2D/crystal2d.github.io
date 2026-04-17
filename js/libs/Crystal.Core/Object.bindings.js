@@ -92,9 +92,15 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation,
 
 Object.prototype.DontDestroyOnLoad = function (obj, res = [])
 {
-    if (!(obj instanceof GameObject) && !(obj instanceof Component)) return null;
+    if (!(obj instanceof GameObject) && !(obj instanceof Component)) return;
 
     if (obj instanceof Component) obj = obj.gameObject;
+    
+    if (obj.keepOnLoad)
+    {
+        Resources.DontDestroyOnLoad(...res);
+        return;
+    }
 
     const parent = obj.transform.parent;
     
@@ -113,9 +119,15 @@ Object.prototype.DontDestroyOnLoad = function (obj, res = [])
 
 Object.prototype.DestroyOnLoad = function (obj, res = [])
 {
-    if (!(obj instanceof GameObject) && !(obj instanceof Component)) return null;
+    if (!(obj instanceof GameObject) && !(obj instanceof Component)) return;
 
     if (obj instanceof Component) obj = obj.gameObject;
+
+    if (!obj.keepOnLoad)
+    {
+        Resources.DestroyOnLoad(...res);
+        return;
+    }
 
     const child = obj.transform.GetChildren();
     for (let i = 0; i < child.length; i++) this.DestroyOnLoad(child[i]);
