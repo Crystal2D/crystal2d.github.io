@@ -20,6 +20,7 @@ class Renderer extends Component
     sortingOrder = 0;
     
     color = Color.white;
+    sortingAxisOffset = Vector2.zero;
     renderMatrix = new Matrix3x3();
     onMeshUpdate = new DelegateEvent();
     

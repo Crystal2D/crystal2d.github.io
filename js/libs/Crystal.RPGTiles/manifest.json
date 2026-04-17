@@ -51,6 +51,10 @@
                 {
                     "name" : "mergeResolution",
                     "type" : "number"
+                },
+                {
+                    "name" : "sortingAxisOffset",
+                    "type" : "Vector2"
                 }
             ],
             "keys": [

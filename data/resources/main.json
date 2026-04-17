@@ -248,7 +248,42 @@
         }
     },
     {
-        "path": "enities/butterfly",
+        "path": "entities/base",
+        "type": "GameObject",
+        "args": {
+            "name": "char_base",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/yoki",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/yoki"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/butterfly",
         "type": "GameObject",
         "args": {
             "name": "butterfly",
@@ -290,7 +325,7 @@
         }
     },
     {
-        "path": "enities/static_butterfly",
+        "path": "entities/static_butterfly",
         "type": "GameObject",
         "args": {
             "name": "butterfly",
@@ -329,7 +364,7 @@
         }
     },
     {
-        "path": "enities/hintbird",
+        "path": "entities/hintbird",
         "type": "GameObject",
         "args": {
             "name": "char_hintbird",

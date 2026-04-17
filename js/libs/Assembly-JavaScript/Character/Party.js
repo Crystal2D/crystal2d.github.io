@@ -1,5 +1,8 @@
 class Party extends SnekChar
 {
+    static #pool = new Map();
+
+    static size = 2;
     static instance = null;
 
     Awake ()
@@ -7,6 +10,94 @@ class Party extends SnekChar
         this.DontDestroyOnLoad(this);
         Party.instance = this;
     }
-    
-    // static Add ()
+
+    static async Load ()
+    {
+        this.#pool.set(0, {
+            name: "yoki",
+            char: Player.instance,
+            sprRen: Player.instance.GetComponent(SpriteRenderer),
+            sprLib: Player.instance.GetComponent(SpriteLibrary),
+            sprRes: Player.instance.GetComponent(SpriteResolver)
+        });
+
+        for (let i = 1; i < this.size; i++) this.#Add();
+    }
+
+    static async OnTransfer ()
+    {
+        Party.instance.ClearMoves();
+
+        this.#pool.forEach(item => {
+            item.char.TP(MapTransfer.last.pos);
+            item.char.LookAt(Player.instance.lookingAt);
+        });
+    }
+
+    static async #Add ()
+    {
+        const gameObject = await this.Instantiate(Resources.FindPrefab("entities/base"));
+        this.DontDestroyOnLoad(gameObject);
+
+        const char = gameObject.GetComponent(RPGMovement);
+        char.TP(Player.instance.gridPos);
+        Party.instance.Add(char);
+
+        const sprRen = gameObject.GetComponent(SpriteRenderer);
+        sprRen.color.a = 0;         
+
+        const member = {
+            name: null,
+            char: char,
+            sprRen: sprRen,
+            sprLib: gameObject.GetComponent(SpriteLibrary),
+            sprRes: gameObject.GetComponent(SpriteResolver)
+        };
+        this.#pool.set(this.#pool.size, member);
+    }
+
+    static async Set (index, name)
+    {
+        const member = this.#pool.get(index);
+
+        if (member == null) return;
+
+        Resources.DontDestroyOnLoad(
+            `sprites/chars/${name}`,
+            `spritelibs/chars/${name}`
+        );
+        await Resources.Load([
+            `sprites/chars/${name}`,
+            `spritelibs/chars/${name}`
+        ]);
+
+        member.sprLib.asset = Resources.Find(`spritelibs/chars/${name}`);
+        member.sprRes.Reload();
+        member.sprRen.color.a = 1;
+    }
+
+    static Clear (index)
+    {
+        const member = this.#pool.get(index);
+
+        if (member == null) return;
+
+        member.sprRen.color.a = 0;
+        member.sprLib.asset = Resources.Find("spritelibs/chars/yoki");
+        member.sprRes.Reload();
+
+        if (member.name !== "yoki")
+        {
+            Resources.DestroyOnLoad(
+            `sprites/chars/${member.name}`,
+            `spritelibs/chars/${member.name}`
+            );
+            Resources.Unload([
+                `sprites/chars/${member.name}`,
+                `spritelibs/chars/${member.name}`
+            ]);
+        }
+
+        member.name = null;
+    }
 }

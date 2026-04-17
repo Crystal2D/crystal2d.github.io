@@ -50,7 +50,10 @@
                             "texture": "sprites/chars/yoki",
                             "name": "down-a"
                         },
-                        "sortingLayer": 1
+                        "sortingLayer": 1,
+                        "sortingAxisOffset": {
+                            "y": -0.00000001
+                        }
                     }
                 },
                 {

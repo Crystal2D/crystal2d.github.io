@@ -76,7 +76,6 @@ class Illustrator extends GameBehavior
                 duration: 0,
                 onDone: () => { }                
             };
-
             this.#illusts.set(index, illust);
         }
 

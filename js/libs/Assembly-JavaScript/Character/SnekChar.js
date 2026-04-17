@@ -117,4 +117,9 @@ class SnekChar extends GameBehavior
 
         return null;
     }
+
+    ClearMoves ()
+    {
+        for (let i = 0; i < this.followers.length; i++) this.followers[i].moves = [];
+    }
 }

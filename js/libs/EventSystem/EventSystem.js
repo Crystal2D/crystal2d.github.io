@@ -575,7 +575,7 @@ class EventSystem
 
                 randMove.enabled = true;
                 randMove.ResetTime();
-                } break;
+            } break;
             case "yolkhouse_harp_set":
                 this.SetVariable("harp", Math.RandomInt(1, 5));
                 break;
@@ -742,7 +742,7 @@ class EventSystem
                 AudioManager.instance.PlayBGM("village", 0.2);
 
                 this.SetSwitch("este_warp", true);
-                } break;
+            } break;
 
             // ------------------------------------------------------- forest_barrier
             case "aimottle_mail":
@@ -759,7 +759,7 @@ class EventSystem
                 await fox.Jump();
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await fox.Jump();
-                } break;
+            } break;
             case "forestbarrier_fox2":
                 GameObject.Find("char_fox2").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
@@ -778,7 +778,7 @@ class EventSystem
                 await squirrel.Jump();
                 randMove.enabled = true;
                 randMove.ResetTime();
-                } break;
+            } break;
             case "forestbarrier_squirrel2":
                 GameObject.Find("char_squirrel2").GetComponent(RPGMovement).LookAtChar(Player.instance);
 
@@ -806,7 +806,7 @@ class EventSystem
                 await squirrel.Jump();
                 randMove.enabled = true;
                 randMove.ResetTime();
-                } break;
+            } break;
             case "forestbarrier_deer": {
                 const deer = GameObject.Find("char_deer").GetComponent(RPGMovement);
 
@@ -829,7 +829,7 @@ class EventSystem
                 bird.Unlook();
                 randMove.enabled = true;
                 randMove.ResetTime();
-                } break;
+            } break;
             case "forestbarrier_blockerfly":
                 this.dialogueBox.SetFace("yoki", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -918,7 +918,14 @@ class EventSystem
 
                 AudioManager.instance.PlayBGM("forest", 0.2);
                 this.SetSwitch("dragon_deeper", true);
-                } break;
+            } break;
+
+            case "a": {
+                const a = GameObject.Find("a");
+                a.SetActive(false);
+
+                Party.Set(1, "rabbit");
+            } break;
         }
     }
 

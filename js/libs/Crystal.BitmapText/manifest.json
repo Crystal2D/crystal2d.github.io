@@ -118,6 +118,10 @@
                 {
                     "name": "trimEnd",
                     "type": "bool"
+                },
+                {
+                    "name" : "sortingAxisOffset",
+                    "type" : "Vector2"
                 }
             ],
             "keys": [

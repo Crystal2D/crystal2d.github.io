@@ -286,13 +286,7 @@ class RPGMovement extends GameBehavior
         if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
 
         const char = node.GetOwnerOfType(RPGMovement);
-
-        if (char != null)
-        {
-            if (this.ignoredCharCollisions.includes(char)) return false;
-
-            return this.charCollision && char.charCollision;
-        }
+        if (char != null && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
 
         return false;
     }

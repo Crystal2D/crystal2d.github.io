@@ -30,6 +30,7 @@ class MapConfig extends GameBehavior
         if (MapTransfer.last != null)
         {
             Player.instance.TP(MapTransfer.last.pos);
+            Party.OnTransfer();
         }
     }
 }

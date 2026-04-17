@@ -104,8 +104,11 @@ class Camera extends Behavior
             .filter(item => item.GetComponent(Renderer).isLoaded && item.activeInHierarchy)
             .map(item => item.GetComponent(Renderer))
             .sort((a, b) => {
-                const x = (a.transform.position.x - b.transform.position.x) * -sortingDir.x;
-                const y = (a.transform.position.y - b.transform.position.y) * -sortingDir.y;
+                const aPos = Vector2.Add(a.transform.position, a.sortingAxisOffset);
+                const bPos = Vector2.Add(b.transform.position, b.sortingAxisOffset);
+
+                const x = (aPos.x - bPos.x) * -sortingDir.x;
+                const y = (aPos.y - bPos.y) * -sortingDir.y;
 
                 return x + y; // idk lol
             })

@@ -16742,7 +16742,7 @@
         },
         {
             "name": "char_butterfly1",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 13,
             "transform": {
                 "position": {
@@ -16753,7 +16753,7 @@
         },
         {
             "name": "char_butterfly2",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 15,
             "transform": {
                 "position": {
@@ -16764,7 +16764,7 @@
         },
         {
             "name": "char_butterfly3",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 16,
             "transform": {
                 "position": {
@@ -16775,7 +16775,7 @@
         },
         {
             "name": "char_butterfly4",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 17,
             "transform": {
                 "position": {
@@ -16786,7 +16786,7 @@
         },
         {
             "name": "char_butterfly5",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 18,
             "transform": {
                 "position": {
@@ -16797,7 +16797,7 @@
         },
         {
             "name": "char_butterfly6",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 19,
             "transform": {
                 "position": {
@@ -16808,7 +16808,7 @@
         },
         {
             "name": "char_butterfly7",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 20,
             "transform": {
                 "position": {
@@ -16819,7 +16819,7 @@
         },
         {
             "name": "char_butterfly8",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 21,
             "transform": {
                 "position": {
@@ -16830,7 +16830,7 @@
         },
         {
             "name": "char_butterfly9",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 22,
             "transform": {
                 "position": {
@@ -16841,7 +16841,7 @@
         },
         {
             "name": "char_butterfly10",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 23,
             "transform": {
                 "position": {
@@ -16852,7 +16852,7 @@
         },
         {
             "name": "char_butterfly11",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 24,
             "transform": {
                 "position": {
@@ -16863,7 +16863,7 @@
         },
         {
             "name": "char_dragon_butterfly1",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 25,
             "transform": {
                 "position": {
@@ -16890,7 +16890,7 @@
         },
         {
             "name": "char_dragon_butterfly2",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 26,
             "transform": {
                 "position": {
@@ -16917,7 +16917,7 @@
         },
         {
             "name": "char_dragon_butterfly3",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 27,
             "transform": {
                 "position": {
@@ -16944,7 +16944,7 @@
         },
         {
             "name": "char_dragon_butterfly4",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 28,
             "transform": {
                 "position": {
@@ -16971,7 +16971,7 @@
         },
         {
             "name": "char_dragon_butterfly5",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 29,
             "transform": {
                 "position": {
@@ -16998,7 +16998,7 @@
         },
         {
             "name": "char_dragon_butterfly6",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 30,
             "transform": {
                 "position": {
@@ -17025,7 +17025,7 @@
         },
         {
             "name": "char_blockerfly1",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 31,
             "transform": {
                 "position": {
@@ -17065,7 +17065,7 @@
         },
         {
             "name": "char_blockerfly2",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 31,
             "transform": {
                 "position": {

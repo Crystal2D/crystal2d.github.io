@@ -9444,7 +9444,7 @@
             ]
         },
         {
-            "prefab": "enities/hintbird",
+            "prefab": "entities/hintbird",
             "id": 13,
             "transform": {
                 "position": {

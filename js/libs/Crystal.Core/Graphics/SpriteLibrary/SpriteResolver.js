@@ -38,6 +38,11 @@ class SpriteResolver extends GameBehavior
         if (this.#lastCategory === this.category && this.#lastLabel === this.label) return;
         if (this.category == null || this.label == null) return;
 
+        this.Reload();
+    }
+
+    Reload ()
+    {
         this.#sprRen.sprite = this.#lib.GetSprite(this.category, this.label);
 
         this.#lastCategory = this.category;

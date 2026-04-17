@@ -14,11 +14,13 @@ class MapInit extends GameBehavior
         Loader.Ready(6);
     }
 
-    Update ()
+    async Update ()
     {
         if (this.#inited) return;
 
         this.#inited = true;
+
+        await Party.Load();
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(2, -3);

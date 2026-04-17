@@ -13378,7 +13378,7 @@
         },
         {
             "name": "char_butterfly1",
-            "prefab": "enities/butterfly",
+            "prefab": "entities/butterfly",
             "id": 16,
             "transform": {
                 "position": {
@@ -13389,7 +13389,7 @@
         },
         {
             "name": "char_butterfly2",
-            "prefab": "enities/static_butterfly",
+            "prefab": "entities/static_butterfly",
             "id": 17,
             "transform": {
                 "position": {
@@ -13409,7 +13409,7 @@
             "transform": {
                 "position": {
                     "x": 5.5,
-                    "y": 5.5
+                    "y": 6
                 }
             },
             "components": [
@@ -13437,7 +13437,10 @@
                     }
                 },
                 {
-                    "type": "RPGMovement"
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "a"
+                    }
                 }
             ]
         }
