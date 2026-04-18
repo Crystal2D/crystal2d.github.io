@@ -202,6 +202,8 @@ class DialogueBox extends ItsABox
     {
         if (this.#startedTyping) return;
 
+        await CrystalEngine.Wait(() => !this.isClosing);
+
         this.transform.parent = Camera.main?.transform;
 
         this.#startedTyping = true;

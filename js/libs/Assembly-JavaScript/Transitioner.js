@@ -124,6 +124,6 @@ class Transitioner extends GameBehavior
 
     LateUpdate ()
     {
-        if (CamCtrl.current != null) this.transform.position = CamCtrl.current.transform.position;
+        if (Viewport.current != null) this.transform.position = Viewport.current.transform.position;
     }
 }

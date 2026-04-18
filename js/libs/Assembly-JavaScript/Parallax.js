@@ -26,6 +26,8 @@ class Parallax extends GameBehavior
             Vector2.Divide(this.#camSize, this.#sprSize),
             Vector2.one
         );
+        this.#count.x = Math.ceil(this.#count.x);
+        this.#count.y = Math.ceil(this.#count.y);
         this.#threshold = Vector2.Divide(
             Vector2.one,
             Vector2.Divide(

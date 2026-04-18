@@ -1193,5 +1193,113 @@
                 }
             ]
         }
+    },
+
+    {
+        "path": "sprites/chars/claireyokifly",
+        "type": "Texture",
+        "args": {
+            "src": "chars/claireyokifly.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 58,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 52,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 104,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 156,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 58,
+                        "y": 52,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 58,
+                        "y": 104,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 58,
+                        "y": 156,
+                        "width": 58,
+                        "height": 52
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6923076923076923
+                    }
+                }
+            ]
+        }
     }
 ]

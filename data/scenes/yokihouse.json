@@ -24,7 +24,12 @@
             "sprites/chars/harp",
             "spritelibs/chars/harp"
         ],
-        "sprites/faces/harp"
+        "sprites/faces/harp",
+        [
+            "sprites/chars/claire",
+            "spritelibs/chars/claire"
+        ],
+        "sprites/faces/claire"
     ],
     "gameObjects": [
         {
@@ -456,6 +461,72 @@
                                         "type": 1,
                                         "name": "harp",
                                         "threshold": 5
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": -3
+                                },
+                                "event": "yolkhouse_claire",
+                                "conditions": [
+                                    {
+                                        "name": "claire_reward",
+                                        "or": [
+                                            {
+                                                "name": "journal_done"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": 1,
+                                        "name": "illusts",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 28,
+                                        "or": [
+                                            {
+                                                "type": 1,
+                                                "name": "zera_talkcount",
+                                                "not": true,
+                                                "equal": true,
+                                                "threshold": 0
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": -3
+                                },
+                                "event": "yolkhouse_claire",
+                                "conditions": [
+                                    {
+                                        "name": "claire_reward",
+                                        "or": [
+                                            {
+                                                "name": "journal_done"
+                                            }
+                                        ]
                                     },
                                     {
                                         "type": 1,
@@ -9457,6 +9528,148 @@
                     "type": "EventConditioner",
                     "args": {
                         "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_claire",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 2.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/claire",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/claire"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "yolkhouse_claire"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_reward",
+                                "or": [
+                                    {
+                                        "name": "journal_done"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision Claire",
+            "id": 15,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 4,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -3
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_reward",
+                                "or": [
+                                    {
+                                        "name": "journal_done"
+                                    }
+                                ]
+                            },
                             {
                                 "type": 1,
                                 "name": "illusts",

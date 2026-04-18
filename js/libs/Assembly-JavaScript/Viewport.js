@@ -1,6 +1,13 @@
 class Viewport extends GameBehavior
 {
+    static current = null;
+    
     #fps = 0;
+
+    Awake ()
+    {
+        Viewport.current = this;
+    }
 
     Update ()
     {

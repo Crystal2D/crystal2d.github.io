@@ -60,7 +60,9 @@ class Party extends SnekChar
     {
         const member = this.#pool.get(index);
 
-        if (member == null) return;
+        if (member == null || member.name === name) return;
+
+        if (member.name != null) this.Clear(index);
 
         Resources.DontDestroyOnLoad(
             `sprites/chars/${name}`,
@@ -82,22 +84,17 @@ class Party extends SnekChar
 
         if (member == null) return;
 
-        member.sprRen.color.a = 0;
+        if (index > 0) member.sprRen.color.a = 0;
+
         member.sprLib.asset = Resources.Find("spritelibs/chars/yoki");
         member.sprRes.Reload();
 
         if (member.name !== "yoki")
         {
-            Resources.DestroyOnLoad(
-            `sprites/chars/${member.name}`,
-            `spritelibs/chars/${member.name}`
-            );
-            Resources.Unload([
-                `sprites/chars/${member.name}`,
-                `spritelibs/chars/${member.name}`
-            ]);
+            Resources.DestroyOnLoad(`spritelibs/chars/${member.name}`);
+            Resources.DestroyOnLoad(`sprites/chars/${member.name}`);
         }
 
-        member.name = null;
+        member.name = index > 0 ? null : "yoki";
     }
 }

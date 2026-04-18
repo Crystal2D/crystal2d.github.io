@@ -1,7 +1,5 @@
 class CamCtrl extends Viewport
 {
-    static current = null;
-
     #speed = 0;
     #lastOffset = Vector2.zero;
     #onScrollEnd = () => { };
@@ -14,13 +12,10 @@ class CamCtrl extends Viewport
 
     target = null;
 
-    Awake ()
-    {
-        CamCtrl.current = this;
-    }
-
     Update ()
     {
+        super.Update();
+
         if (this.#scroll == null) return;
 
         this.offset = Vector2.Add(

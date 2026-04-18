@@ -76,7 +76,7 @@ class Player extends RPGMovement
         if (interactable != null) this.#keyInteractable = interactable;
         else this.#keyInteractable = null;
 
-        if (InputManager.GetKeyDown("ok")) this.#Interact();
+        if (InputManager.GetKeyDown("ok") && EventSystem.dialogueBox.isClosed) this.#Interact();
 
         if (this.avoidInputs) return;
 
@@ -147,9 +147,9 @@ class Player extends RPGMovement
         if (this.#keyInteractable == null) return;
 
         this.avoidInputs = true;
+        const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
+        if (!handledInput) this.avoidInputs = false;
 
-        await this.#keyInteractable.Invoke();
-
-        this.avoidInputs = false;
+        console.log(handledInput);
     }
 }

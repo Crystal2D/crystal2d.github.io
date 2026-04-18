@@ -50,7 +50,8 @@
         "forest_deeper",
         "forest_cove",
         "forest_view",
-        "town_path"
+        "town_path",
+        "fly"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

@@ -142,6 +142,61 @@
     "Maybe you should head home and \nget some sleep?"
 ],
 
+"fly": [
+    "\\SE[2]Hee hee\\.\\.\nIsn't this nice?",
+    "\\SE[1]It is...",
+    "\\SE[2]Hey.\\.\\..\\.\\..\nYou know...",
+    "It's been awhile since we've \ngone off anywhere together.",
+    "Traveling,\\.\\. adventuring,\\.\\. and \nwhatnot.",
+    "\\SE[1]Yea... It has been.",
+    "But... It can't be helped.\\.\\.\nThings have been so busy\nlately.",
+    "\\SE[2]That's true...",
+    "I've gotten so many orders\nand clients lately, it's \nmaking my head spin.",
+    "Mostly for wards and health\npotions too.",
+    "It seems like something's\nreally been stirring up the \nBEAST-Types lately.",
+    "\\SE[1]I've been getting pulled away \na lot for work at the Castle \ntoo...",
+    "It's taking away from the \njob I'd rather be working at.",
+    "\\SE[2]The Post Office you mean?",
+    "You're so strong and cool,\nit seems like a waste to work \nat a job like that.",
+    "\\SE[1]I like it.\\.\\. \nIt's nice to see the other \nvillagers regularly.",
+    "I like my boss, the work and \nthe atmosphere. \nIt's very peaceful. ",
+    "Delivering mail is pretty fun \nand pleasant too.",
+    "I like the Prince too... \\.\\.\nBut.\\.\\..\\.\\. Sometimes the work\ncan be very... Unpleasant.",
+    "\\SE[2]Yeah... \\.\\.I hear ya...",
+    "The Prince...\\.\\. I can't imagine \nwhat that guy's like.",
+    "His harsh crackdown on \nWitches and BEAST-Types...\nCan't imagine he's any good.",
+    "\\SE[1]I think regardless of what\nkingdom we're in... ",
+    "It seems like there'll always \nbe strict rules regarding \nWitches and BEAST-types.",
+    "Isn't the Prince just doing\nhis job?",
+    "\\SE[2]Hmph",
+    "I just hope the world opens\nit's eyes one day about how \ngreat Witchcraft is.",
+    "Outlawed or not, I'll always\nkeep up the practice.",
+    "Personally... I find it very\nbeautiful.",
+    "People are just scared of it \nbecause they don't \nunderstand it.",
+    "Such a shame.",
+    "You know...\\.\\.\\.\nI think you're very beautiful\ntoo.",
+    "\\SE[1]Flirting again?",
+    "\\SE[2]Hee hee,\\.\\.\nYou bet!",
+    "But I do mean it you know.\\.\\.\nYou're really different\nand special.",
+    "It's a shame others don't\nalways see that...",
+    "\\SE[1]It can't be helped.",
+    "I know I'm pretty strange.\nNobody really knows what I\nam...",
+    "Even I'm scared of my own\npowers and strength.",
+    "\\SE[2]Like I said before, people \nare just scared of what \nthey don't understand.",
+    "Some of the villagers have\nwarmed up to you lately. ",
+    "They're starting to realize\nthere's nothing to be afraid \nof.",
+    "I guess that's why you like\nyour job so much at the \nPost Office, huh?",
+    "\\SE[1]Yeah, that is a reason.",
+    "...",
+    "\\SE[2]...",
+    "Well!\\.\\. You know,\\.\\.\nwe outcasts gotta stick \ntogether!",
+    "Who cares if the rest of the \nworld doesn't agree with us.",
+    "I'll always have your back.",
+    "\\SE[1]Thanks Claire. \\.\\.\nI know I can always count \non you.",
+    "\\SE[2]That was fun! \nLet's go again some time!",
+    "\\SE[1]Yea. Let's do it again\nsometime soon."
+],
+
 "yokihouse": "----------------------------------------------------------------------",
 "yolkhouse_mail": "No mail today.",
 "yolkhouse_veggie": "Some vegetables me and\nClaire have been growing.",
@@ -196,6 +251,34 @@
     "\\SE[9]The man who visits you...\nHe also looks sooo tasty.",
     "\\SE[1](Is she talking about Zera?)"
 ],
+"yolkhouse_claire_fly": [
+    "\\SE[2]Heya! \nWanna go for a flight on\nmy broom together?",
+    "\\SE[1]"
+],
+"yolkhouse_claire_fly_choices": [
+    "Sure",
+    "Not right now"
+],
+"yolkhouse_claire_fly_ok": [
+    "\\SE[2]Alrighty! \nLet's go!",
+    "\\SE[1]I didn't even say yes yet..."
+],
+"yolkhouse_claire_fly_no": [
+    "\\SE[1]Maybe a little later.",
+    "\\SE[2]Whaaat? Booo\\.\\.\nJust say yes!",
+    "\\SE[1].."
+],
+"yolkhouse_claire_flew": [
+    "\\SE[2]That was fun! \nLet's go again some time!",
+    "\\SE[1]Yeah. Let's do it again\nsometime soon."
+],
+"yolkhouse_claire_concern": [
+    "\\SE[2]..What's up? \\.\\.\nYou look pretty down.",
+    "Are you ok?",
+    "\\SE[1]I'm ok!\\.\\.\nJust had a long walk,\\.\\.\nI'm just tired is all.",
+    "I managed to clear my head \nfrom that awful nightmare \nI had earlier.",
+    "\\SE[2]...\\SE[1]"
+],
 
 "forest_view": "----------------------------------------------------------------------",
 "forestview_este": [
@@ -219,6 +302,46 @@
 "forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]",
 "forestbarrier_blockerfly": "They won't let me through...",
 "forestbarrier_sbutterfly": "I feel.\\.\\..\\.\\.. Pleasant...",
-"forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?"
+"forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?",
+
+"forestbarrieredge_raccoon1": "..?",
+"forestbarrieredge_raccoon3": "..!",
+"forestbarrieredge_boar": "..!",
+"forestbarrieredge_fox": "\\SE[2]..!\\SE[1]",
+"forestbarrieredge_bird": "\\SE[4]Chirp!\\SE[1]",
+"forestbarrieredge_rabbit": "\\SE[4]!!!\\SE[1]",
+"forestbarrieredge_tigertaur": [
+    "\\SE[9]Hey!\\.\\. Hey!\\.\\.\nWrestle with me!!!",
+    "\\SE[1]Sorry... I don't really feel\nlike doing that.",
+    "\\SE[9]Hey!",
+    "Don't lie to me!\\.\\.\nI saw you earlier!",
+    "\\SE[1]..?",
+    "\\SE[9]You're really strong! \\.\\.\nI saw you fighting earlier!\\.\\.\nWith someone else!",
+    "\\SE[1](Does she mean with \nCaina..?\\.\\. She saw that?)",
+    "\\SE[9]FIGHT\\.\\. WITH \\.\\. ME!",
+    "F\\.I\\.G\\.H\\.T\\. \nW\\.I\\.T\\.H\\.\nM\\.E.",
+    "\\SE[1]Ah...",
+    "\\SE[2]Talk about playing rough.....",
+    "\\SE[1]Tell me about it....",
+    "\\SE[2]It's a good thing I \nhappened to be walking by!",
+    "\\SE[1]Yeah, that was good timing.",
+    "I'm not really at my best at \nthe moment.",
+    "So dealing with this \nBEAST-Type on my own\nmight've been tricky...",
+    "\\SE[2]She seems so harmless in\nthis form.",
+    "\\SE[2]She's really no different\nfrom a regular cat after all,\\. \nhuh?",
+    "\\SE[1]Yeah, that ball of yarn you \nhad with you really dealt \nthe final blow.",
+    "(Also...\\.\\. Why did you have \nthat with you?)",
+    "\\SE[2]Wonder why she was feeling \nso riled up?",
+    "\\SE[1]I don't know...",
+    "She's not the only one who's \nlashed out at me like this \nrecently.",
+    "\\SE[2]Well. \\.\\.\nShe shouldn't be a problem \nfor awhile.",
+    "\\SE[1]Yeah.\\.\\.\nShe's really cute in this\nform.",
+    "\\SE[2]I think she'd make a nice \ningredient for my latest \nwork.",
+    "\\SE[1]...",
+    "\\SE[2]Well.\\.\\.\nI'm headin' back to the \nhouse.",
+    "I'll see you later!",
+    "\\SE[1](What was that all about?)"
+],
+"forestbarrieredge_kitty": "Meow!"
 
 }

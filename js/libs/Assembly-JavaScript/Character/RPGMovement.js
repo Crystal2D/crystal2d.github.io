@@ -80,6 +80,7 @@ class RPGMovement extends GameBehavior
         return this.#moveStart;
     }
 
+    lockLook = false;
     updateMovement = true;
     charCollision = true;
     animateWalk = true;
@@ -259,7 +260,6 @@ class RPGMovement extends GameBehavior
         }
         else
         {
-            this.#allowDirChange = true;
             this._OnStay();
             this.onStay.Invoke();
         }
@@ -301,7 +301,7 @@ class RPGMovement extends GameBehavior
 
     async MoveTowards (dir)
     {
-        if (!this.#allowDirChange) return;
+        if (!this.#allowDirChange || dir.Equals(Vector2.zero)) return;
 
         if (Math.abs(dir.x) > Math.abs(dir.y)) dir.y = 0;
         else dir.x = 0;
@@ -317,22 +317,15 @@ class RPGMovement extends GameBehavior
         };
         this.onMoveStart.Add(startCall);
 
-        await new Promise(resolve => {
-            const callback = () => {
-                this.onStay.Remove(callback);
-
-                if (!moved) this.onMoveStart.Remove(startCall);
-
-                resolve();
-            };
-            this.onStay.Add(callback);
-        });
+        await CrystalEngine.Wait(() => this.#allowDirChange);
 
         return moved;
     }
 
     LookAtTemp (dir)
     {
+        if (this.lockLook) return;
+
         dir = dir.normalized;
 
         if (dir.y > 0) this._sprResolver.category = "up";
@@ -343,6 +336,8 @@ class RPGMovement extends GameBehavior
 
     LookAt (dir)
     {
+        if (this.lockLook) return;
+
         dir = dir.normalized;
 
         if (this.#lookDir.Equals(dir)) return;
@@ -369,13 +364,15 @@ class RPGMovement extends GameBehavior
 
     TP (pos)
     {
+        this.#allowDirChange = true;
+        this.#targetDir = Vector2.zero;
+
         this.#node.RemoveOwner(this);
         this.lastNode = this.#node;
         this.#node = MapGrid.current.NodeOnGrid(pos);
         this.#node.AddOwner(this);
 
-        this.transform.position = MapGrid.current.CellToWorld(pos);
-        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
+        this.transform.localPosition = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
     }
 
     async Jump (by = Vector2.zero)
@@ -401,8 +398,11 @@ class RPGMovement extends GameBehavior
         this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
         this.#jumpDuration = ((10 + by.magnitude - this.#speed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
+        this.lockLook = true;
 
         await new Promise(resolve => this.#onJumpEnd = resolve);
+
+        this.lockLook = false;
     }
 
     async MoveToChar (char)
@@ -444,5 +444,10 @@ class RPGMovement extends GameBehavior
         this.#animCount = 0;
         this.#animState = 0;
         this._sprResolver.label = `${this.#animState}`;
+    }
+
+    async StepBack ()
+    {
+        return this.MoveTowards(Vector2.Scale(this.#lookDir, -1));
     }
 }

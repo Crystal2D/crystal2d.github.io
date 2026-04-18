@@ -27,10 +27,6 @@ class MapConfig extends GameBehavior
             MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).AddOwner(this.interactables[i]);
         }
 
-        if (MapTransfer.last != null)
-        {
-            Player.instance.TP(MapTransfer.last.pos);
-            Party.OnTransfer();
-        }
+        if (MapTransfer.last != null) Party.OnTransfer();
     }
 }

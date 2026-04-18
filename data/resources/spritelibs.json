@@ -84,6 +84,14 @@
         }
     },
     {
+        "path": "spritelibs/chars/claire",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/claire"
+        }
+    },
+    {
         "path": "spritelibs/chars/zera",
         "type": "SpriteLibraryAsset",
         "args": {
@@ -261,6 +269,15 @@
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
             "texture": "sprites/chars/boar"
+        }
+    },
+
+    {
+        "path": "spritelibs/chars/claireyokifly",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/claireyokifly"
         }
     }
 ]

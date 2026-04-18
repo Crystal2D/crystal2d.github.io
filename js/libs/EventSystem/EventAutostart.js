@@ -4,6 +4,6 @@ class EventAutostart extends GameBehavior
 
     Awake ()
     {
-        EventSystem.Run(this.event);
+        if (this.event != null) EventSystem.Run(this.event);
     }
 }

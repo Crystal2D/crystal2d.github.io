@@ -54,5 +54,12 @@
         "args": {
             "src": "se/jump.ogg"
         }
+    },
+    {
+        "path": "audio/se/crush_1",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/crush_1.ogg"
+        }
     }
 ]

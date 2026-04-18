@@ -23,6 +23,6 @@ class Interactable
     {
         if (this.event == null) return;
 
-        await EventSystem.Run(this.event);
+        return EventSystem.Run(this.event);
     }
 }

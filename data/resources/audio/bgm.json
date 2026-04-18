@@ -19,5 +19,12 @@
         "args": {
             "src": "bgm/village.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/fly",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/fly.ogg"
+        }
     }
 ]

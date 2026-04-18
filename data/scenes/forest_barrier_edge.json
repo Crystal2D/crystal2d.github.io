@@ -34,12 +34,7 @@
             "sprites/chars/bird",
             "spritelibs/chars/bird"
         ],
-        "sprites/chars/raccoon",
-        "sprites/chars/boar",
-        "sprites/chars/fox",
-        "sprites/chars/bird",
-        "sprites/chars/squirrel",
-        "sprites/chars/rabbit"
+        "audio/se/crush_1"
     ],
     "gameObjects": [
         {
@@ -12732,6 +12727,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -13404,45 +13405,37 @@
             ]
         },
         {
-            "name": "a",
+            "name": "char_butterfly3",
+            "prefab": "entities/butterfly",
             "id": 18,
             "transform": {
                 "position": {
-                    "x": 5.5,
-                    "y": 6
+                    "x": -2,
+                    "y": 0.5
                 }
-            },
-            "components": [
-                {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/chars/yoki",
-                            "name": "right-a"
-                        },
-                        "sortingLayer": 1
-                    }
-                },
-                {
-                    "type": "SpriteLibrary",
-                    "args": {
-                        "asset": "spritelibs/chars/yoki"
-                    }
-                },
-                {
-                    "type": "SpriteResolver",
-                    "args": {
-                        "category": "right",
-                        "label": "0"
-                    }
-                },
-                {
-                    "type": "RPGMovement",
-                    "args": {
-                        "event": "a"
-                    }
+            }
+        },
+        {
+            "name": "char_butterfly4",
+            "prefab": "entities/butterfly",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 6,
+                    "y": -6
                 }
-            ]
+            }
+        },
+        {
+            "name": "char_butterfly5",
+            "prefab": "entities/butterfly",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": -8.5,
+                    "y": -5.5
+                }
+            }
         }
     ]
 }
