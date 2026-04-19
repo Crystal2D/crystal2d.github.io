@@ -8,6 +8,7 @@ class DialogueBox extends ItsABox
     #skipPause = false;
     #showFast = false;
     #speed = 1 / 60;
+    #audioIndex = 0;
     #playIndex = 0;
     #pauseCount = 0;
     #pauseTime = 0;
@@ -323,17 +324,22 @@ class DialogueBox extends ItsABox
                 }
             };
 
-            if (currentSE > 0 && !shownFast && (i !== 0 && i % 4 === 0)) this.#chars.push({
-                callback: () => {
-                    if (!this.#showFast) AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch);
-                },
-                time: currentTime - AudioSettings.latency,
-                done: false,
-                playIndex: this.#pauseCount
-            });
-
             if (text[i] !== "\n")
             {
+                this.#chars.push({
+                    callback: () => {
+                        if (this.#showFast) return;
+                        if (!shownFast) this.#audioIndex++;
+                        if (this.#audioIndex <= 3) return;
+                        
+                        if (currentSE > 0) AudioManager.instance.PlaySE(this.#ses[currentSE - 1].name, 1, this.#ses[currentSE - 1].pitch);
+                        this.#audioIndex = 0;
+                    },
+                    time: charData.time - AudioSettings.latency,
+                    done: false,
+                    playIndex: this.#pauseCount
+                });
+
                 textIndex++;
                 continue;
             }

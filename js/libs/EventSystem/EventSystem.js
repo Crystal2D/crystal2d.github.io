@@ -1409,6 +1409,93 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
+            case "forestbarrieredge_tigertaur": {
+                const tigertaur = GameObject.Find("char_tigertaur").GetComponent(RPGMovement);
+                tigertaur.LookAtChar(Player.instance);
+                tigertaur.lockLook = true;
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Set(0, "tigertaur_1", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("tigertaur", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "think");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                // this.dialogueBox.Close();
+
+                this.dialogueBox.SetFace("tigertaur", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("tigertaur", "grin");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Set(0, "tigertaur_2", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("tigertaur", "grin");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("yoki", "sweatdrop");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("tigertaur", "grin");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Set(0, "tigertaur_3", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("tigertaur", "grin");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+
+                this.illustrator.Set(1, "tigertaur_4", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+                
+                this.dialogueBox.SetFace("yoki", "sweatdrop");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+            } break;
         }
     }
 

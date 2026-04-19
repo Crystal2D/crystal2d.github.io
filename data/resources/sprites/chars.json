@@ -1194,6 +1194,137 @@
             ]
         }
     },
+    {
+        "path": "sprites/chars/tigertaur",
+        "type": "Texture",
+        "args": {
+            "src": "chars/tigertaur.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 24,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 72,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 72,
+                        "width": 16,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.6666666666666666
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/catiger",
+        "type": "Texture",
+        "args": {
+            "src": "chars/catiger.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
 
     {
         "path": "sprites/chars/claireyokifly",

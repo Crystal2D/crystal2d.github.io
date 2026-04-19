@@ -34,7 +34,22 @@
             "sprites/chars/bird",
             "spritelibs/chars/bird"
         ],
-        "audio/se/crush_1"
+        "audio/se/crush_1",
+        [
+            "sprites/chars/tigertaur",
+            "spritelibs/chars/tigertaur"
+        ],
+        [
+            "sprites/chars/catiger",
+            "spritelibs/chars/catiger"
+        ],
+        "sprites/faces/tigertaur",
+        "sprites/illusts/tigertaur_1",
+        "sprites/illusts/tigertaur_2",
+        "sprites/illusts/tigertaur_3",
+        "sprites/illusts/tigertaur_4",
+        "sprites/illusts/tigertaur_5",
+        "sprites/illusts/tigertaur_6"
     ],
     "gameObjects": [
         {
@@ -12766,6 +12781,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -13026,6 +13047,20 @@
                                     "y": -9
                                 },
                                 "event": "forestbarrieredge_rabbit"
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": 0
+                                },
+                                "event": "forestbarrieredge_tigertaur"
+                            },
+                            {
+                                "pos": {
+                                    "x": 21,
+                                    "y": 0
+                                },
+                                "event": "forestbarrieredge_tigertaur"
                             }
                         ]
                     }
@@ -13436,6 +13471,53 @@
                     "y": -5.5
                 }
             }
+        },
+        {
+            "name": "char_tigertaur",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 10,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/tigertaur",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/tigertaur"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_tigertaur"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
         }
     ]
 }

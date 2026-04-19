@@ -271,6 +271,22 @@
             "texture": "sprites/chars/boar"
         }
     },
+    {
+        "path": "spritelibs/chars/tigertaur",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/tigertaur"
+        }
+    },
+    {
+        "path": "spritelibs/chars/catiger",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/catiger"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",
