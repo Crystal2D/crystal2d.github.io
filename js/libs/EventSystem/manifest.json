@@ -1,0 +1,108 @@
+{
+    "name" : "EventSystem",
+    "id": "events",
+    "version": "2025.0a",
+    "deps": [
+        "main"
+    ],
+    "scripts" : [
+        "EventSystem",
+        "Interactable",
+        "DialogueBox",
+        "Illustrator",
+        "EventAutostart",
+        "condition/EventCondition",
+        "condition/EventConditioner"
+    ],
+    "classes" : [
+        {
+            "name": "DialogueBox",
+            "type": 0
+        },
+        {
+            "name": "Interactable",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "trigger"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "pos"
+                },
+                {
+                    "type": "string",
+                    "name": "event"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
+                }
+            ]
+        },
+        {
+            "name": "Illustrator",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "min"
+                }
+            ]
+        },
+        {
+            "name": "EventAutostart",
+            "type": 0,
+            "args": [
+                {
+                    "type": "string",
+                    "name": "event"
+                }
+            ]
+        },
+        {
+            "name": "EventCondition",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "type"
+                },
+                {
+                    "type": "string",
+                    "name": "name"
+                },
+                {
+                    "type": "number",
+                    "name": "threshold"
+                },
+                {
+                    "type": "bool",
+                    "name": "not"
+                },
+                {
+                    "type": "bool",
+                    "name": "equal"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "or"
+                }
+            ]
+        },
+        {
+            "name": "EventConditioner",
+            "type": 0,
+            "args": [
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
+                }
+            ]
+        }
+    ]
+} 

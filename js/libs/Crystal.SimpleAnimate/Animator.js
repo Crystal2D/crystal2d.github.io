@@ -1,28 +1,25 @@
 class Animator extends GameBehavior
 {
-    #renderer = null;
     #ctrl = null;
 
-    get controller ()
+    speed = 1;
+
+    get parameters ()
     {
-        return this.#ctrl;
+        return this.#ctrl.parameters.map(item => item.Duplicate());
     }
 
-    set controller (value)
+    constructor (ctrl)
     {
-        this.#ctrl = value;
+        super();
 
-        this.#ctrl.renderer = this.#renderer;
-
-        if (this.#renderer != null) this.#ctrl.Start();
+        this.#ctrl = ctrl;
+        ctrl.animator = this;
     }
 
-    Start ()
+    Awake ()
     {
-        this.#renderer = this.GetComponent("SpriteRenderer");
-
-        this.#ctrl.renderer = this.#renderer;
-        this.#ctrl.Start();
+        this.#ctrl.gameObject = this.gameObject;
     }
     
     Update ()
@@ -72,5 +69,10 @@ class Animator extends GameBehavior
     SetTrigger (name)
     {
         this.#GetParam(name, AnimatorControllerParameterType.Trigger).value = true;
+    }
+
+    Duplicate ()
+    {
+        return new Animator(this.#ctrl.Duplicate());
     }
 }

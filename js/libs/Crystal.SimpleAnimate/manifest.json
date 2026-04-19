@@ -1,8 +1,10 @@
 {
     "name" : "Crystal.SimpleAnimate",
+    "id": "com.crystal.simpleanimate",
     "description" : "Adds a simple animation system",
-    "version": "2025.3f",
+    "version": "2025.4f",
     "scripts" : [
+        "AnimationFrame",
         "AnimationClip",
         "AnimatorNode",
         "AnimatorMotion",
@@ -16,17 +18,40 @@
     ],
     "classes" : [
         {
+            "name": "AnimationFrame",
+            "type": 0,
+            "args": [
+                {
+                    "type" : "number",
+                    "name" : "index"
+                },
+                {
+                    "type" : "object",
+                    "array": true,
+                    "name" : "actions"
+                }
+            ]
+        },
+        {
             "name" : "AnimationClip",
             "type" : 1,
-            "construction" : "const output = new AnimationClip(); for (let i = 0; i < data.sprites.length; i++) output.sprites.push(await toObject(\"Sprite\", data.sprites[i])); return output;",
             "args" : [
                 {
-                    "type" : "boolean",
+                    "type": "AnimationFrame",
+                    "array": true,
+                    "name": "frames"
+                },
+                {
+                    "type" : "bool",
                     "name" : "loop"
                 },
                 {
                     "type" : "number",
-                    "name" : "interval"
+                    "name" : "framerate"
+                },
+                {
+                    "type" : "number",
+                    "name" : "duration"
                 }
             ]
         },
@@ -37,21 +62,20 @@
         },
         {
             "name" : "Animator",
-            "type" : 0,
-            "args": [
-                {
-                    "type": "AnimatorController",
-                    "name": "controller"
-                }
-            ]
+            "construction": "return new Animator(await toObject(\"AnimatorController\", data.controller))",
+            "type" : 0
         },
         {
             "name": "AnimatorTransition",
             "type": 0,
-            "construction": "const output = new AnimatorTransition(); for (let i = 0; i < data.conditions?.length; i++) output.conditions.push(await toObject(\"AnimatorCondition\", data.conditions[i])); return output;",
             "args": [
                 {
-                    "type": "boolean",
+                    "type": "AnimatorCondition",
+                    "array": true,
+                    "name": "conditions"
+                },
+                {
+                    "type": "bool",
                     "name": "isExit"
                 },
                 {
@@ -67,8 +91,12 @@
         {
             "name": "AnimatorMotion",
             "type": 0,
-            "construction": "const output = new AnimatorMotion(); for (let i = 0; i < data.transitions?.length; i++) output.transitions.push(await toObject(\"AnimatorTransition\", data.transitions[i])); return output;",
             "args": [
+                {
+                    "type": "AnimatorTransition",
+                    "array": true,
+                    "name": "transitions"
+                },
                 {
                     "type": "number",
                     "name": "speed"
@@ -78,7 +106,7 @@
                     "name": "name"
                 },
                 {
-                    "type": "boolean",
+                    "type": "bool",
                     "name": "reversed"
                 },
                 {
@@ -90,12 +118,27 @@
         {
             "name": "AnimatorController",
             "type": 1,
-            "construction": "const output = new AnimatorController(); for (let i = 0; i < data.parameters?.length; i++) output.parameters.push(await toObject(\"AnimatorControllerParameter\", data.parameters[i])); for (let i = 0; i < data.motions?.length; i++) output.nodes.push(await toObject(\"AnimatorMotion\", data.motions[i])); return output;"
+            "construction": "const output = new AnimatorController(); for (let i = 0; i < data.motions?.length; i++) output.nodes.push(await toObject(\"AnimatorMotion\", data.motions[i])); return output;",
+            "args": [
+                {
+                    "type": "AnimatorControllerParameter",
+                    "array": true,
+                    "name": "parameters"
+                }
+            ],
+            "keys": [
+                {
+                    "type": "AnimatorMotion",
+                    "array": true,
+                    "name": "motions",
+                    "realName": "nodes"
+                }
+            ]
         },
         {
             "name" : "AnimatorController",
             "type" : 0,
-            "construction": "return Resources.Find(data)"
+            "construction": "return Resources.Find(data).Duplicate()"
         },
         {
             "name": "AnimatorCondition",
@@ -124,7 +167,7 @@
                     "name": "name"
                 },
                 {
-                    "type": "boolean",
+                    "type": "bool",
                     "name": "defaultBool"
                 },
                 {

@@ -1,0 +1,37 @@
+{
+    "name": "Loading",
+    "resources": [
+        "sprites/loading"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "loader",
+            "id": 1,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/loading"
+                        }
+                    }
+                },
+                {
+                    "type": "Loader"
+                }
+            ]
+        }
+    ]
+}

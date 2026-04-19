@@ -1,6 +1,16 @@
 class Behavior extends Component
 {
-    enabled = true;
+    #enabled = true;
+
+    get enabled ()
+    {
+        return this.#enabled;
+    }
+
+    set enabled (value)
+    {
+        this.#enabled = value;
+    }
     
     get isActiveAndEnabled ()
     {

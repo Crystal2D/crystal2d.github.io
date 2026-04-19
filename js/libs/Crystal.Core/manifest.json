@@ -1,14 +1,14 @@
 {
     "name" : "Crystal.Core",
+    "id": "com.crystal.core",
     "description" : "The core module that Crystal runs on. We allow modifications, but it may break the engine. Please tamper with care",
-    "version": "2025.4.1f",
+    "version": "2025.6.4f",
     "scripts" : [
         "bindings",
         "DelegateEvent",
         "Application.bindings",
         "Object.bindings",
         "Resources",
-        "Debug",
         "Time",
         "Math/Vector2",
         "Math/Vector4",
@@ -17,6 +17,7 @@
         "Input/Input",
         "Input/KeyCode",
         "Input/GamepadInput",
+        "Input/Cursor",
         "Scripting/Component",
         "Scripting/Behavior",
         "Scripting/GameBehavior",
@@ -43,6 +44,10 @@
         "Graphics/FilterMode",
         "Graphics/Texture",
         "Graphics/Sprite",
+        "Graphics/SpriteLibrary/SpriteLibraryCategory",
+        "Graphics/SpriteLibrary/SpriteLibraryAsset",
+        "Graphics/SpriteLibrary/SpriteLibrary",
+        "Graphics/SpriteLibrary/SpriteResolver",
         "Graphics/Rendering/SortingLayer",
         "Graphics/Rendering/Camera",
         "Graphics/Rendering/Renderers/Renderer",
@@ -90,7 +95,25 @@
         {
             "name" : "Color",
             "type" : 0,
-            "construction" : "return new Color((data.r ?? 0) / 255, (data.g ?? 0) / 255, (data.b ?? 0) / 255, (data.a ?? 255) / 255);"
+            "construction" : "return new Color((data.r ?? 0) / 255, (data.g ?? 0) / 255, (data.b ?? 0) / 255, (data.a ?? 255) / 255);",
+            "keys": [
+                {
+                    "name" : "r",
+                    "type" : "number"
+                },
+                {
+                    "name" : "g",
+                    "type" : "number"
+                },
+                {
+                    "name" : "b",
+                    "type" : "number"
+                },
+                {
+                    "name" : "a",
+                    "type" : "number"
+                }
+            ]
         },
         {
             "name" : "Rect",
@@ -117,7 +140,23 @@
         {
             "name" : "Transform",
             "type" : 0,
-            "construction" : "const output = new Transform(); if (data.rotation != null) output.localRotation = data.rotation; if (data.position != null) output.localPosition = await toObject(\"Vector2\", data.position); if (data.scale != null) output.localScale = await toObject(\"Vector2\", data.scale); return output;"
+            "args": [
+                {
+                    "realName": "localRotation",
+                    "name" : "rotation",
+                    "type" : "number"
+                },
+                {
+                    "realName": "localPosition",
+                    "name" : "position",
+                    "type" : "Vector2"
+                },
+                {
+                    "realName": "localScale",
+                    "name" : "scale",
+                    "type" : "Vector2"
+                }
+            ]
         },
         {
             "name" : "GameObject",
@@ -127,12 +166,12 @@
         {
             "name" : "Material",
             "type" : 0,
-            "construction" : "if (typeof data === \"string\") Resources.Find(data).Duplicate(); else if (typeof data === \"object\") new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+            "construction" : "const output = (typeof data === \"string\") ? Resources.Find(data).Duplicate() : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Material",
             "type" : 1,
-            "construction" : "return new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\"));"
+            "construction" : "const output = new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Texture",
@@ -174,6 +213,50 @@
             ]
         },
         {
+            "name" : "SpriteLibraryCategory",
+            "type" : 0,
+            "construction" : "const output = new SpriteLibraryCategory(); for (let i = 0; i < data.entries?.length ?? 0; i++) output.entries.push({ label: data.entries[i].label, sprite: await toObject(\"Sprite\", data.entries[i].sprite) }); return output;"
+        },
+        {
+            "name": "SpriteLibraryAsset",
+            "construction": "let categories = []; for (let i = 0; i < data.categories?.length ?? 0; i++) categories.push(await toObject(\"SpriteLibraryCategory\", data.categories[i])); let mainLib = null; let tex = null; if (data.mainLibrary != null) { mainLib = await toObject(\"SpriteLibraryAsset\", data.mainLibrary); if (data.texture != null) tex = await toObject(\"Texture\", data.texture); } return new SpriteLibraryAsset(categories, mainLib, tex);",
+            "type": 1
+        },
+        {
+            "name": "SpriteLibraryAsset",
+            "type": 0,
+            "construction" : "return Resources.Find(data);"
+        },
+        {
+            "name": "SpriteLibrary",
+            "type": 0,
+            "args": [
+                {
+                    "name": "asset",
+                    "type": "SpriteLibraryAsset"
+                },
+                {
+                    "name": "categories",
+                    "array": true,
+                    "type": "SpriteLibraryCategory"
+                }
+            ]
+        },
+        {
+            "name": "SpriteResolver",
+            "type": 0,
+            "args": [
+                {
+                    "name": "category",
+                    "type": "string"
+                },
+                {
+                    "name": "label",
+                    "type": "string"
+                }
+            ]
+        },
+        {
             "name" : "Camera",
             "type" : 0,
             "args" : [
@@ -211,6 +294,20 @@
                 {
                     "name" : "size",
                     "type" : "Vector2"
+                },
+                {
+                    "name" : "sortingAxisOffset",
+                    "type" : "Vector2"
+                }
+            ],
+            "keys": [
+                {
+                    "name": "sprite",
+                    "type": "Sprite"
+                },
+                {
+                    "name": "material",
+                    "type": "Material"
                 }
             ]
         },

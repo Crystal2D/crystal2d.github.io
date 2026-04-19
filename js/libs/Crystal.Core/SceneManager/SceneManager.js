@@ -1,9 +1,13 @@
 class SceneManager
 {
     static #inited = false;
+    static #active = false;
+    static #activePersistent = false;
     static #emptyScene = new Scene();
     static #unloadedScenes = [];
     static #scenes = [];
+    static #keptObjs = [];
+    static #loadingRes = [];
     
     static #activeScene = null;
 
@@ -20,6 +24,11 @@ class SceneManager
     {
         return this.#scenes.filter(item => item.isLoaded).length;
     }
+
+    static get active ()
+    {
+        return this.#active;
+    }
     
     static async SetActiveScene (index)
     {
@@ -27,13 +36,14 @@ class SceneManager
 
         if (scene.isInvalid) return false;
 
-        const prevScene = this.#activeScene?.index;
+        const prevScene = this.#activeScene;
+        const prevSceneID = this.#activeScene?.index;
 
-        if (this.#activeScene != null)
+        if (prevScene != null)
         {
-            await this.Unload(this.#activeScene.index);
+            await this.Unload(prevSceneID);
 
-            if (prevScene === index)
+            if (prevSceneID === index)
             {
                 await this.Load(index);
 
@@ -43,7 +53,44 @@ class SceneManager
 
         this.#activeScene = scene;
 
-        this.activeSceneChanged.Invoke();
+        await scene.LoadComponents();
+
+        for (let i = 0; i < this.#keptObjs.length; i++)
+        {
+            prevScene?.tree.Remove(this.#keptObjs[i]);
+
+            const renderer = this.#keptObjs[i].GetComponent(Renderer);
+
+            if (renderer != null)
+            {
+                const min = renderer.bounds.min;
+                const max = renderer.bounds.max;
+                const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+
+                this.#activeScene.tree.Insert(this.#keptObjs[i], rect);
+            }
+
+            this.#keptObjs[i].scene = this.#activeScene;
+
+            this.#activeScene.gameObjects.push(this.#keptObjs[i]);
+        }
+
+        this.#keptObjs = [];
+
+        this.#activePersistent = true;
+
+        await new Promise(resolve => {
+            const call = () => {
+                PlayerLoop.onFrameEnd.Remove(call);
+                resolve();
+            };
+            
+            PlayerLoop.onFrameEnd.Add(call);
+        });
+
+        this.#active = true;
+
+        this.activeSceneChanged.Invoke(index);
 
         return true;
     }
@@ -74,45 +121,57 @@ class SceneManager
 
     static async Unload (...index)
     {
-        for (let iA = 0; iA < index.length; iA++)
+        for (let i = 0; i < index.length; i++)
         {
-            if (this.GetActiveScene().index === index[iA])
+            if (this.GetActiveScene().index === index[i])
             {
+                await CrystalEngine.Wait(() => Object.InstantiationCount === 0);
+
+                this.#keptObjs = this.#activeScene.gameObjects.filter(item => item.keepOnLoad);
+
+                for (let i = 0; i < this.#keptObjs.length; i++)
+                {
+                    const index = this.#activeScene.gameObjects.indexOf(this.#keptObjs[i]);
+
+                    this.#activeScene.gameObjects.splice(index, 1);
+                }
+
+                this.#activePersistent = false;
+                this.#active = false;
+
                 for (let i = 0; i < this.#activeScene.gameObjects.length; i++) GameObject.Destroy(this.#activeScene.gameObjects[i]);
 
-                const loop = callback => {
-                    if (this.#activeScene.gameObjects.length === 0)
-                    {
-                        callback();
-        
-                        return;
-                    }
-        
-                    requestAnimationFrame(loop.bind(this, callback));
-                };
-        
-                await new Promise(resolve => loop(resolve));
+                await CrystalEngine.Wait(() => this.#activeScene.gameObjects.length === 0);
 
                 this.#activeScene = null;
             }
 
-            const scene = this.GetScene(index[iA]);
+            const scene = this.GetScene(index[i]);
 
             if (scene.isInvalid) continue;
 
-            for (let iB = 0; iB < scene.resources.length; iB++)
-            {
-                const res = scene.resources[iB];
-                const noRes = (this.#scenes.find(item => item.index !== index[iA] && item.resources.find(resItem => resItem === res) != null)) == null;
+            let globalResList = [
+                ...Resources.keepOnLoad,
+                ...this.#loadingRes
+            ];
 
-                if (noRes) Resources.Unload(res);
+            for (let j = 0; j < this.#scenes.length; j++)
+            {
+                const scene = this.#scenes[j];
+
+                if (scene.index === index[i]) continue;
+                
+                globalResList.push(...scene.resourceList);
             }
+
+            const resources = scene.resourceList.filter(item => !globalResList.includes(item));
+            Resources.Unload(...resources);
 
             const itemIndex = this.#scenes.indexOf(scene);
 
             this.#scenes.splice(itemIndex, 1);
 
-            this.sceneUnloaded.Invoke();
+            this.sceneUnloaded.Invoke(index[i]);
         }
     }
 
@@ -123,7 +182,7 @@ class SceneManager
             if (this.#scenes.find(item => item.index === index[i])) continue;
 
             const path = `data/scenes/${this.#unloadedScenes[index[i]]}.json`;
-            const response = await fetch(path);
+            const response = await FetchFile(path);
             const data = await response.json();
 
             const scene = new Scene(data.name, {
@@ -134,14 +193,113 @@ class SceneManager
                 index : index[i]
             });
 
-            await Resources.Load(...scene.resources);
+            let loadCount = 0;
 
-            await scene.Load();
+            (async () => {
+                this.#loadingRes.push(...scene.resourceList);
+                await Resources.Load(...scene.resources);
+                loadCount++;
+            })();
+
+            (async () => {
+                await scene.Load();
+                loadCount++;
+            })();
+
+            await CrystalEngine.Wait(() => loadCount === 2);
+
+            for (let i = 0; i < scene.resourceList.length; i++) this.#loadingRes.splice(this.#loadingRes.indexOf(scene.resourceList[i]), 1);
 
             this.#scenes.push(scene);
 
-            this.sceneLoaded.Invoke();
+            this.sceneLoaded.Invoke(index[i]);
         }
+    }
+
+    static async EvalProperty (propData, data, out)
+    {
+        if (typeof propData !== "object" || data === undefined) return;
+
+        let output = null;
+
+        if (propData.gameObject)
+        {
+            const call = () => {
+                if (!this.#activePersistent) return;
+
+                if (data.prefab != null) output = Resources.FindPrefab(data.prefab);
+                else
+                {
+                    if (typeof data === "number") output = GameObject.FindByID(data);
+                    else output = GameObject.Find(data, true);
+                }
+
+                eval(`out.${propData.realName ?? propData.name} = output`);
+
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+
+            PlayerLoop.onBeforeAwake.Add(call);
+
+            return;
+        }
+
+        if (propData.component)
+        {
+            let call = null
+
+            if (propData.explicit) call = () => {
+                if (!this.#activePersistent) return;
+
+                let gameObj = null;
+
+                if (typeof data.gameObject === "number") gameObj = GameObject.FindByID(data.gameObject);
+                else gameObj = GameObject.Find(data.gameObject, true);
+
+                output = gameObj.GetComponent(data.type);
+
+                eval(`out.${propData.realName ?? propData.name} = output`);
+                
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+            else call = () => {
+                if (!this.#activePersistent) return;
+
+                let gameObj = null;
+
+                if (typeof data === "number") gameObj = GameObject.FindByID(data);
+                else gameObj = GameObject.Find(data, true);
+
+                output = gameObj.GetComponent(propData.type);
+
+                eval(`out.${propData.realName ?? propData.name} = output`);
+
+                PlayerLoop.onBeforeAwake.Remove(call);
+            };
+
+            PlayerLoop.onBeforeAwake.Add(call);
+
+            return;
+        }
+        
+        if (propData.evaluation != null)
+        {
+            const evalCall = new AsyncFunction("data", propData.evaluation);
+            
+            output = await evalCall(data);
+        }
+        else if (propData.evalType != null)
+        {
+            const evalCall = new AsyncFunction("data", propData.evalType);
+            const objType = await evalCall(data);
+            
+            output = await this.CreateObject(objType, data);
+        }
+        else if ((["bool", "number", "string", "object"]).includes(propData.type)) output = data;
+        else if (propData.array) output = await this.CreateObjectArray(propData.type, data);
+        else output = await this.CreateObject(propData.type, data);
+
+        eval(`out.${propData.realName ?? propData.name} = output`);
     }
     
     static async CreateObject (type, data)
@@ -152,7 +310,7 @@ class SceneManager
         
         const foundClass = CrystalEngine.Inner.GetClassOfType(type, 0);
         
-        if (foundClass == null) return new Object();
+        if (foundClass == null) return;
         
         const construction = foundClass.construction;
         const properties = foundClass.args;
@@ -167,28 +325,9 @@ class SceneManager
         
         for (let i = 0; i < properties.length; i++)
         {
-            if (typeof properties[i] !== "object" || eval(`dat.${properties[i].name}`) === undefined) continue;
-            
-            let subObj = null;
-            
-            if (properties[i].evaluation != null)
-            {
-                const evalCall = new AsyncFunction("data", properties[i].evaluation);
-                
-                subObj = await evalCall(eval(`dat.${properties[i].name}`));
-            }
-            else if (properties[i].evalType != null)
-            {
-                const evalCall = new AsyncFunction("data", properties[i].evalType);
-                const objType = await evalCall(eval(`dat.${properties[i].name}`));
-                
-                subObj = await this.CreateObject(objType, eval(`dat.${properties[i].name}`));
-            }
-            else if ((["boolean", "number", "string", "object"]).includes(properties[i].type)) subObj = eval(`dat.${properties[i].name}`);
-            else if (properties[i].type === "array") subObj = await this.CreateObjectArray(eval(`dat.${properties[i].name}`));
-            else subObj = await this.CreateObject(properties[i].type, eval(`dat.${properties[i].name}`));
-            
-            eval(`object.${properties[i].name} = subObj`);
+            const dataIn = eval(`dat.${properties[i].name}`);
+
+            await this.EvalProperty(properties[i], dataIn, object);
         }
         
         if (dat.name != null && type !== "GameObject") object.name = dat.name;
@@ -196,17 +335,18 @@ class SceneManager
         return object;
     }
     
-    static async CreateObjectArray (data)
+    static async CreateObjectArray (type, data)
     {
         let objects = [];
         
         for (let i = 0; i < data.length; i++)
         {
             let newObj = null;
-            
-            if (Array.isArray(data[i])) newObj = await this.CreateObjectArray(data[i]);
-            else if (typeof data[i] === "object" && data[i].__compiled) newObj = await this.CreateObject(data[i].type, data[i].args);
-            else newObj = data[i];
+
+            if (type === "array") newObj = await this.CreateObjectArray("bool", data[i]);
+            else if (type === "bool" && typeof data[i] === "object" && data[i].__evaluated) newObj = await this.CreateObject(type, data[i]);
+            else if ((["bool", "number", "string", "object"]).includes(type)) newObj = data[i];
+            else newObj = await this.CreateObject(type, data[i]);
             
             objects.push(newObj);
         }

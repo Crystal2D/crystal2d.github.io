@@ -5,5 +5,26 @@
         "args": {
             "src": "bgm/title.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/forest",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/forest.ogg"
+        }
+    },
+    {
+        "path": "audio/bgm/village",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/village.ogg"
+        }
+    },
+    {
+        "path": "audio/bgm/fly",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/fly.ogg"
+        }
     }
 ]

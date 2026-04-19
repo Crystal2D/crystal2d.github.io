@@ -1,0 +1,222 @@
+{
+    "name": "Map Init",
+    "resources": [
+        [
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        ],
+        [
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl"
+        ],
+        "font_main",
+        "sprites/box",
+        "sprites/arrows",
+        "sprites/faces/yoki",
+        "audio/se/dialogue_1",
+        "audio/se/dialogue_2",
+        "audio/se/dialogue_3",
+        "audio/se/dialogue_4",
+        [
+            "anims/entity",
+            "anims/entity_reset",
+            "anims/entity_ctrl"
+        ]
+    ],
+    "gameObjects": [
+        {
+            "name": "init",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Grid"
+                },
+                {
+                    "type": "MapGrid"
+                },
+                {
+                    "type": "MapInit"
+                }
+            ]
+        },
+        {
+            "name": "char_yoki",
+            "id": 1,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/yoki",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingAxisOffset": {
+                            "y": -0.00000001
+                        }
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/yoki"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Player"
+                },
+                {
+                    "type": "Party"
+                }
+            ]
+        },
+        {
+            "name": "dialogue_box",
+            "id": 2,
+            "transform": {
+                "position": { "x": 0, "y": -3.46875 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 10,
+                            "y": 2.0625
+                        },
+                        "sortingLayer": 4
+                    }
+                },
+                {
+                    "type": "DialogueBox"
+                }
+            ]
+        },
+        {
+            "name": "face",
+            "id": 3,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/faces/yoki",
+                            "name": "unsure smile"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 4,
+            "parent": 2,
+            "components": [
+                {
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "text": "",
+                        "width": 7,
+                        "noCollapse": true,
+                        "trimEnd": false,
+                        "overflowWidth": true,
+                        "pivot": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "color": {
+                            "r": 224,
+                            "g": 248,
+                            "b": 207,
+                            "a": 0
+                        },
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "arrow",
+            "id": 5,
+            "parent": 2,
+            "transform": {
+                "position": { "x": 0, "y": -0.925 }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "down"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        },
+                        "sortingLayer": 4,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/dialogue_arrow_ctrl"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dialogue_choicebox",
+            "id": 6,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "sortingLayer": 4
+                    }
+                },
+                {
+                    "type": "ChoiceBox"
+                }
+            ]
+        },
+        {
+            "name": "illustrator",
+            "id": 7,
+            "components": [
+                {
+                    "type": "Illustrator"
+                }
+            ]
+        }
+    ]
+}

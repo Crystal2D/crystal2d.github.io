@@ -207,8 +207,6 @@ class AudioSource extends Behavior
     PlayDelayed (delay)
     {
         this.#scheduledPlay = AudioSettings.dspTime + delay;
-
-        console.log(this.#scheduledPlay);
     }
 
     Pause ()
@@ -243,7 +241,7 @@ class AudioSource extends Behavior
         this.#paused = false;
     }
 
-    PlayOneShot (clip, volumeScale)
+    PlayOneShot (clip, volumeScale, pitchScale)
     {
         const gain = this.#context.createGain();
         gain.connect(this.#context.destination);
@@ -254,7 +252,7 @@ class AudioSource extends Behavior
 
         const updateParams = () => {
             gain.gain.value = this.volume * Math.max(volumeScale ?? 1, 0);
-            source.playbackRate.value = this.#pitch;
+            source.playbackRate.value = this.#pitch * Math.max(pitchScale ?? 1, 0);
         };
         updateParams();
         this.#onParamUpdate.Add(updateParams);
@@ -266,5 +264,19 @@ class AudioSource extends Behavior
             gain.disconnect();
         };
         source.start();
+    }
+
+    Duplicate ()
+    {
+        const output = new AudioSource();
+
+        output.clip = this.clip;
+        output.playOnAwake = this.playOnAwake;
+        output.loop = this.loop;
+        output.volume = this.volume;
+        output.mute = this.mute;
+        output.pitch = this.pitch;
+
+        return output;
     }
 }

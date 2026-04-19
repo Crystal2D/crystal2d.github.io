@@ -712,6 +712,35 @@ class Material
     {
         this.#SetMatrixBase(name, true, values.flat(1));
     }
+
+    SetProperty (name, type, value)
+    {
+        switch (type)
+        {
+            case "Boolean": this.SetBoolean(name, value); return;
+            case "BooleanArray": this.SetBooleanArray(name, value); return;
+            case "Int": this.SetInt(name, value); return;
+            case "IntArray": this.SetIntArray(name, value); return;
+            case "Uint": this.SetUint(name, value); return;
+            case "UintArray": this.SetUintArray(name, value); return;
+            case "Float": this.SetFloat(name, value); return;
+            case "FloatArray": this.SetFloatArray(name, value); return;
+            case "Sampler2D": this.SetSampler2D(name, value); return;
+            case "Sampler2DArray": this.SetSampler2DArray(name, value); return;
+            case "SamplerCube": this.SetSamplerCube(name, value); return;
+            case "SamplerCubeArray": this.SetSamplerCubeArray(name, value); return;
+            case "Vector": this.SetVector(name, ...value); return;
+            case "VectorArray": this.SetVectorArray(name, ...value); return;
+            case "BooleanVector": this.SetBooleanVector(name, ...value); return;
+            case "BooleanVectorArray": this.SetBooleanVectorArray(name, ...value); return;
+            case "IntVector": this.SetIntVector(name, ...value); return;
+            case "IntVectorArray": this.SetIntVectorArray(name, ...value); return;
+            case "UintVector": this.SetUintVector(name, ...value); return;
+            case "UintVectorArray": this.SetUintVectorArray(name, ...value); return;
+            case "Matrix": this.SetMatrix(name, ...value); return;
+            case "MatrixArray": this.SetMatrixArray(name, ...value); return;
+        };
+    }
     
     AddBuffer (name, data, stride)
     {

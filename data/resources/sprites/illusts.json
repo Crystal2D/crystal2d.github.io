@@ -1,0 +1,79 @@
+[
+    {
+        "path": "sprites/illusts/zera_talk_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_1.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_2.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/zera_talk_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\zera_talk_3.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/forest_view",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\forest_view.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/flower_ring",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\flower_ring.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_1.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_2.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_3.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_4.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_5",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_5.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/tigertaur_6",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tigertaur_6.png"
+        }
+    }
+]

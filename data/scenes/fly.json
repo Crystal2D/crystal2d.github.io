@@ -1,0 +1,122 @@
+{
+    "name": "Fly In Sky",
+    "resources": [
+        "sprites/faces/claire",
+        [
+            "sprites/chars/claireyokifly",
+            "spritelibs/chars/claireyokifly"
+        ],
+        "sprites/parallaxes/fly",
+        "audio/bgm/fly"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "mapconfig",
+            "id": 1,
+            "components": [
+                {
+                    "type": "MapConfig"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 2,
+            "transform": {
+                "position": {
+                    "x": 0.25,
+                    "y": 0.25
+                }
+            },
+            "components": [
+                {
+                    "type": "Grid"
+                },
+                {
+                    "type": "MapGrid",
+                    "args": {
+                        "min": {
+                            "x": -10,
+                            "y": -9
+                        },
+                        "max": {
+                            "x": 14,
+                            "y": 8
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_claireyokifly",
+            "id": 3,
+            "transform": {
+                "position": {
+                    "x": 7.25,
+                    "y": 0.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/claireyokifly",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/claireyokifly"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateWalk": false,
+                        "charCollision": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "bg",
+            "id": 4,
+            "components": [
+                {
+                    "type": "Parallax",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/parallaxes/fly"
+                        },
+                        "speed": {
+                            "x": 6
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

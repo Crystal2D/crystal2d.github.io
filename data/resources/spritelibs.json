@@ -1,0 +1,299 @@
+[
+    {
+        "path": "spritelibs/chars/yoki",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "up-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "down-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "left-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "left-b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "right-a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/yoki",
+                                "name": "right-b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/claire",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/claire"
+        }
+    },
+    {
+        "path": "spritelibs/chars/zera",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/zera"
+        }
+    },
+    {
+        "path": "spritelibs/chars/bird",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/bird"
+        }
+    },
+    {
+        "path": "spritelibs/chars/fox",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/fox"
+        }
+    },
+    {
+        "path": "spritelibs/chars/squirrel",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/squirrel"
+        }
+    },
+    {
+        "path": "spritelibs/chars/deer",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/deer"
+        }
+    },
+    {
+        "path": "spritelibs/chars/butterfly",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "categories": [
+                {
+                    "name": "up",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "down",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "left",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "right",
+                    "entries": [
+                        {
+                            "label": "0",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "a"
+                            }
+                        },
+                        {
+                            "label": "1",
+                            "sprite": {
+                                "texture": "sprites/chars/butterfly",
+                                "name": "b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "spritelibs/chars/sbutterfly",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/sbutterfly"
+        }
+    },
+    {
+        "path": "spritelibs/chars/este",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/este"
+        }
+    },
+    {
+        "path": "spritelibs/chars/harp",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/harp"
+        }
+    },
+    {
+        "path": "spritelibs/chars/dragon_human",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/dragon_human"
+        }
+    },
+    {
+        "path": "spritelibs/chars/raccoon",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/raccoon"
+        }
+    },
+    {
+        "path": "spritelibs/chars/rabbit",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/rabbit"
+        }
+    },
+    {
+        "path": "spritelibs/chars/boar",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/boar"
+        }
+    },
+    {
+        "path": "spritelibs/chars/tigertaur",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/tigertaur"
+        }
+    },
+    {
+        "path": "spritelibs/chars/catiger",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/catiger"
+        }
+    },
+
+    {
+        "path": "spritelibs/chars/claireyokifly",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/claireyokifly"
+        }
+    }
+]

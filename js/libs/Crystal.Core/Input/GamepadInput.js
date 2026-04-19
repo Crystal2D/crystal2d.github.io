@@ -43,9 +43,47 @@ class GamepadInput
         return output;
     }
 
+    static leftStickDeadzone = new Vector2(0.125, 0.925);
+    static rightStickDeadzone = new Vector2(0.125, 0.925);
+
     static get isConnected ()
     {
         return this.#gamepads.length !== 0;
+    }
+
+    static get anyKey ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active) return true;
+        }
+
+        for (let i = 0; i < this.#axes.length; i++)
+        {
+            if (Math.abs(this.#axes[i].value) > 0) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyDown ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active && !this.#keys[i].lastState) return true;
+        }
+
+        return false;
+    }
+
+    static get anyKeyUp ()
+    {
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (!this.#keys[i].active && this.#keys[i].lastState) return true;
+        }
+
+        return false;
     }
 
     static Init ()
@@ -82,30 +120,40 @@ class GamepadInput
         if ("GamepadEvent" in window)
         {
             window.addEventListener("gamepadconnected", event => this.#gamepads.push(event.gamepad));
-            window.addEventListener("gamepaddisconnected", event => this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1));
+            window.addEventListener("gamepaddisconnected", event => {
+                this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1);
+                
+                this.Clear();
+            });
         }
         else if ("WebkitGamepadEvent" in window)
         {
             window.addEventListener("webkitgamepadconnected", event => this.#gamepads.push(event.gamepad));
-            window.addEventListener("webkitgamepaddisconnected", event => this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1));
+            window.addEventListener("webkitgamepaddisconnected", event => {
+                this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1);
+
+                this.Clear();
+            });
         }
         else this.#eventsUnsupported = true;
     }
 
     static Update ()
     {
+        const gamepads = navigator.getGamepads != null ? navigator.getGamepads() : (navigator.webkitGetGamepads != null ? navigator.webkitGetGamepads() : []);
+
         if (this.#eventsUnsupported)
         {
-            const gamepads = navigator.getGamepads != null ? navigator.getGamepads() : (navigator.webkitGetGamepads != null ? navigator.webkitGetGamepads() : []);
-
             this.#gamepads = gamepads.filter(item => item != null);
+
+            if (this.#gamepads.length === 0) this.Clear();
         }
 
         const processButton = button => button.pressed || button.touched || button.value > 0;
 
-        for (let i = 0; i < this.#gamepads.length; i++)
+        for (let i = 0; i < this.#gamepads.length && gamepads.length > 0; i++)
         {
-            const gamepad = navigator.getGamepads()[this.#gamepads[i].index];
+            const gamepad = gamepads[this.#gamepads[i]?.index];
 
             this.#keys[0].active = processButton(gamepad.buttons[0]);
             this.#keys[1].active = processButton(gamepad.buttons[1]);
@@ -125,23 +173,44 @@ class GamepadInput
             this.#keys[15].active = processButton(gamepad.buttons[15]);
             this.#keys[16].active = processButton(gamepad.buttons[16]);
 
-            this.#axes[0].value = gamepad.buttons[6].value;
+            this.#axes[0].value = gamepad.buttons[6].value; 
             this.#axes[1].value = gamepad.buttons[7].value;
-            this.#axes[2].value = gamepad.axes[0];
-            this.#axes[3].value = -gamepad.axes[1];
-            this.#axes[4].value = gamepad.axes[2];
-            this.#axes[5].value = -gamepad.axes[3];
+
+            let leftX = gamepad.axes[0];
+            let leftY = -gamepad.axes[1];
+
+            if (Math.abs(leftX) <= this.leftStickDeadzone.x) leftX = 0;
+            else if (Math.abs(leftX) >= this.leftStickDeadzone.y) leftX = leftX / Math.abs(leftX);
+
+            if (Math.abs(leftY) <= this.leftStickDeadzone.x) leftY = 0;
+            else if (Math.abs(leftY) >= this.leftStickDeadzone.y) leftY = leftY / Math.abs(leftY);
+
+            this.#axes[2].value = leftX;
+            this.#axes[3].value = leftY;
+
+            let rightX = gamepad.axes[2];
+            let rightY = -gamepad.axes[3];
+
+            if (Math.abs(rightX) <= this.rightStickDeadzone.x) rightX = 0;
+            else if (Math.abs(rightX) >= this.rightStickDeadzone.y) rightX = rightX / Math.abs(rightX);
+
+            if (Math.abs(rightY) <= this.rightStickDeadzone.x) rightY = 0;
+            else if (Math.abs(rightY) >= this.rightStickDeadzone.y) rightY = rightY / Math.abs(rightY);
+
+            this.#axes[4].value = rightX;
+            this.#axes[5].value = rightY;
         }
     }
 
     static End ()
     {
-        for (let i = 0; i < this.#keys.length; i++)
-        {
-            if (this.#gamepads.length === 0) this.#keys[i].active = false;
+        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].lastState = this.#keys[i].active;
+    }
 
-            this.#keys[i].lastState = this.#keys[i].active;
-        }
+    static Clear ()
+    {
+        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].active = false;
+        for (let i = 0; i < this.#axes.length; i++) this.#axes[i].value = 0;
     }
 
     static GetKey (key)
@@ -194,10 +263,5 @@ class GamepadInput
         const axis = this.#axes.find(item => item.name === name);
 
         return axis.value;
-    }
-
-    static GetAxisRaw (name)
-    {
-        return Math.round(this.GetAxis(name));
     }
 }

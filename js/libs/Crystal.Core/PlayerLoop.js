@@ -5,7 +5,20 @@ class PlayerLoop
     static #focused = false;
     static #callUpdate = false;
     static #crashed = false;
+    static #noRAF = false;
     static #quitState = 0;
+
+    static noFixedUpdate = false;
+    static onBeforeAwake = new DelegateEvent();
+    static onAfterFixedUpdate = new DelegateEvent();
+    static onAfterUpdate = new DelegateEvent();
+    static onAfterMeshUpdate = new DelegateEvent();
+    static onFrameEnd = new DelegateEvent();
+
+    static get #supportsScheduler ()
+    {
+        return scheduler != null;
+    }
 
     static get isPlaying ()
     {
@@ -14,9 +27,15 @@ class PlayerLoop
     
     static #RequestUpdate ()
     {
-        if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) requestAnimationFrame(this.#Update.bind(this));
-        else if (Application.vSyncCount === 2) requestAnimationFrame(() => requestAnimationFrame(this.#Update.bind(this)));
-        else setTimeout(this.#Update.bind(this), 0);
+        const vsyncCall = callback => {
+            if (this.#noRAF) setTimeout(callback, 0);
+            else requestAnimationFrame(callback);
+        };
+
+        if (Application.targetFrameRate === 0 || Application.vSyncCount === 1) vsyncCall(this.#Update.bind(this));
+        else if (Application.vSyncCount === 2) vsyncCall(() => vsyncCall(this.#Update.bind(this)));
+        else if (Application.targetFrameRate === -1 || !this.#supportsScheduler) setTimeout(this.#Update.bind(this), 0);
+        else scheduler.postTask(this.#Update.bind(this));
     }
 
     static #TimeUpdateBase ()
@@ -36,8 +55,10 @@ class PlayerLoop
         this.#callUpdate = true;
     }
     
-    static async #Update ()
+    static async #Update (vsyncTime)
     {
+        if (vsyncTime > 0 && this.#noRAF) return;
+
         if (!this.#loaded && !Application.isLoaded)
         {
             Application.Load();
@@ -61,7 +82,7 @@ class PlayerLoop
         const gameObjs = activeScene.gameObjects;
 
         const BroadcastMessage = (method, params, data) => {
-            if (this.#crashed) return;
+            if (this.#crashed || !SceneManager.active) return;
 
             for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage(method, params, data);
         };
@@ -69,7 +90,12 @@ class PlayerLoop
         // PlayerStart
         if (this.#playing)
         {
+            Object.InstantiationQueue.Invoke();
+            Object.InstantiationQueue.RemoveAll();
+            Object.InstantiationIDs = [];
+
             // ScriptRunBehaviorAwake
+            this.onBeforeAwake.Invoke();
             BroadcastMessage("Awake", null, {
                 specialCall : 1,
                 passActive : true,
@@ -90,7 +116,7 @@ class PlayerLoop
         // TimeUpdate
         if (Application.targetFrameRate > 0 && Application.vSyncCount === 0)
         {
-            const slice = (1 / Application.targetFrameRate) - 5e-3;
+            const slice = (1 / Application.targetFrameRate) - (+!this.#supportsScheduler * 5e-3);
                     
             let accumulator = (1e-3 * performance.now()) - Time.unscaledTime;
         
@@ -114,7 +140,7 @@ class PlayerLoop
 
                 gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
 
-                const cameras = GameObject.FindComponents("Camera");
+                const cameras = GameObject.FindComponents(Camera);
 
                 if (cameras.length > 0)
                 {
@@ -128,12 +154,15 @@ class PlayerLoop
             }
 
             // UpdateInputManager
-            if (this.#playing && Time.timeScale !== 0) Input.Update();
+            Input.Update();
+
+            // ScriptRunBehaviorEarlyUpdate
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("EarlyUpdate");
         }
 
 
         // FixedUpdate
-        while (Time.fixedTime < Time.time)
+        if (!this.noFixedUpdate) while (Time.fixedTime < Time.time)
         {
             Time.fixedUnscaledDeltaTime = (1e-3 * performance.now()) - Time.fixedUnscaledTime;
             Time.fixedUnscaledTime += Time.fixedUnscaledDeltaTime;
@@ -143,50 +172,56 @@ class PlayerLoop
             // ScriptRunBehaviorFixedUpdate
             if (this.#playing && Time.timeScale !== 0)
             {
-                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("FixedUpdate");
+                BroadcastMessage("FixedUpdate");
+                this.onAfterFixedUpdate.Invoke();
             }
+        }
+
+
+        if (!this.#callUpdate)
+        {
+            this.#RequestUpdate();
+
+            return
         }
 
 
         // Update
-        if (this.#callUpdate)
-        {
+        (() => {
             // ScriptRunBehaviorUpdate
             if (this.#playing && Time.timeScale !== 0)
             {
                 BroadcastMessage("Update");
+                this.onAfterUpdate.Invoke();
             }
-        }
+        })();
 
 
         // PreLateUpdate
-        if (this.#callUpdate)
-        {
+        (() => {
             // ScriptRunBehaviorLateUpdate
-            if (this.#playing && Time.timeScale !== 0)
-            {
-                BroadcastMessage("LateUpdate");
-            }
+            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("LateUpdate");
 
             // UpdateAllRenderers
             if (!this.#crashed && this.#playing && Time.timeScale !== 0)
             {
-                const renderers = GameObject.FindComponents("Renderer");
+                const renderers = GameObject.FindComponents(Renderer);
                         
                 for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
+
+                this.onAfterMeshUpdate.Invoke();
                 
-                const cameras = GameObject.FindComponents("Camera");
+                const cameras = GameObject.FindComponents(Camera);
                             
                 for (let i = 0; i < cameras.length; i++) cameras[i].Render();
                             
                 Application.gl.flush();
             }
-        }
+        })();
 
 
         // PostLateUpdate
-        if (this.#callUpdate)
-        {
+        (() => {
             // InputEndFrame
             Input.End();
 
@@ -207,80 +242,75 @@ class PlayerLoop
                 BroadcastMessage("OnApplicationFocus", focused);
             }
 
-
-            // PlayerEnd
-            if (this.#playing && Time.timeScale !== 0)
+            
+            // ScriptRunBehaviorOnApplicationQuit
+            if (!Application.isPlaying && this.#quitState === 0)
             {
-                // ScriptRunBehaviorOnApplicationQuit
-                if (this.#quitState === 2)
-                {
-                    for (let i = 0; i < gameObjs.length; i++)
-                    {
-                        gameObjs[i].BroadcastMessage("OnApplicationQuit");
+                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("OnApplicationQuit");
 
-                        GameObject.Destroy(gameObjs[i]);
-                    }
-
-                    Application.quitting.Invoke();
+                try {
+                    if (Application.wantsToQuit.Invoke().includes(false)) Application.CancelQuit();
                 }
-
-                // ScriptRunBehaviorOnDisable
-                for (let i = 0; i < gameObjs.length; i++)
-                {
-                    if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
-                    
-                    gameObjs[i].BroadcastMessage("OnDisable", null, {
-                        specialCall : 3,
-                        passActive : true
-                    });
-                }
-    
-                // ScriptRunBehaviorOnDestroy
-                const tree = activeScene.tree;
-                const deadGameObjs = gameObjs.filter(item => item.destroying);
-    
-                for (let i = 0; i < deadGameObjs.length; i++)
-                {
-                    deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
-    
-                    tree.Remove(deadGameObjs[i]);
-    
-                    const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);
-    
-                    activeScene.gameObjects.splice(index, 1);
-                }
-    
-                // ApplicationQuit
-                if (this.#quitState === 2)
-                {
-                    Application.Unload();
-                
-                    window.close();
-                
-                    return;
-                }
-            
-                if (!Application.isPlaying)
-                {
-                    try { Application.wantsToQuit.Invoke(); }
-                    catch { }
-                    
-                    this.#quitState = 1;
-                }
-            
-                if (this.#quitState === 1)
-                {
-                    if (Application.isPlaying) this.#quitState = 0;
-                    else this.#quitState++;
-                }
+                catch { }
             }
+
+            // ApplicationVerifyQuit
+            if (!Application.isPlaying && this.#quitState === 0) this.#quitState = 1;
+
+            // DecommissionStart
+            if (this.#quitState === 1)
+            {
+                for (let i = 0; i < gameObjs.length; i++) GameObject.Destroy(gameObjs[i]);
+
+                Application.quitting.Invoke();
+            }
+
+            // ScriptRunBehaviorOnDisable
+            for (let i = 0; i < gameObjs.length; i++)
+            {
+                if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
+
+                gameObjs[i].BroadcastMessage("OnDisable", null, {
+                    specialCall : 3,
+                    passActive : true
+                });
+            }
+    
+            // ScriptRunBehaviorOnDestroy
+            const tree = activeScene.tree;
+            const deadGameObjs = gameObjs.filter(item => item.destroying);
+    
+            for (let i = 0; i < deadGameObjs.length; i++)
+            {
+                deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
+    
+                tree.Remove(deadGameObjs[i]);
+    
+                const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);
+    
+                activeScene.gameObjects.splice(index, 1);
+            }
+    
+            // ApplicationQuit
+            if (this.#quitState === 1)
+            {
+                Application.Unload();
+            
+                this.#quitState = 2;
+                window.close();
+            
+                return;
+            }
+
+
+            this.onFrameEnd.Invoke();
 
 
             this.#playing = playing;
             this.#callUpdate = false;
-        }
+        })();
 
-        
+
         this.#RequestUpdate();
     }
 
@@ -298,6 +328,21 @@ class PlayerLoop
     static Init ()
     {
         if (this.#loaded) return;
+
+        setInterval(() => {
+            if (this.#noRAF === !Application.isFocused) return;
+
+            this.#noRAF = !Application.isFocused;
+
+            if (Application.vSyncCount > 0 && this.#noRAF) this.#RequestUpdate();
+        }, 0);
+
+        if (Application.isInElectron) window.addEventListener("beforeunload", event => {
+            if (this.#quitState === 2) return;
+            
+            event.preventDefault();
+            Application.Quit();
+        });
         
         this.#RequestUpdate();
     }

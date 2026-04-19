@@ -12,7 +12,19 @@
         "audio/se/select",
         "audio/se/confirm",
         "audio/se/no",
-        "audio/bgm/title"
+        "audio/bgm/title",
+        "ctrls/bounds",
+        "ctrls/dpad",
+        "ctrls/dpad/up",
+        "ctrls/dpad/down",
+        "ctrls/dpad/left",
+        "ctrls/dpad/right",
+        "ctrls/z",
+        "ctrls/z1",
+        "ctrls/x",
+        "ctrls/x1",
+        "ctrls/shift",
+        "ctrls/shift1"
     ],
     "gameObjects": [
         {
@@ -24,24 +36,27 @@
                 },
                 {
                     "type": "Viewport"
-                },
+                }
+            ]
+        },
+        {
+            "name": "inputmanager",
+            "id": 1,
+            "components": [
                 {
-                    "type": "TitleScreen"
+                    "type": "InputManager"
                 }
             ]
         },
         {
             "name": "audiomanager",
-            "id": 1,
+            "id": 2,
             "components": [
                 {
                     "type": "AudioManager"
                 },
                 {
-                    "type": "AudioSource",
-                    "args": {
-                        "loop": true
-                    }
+                    "type": "AudioSource"
                 },
                 {
                     "type": "AudioSource",
@@ -65,7 +80,7 @@
         },
         {
             "name": "transitioner",
-            "id": 2,
+            "id": 3,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -73,7 +88,7 @@
                         "sprite": {
                             "texture": "sprites/pixel"
                         },
-                        "sortingLayer": 1,
+                        "sortingLayer": 3,
                         "size": { "x": 10, "y": 9 },
                         "color": {
                             "r": 0,
@@ -89,7 +104,7 @@
         },
         {
             "name": "bg",
-            "id": 3,
+            "id": 4,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -104,7 +119,7 @@
         },
         {
             "name": "choicebox",
-            "id": 4,
+            "id": 5,
             "transform": {
                 "position": { "x": 2.0875, "y": 1.823 }
             },
@@ -116,121 +131,17 @@
                             "texture": "sprites/box"
                         },
                         "drawMode": 1,
-                        "size": { "x": 1.25, "y": 0.56 },
-                        "sortingOrder": -1
+                        "sortingLayer": 4
                     }
-                }
-            ]
-        },
-        {
-            "name": "choicebox_content",
-            "id": 5
-        },
-        {
-            "name": "selector",
-            "id": 6,
-            "parent": 5,
-            "transform": {
-                "position": { "x": 2.08, "y": 2.198 }
-            },
-            "components": [
+                },
                 {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/pixel"
-                        },
-                        "color": {
-                            "r": 134,
-                            "g": 192,
-                            "b": 108
-                        },
-                        "size": { "x": 3.1875, "y": 0.375 }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "text_start",
-            "id": 7,
-            "parent": 5,
-            "transform": {
-                "position": { "x": 2.11, "y": 2.14 }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "Start aaaaaaaaaaa",
-                        "width": 1.4,
-                        "height": 0.5,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        },
-                        "sortingOrder": 1
-                    }
-                }
-            ]
-        },
-        {
-            "name": "text_continue",
-            "id": 8,
-            "parent": 5,
-            "transform": {
-                "position": { "x": 1.91, "y": 1.76 }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "Continue",
-                        "width": 2.25,
-                        "height": 0.5,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        },
-                        "sortingOrder": 1
-                    }
-                }
-            ]
-        },
-        {
-            "name": "text_options",
-            "id": 9,
-            "parent": 5,
-            "transform": {
-                "position": { "x": 2.04, "y": 1.39 }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "Options",
-                        "width": 2.1,
-                        "height": 0.5,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        },
-                        "sortingOrder": 1
-                    }
+                    "type": "TitleScreen"
                 }
             ]
         },
         {
             "name": "options",
-            "id": 10,
-            "transform": {
-                "scale": { "x": 1, "y": 1 }
-            },
+            "id": 6,
             "components": [
                 {
                     "type": "Options"
@@ -241,99 +152,16 @@
                         "sprite": {
                             "texture": "sprites/box"
                         },
-                        "size": { "x": 3.05, "y": 1.85 },
                         "drawMode": 1,
-                        "sortingOrder": 2
-                    }
-                }
-            ]
-        },
-        {
-            "name": "options_content",
-            "id": 11
-        },
-        {
-            "name": "options_headers",
-            "id": 12,
-            "parent": 11,
-            "transform": {
-                "position": { "y": 1.7 }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "General\n\n\n\nGraphics\n\n\n\n\n\nAudio",
-                        "overflowWidth": true,
-                        "overflowHeight": true,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        },
-                        "sortingOrder": 4,
-                        "lineHeight": 18
-                    }
-                }
-            ]
-        },
-        {
-            "name": "options_text",
-            "id": 13,
-            "parent": 11,
-            "transform": {
-                "position": { "y": 1.3 }
-            },
-            "components": [
-                {
-                    "type": "Text",
-                    "args": {
-                        "font": "font_main",
-                        "text": "Movement\nText Skip\n\n\nFullscreen\nResolution\nWindow Size\nFramerate\n\n\nMusic\nEffects",
-                        "overflowWidth": true,
-                        "overflowHeight": true,
-                        "width": 8,
-                        "color": {
-                            "r": 224,
-                            "g": 248,
-                            "b": 207
-                        },
-                        "sortingOrder": 4,
-                        "lineHeight": 18
-                    }
-                }
-            ]
-        },
-        {
-            "name": "options_selector",
-            "id": 14,
-            "parent": 11,
-            "transform": {
-                "position": { "y": 1.86 }
-            },
-            "components": [
-                {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/pixel"
-                        },
-                        "color": {
-                            "r": 134,
-                            "g": 192,
-                            "b": 108
-                        },
-                        "size": { "x": 8.5, "y": 0.375 },
-                        "sortingOrder": 3
+                        "sortingOrder": 0,
+                        "sortingLayer": 4
                     }
                 }
             ]
         },
         {
             "name": "options_leftarrow",
-            "id": 15,
-            "parent": 14,
+            "id": 11,
             "transform": {
                 "position": { "x": 0.325 }
             },
@@ -345,15 +173,15 @@
                             "texture": "sprites/arrows",
                             "name": "left"
                         },
-                        "sortingOrder": 4
+                        "sortingOrder": 5,
+                        "sortingLayer": 4
                     }
                 }
             ]
         },
         {
             "name": "options_rightarrow",
-            "id": 16,
-            "parent": 14,
+            "id": 12,
             "transform": {
                 "position": { "x": 3.75 }
             },
@@ -365,24 +193,23 @@
                             "texture": "sprites/arrows",
                             "name": "right"
                         },
-                        "sortingOrder": 4
+                        "sortingOrder": 5,
+                        "sortingLayer": 4
                     }
                 }
             ]
         },
         {
             "name": "options_data",
-            "id": 17,
-            "parent": 11,
+            "id": 13,
             "transform": {
-                "position": { "x": 2, "y": 1.3 }
+                "position": { "x": 2.125 }
             },
             "components": [
                 {
                     "type": "Text",
                     "args": {
                         "font": "font_main",
-                        "text": "",
                         "overflowWidth": true,
                         "overflowHeight": true,
                         "width": 0,
@@ -392,7 +219,8 @@
                             "g": 248,
                             "b": 207
                         },
-                        "sortingOrder": 4,
+                        "sortingOrder": 5,
+                        "sortingLayer": 4,
                         "lineHeight": 18
                     }
                 }

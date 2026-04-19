@@ -1,0 +1,171 @@
+[
+    {
+        "path": "anims/dialogue_arrow",
+        "type": "AnimationClip",
+        "args": {
+            "framerate": 3.75,
+            "duration": 4,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/arrows",
+                                "name": "down"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/arrows",
+                                "name": "down-1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "index": 2,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/arrows",
+                                "name": "down-2"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "index": 3,
+                    "actions": [
+                        {
+                            "component": "SpriteRenderer",
+                            "property": "sprite",
+                            "value": {
+                                "texture": "sprites/arrows",
+                                "name": "down-1"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/dialogue_arrow_ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "motions": [
+                {
+                    "name": "main",
+                    "speed": 1,
+                    "animation": "anims/dialogue_arrow"
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/entity",
+        "type": "AnimationClip",
+        "args": {
+            "framerate": 4,
+            "duration": 2,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "index": 1,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/entity_reset",
+        "type": "AnimationClip",
+        "args": {
+            "loop": false,
+            "framerate": 60,
+            "duration": 1,
+            "frames": [
+                {
+                    "index": 0,
+                    "actions": [
+                        {
+                            "component": "SpriteResolver",
+                            "property": "label",
+                            "value": "0"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "path": "anims/entity_ctrl",
+        "type": "AnimatorController",
+        "args": {
+            "parameters": [
+                {
+                    "name": "reset",
+                    "type": 1
+                }
+            ],
+            "motions": [
+                {
+                    "name": "main",
+                    "speed": 1,
+                    "animation": "anims/entity",
+                    "transitions": [
+                        {
+                            "isExit": false,
+                            "exitTime": 0,
+                            "nextNode": "reset",
+                            "conditions": [
+                                {
+                                    "parameter": "reset",
+                                    "mode": 0,
+                                    "threshold": 1
+                                }
+                            ] 
+                        }
+                    ]
+                },
+                {
+                    "name": "reset",
+                    "speed": 1,
+                    "animation": "anims/entity_reset",
+                    "transitions": [
+                        {
+                            "nextNode": "main"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

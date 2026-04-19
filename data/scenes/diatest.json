@@ -3,6 +3,9 @@
     "resources": [
         "ref",
         "sprites/arrows",
+        "sprites/box",
+        "sprites/faces/yoki",
+        "audio/se/dialogue_3",
         "font_main"
     ],
     "gameObjects": [
@@ -19,8 +22,44 @@
             ]
         },
         {
-            "name": "ref",
+            "name": "audiomanager",
             "id": 1,
+            "components": [
+                {
+                    "type": "AudioManager"
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "loop": true
+                    }
+                },
+                {
+                    "type": "AudioSource"
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/select"
+                    }
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/confirm"
+                    }
+                },
+                {
+                    "type": "AudioSource",
+                    "args": {
+                        "clip": "audio/se/no"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ref",
+            "id": 2,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -40,22 +79,74 @@
             ]
         },
         {
-            "name": "text",
-            "id": 2,
+            "name": "dialogue_box",
+            "id": 3,
             "transform": {
-                "position": { "x": 0.526102, "y": -3.42 }
+                "position": { "x": 0, "y": -3.46875 }
             },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "drawMode": 1,
+                        "size": {
+                            "x": 10,
+                            "y": 2.0625
+                        }
+                    }
+                },
+                {
+                    "type": "DialogueBox"
+                }
+            ]
+        },
+        {
+            "name": "face",
+            "id": 4,
+            "parent": 3,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/faces/yoki",
+                            "name": "unsure smile"
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 5,
+            "parent": 3,
             "components": [
                 {
                     "type": "Text",
                     "args": {
                         "font": "font_main",
-                        "text": "Well... I usually don't work on weekends.",
+                        "text": "",
                         "width": 7,
+                        "noCollapse": true,
+                        "overflowWidth": true,
+                        "pivot": {
+                            "x": 0,
+                            "y": 0
+                        },
                         "color": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 0
+                            "r": 224,
+                            "g": 248,
+                            "b": 207,
+                            "a": 0
                         }
                     }
                 }
@@ -63,9 +154,10 @@
         },
         {
             "name": "arrow",
-            "id": 3,
+            "id": 6,
+            "parent": 3,
             "transform": {
-                "position": { "x": 0, "y": -4.375 }
+                "position": { "x": 0, "y": -0.9125 }
             },
             "components": [
                 {
@@ -77,8 +169,9 @@
                         },
                         "color": {
                             "r": 255,
-                            "g": 0,
-                            "b": 255
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
                         }
                     }
                 }

@@ -1,0 +1,16 @@
+[
+    {
+        "path": "sprites/parallaxes/sky_2",
+        "type": "Texture",
+        "args": {
+            "src": "parallaxes\\sky_2.png"
+        }
+    },
+    {
+        "path": "sprites/parallaxes/fly",
+        "type": "Texture",
+        "args": {
+            "src": "parallaxes\\fly.png"
+        }
+    }
+]

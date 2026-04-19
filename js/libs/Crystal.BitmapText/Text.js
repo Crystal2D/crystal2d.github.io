@@ -4,6 +4,8 @@ class Text extends Renderer
     #remapArrays = false;
     #overflowX = false;
     #overflowY = false;
+    #noCollapse = false;
+    #trim = true;
     #alignX = 0;
     #alignY = 0;
     #tempHeight = 0;
@@ -24,6 +26,7 @@ class Text extends Renderer
     #font = null;
     #colorOld = null;
     #lineHeight = null;
+    #charSpacing = null;
 
     characters = [];
     
@@ -47,7 +50,6 @@ class Text extends Renderer
     set fontSize (value)
     {
         this.#size = value;
-        
         this.#ReloadScale();
     }
     
@@ -72,7 +74,6 @@ class Text extends Renderer
     set width (value)
     {
         this.#width = value;
-        
         this.#meshChanged = true;
     }
     
@@ -84,7 +85,6 @@ class Text extends Renderer
     set height (value)
     {
         this.#height = value;
-        
         this.#meshChanged = true;
     }
     
@@ -96,7 +96,6 @@ class Text extends Renderer
     set overflowWidth (value)
     {
         this.#overflowX = value;
-        
         this.#meshChanged = true;
     }
     
@@ -108,7 +107,6 @@ class Text extends Renderer
     set overflowHeight (value)
     {
         this.#overflowY = value;
-        
         this.#meshChanged = true;
     }
 
@@ -120,7 +118,6 @@ class Text extends Renderer
     set horizontalAlign (value)
     {
         this.#alignX = value;
-
         this.#remapArrays = true;
     }
 
@@ -132,7 +129,6 @@ class Text extends Renderer
     set verticalAlign (value)
     {
         this.#alignY = value;
-
         this.#remapArrays = true;
     }
     
@@ -146,7 +142,6 @@ class Text extends Renderer
         if (this.#text === value) return;
 
         this.#text = value;
-        
         this.#ReloadWords();
     }
     
@@ -178,7 +173,39 @@ class Text extends Renderer
     set lineHeight (value)
     {
         this.#lineHeight = value;
+        this.#meshChanged = true;
+    }
 
+    get charSpacing ()
+    {
+        return this.#charSpacing;
+    }
+
+    set charSpacing (value)
+    {
+        this.#charSpacing = value;
+        this.#ReloadWords();
+    }
+
+    get noCollapse ()
+    {
+        return this.#noCollapse;
+    }
+
+    set noCollapse (value)
+    {
+        this.#noCollapse = value;
+        this.#meshChanged = true;
+    }
+
+    get trimEnd ()
+    {
+        return this.#trim;
+    }
+
+    set trimEnd (value)
+    {
+        this.#trim = value;
         this.#meshChanged = true;
     }
     
@@ -188,6 +215,7 @@ class Text extends Renderer
         space = false;
         width = 0;
         height = 0;
+        charSpacing = 1;
         sprites = [];
         
         Add (sprite)
@@ -203,8 +231,8 @@ class Text extends Renderer
             for (let i = 0; i < this.sprites.length; i++)
             {
                 const rect = this.sprites[i].rect;
-                
-                x += rect.width;
+
+                x += rect.width + (this.charSpacing - 1);
                 
                 if (y < rect.height) y = rect.height;
             }
@@ -261,7 +289,7 @@ class Text extends Renderer
     
     #ReloadWords ()
     {
-        const text = this.#text;
+        const text = this.#trim ? this.#text.trimEnd() : this.#text;
         
         let newWords = [new this.#Word()];
         
@@ -277,6 +305,7 @@ class Text extends Renderer
             {
                 if (i !== 0 && !newWords[newWords.length - 1].space)
                 {
+                    newWords[newWords.length - 1].charSpacing = this.#charSpacing ?? this.font.charSpacing;
                     newWords[newWords.length - 1].Update();
                     
                     newWords.push(new this.#Word());
@@ -292,6 +321,7 @@ class Text extends Renderer
             {
                 if (i !== 0)
                 {
+                    newWords[newWords.length - 1].charSpacing = this.#charSpacing ?? this.font.charSpacing;
                     newWords[newWords.length - 1].Update();
                     
                     newWords.push(new this.#Word());
@@ -306,6 +336,7 @@ class Text extends Renderer
             
             if (newWords[newWords.length - 1].space)
             {
+                newWords[newWords.length - 1].charSpacing = this.#charSpacing ?? this.font.charSpacing;
                 newWords[newWords.length - 1].Update();
                 
                 newWords.push(new this.#Word());
@@ -314,6 +345,7 @@ class Text extends Renderer
             newWords[newWords.length - 1].Add(sprite);
         }
         
+        newWords[newWords.length - 1].charSpacing = this.#charSpacing ?? this.font.charSpacing;
         newWords[newWords.length - 1].Update();
         
         this.#words = newWords;
@@ -346,7 +378,7 @@ class Text extends Renderer
         for (let i = 0; i < sprites.length; i++)
         {
             const sprite = sprites[i];
-            const width = sprite.rect.width / texX;
+            const width = (sprite.rect.width + ((this.#charSpacing ?? this.font.charSpacing) - 1)) / texX;
             
             const newChar = this.#NewChar(
                 sprite,
@@ -421,6 +453,13 @@ class Text extends Renderer
         this.#remapArrays = false;
     }
 
+    Reload ()
+    {
+        if (this.updatedMaterial) this.#meshChanged = true;
+
+        super.Reload();
+    }
+
     RecalcBounds ()
     {
         const pivot = this.pivot;
@@ -472,12 +511,9 @@ class Text extends Renderer
 
         const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(Vector2.Add(
             pos,
-            Vector2.Scale(
-                new Vector2(
-                    0.5 - pivot.x,
-                    0.5 - pivot.y
-                ),
-                2
+            new Vector2(
+                (0.5 - pivot.x) * this.#width,
+                (0.5 - pivot.y) * this.#height
             )
         )));
 
@@ -500,6 +536,7 @@ class Text extends Renderer
         const maxW = this.#width / rescaleW;
         const maxH = this.#height / rescaleH;
         const defaultLH = (this.#lineHeight ?? this.font.lineHeight) / texY;
+        const charSpacing = (this.#charSpacing ?? this.font.charSpacing) - 1;
         
         let x = 0;
         let y = 0;
@@ -540,10 +577,10 @@ class Text extends Renderer
                 continue;
             }
             
-            const width = word.width / texX;
+            const width = (word.width - charSpacing) / texX;
             const wrapX = !this.#overflowX && x + width > maxW;
             
-            if (x === 0 && wrapX && !word.space)
+            if (x === 0 && wrapX && !(word.space && !this.#noCollapse))
             {
                 const sprites = word.sprites;
                 
@@ -552,7 +589,7 @@ class Text extends Renderer
                 for (let iB = 0; iB < sprites.length; iB++)
                 {
                     const sprite = sprites[iB];
-                    const charWidth = sprite.rect.width / texX;
+                    const charWidth = (sprite.rect.width + charSpacing) / texX;
                     const charWX = !this.overflowWidth && x + charWidth > maxW;
                     
                     if (charWX)
@@ -595,7 +632,7 @@ class Text extends Renderer
                     );
                     
                     chars.push(newChar);
-                    
+
                     x += charWidth;
                     
                     widths[widths.length - 1].size += charWidth;
@@ -633,12 +670,12 @@ class Text extends Renderer
             
             if (word.space)
             {
-                if (x === 0) continue;
+                if (x === 0 && !this.#noCollapse) continue;
                 else if (!this.#overflowX)
                 {
                     const nextWord = this.#words[iA + 1];
                     
-                    if (nextWord == null || x + width + nextWord.width / texX > maxW)
+                    if (nextWord == null || x + width + (nextWord.width - charSpacing) / texX > maxW)
                     {
                         const currentWidth = widths[widths.length - 1].size;
                         
@@ -749,5 +786,26 @@ class Text extends Renderer
         );
         
         gl.useProgram(null);
+    }
+
+    Duplicate ()
+    {
+        const output = new Text(this.font, this.material.Duplicate());
+
+        output.color = this.color.Duplicate();
+        output.sortingLayer = this.sortingLayer;
+        output.sortingOrder = this.sortingOrder;
+        output.overflowWidth = this.overflowWidth;
+        output.overflowHeight = this.overflowHeight;
+        output.width = this.width;
+        output.height = this.height;
+        output.text = this.text;
+        output.pivot = this.pivot;
+        output.fontSize = this.fontSize;
+        output.horizontalAlign = this.horizontalAlign;
+        output.verticalAlign = this.verticalAlign;
+        output.lineHeight = this.lineHeight;
+
+        return output;
     }
 }

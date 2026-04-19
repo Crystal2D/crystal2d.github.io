@@ -33,7 +33,7 @@ class Transform extends Component
     {
         if (this.#position.Equals(value)) return;
 
-        this.#position = value;
+        this.#position = value.Duplicate();
         
         this.Recalc();
     }
@@ -47,7 +47,7 @@ class Transform extends Component
     {
         if (this.#scale.Equals(value)) return;
 
-        this.#scale = value;
+        this.#scale = value.Duplicate();
         
         this.Recalc();
     }
@@ -124,40 +124,70 @@ class Transform extends Component
         if (this.#parent == null || this.gameObject == null) return;
         
         this.#parent.AttachChild(this);
+        
+        const rotation = this.#parent.rotation / (180 / Math.PI);
+        const pos = Vector2.Add(
+            this.#parent.position,
+            Vector2.Scale(
+                new Vector2(
+                    this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
+                    this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
+                ),
+                this.#parent.scale
+            )
+        );
 
         this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(this.position, new Vector2(1, -1)),
+            Vector2.Scale(pos, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.rotation * Math.PI,
             this.scale
         );
         this.#lWMatInv = this.#lWMat.inverse;
+
+        for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
     
     Recalc ()
     {
+        let pos = null;
+
+        if (this.#parent != null)
+        {
+            const rotation = this.#parent.rotation / (180 / Math.PI);
+
+            pos = Vector2.Add(
+                this.#parent.position,
+                Vector2.Scale(
+                    new Vector2(
+                        this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
+                        this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
+                    ),
+                    this.#parent.scale
+                )
+            );
+        }
+        else pos = this.localPosition;
+
         this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(this.position, new Vector2(1, -1)),
+            Vector2.Scale(pos, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.rotation * Math.PI,
             this.scale
         );
         this.#lWMatInv = this.#lWMat.inverse;
 
-        if (this.gameObject != null) this.GetComponent("Renderer")?.RecalcBounds();
+        if (this.gameObject != null) this.GetComponent(Renderer)?.RecalcBounds();
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
     
     SetParent (parent)
-    {
+    {   
         if (this.#parent === parent) return;
         
         const parentOld = this.#parent;
-        
         this.#parent = parent;
         
         if (this.gameObject != null) parentOld?.DetachChildByID(this.gameObject.GetSceneID());
-        
-        this.#parent = parent;
         
         this.#BindData();
     }
@@ -167,46 +197,50 @@ class Transform extends Component
         return this.#parent === parent;
     }
     
-    Find (name)
+    Find (path)
     {
-        let output = null;
+        const pathArray = path.split("/");
+
+        if (pathArray.length === 0) return;
+
+        if (pathArray[0] === "") return GameObject.Find(path);
+
+        const list = [];
+
+        for (let i = 0; i < this.childCount; i++)
+        {
+            const gameObj = GameObject.FindByID(this.#child[i]);
+
+            if (gameObj.name === pathArray[0]) list.push(gameObj.transform);
+        }
+
+        if (pathArray.length > 1 && list.length > 0)
+        {
+            for (let i = 0; i < list.length; i++)
+            {
+                const item = list[i].Find(pathArray.slice(1).join("/"));
+
+                if (item == null) continue;
+
+                return item;
+            }
+
+            return;
+        }
         
-        this.#child.find(element => {
-            const gameObj = GameObject.FindByID(element);
-            
-            if (gameObj.name !== name) return false;
-            
-            output = gameObj.transform;
-            
-            return true;
-        });
-        
-        return output;
+        return list[0];
     }
     
     DetachChildByID (id)
     {
-        let newChild = [];
-        
-        for (let i = 0; i < this.childCount; i++)
-        {
-            const child = this.#child[i];
+        this.#child.splice(this.#child.indexOf(id), 1);
+
+        const child = GameObject.FindByID(id);
+
+        if (child.parent !== this) return;
             
-            if (child === id)
-            {
-                const target = this.GetChild(i);
-                
-                target.parent = null;
-                
-                target.Recalc();
-                
-                continue;
-            }
-            
-            newChild.push(child);
-        }
-        
-        this.#child = newChild;
+        child.parent = null;
+        child.Recalc();
     }
     
     DetachChild (index)
@@ -221,9 +255,7 @@ class Transform extends Component
         for (let i = 0; i < this.childCount; i++)
         {
             const child = this.GetChild(i);
-            
             child.parent = null;
-            
             child.Recalc();
         }
         
@@ -232,16 +264,17 @@ class Transform extends Component
     
     AttachChild (child)
     {
+        const id = child.gameObject.GetSceneID();
+
+        if (this.HasChild(id)) return;
+
         if (child.parent !== this)
         {
-            child.parent = this;
-            
+            child.parent = this;    
             child.Recalc();
         }
         
-        const id = child.gameObject.GetSceneID();
-        
-        this.#child.push(id);
+        if (!this.HasChild(id)) this.#child.push(id);
     }
     
     AttachChildByID (id)
@@ -256,5 +289,28 @@ class Transform extends Component
         const id = this.#child[index];
         
         return GameObject.FindByID(id).transform;
+    }
+
+    HasChild (id)
+    {
+        return this.#child.includes(id);
+    }
+
+    GetChildren ()
+    {
+        return this.#child.map(item => GameObject.FindByID(item).transform);
+    }
+
+    Duplicate ()
+    {
+        const output = new Transform();
+
+        output.localPosition = this.#position.Duplicate();
+        output.localRotation = this.#rotation;
+        output.localScale = this.#scale.Duplicate();
+
+        for (let i = 0; i < this.childCount; i++) this.Instantiate(GameObject.FindByID(this.#child[i]), output, null, null, true);
+
+        return output;
     }
 }

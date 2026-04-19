@@ -1,10 +1,12 @@
 class Viewport extends GameBehavior
 {
+    static current = null;
+    
     #fps = 0;
 
     Awake ()
     {
-        Crispixels.effect = true;
+        Viewport.current = this;
     }
 
     Update ()
@@ -29,25 +31,22 @@ class Viewport extends GameBehavior
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start)) Window.fullscreen = !Window.fullscreen;
+        if (Input.GetKeyDown(KeyCode.F4) || GamepadInput.GetKeyDown(KeyCode.Start))
+        {
+            GameWindow.fullscreen = !GameWindow.fullscreen;
+            Options.Save();
+        }
     }
 
     LateUpdate ()
     {
         if (Options.resolution === 4)
         {
-            if (window.innerWidth < window.innerHeight)
-            {
-                const sizer = (window.innerWidth - window.innerWidth % 480) / 480;
+            const width = window.innerWidth * window.devicePixelRatio;
+            const height = window.innerHeight * window.devicePixelRatio;
+            const sizer = Math.max(width < height ? width / 480 : height / 432, 1);
 
-                Window.SetResolution(480 * sizer, 432 * sizer);
-            }
-            else
-            {
-                const sizer = (window.innerHeight - window.innerHeight % 432) / 432;
-
-                Window.SetResolution(480 * sizer, 432 * sizer);
-            }
+            GameWindow.SetResolution(480 * sizer, 432 * sizer);
         }
 
         FPSMeter.Update();

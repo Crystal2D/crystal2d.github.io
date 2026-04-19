@@ -6,32 +6,35 @@ class Transitioner extends GameBehavior
     #inTimeSet = 0;
     #outTime = 0;
     #outTimeSet = 0;
-
+    #onFadeIn = () => { };
+    #onFadeOut = () => { };
+    
     #sprite = null;
-
-    onFadeIn = new DelegateEvent();
-    onFadeOut = new DelegateEvent();
 
     Awake ()
     {
         Transitioner.instance = this;
         
-        this.#sprite = this.GetComponent("SpriteRenderer");
+        this.#sprite = this.GetComponent(SpriteRenderer);
+
+        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
     }
 
-    FadeIn (time = 0.5)
+    FadeIn (callback = () => { })
     {
-        this.#inTime = time,
-        this.#inTimeSet = time;
+        this.#inTime = 0.4,
+        this.#inTimeSet = 0.4;
+        this.#onFadeIn = callback;
     }
 
-    FadeOut (time = 0.5)
+    FadeOut (callback = () => { })
     {
-        this.#outTime = time,
-        this.#outTimeSet = time;
+        this.#outTime = 1,
+        this.#outTimeSet = 1;
+        this.#onFadeOut = callback;
     }
 
-    Update ()
+    #UpdateFade ()
     {
         if (this.#inTime > 0)
         {
@@ -41,8 +44,8 @@ class Transitioner extends GameBehavior
 
             if (this.#inTime <= 0)
             {
-                this.onFadeIn.Invoke();
-                this.onFadeIn.RemoveAll();
+                this.#onFadeIn();
+                this.#onFadeIn = () => { };
             }
 
             return;
@@ -56,11 +59,71 @@ class Transitioner extends GameBehavior
 
             if (this.#outTime <= 0)
             {
-                this.onFadeOut.Invoke();
-                this.onFadeOut.RemoveAll();
+                this.#onFadeOut();
+                this.#onFadeOut = () => { };
             }
 
             return;
         }
+    }
+
+    async TintIn ()
+    {
+        EventSystem.TintAll(new Color(
+            20 / 255,
+            10 / 255,
+            10 / 255,
+            0
+        ));
+        await EventSystem.Timer(3);
+        await EventSystem.TintAll(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255,
+            0
+        ));
+        await EventSystem.Timer(3);
+        await EventSystem.TintAll(new Color(
+            130 / 255,
+            120 / 255,
+            90 / 255,
+            0
+        ));
+        await EventSystem.Timer(3);
+    }
+
+    async TintOut ()
+    {
+        await EventSystem.TintAll(new Color(
+            90 / 255,
+            80 / 255,
+            50 / 255,
+            0
+        ));
+        await EventSystem.Timer(3);
+        await EventSystem.TintAll(Color.clear);
+        await EventSystem.Timer(3);
+    }
+
+    Clear ()
+    {
+        this.#inTime = 0;
+        this.#outTime = 0;
+        this.#sprite.color.a = 0;
+    }
+
+    SetFadeIn ()
+    {
+        this.#sprite.color.a = 1;
+    }
+
+    Update ()
+    {
+        this.#UpdateFade();
+    }
+
+    LateUpdate ()
+    {
+        if (Viewport.current != null) this.transform.position = Viewport.current.transform.position;
     }
 }

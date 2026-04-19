@@ -1,0 +1,347 @@
+{
+
+"title_start": "   Start",
+"title_continue": "Continue",
+"title_options": " Options",
+
+"options_gen": "General",
+"options_gen_move": " Movement",
+"options_gen_txtskip": " Text Skip",
+"options_graphics": "Graphics",
+"options_graphics_fullscreen": " Fullscreen",
+"options_graphics_winsize": " Window Size",
+"options_graphics_res": " Resolution",
+"options_graphics_fps": " Framerate",
+"options_graphics_crispixels": " Crisp Pixels",
+"options_audio": "Audio",
+"options_audio_bgm": " Music",
+"options_audio_se": " Effects",
+
+"options_on": "On",
+"options_off": "Off",
+"options_graphics_res_match": "Match",
+"options_graphics_res_screen": "Screen",
+"options_graphics_res_window": "Window",
+"options_graphics_winsize_any": "Whatever",
+"options_graphics_fps_vsync": "V-Synced",
+"options_graphics_fps_unli": "Unlimited",
+"options_gen_move_run": "Run",
+"options_gen_move_walk": "Walk",
+
+"options_gen_move_run_aleft": 1.445,
+"options_gen_move_run_aright": 2.825,
+"options_gen_move_walk_aleft": 1.325,
+"options_gen_move_walk_aright": 2.925,
+"options_on_aleft": 1.625,
+"options_on_aright": 2.645,
+"options_off_aleft": 1.505,
+"options_off_aright": 2.75,
+"options_graphics_winsize_any_aleft": 0.7125,
+"options_graphics_winsize_any_aright": 3.5125,
+"options_graphics_res_match_aleft": 0.125,
+"options_graphics_res_match_aright": 4.05,
+"options_graphics_fps_unli_aleft": 0.725,
+"options_graphics_fps_unli_aright": 3.525,
+"options_graphics_fps_vsync_aleft": 0.6,
+
+"hintbird": [
+    "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
+    "I'm here to help!",
+    "Would you like a hint?"
+],
+"hintbird_choices": [
+    "Yes",
+    "No"
+],
+"hintbird_zera": [
+    "Have you spoken to Zera\nwhile he was at your house..?",
+    "If you haven't...\\.\\.\nYou might want to start\nyour journey over..."
+],
+"hintbird_traveller": "Have you helped the Lost \nTraveller find his way?",
+"hintbird_carriage": [
+    "Why not take a Carriage ride?",
+    "You can find the Carriage Service \nin the Village or at the Castle \nTown gate."
+],
+"hintbird_claire": "Why not say good morning\nto Claire?",
+"hintbird_claire_quest": "Maybe you should talk to\nClaire again.",
+"hintbird_claire_quest_wait": [
+    "Have you visited the Doctor\nin the Castle Town?",
+    "I think Claire is waiting on\nher order..."
+],
+"hintbird_claire_fly": "Why not go on a broom flight \nwith Claire?",
+"hintbird_woof": "Maybe you should check on\nthe Wolf girl by the cliffs?",
+"hintbird_aimottle": "Did you visit Aimottle's room?\\.\\. \nHer room is located south of your\nhouse!",
+"hintbird_view": "Did you take a look at the pretty \nscenic view north of your house?",
+"hintbird_claire_poster": "You should look at the poster \nhanging up in Claire's room!",
+"hintbird_stump": "Did you check out the tree stump\ndeep in the forest, surrounded\nby many animals?",
+"hintbird_caina_cafe": "Have you said hello to Caina at her \ncafe yet?\\.\\. You can find the cafe \nin the village!",
+"hintbird_sign": [
+    "Did you take a look at the sign \nin the fork in the road?",
+    "It's the large arrow signpost that \npoints East and West to the \nVillage and Castle Town."
+],
+"hintbird_letter": [
+    "Have you seen the letter attached \nto the decaying tree in the Cliff \narea?",
+    "You know,\\.\\. near the Wolf girl's cave."
+],
+"hintbird_snek": [
+    "Have you seen the giant serpent \nlocated in the Wolf girl's cave?",
+    "You know where the Wolf girl's \ncave is..right? ",
+    "It's by the Cliff area!"
+],
+"hintbird_lighthouse": [
+    "You should look out the window \nfrom the top of the Lighthouse!",
+    "You can find the Lighthouse at the\npier in the Castle Town."
+],
+"hintbird_pier": "Why not have a seat at the Castle \nTown pier and look off into the \nsea?",
+"hintbird_prince": "Have you spoken to the Prince yet?\\.\\. \nHe's located at the Castle of \ncourse.",
+"hintbird_prince_index": "Have you taken a peek at the book \nin the Prince's room?",
+"hintbird_dress": "Why not try on some clothes at the \nTailors' store in the Castle Town?",
+"hintbird_butterfly": [
+    "Have you seen the odd butterfly \nthat's flying in the middle of a \nring of flowers deep in the forest?",
+    "You can find it near Aimottle's \nplace!"
+],
+"hintbird_treasure": "Have you looked in the treasure\nchests located underneath the\nshack in the Graveyard?",
+"hintbird_prince_parents": "You should check out the statues \nof the previous King and Queen \nat the Castle.",
+"hintbird_???": [
+    "Have you seen the mysterious\ncorpse at the secluded grave?",
+    "You can find it by traversing the \nunderground maze.",
+    "Where is the underground maze?\\.\\.\nHave you looked carefully through\nthe Castle Town?"
+],
+"hintbird_caina_spar": [
+    "Have you met up with Caina at the \nold stump in the forest for a \nlittle spar?",
+    "The stump is surrounded by lots of \nother animals."
+],
+"hintbird_j*b": [
+    "Have you met up with Este at the \nPost Office in the Village?",
+    "You should check his desk after \ncompleting his task!"
+],
+"hintbird_kitty": [
+    "Have you met the Tiger Centaur \nBEAST-Type in the forest yet?",
+    "You can find her near the entrance \nto the Cliff area."
+],
+"hintbird_shrine": [
+    "Have you visited the Dragon Shrine \nyet?",
+    "It's located West of the Village."
+],
+"hintbird_dragon": [
+    "Maybe you should follow the man \nyou saw at the Dragon Shrine.",
+    "I believe he went near Aimottle's \nplace..."
+],
+"hintbird_drink": "Why not grab a drink at the bar \nlocated on the ship in Castle Town?",
+"hintbird_adventure": [
+    "Wanna have some fun on an \nadventure?",
+    "Why not follow some Heroes on a \ngrand quest?",
+    "You should be able to find them if\nyou keep walking west of the \nVillage."
+],
+"hintbird_journal": [
+    "You've collected plenty of journal \npages, right?",
+    "Maybe you should put them\ntogether and read them at the \nGraveyard shack."
+],
+"hintbird_done": [
+    "Chirp!\\.\\.\nYou've had a long day!",
+    "Maybe you should head home and \nget some sleep?"
+],
+
+"fly": [
+    "\\SE[2]Hee hee\\.\\.\nIsn't this nice?",
+    "\\SE[1]It is...",
+    "\\SE[2]Hey.\\.\\..\\.\\..\nYou know...",
+    "It's been awhile since we've \ngone off anywhere together.",
+    "Traveling,\\.\\. adventuring,\\.\\. and \nwhatnot.",
+    "\\SE[1]Yea... It has been.",
+    "But... It can't be helped.\\.\\.\nThings have been so busy\nlately.",
+    "\\SE[2]That's true...",
+    "I've gotten so many orders\nand clients lately, it's \nmaking my head spin.",
+    "Mostly for wards and health\npotions too.",
+    "It seems like something's\nreally been stirring up the \nBEAST-Types lately.",
+    "\\SE[1]I've been getting pulled away \na lot for work at the Castle \ntoo...",
+    "It's taking away from the \njob I'd rather be working at.",
+    "\\SE[2]The Post Office you mean?",
+    "You're so strong and cool,\nit seems like a waste to work \nat a job like that.",
+    "\\SE[1]I like it.\\.\\. \nIt's nice to see the other \nvillagers regularly.",
+    "I like my boss, the work and \nthe atmosphere. \nIt's very peaceful. ",
+    "Delivering mail is pretty fun \nand pleasant too.",
+    "I like the Prince too... \\.\\.\nBut.\\.\\..\\.\\. Sometimes the work\ncan be very... Unpleasant.",
+    "\\SE[2]Yeah... \\.\\.I hear ya...",
+    "The Prince...\\.\\. I can't imagine \nwhat that guy's like.",
+    "His harsh crackdown on \nWitches and BEAST-Types...\nCan't imagine he's any good.",
+    "\\SE[1]I think regardless of what\nkingdom we're in... ",
+    "It seems like there'll always \nbe strict rules regarding \nWitches and BEAST-types.",
+    "Isn't the Prince just doing\nhis job?",
+    "\\SE[2]Hmph",
+    "I just hope the world opens\nit's eyes one day about how \ngreat Witchcraft is.",
+    "Outlawed or not, I'll always\nkeep up the practice.",
+    "Personally... I find it very\nbeautiful.",
+    "People are just scared of it \nbecause they don't \nunderstand it.",
+    "Such a shame.",
+    "You know...\\.\\.\\.\nI think you're very beautiful\ntoo.",
+    "\\SE[1]Flirting again?",
+    "\\SE[2]Hee hee,\\.\\.\nYou bet!",
+    "But I do mean it you know.\\.\\.\nYou're really different\nand special.",
+    "It's a shame others don't\nalways see that...",
+    "\\SE[1]It can't be helped.",
+    "I know I'm pretty strange.\nNobody really knows what I\nam...",
+    "Even I'm scared of my own\npowers and strength.",
+    "\\SE[2]Like I said before, people \nare just scared of what \nthey don't understand.",
+    "Some of the villagers have\nwarmed up to you lately. ",
+    "They're starting to realize\nthere's nothing to be afraid \nof.",
+    "I guess that's why you like\nyour job so much at the \nPost Office, huh?",
+    "\\SE[1]Yeah, that is a reason.",
+    "...",
+    "\\SE[2]...",
+    "Well!\\.\\. You know,\\.\\.\nwe outcasts gotta stick \ntogether!",
+    "Who cares if the rest of the \nworld doesn't agree with us.",
+    "I'll always have your back.",
+    "\\SE[1]Thanks Claire. \\.\\.\nI know I can always count \non you.",
+    "\\SE[2]That was fun! \nLet's go again some time!",
+    "\\SE[1]Yea. Let's do it again\nsometime soon."
+],
+
+"yokihouse": "----------------------------------------------------------------------",
+"yolkhouse_mail": "No mail today.",
+"yolkhouse_veggie": "Some vegetables me and\nClaire have been growing.",
+"yolkhouse_well": [
+    "Our well...",
+    "I don't really need any \nwater right now."
+],
+"yolkhouse_zera": [
+    "\\SE[1]Of course you're here,\\.\\. Zera.",
+    "\\SE[3]You don't look so happy to \nsee me.",
+    "\\SE[1]I'm never happy to see you.",
+    "\\SE[3]Oh.\\.\\..\\.\\.. So mean.",
+    "\\SE[1]So... What is it.\\.\\.\nWhy are you here?",
+    "\\SE[3]I'm just dropping by to visit \nmy favorite forest resident. ",
+    "\\SE[1]And what else?",
+    "\\SE[3]That's all. ",
+    "\\SE[1].\\.\\..\\.\\..",
+    "\\SE[3].\\.\\..\\.\\..",
+    "\\SE[1]I don't buy that for a \nsecond.",
+    "You planted that nightmare \nI had last night in my\nhead, right?",
+    "\\SE[3]...",
+    "\\SE[1]Don't give the silent\ntreatment.",
+    "You want me to be useful\nto your plans and such, \nright?",
+    "Would I really be of any \nuse to you when I'm this \nfatigued?",
+    "What's the point of doing\nthis?",
+    "\\SE[3]It's my way of showing I\ncare for you.",
+    "\\SE[1]Maybe you should care a\nlittle less.",
+    "\\SE[3]...\\SE[1]"
+],
+"yolkhouse_zera_leave": [
+    "\\SE[1]How long are you gonna\nstand next to the house?",
+    "\\SE[3]How long would you like me \nto stay?",
+    "\\SE[1]You could leave now if you'd \nlike."
+],
+"yolkhouse_harp": [
+    "\\SE[9]Ohhhh it's you!",
+    "I've known you since you \nwere very little.",
+    "I've been watching you \nover the years.",
+    "You've grown so much...",
+    "...and look sooooo much \nmore tasty.",
+    "\\SE[1]I think I remember you...",
+    "I don't recall you ever\nwanting to eat me though.",
+    "I thought you were a more\npeaceful BEAST-Type.",
+    "\\SE[9]I am peaceful!",
+    "I won't eat anything that's\nalive. I only eat what's\nalready dead.",
+    "\\SE[1]Ah... So you're a scavenger."
+],
+"yolkhouse_harp_met": [
+    "\\SE[9]I've been waiting for you \nto die ever since I laid \nmy eyes on you.",
+    "I can't wait for that day!",
+    "\\SE[1]Don't look so enthusiastic...",
+    "\\SE[9]The man who visits you...\nHe also looks sooo tasty.",
+    "\\SE[1](Is she talking about Zera?)"
+],
+"yolkhouse_claire_fly": [
+    "\\SE[2]Heya! \nWanna go for a flight on\nmy broom together?",
+    "\\SE[1]"
+],
+"yolkhouse_claire_fly_choices": [
+    "Sure",
+    "Not right now"
+],
+"yolkhouse_claire_fly_ok": [
+    "\\SE[2]Alrighty! \nLet's go!",
+    "\\SE[1]I didn't even say yes yet..."
+],
+"yolkhouse_claire_fly_no": [
+    "\\SE[1]Maybe a little later.",
+    "\\SE[2]Whaaat? Booo\\.\\.\nJust say yes!",
+    "\\SE[1].."
+],
+"yolkhouse_claire_flew": [
+    "\\SE[2]That was fun! \nLet's go again some time!",
+    "\\SE[1]Yeah. Let's do it again\nsometime soon."
+],
+"yolkhouse_claire_concern": [
+    "\\SE[2]..What's up? \\.\\.\nYou look pretty down.",
+    "Are you ok?",
+    "\\SE[1]I'm ok!\\.\\.\nJust had a long walk,\\.\\.\nI'm just tired is all.",
+    "I managed to clear my head \nfrom that awful nightmare \nI had earlier.",
+    "\\SE[2]...\\SE[1]"
+],
+
+"forest_view": "----------------------------------------------------------------------",
+"forestview_este": [
+    "Oh...\\.\\.\nHere's where you went.",
+    "(Why'd you come all the\nway up here..?)",
+    "\\SE[6]Good work today.",
+    "If you want, I can fly\nyou down the mountain."
+],
+"forestview_este_warped": "\\SE[6]Do you want me to fly you \ndown the mountain?",
+"forestview_este_choices": [
+    "Ok",
+    "Not right now"
+],
+"forestview_este_ok": "\\SE[1]Sure, I'd appreciate that.",
+"forestview_este_no": "\\SE[1]I'm good at the moment,\nthanks though.",
+
+"forest_barrier": "----------------------------------------------------------------------",
+"aimottle_mail": "Nothing to deliver today.",
+"forestbarrier_fox2": "\\SE[2]Grrr...\\SE[1]",
+"forestbarrier_squirrel2": "(He has an acorn in his\nmouth.)",
+"forestbarrier_bird": "\\SE[4]Chirp!\\.\\.Chirp!\\SE[1]",
+"forestbarrier_blockerfly": "They won't let me through...",
+"forestbarrier_sbutterfly": "I feel.\\.\\..\\.\\.. Pleasant...",
+"forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?",
+
+"forestbarrieredge_raccoon1": "..?",
+"forestbarrieredge_raccoon3": "..!",
+"forestbarrieredge_boar": "..!",
+"forestbarrieredge_fox": "\\SE[2]..!\\SE[1]",
+"forestbarrieredge_bird": "\\SE[4]Chirp!\\SE[1]",
+"forestbarrieredge_rabbit": "\\SE[4]!!!\\SE[1]",
+"forestbarrieredge_tigertaur": [
+    "\\SE[9]Hey!\\.\\. Hey!\\.\\.\nWrestle with me!!!",
+    "\\SE[1]Sorry... I don't really feel\nlike doing that.",
+    "\\SE[9]Hey!",
+    "Don't lie to me!\\.\\.\nI saw you earlier!",
+    "\\SE[1]..?",
+    "\\SE[9]You're really strong! \\.\\.\nI saw you fighting earlier!\\.\\.\nWith someone else!",
+    "\\SE[1](Does she mean with \nCaina..?\\.\\. She saw that?)",
+    "\\SE[9]FIGHT\\.\\. WITH \\.\\. ME!",
+    "F\\.I\\.G\\.H\\.T\\. \nW\\.I\\.T\\.H\\.\nM\\.E.",
+    "\\SE[1]Ah...",
+    "\\SE[2]Talk about playing rough.....",
+    "\\SE[1]Tell me about it....",
+    "\\SE[2]It's a good thing I \nhappened to be walking by!",
+    "\\SE[1]Yeah, that was good timing.",
+    "I'm not really at my best at \nthe moment.",
+    "So dealing with this \nBEAST-Type on my own\nmight've been tricky...",
+    "\\SE[2]She seems so harmless in\nthis form.",
+    "\\SE[2]She's really no different\nfrom a regular cat after all,\\. \nhuh?",
+    "\\SE[1]Yeah, that ball of yarn you \nhad with you really dealt \nthe final blow.",
+    "(Also...\\.\\. Why did you have \nthat with you?)",
+    "\\SE[2]Wonder why she was feeling \nso riled up?",
+    "\\SE[1]I don't know...",
+    "She's not the only one who's \nlashed out at me like this \nrecently.",
+    "\\SE[2]Well. \\.\\.\nShe shouldn't be a problem \nfor awhile.",
+    "\\SE[1]Yeah.\\.\\.\nShe's really cute in this\nform.",
+    "\\SE[2]I think she'd make a nice \ningredient for my latest \nwork.",
+    "\\SE[1]...",
+    "\\SE[2]Well.\\.\\.\nI'm headin' back to the \nhouse.",
+    "I'll see you later!",
+    "\\SE[1](What was that all about?)"
+],
+"forestbarrieredge_kitty": "Meow!"
+
+}

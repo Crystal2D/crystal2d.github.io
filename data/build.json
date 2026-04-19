@@ -1,42 +1,113 @@
 {
     "libs" : [
+        "Crystal.Storage",
         "Crystal.BitmapText",
         "Crystal.RPGTiles",
         "Crystal.SimpleAnimate",
         "Crystal.Audio",
-        "Assembly-JavaScript"
+        "Crystal.HTMLUI",
+        "Assembly-JavaScript",
+        "EventSystem"
     ],
     "scripts" : [
         "plugins/Crispixels",
-        "plugins/FPSMeter"
+        "plugins/FPSMeter",
+        "plugins/LZString"
     ],
     "resources": [
         "main",
-        "sprites",
-        "tiles",
-        "animations",
+        "sprites/ctrls",
+        "sprites/chars",
+        "sprites/faces",
+        "sprites/illusts",
+        "sprites/parallaxes",
+        "sprites/tiles",
+        "spritelibs",
+        "anims",
         "audio/bgm",
         "audio/se"
     ],
     "scenes" : [
-        "title"
+        "init",
+        "loading",
+        "title",
+        "map_init",
+        "yokihouse",
+        "forest_barrier",
+        "forest_barrier_edge",
+        "cliffs",
+        "forest_tree",
+        "forest_mid",
+        "forest_fork",
+        "village_path",
+        "village",
+        "dragonshrine",
+        "territory",
+        "village_ride",
+        "forest_path",
+        "forest_deep",
+        "forest_pocket",
+        "forest_deeper",
+        "forest_cove",
+        "forest_view",
+        "town_path",
+        "fly"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
     "vSyncCount" : 1,
     "runInBackground": false,
-    "debugMode" : false,
+    "debugMode" : true,
     "time" : {
         "maximumDeltaTime" : 0.3333333,
         "timeScale" : 1,
         "fixedDeltaTime" : 0.02
     },
+    "noFixedUpdate": true,
     "partioningMaxDepth" : 8,
+    "input": {
+        "gamepad": {
+            "leftStickDeadzone": {
+                "min": 0.125,
+                "max": 0.925
+            },
+            "rightStickDeadzone": {
+                "min": 0.125,
+                "max": 0.925
+            }
+        }
+    },
     "layers" : [
         {
-            "name": "Transition",
+            "name": "Entites",
             "id": 1,
+            "value": 2
+        },
+        {
+            "name": "Colliders",
+            "id": 2,
             "value": 1
+        },
+        {
+            "name": "Transitioner",
+            "id": 3,
+            "value": 5
+        },
+        {
+            "name": "UI",
+            "id": 4,
+            "value": 4
+        },
+        {
+            "name": "Illustrations",
+            "id": 5,
+            "value": 3
+        },
+        {
+            "name": "Parallax",
+            "id": 6,
+            "value": -1
         }
-    ]
+    ],
+    "sortingAxis" : { "x": 0, "y": 1 }
 }

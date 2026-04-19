@@ -1,0 +1,10 @@
+{
+    "name" : "Crystal.Storage",
+    "id": "com.crystal.chest",
+    "description" : "Makes working with files easier",
+    "version": "2026.1f",
+    "scripts" : [
+        "CordovaFS",
+        "GameStorage"
+    ]
+}

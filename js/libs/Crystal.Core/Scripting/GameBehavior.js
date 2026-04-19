@@ -6,6 +6,8 @@ class GameBehavior extends Behavior
     
     Start () { }
     
+    EarlyUpdate () { }
+
     FixedUpdate () { }
     
     Update () { }

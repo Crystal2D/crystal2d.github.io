@@ -36,4 +36,14 @@ class Grid extends Behavior
     {
         return this.CellToWorld(this.WorldToCell(position));
     }
+
+    Duplicate ()
+    {
+        const output = new Grid();
+
+        output.cellGap = this.cellGap.Duplicate();
+        output.cellSize = this.cellSize.Duplicate();
+
+        return output;
+    }
 }

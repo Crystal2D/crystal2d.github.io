@@ -2,6 +2,7 @@ class GameObject
 {
     #active = false;
     #activeOld = false;
+    #persistent = false;
     #name = "Empty Object";
     #components = [];
     
@@ -53,7 +54,7 @@ class GameObject
     
     get components ()
     {
-        return this.#components;
+        return [...this.#components];
     }
     
     set components (value)
@@ -70,6 +71,24 @@ class GameObject
             this.#components[i].name = this.name;
         }
     }
+
+    get keepOnLoad ()
+    {
+        return this.#persistent;
+    }
+
+    set keepOnLoad (value)
+    {
+        this.#persistent = value;
+
+        if (!value || this.#id < 0) return;
+        
+        let objID = -1;
+
+        while (GameObject.FindByID(objID) != null) objID--;
+        
+        this.#id = objID;
+    }
     
     constructor (name, components, active, transform, id)
     {
@@ -80,9 +99,50 @@ class GameObject
         this.components = components ?? [];
     }
     
-    static Find (name)
+    static Find (path, includeInactive)
     {
-        return SceneManager.GetActiveScene().gameObjects.find(element => element.name === name && element.activeInHierarchy);
+        const pathArray = path.split("/");
+
+        if (pathArray.length === 0) return;
+
+        if (pathArray[0] === "")
+        {
+            const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[1] && (includeInactive || item.activeInHierarchy) && item.transform.parent == null);
+
+            if (pathArray.length > 2 && list.length > 0)
+            {
+                for (let i = 0; i < list.length; i++)
+                {
+                    const item = list[i].transform.Find(pathArray.slice(2).join("/"));
+                
+                    if (item == null) continue;
+                
+                    return item.gameObject;
+                }
+
+                return;
+            }
+
+            return list[0];
+        }
+
+        const list = SceneManager.GetActiveScene().gameObjects.filter(item => item.name === pathArray[0] && (includeInactive || item.activeInHierarchy));
+
+        if (pathArray.length > 1 && list.length > 0)
+        {
+            for (let i = 0; i < list.length; i++)
+            {
+                const item = list[i].transform.Find(pathArray.slice(1).join("/"));
+
+                if (item == null) continue;
+
+                return item.gameObject;
+            }
+
+            return;
+        }
+
+        return list[0];
     }
     
     static FindByID (id)
@@ -108,9 +168,31 @@ class GameObject
     
     #IsComponent (item, type, includeInactive)
     {
-        if (!(eval(`item instanceof ${type}`)) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
+        if (typeof type === "string") type = eval(type);
+
+        if (!(item instanceof type) || (item instanceof Behavior && !item.enabled && !includeInactive)) return false;
         
         return true;
+    }
+
+    AddComponent (component)
+    {
+        component.gameObject = this;
+        component.name = this.name;
+
+        this.#components.push(component);
+    }
+
+    RemoveComponent (component)
+    {
+        const index = this.#components.indexOf(component);
+
+        if (index < 0) return;
+
+        this.#components.splice(index, 1);
+
+        component.gameObject = null;
+        component.name = null;
     }
     
     GetSceneID ()
@@ -174,23 +256,49 @@ class GameObject
         }
     }
     
-    GetComponent (type)
+    GetComponent (type, includeInactive)
     {
-        return this.#components.find(item => this.#IsComponent(item, type, false));
+        return this.#components.find(item => this.#IsComponent(item, type, includeInactive));
     }
     
-    GetComponents (type)
+    GetComponents (type, includeInactive)
     {
-        return this.#components.filter(item => this.#IsComponent(item, type, false));
+        return this.#components.filter(item => this.#IsComponent(item, type, includeInactive));
     }
 
-    GetComponentInParent (type)
+    GetComponentInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponent(type);
+        return this.transform.parent.GetComponent(type, includeInactive);
     }
 
-    GetComponentsInParent (type)
+    GetComponentsInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponents(type);
+        return this.transform.parent.GetComponents(type, includeInactive);
+    }
+
+    GetComponentInChildren (type, includeInactive)
+    {
+        const children = this.transform.GetChildren();
+
+        for (let i = 0; i < children.length; i++)
+        {
+            const component = children[i].GetComponent(type, includeInactive) ?? children[i].GetComponentInChildren(type, includeInactive);
+
+            if (component != null) return component;
+        }
+    }
+
+    GetComponentsInChildren (type, includeInactive)
+    {
+        const children = this.transform.GetChildren();
+        let components = [];
+
+        for (let i = 0; i < children.length; i++)
+        {
+            components.push(children[i].GetComponent(type, includeInactive));
+            components.push(...children[i].GetComponentsInChildren(type, includeInactive));
+        }
+
+        return components.filter(item => item != null);
     }
 }

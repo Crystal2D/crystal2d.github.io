@@ -103,4 +103,9 @@ class Bounds
             )
         );
     }
+
+    Duplicate ()
+    {
+        return new Bounds(this.center.Duplicate(), this.size.Duplicate());
+    }
 }

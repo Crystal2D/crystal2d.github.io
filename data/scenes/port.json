@@ -1,0 +1,70 @@
+{
+    "name": "Port",
+    "resources": [
+        "sprites/tilesets/ext_castletown_alley1"
+    ],
+    "gameObjects": [
+        {
+            "name": "camera",
+            "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                }
+            ]
+        },
+        {
+            "name": "tilegrid_0",
+            "id": 1,
+            "components": [
+                {
+                    "type": "Grid"
+                }
+            ]
+        },
+        {
+            "name": "tile_Environment",
+            "id": 2,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Exterior - Castle Town - Alley 1",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -3,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 12
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

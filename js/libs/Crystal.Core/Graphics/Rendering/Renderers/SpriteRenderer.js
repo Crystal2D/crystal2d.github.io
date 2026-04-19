@@ -1,11 +1,12 @@
 class SpriteRenderer extends Renderer
 {
-    #changedDrawMode = false;
+    #remapColors = false;
     #meshChanged = true;
     #drawMode = 0;
     #indexes = [];
     #trisCounts = [];
     
+    #texSize = Vector2.zero;
     #boundsSize = Vector2.zero;
     #bounds = new Bounds();
     #transMat = new Matrix3x3();
@@ -14,6 +15,7 @@ class SpriteRenderer extends Renderer
     #spriteOld = null;
     #colorOld = null;
     #size = null;
+    #sizeBase = null;
 
     get meshChanged ()
     {
@@ -32,7 +34,7 @@ class SpriteRenderer extends Renderer
     
     set sprite (value)
     {
-        this.#sprite = value;
+        this.#sprite = value.Duplicate();
         
         this.Reload();
     }
@@ -44,8 +46,10 @@ class SpriteRenderer extends Renderer
 
     set drawMode (value)
     {
+        if (this.#drawMode === value) return;
+
         this.#drawMode = value;
-        this.#changedDrawMode = true;
+        this.#remapColors = true;
 
         this.Reload();
     }
@@ -60,12 +64,17 @@ class SpriteRenderer extends Renderer
 
     get size ()
     {
-        return this.#size;
+        return this.#size ?? Vector2.Divide(Vector2.one, this.#sizeBase);
     }
 
     set size (value)
     {
+        if (this.#size instanceof Vector2 && this.#size.Equals(value)) return;
+        if (this.#size === value) return;
+
         this.#size = value;
+
+        if (this.#drawMode > 0) this.#remapColors = true;
 
         this.Reload();
     }
@@ -74,7 +83,7 @@ class SpriteRenderer extends Renderer
     {
         super(material);
         
-        this.#sprite = sprite;
+        this.#sprite = sprite.Duplicate();
         this.Reload();
     }
 
@@ -104,19 +113,23 @@ class SpriteRenderer extends Renderer
     
     Reload ()
     {
+        if (this.updatedMaterial) this.#remapColors = true;
+
         super.Reload();
 
         this.#spriteOld = this.#sprite;
 
         const ppu = this.sprite.pixelPerUnit;
-
-        if (this.#size == null) this.#size = Vector2.Divide(Vector2.one, ppu);
+        this.#sizeBase = new Vector2(
+            ppu / this.sprite.rect.width,
+            ppu / this.sprite.rect.height,
+        );
 
         this.#indexes = [];
         this.#trisCounts = [];
         
         const verts = this.sprite.vertices;
-        const renderSize = Vector2.Scale(this.#size, ppu);
+        const renderSize = Vector2.Scale(this.size, this.#sizeBase);
 
         if (!renderSize.Equals(Vector2.one))
         {
@@ -144,6 +157,7 @@ class SpriteRenderer extends Renderer
         const rescaleW = texX / ppu;
         const rescaleH = texY / ppu;
 
+        this.#texSize = new Vector2(rescaleW, rescaleH);
         this.#boundsSize = new Vector2(
             rescaleW * (verts[3].x - vertexPos.x),
             rescaleH * (verts[3].y - vertexPos.y)
@@ -499,7 +513,11 @@ class SpriteRenderer extends Renderer
         this.material.SetBuffer(this.geometryBufferID, vertexArray);
         this.material.SetBuffer(this.textureBufferID, textureArray);
 
-        if (this.#colorOld == null || this.#changedDrawMode) this.#RemapColors();
+        if (this.#colorOld == null || this.#remapColors)
+        {
+            this.#RemapColors();
+            this.#remapColors = false;
+        }
 
         this.#transMat = Matrix3x3.TRS(
             Vector2.Scale(
@@ -542,6 +560,15 @@ class SpriteRenderer extends Renderer
                 Math.max(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
             ),
         );
+
+        const posMat = Matrix3x3.Multiply(refMat, Matrix3x3.Translate(
+            new Vector2(
+                (0.5 - this.sprite.pivot.x) * this.#boundsSize.x,
+                (0.5 - this.sprite.pivot.y) * this.#boundsSize.y
+            ),
+        ));
+
+        bounds.center = new Vector2(posMat.GetValue(2, 0), -posMat.GetValue(2, 1));
 
         this.#bounds = bounds;
 
@@ -595,5 +622,18 @@ class SpriteRenderer extends Renderer
         );
         
         gl.useProgram(null);
+    }
+
+    Duplicate ()
+    {
+        const output = new SpriteRenderer(this.sprite, this.material);
+
+        output.color = this.color.Duplicate();
+        output.sortingLayer = this.sortingLayer;
+        output.sortingOrder = this.sortingOrder;
+        output.drawMode = this.drawMode;
+        output.size = this.size.Duplicate();
+
+        return output;
     }
 }

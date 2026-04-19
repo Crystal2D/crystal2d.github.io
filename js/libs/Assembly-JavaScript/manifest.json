@@ -1,18 +1,58 @@
 {
     "name" : "Assembly-JavaScript",
+    "id": "main",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
+        "RPGSave",
+        "Loader",
+        "Init",
+        "MapInit",
         "Viewport",
-        "TitleScreen",
         "AudioManager",
         "Transitioner",
+        "Box/ItsABox",
+        "Box/ChoiceBox",
+        "TitleScreen",
         "Options",
-        "character/RPGMovement",
-        "character/CharController",
-        "CameraController",
-        "Test"
+        "InputManager",
+        "Character/RPGMovement",
+        "Character/Player",
+        "Character/SnekChar",
+        "Character/Party",
+        "Character/Moves/MovesBase",
+        "Character/Moves/RandomMove",
+        "Character/Moves/ToPlayerMove",
+        "CamCtrl",
+        "MapGrid/MapNode",
+        "MapGrid/MapGrid",
+        "MapGrid/TilemapCollider",
+        "MapConfig/MapConfig",
+        "MapConfig/MapTransfer",
+        "Test",
+        "LocaleManager",
+        "Parallax"
     ],
     "classes" : [
+        {
+            "name" : "ItsABox",
+            "type" : 0
+        },
+        {
+            "name" : "ChoiceBox",
+            "type" : 0
+        },
+        {
+            "name" : "Loader",
+            "type" : 0
+        },
+        {
+            "name" : "Init",
+            "type" : 0
+        },
+        {
+            "name" : "MapInit",
+            "type" : 0
+        },
         {
             "name" : "Viewport",
             "type" : 0
@@ -34,18 +74,174 @@
             "type" : 0
         },
         {
-            "name" : "CharController",
+            "name" : "InputManager",
+            "type" : 0
+        },
+        {
+            "name" : "RPGMovement",
             "type" : 0,
-            "args" : [
+            "args": [
                 {
-                    "name" : "speed",
-                    "type" : "number"
+                    "type": "number",
+                    "name": "moveSpeed"
+                },
+                {
+                    "type": "string",
+                    "name": "event"
+                },
+                {
+                    "type": "bool",
+                    "name": "charCollision"
+                },
+                {
+                    "type": "bool",
+                    "name": "animateWalk"
+                },
+                {
+                    "type": "bool",
+                    "name": "animateIdle"
                 }
             ]
         },
         {
-            "name" : "CameraController",
+            "name" : "Player",
             "type" : 0
+        },
+        {
+            "name" : "SnekChar",
+            "type" : 0
+        },
+        {
+            "name" : "Party",
+            "type" : 0
+        },
+        {
+            "name" : "RandomMove",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "bool",
+                    "name": "turnOnly"
+                },
+                {
+                    "type": "number",
+                    "name": "interval"
+                }
+            ]
+        },
+        {
+            "name" : "ToPlayerMove",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "bool",
+                    "name": "turnOnly"
+                },
+                {
+                    "type": "number",
+                    "name": "interval"
+                },
+                {
+                    "type": "bool",
+                    "name": "away"
+                }
+            ]
+        },
+        {
+            "name" : "CamCtrl",
+            "type" : 0,
+            "args": [
+                {
+                    "component": true,
+                    "type": "Transform",
+                    "name": "target"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "clampMin"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "clampMax"
+                }
+            ]
+        },
+        {
+            "name" : "MapGrid",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "Vector2",
+                    "name": "min"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "max"
+                }
+            ]
+        },
+        {
+            "name" : "TilemapCollider",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "type"
+                }
+            ]
+        },
+        {
+            "name": "MapConfig",
+            "type": 0,
+            "args": [
+                {
+                    "type": "MapTransfer",
+                    "array": true,
+                    "name": "transfers"
+                },
+                {
+                    "type": "Interactable",
+                    "array": true,
+                    "name": "interactables"
+                }
+            ]
+        },
+        {
+            "name": "MapTransfer",
+            "type": 0,
+            "args": [
+                {
+                    "type": "number",
+                    "name": "scene"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "min"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "max"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "pos"
+                }
+            ]
+        },
+        {
+            "name" : "Parallax",
+            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
+            "type" : 0,
+            "args": [
+                {
+                    "type": "Vector2",
+                    "name": "speed"
+                },
+                {
+                    "type": "Vector2",
+                    "name": "offset"
+                }
+            ]
         },
         {
             "name" : "Test",

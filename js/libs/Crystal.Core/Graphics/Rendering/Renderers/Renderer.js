@@ -1,6 +1,10 @@
 class Renderer extends Component
 {
+    static sortingAxis = Vector2.zero;
+
     #loaded = false;
+    #updatedMaterial = false;
+    #tintColor = Color.clear;
     
     #material = null;
     #materialOld = null;
@@ -16,6 +20,7 @@ class Renderer extends Component
     sortingOrder = 0;
     
     color = Color.white;
+    sortingAxisOffset = Vector2.zero;
     renderMatrix = new Matrix3x3();
     onMeshUpdate = new DelegateEvent();
     
@@ -41,7 +46,8 @@ class Renderer extends Component
     
     set material (value)
     {
-        this.#material = value;
+        this.#material = value.Duplicate();
+        this.#updatedMaterial = true;
         
         this.Reload();
     }
@@ -50,17 +56,42 @@ class Renderer extends Component
     {
         return Matrix3x3.identity;
     }
+
+    get updatedMaterial ()
+    {
+        return this.#updatedMaterial;
+    }
+
+    get tint ()
+    {
+        return this.#tintColor.Duplicate();
+    }
+
+    set tint (value)
+    {
+        if (value.Equals(this.#tintColor)) return;
+
+        this.#tintColor = value.Duplicate();
+        this.material.SetVector("uTint", 
+            this.#tintColor.r,
+            this.#tintColor.g,
+            this.#tintColor.b,
+            this.#tintColor.a
+        );
+    }
     
     constructor (material)
     {
         super();
         
-        this.#material = material ?? new Material();
+        this.#material = material.Duplicate() ?? new Material();
     }
     
     Reload ()
     {
         if (this.#materialOld === this.#material) return;
+
+        this.#updatedMaterial = false;
 
         this.material?.Unload();
 
