@@ -150,13 +150,13 @@ class GameObject
         return SceneManager.GetActiveScene().gameObjects.find(element => element.GetSceneID() === id);
     }
     
-    static FindComponents (type)
+    static FindComponents (type, includeInactive)
     {
-        const gameObjs = SceneManager.GetActiveScene().gameObjects.filter(item => item.activeInHierarchy);
+        const gameObjs = SceneManager.GetActiveScene().gameObjects.filter(item => item.activeInHierarchy || includeInactive);
         
         let output = [];
         
-        for (let i = 0; i < gameObjs.length; i++) output.push(...gameObjs[i].GetComponents(type));
+        for (let i = 0; i < gameObjs.length; i++) output.push(...gameObjs[i].GetComponents(type, includeInactive));
         
         return output;
     }

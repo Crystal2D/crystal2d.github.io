@@ -5,6 +5,14 @@ class MapConfig extends GameBehavior
 
     Start ()
     {
+        EventSystem.onUpdate.Add(() => this.#Set());
+        this.#Set();
+
+        if (MapTransfer.last != null) Party.OnTransfer();
+    }
+
+    #Set ()
+    {
         for (let i = 0; i < this.transfers.length; i++)
         {
             Loader.Ready(this.transfers[i].scene);
@@ -14,19 +22,23 @@ class MapConfig extends GameBehavior
             
             for (let x = min.x; x <= max.x; x++)
             {
-                for (let y = min.y; y <= max.y; y++) MapGrid.current.NodeOnGrid(new Vector2(x, y)).AddOwner(this.transfers[i]);
+                for (let y = min.y; y <= max.y; y++)
+                {
+                    const node = MapGrid.current.NodeOnGrid(new Vector2(x, y));
+
+                    if (!this.transfers[i].isEnabled) node.RemoveOwner(this.transfers[i]);
+                    else node.AddOwner(this.transfers[i]);
+                }
             }
         }
 
         for (let i = 0; i < this.interactables.length; i++)
         {
-            if (!this.interactables[i].isEnabled) continue;
-
             const pos = this.interactables[i].pos;
+            const node = MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y));
 
-            MapGrid.current.NodeOnGrid(new Vector2(pos.x, pos.y)).AddOwner(this.interactables[i]);
+            if (!this.interactables[i].isEnabled) node.RemoveOwner(this.interactables[i]);
+            else node.AddOwner(this.interactables[i]);
         }
-
-        if (MapTransfer.last != null) Party.OnTransfer();
     }
 }

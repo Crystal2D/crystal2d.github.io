@@ -74,7 +74,6 @@ class Party extends SnekChar
         ]);
 
         member.sprLib.asset = Resources.Find(`spritelibs/chars/${name}`);
-        member.sprRes.Reload();
         member.sprRen.color.a = 1;
     }
 
@@ -87,7 +86,6 @@ class Party extends SnekChar
         if (index > 0) member.sprRen.color.a = 0;
 
         member.sprLib.asset = Resources.Find("spritelibs/chars/yoki");
-        member.sprRes.Reload();
 
         if (member.name !== "yoki")
         {

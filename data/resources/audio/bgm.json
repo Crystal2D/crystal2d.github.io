@@ -26,5 +26,12 @@
         "args": {
             "src": "bgm/fly.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/yokihouse",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/yokihouse.ogg"
+        }
     }
 ]

@@ -177,6 +177,8 @@ class RPGMovement extends GameBehavior
         this.#node.RemoveOwner(this);
         this.lastNode = null;
         this.#node = null;
+
+        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, -0.3125));
     }
 
     LateUpdate ()
@@ -206,6 +208,7 @@ class RPGMovement extends GameBehavior
             if (this.#DirBlocked())
             {
                 this.lookingAt = this._moveDir;
+                this.#targetDir = Vector2.zero;
                 this._moveDir = Vector2.zero;
                 this.transform.position = this.#lastPos;
                 this.#allowDirChange = true;

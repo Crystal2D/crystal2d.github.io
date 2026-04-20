@@ -90,6 +90,11 @@
                     "type": "EventCondition",
                     "array": true,
                     "name": "or"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "and"
                 }
             ]
         },

@@ -225,6 +225,11 @@
                 {
                     "type": "Vector2",
                     "name": "pos"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
                 }
             ]
         },

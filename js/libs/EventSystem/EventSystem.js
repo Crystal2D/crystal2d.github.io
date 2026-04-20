@@ -3,6 +3,9 @@ class EventSystem
     static #switches = new Map();
     static #variables = new Map();
 
+    static onBeforeUpdate = new DelegateEvent();
+    static onUpdate = new DelegateEvent();
+
     static dialogueBox = null;
     static dialogueChoiceBox = null;
     static illustrator = null;
@@ -1410,6 +1413,8 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             case "forestbarrieredge_tigertaur": {
+                Resources.Load("audio/bgm/yokihouse");
+
                 const tigertaur = GameObject.Find("char_tigertaur").GetComponent(RPGMovement);
                 tigertaur.LookAtChar(Player.instance);
                 tigertaur.lockLook = true;
@@ -1443,8 +1448,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
 
                 AudioManager.instance.FadeOutBGM(1);
-
-                // this.dialogueBox.Close();
 
                 this.dialogueBox.SetFace("tigertaur", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
@@ -1495,7 +1498,178 @@ class EventSystem
                 
                 this.dialogueBox.SetFace("yoki", "sweatdrop");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+
+                tigertaur.GetComponent("SpriteLibrary").asset = Resources.Find("spritelibs/chars/catiger");
+                this.SetSwitch("kitty_fight", true);
+
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(1);
+                await this.Timer(40);
+
+                Player.instance.LookAt(Vector2.down);
+                tigertaur.GetComponent(SpriteRenderer).color.a = 0;
+
+                this.dialogueBox.SetFace("claire", "down");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("yoki", "think");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(20);
+
+                AudioManager.instance.PlayBGM("yokihouse", 0.2);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Set(0, "tigertaur_5", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[21]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[22]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Set(0, "tigertaur_6", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[23]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[24]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[25]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[26]);
+
+                tigertaur.GetComponent(SpriteRenderer).color.a = 1;
+                this.SetSwitch("kitty_bye", true);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(40);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[27]);
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[28]);
+                this.dialogueBox.Close();
+
+                const claire = GameObject.Find("char_claire").GetComponent(RPGMovement);
+                claire.moveSpeed = 4;
+                await claire.MoveTowards(Vector2.up);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[29]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("forest", 0.2);
+
+                this.AddToVariable("illusts");
+                this.SetSwitch("kitty_cat", true);
             } break;
+            case "forestbarrieredge_catiger":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
         }
     }
 
@@ -1645,7 +1819,7 @@ class EventSystem
 
     static async TintAll (color)
     {
-        const renderers = GameObject.FindComponents(Renderer).filter(item => !([4, 5]).includes(item.sortingLayer));
+        const renderers = GameObject.FindComponents(Renderer, true).filter(item => !([4, 5]).includes(item.sortingLayer));
 
         for (let i = 0; i < renderers.length; i++) renderers[i].tint = color;
 
@@ -1664,12 +1838,16 @@ class EventSystem
 
     static SetSwitch (name, state)
     {
-        return this.#switches.set(name, state);
+        this.#switches.set(name, state);
+        this.onBeforeUpdate.Invoke();
+        this.onUpdate.Invoke();
     }
 
     static SetVariable (name, value)
     {
-        return this.#variables.set(name, value);
+        this.#variables.set(name, value);
+        this.onBeforeUpdate.Invoke();
+        this.onUpdate.Invoke();
     }
 
     static AddToVariable (name, amount = 1)

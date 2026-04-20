@@ -7,7 +7,9 @@ class MapInit extends GameBehavior
         Resources.DontDestroyOnLoad(
             "anims/entity",
             "anims/entity_ctrl",
-            "anims/entity_reset"
+            "anims/entity_reset",
+            "sprites/chars/butterfly",
+            "spritelibs/chars/butterfly"
         );
 
         // Loader.Ready(4);
@@ -29,7 +31,11 @@ class MapInit extends GameBehavior
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);
         
-        Loader.onSwitchStart.Add(() => renderer.color.a = 0);
+        Loader.onSwitchStart.Add(() => {
+            EventSystem.onBeforeUpdate.RemoveAll();
+            EventSystem.onUpdate.RemoveAll();
+            renderer.color.a = 0;
+        });
         Loader.onSwitchEnd.Add(() => renderer.color.a = 1);
 
         const switchingCall = () => {

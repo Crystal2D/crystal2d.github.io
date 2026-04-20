@@ -13,8 +13,6 @@
             "spritelibs/chars/fox"
         ],
         [
-            "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly",
             "sprites/chars/sbutterfly",
             "spritelibs/chars/sbutterfly"
         ],
@@ -16881,7 +16879,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -16908,7 +16906,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -16935,7 +16933,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -16962,7 +16960,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -16989,7 +16987,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -17016,7 +17014,7 @@
                             },
                             {
                                 "name": "dragon_done",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -17056,7 +17054,7 @@
                         "conditions": [
                             {
                                 "name": "dragon_forest",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -17095,7 +17093,7 @@
                         "conditions": [
                             {
                                 "name": "dragon_forest",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -17148,7 +17146,7 @@
                         "conditions": [
                             {
                                 "name": "butterfly",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }
@@ -17204,7 +17202,7 @@
                             },
                             {
                                 "name": "dragon_deeper",
-                                "threshold": 0
+                                "not": true
                             }
                         ]
                     }

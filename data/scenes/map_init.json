@@ -21,6 +21,10 @@
             "anims/entity",
             "anims/entity_reset",
             "anims/entity_ctrl"
+        ],
+        [
+            "sprites/chars/butterfly",
+            "spritelibs/chars/butterfly"
         ]
     ],
     "gameObjects": [
