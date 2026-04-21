@@ -94,6 +94,11 @@ class RPGMovement extends GameBehavior
     lastNode = null;
     event = null;
 
+    static FindChar (name)
+    {
+        return GameObject.Find(name).GetComponent(RPGMovement);
+    }
+
     async Invoke ()
     {
         if (this.event == null) return;
@@ -350,14 +355,54 @@ class RPGMovement extends GameBehavior
         this.LookAtTemp(dir)
     }
 
+    LookAway (dir)
+    {
+        this.LookAt(Vector2.Scale(dir, new Vector2(-1, -1)));
+    }
+
+    LookAwayTemp (dir)
+    {
+        this.LookAtTemp(Vector2.Scale(dir, new Vector2(-1, -1)));
+    }
+
     LookAtChar (char)
     {
         this.LookAt(Vector2.Subtract(char.gridPos, this.gridPos));
     }
 
+    LookAwayChar (char)
+    {
+        this.LookAt(Vector2.Subtract(this.gridPos, char.gridPos));
+    }
+
     LookAtCharTemp (char)
     {
         this.LookAtTemp(Vector2.Subtract(char.gridPos, this.gridPos));
+    }
+
+    LookAwayCharTemp (char)
+    {
+        this.LookAtTemp(Vector2.Subtract(this.gridPos, char.gridPos));
+    }
+
+    LookAtPlayer ()
+    {
+        this.LookAtChar(Player.instance);
+    }
+
+    LookAwayPlayer ()
+    {
+        this.LookAwayChar(Player.instance);
+    }
+
+    LookAtPlayerTemp ()
+    {
+        this.LookAtCharTemp(Player.instance);
+    }
+
+    LookAwayPlayerTemp ()
+    {
+        this.LookAwayCharTemp(Player.instance);
     }
 
     Unlook ()
@@ -370,7 +415,8 @@ class RPGMovement extends GameBehavior
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
 
-        this.#node.RemoveOwner(this);
+        if (this.#node != null) this.#node.RemoveOwner(this);
+        
         this.lastNode = this.#node;
         this.#node = MapGrid.current.NodeOnGrid(pos);
         this.#node.AddOwner(this);

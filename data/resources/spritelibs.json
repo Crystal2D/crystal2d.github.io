@@ -287,6 +287,30 @@
             "texture": "sprites/chars/catiger"
         }
     },
+    {
+        "path": "spritelibs/chars/frog",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/frog"
+        }
+    },
+    {
+        "path": "spritelibs/chars/wolf",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/wolf"
+        }
+    },
+    {
+        "path": "spritelibs/chars/woof_eepy",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/woof_eepy"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

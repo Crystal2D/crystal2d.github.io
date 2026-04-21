@@ -149,7 +149,5 @@ class Player extends RPGMovement
         this.avoidInputs = true;
         const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
         if (!handledInput) this.avoidInputs = false;
-
-        console.log(handledInput);
     }
 }

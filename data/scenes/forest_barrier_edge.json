@@ -6,6 +6,7 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/collider",
+        "audio/se/jump",
         [
             "sprites/chars/fox",
             "spritelibs/chars/fox"
@@ -13128,6 +13129,17 @@
                                         "name": "kitty_cat"
                                     }
                                 ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "forestbarrieredge_losttraveller",
+                        "conditions": [
+                            {
+                                "name": "traveller_help"
                             }
                         ]
                     }

@@ -75,5 +75,26 @@
         "args": {
             "src": "illusts\\tigertaur_6.png"
         }
+    },
+    {
+        "path": "sprites/illusts/woof_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_1.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_2.png"
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_3.png"
+        }
     }
 ]

@@ -13,7 +13,7 @@ class MapInit extends GameBehavior
         );
 
         // Loader.Ready(4);
-        Loader.Ready(6);
+        Loader.Ready(7);
     }
 
     async Update ()
@@ -26,8 +26,11 @@ class MapInit extends GameBehavior
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(2, -3);
-        transfer.pos = new Vector2(23, -8);
+        transfer.pos = new Vector2(20, 12);
+        // transfer.pos = new Vector2(8, 18);
         MapTransfer.last = transfer;
+
+        EventSystem.SetSwitch("bird_form", true);
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);
         
@@ -52,7 +55,7 @@ class MapInit extends GameBehavior
         Loader.onSwitchEnd.Add(switchCall);
 
         // Loader.Switch(4);
-        Loader.Switch(6);
+        Loader.Switch(7);
 
         // 22
     }

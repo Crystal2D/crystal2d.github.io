@@ -91,22 +91,27 @@
         {
             "name": "Transitioner",
             "id": 3,
-            "value": 5
+            "value": 6
         },
         {
             "name": "UI",
             "id": 4,
-            "value": 4
+            "value": 5
         },
         {
             "name": "Illustrations",
             "id": 5,
-            "value": 3
+            "value": 4
         },
         {
             "name": "Parallax",
             "id": 6,
             "value": -1
+        },
+        {
+            "name": "Over Entities",
+            "id": 7,
+            "value": 3
         }
     ],
     "sortingAxis" : { "x": 0, "y": 1 }

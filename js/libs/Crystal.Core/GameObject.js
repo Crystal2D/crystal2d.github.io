@@ -1,6 +1,7 @@
 class GameObject
 {
     #active = false;
+    #activeSelfOld = false;
     #activeOld = false;
     #persistent = false;
     #name = "Empty Object";
@@ -13,16 +14,21 @@ class GameObject
     scene = null;
     sceneTreeNode = null;
     
+    get #parentActive ()
+    {
+        if (this.transform.parent == null) return true;
+
+        return this.transform.parent.gameObject.activeInHierarchy;
+    }
+
     get activeSelf ()
     {
-        return this.#activeOld && this.#active;
+        return this.#activeSelfOld && this.#active;
     }
 
     get activeInHierarchy ()
     {
-        if (this.transform.parent == null) return this.activeSelf;
-
-        return this.activeSelf && this.transform.parent.gameObject.activeInHierarchy;
+        return this.activeSelf && this.#parentActive && this.#activeOld;
     }
     
     get name ()
@@ -204,8 +210,9 @@ class GameObject
     {
         this.#active = state;
     }
-    
-    BroadcastMessage (method, params, data)
+
+    // This is braindamaging
+    BroadcastMessageLocal (method, params, data)
     {
         let args = "";
         let dat = data ?? { };
@@ -216,20 +223,40 @@ class GameObject
         // 3 : Disable
         if (dat.specialCall == null) dat.specialCall = 0;
 
-        if (!this.activeSelf && !dat.passActive) return;
+        if (!this.activeInHierarchy && !dat.passActive) return;
 
         switch (dat.specialCall)
         {
-            case 2:
-                if (this.#activeOld || !this.#active) return;
+            case 2: {
+                // if: (SELF) WAS not active & is NOW active
+                // then: update active old
+
+                const selfCheck = !this.#activeSelfOld && this.#active;
+                if (selfCheck) this.#activeSelfOld = true;
+                
+                // if: WAS not active & is NOW active
+                // then: Enable
+
+                const changed = !this.#activeOld && (this.activeSelf && this.#parentActive);
+                if (!changed) return;
 
                 this.#activeOld = true;
-                break;
-            case 3:
-                if (!this.#activeOld || this.#active) return;
+            } break;
+            case 3: {
+                // if: (SELF) WAS active & is NOW not active
+                // then: update active old
+
+                const selfCheck = this.#activeSelfOld && !this.#active;
+                if (selfCheck) this.#activeSelfOld = false;
+                
+                // if: WAS active & is NOW not active
+                // then: Enable
+
+                const changed = this.#activeOld && !(this.activeSelf && this.#parentActive);
+                if (!changed) return;
 
                 this.#activeOld = false;
-                break;
+            } break;
         }
         
         if (Array.isArray(params))
@@ -256,6 +283,14 @@ class GameObject
         }
     }
     
+    BroadcastMessage (method, params, data)
+    {
+        this.BroadcastMessageLocal(method, params, data);
+
+        const children = this.transform.GetChildren();
+        for (let i = 0; i < children.length; i++) children[i].gameObject.BroadcastMessage(method, params, data);
+    }
+    
     GetComponent (type, includeInactive)
     {
         return this.#components.find(item => this.#IsComponent(item, type, includeInactive));
@@ -268,22 +303,34 @@ class GameObject
 
     GetComponentInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponent(type, includeInactive);
+        const selfComponent = this.GetComponent(type, includeInactive);
+        if (selfComponent != null) return selfComponent;
+
+        return this.transform.parent?.GetComponentInParent(type, includeInactive);
     }
 
     GetComponentsInParent (type, includeInactive)
     {
-        return this.transform.parent.GetComponents(type, includeInactive);
+        let components = [];
+
+        const selfComponent = this.GetComponent(type, includeInactive);
+        if (selfComponent != null) components.push(selfComponent);
+
+        if (this.transform.parent != null) components.push(...this.transform.parent.GetComponentsInParent(type, includeInactive));
+
+        return components.filter(item => item != null);
     }
 
     GetComponentInChildren (type, includeInactive)
     {
+        const selfComponent = this.GetComponent(type, includeInactive);
+        if (selfComponent != null) return selfComponent;
+
         const children = this.transform.GetChildren();
 
         for (let i = 0; i < children.length; i++)
         {
-            const component = children[i].GetComponent(type, includeInactive) ?? children[i].GetComponentInChildren(type, includeInactive);
-
+            const component = children[i].GetComponentInChildren(type, includeInactive);
             if (component != null) return component;
         }
     }
@@ -292,12 +339,11 @@ class GameObject
     {
         const children = this.transform.GetChildren();
         let components = [];
+        
+        const selfComponent = this.GetComponent(type, includeInactive);
+        if (selfComponent != null) components.push(selfComponent);
 
-        for (let i = 0; i < children.length; i++)
-        {
-            components.push(children[i].GetComponent(type, includeInactive));
-            components.push(...children[i].GetComponentsInChildren(type, includeInactive));
-        }
+        for (let i = 0; i < children.length; i++) components.push(...children[i].GetComponentsInChildren(type, includeInactive));
 
         return components.filter(item => item != null);
     }

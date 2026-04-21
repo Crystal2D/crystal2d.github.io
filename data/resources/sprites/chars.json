@@ -197,14 +197,14 @@
             "src": "chars/eepywoof.png",
             "sprites": [
                 {
-                    "name": "0",
+                    "name": "a",
                     "rect": {
                         "width": 17,
                         "height": 16
                     }
                 },
                 {
-                    "name": "1",
+                    "name": "b",
                     "rect": {
                         "x": 17,
                         "width": 17,
@@ -1318,6 +1318,156 @@
                     "name": "b",
                     "rect": {
                         "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/frog",
+        "type": "Texture",
+        "args": {
+            "src": "chars/frog.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/wolf",
+        "type": "Texture",
+        "args": {
+            "src": "chars/wolf.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
                         "width": 16,
                         "height": 16
                     }

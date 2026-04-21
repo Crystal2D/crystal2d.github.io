@@ -40,6 +40,7 @@ class Party extends SnekChar
         this.DontDestroyOnLoad(gameObject);
 
         const char = gameObject.GetComponent(RPGMovement);
+        char.charCollision = false;
         char.TP(Player.instance.gridPos);
         Party.instance.Add(char);
 
@@ -64,6 +65,9 @@ class Party extends SnekChar
 
         if (member.name != null) this.Clear(index);
 
+        member.name = name;
+        member.char.charCollision = false;
+        
         Resources.DontDestroyOnLoad(
             `sprites/chars/${name}`,
             `spritelibs/chars/${name}`
@@ -81,9 +85,13 @@ class Party extends SnekChar
     {
         const member = this.#pool.get(index);
 
-        if (member == null) return;
+        if (member == null || member.name == null) return;
 
-        if (index > 0) member.sprRen.color.a = 0;
+        if (index > 0)
+        {
+            member.char.charCollision = false;
+            member.sprRen.color.a = 0;
+        }
 
         member.sprLib.asset = Resources.Find("spritelibs/chars/yoki");
 

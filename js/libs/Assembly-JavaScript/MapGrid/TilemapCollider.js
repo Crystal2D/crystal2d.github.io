@@ -27,7 +27,7 @@ class TilemapCollider extends GameBehavior
 
     Awake ()
     {
-        if (this.GetComponent(EventConditioner) != null) EventSystem.onBeforeUpdate.Add(() => {
+        if (this.GetComponentInParent(EventConditioner) != null) EventSystem.onBeforeUpdate.Add(() => {
             this.Clear();
             this.gameObject.SetActive(true);
         });

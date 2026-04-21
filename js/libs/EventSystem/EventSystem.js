@@ -222,8 +222,8 @@ class EventSystem
         switch (id)
         {
             case "hintbird": {
-                const bird = GameObject.Find("char_hintbird").GetComponent(RPGMovement);
-                bird.LookAtCharTemp(Player.instance);
+                const bird = RPGMovement.FindChar("char_hintbird");
+                bird.LookAtPlayerTemp();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -349,7 +349,7 @@ class EventSystem
             case "fly": {
                 Loader.Ready(4);
                 
-                const them = GameObject.Find("char_claireyokifly").GetComponent(RPGMovement);
+                const them = RPGMovement.FindChar("char_claireyokifly");
                 them.lockLook = true;
                 them.moveSpeed = 6;
                 await them.MoveTowards(Vector2.left);
@@ -652,7 +652,7 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             case "yolkhouse_zera":
-                GameObject.Find("char_zera").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_zera").LookAtPlayer();
 
                 if (this.GetSwitch("zera_athousescene"))
                 {
@@ -813,12 +813,12 @@ class EventSystem
                 this.AddToVariable("illusts");
                 break;
             case "yolkhouse_harp": {
-                const harp = GameObject.Find("char_harp").GetComponent(RPGMovement);
+                const harp = RPGMovement.FindChar("char_harp");
                 const randMove = harp.GetComponent(RandomMove);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                harp.LookAtChar(Player.instance);
+                harp.LookAtPlayer();
 
                 if (this.GetSwitch("harp"))
                 {
@@ -870,8 +870,8 @@ class EventSystem
                 this.SetVariable("harp", Math.RandomInt(1, 5));
                 break;
             case "yolkhouse_claire": {
-                const claire = GameObject.Find("char_claire").GetComponent(RPGMovement);
-                claire.LookAtChar(Player.instance);
+                const claire = RPGMovement.FindChar("char_claire");
+                claire.LookAtPlayer();
 
                 if (this.GetSwitch("journal_done"))
                 {
@@ -1045,7 +1045,7 @@ class EventSystem
                 }
                 break;
             case "forestview_este": {
-                GameObject.Find("char_este").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_este").LookAtPlayer();
 
                 if (this.GetSwitch("este_warp"))
                 {
@@ -1153,8 +1153,8 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_fox1": {
-                const fox = GameObject.Find("char_fox1").GetComponent(RPGMovement);              
-                fox.LookAtChar(Player.instance);
+                const fox = RPGMovement.FindChar("char_fox1");              
+                fox.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await fox.Jump();
@@ -1162,18 +1162,18 @@ class EventSystem
                 await fox.Jump();
             } break;
             case "forestbarrier_fox2":
-                GameObject.Find("char_fox2").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_fox2").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_squirrel1": {
-                const squirrel = GameObject.Find("char_squirrel1").GetComponent(RPGMovement);
+                const squirrel = RPGMovement.FindChar("char_squirrel1");
                 const randMove = squirrel.GetComponent(RandomMove);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await squirrel.Jump();
@@ -1181,14 +1181,14 @@ class EventSystem
                 randMove.ResetTime();
             } break;
             case "forestbarrier_squirrel2":
-                GameObject.Find("char_squirrel2").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_squirrel2").LookAtPlayer();
 
                 this.dialogueBox.SetFace("yoki", "look");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_squirrel3": {
-                const squirrel = GameObject.Find("char_squirrel3").GetComponent(RPGMovement);
+                const squirrel = RPGMovement.FindChar("char_squirrel3");
                 const randMove = squirrel.GetComponent(RandomMove);
 
                 randMove.enabled = false;
@@ -1201,7 +1201,7 @@ class EventSystem
                 await this.Timer(2);
                 squirrel.LookAt(Vector2.down);
                 await this.Timer(2);
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await squirrel.Jump();
@@ -1209,19 +1209,19 @@ class EventSystem
                 randMove.ResetTime();
             } break;
             case "forestbarrier_deer": {
-                const deer = GameObject.Find("char_deer").GetComponent(RPGMovement);
+                const deer = RPGMovement.FindChar("char_deer");
                 
-                deer.LookAtChar(Player.instance);
+                deer.LookAtPlayer();
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await deer.Jump();
                 } break;
             case "forestbarrier_bird": {
-                const bird = GameObject.Find("char_bird").GetComponent(RPGMovement);
+                const bird = RPGMovement.FindChar("char_bird");
                 const randMove = bird.GetComponent(RandomMove);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                bird.LookAtCharTemp(Player.instance);
+                bird.LookAtPlayerTemp();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1301,7 +1301,7 @@ class EventSystem
                 CamCtrl.current.Scroll(new Vector2(7 + 9 - Player.instance.gridPos.x, 0), 4);
                 await this.Timer(140);
 
-                const dragon = GameObject.Find("char_dragon").GetComponent(RPGMovement);
+                const dragon = RPGMovement.FindChar("char_dragon");
                 await dragon.MoveTowards(Vector2.right);
                 await dragon.MoveTowards(Vector2.right);
                 await dragon.MoveTowards(Vector2.right);
@@ -1320,14 +1320,15 @@ class EventSystem
                 this.SetSwitch("dragon_deeper", true);
             } break;
 
+            // ------------------------------------------------------- forest_barrier_edge
             case "forestbarrieredge_raccoon1":
-                GameObject.Find("char_raccoon1").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_raccoon1").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrieredge_raccoon2": {
-                const raccoon = GameObject.Find("char_raccoon2").GetComponent(RPGMovement);
+                const raccoon = RPGMovement.FindChar("char_raccoon2");
 
                 raccoon.LookAt(Vector2.up);
                 await this.Timer(2);
@@ -1337,13 +1338,13 @@ class EventSystem
                 await this.Timer(2);
                 raccoon.LookAt(Vector2.left);
                 await this.Timer(2);
-                raccoon.LookAtChar(Player.instance);
+                raccoon.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await raccoon.Jump();
             } break;
             case "forestbarrieredge_raccoon3":
-                GameObject.Find("char_raccoon3").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_raccoon3").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1351,8 +1352,8 @@ class EventSystem
             case "forestbarrieredge_boar": {
                 AudioManager.instance.PlaySE("crush_1", 0.6);
 
-                const boar = GameObject.Find("char_boar").GetComponent(RPGMovement);
-                boar.LookAtChar(Player.instance);
+                const boar = RPGMovement.FindChar("char_boar");
+                boar.LookAtPlayer();
                 boar.Jump();
 
                 Player.instance.lockLook = true;
@@ -1365,11 +1366,11 @@ class EventSystem
                 this.dialogueBox.Close();
             } break;
             case "forestbarrieredge_fox": {
-                const fox = GameObject.Find("char_fox").GetComponent(RPGMovement);
+                const fox = RPGMovement.FindChar("char_fox");
                 const randMove = fox.GetComponent(RandomMove);
 
                 randMove.enabled = false;
-                fox.LookAtChar(Player.instance);
+                fox.LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1378,12 +1379,12 @@ class EventSystem
                 randMove.ResetTime();
             } break;
             case "forestbarrieredge_bird": {
-                const bird = GameObject.Find("char_bird").GetComponent(RPGMovement);
+                const bird = RPGMovement.FindChar("char_bird");
                 const randMove = bird.GetComponent(RandomMove);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                bird.LookAtCharTemp(Player.instance);
+                bird.LookAtPlayerTemp();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1395,19 +1396,19 @@ class EventSystem
             case "forestbarrieredge_squirrel": {
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
 
-                const squirrel = GameObject.Find("char_squirrel").GetComponent(RPGMovement);
+                const squirrel = RPGMovement.FindChar("char_squirrel");
                 const randMove = squirrel.GetComponent(RandomMove);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 await squirrel.Jump();
                 randMove.enabled = true;
                 randMove.ResetTime();
             } break;
             case "forestbarrieredge_rabbit":
-                GameObject.Find("char_rabbit").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_rabbit").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1415,8 +1416,8 @@ class EventSystem
             case "forestbarrieredge_tigertaur": {
                 Resources.Load("audio/bgm/yokihouse");
 
-                const tigertaur = GameObject.Find("char_tigertaur").GetComponent(RPGMovement);
-                tigertaur.LookAtChar(Player.instance);
+                const tigertaur = RPGMovement.FindChar("char_tigertaur");
+                tigertaur.LookAtPlayer();
                 tigertaur.lockLook = true;
 
                 await this.TintAll(new Color(
@@ -1637,7 +1638,7 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[28]);
                 this.dialogueBox.Close();
 
-                const claire = GameObject.Find("char_claire").GetComponent(RPGMovement);
+                const claire = RPGMovement.FindChar("char_claire");
                 claire.moveSpeed = 4;
                 await claire.MoveTowards(Vector2.up);
                 await claire.MoveTowards(Vector2.left);
@@ -1668,6 +1669,279 @@ class EventSystem
             } break;
             case "forestbarrieredge_catiger":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "forestbarrieredge_losttraveller": {
+                if (this.GetSwitch("traveller_done")) return;
+
+                Party.Clear(1);
+                await this.WaitTransfer();
+
+                Player.instance.avoidInputs = true;
+                this.SetSwitch("traveller_help", false);
+                this.SetSwitch("traveller", true);
+
+                if (this.GetVariable("traveller_lost") >= 1)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                }
+
+                this.dialogueBox.Close();
+
+                this.AddToVariable("traveller_lost");
+                Player.instance.avoidInputs = false;
+            } break;
+
+            // ------------------------------------------------------- cliffs
+            case "cliffs_deer1": {
+                const deer = RPGMovement.FindChar("char_deer1");
+                await deer.LookAt(Vector2.left);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.up);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.right);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.down);
+                await this.Timer(2);
+                await deer.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "cliffs_deer2": 
+                RPGMovement.FindChar("char_deer2").LookAtPlayer();
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_deer3": 
+                RPGMovement.FindChar("char_deer3").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_boar":
+                RPGMovement.FindChar("char_boar").LookAwayPlayer();
+                break;
+            case "cliffs_fox":
+                RPGMovement.FindChar("char_fox").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_rabbit1": {
+                const rabbit = RPGMovement.FindChar("char_rabbit1");
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+            } break;
+            case "cliffs_rabbit2": {
+                const rabbit = RPGMovement.FindChar("char_rabbit2");
+                rabbit.charCollision = false;
+                rabbit.moveSpeed = 6;
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.right);
+                await rabbit.MoveTowards(Vector2.right);
+                await rabbit.MoveTowards(Vector2.right);
+                rabbit.charCollision = true;
+                rabbit.LookAtPlayer();
+            } break;
+            case "cliffs_bird": {
+                const bird = RPGMovement.FindChar("char_bird");
+                bird.LookAtPlayerTemp();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                bird.Unlook();
+            } break;
+            case "cliffs_squirrel": {
+                const squirrel = RPGMovement.FindChar("char_squirrel");
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                squirrel.LookAtPlayer();
+                await squirrel.Jump();
+            } break;
+            case "cliffs_raccoon":
+                RPGMovement.FindChar("char_raccoon").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_frog":
+                RPGMovement.FindChar("char_frog").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_wolf":
+                RPGMovement.FindChar("char_wolf").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_woof": {
+                if (this.GetSwitch("woof_sleep_3"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[0]);
+                    this.dialogueBox.SetFace("woof", "sleep");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[1]);
+                    this.dialogueBox.Close();
+                    return;
+                }
+                else if (this.GetSwitch("woof_sleep_2"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[0]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[2]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[3]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[4]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[5]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("woof_sleep_3", true);
+                    return;
+                }
+                else if (this.GetSwitch("woof_sleep_1"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                    this.dialogueBox.SetFace("yoki", "annoyed");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[2]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[3]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[4]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[5]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[6]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("woof_sleep_2", true);
+                    return;
+                }
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Set(0, "woof_1", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[2]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[3]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[4]);
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[5]);
+
+                this.illustrator.Set(1, "woof_2", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[6]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[7]);
+
+                this.illustrator.Set(0, "woof_3", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[8]);
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[9]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[10]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("woof_sleep_1", true);
+                this.AddToVariable("illusts")
+            } break;
+            case "cliffs_bonus_zera":
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.Close();
                 break;
         }
@@ -1792,6 +2066,17 @@ class EventSystem
         PlayerLoop.onAfterUpdate.Add(updateCallback);
 
         await new Promise(resolve => endCallback = resolve);
+    }
+
+    static async WaitTransfer ()
+    {
+        await new Promise(resolve => {
+            const callback = () => {
+                Transitioner.instance.onTintOut.Remove(callback);
+                resolve();
+            };
+            Transitioner.instance.onTintOut.Add(callback);
+        });
     }
 
     static async BlackSwitch (scene)

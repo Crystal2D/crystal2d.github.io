@@ -11,6 +11,9 @@ class Transitioner extends GameBehavior
     
     #sprite = null;
 
+    onTintIn = new DelegateEvent();
+    onTintOut = new DelegateEvent();
+
     Awake ()
     {
         Transitioner.instance = this;
@@ -90,6 +93,8 @@ class Transitioner extends GameBehavior
             0
         ));
         await EventSystem.Timer(3);
+
+        this.onTintIn.Invoke();
     }
 
     async TintOut ()
@@ -103,6 +108,8 @@ class Transitioner extends GameBehavior
         await EventSystem.Timer(3);
         await EventSystem.TintAll(Color.clear);
         await EventSystem.Timer(3);
+
+        this.onTintOut.Invoke();
     }
 
     Clear ()

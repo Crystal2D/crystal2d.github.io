@@ -59,6 +59,11 @@
                 {
                     "type": "string",
                     "name": "event"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
                 }
             ]
         },

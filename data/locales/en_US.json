@@ -304,6 +304,7 @@
 "forestbarrier_sbutterfly": "I feel.\\.\\..\\.\\.. Pleasant...",
 "forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?",
 
+"forest_barrier_edge": "----------------------------------------------------------------------",
 "forestbarrieredge_raccoon1": "..?",
 "forestbarrieredge_raccoon3": "..!",
 "forestbarrieredge_boar": "..!",
@@ -342,6 +343,87 @@
     "I'll see you later!",
     "\\SE[1](What was that all about?)"
 ],
-"forestbarrieredge_catiger": "Meow!"
+"forestbarrieredge_catiger": "Meow!",
+"forestbarrieredge_losttraveller_1": [
+    "\\SE[8]Miss? Where did you go!? Hello?",
+    "\\SE[1]..Guess the barrier's too \nstrong for him this far in."
+],
+"forestbarrieredge_losttraveller_2": [
+    "\\SE[8]Oh no..! Miss? Where did you go!?",
+    "\\SE[1]Oops... Not again..."
+],
+
+"cliffs": "----------------------------------------------------------------------",
+"cliffs_deer2": "(She's chewing on some \ngrass..)",
+"cliffs_deer3": "\\SE[2]...\\SE[1]",
+"cliffs_fox": "\\SE[2]Bark!\\SE[1]",
+"cliffs_raccoon": "\\SE[11]Rrr..\\SE[1]",
+"cliffs_bird": "\\SE[2]Chirp..\\SE[1]",
+"cliffs_wolf": [
+    "\\SE[6]Grrr...\\SE[1]",
+    "\\SE[1](He looks hungry...)"
+],
+"cliffs_frog": "\\SE[2]Ribbit!\\SE[1]",
+"cliffs_woof_1": [
+    "\\SE[4]zzzzzzz",
+    "\\SE[1]Oh good, she's asleep.",
+    "I really don't feel like\ndealing with her right now.",
+    "Well... Really I never do.",
+    "Maybe she'll just sleep\nforever.",
+    "\\SE[4]zzzzz...\\.\\..\\.\\.Y..\\.\\..\\.\\.Yoki...",
+    "\\SE[1]...?",
+    "Is she...\\.\\. dreaming about me?",
+    "\\SE[4]zzz...\\.\\. I'll\\.\\. eat you yet...",
+    "....\\.\\.Just you\\.\\. wait...",
+    "\\SE[1]..."
+],
+"cliffs_woof_2": [
+    "\\SE[1]I wonder where she even\ncame from...",
+    "She showed up just a few\nyears ago and has been\na pain ever since.",
+    "She always seems to be \ntargeting me...\nI don't know why...",
+    "But...",
+    "Even though she strikes so\nviolently,\\. it sort of \nfeels like...",
+    "She doesn't really mean it...\nLike she knows she can't\nREALLY beat me.",
+    "It's strange...\\.\\.\nHave I met her before all of \nthis..?"
+],
+"cliffs_woof_3": [
+    "\\SE[1]To be honest...\\.\\.\nShe's the kind of BEAST-type\nthe Prince would get rid of.",
+    "She's the dangerous type\nthat'll violently attack \nanyone.",
+    "But..\\.\\..\\.\\.\nI have a feeling she's not\nreally what she seems.",
+    "I should keep her existence\na secret from the Prince.",
+    "She's never wandered too\nclose to the village.",
+    "And she only seems \ninterested in attacking me \nfor some reason..."
+],
+"cliffs_woof_4": [
+    "\\SE[1]I better leave...\\.\\.\nI don't wanna stick around\nfor when she wakes up.",
+    "\\SE[4]zzzzzzzzzz"
+],
+"cliffs_bonus_zera": [
+    "\\SE[4]Zera!",
+    "\\SE[3]...\\SE[4]"
+],
+"cliffs_bonus_aimottle": [
+    "\\SE[4]Ah...\\.\\. It's you...",
+    "!!!",
+    "It's the tasty-looking \nrabbit!!!",
+    "\\SE[4]You're not gonna attack me,\\.\\.\nare you?",
+    "I finally finished repairing \nmy arm...",
+    "Don't make me do it again!",
+    "I smell a familiar scent!!!",
+    "It's Yoki!\\.\\.\nYou were with Yoki earlier!",
+    "\\SE[4]I was... Yeah...",
+    "\\SE[4]You better not think of \ngoing after her again!",
+    "\\SE[4]She has enough to deal with!",
+    "Enough talk!!!\\.\\.\nI'll eat you too!!!",
+    "\\SE[4]We'll see about that!",
+    "!!!!",
+    "\\SE[4]...............................",
+    "\\SE[4]Well.\\.\\..\\.\\..\\.\\.\nI'm sure she'll be ok...",
+    "I should run off before\nshe regains consciousness.",
+    "Huh?\\.\\. Huh?",
+    "Where'd rabbit go?",
+    "I'll go find her!!!",
+    "She won't get away from me\nthat easily!!!"
+]
 
 }

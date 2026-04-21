@@ -8226,9 +8226,39 @@
             ]
         },
         {
+            "name": "tilegroup_Char Collision",
+            "id": 18,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "not": true,
+                                "equal": true,
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "tile_Collision HarP",
             "id": 10,
-            "parent": 5,
+            "parent": 18,
             "components": [
                 {
                     "type": "Tilemap",
@@ -8279,7 +8309,7 @@
         {
             "name": "tile_Collision Zera",
             "id": 8,
-            "parent": 5,
+            "parent": 18,
             "components": [
                 {
                     "type": "Tilemap",
@@ -8321,20 +8351,58 @@
                                 "type": 1,
                                 "name": "zera_athouse",
                                 "threshold": 0
-                            },
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tile_Collision Claire",
+            "id": 15,
+            "parent": 18,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
                             {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 4,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -3
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_reward",
                                 "or": [
                                     {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
+                                        "name": "journal_done"
                                     }
                                 ]
                             }
@@ -8579,9 +8647,35 @@
             ]
         },
         {
+            "name": "tilegroup_Zerad Tiles",
+            "id": 17,
+            "parent": 5,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "type": 1,
+                                "name": "illusts",
+                                "equal": true,
+                                "threshold": 28
+                            },
+                            {
+                                "type": 1,
+                                "name": "zera_talkcount",
+                                "equal": true,
+                                "threshold": 0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "tile_Zerad Env",
             "id": 12,
-            "parent": 5,
+            "parent": 17,
             "components": [
                 {
                     "type": "Tilemap",
@@ -9268,32 +9362,13 @@
                             }
                         ]
                     }
-                },
-                {
-                    "type": "EventConditioner",
-                    "args": {
-                        "conditions": [
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "equal": true,
-                                "threshold": 28
-                            },
-                            {
-                                "type": 1,
-                                "name": "zera_talkcount",
-                                "equal": true,
-                                "threshold": 0
-                            }
-                        ]
-                    }
                 }
             ]
         },
         {
             "name": "tile_Zerad Collision",
             "id": 13,
-            "parent": 5,
+            "parent": 17,
             "components": [
                 {
                     "type": "Tilemap",
@@ -9347,7 +9422,13 @@
                 },
                 {
                     "type": "TilemapCollider"
-                },
+                }
+            ]
+        },
+        {
+            "name": "chars",
+            "id": 16,
+            "components": [
                 {
                     "type": "EventConditioner",
                     "args": {
@@ -9355,14 +9436,18 @@
                             {
                                 "type": 1,
                                 "name": "illusts",
+                                "not": true,
                                 "equal": true,
-                                "threshold": 28
-                            },
-                            {
-                                "type": 1,
-                                "name": "zera_talkcount",
-                                "equal": true,
-                                "threshold": 0
+                                "threshold": 28,
+                                "or": [
+                                    {
+                                        "type": 1,
+                                        "name": "zera_talkcount",
+                                        "not": true,
+                                        "equal": true,
+                                        "threshold": 0
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -9372,6 +9457,7 @@
         {
             "name": "char_zera",
             "id": 7,
+            "parent": 16,
             "transform": {
                 "position": {
                     "x": -0.5,
@@ -9417,22 +9503,6 @@
                                 "type": 1,
                                 "name": "zera_athouse",
                                 "threshold": 0
-                            },
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
-                                "or": [
-                                    {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -9442,6 +9512,7 @@
         {
             "name": "char_harp",
             "id": 11,
+            "parent": 16,
             "transform": {
                 "position": {
                     "x": 1,
@@ -9492,22 +9563,6 @@
                                 "type": 1,
                                 "name": "harp",
                                 "threshold": 5
-                            },
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
-                                "or": [
-                                    {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -9517,41 +9572,18 @@
         {
             "prefab": "entities/hintbird",
             "id": 13,
+            "parent": 16,
             "transform": {
                 "position": {
                     "x": 2.5,
                     "y": -9.5
                 }
-            },
-            "components": [
-                {
-                    "type": "EventConditioner",
-                    "args": {
-                        "conditions": [
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
-                                "or": [
-                                    {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
+            }
         },
         {
             "name": "char_claire",
             "id": 14,
+            "parent": 16,
             "transform": {
                 "position": {
                     "x": 2.5,
@@ -9597,92 +9629,6 @@
                                 "or": [
                                     {
                                         "name": "journal_done"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
-                                "or": [
-                                    {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "name": "tile_Collision Claire",
-            "id": 15,
-            "parent": 5,
-            "components": [
-                {
-                    "type": "Tilemap",
-                    "args": {
-                        "tiles": [
-                            {
-                                "palette": "Dev - Collider",
-                                "sprites": [
-                                    {
-                                        "id": 0,
-                                        "coords": [
-                                            {
-                                                "x": 4,
-                                                "y": -3
-                                            },
-                                            {
-                                                "x": 6,
-                                                "y": -3
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "sortingLayer": 2
-                    }
-                },
-                {
-                    "type": "TilemapCollider",
-                    "args": {
-                        "type": 1
-                    }
-                },
-                {
-                    "type": "EventConditioner",
-                    "args": {
-                        "conditions": [
-                            {
-                                "name": "claire_reward",
-                                "or": [
-                                    {
-                                        "name": "journal_done"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": 1,
-                                "name": "illusts",
-                                "not": true,
-                                "equal": true,
-                                "threshold": 28,
-                                "or": [
-                                    {
-                                        "type": 1,
-                                        "name": "zera_talkcount",
-                                        "not": true,
-                                        "equal": true,
-                                        "threshold": 0
                                     }
                                 ]
                             }
