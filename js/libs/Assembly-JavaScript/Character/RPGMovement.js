@@ -7,6 +7,7 @@ class RPGMovement extends GridAdjusted
     #currentSpeed = 0;
     #currentFrameSpeed = 0;
     #animCount = 0;
+    #animStateInit = 0;
     #animState = 0;
     #jumpPeak = 0;
     #jumpDuration = 0;
@@ -14,6 +15,7 @@ class RPGMovement extends GridAdjusted
     #targetDir = Vector2.zero;
     #lookDir = Vector2.down;
     #movement = Vector2.zero;
+    #pos = Vector2.zero;
     #lastPos = Vector2.zero;
     #jumpTo = Vector2.zero;
     #onJumpEnd = () => { };
@@ -80,6 +82,11 @@ class RPGMovement extends GridAdjusted
         return this.#moveStart;
     }
 
+    get position ()
+    {
+        return this.#pos.Duplicate();
+    }
+
     lockLook = false;
     updateMovement = true;
     charCollision = true;
@@ -132,7 +139,7 @@ class RPGMovement extends GridAdjusted
         if (!this.#moveStart) return;
 
         const nextPos = Vector2.Add(
-            this.transform.position,
+            this.#pos,
             Vector2.Scale(this._moveDir, Time.deltaTime * this.#currentFrameSpeed)
         );
 
@@ -141,7 +148,8 @@ class RPGMovement extends GridAdjusted
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
-            this.transform.position = Vector2.Add(this.#lastPos, this.#movement);
+            this.#pos = Vector2.Add(this.#lastPos, this.#movement);
+            this.transform.position = this.#pos;
 
             this.#moveStart = false;
             this.#allowDirChange = true;
@@ -153,7 +161,9 @@ class RPGMovement extends GridAdjusted
         }
 
         this.lookingAt = this._moveDir;
-        this.transform.position = nextPos;
+        
+        this.#pos = nextPos;
+        this.transform.position = this.#pos;
 
         this._OnMove();
     }
@@ -161,6 +171,8 @@ class RPGMovement extends GridAdjusted
     Start ()
     {
         this._sprResolver = this.GetComponent(SpriteResolver);
+
+        this.#animStateInit = parseInt(this._sprResolver.label);
         
         const sprDir = this._sprResolver.category;
 
@@ -171,6 +183,8 @@ class RPGMovement extends GridAdjusted
 
     OnEnable ()
     {
+        this.#pos = this.transform.position;
+
         this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
         this.#node.AddOwner(this);
 
@@ -199,7 +213,7 @@ class RPGMovement extends GridAdjusted
             this.#currentSpeed = this.#speed;
             this.#currentFrameSpeed = this._frameSpeed;
 
-            this.#lastPos = this.transform.position;
+            this.#lastPos = this.#pos;
 
             this.#checkedDir = false;
         }
@@ -215,7 +229,8 @@ class RPGMovement extends GridAdjusted
                 this.lookingAt = this._moveDir;
                 this.#targetDir = Vector2.zero;
                 this._moveDir = Vector2.zero;
-                this.transform.position = this.#lastPos;
+                this.#pos = this.#lastPos.Duplicate();
+                this.transform.position = this.#pos;
                 this.#allowDirChange = true;
 
                 return;
@@ -242,20 +257,20 @@ class RPGMovement extends GridAdjusted
         this.#jumpTime -= Time.deltaTime;
 
         const timePeak = 30 * this.#jumpPeak * (this.#jumpTime / this.#jumpDuration);
-        this.#lastPos = new Vector2(
-            (this.#lastPos.x * timePeak + this.#jumpTo.x) / (timePeak + 1),
-            (this.#lastPos.y * timePeak + this.#jumpTo.y) / (timePeak + 1)
+        this.#pos = new Vector2(
+            (this.#pos.x * timePeak + this.#jumpTo.x) / (timePeak + 1),
+            (this.#pos.y * timePeak + this.#jumpTo.y) / (timePeak + 1)
         );
 
-        this.transform.localPosition = new Vector2(
-            this.#lastPos.x,
-            this.#lastPos.y + this.#jumpHeight
+        this.transform.position = new Vector2(
+            this.#pos.x,
+            this.#pos.y + this.#jumpHeight
         );
 
         if (this.#jumpTime <= 0)
         {
-            this.#lastPos = this.#jumpTo;
-            this.transform.localPosition = this.#lastPos;
+            this.#pos = this.#jumpTo.Duplicate();
+            this.transform.position = this.#pos;
             this.#onJumpEnd();
         }
     }
@@ -276,7 +291,7 @@ class RPGMovement extends GridAdjusted
     #Animate ()
     {
         if (this.animateWalk && this.#moveStart) this.#animCount += 1.5 * Time.deltaTime * 60;
-        else if (this.animateIdle || this.#animState !== 0) this.#animCount += Time.deltaTime * 60;
+        else if (this.animateIdle || this.#animState !== this.#animStateInit) this.#animCount += Time.deltaTime * 60;
 
         const duration = (9 - this.#currentSpeed) * 3;
 
@@ -421,7 +436,8 @@ class RPGMovement extends GridAdjusted
         this.#node = MapGrid.current.NodeOnGrid(pos);
         this.#node.AddOwner(this);
 
-        this.transform.localPosition = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
+        this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
+        this.transform.position = this.#pos;
     }
 
     async Jump (by = Vector2.zero)
@@ -492,7 +508,7 @@ class RPGMovement extends GridAdjusted
     {
         this.#animCount = 0;
         this.#animState = 0;
-        this._sprResolver.label = `${this.#animState}`;
+        this._sprResolver.label = "0";
     }
 
     async StepBack ()

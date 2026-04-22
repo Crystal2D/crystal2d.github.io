@@ -13,7 +13,7 @@ class MapInit extends GameBehavior
         );
 
         // Loader.Ready(4);
-        Loader.Ready(7);
+        Loader.Ready(9);
     }
 
     async Update ()
@@ -26,7 +26,8 @@ class MapInit extends GameBehavior
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(2, -3);
-        transfer.pos = new Vector2(30, -18);
+        transfer.pos = new Vector2(13, -7);
+        // transfer.pos = new Vector2(-16, 4);
         MapTransfer.last = transfer;
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);
@@ -52,7 +53,7 @@ class MapInit extends GameBehavior
         Loader.onSwitchEnd.Add(switchCall);
 
         // Loader.Switch(4);
-        Loader.Switch(7);
+        Loader.Switch(9);
 
         // 22
     }

@@ -221,10 +221,7 @@ class EventSystem
     {
         switch (id)
         {
-            case "hintbird": {
-                const bird = RPGMovement.FindChar("char_hintbird");
-                bird.LookAtPlayerTemp();
-
+            case "hintbird":
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
@@ -342,9 +339,7 @@ class EventSystem
                 }
 
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                } break;
+                break;
 
             case "fly": {
                 Loader.Ready(4);
@@ -814,7 +809,7 @@ class EventSystem
                 break;
             case "yolkhouse_harp": {
                 const harp = RPGMovement.FindChar("char_harp");
-                const randMove = harp.GetComponent(RandomMove);
+                const randMove = harp.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
@@ -1169,7 +1164,7 @@ class EventSystem
                 break;
             case "forestbarrier_squirrel1": {
                 const squirrel = RPGMovement.FindChar("char_squirrel1");
-                const randMove = squirrel.GetComponent(RandomMove);
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
@@ -1189,7 +1184,7 @@ class EventSystem
                 break;
             case "forestbarrier_squirrel3": {
                 const squirrel = RPGMovement.FindChar("char_squirrel3");
-                const randMove = squirrel.GetComponent(RandomMove);
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
@@ -1215,21 +1210,10 @@ class EventSystem
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await deer.Jump();
                 } break;
-            case "forestbarrier_bird": {
-                const bird = RPGMovement.FindChar("char_bird");
-                const randMove = bird.GetComponent(RandomMove);
-
-                randMove.enabled = false;
-                await this.WaitFrameEnd();
-                bird.LookAtPlayerTemp();
-
+            case "forestbarrier_bird":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                randMove.enabled = true;
-                randMove.ResetTime();
-            } break;
+                break;
             case "forestbarrier_blockerfly":
                 this.dialogueBox.SetFace("yoki", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -1367,7 +1351,7 @@ class EventSystem
             } break;
             case "forestbarrieredge_fox": {
                 const fox = RPGMovement.FindChar("char_fox");
-                const randMove = fox.GetComponent(RandomMove);
+                const randMove = fox.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 fox.LookAtPlayer();
@@ -1378,26 +1362,15 @@ class EventSystem
                 randMove.enabled = true;
                 randMove.ResetTime();
             } break;
-            case "forestbarrieredge_bird": {
-                const bird = RPGMovement.FindChar("char_bird");
-                const randMove = bird.GetComponent(RandomMove);
-
-                randMove.enabled = false;
-                await this.WaitFrameEnd();
-                bird.LookAtPlayerTemp();
-
+            case "forestbarrieredge_bird":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                randMove.enabled = true;
-                randMove.ResetTime();
-            } break;
+                break;
             case "forestbarrieredge_squirrel": {
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
 
                 const squirrel = RPGMovement.FindChar("char_squirrel");
-                const randMove = squirrel.GetComponent(RandomMove);
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
@@ -1760,15 +1733,10 @@ class EventSystem
                 rabbit.charCollision = true;
                 rabbit.LookAtPlayer();
             } break;
-            case "cliffs_bird": {
-                const bird = RPGMovement.FindChar("char_bird");
-                bird.LookAtPlayerTemp();
-
+            case "cliffs_bird":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-            } break;
+                break;
             case "cliffs_squirrel": {
                 const squirrel = RPGMovement.FindChar("char_squirrel");
 
@@ -2219,8 +2187,6 @@ class EventSystem
             case "foresttree_bonus":
                 await this.WaitTransfer();
 
-
-
                 Player.instance.avoidInputs = true;
 
                 this.dialogueBox.SetFace("woof", "look");
@@ -2442,6 +2408,104 @@ class EventSystem
 
                 this.SetSwitch("woof_venture", true);
                 break;
+            
+            // ------------------------------------------------------- forest_mid
+            case "forestmid_rabbit1":
+                RPGMovement.FindChar("char_rabbit1").LookAwayPlayer();
+                break;
+            case "forestmid_rabbit2": {
+                const rabbit = RPGMovement.FindChar("char_rabbit2");
+                rabbit.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+            } break;
+            case "forestmid_fox": {
+                const fox = RPGMovement.FindChar("char_fox");
+                fox.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await fox.Jump();
+            } break;
+            case "forestmid_bird": {
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+
+                const bird = RPGMovement.FindChar("char_bird");
+                bird.LookAtPlayer();
+                await bird.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                bird.LookAt(Vector2.left);
+                await this.Timer(2);
+                bird.LookAt(Vector2.up);
+                await this.Timer(2);
+                bird.LookAt(Vector2.right);
+                await this.Timer(2);
+                bird.LookAt(Vector2.down);
+                await this.Timer(2);
+                bird.LookAt(Vector2.left);
+                await this.Timer(2);
+                bird.LookAt(Vector2.up);
+                await this.Timer(2);
+                bird.LookAt(Vector2.right);
+                await this.Timer(2);
+                bird.LookAt(Vector2.down);
+            } break;
+            case "forestmid_raccoon1":
+                RPGMovement.FindChar("char_raccoon1").LookAwayPlayer();
+                break;
+            case "forestmid_raccoon2":
+                RPGMovement.FindChar("char_raccoon2").LookAwayPlayer();
+                break;
+            case "forestmid_deer1": {
+                const deer = RPGMovement.FindChar("char_deer1");
+                deer.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "forestmid_deer2": {
+                const deer = RPGMovement.FindChar("char_deer2");
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                deer.LookAtPlayer();
+                await deer.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "forestmid_squirrel": {
+                const squirrel = RPGMovement.FindChar("char_squirrel");
+                squirrel.moveSpeed = 6;
+                squirrel.charCollision = false;
+                
+                await squirrel.MoveTowards(Vector2.up);
+                await squirrel.MoveTowards(Vector2.up);
+                await squirrel.MoveTowards(Vector2.left);
+                await squirrel.MoveTowards(Vector2.left);
+                await squirrel.MoveTowards(Vector2.down);
+                await squirrel.MoveTowards(Vector2.down);
+                await squirrel.MoveTowards(Vector2.right);
+                await squirrel.MoveTowards(Vector2.right);
+                squirrel.LookAtPlayer();
+
+                squirrel.moveSpeed = 4;
+                squirrel.charCollision = true;
+            } break;
+            case "forestmid_boar": {
+                AudioManager.instance.PlaySE("crush_1", 0.6, 1.5);
+
+                const boar = RPGMovement.FindChar("char_boar");
+                boar.LookAtPlayer();
+                boar.Jump();
+
+                await Player.instance.Jump();
+            } break;
         }
     }
 

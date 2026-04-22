@@ -154,7 +154,7 @@
             "args": [
                 {
                     "component": true,
-                    "type": "Transform",
+                    "type": "Player",
                     "name": "target"
                 },
                 {

@@ -450,6 +450,17 @@
     "This is..",
     "This is from..\\..\\..",
     ".\\..\\..mom..?"
-] 
+],
+
+"forest_mid": "----------------------------------------------------------------------",
+"forestmid_rabbit1_traveller": "\\SE[8]Lost Traveller: This little bunny\nlooks tired..!\\SE[1]",
+"forestmid_rabbit2_traveller": "\\SE[8]Lost Traveller: What a cute \nenergetic little rabbit!\\SE[1]",
+"forestmid_fox_traveller": "\\SE[8]Lost Traveller: What a beautiful \nfox!\\SE[1]",
+"forestmid_bird": "\\SE[4]Chirp chirp chirp!\\SE[1]",
+"forestmid_bird_traveller": "\\SE[8]Lost Traveller: Chirp!\\SE[1]",
+"forestmid_raccoon1_traveller": "\\SE[8]Lost Traveller: Looks like he's \nhiding...\\SE[1]",
+"forestmid_raccoon2_traveller": "\\SE[8]Lost Traveller: Seems a little\nscared...\\SE[1]",
+"forestmid_squirrel_traveller": "\\SE[8]Lost Traveller: Such a fast little\nsquirrel!\\SE[1]",
+"forestmid_boar_traveller": "\\SE[8]Lost Traveller: This boar seems a \nlittle mean...\\SE[1]"
 
 }

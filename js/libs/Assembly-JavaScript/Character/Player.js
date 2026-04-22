@@ -147,7 +147,32 @@ class Player extends RPGMovement
         if (this.#keyInteractable == null) return;
 
         this.avoidInputs = true;
+
+        const isChar = this.#keyInteractable instanceof RPGMovement;
+        let charMove = null;
+
+        if (isChar)
+        {
+            charMove = this.#keyInteractable.GetComponent(MovesBase);
+
+            if (charMove != null)
+            {
+                charMove.enabled = false;
+                await EventSystem.WaitFrameEnd();
+            }
+
+            this.#keyInteractable.LookAtPlayerTemp();
+        }
+
         const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
+
+        if (isChar) this.#keyInteractable.Unlook();
+        if (charMove != null)
+        {
+            charMove.enabled = true;
+            charMove.ResetTime();
+        }
+
         if (!handledInput) this.avoidInputs = false;
     }
 }

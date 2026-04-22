@@ -103,4 +103,16 @@ class Party extends SnekChar
 
         member.name = index > 0 ? null : "yoki";
     }
+
+    static Has (name)
+    {
+        const iterator = this.#pool[Symbol.iterator]();
+
+        for (const item of iterator)
+        {
+            if (item[1].name === name) return true;
+        }
+
+        return false
+    }
 }

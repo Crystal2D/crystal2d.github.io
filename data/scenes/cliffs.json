@@ -14904,7 +14904,8 @@
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        "sortingLayer": 2
                     }
                 },
                 {
@@ -15221,7 +15222,8 @@
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        "sortingLayer": 2
                     }
                 },
                 {
@@ -15256,7 +15258,8 @@
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        "sortingLayer": 2
                     }
                 },
                 {
@@ -15826,7 +15829,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/deer",
-                            "name": "down-a"
+                            "name": "down-b"
                         },
                         "sortingLayer": 1
                     }
@@ -15841,7 +15844,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "down",
-                        "label": "0"
+                        "label": "1"
                     }
                 },
                 {
@@ -16080,7 +16083,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/raccoon",
-                            "name": "right-a"
+                            "name": "right-b"
                         },
                         "sortingLayer": 1
                     }
@@ -16095,7 +16098,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "right",
-                        "label": "0"
+                        "label": "1"
                     }
                 },
                 {
@@ -16488,7 +16491,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/deer",
-                            "name": "left-a"
+                            "name": "left-b"
                         },
                         "sortingLayer": 1
                     }
@@ -16503,7 +16506,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "left",
-                        "label": "0"
+                        "label": "1"
                     }
                 },
                 {
@@ -16614,7 +16617,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/fox",
-                            "name": "down-a"
+                            "name": "down-b"
                         },
                         "sortingLayer": 1
                     }
@@ -16629,7 +16632,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "down",
-                        "label": "0"
+                        "label": "1"
                     }
                 },
                 {
@@ -16737,7 +16740,7 @@
                     "args": {
                         "sprite": {
                             "texture": "sprites/chars/raccoon",
-                            "name": "down-a"
+                            "name": "down-b"
                         },
                         "sortingLayer": 1
                     }
@@ -16752,7 +16755,7 @@
                     "type": "SpriteResolver",
                     "args": {
                         "category": "down",
-                        "label": "0"
+                        "label": "1"
                     }
                 },
                 {
