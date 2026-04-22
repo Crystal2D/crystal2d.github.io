@@ -400,5 +400,47 @@
                 }
             ]
         }
+    },
+    {
+        "path": "entities/water",
+        "type": "GameObject",
+        "args": {
+            "name": "entity_water",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/water",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/entities/water"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl",
+                        "speed": 0.8333333333333334
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
+                }
+            ]
+        }
     }
 ]

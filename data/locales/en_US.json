@@ -424,6 +424,32 @@
     "Where'd rabbit go?",
     "I'll go find her!!!",
     "She won't get away from me\nthat easily!!!"
-]
+],
+
+"forest_tree": "----------------------------------------------------------------------",
+"foresttree_tree": [
+    "..?",
+    "There's a letter attached to \nthis tree.",
+    ".\\.\\..\\.\\..",
+    "I can't...\\.\\. read this at all...",
+    "What language is this.\\.\\..\\.\\.?",
+    "I'll put it back I guess.",
+    "...",
+    "Who could this letter be for \nthis deep in the forest..?"
+],
+"foresttree_tree_seen": "I wonder who this letter\ncould be for...",
+"foresttree_bonus": [
+    "\\SE[4]?",
+    "What's that smell..?",
+    "It smells familiar!!",
+    "It's coming from.\\..\\.\\..\\.\\.\nHere!",
+    "This paper!",
+    "What's on here..?",
+    ".\\..\\..",
+    "This...",
+    "This is..",
+    "This is from..\\..\\..",
+    ".\\..\\..mom..?"
+] 
 
 }

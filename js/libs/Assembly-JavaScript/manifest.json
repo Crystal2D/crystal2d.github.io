@@ -15,6 +15,13 @@
         "TitleScreen",
         "Options",
         "InputManager",
+        "CamCtrl",
+        "MapGrid/MapNode",
+        "MapGrid/MapGrid",
+        "MapGrid/TilemapCollider",
+        "MapGrid/GridAdjusted",
+        "MapConfig/MapConfig",
+        "MapConfig/MapTransfer",
         "Character/RPGMovement",
         "Character/Player",
         "Character/SnekChar",
@@ -22,12 +29,6 @@
         "Character/Moves/MovesBase",
         "Character/Moves/RandomMove",
         "Character/Moves/ToPlayerMove",
-        "CamCtrl",
-        "MapGrid/MapNode",
-        "MapGrid/MapGrid",
-        "MapGrid/TilemapCollider",
-        "MapConfig/MapConfig",
-        "MapConfig/MapTransfer",
         "Test",
         "LocaleManager",
         "Parallax"
@@ -189,6 +190,10 @@
                     "name": "type"
                 }
             ]
+        },
+        {
+            "name": "GridAdjusted",
+            "type": 0
         },
         {
             "name": "MapConfig",

@@ -56,7 +56,17 @@
         [
             "sprites/chars/zera",
             "spritelibs/chars/zera"
-        ]
+        ],
+        [
+            "sprites/chars/aimottle",
+            "spritelibs/chars/aimottle"
+        ],
+        "sprites/illusts/extra_1",
+        "sprites/illusts/extra_2",
+        "sprites/illusts/extra_3",
+        "sprites/illusts/extra_4",
+        "sprites/illusts/blank",
+        "audio/se/explosive_whish"
     ],
     "gameObjects": [
         {
@@ -14917,9 +14927,26 @@
             ]
         },
         {
+            "name": "tilegroup_Bonus",
+            "id": 37,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "bird_form"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "tile_Bonus Env",
             "id": 6,
-            "parent": 1,
+            "parent": 37,
             "components": [
                 {
                     "type": "Tilemap",
@@ -15146,7 +15173,7 @@
         {
             "name": "tile_Bonus Collision",
             "id": 8,
-            "parent": 1,
+            "parent": 37,
             "components": [
                 {
                     "type": "Tilemap",
@@ -15196,13 +15223,16 @@
                             }
                         ]
                     }
+                },
+                {
+                    "type": "TilemapCollider"
                 }
             ]
         },
         {
             "name": "tile_Collision Aimottle",
             "id": 10,
-            "parent": 1,
+            "parent": 37,
             "components": [
                 {
                     "type": "Tilemap",
@@ -15227,6 +15257,23 @@
                                 ]
                             }
                         ]
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "aimottle_nigerundayo",
+                                "not": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
                     }
                 }
             ]
@@ -15609,6 +15656,10 @@
                                 "conditions": [
                                     {
                                         "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "zera_bonus",
+                                        "not": true
                                     }
                                 ]
                             },
@@ -15621,6 +15672,76 @@
                                 "conditions": [
                                     {
                                         "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "zera_bonus",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": -12
+                                },
+                                "event": "cliffs_bonus_aimottle",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "aimottle_nigerundayo",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": -12
+                                },
+                                "event": "cliffs_bonus_aimottle",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "aimottle_nigerundayo",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -33,
+                                    "y": 5
+                                },
+                                "trigger": 1,
+                                "event": "cliffs_bonus_zera_bye",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "zera_bonus",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -32,
+                                    "y": 5
+                                },
+                                "trigger": 1,
+                                "event": "cliffs_bonus_zera_bye",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form"
+                                    },
+                                    {
+                                        "name": "zera_bonus",
+                                        "not": true
                                     }
                                 ]
                             }
@@ -16200,7 +16321,19 @@
         },
         {
             "name": "chars_bonus",
-            "id": 25
+            "id": 25,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "bird_form"
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         {
             "name": "char_zera",
@@ -16627,6 +16760,59 @@
                 },
                 {
                     "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_aimottle",
+            "id": 36,
+            "parent": 25,
+            "transform": {
+                "position": {
+                    "x": 7.5,
+                    "y": -6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/aimottle",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/aimottle"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "cliffs_bonus_aimottle"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "aimottle_nigerundayo",
+                                "not": true
+                            }
+                        ]
+                    }
                 }
             ]
         }

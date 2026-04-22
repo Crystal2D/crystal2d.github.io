@@ -17,12 +17,14 @@
     "resources": [
         "main",
         "sprites/ctrls",
+        "sprites/entities",
         "sprites/chars",
         "sprites/faces",
         "sprites/illusts",
         "sprites/parallaxes",
         "sprites/tiles",
-        "spritelibs",
+        "spritelibs/chars",
+        "spritelibs/entities",
         "anims",
         "audio/bgm",
         "audio/se"

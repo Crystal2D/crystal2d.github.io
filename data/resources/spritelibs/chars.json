@@ -311,6 +311,14 @@
             "texture": "sprites/chars/woof_eepy"
         }
     },
+    {
+        "path": "spritelibs/chars/aimottle",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/aimottle"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

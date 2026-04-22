@@ -683,7 +683,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "zera_talk_1", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_1", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -693,7 +693,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "upset");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -706,7 +706,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -719,7 +719,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -732,7 +732,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -761,7 +761,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -774,7 +774,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -997,7 +997,7 @@ class EventSystem
                 await this.TintAll(new Color(-1, -1, -1, 0));
                 await this.Timer(40);
 
-                this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
+                await this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1007,7 +1007,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 1);
                 await this.Timer(30);
-                await this.illustrator.Move(0, 1, Vector2.zero, 160);
+                await this.illustrator.Move(0, null, Vector2.zero, null, 160);
 
                 await this.WaitOk();
 
@@ -1252,7 +1252,7 @@ class EventSystem
                 await this.Timer(9);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "flower_ring", 50 / 255);
+                await this.illustrator.Set(0, "flower_ring", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1436,7 +1436,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "tigertaur_1", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_1", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1461,7 +1461,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 50 / 255);
                 await this.Timer(8);
-                this.illustrator.Set(0, "tigertaur_2", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1479,7 +1479,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 50 / 255);
                 await this.Timer(8);
-                this.illustrator.Set(0, "tigertaur_3", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1489,7 +1489,7 @@ class EventSystem
                 this.dialogueBox.SetFace("tigertaur", "grin");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
 
-                this.illustrator.Set(1, "tigertaur_4", 50 / 255);
+                await this.illustrator.Set(1, "tigertaur_4", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -1564,7 +1564,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "tigertaur_5", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_5", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1590,7 +1590,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 50 / 255);
                 await this.Timer(8);
-                this.illustrator.Set(0, "tigertaur_6", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_6", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1791,9 +1791,9 @@ class EventSystem
             case "cliffs_wolf":
                 RPGMovement.FindChar("char_wolf").LookAtPlayer();
 
-                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.Close();
                 break;
             case "cliffs_woof": {
@@ -1863,7 +1863,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "woof_1", 50 / 255);
+                await this.illustrator.Set(0, "woof_1", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1883,7 +1883,7 @@ class EventSystem
                 this.dialogueBox.SetFace("woof", "sleep");
                 await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[5]);
 
-                this.illustrator.Set(1, "woof_2", 50 / 255);
+                await this.illustrator.Set(1, "woof_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -1896,7 +1896,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "surprised");
                 await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[7]);
 
-                this.illustrator.Set(0, "woof_3", 50 / 255);
+                await this.illustrator.Set(0, "woof_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1944,6 +1944,504 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.Close();
                 break;
+            case "cliffs_bonus_aimottle": {
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "extra_1", 50 / 100);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(30);
+
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+
+                await this.illustrator.Set(1, "extra_2", 50 / 100);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+
+                await this.illustrator.Set(0, "blank", 1);
+                this.illustrator.Clear(1)
+                await this.Timer(2);
+                await this.illustrator.Tint(0, new Color(-1, -1, -1, 0));
+                await this.illustrator.Tint(0, Color.clear);
+
+                AudioManager.instance.PlaySE("explosive_whish", 0.7);
+
+                await this.Timer(3);
+                await this.illustrator.Set(1, "extra_3", 1, new Vector2(4 / 96, 0), new Vector2(1.02, 1.02));
+                this.illustrator.Clear(0);
+                await this.Timer(3);
+                await this.illustrator.Move(1, null, Vector2.zero, Vector2.one);
+                await this.illustrator.Set(0, "extra_3", 1);
+                await this.illustrator.Move(0, 0, new Vector2(-1.25, 100 / 96), new Vector2(1.5, 1.5), 10);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "knocked out");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                
+                await this.illustrator.Set(0, "extra_4", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+
+                GameObject.Find("char_aimottle").SetActive(false);
+
+                Player.instance.LookAt(Vector2.up);
+                Player.instance.animateIdle = false;
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(60);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.3);
+                await Player.instance.Jump();
+                Player.instance.animateIdle = true;
+
+                await this.Timer(60);
+                Player.instance.LookAt(Vector2.left);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.right);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.left);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.right);
+                await this.Timer(60);
+                Player.instance.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("aimottle_nigerundayo", true);
+            } break;
+            case "cliffs_bonus_zera_bye":
+                this.SetSwitch("zera_bonus", true);
+                break;
+
+            // ------------------------------------------------------- forest_tree
+            case "foresttree_tree":
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                if (this.GetSwitch("tree_letter"))
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_seen`));
+
+                    await this.illustrator.Move(0, 100 / 255);
+                    await this.Timer(8);
+                    await this.illustrator.Move(0, 50 / 255);
+                    await this.Timer(8);
+                    this.illustrator.Clear(0);
+                    await this.Timer(20);
+
+                    await this.TintAll(new Color(
+                        -80 / 255,
+                        -100 / 255,
+                        -100 / 255,
+                        0
+                    ));
+                    await this.Timer(8);
+                    await this.TintAll(new Color(
+                        -40 / 255,
+                        -50 / 255,
+                        -50 / 255,
+                        0
+                    ));
+                    await this.Timer(8);
+                    await this.TintAll(Color.clear);
+
+                    return;
+                }
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                await this.illustrator.Set(1, "tree_noletter", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("tree_letter", true);
+                this.AddToVariable("illusts");
+                break;
+            case "foresttree_bonus":
+                await this.WaitTransfer();
+
+
+
+                Player.instance.avoidInputs = true;
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                await this.Timer(60);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+
+                await this.Timer(30);
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+                await this.Timer(20);
+                Player.instance.moveSpeed = 6;
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                Player.instance.LookAt(Vector2.down);
+                await this.Timer(30);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.Close();
+
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                Player.instance.LookAt(Vector2.up);
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+
+                await this.illustrator.Set(1, "tree_noletter", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                await this.illustrator.Set(0, "woof_end_1", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+
+                await this.illustrator.Set(1, "blank", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(10);
+                this.illustrator.Clear(0);
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+
+                await this.illustrator.Set(0, "woof_end_2", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetBG(1);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(12);
+                this.illustrator.Clear(0);
+                await this.Timer(60);
+
+                // ==================================================================== UNFINISHED
+                
+                Loader.Ready(12); // move to start of event
+
+                Party.Set(0, "bird");
+                Player.instance.moveSpeed = 4;
+                Player.instance.animateIdle = false;
+
+                Player.instance.LookAt(Vector2.down);
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(-5, 32); // set to bonus room
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(12);
+
+                Transitioner.instance.Clear();
+                await this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -136 / 255,
+                    -136 / 255,
+                    -136 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -51 / 255,
+                    -51 / 255,
+                    -51 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("woof_venture", true);
+                break;
         }
     }
 
@@ -1965,6 +2463,10 @@ class EventSystem
                 break;
             case "21_4":
                 if (event === 1 && this.GetVariable("illusts") === 28 && this.GetVariable("zera_talkcount") === 0) Player.instance.TP(Vector2.Add(Player.instance.gridPos, new Vector2(0, -3)));
+                break;
+
+            case "7_8":
+                if (event === 1 && this.GetSwitch("bird_form")) Player.instance.TP(new Vector2(-6, 7));
                 break;
 
             case "16_20":
@@ -2104,7 +2606,7 @@ class EventSystem
 
     static async TintAll (color)
     {
-        const renderers = GameObject.FindComponents(Renderer, true).filter(item => !([4, 5]).includes(item.sortingLayer));
+        const renderers = GameObject.FindComponents(Renderer, true).filter(item => !([3, 4, 5]).includes(item.sortingLayer));
 
         for (let i = 0; i < renderers.length; i++) renderers[i].tint = color;
 

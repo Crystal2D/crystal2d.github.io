@@ -12,6 +12,7 @@ class DialogueBox extends ItsABox
     #playIndex = 0;
     #pauseCount = 0;
     #pauseTime = 0;
+    #bg = 0;
     #chars = [];
     #se = 1;
     #ses = [
@@ -77,6 +78,7 @@ class DialogueBox extends ItsABox
         }
     ];
 
+    #sprRenderer = null;
     #face = null;
     #text = null;
     #arrow = null;
@@ -85,6 +87,7 @@ class DialogueBox extends ItsABox
     {
         super.Start();
 
+        this.#sprRenderer = this.GetComponent(SpriteRenderer);
         this.#text = this.GetComponentInChildren(Text);
         this.#face = this.transform.Find("face").GetComponent(SpriteRenderer);
         this.#arrow = this.transform.Find("arrow").GetComponent(SpriteRenderer);
@@ -374,5 +377,15 @@ class DialogueBox extends ItsABox
         if (this.#shouldUnpause || !Options.textSkip) return;
 
         this.#showFast = true;
+    }
+
+    SetBG (index)
+    {
+        if (index === this.#bg) return;
+
+        this.#bg = index;
+
+        if (index === 0) this.#sprRenderer.color.a = 1;
+        else if (index === 1) this.#sprRenderer.color.a = 0;
     }
 }

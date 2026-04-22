@@ -5,7 +5,7 @@ class Init extends GameBehavior
         GameWindow.Center();
 
         FPSMeter.detailed = true;
-        Cursor.visible = false;
+        // Cursor.visible = false;
 
         if (Application.isMobilePlatform) Options.resolution = 4;
         else Crispixels.effect = true;

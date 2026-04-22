@@ -131,8 +131,9 @@ class SceneManager
 
                 for (let i = 0; i < this.#keptObjs.length; i++)
                 {
-                    const index = this.#activeScene.gameObjects.indexOf(this.#keptObjs[i]);
+                    if (!this.#keptObjs[i].transform.parent?.gameObject.keepOnLoad) this.#keptObjs[i].transform.parent = null;
 
+                    const index = this.#activeScene.gameObjects.indexOf(this.#keptObjs[i]);
                     this.#activeScene.gameObjects.splice(index, 1);
                 }
 

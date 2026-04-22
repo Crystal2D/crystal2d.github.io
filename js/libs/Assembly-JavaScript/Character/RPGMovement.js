@@ -1,4 +1,4 @@
-class RPGMovement extends GameBehavior
+class RPGMovement extends GridAdjusted
 {
     #allowDirChange = true;
     #checkedDir = false;
@@ -174,7 +174,7 @@ class RPGMovement extends GameBehavior
         this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
         this.#node.AddOwner(this);
 
-        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
+        super.OnEnable();
     }
 
     OnDisable ()
@@ -183,7 +183,7 @@ class RPGMovement extends GameBehavior
         this.lastNode = null;
         this.#node = null;
 
-        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, -0.3125));
+        super.OnDisable();
     }
 
     LateUpdate ()

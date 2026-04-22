@@ -26,11 +26,8 @@ class MapInit extends GameBehavior
 
         const transfer = new MapTransfer();
         // transfer.pos = new Vector2(2, -3);
-        transfer.pos = new Vector2(20, 12);
-        // transfer.pos = new Vector2(8, 18);
+        transfer.pos = new Vector2(30, -18);
         MapTransfer.last = transfer;
-
-        EventSystem.SetSwitch("bird_form", true);
 
         const renderer = Player.instance.GetComponent(SpriteRenderer);
         
