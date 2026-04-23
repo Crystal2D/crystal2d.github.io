@@ -22,6 +22,9 @@ class Player extends RPGMovement
             "sprites/chars/yoki",
             "spritelibs/chars/yoki"
         ]);
+
+        this.onJumpStart.Add(() => Party.OnJump());
+        this.onTP.Add(() => Party.OnTP());
     }
     
     Update ()

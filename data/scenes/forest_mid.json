@@ -34,6 +34,10 @@
         [
             "sprites/chars/boar",
             "spritelibs/chars/boar"
+        ],
+        [
+            "sprites/chars/traveller",
+            "spritelibs/chars/traveller"
         ]
     ],
     "gameObjects": [
@@ -10489,6 +10493,22 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "traveller"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -10733,8 +10753,38 @@
                                     "y": 12
                                 },
                                 "event": "forestmid_boar"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 14
+                                },
+                                "event": "forestmid_traveller",
+                                "conditions": [
+                                    {
+                                        "name": "traveller"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 14
+                                },
+                                "event": "forestmid_traveller",
+                                "conditions": [
+                                    {
+                                        "name": "traveller"
+                                    }
+                                ]
                             }
                         ]
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "forestmid_traveller_set"
                     }
                 }
             ]
@@ -11147,6 +11197,57 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "forestmid_boar"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_traveller",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/traveller",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/traveller"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestmid_traveller"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "traveller"
+                            }
+                        ]
                     }
                 }
             ]

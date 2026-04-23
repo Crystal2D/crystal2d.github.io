@@ -96,6 +96,8 @@ class RPGMovement extends GridAdjusted
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
     onStay = new DelegateEvent();
+    onJumpStart = new DelegateEvent();
+    onTP = new DelegateEvent();
     ignoredCharCollisions = [];
 
     lastNode = null;
@@ -213,6 +215,7 @@ class RPGMovement extends GridAdjusted
             this.#currentSpeed = this.#speed;
             this.#currentFrameSpeed = this._frameSpeed;
 
+            this.#pos = this.transform.position;
             this.#lastPos = this.#pos;
 
             this.#checkedDir = false;
@@ -438,6 +441,8 @@ class RPGMovement extends GridAdjusted
 
         this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
         this.transform.position = this.#pos;
+
+        this.onTP.Invoke();
     }
 
     async Jump (by = Vector2.zero)
@@ -458,6 +463,8 @@ class RPGMovement extends GridAdjusted
             this.#node.AddOwner(this);
         }
 
+        this.onJumpStart.Invoke();
+
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
@@ -468,6 +475,11 @@ class RPGMovement extends GridAdjusted
         await new Promise(resolve => this.#onJumpEnd = resolve);
 
         this.lockLook = false;
+    }
+
+    async JumpTo (pos)
+    {
+        await this.Jump(Vector2.Subtract(pos, this.gridPos));
     }
 
     async MoveToChar (char)

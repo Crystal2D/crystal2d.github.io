@@ -319,6 +319,14 @@
             "texture": "sprites/chars/aimottle"
         }
     },
+    {
+        "path": "spritelibs/chars/traveller",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/traveller"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

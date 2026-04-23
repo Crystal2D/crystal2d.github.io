@@ -221,7 +221,7 @@ class EventSystem
     {
         switch (id)
         {
-            case "hintbird":
+            case "hintbird": {
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
@@ -339,7 +339,7 @@ class EventSystem
                 }
 
                 this.dialogueBox.Close();
-                break;
+            } break;
 
             case "fly": {
                 Loader.Ready(4);
@@ -1644,7 +1644,7 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
-            case "forestbarrieredge_losttraveller": {
+            case "forestbarrieredge_traveller": {
                 if (this.GetSwitch("traveller_done")) return;
 
                 Party.Clear(1);
@@ -2372,7 +2372,7 @@ class EventSystem
                 
                 Loader.Ready(12); // move to start of event
 
-                Party.Set(0, "bird");
+                await Party.Set(0, "bird");
                 Player.instance.moveSpeed = 4;
                 Player.instance.animateIdle = false;
 
@@ -2411,6 +2411,12 @@ class EventSystem
             
             // ------------------------------------------------------- forest_mid
             case "forestmid_rabbit1":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
                 RPGMovement.FindChar("char_rabbit1").LookAwayPlayer();
                 break;
             case "forestmid_rabbit2": {
@@ -2423,15 +2429,35 @@ class EventSystem
                 await rabbit.Jump();
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await rabbit.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
             } break;
             case "forestmid_fox": {
                 const fox = RPGMovement.FindChar("char_fox");
                 fox.LookAtPlayer();
 
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+
+                    return;
+                }
+
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await fox.Jump();
             } break;
             case "forestmid_bird": {
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
 
                 const bird = RPGMovement.FindChar("char_bird");
@@ -2458,20 +2484,47 @@ class EventSystem
                 bird.LookAt(Vector2.down);
             } break;
             case "forestmid_raccoon1":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
                 RPGMovement.FindChar("char_raccoon1").LookAwayPlayer();
                 break;
             case "forestmid_raccoon2":
                 RPGMovement.FindChar("char_raccoon2").LookAwayPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
                 break;
             case "forestmid_deer1": {
                 const deer = RPGMovement.FindChar("char_deer1");
                 deer.LookAtPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await deer.Jump();
             } break;
             case "forestmid_deer2": {
                 const deer = RPGMovement.FindChar("char_deer2");
+
+                if (Party.Has("traveller"))
+                {
+                    deer.LookAwayPlayer();
+
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                    return;
+                }
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 deer.LookAtPlayer();
@@ -2496,6 +2549,12 @@ class EventSystem
 
                 squirrel.moveSpeed = 4;
                 squirrel.charCollision = true;
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
             } break;
             case "forestmid_boar": {
                 AudioManager.instance.PlaySE("crush_1", 0.6, 1.5);
@@ -2505,6 +2564,120 @@ class EventSystem
                 boar.Jump();
 
                 await Player.instance.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestmid_traveller_set":
+                if (!this.GetSwitch("traveller") && !this.GetSwitch("traveller_help")) this.SetSwitch("traveller", true);
+                break;
+            case "forestmid_traveller": {
+                RPGMovement.FindChar("char_traveller").LookAtPlayer();
+
+                if (this.GetVariable("traveller_lost") >= 1)
+                {
+                    if (this.GetVariable("traveller_lost") >= 5)
+                    {
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[0]);
+                        this.dialogueBox.SetFace("yoki", "sweatdrop");
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[1]);
+                    }
+                    else if (this.GetVariable("traveller_lost") >= 2) await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`));
+                    else if (this.GetVariable("traveller_lost") >= 1)
+                    {
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                    }
+
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("traveller_help", true);
+                    this.SetSwitch("traveller", false);
+
+                    await Party.Set(1, "traveller");
+                    return;
+                }
+                
+                if (this.GetSwitch("traveller_no"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused`)[0]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused`)[1], true);
+
+                    const choice = await this.DialogueChoice([
+                        LocaleManager.Find(`${id}_refused_choices`)[0],
+                        LocaleManager.Find(`${id}_refused_choices`)[1]
+                    ], 1, 1);
+
+                    if (choice === 1)
+                    {
+                        this.SetSwitch("traveller_no", true);
+
+                        this.dialogueBox.SetFace("yoki", "think");
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_no`)[0]);
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_no`)[1]);
+                        this.dialogueBox.Close();
+                        return;
+                    }
+
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_ok`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_ok`)[1]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("traveller_help", true);
+                    this.SetSwitch("traveller", false);
+
+                    await Party.Set(1, "traveller");
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[2]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[4]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[5]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[6]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[7]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[8]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[9]);
+                this.dialogueBox.SetFace("yoki", "meditative");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[10], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_1_choices`)[0],
+                    LocaleManager.Find(`${id}_1_choices`)[1]
+                ], 1, 1);
+
+                if (choice === 1)
+                {
+                    this.SetSwitch("traveller_no", true);
+                    
+                    this.dialogueBox.SetFace("yoki", "think");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_no`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_no`)[1]);
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_ok`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_ok`)[1]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("traveller_help", true);
+                this.SetSwitch("traveller", false);
+
+                await Party.Set(1, "traveller");
             } break;
         }
     }
@@ -2556,7 +2729,7 @@ class EventSystem
         }
     }
 
-    static async DialogueChoice (choices, nahChoice)
+    static async DialogueChoice (choices, nahChoice, pos = 2)
     {
         this.dialogueChoiceBox.transform.parent = Camera.main?.transform;
         this.dialogueChoiceBox.Clear();
@@ -2573,7 +2746,7 @@ class EventSystem
         await CrystalEngine.Wait(() => this.dialogueChoiceBox.setDimensions);
 
         this.dialogueChoiceBox.transform.localPosition = new Vector2(
-            0.5 * (this.dialogueBox.spriteRenderer.size.x - this.dialogueChoiceBox.spriteRenderer.size.x),
+            0.5 * (this.dialogueBox.spriteRenderer.size.x - this.dialogueChoiceBox.spriteRenderer.size.x) * (pos - 1),
             -4.5 + this.dialogueChoiceBox.spriteRenderer.size.y * 0.5 + this.dialogueBox.spriteRenderer.size.y
         );
 

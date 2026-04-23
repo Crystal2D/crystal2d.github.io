@@ -24,12 +24,23 @@ class Party extends SnekChar
         for (let i = 1; i < this.size; i++) this.#Add();
     }
 
-    static async OnTransfer ()
+    static async OnJump ()
     {
         Party.instance.ClearMoves();
 
-        this.#pool.forEach(item => {
-            item.char.TP(MapTransfer.last.pos);
+        this.#pool.forEach((item, index) => {
+            if (index > 0) item.char.JumpTo(Player.instance.gridPos);
+        });
+    }
+
+    static async OnTP ()
+    {
+        Party.instance.ClearMoves();
+
+        this.#pool.forEach((item, index) => {
+            if (index === 0) return;
+
+            item.char.TP(Player.instance.gridPos);
             item.char.LookAt(Player.instance.lookingAt);
         });
     }

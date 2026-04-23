@@ -8,7 +8,7 @@ class MapConfig extends GameBehavior
         EventSystem.onUpdate.Add(() => this.#Set());
         this.#Set();
 
-        if (MapTransfer.last != null) Party.OnTransfer();
+        if (MapTransfer.last != null) Player.instance.TP(MapTransfer.last.pos);
     }
 
     #Set ()

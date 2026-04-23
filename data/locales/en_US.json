@@ -344,11 +344,11 @@
     "\\SE[1](What was that all about?)"
 ],
 "forestbarrieredge_catiger": "Meow!",
-"forestbarrieredge_losttraveller_1": [
+"forestbarrieredge_traveller_1": [
     "\\SE[8]Miss? Where did you go!? Hello?",
     "\\SE[1]..Guess the barrier's too \nstrong for him this far in."
 ],
-"forestbarrieredge_losttraveller_2": [
+"forestbarrieredge_traveller_2": [
     "\\SE[8]Oh no..! Miss? Where did you go!?",
     "\\SE[1]Oops... Not again..."
 ],
@@ -460,7 +460,59 @@
 "forestmid_bird_traveller": "\\SE[8]Lost Traveller: Chirp!\\SE[1]",
 "forestmid_raccoon1_traveller": "\\SE[8]Lost Traveller: Looks like he's \nhiding...\\SE[1]",
 "forestmid_raccoon2_traveller": "\\SE[8]Lost Traveller: Seems a little\nscared...\\SE[1]",
+"forestmid_deer1_traveller": "\\SE[8]Lost Traveller: Such a pretty deer!\\SE[1]",
+"forestmid_deer2_traveller": "\\SE[8]Lost Traveller: She seems a little\nnervous...\\SE[1]",
 "forestmid_squirrel_traveller": "\\SE[8]Lost Traveller: Such a fast little\nsquirrel!\\SE[1]",
-"forestmid_boar_traveller": "\\SE[8]Lost Traveller: This boar seems a \nlittle mean...\\SE[1]"
+"forestmid_boar_traveller": "\\SE[8]Lost Traveller: This boar seems a \nlittle mean...\\SE[1]",
+"forestmid_traveller_1": [
+    "\\SE[8]It's strange...\\.\\. No matter how far \nI walk, it's like I'm going around \nin circles.",
+    "Rumor has it that this forest has\nbeen enchanted by a witch. ",
+    "All who enter the forest lose their\nway.\\.\\. I guess the rumors are true.\nI'm lost too...",
+    "\\SE[1](I guess he's talking about\nClaire's barrier.)",
+    "(The barrier only activates \nif strangers get too close \nto our house.)",
+    "(Though...)",
+    "(The barrier should be \nbroken at the moment.)",
+    "(I guess it's still in effect \nenough to make some people \nlose their way.)",
+    "\\SE[8]Are...\\.\\. Are you not affected by \nthe enchanted forest..!?",
+    "Do you think you could help me\nget out of here?\\.\\. I've been \nlooking for the nearby village.",
+    "\\SE[1]"
+],
+"forestmid_traveller_1_choices": [
+    "Help him out",
+    "He'll figure it out"
+],
+"forestmid_traveller_1_ok": [
+    "\\SE[1]Ok. Try not to stray too\nfar away from me.",
+    "\\SE[8]Thank you so much!! What a relief\nto come across someone so kind!\\SE[1]"
+],
+"forestmid_traveller_1_no": [
+    "\\SE[1]Sorry...\\.\\. I'm a little busy\nat the moment.",
+    "\\SE[8]Ah..!\\.\\. It's ok..!\\.\\. \nI'm sure I can make it there...\\.\\. \nEventually...\\SE[1]"
+],
+"forestmid_traveller_refused": [
+    "\\SE[8]Oh? \\.\\.Did you change your mind!?\\.\\.\nWill you help me?",
+    "\\SE[1]"
+],
+"forestmid_traveller_refused_choices": [
+    "Help him out",
+    "Nah"
+],
+"forestmid_traveller_refused_ok": [
+    "\\SE[1]I suppose so...\\.\\.\nTry not to stray too far \naway from me.",
+    "\\SE[8]Thank you so much!!\\.\\. What a relief\nto come across someone so kind!\\SE[1]"
+],
+"forestmid_traveller_refused_no": [
+    "\\SE[1]Sorry... ",
+    "\\SE[8]Ah..!\\.\\. It's ok..!\\.\\. \nIf you change your mind...\\.\\.\nPlease let me know..!\\SE[1]"
+],
+"forestmid_traveller_2": [
+    "\\SE[8]Ah! There you are! \nThere was a strange fog... And next\nthing I knew I was back here.",
+    "I'll try to stick to you more\nclosely this time!\\SE[1]"
+],
+"forestmid_traveller_3": "\\SE[8]Phew... \nThis is... Too much... \nDon't worry... I can... Still...\\SE[1]",
+"forestmid_traveller_4": [
+    "\\SE[8]I........\ncan........\nstill........",
+    "\\SE[1](Poor guy...)"
+]
 
 }

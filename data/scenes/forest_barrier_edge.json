@@ -13136,7 +13136,7 @@
                 {
                     "type": "EventAutostart",
                     "args": {
-                        "event": "forestbarrieredge_losttraveller",
+                        "event": "forestbarrieredge_traveller",
                         "conditions": [
                             {
                                 "name": "traveller_help"
