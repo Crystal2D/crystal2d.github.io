@@ -123,7 +123,7 @@ class ChoiceBox extends ItsABox
     {
         super.Start();
 
-        const content = await this.Instantiate(Resources.FindPrefab("boxcontent/choice"), this.transform);
+        const content = await this.Instantiate(Resources.FindPrefab("choicebox_content"), this.transform);
         this._text = content.GetComponentInChildren(Text);
         this._selector = content.GetComponentInChildren(SpriteRenderer);
 
@@ -154,7 +154,7 @@ class ChoiceBox extends ItsABox
 
         this.#cursorTime += Time.deltaTime * 60;
 
-        if (this.#cursorTime >= 40) this.#cursorTime = 0;
+        if (this.#cursorTime >= 40) this.#cursorTime = this.#cursorTime % 40;
 
         let opacity = 255;
 
@@ -184,7 +184,7 @@ class ChoiceBox extends ItsABox
 
         const item = this.#choices[this.#selected];
 
-        if (this.nahChoice != null && InputManager.GetKeyDown("cancel"))
+        if (this.nahChoice != null && InputManager.IsTriggered("cancel"))
         {
             AudioManager.instance.PlayNo();
             this.#choices[this.nahChoice].callback(0);
@@ -194,7 +194,7 @@ class ChoiceBox extends ItsABox
 
         if (item.dired === 0)
         {
-            if (InputManager.GetKeyDown("ok"))
+            if (InputManager.IsTriggered("ok"))
             {
                 AudioManager.instance.PlayConfirm();
                 item.callback(0);
@@ -205,8 +205,8 @@ class ChoiceBox extends ItsABox
 
         let dir = null;
 
-        if (item.dired === 1) dir = +(InputManager.GetKeyDown("ok") || InputManager.GetKeyDown("right")) - InputManager.GetKeyDown("left");
-        else dir = +(InputManager.GetKeyDown("ok") || InputManager.IsRepeated("right")) - InputManager.IsRepeated("left");
+        if (item.dired === 1) dir = +(InputManager.IsTriggered("ok") || InputManager.IsTriggered("right")) - InputManager.IsTriggered("left");
+        else dir = +(InputManager.IsTriggered("ok") || InputManager.IsRepeated("right")) - InputManager.IsRepeated("left");
 
         if (dir !== 0)
         {

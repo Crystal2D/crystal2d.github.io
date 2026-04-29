@@ -421,7 +421,7 @@ class Options extends ChoiceBox
 
         if (Input.GetKeyDown(KeyCode.F4)) this.#UpdateDataText();
 
-        if (!this.isClosed && InputManager.GetKeyDown("cancel"))
+        if (!this.isClosed && InputManager.IsTriggered("cancel"))
         {
             AudioManager.instance.PlayNo();
 

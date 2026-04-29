@@ -35,8 +35,6 @@ class MapGrid extends GameBehavior
                 newNode.gridX = this.min.x + x;
                 newNode.gridY = this.min.y + y;
 
-                // this.Instantiate(Resources.FindPrefab("box"), null, this.#grid.CellToWorld(new Vector2(newNode.gridX, newNode.gridY)));
-
                 xArray.push(newNode);
             }
 

@@ -26,7 +26,7 @@ class SpriteResolver extends GameBehavior
         return super.enabled;
     }
 
-    Start ()
+    Awake ()
     {
         this.#sprRen = this.GetComponent(SpriteRenderer);
         this.#ogSpr = this.#sprRen.sprite;

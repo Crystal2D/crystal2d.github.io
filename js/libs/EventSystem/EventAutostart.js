@@ -1,8 +1,8 @@
 class EventAutostart extends GameBehavior
 {
     #processing = false;
-    #done = false;
 
+    done = false;
     conditions = [];
 
     event = null;
@@ -15,7 +15,7 @@ class EventAutostart extends GameBehavior
 
     #Process ()
     {
-        if (this.#done || this.#processing || this.event == null) return;
+        if (this.done || this.#processing || this.event == null) return;
 
         this.#processing = true;
 
@@ -38,7 +38,7 @@ class EventAutostart extends GameBehavior
         
         EventSystem.Run(this.event);
 
-        this.#done = true;
+        this.done = true;
         this.#processing = false;
     }
 }

@@ -4,11 +4,19 @@
         "disabled": true
     },
     "resources": [
+        "font_main",
         "sprites/pixel",
         "sprites/box",
         "sprites/arrows",
         "sprites/title",
-        "font_main",
+        [
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl"
+        ],
+        [
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        ],
         "audio/se/select",
         "audio/se/confirm",
         "audio/se/no",

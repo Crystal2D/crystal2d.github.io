@@ -20,7 +20,7 @@ class Transitioner extends GameBehavior
         
         this.#sprite = this.GetComponent(SpriteRenderer);
 
-        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
+        this.DontDestroyOnLoad(this);
     }
 
     FadeIn (callback = () => { })

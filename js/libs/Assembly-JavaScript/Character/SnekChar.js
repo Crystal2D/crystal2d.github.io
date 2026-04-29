@@ -49,6 +49,21 @@ class SnekChar extends GameBehavior
             this.char.animateIdle = this.#animatedIdle;
             this.char.ResetAnimation();
         }
+
+        MovesSave ()
+        {
+            return this.moves.map(item => {
+                return {
+                    x: item.x,
+                    y: item.y
+                };
+            });
+        }
+
+        LoadMoves (data)
+        {
+            this.moves = data.map(item => new Vector2(item.x, item.y));
+        }
     }
 
     Start ()

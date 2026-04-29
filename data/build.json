@@ -53,7 +53,9 @@
         "forest_cove",
         "forest_view",
         "town_path",
-        "fly"
+        "fly",
+        "save",
+        "load"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

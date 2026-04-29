@@ -3,7 +3,9 @@
     "id": "main",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
-        "RPGSave",
+        "Saving/RPGSave",
+        "Saving/SaveScreen",
+        "Saving/SaveItem",
         "Loader",
         "Init",
         "MapInit",
@@ -60,6 +62,15 @@
         },
         {
             "name" : "TitleScreen",
+            "type" : 0
+        },
+        {
+            "name" : "SaveScreen",
+            "type" : 0,
+            "construction": "const output = new SaveScreen(); await output.Load(); return output;"
+        },
+        {
+            "name" : "SaveItem",
             "type" : 0
         },
         {
@@ -240,8 +251,8 @@
         },
         {
             "name" : "Parallax",
-            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
             "type" : 0,
+            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
             "args": [
                 {
                     "type": "Vector2",

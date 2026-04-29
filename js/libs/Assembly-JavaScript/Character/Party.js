@@ -2,8 +2,10 @@ class Party extends SnekChar
 {
     static #pool = new Map();
 
-    static size = 2;
+    static size = 4;
+
     static instance = null;
+    static loadData = null;
 
     Awake ()
     {
@@ -18,10 +20,51 @@ class Party extends SnekChar
             char: Player.instance,
             sprRen: Player.instance.GetComponent(SpriteRenderer),
             sprLib: Player.instance.GetComponent(SpriteLibrary),
-            sprRes: Player.instance.GetComponent(SpriteResolver)
+            sprRes: Player.instance.GetComponent(SpriteResolver),
+            onSwitchStart: () => { },
+            onSwitchEnd: () => { }
+        });
+        
+        let loaded = 1;
+
+        for (let i = 1; i < this.size; i++) (async () => {
+            await this.#Add();
+            loaded++;
+        })();
+
+        await CrystalEngine.Wait(() => loaded == this.size);
+
+        this.#pool.forEach(item => {
+            const renderer = item.char.GetComponent(SpriteRenderer);
+
+            item.onSwitchStart = () => renderer.color.a = 0;
+            Loader.onSwitchStart.Add(item.onSwitchStart);
+
+            item.onSwitchEnd = () => {
+                if (item.name != null) renderer.color.a = 1;
+            };
+            Loader.onSwitchEnd.Add(item.onSwitchEnd);
+        })
+    }
+
+    static Unload ()
+    {
+        this.DestroyOnLoad(Party.instance);
+
+        this.#pool.forEach((item, index) => {
+            Loader.onSwitchStart.Remove(item.onSwitchStart);
+            Loader.onSwitchEnd.Remove(item.onSwitchEnd);
+
+            this.DestroyOnLoad(item.char);
+
+            if (item.name != null && item.name !== "yoki")
+            {
+                Resources.DestroyOnLoad(`spritelibs/chars/${item.name}`);
+                Resources.DestroyOnLoad(`sprites/chars/${item.name}`);
+            }
         });
 
-        for (let i = 1; i < this.size; i++) this.#Add();
+        this.#pool = new Map();
     }
 
     static async OnJump ()
@@ -35,14 +78,26 @@ class Party extends SnekChar
 
     static async OnTP ()
     {
-        Party.instance.ClearMoves();
+        if (this.loadData == null) Party.instance.ClearMoves();
 
         this.#pool.forEach((item, index) => {
             if (index === 0) return;
 
-            item.char.TP(Player.instance.gridPos);
-            item.char.LookAt(Player.instance.lookingAt);
+            if (this.loadData == null)
+            {
+                item.char.TP(Player.instance.gridPos);
+                item.char.LookAt(Player.instance.lookingAt);
+
+                return;
+            }
+
+            item.char.TP(new Vector2(this.loadData[index].pos.x, this.loadData[index].pos.y));
+            item.char.LookAt(new Vector2(this.loadData[index].dir.x, this.loadData[index].dir.y));
+
+            Party.instance.followers[index - 1].LoadMoves(this.loadData[index].moves);
         });
+
+        this.loadData = null;
     }
 
     static async #Add ()
@@ -63,7 +118,9 @@ class Party extends SnekChar
             char: char,
             sprRen: sprRen,
             sprLib: gameObject.GetComponent(SpriteLibrary),
-            sprRes: gameObject.GetComponent(SpriteResolver)
+            sprRes: gameObject.GetComponent(SpriteResolver),
+            onSwitchStart: () => { },
+            onSwitchEnd: () => { }
         };
         this.#pool.set(this.#pool.size, member);
     }
@@ -72,7 +129,7 @@ class Party extends SnekChar
     {
         const member = this.#pool.get(index);
 
-        if (member == null || member.name === name) return;
+        if (member == null || member.name === name || name == null) return;
 
         if (member.name != null) this.Clear(index);
 
@@ -89,7 +146,7 @@ class Party extends SnekChar
         ]);
 
         member.sprLib.asset = Resources.Find(`spritelibs/chars/${name}`);
-        member.sprRen.color.a = 1;
+        member.sprRen.color.a = this.loadData == null;
     }
 
     static Clear (index)
@@ -125,5 +182,54 @@ class Party extends SnekChar
         }
 
         return false
+    }
+
+    static GetNames ()
+    {
+        return Array.from(this.#pool).map(item => item[1].name);
+    }
+    
+    static DataSave ()
+    {
+        return Array.from(this.#pool).map(item => {
+            const data = item[1];
+            const output = {
+                name: data.name,
+                pos: {
+                    x: data.char.gridPos.x,
+                    y: data.char.gridPos.y
+                },
+                dir: {
+                    x: data.char.lookingAt.x,
+                    y: data.char.lookingAt.y
+                }
+            };
+
+            if (item[0] > 0) output.moves = Party.instance.followers[item[0] - 1].MovesSave();
+
+            return output;
+        });
+    }
+
+    static async LoadData (data)
+    {
+        if (this.loadData != null) return;
+
+        this.loadData = data;
+
+        const charCount = Math.min(data.length, this.size);
+        let loadedChars = 0;
+
+        for (let i = 0; i < charCount; i++) (async () => {
+            await this.Set(i, data[i].name);
+            loadedChars++;
+        })();
+
+        await CrystalEngine.Wait(() => loadedChars === charCount);
+    }
+
+    static GetChars ()
+    {
+        return Array.from(this.#pool).map(item => item[1].char);
     }
 }

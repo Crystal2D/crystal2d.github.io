@@ -9,13 +9,12 @@ class Illustrator extends GameBehavior
 
     Awake ()
     {
-        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
+        this.DontDestroyOnLoad(this);
+        EventSystem.illustrator = this;
     }
 
     Start ()
     {
-        EventSystem.illustrator = this;
-
         for (let i = 0; i < this.min; i++) this.AddIllusts(i);
     }
 

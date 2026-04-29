@@ -2,7 +2,19 @@ class TitleScreen extends ChoiceBox
 {
     Awake ()
     {
+        Resources.DontDestroyOnLoad(
+            "font_main",
+            "sprites/pixel",
+            "sprites/box",
+            "sprites/arrows",
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl",
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        );
+
         Loader.Ready(3);
+        // Loader.Ready(24);
         Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
 
@@ -11,6 +23,7 @@ class TitleScreen extends ChoiceBox
         super.Start();
 
         Loader.Switch(3);
+        // Loader.Switch(24);
         return;
 
         this.AddChoice(LocaleManager.Find("title_start"), () => this.Close(() => {

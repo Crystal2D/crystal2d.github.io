@@ -18,10 +18,7 @@ class Player extends RPGMovement
         super.Start();
 
         Player.instance = this;
-        this.DontDestroyOnLoad(this, [
-            "sprites/chars/yoki",
-            "spritelibs/chars/yoki"
-        ]);
+        this.DontDestroyOnLoad(this);
 
         this.onJumpStart.Add(() => Party.OnJump());
         this.onTP.Add(() => Party.OnTP());

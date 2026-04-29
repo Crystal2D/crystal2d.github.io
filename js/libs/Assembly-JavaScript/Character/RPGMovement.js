@@ -103,9 +103,9 @@ class RPGMovement extends GridAdjusted
     lastNode = null;
     event = null;
 
-    static FindChar (name)
+    static FindChar (name, includeInactive)
     {
-        return GameObject.Find(name).GetComponent(RPGMovement);
+        return GameObject.Find(name, includeInactive)?.GetComponent(RPGMovement);
     }
 
     async Invoke ()

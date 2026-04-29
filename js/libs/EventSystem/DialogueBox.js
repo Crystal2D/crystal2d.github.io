@@ -96,16 +96,11 @@ class DialogueBox extends ItsABox
         EventSystem.dialogueChoiceBox = GameObject.Find("dialogue_choicebox").GetComponent(ChoiceBox);
 
         this.DontDestroyOnLoad(this, [
-            "font_main",
-            "sprites/box",
-            "sprites/arrows",
             "sprites/faces/yoki",
             "audio/se/dialogue_1",
             "audio/se/dialogue_2",
             "audio/se/dialogue_3",
-            "audio/se/dialogue_4",
-            "anims/dialogue_arrow",
-            "anims/dialogue_arrow_ctrl"
+            "audio/se/dialogue_4"
         ]);
         this.DontDestroyOnLoad(EventSystem.dialogueChoiceBox);
     }
