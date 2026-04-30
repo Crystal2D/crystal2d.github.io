@@ -249,6 +249,10 @@ class PlayerLoop
             Input.End();
 
 
+            // GameWindowUpdateSleepTime
+            if (GameWindow.sleepTimeout > 0) GameWindow.$wakeTime += Time.unscaledDeltaTime;
+
+
             // ScriptRunBehaviorOnApplicationPause
             const playing = Application.isFocused || Application.runInBackground;
 

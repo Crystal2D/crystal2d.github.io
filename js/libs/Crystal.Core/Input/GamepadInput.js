@@ -119,19 +119,25 @@ class GamepadInput
 
         if ("GamepadEvent" in window)
         {
-            window.addEventListener("gamepadconnected", event => this.#gamepads.push(event.gamepad));
+            window.addEventListener("gamepadconnected", event => {
+                GameWindow.Wake();
+                this.#gamepads.push(event.gamepad);
+            });
             window.addEventListener("gamepaddisconnected", event => {
+                GameWindow.Wake();
                 this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1);
-                
                 this.Clear();
             });
         }
         else if ("WebkitGamepadEvent" in window)
         {
-            window.addEventListener("webkitgamepadconnected", event => this.#gamepads.push(event.gamepad));
+            window.addEventListener("webkitgamepadconnected", event => {
+                GameWindow.Wake();
+                this.#gamepads.push(event.gamepad);
+            });
             window.addEventListener("webkitgamepaddisconnected", event => {
+                GameWindow.Wake();
                 this.#gamepads.splice(this.#gamepads.indexOf(event.gamepad), 1);
-
                 this.Clear();
             });
         }
@@ -173,8 +179,16 @@ class GamepadInput
             this.#keys[15].active = processButton(gamepad.buttons[15]);
             this.#keys[16].active = processButton(gamepad.buttons[16]);
 
-            this.#axes[0].value = gamepad.buttons[6].value; 
-            this.#axes[1].value = gamepad.buttons[7].value;
+            if (this.#axes[0].value !== gamepad.buttons[6].value)
+            {
+                GameWindow.Wake();
+                this.#axes[0].value = gamepad.buttons[6].value;
+            } 
+            if (this.#axes[1].value !== gamepad.buttons[7].value)
+            {
+                GameWindow.Wake();
+                this.#axes[1].value = gamepad.buttons[7].value;
+            }
 
             let leftX = gamepad.axes[0];
             let leftY = -gamepad.axes[1];
@@ -185,8 +199,16 @@ class GamepadInput
             if (Math.abs(leftY) <= this.leftStickDeadzone.x) leftY = 0;
             else if (Math.abs(leftY) >= this.leftStickDeadzone.y) leftY = leftY / Math.abs(leftY);
 
-            this.#axes[2].value = leftX;
-            this.#axes[3].value = leftY;
+            if (this.#axes[2].value !== leftX)
+            {
+                GameWindow.Wake();
+                this.#axes[2].value = leftX;
+            }
+            if (this.#axes[3].value !== leftY)
+            {
+                GameWindow.Wake();
+                this.#axes[3].value = leftY;
+            }
 
             let rightX = gamepad.axes[2];
             let rightY = -gamepad.axes[3];
@@ -197,14 +219,35 @@ class GamepadInput
             if (Math.abs(rightY) <= this.rightStickDeadzone.x) rightY = 0;
             else if (Math.abs(rightY) >= this.rightStickDeadzone.y) rightY = rightY / Math.abs(rightY);
 
-            this.#axes[4].value = rightX;
-            this.#axes[5].value = rightY;
+            if (this.#axes[4].value !== rightX)
+            {
+                GameWindow.Wake();
+                this.#axes[4].value = rightX;
+            }
+            if (this.#axes[5].value !== rightY)
+            {
+                GameWindow.Wake();
+                this.#axes[5].value = rightY;
+            }
         }
     }
 
     static End ()
     {
-        for (let i = 0; i < this.#keys.length; i++) this.#keys[i].lastState = this.#keys[i].active;
+        for (let i = 0; i < this.#keys.length; i++)
+        {
+            if (this.#keys[i].active) GameWindow.Wake();
+
+            if (this.#keys[i].active === this.#keys[i].lastState) continue;
+
+            GameWindow.Wake();
+            this.#keys[i].lastState = this.#keys[i].active;
+        }
+
+        for (let i = 0; i < this.#axes.length; i++)
+        {
+            if (this.#axes[i].value > 0) GameWindow.Wake();
+        }
     }
 
     static Clear ()

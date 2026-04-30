@@ -4,7 +4,6 @@ class ChoiceBox extends ItsABox
     #cursorTime = 0;
     #selected = 0;
     #max = 0;
-    _initialPos = 0;
     #padding = Vector2.zero;
     #choices = [];
 
@@ -12,6 +11,8 @@ class ChoiceBox extends ItsABox
 
     nahChoice = null;
 
+    _initialPos = 0;
+    
     _text = null;
     _selector = null;
 
@@ -47,8 +48,6 @@ class ChoiceBox extends ItsABox
         this.#selected = value;
         this._selector.transform.localPosition = new Vector2(0, this._initialPos - 0.375 * this.#selected);
         
-        AudioManager.instance.PlaySelect();
-
         this._OnSelect();
     }
 
@@ -212,7 +211,13 @@ class ChoiceBox extends ItsABox
         
         if (this.isClosed || this.isClosing) return;
 
-        this.selected += +InputManager.IsRepeated("down") - +InputManager.IsRepeated("up");
+        const selectBy = +InputManager.IsRepeated("down") - +InputManager.IsRepeated("up");
+
+        if (Math.abs(selectBy) > 0)
+        {
+            this.selected += selectBy;
+            AudioManager.instance.PlaySelect();
+        }
 
         const item = this.#choices[this.#selected];
 
@@ -248,9 +253,14 @@ class ChoiceBox extends ItsABox
 
     OnOpen ()
     {
+        this._text.color.a = 1;
+        this._text.ForceMeshUpdate();
+
         for (let i = 0; i < this.#choices.length; i++)
         {
             const choice = this.#choices[i];
+
+            if (choice.active) continue;
 
             for (let i = 0; i < choice.label.length; i++)
             {
@@ -260,7 +270,7 @@ class ChoiceBox extends ItsABox
                     char.color.r,
                     char.color.g,
                     char.color.b,
-                    choice.active ? 1 : 0.63
+                    0.63
                 );
             }
         }

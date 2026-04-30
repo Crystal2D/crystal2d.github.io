@@ -12,12 +12,15 @@ class GameWindow
     static #winX = 0;
     static #winY = 0;
     static #aspect = 0;
+    static #sleepTime = 0;
     static #title = "";
     
     static #icon = null;
     static #ipc = null;
+    static #wakeLock = null;
 
-    static _electronMoving = false;
+    static $electronMoving = false;
+    static $wakeTime = 0;
     
     static fullscreen = false;
     
@@ -102,7 +105,25 @@ class GameWindow
     {
         return (window.innerWidth / window.innerHeight < this.aspect) ? (window.innerWidth / this.aspect) : window.innerHeight;
     }
+
+    static get sleepTimeout ()
+    {
+        return this.#sleepTime;
+    }
+
+    static set sleepTimeout (value)
+    {
+        if (this.#sleepTime === value) return;
+
+        this.#sleepTime = value;
+        this.Wake();
+    }
     
+    static get canSleep ()
+    {
+        return this.#sleepTime !== 0 && this.$wakeTime >= this.#sleepTime;
+    }
+
     static #RequestUpdate ()
     {
         requestAnimationFrame(this.#Update.bind(this));
@@ -110,6 +131,26 @@ class GameWindow
     
     static #Update ()
     {
+        if (document.hasFocus())
+        {
+            if (this.#wakeLock == null)
+            {
+                if (!this.canSleep) (async () => {
+                    this.#wakeLock = false;
+                    
+                    try { this.#wakeLock = await navigator.wakeLock.request("screen"); }
+                    catch { this.#wakeLock = null; }
+                })();
+            }
+            else if (typeof this.#wakeLock !== "boolean")
+            {
+                if (this.canSleep && !this.#wakeLock.released) this.#wakeLock.release();
+
+                if (this.#wakeLock.released) this.#wakeLock = null;
+            }
+        }
+
+        // Fullscreen
         if (document.hasFocus() && !Application.isInCordova)
         {
             if (this.#ipc != null)
@@ -124,9 +165,10 @@ class GameWindow
             else if (!document.fullscreenElement && this.fullscreen) document.documentElement.requestFullscreen().catch(() => { });
         }
 
+        // Sizer
         if (this.#sizeChanged > 0)
         {
-            if (!document.fullscreenElement && ((!this._electronMoving && !this.#resizable) || this.#sizeChanged === 1) && !Application.isInCordova)
+            if (!document.fullscreenElement && ((!this.$electronMoving && !this.#resizable) || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
@@ -158,6 +200,7 @@ class GameWindow
         this.#resizable = data.resizable ?? true;
         this.fullscreen = data.fullscreen ?? Application.isInCordova;
         this.fillWindow = data.fillWindow ?? true;
+        this.sleepTimeout = data.sleepTimeout ?? 0;
   
         this.SetTitle(data.title);
         this.SetResolution(data.width, data.height);
@@ -252,5 +295,10 @@ class GameWindow
             0.5 * (window.screen.availWidth - window.outerWidth),
             0.5 * (window.screen.availHeight - window.outerHeight)
         );
+    }
+
+    static Wake ()
+    {
+        this.$wakeTime = 0;
     }
 }

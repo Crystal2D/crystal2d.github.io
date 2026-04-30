@@ -242,6 +242,8 @@ class Input
         document.addEventListener("keydown", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
+            GameWindow.Wake();
+
             if (Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase()))
             {
                 if (Application.isInElectron) Application.electronIPC.invoke("OpenDevtools");
@@ -257,8 +259,9 @@ class Input
         });
         document.addEventListener("keyup", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
-            
+
             event.preventDefault();
+            GameWindow.Wake();
 
             const keyIndex = this.#FindKeyByCode(event.key);
             
@@ -283,6 +286,7 @@ class Input
             Math.Clamp(y, 0, window.innerHeight)
         );
         const setMousePos = event => {
+            GameWindow.Wake();
             this.#mouseDelta = new Vector2(event.movementX, event.movementY);
             this.#mousePos = getScreenPos(event.clientX, event.clientY);
         };
@@ -296,6 +300,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             setMousePos(event);
 
@@ -311,6 +316,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             setMousePos(event);
 
@@ -328,6 +334,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             this.#nativeTouches = event.touches;
 
@@ -339,6 +346,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             this.#nativeTouches = event.touches;
 
@@ -350,6 +358,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             this.#nativeTouches = event.touches;
 
@@ -361,6 +370,7 @@ class Input
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
             event.preventDefault();
+            GameWindow.Wake();
 
             this.#nativeTouches = event.touches;
         });
