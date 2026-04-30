@@ -63,7 +63,7 @@ class AudioManager extends GameBehavior
         {
             if (this.time >= this.duration) return;
 
-            this.time += Time.deltaTime;
+            this.time += Time.unscaledDeltaTime;
             this.source.volume = this.volume * this.bgFadeVol * 0.01 * AudioManager.bgmVolume;
 
             if (this.time >= this.duration) this.End();

@@ -154,14 +154,16 @@ class Player extends RPGMovement
     {
         if (this.#keyInteractable == null) return;
 
+        const interactable = this.#keyInteractable;
+
         this.avoidInputs = true;
 
-        const isChar = this.#keyInteractable instanceof RPGMovement;
+        const isChar = interactable instanceof RPGMovement;
         let charMove = null;
 
         if (isChar)
         {
-            charMove = this.#keyInteractable.GetComponent(MovesBase);
+            charMove = interactable.GetComponent(MovesBase);
 
             if (charMove != null)
             {
@@ -169,12 +171,12 @@ class Player extends RPGMovement
                 await EventSystem.WaitFrameEnd();
             }
 
-            this.#keyInteractable.LookAtPlayerTemp();
+            interactable.LookAtPlayerTemp();
         }
 
-        const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
+        const handledInput = (await interactable.Invoke()) ?? false;
 
-        if (isChar) this.#keyInteractable.Unlook();
+        if (isChar) interactable.Unlook();
         if (charMove != null)
         {
             charMove.enabled = true;
