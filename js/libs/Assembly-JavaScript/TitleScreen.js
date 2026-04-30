@@ -14,7 +14,6 @@ class TitleScreen extends ChoiceBox
         );
 
         Loader.Ready(3);
-        // Loader.Ready(24);
         Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
 
@@ -22,16 +21,18 @@ class TitleScreen extends ChoiceBox
     {
         super.Start();
 
-        Loader.Switch(3);
-        // Loader.Switch(24);
-        return;
+        // Loader.Switch(3);
+        // return;
 
         this.AddChoice(LocaleManager.Find("title_start"), () => this.Close(() => {
             AudioManager.instance.FadeOutBGM(1);
-
             Transitioner.instance.FadeOut(() => Loader.Switch(3));
         }));
-        this.AddChoice(LocaleManager.Find("title_continue"), () => { });
+        this.AddChoice(LocaleManager.Find("title_continue"), () => this.Close(async () => {
+            const targetTime = Time.time + 0.2;
+            await CrystalEngine.Wait(() => Time.time >= targetTime);
+            SaveScreen.Show(1);
+        }));
 
         const options = GameObject.Find("options").GetComponent(Options);
 
@@ -42,5 +43,7 @@ class TitleScreen extends ChoiceBox
             this.Open();
             AudioManager.instance.PlayBGM("title", 0.3);
         });
+
+        this.SetActive(1, RPGSave.global.find(item => item != null) != null);
     }
 }

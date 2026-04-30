@@ -16,7 +16,9 @@
         ],
         [
             "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly"
+            "spritelibs/chars/butterfly",
+            "sprites/entities/sparkle",
+            "spritelibs/entities/sparkle"
         ]
     ],
     "gameObjects": [

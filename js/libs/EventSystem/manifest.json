@@ -1,7 +1,6 @@
 {
     "name" : "EventSystem",
     "id": "events",
-    "version": "2025.0a",
     "deps": [
         "main"
     ],

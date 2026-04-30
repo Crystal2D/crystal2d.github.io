@@ -41,7 +41,7 @@ class Transitioner extends GameBehavior
     {
         if (this.#inTime > 0)
         {
-            this.#inTime -= Time.deltaTime;
+            this.#inTime -= Time.unscaledDeltaTime;
 
             this.#sprite.color.a = Math.max(this.#inTime / this.#inTimeSet, 0);
 
@@ -56,7 +56,7 @@ class Transitioner extends GameBehavior
 
         if (this.#outTime > 0)
         {
-            this.#outTime -= Time.deltaTime;
+            this.#outTime -= Time.unscaledDeltaTime;
 
             this.#sprite.color.a = Math.min((this.#outTimeSet - this.#outTime) / this.#outTimeSet, 1);
 

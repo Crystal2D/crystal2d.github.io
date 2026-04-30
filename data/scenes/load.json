@@ -1,8 +1,0 @@
-{
-    "name": "Load Screen",
-    "partioning": {
-        "disabled": true
-    },
-    "gameObjects": [
-    ]
-}

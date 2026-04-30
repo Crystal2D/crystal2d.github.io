@@ -93,7 +93,7 @@ class Options extends ChoiceBox
 
     async Start ()
     {
-        this.#mainStuff = GameObject.Find("choicebox").GetComponent(TitleScreen);
+        this.#mainStuff = GameObject.Find("titlescreen").GetComponent(TitleScreen);
 
         this.#dataText = GameObject.Find("options_data").GetComponent(Text);
         this.#leftArrow = GameObject.Find("options_leftarrow");

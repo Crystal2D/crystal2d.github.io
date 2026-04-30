@@ -413,7 +413,7 @@ class Input
 
                 touch.fingerID = contact.identifier;
                 touch.pressure = contact.force;
-                touch.lastTime = Time.time;
+                touch.lastTime = Time.unscaledTime;
                 touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
                 touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
                 touch.position = getScreenPos(contact.clientX, contact.clientY);
@@ -422,8 +422,8 @@ class Input
             }
             
             touch.pressure = contact.force;
-            touch.deltaTime = Time.time - touch.lastTime;
-            touch.lastTime = Time.time;
+            touch.deltaTime = Time.unscaledTime - touch.lastTime;
+            touch.lastTime = Time.unscaledTime;
             touch.radius = (contact.radiusX + contact.radiusY) * 0.5;
             touch.rawPosition = new Vector2(contact.clientX, contact.clientY);
 

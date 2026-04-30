@@ -312,7 +312,7 @@ class RPGMovement extends GridAdjusted
         if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
 
         const char = node.GetOwnerOfType(RPGMovement);
-        if (char != null && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
+        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
 
         return false;
     }
@@ -430,13 +430,17 @@ class RPGMovement extends GridAdjusted
 
     TP (pos)
     {
+        const targetNode = MapGrid.current.NodeOnGrid(pos);
+
+        if (this._DirCheck(targetNode)) return;
+
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
 
         if (this.#node != null) this.#node.RemoveOwner(this);
         
         this.lastNode = this.#node;
-        this.#node = MapGrid.current.NodeOnGrid(pos);
+        this.#node = targetNode;
         this.#node.AddOwner(this);
 
         this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
@@ -449,9 +453,11 @@ class RPGMovement extends GridAdjusted
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        this.ResetAnimation();
-
         const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
+
+        if (this._DirCheck(targetNode)) return;
+
+        this.ResetAnimation();
 
         if (!by.Equals(Vector2.zero))
         {

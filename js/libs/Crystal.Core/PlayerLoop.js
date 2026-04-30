@@ -157,7 +157,7 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // UpdateMainGameViewRect
-            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing)
             {
                 const gl = Application.gl;
 
@@ -180,7 +180,7 @@ class PlayerLoop
             Input.Update();
 
             // ScriptRunBehaviorEarlyUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("EarlyUpdate");
+            if (this.#playing) BroadcastMessage("EarlyUpdate");
         }
 
 
@@ -193,7 +193,7 @@ class PlayerLoop
             Time.fixedTime += Time.fixedDeltaTime * Time.timeScale;
             
             // ScriptRunBehaviorFixedUpdate
-            if (this.#playing && Time.timeScale !== 0)
+            if (this.#playing)
             {
                 BroadcastMessage("FixedUpdate");
                 this.onAfterFixedUpdate.Invoke();
@@ -212,7 +212,7 @@ class PlayerLoop
         // Update
         (() => {
             // ScriptRunBehaviorUpdate
-            if (this.#playing && Time.timeScale !== 0)
+            if (this.#playing)
             {
                 BroadcastMessage("Update");
                 this.onAfterUpdate.Invoke();
@@ -223,10 +223,10 @@ class PlayerLoop
         // PreLateUpdate
         (() => {
             // ScriptRunBehaviorLateUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("LateUpdate");
+            if (this.#playing) BroadcastMessage("LateUpdate");
 
             // UpdateAllRenderers
-            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing)
             {
                 const renderers = GameObject.FindComponents(Renderer);
                         

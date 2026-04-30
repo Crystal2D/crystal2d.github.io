@@ -513,6 +513,17 @@
 "forestmid_traveller_4": [
     "\\SE[8]I........\ncan........\nstill........",
     "\\SE[1](Poor guy...)"
+],
+
+"forest_path": "----------------------------------------------------------------------",
+"forestpath_save": [
+    "..?",
+    "How did...\\.\\. My journal end up \nhere?",
+    "(Should I record stuff?)"
+],
+"forestpath_save_choices": [
+    "Yes",
+    "No"
 ]
 
 }

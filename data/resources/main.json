@@ -189,6 +189,7 @@
                                 "overflowWidth": true,
                                 "overflowHeight": true,
                                 "noCollapse": true,
+                                "trimEnd": false,
                                 "lineHeight": 18
                             }
                         }
@@ -230,7 +231,7 @@
             ],
             "children": [
                 {
-                    "name": "text_file",
+                    "name": "save_text_file",
                     "transform": {
                         "position": {
                             "x": -3.425,
@@ -257,7 +258,7 @@
                     ]
                 },
                 {
-                    "name": "text_title",
+                    "name": "save_text_title",
                     "transform": {
                         "position": {
                             "x": 1.07,
@@ -284,7 +285,7 @@
                     ]
                 },
                 {
-                    "name": "text_time",
+                    "name": "save_text_time",
                     "transform": {
                         "position": {
                             "x": 2.92,
@@ -312,7 +313,7 @@
                     ]
                 },
                 {
-                    "name": "char_0",
+                    "name": "save_char_0",
                     "transform": {
                         "position": {
                             "x": -2.1375,
@@ -347,7 +348,7 @@
                     ]
                 },
                 {
-                    "name": "char_1",
+                    "name": "save_char_1",
                     "transform": {
                         "position": {
                             "x": -1.1375,
@@ -382,7 +383,7 @@
                     ]
                 },
                 {
-                    "name": "char_2",
+                    "name": "save_char_2",
                     "transform": {
                         "position": {
                             "x": -0.1375,
@@ -417,7 +418,7 @@
                     ]
                 },
                 {
-                    "name": "char_3",
+                    "name": "save_char_3",
                     "transform": {
                         "position": {
                             "x": 0.8625,
@@ -622,13 +623,55 @@
                             "texture": "sprites/entities/water",
                             "name": "down-a"
                         },
-                        "sortingLayer": 1
+                        "sortingLayer": 8
                     }
                 },
                 {
                     "type": "SpriteLibrary",
                     "args": {
                         "asset": "spritelibs/entities/water"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl",
+                        "speed": 0.8333333333333334
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/sparkle",
+        "type": "GameObject",
+        "args": {
+            "name": "entity_sparkle",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/sparkle",
+                            "name": "a"
+                        },
+                        "sortingLayer": 8
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/entities/sparkle"
                     }
                 },
                 {

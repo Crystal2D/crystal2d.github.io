@@ -14,10 +14,10 @@ class MapInit extends GameBehavior
             "anims/entity_ctrl",
             "anims/entity_reset",
             "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly"
+            "spritelibs/chars/butterfly",
+            "sprites/entities/sparkle",
+            "spritelibs/entities/sparkle"
         );
-
-        SaveScreen.Ready();
     }
 
     async Update ()
@@ -85,6 +85,7 @@ class MapInit extends GameBehavior
         }
 
         Loader.Ready(save.scene);
+        if (save.bgm != null) await Resources.Load(`audio/bgm/${save.bgm.name}`);
 
         RPGSave.saveTime = save.time;
 
@@ -108,6 +109,8 @@ class MapInit extends GameBehavior
 
         const switchCall = () => {
             Loader.onSwitchEnd.Remove(switchCall);
+
+            Transitioner.instance.SetFadeIn();
 
             for (let i = 0; i < save.eventAutostarts.length; i++)
             {
@@ -139,6 +142,8 @@ class MapInit extends GameBehavior
             }
 
             RPGSave.Retime();
+            RPGSave.loading = null;
+
             if (save.bgm != null) AudioManager.instance.PlayBGM(save.bgm.name, save.bgm.volume, save.bgm.pitch);
 
             Transitioner.instance.FadeIn(() => Player.instance.avoidInputs = false);

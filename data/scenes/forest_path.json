@@ -5113,7 +5113,50 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            }
+                        ]
                     }
                 }
             ]
@@ -5159,6 +5202,16 @@
                 "position": {
                     "x": 8,
                     "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": 0
                 }
             }
         }

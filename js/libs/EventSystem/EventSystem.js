@@ -2689,6 +2689,29 @@ class EventSystem
 
                 await Party.Set(1, "traveller");
             } break;
+            
+            // ------------------------------------------------------- forest_path
+            case "forestpath_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
+            } break;
         }
     }
 

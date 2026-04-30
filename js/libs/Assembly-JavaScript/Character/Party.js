@@ -59,8 +59,10 @@ class Party extends SnekChar
 
             if (item.name != null && item.name !== "yoki")
             {
-                Resources.DestroyOnLoad(`spritelibs/chars/${item.name}`);
-                Resources.DestroyOnLoad(`sprites/chars/${item.name}`);
+                Resources.DestroyOnLoad(
+                    `spritelibs/chars/${item.name}`,
+                    `sprites/chars/${item.name}`
+                );
             }
         });
 
@@ -165,8 +167,10 @@ class Party extends SnekChar
 
         if (member.name !== "yoki")
         {
-            Resources.DestroyOnLoad(`spritelibs/chars/${member.name}`);
-            Resources.DestroyOnLoad(`sprites/chars/${member.name}`);
+            Resources.DestroyOnLoad(
+                `spritelibs/chars/${member.name}`,
+                `sprites/chars/${member.name}`
+            );
         }
 
         member.name = index > 0 ? null : "yoki";

@@ -40,12 +40,37 @@ class RPGSave
             this.#webDB = dbRequest.result;
         }
 
+        this.RefreshGlobal();
+    }
+
+    static async RefreshGlobal ()
+    {
         this.global = await this.Load(0);
 
-        if (this.global != null) return;
-        
-        this.global = [];
-        for (let i = 0; i < 20; i++) this.global.push(null);
+        if (this.global == null)
+        {
+            this.global = [];
+            for (let i = 0; i < 20; i++) this.global.push(null);
+
+            return;
+        }
+
+        let checked = 0;
+
+        for (let i = 0; i < this.global.length; i++) (async () => {
+            if (this.global[i] == null)
+            {
+                checked++;
+                return;
+            }
+
+            const save = await this.Load(i + 1);
+            if (save == null) this.global[i] = null;
+
+            checked++;
+        })();
+
+        await CrystalEngine.Wait(() => checked === 20);
     }
 
     static async Save (index, data)
@@ -117,8 +142,8 @@ class RPGSave
             bgm: AudioManager.instance.BGMSave(),
             switches: EventSystem.SwitchesSave(),
             variables: EventSystem.VariablesSave(),
-            chars: [...this.CharsSave(), ...SaveScreen.charsSave],
-            eventAutostarts: [...this.EventAutostartsSave(), ...SaveScreen.eventAutostartsSave]
+            chars: this.CharsSave(),
+            eventAutostarts: this.EventAutostartsSave()
         };
     }
 
@@ -168,7 +193,9 @@ class RPGSave
             "anims/entity_ctrl",
             "anims/entity_reset",
             "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly"
+            "spritelibs/chars/butterfly",
+            "sprites/entities/sparkle",
+            "spritelibs/entities/sparkle"
         );
         Loader.onSwitchStart.Remove(MapInit.switchCall);
 
@@ -212,11 +239,20 @@ class RPGSave
     {
         this.global[index] = this.CreateGlobalSave();
         const save = this.CreateSave();
+
+        SaveScreen.recent = index;
+
+        for (let i = 0; i < this.global[index].party.length; i++)
+        {
+            const char = this.global[index].party[i];
+            if (char != null) SaveScreen.chars.add(char);
+        }
         
         let saved = 0;
 
         (async () => {
             await this.Save(0, this.global);
+
             saved++;
         })();
 

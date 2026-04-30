@@ -15,6 +15,11 @@ class ChoiceBox extends ItsABox
     _text = null;
     _selector = null;
 
+    get #currentCharIndex ()
+    {
+        return this.#choices.reduce((output, value) => output + value.label.length, 0);
+    }
+
     get selected ()
     {
         return this.#selected;
@@ -26,14 +31,14 @@ class ChoiceBox extends ItsABox
 
         if (value > this.#selected)
         {
-            while (this.#choices[value]?.skip) value++;
+            while (!(this.#choices[value]?.active ?? true) || this.#choices[value]?.skip) value++;
 
             if (value === this.#max) InputManager.Clear();
             if (value > this.#max) value = this.#min;
         }
         else
         {
-            while (this.#choices[value]?.skip) value--;
+            while (!(this.#choices[value]?.active ?? true) || this.#choices[value]?.skip) value--;
 
             if (value === this.#min) InputManager.Clear();
             if (value < this.#min) value = this.#max;
@@ -75,7 +80,9 @@ class ChoiceBox extends ItsABox
     {
         this.#choices.push({
             label: label,
-            skip: true
+            skip: true,
+            active: true,
+            charIndex: this.#currentCharIndex
         });
 
         if (this._text != null)
@@ -90,7 +97,9 @@ class ChoiceBox extends ItsABox
         this.#choices.push({
             label: label,
             callback: callback,
-            dired: directional
+            dired: directional,
+            active: true,
+            charIndex: this.#currentCharIndex
         });
 
         const index = this.#choices.length - 1;
@@ -106,6 +115,29 @@ class ChoiceBox extends ItsABox
         {
             this._text.text += `${label}\n`;
             this.#updateDimensions = 1;
+        }
+    }
+
+    async SetActive (index, state)
+    {
+        const choice = this.#choices[index];
+
+        if (choice == null || choice.active === state) return;
+
+        choice.active = state;
+
+        await CrystalEngine.Wait(() => this._text != null && this._text.characters.length === this.#currentCharIndex)
+
+        for (let i = 0; i < choice.label.length; i++)
+        {
+            const char = this._text.characters[i + choice.charIndex];
+
+            char.color = new Color(
+                char.color.r,
+                char.color.g,
+                char.color.b,
+                state ? 1 : 0.63
+            );
         }
     }
 

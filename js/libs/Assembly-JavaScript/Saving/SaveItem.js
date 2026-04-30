@@ -7,23 +7,24 @@ class SaveItem extends GameBehavior
 
     Awake ()
     {
-        this.#textFile = this.transform.Find("text_file").GetComponent(Text);
-        this.#textTitle = this.transform.Find("text_title").GetComponent(Text);
-        this.#textTime = this.transform.Find("text_time").GetComponent(Text);
+        this.#textFile = this.transform.Find("save_text_file").GetComponent(Text);
+        this.#textTitle = this.transform.Find("save_text_title").GetComponent(Text);
+        this.#textTime = this.transform.Find("save_text_time").GetComponent(Text);
 
         this.#party = [
-            this.transform.Find("char_0").GetComponent(SpriteLibrary),
-            this.transform.Find("char_1").GetComponent(SpriteLibrary),
-            this.transform.Find("char_2").GetComponent(SpriteLibrary),
-            this.transform.Find("char_3").GetComponent(SpriteLibrary)
+            this.transform.Find("save_char_0").GetComponent(SpriteLibrary),
+            this.transform.Find("save_char_1").GetComponent(SpriteLibrary),
+            this.transform.Find("save_char_2").GetComponent(SpriteLibrary),
+            this.transform.Find("save_char_3").GetComponent(SpriteLibrary)
         ];
     }
 
     Set (index)
     {
-        this.#textFile.text = `File ${index + 1}`;
-
         const data = RPGSave.global[index];
+
+        this.#textFile.text = `File ${index + 1}`;
+        this.#textFile.color.a = data == null ? 0.63 : 1;
         
         this.#textTitle.text = data == null ? "" : data.title;
 
