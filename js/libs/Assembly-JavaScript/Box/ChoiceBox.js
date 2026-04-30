@@ -126,7 +126,7 @@ class ChoiceBox extends ItsABox
 
         choice.active = state;
 
-        await CrystalEngine.Wait(() => this._text != null && this._text.characters.length === this.#currentCharIndex)
+        if (this._text == null || this._text.characters.length < this.#currentCharIndex) return;
 
         for (let i = 0; i < choice.label.length; i++)
         {
@@ -248,7 +248,23 @@ class ChoiceBox extends ItsABox
 
     OnOpen ()
     {
-        this._text.color.a = 1;
+        for (let i = 0; i < this.#choices.length; i++)
+        {
+            const choice = this.#choices[i];
+
+            for (let i = 0; i < choice.label.length; i++)
+            {
+                const char = this._text.characters[i + choice.charIndex];
+
+                char.color = new Color(
+                    char.color.r,
+                    char.color.g,
+                    char.color.b,
+                    choice.active ? 1 : 0.63
+                );
+            }
+        }
+
         this._selector.color.a = 1;
         this.#cursorTime = 0;
 

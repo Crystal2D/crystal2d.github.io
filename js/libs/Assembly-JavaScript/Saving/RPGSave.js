@@ -26,7 +26,7 @@ class RPGSave
     {
         if (!GameStorage.isActive)
         {
-            // window.indexedDB.deleteDatabase("save");
+            window.indexedDB.deleteDatabase("save");
 
             const dbRequest = window.indexedDB.open("save");
             dbRequest.onupgradeneeded = () => {
