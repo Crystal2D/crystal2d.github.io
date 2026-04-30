@@ -3,77 +3,184 @@
         "path": "sprites/illusts/zera_talk_1",
         "type": "Texture",
         "args": {
-            "src": "illusts\\zera_talk_1.png"
+            "src": "illusts\\zera_talk_1.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/zera_talk_2",
         "type": "Texture",
         "args": {
-            "src": "illusts\\zera_talk_2.png"
+            "src": "illusts\\zera_talk_2.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/zera_talk_3",
         "type": "Texture",
         "args": {
-            "src": "illusts\\zera_talk_3.png"
+            "src": "illusts\\zera_talk_3.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/forest_view",
         "type": "Texture",
         "args": {
-            "src": "illusts\\forest_view.png"
+            "src": "illusts\\forest_view.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/flower_ring",
         "type": "Texture",
         "args": {
-            "src": "illusts\\flower_ring.png"
+            "src": "illusts\\flower_ring.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_1",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_1.png"
+            "src": "illusts\\tigertaur_1.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_2",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_2.png"
+            "src": "illusts\\tigertaur_2.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_3",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_3.png"
+            "src": "illusts\\tigertaur_3.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_4",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_4.png"
+            "src": "illusts\\tigertaur_4.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_5",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_5.png"
+            "src": "illusts\\tigertaur_5.png",
+            "sprite": { "pivot": { } }
         }
     },
     {
         "path": "sprites/illusts/tigertaur_6",
         "type": "Texture",
         "args": {
-            "src": "illusts\\tigertaur_6.png"
+            "src": "illusts\\tigertaur_6.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/extra_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\extra_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/extra_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\extra_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/extra_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\extra_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/extra_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\extra_4.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/blank",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\blank.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/tree",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tree.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/tree_noletter",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\tree_noletter.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_end_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_end_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/woof_end_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\woof_end_2.png",
+            "sprite": { "pivot": { } }
         }
     }
 ]

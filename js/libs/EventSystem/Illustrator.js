@@ -9,46 +9,70 @@ class Illustrator extends GameBehavior
 
     Awake ()
     {
-        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
+        this.DontDestroyOnLoad(this);
+        EventSystem.illustrator = this;
     }
 
     Start ()
     {
-        EventSystem.illustrator = this;
-
         for (let i = 0; i < this.min; i++) this.AddIllusts(i);
     }
 
     Update ()
     {
         this.#illusts.forEach(item => {
-            if (item.duration === 0) return;
-
-            item.time += Time.deltaTime;
-
-            if (item.targetOpacity != null)
+            if (item.duration > 0)
             {
-                item.opacity = Math.Lerp(item.lastOpacity, item.targetOpacity, item.time / item.duration);
-                item.renderer.color.a = item.opacity;
+                item.time += Time.deltaTime;
+
+                if (item.targetOpacity != null)
+                {
+                    item.opacity = Math.Lerp(item.lastOpacity, item.targetOpacity, item.time / item.duration);
+                    item.renderer.color.a = item.opacity;
+                }
+
+                if (item.targetPos != null)
+                {
+                    item.pos = Vector2.Lerp(item.lastPos, item.targetPos, item.time / item.duration);
+                    item.renderer.transform.localPosition = Vector2.Add(item.origin, item.pos);
+                }
+
+                if (item.targetPos != null)
+                {
+                    item.scale = Vector2.Lerp(item.lastScale, item.targetScale, item.time / item.duration);
+                    item.renderer.transform.localScale = item.scale;
+                }
+
+                if (item.time < item.duration) return;
+
+                item.lastOpacity = null;
+                item.targetOpacity = null;
+                item.lastPos = null;
+                item.targetPos = null;
+
+                item.time = 0;
+                item.duration = 0;
+
+                item.onDone();
             }
 
-            if (item.targetPos != null)
+            if (item.tintDuration > 0)
             {
-                item.pos = Vector2.Lerp(item.lastPos, item.targetPos, item.time / item.duration);
-                item.renderer.transform.localPosition = Vector2.Add(item.origin, item.pos);
+                item.tintTime += Time.deltaTime;
+
+                item.tint = Color.Lerp(item.lastTint, item.targetTint, item.tintTime / item.tintDuration);
+                item.renderer.tint = item.tint;
+
+                if (item.tintTime < item.tintDuration) return;
+
+                item.lastTint = null;
+                item.targetTint = null;
+
+                item.tintTime = 0;
+                item.tintDuration = 0;
+
+                item.onTint();
             }
-
-            if (item.time < item.duration) return;
-
-            item.lastOpacity = null;
-            item.targetOpacity = null;
-            item.lastPos = null;
-            item.targetPos = null;
-
-            item.time = 0;
-            item.duration = 0;
-
-            item.onDone();
         });
     }
 
@@ -66,15 +90,28 @@ class Illustrator extends GameBehavior
                 opacity: 0,
                 origin: Vector2.zero,
                 pos: Vector2.zero,
+                scale: Vector2.one,
 
                 lastOpacity: null,
                 targetOpacity: null,
                 lastPos: null,
                 targetPos: null,
+                lastScale: null,
+                targetScale: null,
 
                 time: 0,
                 duration: 0,
-                onDone: () => { }                
+                onDone: () => { },
+                
+
+                tint: Color.clear,
+
+                lastTint: null,
+                targetTint: null,
+
+                tintTime: 0,
+                tintDuration: 0,
+                onTint: () => { }
             };
             this.#illusts.set(index, illust);
         }
@@ -82,7 +119,7 @@ class Illustrator extends GameBehavior
         return illust;
     }
 
-    async Set (index, img, opacity, pos = Vector2.zero)
+    async Set (index, img, opacity, pos = Vector2.zero, scale = Vector2.one, origin = 1)
     {
         EventSystem.dialogueBox.Close();
 
@@ -90,7 +127,7 @@ class Illustrator extends GameBehavior
 
         if (this.#last != null)
         {
-            const last = await this.AddIllusts(index);
+            const last = await this.AddIllusts(this.#last);
             last.renderer.sortingOrder = 0;
         }
 
@@ -106,22 +143,25 @@ class Illustrator extends GameBehavior
         const sprite = Resources.Find(`sprites/illusts/${img}`).sprites[0];
 
         illust.renderer.sprite = sprite;
-        illust.origin = new Vector2(
-            0.5 * ((sprite.rect.width / sprite.pixelPerUnit) - this.#camSize.x),
-            0.5 * (this.#camSize.y - (sprite.rect.height / sprite.pixelPerUnit))
+        if (origin === 1) illust.origin = new Vector2(
+            -0.5 * this.#camSize.x,
+            0.5 * this.#camSize.y
         );
             
         illust.opacity = opacity;
-        illust.lastOpacity = opacity;
         illust.renderer.color.a = opacity;
 
         illust.pos = pos.Duplicate();
-        illust.lastPos = pos.Duplicate();
-
         illust.renderer.transform.localPosition = Vector2.Add(illust.origin, pos);
+
+        illust.scale = scale.Duplicate();
+        illust.renderer.transform.localScale = scale.Duplicate();
+
+        illust.tint = Color.clear;
+        illust.renderer.tint = Color.clear;
     }
 
-    async Move (index, opacity, pos, duration = 1)
+    async Move (index, opacity, pos, scale, duration = 1)
     {
         EventSystem.dialogueBox.Close();
 
@@ -138,12 +178,37 @@ class Illustrator extends GameBehavior
         if (pos != null && !pos.Equals(illust.pos))
         {
             illust.lastPos = illust.pos;
-            illust.targetPos = pos;
+            illust.targetPos = pos.Duplicate();
+        }
+
+        if (scale != null && !scale.Equals(illust.scale))
+        {
+            illust.lastScale = illust.scale;
+            illust.targetScale = scale.Duplicate();
         }
 
         illust.duration = duration / 60;
 
         await new Promise(resolve => illust.onDone = resolve);
+    }
+
+    async Tint (index, color, duration = 1)
+    {
+        EventSystem.dialogueBox.Close();
+
+        const illust = this.#illusts.get(index);
+
+        if (illust == null || illust.tintDuration > 0) return;
+
+        if (color != null && !color.Equals(illust.tint))
+        {
+            illust.lastTint = illust.tint;
+            illust.targetTint = color.Duplicate();
+        }
+
+        illust.tintDuration = duration / 60;
+
+        await new Promise(resolve => illust.onTint = resolve);
     }
 
     Clear (index)

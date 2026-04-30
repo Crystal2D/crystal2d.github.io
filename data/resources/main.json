@@ -1,5 +1,23 @@
 [
     {
+        "path": "font_main",
+        "type": "FontAtlas",
+        "args": {
+            "texture": "font.png",
+            "glyphs": "font",
+            "pixelPerUnit": 48
+        }
+    },
+    {
+        "path": "ref",
+        "type": "Texture",
+        "args": {
+            "src": "ref6.png",
+            "pixelPerUnit": 133.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+        }
+    },
+
+    {
         "path": "sprites/pixel",
         "type": "Texture",
         "args": {
@@ -103,24 +121,6 @@
     },
 
     {
-        "path": "font_main",
-        "type": "FontAtlas",
-        "args": {
-            "texture": "font.png",
-            "glyphs": "font",
-            "pixelPerUnit": 48
-        }
-    },
-    {
-        "path": "ref",
-        "type": "Texture",
-        "args": {
-            "src": "ref5.png",
-            "pixelPerUnit": 133.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
-        }
-    },
-
-    {
         "path": "illust",
         "type": "GameObject",
         "args": {
@@ -163,7 +163,7 @@
         }
     },
     {
-        "path": "boxcontent/choice",
+        "path": "choicebox_content",
         "type": "GameObject",
         "args": {
             "name": "choicebox_content",
@@ -189,6 +189,7 @@
                                 "overflowWidth": true,
                                 "overflowHeight": true,
                                 "noCollapse": true,
+                                "trimEnd": false,
                                 "lineHeight": 18
                             }
                         }
@@ -219,34 +220,242 @@
         }
     },
     {
-        "path": "box",
+        "path": "save_item",
         "type": "GameObject",
         "args": {
-            "name": "box",
+            "name": "item",
             "components": [
                 {
-                    "type": "SpriteRenderer",
-                    "args": {
-                        "sprite": {
-                            "texture": "sprites/box"
-                        },
-                        "sortingOrder": 2,
-                        "color": {
-                            "r": 255,
-                            "g": 0,
-                            "b": 0,
-                            "a": 182
-                        },
-                        "drawMode": 1,
-                        "size": {
-                            "x": 0.125,
-                            "y": 0.125
+                    "type": "SaveItem"
+                }
+            ],
+            "children": [
+                {
+                    "name": "save_text_file",
+                    "transform": {
+                        "position": {
+                            "x": -3.425,
+                            "y": 0.5
                         }
-                    }
+                    },
+                    "components": [
+                        {
+                            "type": "Text",
+                            "args": {
+                                "font": "font_main",
+                                "width": 2,
+                                "height": 0.5,
+                                "color": {
+                                    "r": 224,
+                                    "g": 248,
+                                    "b": 207
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4,
+                                "text": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_text_title",
+                    "transform": {
+                        "position": {
+                            "x": 1.07,
+                            "y": 0.5
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "Text",
+                            "args": {
+                                "font": "font_main",
+                                "width": 7,
+                                "height": 0.5,
+                                "color": {
+                                    "r": 224,
+                                    "g": 248,
+                                    "b": 207
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4,
+                                "text": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_text_time",
+                    "transform": {
+                        "position": {
+                            "x": 2.92,
+                            "y": -0.62
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "Text",
+                            "args": {
+                                "font": "font_main",
+                                "width": 3,
+                                "horizontalAlign": 2,
+                                "height": 0.5,
+                                "color": {
+                                    "r": 224,
+                                    "g": 248,
+                                    "b": 207
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4,
+                                "text": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_char_0",
+                    "transform": {
+                        "position": {
+                            "x": -2.1375,
+                            "y": -0.2
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/chars/yoki",
+                                    "name": "down-a"
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4
+                            }
+                        },
+                        {
+                            "type": "SpriteLibrary",
+                            "args": {
+                                "asset": "spritelibs/chars/yoki"
+                            }
+                        },
+                        {
+                            "type": "SpriteResolver",
+                            "args": {
+                                "category": "down",
+                                "label": "0"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_char_1",
+                    "transform": {
+                        "position": {
+                            "x": -1.1375,
+                            "y": -0.2
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/chars/yoki",
+                                    "name": "down-a"
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4
+                            }
+                        },
+                        {
+                            "type": "SpriteLibrary",
+                            "args": {
+                                "asset": "spritelibs/chars/yoki"
+                            }
+                        },
+                        {
+                            "type": "SpriteResolver",
+                            "args": {
+                                "category": "down",
+                                "label": "0"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_char_2",
+                    "transform": {
+                        "position": {
+                            "x": -0.1375,
+                            "y": -0.2
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/chars/yoki",
+                                    "name": "down-a"
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4
+                            }
+                        },
+                        {
+                            "type": "SpriteLibrary",
+                            "args": {
+                                "asset": "spritelibs/chars/yoki"
+                            }
+                        },
+                        {
+                            "type": "SpriteResolver",
+                            "args": {
+                                "category": "down",
+                                "label": "0"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "save_char_3",
+                    "transform": {
+                        "position": {
+                            "x": 0.8625,
+                            "y": -0.2
+                        }
+                    },
+                    "components": [
+                        {
+                            "type": "SpriteRenderer",
+                            "args": {
+                                "sprite": {
+                                    "texture": "sprites/chars/yoki",
+                                    "name": "down-a"
+                                },
+                                "sortingOrder": 2,
+                                "sortingLayer": 4
+                            }
+                        },
+                        {
+                            "type": "SpriteLibrary",
+                            "args": {
+                                "asset": "spritelibs/chars/yoki"
+                            }
+                        },
+                        {
+                            "type": "SpriteResolver",
+                            "args": {
+                                "category": "down",
+                                "label": "0"
+                            }
+                        }
+                    ]
                 }
             ]
         }
     },
+    
     {
         "path": "entities/base",
         "type": "GameObject",
@@ -397,6 +606,90 @@
                     "args": {
                         "event": "hintbird"
                     }
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/water",
+        "type": "GameObject",
+        "args": {
+            "name": "entity_water",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/water",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 8
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/entities/water"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl",
+                        "speed": 0.8333333333333334
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/sparkle",
+        "type": "GameObject",
+        "args": {
+            "name": "entity_sparkle",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/sparkle",
+                            "name": "a"
+                        },
+                        "sortingLayer": 8
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/entities/sparkle"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl",
+                        "speed": 0.8333333333333334
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
                 }
             ]
         }

@@ -11,13 +11,16 @@ class Transitioner extends GameBehavior
     
     #sprite = null;
 
+    onTintIn = new DelegateEvent();
+    onTintOut = new DelegateEvent();
+
     Awake ()
     {
         Transitioner.instance = this;
         
         this.#sprite = this.GetComponent(SpriteRenderer);
 
-        this.DontDestroyOnLoad(this, ["sprites/pixel"]);
+        this.DontDestroyOnLoad(this);
     }
 
     FadeIn (callback = () => { })
@@ -38,7 +41,7 @@ class Transitioner extends GameBehavior
     {
         if (this.#inTime > 0)
         {
-            this.#inTime -= Time.deltaTime;
+            this.#inTime -= Time.unscaledDeltaTime;
 
             this.#sprite.color.a = Math.max(this.#inTime / this.#inTimeSet, 0);
 
@@ -53,7 +56,7 @@ class Transitioner extends GameBehavior
 
         if (this.#outTime > 0)
         {
-            this.#outTime -= Time.deltaTime;
+            this.#outTime -= Time.unscaledDeltaTime;
 
             this.#sprite.color.a = Math.min((this.#outTimeSet - this.#outTime) / this.#outTimeSet, 1);
 
@@ -90,6 +93,8 @@ class Transitioner extends GameBehavior
             0
         ));
         await EventSystem.Timer(3);
+
+        this.onTintIn.Invoke();
     }
 
     async TintOut ()
@@ -103,6 +108,8 @@ class Transitioner extends GameBehavior
         await EventSystem.Timer(3);
         await EventSystem.TintAll(Color.clear);
         await EventSystem.Timer(3);
+
+        this.onTintOut.Invoke();
     }
 
     Clear ()

@@ -404,7 +404,7 @@ class InputManager extends GameBehavior
                 this.#repeatTime = this.#pressedTime + this.#repeatInterval;
             }
 
-            this.#pressedTime += Time.deltaTime;
+            this.#pressedTime += Time.unscaledDeltaTime;
         }
     }
 

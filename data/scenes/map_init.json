@@ -1,17 +1,9 @@
 {
     "name": "Map Init",
+    "partioning": {
+        "disabled": true
+    },
     "resources": [
-        [
-            "sprites/chars/yoki",
-            "spritelibs/chars/yoki"
-        ],
-        [
-            "anims/dialogue_arrow",
-            "anims/dialogue_arrow_ctrl"
-        ],
-        "font_main",
-        "sprites/box",
-        "sprites/arrows",
         "sprites/faces/yoki",
         "audio/se/dialogue_1",
         "audio/se/dialogue_2",
@@ -21,6 +13,12 @@
             "anims/entity",
             "anims/entity_reset",
             "anims/entity_ctrl"
+        ],
+        [
+            "sprites/chars/butterfly",
+            "spritelibs/chars/butterfly",
+            "sprites/entities/sparkle",
+            "spritelibs/entities/sparkle"
         ]
     ],
     "gameObjects": [

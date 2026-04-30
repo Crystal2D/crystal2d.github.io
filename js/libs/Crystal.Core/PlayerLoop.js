@@ -80,17 +80,40 @@ class PlayerLoop
         // SetLoopData
         const activeScene = SceneManager.GetActiveScene();
         const gameObjs = activeScene.gameObjects;
+        let rootGameObjs = gameObjs.filter(item => item.transform?.parent == null);
 
+        const BroadcastMessageSingle = (gameObj, method, params, data) => {
+            if (this.#crashed || !SceneManager.active) return;
+
+            gameObj.BroadcastMessage(method, params, data);
+        };
         const BroadcastMessage = (method, params, data) => {
             if (this.#crashed || !SceneManager.active) return;
 
-            for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage(method, params, data);
+            for (let i = 0; i < rootGameObjs.length; i++) rootGameObjs[i].BroadcastMessage(method, params, data);
         };
+        const SetActiveFamily = (gameObj, state) => {
+            gameObj.SetActive(state);
+            
+            const children = gameObj.transform.GetChildren();
+            for (let i = 0; i < children.length; i++) SetActiveFamily(children[i].gameObject, state);
+        };
+        const DestroyFamily = gameObj => {
+            gameObj.destroying = true;
+            gameObj.SetActive(false);
+
+            const children = gameObj.transform.GetChildren();
+            for (let i = 0; i < children.length; i++) DestroyFamily(children[i].gameObject);
+        };
+
         
         // PlayerStart
         if (this.#playing)
         {
             Object.InstantiationQueue.Invoke();
+
+            if (Object.InstantiationQueue.count > 0) rootGameObjs = gameObjs.filter(item => item.transform?.parent == null);
+
             Object.InstantiationQueue.RemoveAll();
             Object.InstantiationIDs = [];
 
@@ -134,7 +157,7 @@ class PlayerLoop
         if (this.#callUpdate)
         {
             // UpdateMainGameViewRect
-            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing)
             {
                 const gl = Application.gl;
 
@@ -157,7 +180,7 @@ class PlayerLoop
             Input.Update();
 
             // ScriptRunBehaviorEarlyUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("EarlyUpdate");
+            if (this.#playing) BroadcastMessage("EarlyUpdate");
         }
 
 
@@ -170,7 +193,7 @@ class PlayerLoop
             Time.fixedTime += Time.fixedDeltaTime * Time.timeScale;
             
             // ScriptRunBehaviorFixedUpdate
-            if (this.#playing && Time.timeScale !== 0)
+            if (this.#playing)
             {
                 BroadcastMessage("FixedUpdate");
                 this.onAfterFixedUpdate.Invoke();
@@ -189,7 +212,7 @@ class PlayerLoop
         // Update
         (() => {
             // ScriptRunBehaviorUpdate
-            if (this.#playing && Time.timeScale !== 0)
+            if (this.#playing)
             {
                 BroadcastMessage("Update");
                 this.onAfterUpdate.Invoke();
@@ -200,10 +223,10 @@ class PlayerLoop
         // PreLateUpdate
         (() => {
             // ScriptRunBehaviorLateUpdate
-            if (this.#playing && Time.timeScale !== 0) BroadcastMessage("LateUpdate");
+            if (this.#playing) BroadcastMessage("LateUpdate");
 
             // UpdateAllRenderers
-            if (!this.#crashed && this.#playing && Time.timeScale !== 0)
+            if (!this.#crashed && this.#playing)
             {
                 const renderers = GameObject.FindComponents(Renderer);
                         
@@ -246,7 +269,7 @@ class PlayerLoop
             // ScriptRunBehaviorOnApplicationQuit
             if (!Application.isPlaying && this.#quitState === 0)
             {
-                for (let i = 0; i < gameObjs.length; i++) gameObjs[i].BroadcastMessage("OnApplicationQuit");
+                for (let i = 0; i < rootGameObjs.length; i++) BroadcastMessageSingle(rootGameObjs[i], "OnApplicationQuit");
 
                 try {
                     if (Application.wantsToQuit.Invoke().includes(false)) Application.CancelQuit();
@@ -260,17 +283,17 @@ class PlayerLoop
             // DecommissionStart
             if (this.#quitState === 1)
             {
-                for (let i = 0; i < gameObjs.length; i++) GameObject.Destroy(gameObjs[i]);
+                for (let i = 0; i < rootGameObjs.length; i++) GameObject.Destroy(rootGameObjs[i]);
 
                 Application.quitting.Invoke();
             }
 
             // ScriptRunBehaviorOnDisable
-            for (let i = 0; i < gameObjs.length; i++)
+            for (let i = 0; i < rootGameObjs.length; i++)
             {
-                if (gameObjs[i].destroying) gameObjs[i].SetActive(false);
+                if (rootGameObjs[i].destroying) DestroyFamily(rootGameObjs[i]);
 
-                gameObjs[i].BroadcastMessage("OnDisable", null, {
+                BroadcastMessageSingle(rootGameObjs[i], "OnDisable", null, {
                     specialCall : 3,
                     passActive : true
                 });
@@ -279,11 +302,11 @@ class PlayerLoop
             // ScriptRunBehaviorOnDestroy
             const tree = activeScene.tree;
             const deadGameObjs = gameObjs.filter(item => item.destroying);
-    
+
             for (let i = 0; i < deadGameObjs.length; i++)
             {
-                deadGameObjs[i].BroadcastMessage("OnDestroy", { passActive : true });
-    
+                if (deadGameObjs[i].transform?.parent == null) BroadcastMessageSingle(deadGameObjs[i], "OnDestroy", null, { passActive : true });
+
                 tree.Remove(deadGameObjs[i]);
     
                 const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);

@@ -18,10 +18,10 @@ class Player extends RPGMovement
         super.Start();
 
         Player.instance = this;
-        this.DontDestroyOnLoad(this, [
-            "sprites/chars/yoki",
-            "spritelibs/chars/yoki"
-        ]);
+        this.DontDestroyOnLoad(this);
+
+        this.onJumpStart.Add(() => Party.OnJump());
+        this.onTP.Add(() => Party.OnTP());
     }
     
     Update ()
@@ -42,10 +42,16 @@ class Player extends RPGMovement
         if (transfer != null) this.#transfer = transfer;
 
         const interactables = node.GetOwnersOfType(Interactable);
+        this.#keyInteractable = null;
 
         for (let i = 0; i < interactables.length; i++)
         {
-            if (interactables[i].trigger !== 1) continue;
+            if (interactables[i].trigger !== 1)
+            {
+                if (this.#keyInteractable == null) this.#keyInteractable = interactables[i];
+
+                continue;
+            }
 
             this.#touchInteractable = interactables[i];
             break;
@@ -58,25 +64,27 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
-        const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
-        const interactables = lookedNode.GetOwnersOfType(Interactable);
-
-        let interactable = null;
-
-        for (let i = 0; i < interactables.length; i++)
+        if (this.#keyInteractable == null)
         {
-            if (interactables[i].trigger !== 0) continue;
+            const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
+            const interactables = lookedNode.GetOwnersOfType(Interactable);
 
-            interactable = interactables[i];
-            break;
+            let interactable = null;
+
+            for (let i = 0; i < interactables.length; i++)
+            {
+                if (interactables[i].trigger !== 0) continue;
+
+                interactable = interactables[i];
+                break;
+            }
+
+            if (interactable == null) interactable = lookedNode.GetOwnerOfType(RPGMovement);
+
+            if (interactable != null) this.#keyInteractable = interactable;
         }
 
-        if (interactable == null) interactable = lookedNode.GetOwnerOfType(RPGMovement);
-
-        if (interactable != null) this.#keyInteractable = interactable;
-        else this.#keyInteractable = null;
-
-        if (InputManager.GetKeyDown("ok") && EventSystem.dialogueBox.isClosed) this.#Interact();
+        if (InputManager.IsTriggered("ok") && EventSystem.dialogueBox.isClosed) this.#Interact();
 
         if (this.avoidInputs) return;
 
@@ -147,9 +155,32 @@ class Player extends RPGMovement
         if (this.#keyInteractable == null) return;
 
         this.avoidInputs = true;
-        const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
-        if (!handledInput) this.avoidInputs = false;
 
-        console.log(handledInput);
+        const isChar = this.#keyInteractable instanceof RPGMovement;
+        let charMove = null;
+
+        if (isChar)
+        {
+            charMove = this.#keyInteractable.GetComponent(MovesBase);
+
+            if (charMove != null)
+            {
+                charMove.enabled = false;
+                await EventSystem.WaitFrameEnd();
+            }
+
+            this.#keyInteractable.LookAtPlayerTemp();
+        }
+
+        const handledInput = (await this.#keyInteractable.Invoke()) ?? false;
+
+        if (isChar) this.#keyInteractable.Unlook();
+        if (charMove != null)
+        {
+            charMove.enabled = true;
+            charMove.ResetTime();
+        }
+
+        if (!handledInput) this.avoidInputs = false;
     }
 }

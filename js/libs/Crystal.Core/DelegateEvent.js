@@ -18,9 +18,7 @@ class DelegateEvent
     {
         const index = this.#calls.indexOf(callback);
 
-        if (index < 0) return;
-
-        this.#calls.splice(index, 1);
+        if (index >= 0) this.#calls.splice(index, 1);
     }
 
     RemoveAll ()

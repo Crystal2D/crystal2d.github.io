@@ -5,7 +5,18 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/water",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
+        ],
+        "sprites/illusts/tree",
+        "sprites/illusts/tree_noletter",
+        "sprites/illusts/woof_end_1",
+        "sprites/illusts/woof_end_2",
+        "sprites/illusts/blank",
+        "sprites/faces/woof",
+        "audio/se/jump"
     ],
     "gameObjects": [
         {
@@ -41,7 +52,13 @@
                                 "pos": {
                                     "x": 29,
                                     "y": -18
-                                }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "scene": 7,
@@ -56,7 +73,13 @@
                                 "pos": {
                                     "x": 30,
                                     "y": -18
-                                }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "scene": 7,
@@ -71,7 +94,143 @@
                                 "pos": {
                                     "x": 31,
                                     "y": -18
-                                }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 2
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 1
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 0
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": -1
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": 2
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -1
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": 1
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": 0
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": -1
+                                },
+                                "event": "foresttree_tree",
+                                "conditions": [
+                                    {
+                                        "name": "bird_form",
+                                        "not": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "foresttree_bonus",
+                        "conditions": [
+                            {
+                                "name": "bird_form"
                             }
                         ]
                     }
@@ -99,7 +258,7 @@
                             "y": -3
                         },
                         "max": {
-                            "x": 1,
+                            "x": 2,
                             "y": 8
                         }
                     }
@@ -2348,13 +2507,280 @@
                                             {
                                                 "x": -4,
                                                 "y": 8
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 5
                                             }
                                         ]
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        "sortingLayer": 2
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_butterfly1",
+            "prefab": "entities/butterfly",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": -2.25,
+                    "y": 1.75
+                }
+            },
+            "components": [
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 1
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "name": "char_butterfly2",
+            "prefab": "entities/butterfly",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 0.75,
+                    "y": -0.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -4.25,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -3.25,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": -2.25,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -1.25,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -0.25,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 0.75,
+                    "y": -4.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 2.25,
+                    "y": -3.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 2.25,
+                    "y": -2.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 2.25,
+                    "y": -1.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 2.75,
+                    "y": -1.25
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -1.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -2.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -3.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -4.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
                 }
             ]
         }

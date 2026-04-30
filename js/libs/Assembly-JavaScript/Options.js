@@ -93,7 +93,7 @@ class Options extends ChoiceBox
 
     async Start ()
     {
-        this.#mainStuff = GameObject.Find("choicebox").GetComponent(TitleScreen);
+        this.#mainStuff = GameObject.Find("titlescreen").GetComponent(TitleScreen);
 
         this.#dataText = GameObject.Find("options_data").GetComponent(Text);
         this.#leftArrow = GameObject.Find("options_leftarrow");
@@ -421,7 +421,7 @@ class Options extends ChoiceBox
 
         if (Input.GetKeyDown(KeyCode.F4)) this.#UpdateDataText();
 
-        if (!this.isClosed && InputManager.GetKeyDown("cancel"))
+        if (!this.isClosed && InputManager.IsTriggered("cancel"))
         {
             AudioManager.instance.PlayNo();
 

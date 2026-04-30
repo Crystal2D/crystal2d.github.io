@@ -5113,10 +5113,107 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 0
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 1
+                                },
+                                "event": "forestpath_save"
+                            }
+                        ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_butterfly1",
+            "prefab": "entities/butterfly",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": -7,
+                    "y": 0.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly2",
+            "prefab": "entities/butterfly",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 0,
+                    "y": 1.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly3",
+            "prefab": "entities/butterfly",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 6.5,
+                    "y": 2
+                }
+            }
+        },
+        {
+            "name": "char_butterfly4",
+            "prefab": "entities/butterfly",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 8,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": 0
+                }
+            }
         }
     ]
 }

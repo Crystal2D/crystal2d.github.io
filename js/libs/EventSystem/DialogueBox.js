@@ -12,6 +12,7 @@ class DialogueBox extends ItsABox
     #playIndex = 0;
     #pauseCount = 0;
     #pauseTime = 0;
+    #bg = 0;
     #chars = [];
     #se = 1;
     #ses = [
@@ -77,6 +78,7 @@ class DialogueBox extends ItsABox
         }
     ];
 
+    #sprRenderer = null;
     #face = null;
     #text = null;
     #arrow = null;
@@ -85,6 +87,7 @@ class DialogueBox extends ItsABox
     {
         super.Start();
 
+        this.#sprRenderer = this.GetComponent(SpriteRenderer);
         this.#text = this.GetComponentInChildren(Text);
         this.#face = this.transform.Find("face").GetComponent(SpriteRenderer);
         this.#arrow = this.transform.Find("arrow").GetComponent(SpriteRenderer);
@@ -93,16 +96,11 @@ class DialogueBox extends ItsABox
         EventSystem.dialogueChoiceBox = GameObject.Find("dialogue_choicebox").GetComponent(ChoiceBox);
 
         this.DontDestroyOnLoad(this, [
-            "font_main",
-            "sprites/box",
-            "sprites/arrows",
             "sprites/faces/yoki",
             "audio/se/dialogue_1",
             "audio/se/dialogue_2",
             "audio/se/dialogue_3",
-            "audio/se/dialogue_4",
-            "anims/dialogue_arrow",
-            "anims/dialogue_arrow_ctrl"
+            "audio/se/dialogue_4"
         ]);
         this.DontDestroyOnLoad(EventSystem.dialogueChoiceBox);
     }
@@ -374,5 +372,15 @@ class DialogueBox extends ItsABox
         if (this.#shouldUnpause || !Options.textSkip) return;
 
         this.#showFast = true;
+    }
+
+    SetBG (index)
+    {
+        if (index === this.#bg) return;
+
+        this.#bg = index;
+
+        if (index === 0) this.#sprRenderer.color.a = 1;
+        else if (index === 1) this.#sprRenderer.color.a = 0;
     }
 }

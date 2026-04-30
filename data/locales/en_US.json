@@ -304,6 +304,7 @@
 "forestbarrier_sbutterfly": "I feel.\\.\\..\\.\\.. Pleasant...",
 "forestbarrier_dragon": "?\\.\\.\nHow'd they get this deep\ninto the forest..?",
 
+"forest_barrier_edge": "----------------------------------------------------------------------",
 "forestbarrieredge_raccoon1": "..?",
 "forestbarrieredge_raccoon3": "..!",
 "forestbarrieredge_boar": "..!",
@@ -342,6 +343,187 @@
     "I'll see you later!",
     "\\SE[1](What was that all about?)"
 ],
-"forestbarrieredge_kitty": "Meow!"
+"forestbarrieredge_catiger": "Meow!",
+"forestbarrieredge_traveller_1": [
+    "\\SE[8]Miss? Where did you go!? Hello?",
+    "\\SE[1]..Guess the barrier's too \nstrong for him this far in."
+],
+"forestbarrieredge_traveller_2": [
+    "\\SE[8]Oh no..! Miss? Where did you go!?",
+    "\\SE[1]Oops... Not again..."
+],
+
+"cliffs": "----------------------------------------------------------------------",
+"cliffs_deer2": "(She's chewing on some \ngrass..)",
+"cliffs_deer3": "\\SE[2]...\\SE[1]",
+"cliffs_fox": "\\SE[2]Bark!\\SE[1]",
+"cliffs_raccoon": "\\SE[11]Rrr..\\SE[1]",
+"cliffs_bird": "\\SE[2]Chirp..\\SE[1]",
+"cliffs_wolf": [
+    "\\SE[6]Grrr...\\SE[1]",
+    "\\SE[1](He looks hungry...)"
+],
+"cliffs_frog": "\\SE[2]Ribbit!\\SE[1]",
+"cliffs_woof_1": [
+    "\\SE[4]zzzzzzz",
+    "\\SE[1]Oh good, she's asleep.",
+    "I really don't feel like\ndealing with her right now.",
+    "Well... Really I never do.",
+    "Maybe she'll just sleep\nforever.",
+    "\\SE[4]zzzzz...\\.\\..\\.\\.Y..\\.\\..\\.\\.Yoki...",
+    "\\SE[1]...?",
+    "Is she...\\.\\. dreaming about me?",
+    "\\SE[4]zzz...\\.\\. I'll\\.\\. eat you yet...",
+    "....\\.\\.Just you\\.\\. wait...",
+    "\\SE[1]..."
+],
+"cliffs_woof_2": [
+    "\\SE[1]I wonder where she even\ncame from...",
+    "She showed up just a few\nyears ago and has been\na pain ever since.",
+    "She always seems to be \ntargeting me...\nI don't know why...",
+    "But...",
+    "Even though she strikes so\nviolently,\\. it sort of \nfeels like...",
+    "She doesn't really mean it...\nLike she knows she can't\nREALLY beat me.",
+    "It's strange...\\.\\.\nHave I met her before all of \nthis..?"
+],
+"cliffs_woof_3": [
+    "\\SE[1]To be honest...\\.\\.\nShe's the kind of BEAST-type\nthe Prince would get rid of.",
+    "She's the dangerous type\nthat'll violently attack \nanyone.",
+    "But..\\.\\..\\.\\.\nI have a feeling she's not\nreally what she seems.",
+    "I should keep her existence\na secret from the Prince.",
+    "She's never wandered too\nclose to the village.",
+    "And she only seems \ninterested in attacking me \nfor some reason..."
+],
+"cliffs_woof_4": [
+    "\\SE[1]I better leave...\\.\\.\nI don't wanna stick around\nfor when she wakes up.",
+    "\\SE[4]zzzzzzzzzz"
+],
+"cliffs_bonus_zera": [
+    "\\SE[4]Zera!",
+    "\\SE[3]...\\SE[4]"
+],
+"cliffs_bonus_aimottle": [
+    "\\SE[4]Ah...\\.\\. It's you...",
+    "!!!",
+    "It's the tasty-looking \nrabbit!!!",
+    "\\SE[4]You're not gonna attack me,\\.\\.\nare you?",
+    "I finally finished repairing \nmy arm...",
+    "Don't make me do it again!",
+    "I smell a familiar scent!!!",
+    "It's Yoki!\\.\\.\nYou were with Yoki earlier!",
+    "\\SE[4]I was... Yeah...",
+    "\\SE[4]You better not think of \ngoing after her again!",
+    "\\SE[4]She has enough to deal with!",
+    "Enough talk!!!\\.\\.\nI'll eat you too!!!",
+    "\\SE[4]We'll see about that!",
+    "!!!!",
+    "\\SE[4]...............................",
+    "\\SE[4]Well.\\.\\..\\.\\..\\.\\.\nI'm sure she'll be ok...",
+    "I should run off before\nshe regains consciousness.",
+    "Huh?\\.\\. Huh?",
+    "Where'd rabbit go?",
+    "I'll go find her!!!",
+    "She won't get away from me\nthat easily!!!"
+],
+
+"forest_tree": "----------------------------------------------------------------------",
+"foresttree_tree": [
+    "..?",
+    "There's a letter attached to \nthis tree.",
+    ".\\.\\..\\.\\..",
+    "I can't...\\.\\. read this at all...",
+    "What language is this.\\.\\..\\.\\.?",
+    "I'll put it back I guess.",
+    "...",
+    "Who could this letter be for \nthis deep in the forest..?"
+],
+"foresttree_tree_seen": "I wonder who this letter\ncould be for...",
+"foresttree_bonus": [
+    "\\SE[4]?",
+    "What's that smell..?",
+    "It smells familiar!!",
+    "It's coming from.\\..\\.\\..\\.\\.\nHere!",
+    "This paper!",
+    "What's on here..?",
+    ".\\..\\..",
+    "This...",
+    "This is..",
+    "This is from..\\..\\..",
+    ".\\..\\..mom..?"
+],
+
+"forest_mid": "----------------------------------------------------------------------",
+"forestmid_rabbit1_traveller": "\\SE[8]Lost Traveller: This little bunny\nlooks tired..!\\SE[1]",
+"forestmid_rabbit2_traveller": "\\SE[8]Lost Traveller: What a cute \nenergetic little rabbit!\\SE[1]",
+"forestmid_fox_traveller": "\\SE[8]Lost Traveller: What a beautiful \nfox!\\SE[1]",
+"forestmid_bird": "\\SE[4]Chirp chirp chirp!\\SE[1]",
+"forestmid_bird_traveller": "\\SE[8]Lost Traveller: Chirp!\\SE[1]",
+"forestmid_raccoon1_traveller": "\\SE[8]Lost Traveller: Looks like he's \nhiding...\\SE[1]",
+"forestmid_raccoon2_traveller": "\\SE[8]Lost Traveller: Seems a little\nscared...\\SE[1]",
+"forestmid_deer1_traveller": "\\SE[8]Lost Traveller: Such a pretty deer!\\SE[1]",
+"forestmid_deer2_traveller": "\\SE[8]Lost Traveller: She seems a little\nnervous...\\SE[1]",
+"forestmid_squirrel_traveller": "\\SE[8]Lost Traveller: Such a fast little\nsquirrel!\\SE[1]",
+"forestmid_boar_traveller": "\\SE[8]Lost Traveller: This boar seems a \nlittle mean...\\SE[1]",
+"forestmid_traveller_1": [
+    "\\SE[8]It's strange...\\.\\. No matter how far \nI walk, it's like I'm going around \nin circles.",
+    "Rumor has it that this forest has\nbeen enchanted by a witch. ",
+    "All who enter the forest lose their\nway.\\.\\. I guess the rumors are true.\nI'm lost too...",
+    "\\SE[1](I guess he's talking about\nClaire's barrier.)",
+    "(The barrier only activates \nif strangers get too close \nto our house.)",
+    "(Though...)",
+    "(The barrier should be \nbroken at the moment.)",
+    "(I guess it's still in effect \nenough to make some people \nlose their way.)",
+    "\\SE[8]Are...\\.\\. Are you not affected by \nthe enchanted forest..!?",
+    "Do you think you could help me\nget out of here?\\.\\. I've been \nlooking for the nearby village.",
+    "\\SE[1]"
+],
+"forestmid_traveller_1_choices": [
+    "Help him out",
+    "He'll figure it out"
+],
+"forestmid_traveller_1_ok": [
+    "\\SE[1]Ok. Try not to stray too\nfar away from me.",
+    "\\SE[8]Thank you so much!! What a relief\nto come across someone so kind!\\SE[1]"
+],
+"forestmid_traveller_1_no": [
+    "\\SE[1]Sorry...\\.\\. I'm a little busy\nat the moment.",
+    "\\SE[8]Ah..!\\.\\. It's ok..!\\.\\. \nI'm sure I can make it there...\\.\\. \nEventually...\\SE[1]"
+],
+"forestmid_traveller_refused": [
+    "\\SE[8]Oh? \\.\\.Did you change your mind!?\\.\\.\nWill you help me?",
+    "\\SE[1]"
+],
+"forestmid_traveller_refused_choices": [
+    "Help him out",
+    "Nah"
+],
+"forestmid_traveller_refused_ok": [
+    "\\SE[1]I suppose so...\\.\\.\nTry not to stray too far \naway from me.",
+    "\\SE[8]Thank you so much!!\\.\\. What a relief\nto come across someone so kind!\\SE[1]"
+],
+"forestmid_traveller_refused_no": [
+    "\\SE[1]Sorry... ",
+    "\\SE[8]Ah..!\\.\\. It's ok..!\\.\\. \nIf you change your mind...\\.\\.\nPlease let me know..!\\SE[1]"
+],
+"forestmid_traveller_2": [
+    "\\SE[8]Ah! There you are! \nThere was a strange fog... And next\nthing I knew I was back here.",
+    "I'll try to stick to you more\nclosely this time!\\SE[1]"
+],
+"forestmid_traveller_3": "\\SE[8]Phew... \nThis is... Too much... \nDon't worry... I can... Still...\\SE[1]",
+"forestmid_traveller_4": [
+    "\\SE[8]I........\ncan........\nstill........",
+    "\\SE[1](Poor guy...)"
+],
+
+"forest_path": "----------------------------------------------------------------------",
+"forestpath_save": [
+    "..?",
+    "How did...\\.\\. My journal end up \nhere?",
+    "(Should I record stuff?)"
+],
+"forestpath_save_choices": [
+    "Yes",
+    "No"
+]
 
 }

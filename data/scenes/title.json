@@ -4,11 +4,19 @@
         "disabled": true
     },
     "resources": [
+        "font_main",
         "sprites/pixel",
         "sprites/box",
         "sprites/arrows",
         "sprites/title",
-        "font_main",
+        [
+            "anims/dialogue_arrow",
+            "anims/dialogue_arrow_ctrl"
+        ],
+        [
+            "sprites/chars/yoki",
+            "spritelibs/chars/yoki"
+        ],
         "audio/se/select",
         "audio/se/confirm",
         "audio/se/no",
@@ -118,7 +126,7 @@
             ]
         },
         {
-            "name": "choicebox",
+            "name": "titlescreen",
             "id": 5,
             "transform": {
                 "position": { "x": 2.0875, "y": 1.823 }
@@ -222,6 +230,220 @@
                         "sortingOrder": 5,
                         "sortingLayer": 4,
                         "lineHeight": 18
+                    }
+                }
+            ]
+        },
+        {
+            "name": "savescreen",
+            "id": 14,
+            "components": [
+                {
+                    "type": "SaveScreen"
+                }
+            ]
+        },
+        {
+            "name": "save_titlebox",
+            "id": 15,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": 4.03
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "size": {
+                            "x": 10,
+                            "y": 0.9375
+                        },
+                        "drawMode": 1,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "text",
+            "id": 16,
+            "parent": 15,
+            "transform": {
+                "position": { "y": -0.025 }
+            },
+            "components": [
+                {
+                    "type": "Text",
+                    "args": {
+                        "font": "font_main",
+                        "width": 8.86,
+                        "height": 0.5,
+                        "color": {
+                            "r": 224,
+                            "g": 248,
+                            "b": 207
+                        },
+                        "sortingOrder": 1,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "save_contentbox",
+            "id": 17,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": -0.46875
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/box"
+                        },
+                        "size": {
+                            "x": 10,
+                            "y": 8.0625
+                        },
+                        "drawMode": 1,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "save_item_0",
+            "prefab": "save_item",
+            "id": 18,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": 2.525
+                }
+            }
+        },
+        {
+            "name": "save_item_1",
+            "prefab": "save_item",
+            "id": 19,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": 1.025
+                }
+            }
+        },
+        {
+            "name": "save_item_2",
+            "prefab": "save_item",
+            "id": 20,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": -0.475
+                }
+            }
+        },
+        {
+            "name": "save_item_3",
+            "prefab": "save_item",
+            "id": 21,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": -1.975
+                }
+            }
+        },
+        {
+            "name": "save_item_4",
+            "prefab": "save_item",
+            "id": 22,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": -3.475
+                }
+            }
+        },
+        {
+            "name": "save_selector",
+            "id": 23,
+            "parent": 14,
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/pixel"
+                        },
+                        "color": {
+                            "r": 134,
+                            "g": 192,
+                            "b": 108,
+                            "a": 255
+                        },
+                        "sortingOrder": 1,
+                        "sortingLayer": 4,
+                        "size": {
+                            "x": 9.445,
+                            "y": 1.5
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "save_arrowup",
+            "id": 24,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": 3.425
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "up"
+                        },
+                        "sortingOrder": 3,
+                        "sortingLayer": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "save_arrowdown",
+            "id": 25,
+            "parent": 14,
+            "transform": {
+                "position": {
+                    "y": -4.375
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/arrows",
+                            "name": "down"
+                        },
+                        "sortingOrder": 3,
+                        "sortingLayer": 4
                     }
                 }
             ]

@@ -1,0 +1,18 @@
+[
+    {
+        "path": "spritelibs/entities/water",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/entities/water"
+        }
+    },
+    {
+        "path": "spritelibs/entities/sparkle",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/entities/sparkle"
+        }
+    }
+]

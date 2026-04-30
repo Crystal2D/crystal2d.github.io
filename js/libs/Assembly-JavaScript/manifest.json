@@ -3,7 +3,9 @@
     "id": "main",
     "description" : "The assembly module where all of the build scripts are located",
     "scripts" : [
-        "RPGSave",
+        "Saving/RPGSave",
+        "Saving/SaveScreen",
+        "Saving/SaveItem",
         "Loader",
         "Init",
         "MapInit",
@@ -15,6 +17,13 @@
         "TitleScreen",
         "Options",
         "InputManager",
+        "CamCtrl",
+        "MapGrid/MapNode",
+        "MapGrid/MapGrid",
+        "MapGrid/TilemapCollider",
+        "MapGrid/GridAdjusted",
+        "MapConfig/MapConfig",
+        "MapConfig/MapTransfer",
         "Character/RPGMovement",
         "Character/Player",
         "Character/SnekChar",
@@ -22,12 +31,6 @@
         "Character/Moves/MovesBase",
         "Character/Moves/RandomMove",
         "Character/Moves/ToPlayerMove",
-        "CamCtrl",
-        "MapGrid/MapNode",
-        "MapGrid/MapGrid",
-        "MapGrid/TilemapCollider",
-        "MapConfig/MapConfig",
-        "MapConfig/MapTransfer",
         "Test",
         "LocaleManager",
         "Parallax"
@@ -59,6 +62,15 @@
         },
         {
             "name" : "TitleScreen",
+            "type" : 0
+        },
+        {
+            "name" : "SaveScreen",
+            "type" : 0,
+            "construction": "const output = new SaveScreen(); await output.Load(); return output;"
+        },
+        {
+            "name" : "SaveItem",
             "type" : 0
         },
         {
@@ -153,7 +165,7 @@
             "args": [
                 {
                     "component": true,
-                    "type": "Transform",
+                    "type": "Player",
                     "name": "target"
                 },
                 {
@@ -191,6 +203,10 @@
             ]
         },
         {
+            "name": "GridAdjusted",
+            "type": 0
+        },
+        {
             "name": "MapConfig",
             "type": 0,
             "args": [
@@ -225,13 +241,18 @@
                 {
                     "type": "Vector2",
                     "name": "pos"
+                },
+                {
+                    "type": "EventCondition",
+                    "array": true,
+                    "name": "conditions"
                 }
             ]
         },
         {
             "name" : "Parallax",
-            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
             "type" : 0,
+            "construction": "const output = new Parallax(); await output.Load(await toObject(\"Sprite\", data.sprite)); return output;",
             "args": [
                 {
                     "type": "Vector2",

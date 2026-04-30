@@ -17,12 +17,14 @@
     "resources": [
         "main",
         "sprites/ctrls",
+        "sprites/entities",
         "sprites/chars",
         "sprites/faces",
         "sprites/illusts",
         "sprites/parallaxes",
         "sprites/tiles",
-        "spritelibs",
+        "spritelibs/chars",
+        "spritelibs/entities",
         "anims",
         "audio/bgm",
         "audio/se"
@@ -81,7 +83,7 @@
         {
             "name": "Entites",
             "id": 1,
-            "value": 2
+            "value": 3
         },
         {
             "name": "Colliders",
@@ -91,22 +93,32 @@
         {
             "name": "Transitioner",
             "id": 3,
-            "value": 5
+            "value": 7
         },
         {
             "name": "UI",
             "id": 4,
-            "value": 4
+            "value": 6
         },
         {
             "name": "Illustrations",
             "id": 5,
-            "value": 3
+            "value": 5
         },
         {
             "name": "Parallax",
             "id": 6,
             "value": -1
+        },
+        {
+            "name": "Over Entities",
+            "id": 7,
+            "value": 4
+        },
+        {
+            "name": "Under Entities",
+            "id": 8,
+            "value": 2
         }
     ],
     "sortingAxis" : { "x": 0, "y": 1 }

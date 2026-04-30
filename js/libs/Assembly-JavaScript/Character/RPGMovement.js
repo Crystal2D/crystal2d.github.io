@@ -1,4 +1,4 @@
-class RPGMovement extends GameBehavior
+class RPGMovement extends GridAdjusted
 {
     #allowDirChange = true;
     #checkedDir = false;
@@ -7,6 +7,7 @@ class RPGMovement extends GameBehavior
     #currentSpeed = 0;
     #currentFrameSpeed = 0;
     #animCount = 0;
+    #animStateInit = 0;
     #animState = 0;
     #jumpPeak = 0;
     #jumpDuration = 0;
@@ -14,6 +15,7 @@ class RPGMovement extends GameBehavior
     #targetDir = Vector2.zero;
     #lookDir = Vector2.down;
     #movement = Vector2.zero;
+    #pos = Vector2.zero;
     #lastPos = Vector2.zero;
     #jumpTo = Vector2.zero;
     #onJumpEnd = () => { };
@@ -80,6 +82,11 @@ class RPGMovement extends GameBehavior
         return this.#moveStart;
     }
 
+    get position ()
+    {
+        return this.#pos.Duplicate();
+    }
+
     lockLook = false;
     updateMovement = true;
     charCollision = true;
@@ -89,10 +96,17 @@ class RPGMovement extends GameBehavior
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
     onStay = new DelegateEvent();
+    onJumpStart = new DelegateEvent();
+    onTP = new DelegateEvent();
     ignoredCharCollisions = [];
 
     lastNode = null;
     event = null;
+
+    static FindChar (name, includeInactive)
+    {
+        return GameObject.Find(name, includeInactive)?.GetComponent(RPGMovement);
+    }
 
     async Invoke ()
     {
@@ -127,7 +141,7 @@ class RPGMovement extends GameBehavior
         if (!this.#moveStart) return;
 
         const nextPos = Vector2.Add(
-            this.transform.position,
+            this.#pos,
             Vector2.Scale(this._moveDir, Time.deltaTime * this.#currentFrameSpeed)
         );
 
@@ -136,7 +150,8 @@ class RPGMovement extends GameBehavior
             this.#targetDir = Vector2.zero;
             this._moveDir = Vector2.zero;
 
-            this.transform.position = Vector2.Add(this.#lastPos, this.#movement);
+            this.#pos = Vector2.Add(this.#lastPos, this.#movement);
+            this.transform.position = this.#pos;
 
             this.#moveStart = false;
             this.#allowDirChange = true;
@@ -148,7 +163,9 @@ class RPGMovement extends GameBehavior
         }
 
         this.lookingAt = this._moveDir;
-        this.transform.position = nextPos;
+        
+        this.#pos = nextPos;
+        this.transform.position = this.#pos;
 
         this._OnMove();
     }
@@ -156,6 +173,8 @@ class RPGMovement extends GameBehavior
     Start ()
     {
         this._sprResolver = this.GetComponent(SpriteResolver);
+
+        this.#animStateInit = parseInt(this._sprResolver.label);
         
         const sprDir = this._sprResolver.category;
 
@@ -166,10 +185,12 @@ class RPGMovement extends GameBehavior
 
     OnEnable ()
     {
+        this.#pos = this.transform.position;
+
         this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
         this.#node.AddOwner(this);
 
-        this.transform.localPosition = Vector2.Add(this.transform.localPosition, new Vector2(0, 0.3125));
+        super.OnEnable();
     }
 
     OnDisable ()
@@ -177,6 +198,8 @@ class RPGMovement extends GameBehavior
         this.#node.RemoveOwner(this);
         this.lastNode = null;
         this.#node = null;
+
+        super.OnDisable();
     }
 
     LateUpdate ()
@@ -192,7 +215,8 @@ class RPGMovement extends GameBehavior
             this.#currentSpeed = this.#speed;
             this.#currentFrameSpeed = this._frameSpeed;
 
-            this.#lastPos = this.transform.position;
+            this.#pos = this.transform.position;
+            this.#lastPos = this.#pos;
 
             this.#checkedDir = false;
         }
@@ -206,8 +230,10 @@ class RPGMovement extends GameBehavior
             if (this.#DirBlocked())
             {
                 this.lookingAt = this._moveDir;
+                this.#targetDir = Vector2.zero;
                 this._moveDir = Vector2.zero;
-                this.transform.position = this.#lastPos;
+                this.#pos = this.#lastPos.Duplicate();
+                this.transform.position = this.#pos;
                 this.#allowDirChange = true;
 
                 return;
@@ -234,20 +260,20 @@ class RPGMovement extends GameBehavior
         this.#jumpTime -= Time.deltaTime;
 
         const timePeak = 30 * this.#jumpPeak * (this.#jumpTime / this.#jumpDuration);
-        this.#lastPos = new Vector2(
-            (this.#lastPos.x * timePeak + this.#jumpTo.x) / (timePeak + 1),
-            (this.#lastPos.y * timePeak + this.#jumpTo.y) / (timePeak + 1)
+        this.#pos = new Vector2(
+            (this.#pos.x * timePeak + this.#jumpTo.x) / (timePeak + 1),
+            (this.#pos.y * timePeak + this.#jumpTo.y) / (timePeak + 1)
         );
 
-        this.transform.localPosition = new Vector2(
-            this.#lastPos.x,
-            this.#lastPos.y + this.#jumpHeight
+        this.transform.position = new Vector2(
+            this.#pos.x,
+            this.#pos.y + this.#jumpHeight
         );
 
         if (this.#jumpTime <= 0)
         {
-            this.#lastPos = this.#jumpTo;
-            this.transform.localPosition = this.#lastPos;
+            this.#pos = this.#jumpTo.Duplicate();
+            this.transform.position = this.#pos;
             this.#onJumpEnd();
         }
     }
@@ -268,7 +294,7 @@ class RPGMovement extends GameBehavior
     #Animate ()
     {
         if (this.animateWalk && this.#moveStart) this.#animCount += 1.5 * Time.deltaTime * 60;
-        else if (this.animateIdle || this.#animState !== 0) this.#animCount += Time.deltaTime * 60;
+        else if (this.animateIdle || this.#animState !== this.#animStateInit) this.#animCount += Time.deltaTime * 60;
 
         const duration = (9 - this.#currentSpeed) * 3;
 
@@ -286,7 +312,7 @@ class RPGMovement extends GameBehavior
         if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
 
         const char = node.GetOwnerOfType(RPGMovement);
-        if (char != null && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
+        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
 
         return false;
     }
@@ -347,14 +373,54 @@ class RPGMovement extends GameBehavior
         this.LookAtTemp(dir)
     }
 
+    LookAway (dir)
+    {
+        this.LookAt(Vector2.Scale(dir, new Vector2(-1, -1)));
+    }
+
+    LookAwayTemp (dir)
+    {
+        this.LookAtTemp(Vector2.Scale(dir, new Vector2(-1, -1)));
+    }
+
     LookAtChar (char)
     {
         this.LookAt(Vector2.Subtract(char.gridPos, this.gridPos));
     }
 
+    LookAwayChar (char)
+    {
+        this.LookAt(Vector2.Subtract(this.gridPos, char.gridPos));
+    }
+
     LookAtCharTemp (char)
     {
         this.LookAtTemp(Vector2.Subtract(char.gridPos, this.gridPos));
+    }
+
+    LookAwayCharTemp (char)
+    {
+        this.LookAtTemp(Vector2.Subtract(this.gridPos, char.gridPos));
+    }
+
+    LookAtPlayer ()
+    {
+        this.LookAtChar(Player.instance);
+    }
+
+    LookAwayPlayer ()
+    {
+        this.LookAwayChar(Player.instance);
+    }
+
+    LookAtPlayerTemp ()
+    {
+        this.LookAtCharTemp(Player.instance);
+    }
+
+    LookAwayPlayerTemp ()
+    {
+        this.LookAwayCharTemp(Player.instance);
     }
 
     Unlook ()
@@ -364,24 +430,34 @@ class RPGMovement extends GameBehavior
 
     TP (pos)
     {
+        const targetNode = MapGrid.current.NodeOnGrid(pos);
+
+        if (this._DirCheck(targetNode)) return;
+
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
 
-        this.#node.RemoveOwner(this);
+        if (this.#node != null) this.#node.RemoveOwner(this);
+        
         this.lastNode = this.#node;
-        this.#node = MapGrid.current.NodeOnGrid(pos);
+        this.#node = targetNode;
         this.#node.AddOwner(this);
 
-        this.transform.localPosition = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
+        this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
+        this.transform.position = this.#pos;
+
+        this.onTP.Invoke();
     }
 
     async Jump (by = Vector2.zero)
     {
         if (this.#jumpTime > 0 || !this._moveDir.Equals(Vector2.zero)) return;
 
-        this.ResetAnimation();
-
         const targetNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, by));
+
+        if (this._DirCheck(targetNode)) return;
+
+        this.ResetAnimation();
 
         if (!by.Equals(Vector2.zero))
         {
@@ -393,6 +469,8 @@ class RPGMovement extends GameBehavior
             this.#node.AddOwner(this);
         }
 
+        this.onJumpStart.Invoke();
+
         this.#jumpTo = Vector2.Add(MapGrid.current.CellToWorld(targetNode.gridPos), new Vector2(0, 0.3125));
 
         this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
@@ -403,6 +481,11 @@ class RPGMovement extends GameBehavior
         await new Promise(resolve => this.#onJumpEnd = resolve);
 
         this.lockLook = false;
+    }
+
+    async JumpTo (pos)
+    {
+        await this.Jump(Vector2.Subtract(pos, this.gridPos));
     }
 
     async MoveToChar (char)
@@ -443,7 +526,7 @@ class RPGMovement extends GameBehavior
     {
         this.#animCount = 0;
         this.#animState = 0;
-        this._sprResolver.label = `${this.#animState}`;
+        this._sprResolver.label = "0";
     }
 
     async StepBack ()

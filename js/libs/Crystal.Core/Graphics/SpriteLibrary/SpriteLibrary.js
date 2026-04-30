@@ -1,8 +1,23 @@
 class SpriteLibrary extends Component
 {
+    #asset = null;
+
     categories = [];
 
-    asset = null;
+    get asset ()
+    {
+        return this.#asset;
+    }
+
+    set asset (value)
+    {
+        this.#asset = value;
+
+        if (this.gameObject == null) return;
+
+        const resolver = this.GetComponent(SpriteResolver);
+        if (resolver != null) resolver.Reload();
+    }
 
     GetSprite (category, label)
     {

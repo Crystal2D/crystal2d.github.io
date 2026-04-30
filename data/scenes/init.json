@@ -1,5 +1,8 @@
 {
     "name": "Init",
+    "partioning": {
+        "disabled": true
+    },
     "gameObjects": [
         {
             "name": "init",

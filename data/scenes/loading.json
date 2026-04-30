@@ -1,5 +1,8 @@
 {
     "name": "Loading",
+    "partioning": {
+        "disabled": true
+    },
     "resources": [
         "sprites/loading"
     ],

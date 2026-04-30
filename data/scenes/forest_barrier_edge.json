@@ -6,6 +6,7 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/collider",
+        "audio/se/jump",
         [
             "sprites/chars/fox",
             "spritelibs/chars/fox"
@@ -13,10 +14,6 @@
         [
             "sprites/chars/raccoon",
             "spritelibs/chars/raccoon"
-        ],
-        [
-            "sprites/chars/butterfly",
-            "spritelibs/chars/butterfly"
         ],
         [
             "sprites/chars/squirrel",
@@ -44,12 +41,17 @@
             "spritelibs/chars/catiger"
         ],
         "sprites/faces/tigertaur",
+        "sprites/faces/claire",
         "sprites/illusts/tigertaur_1",
         "sprites/illusts/tigertaur_2",
         "sprites/illusts/tigertaur_3",
         "sprites/illusts/tigertaur_4",
         "sprites/illusts/tigertaur_5",
-        "sprites/illusts/tigertaur_6"
+        "sprites/illusts/tigertaur_6",
+        [
+            "sprites/chars/claire",
+            "spritelibs/chars/claire"
+        ]
     ],
     "gameObjects": [
         {
@@ -12787,6 +12789,24 @@
                     "args": {
                         "type": 1
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "kitty_cat",
+                                "or": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "caina_sparred"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -13053,14 +13073,73 @@
                                     "x": 19,
                                     "y": 0
                                 },
-                                "event": "forestbarrieredge_tigertaur"
+                                "event": "forestbarrieredge_tigertaur",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "caina_sparred"
+                                    },
+                                    {
+                                        "name": "kitty_cat",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 21,
                                     "y": 0
                                 },
-                                "event": "forestbarrieredge_tigertaur"
+                                "event": "forestbarrieredge_tigertaur",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "caina_sparred"
+                                    },
+                                    {
+                                        "name": "kitty_cat",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": 0
+                                },
+                                "event": "forestbarrieredge_catiger",
+                                "conditions": [
+                                    {
+                                        "name": "kitty_cat"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 21,
+                                    "y": 0
+                                },
+                                "event": "forestbarrieredge_catiger",
+                                "conditions": [
+                                    {
+                                        "name": "kitty_cat"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "forestbarrieredge_traveller",
+                        "conditions": [
+                            {
+                                "name": "traveller_help"
                             }
                         ]
                     }
@@ -13515,6 +13594,178 @@
                     "type": "RandomMove",
                     "args": {
                         "turnOnly": true
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_fly"
+                            },
+                            {
+                                "name": "caina_sparred"
+                            },
+                            {
+                                "name": "kitty_cat",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_catiger",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": 10,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/catiger",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/catiger"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestbarrieredge_catiger"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "kitty_cat"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_eventcatiger",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": 10,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/catiger",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/catiger"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "kitty_fight"
+                            },
+                            {
+                                "name": "kitty_bye",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_claire",
+            "id": 24,
+            "transform": {
+                "position": {
+                    "x": 11.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/claire",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/claire"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "kitty_fight"
+                            },
+                            {
+                                "name": "kitty_cat",
+                                "not": true
+                            }
+                        ]
                     }
                 }
             ]

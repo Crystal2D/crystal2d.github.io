@@ -24,16 +24,13 @@ class MapNode
 
     AddOwner (obj)
     {
-        this.owners.push(obj);
+        if (!this.owners.includes(obj)) this.owners.push(obj);
     }
 
     RemoveOwner (obj)
     {
         const index = this.owners.indexOf(obj);
-
-        if (index < 0) return;
-
-        this.owners.splice(index, 1);
+        if (index >= 0) this.owners.splice(index, 1);
     }
 
     GetOwnerOfType (type)

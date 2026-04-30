@@ -176,7 +176,7 @@ class Tilemap extends Renderer
         {
             this.tint = color;
 
-            this.material.SetVector("uTint", ...color);
+            if (this.material != null) this.material.SetVector("uTint", ...color);
         }
 
         UpdateMesh ()
@@ -664,7 +664,12 @@ class Tilemap extends Renderer
 
     Unmerge ()
     {
-        if (!this.mergedRendering) return;
+        if (!this.mergedRendering)
+        {   
+            if (this.#merging) this.#merging = false;
+
+            return;
+        }
 
         this.#sprite.texture.Unload();
         this.#sprite = null;

@@ -196,8 +196,8 @@ class AudioManager extends GameBehavior
 
         return {
             name: this.#clipName,
-            volume: this.#localBgVol * 100,
-            pitch: this.bgm.pitch * 100
+            volume: this.#localBgVol,
+            pitch: this.bgm.pitch
         };
     }
 

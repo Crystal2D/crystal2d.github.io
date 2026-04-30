@@ -8,6 +8,7 @@ class EventCondition
     not = false;
     name = "";
     or = [];
+    and = [];
 
     // If Switch, then
     // 0: false
@@ -23,6 +24,14 @@ class EventCondition
         else met = EventSystem.GetVariable(this.name) >= this.threshold;
 
         if (this.not) met = !met;
+
+        for (let i = 0; i < this.and.length; i++)
+        {
+            if (this.and[i].Check()) continue;
+
+            met = false;
+            break;
+        }
 
         if (met) return true;
 

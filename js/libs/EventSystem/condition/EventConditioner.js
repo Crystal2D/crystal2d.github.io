@@ -4,6 +4,12 @@ class EventConditioner extends GameBehavior
 
     Awake ()
     {
+        EventSystem.onUpdate.Add(() => this.#Process());
+        this.#Process();
+    }
+
+    #Process ()
+    {
         let met = true;
 
         for (let i = 0; i < this.conditions.length; i++)
@@ -15,6 +21,6 @@ class EventConditioner extends GameBehavior
             break;
         }
 
-        if (!met) this.gameObject.SetActive(false);
+        this.gameObject.SetActive(met);
     }
 }

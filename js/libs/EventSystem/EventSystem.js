@@ -3,16 +3,29 @@ class EventSystem
     static #switches = new Map();
     static #variables = new Map();
 
+    static onBeforeUpdate = new DelegateEvent();
+    static onUpdate = new DelegateEvent();
+
     static dialogueBox = null;
     static dialogueChoiceBox = null;
     static illustrator = null;
 
-    static #AddSwitch (name)
+    static get switchCount ()
+    {
+        return this.#switches.size;
+    }
+
+    static get variableCount ()
+    {
+        return this.#variables.size;
+    }
+
+    static AddSwitch (name)
     {
         this.#switches.set(name, false);
     }
 
-    static #AddVariable (name)
+    static AddVariable (name)
     {
         this.#variables.set(name, 0);
     }
@@ -21,197 +34,197 @@ class EventSystem
     {
         // ----------------------------------------- SWITCHES
 
-        this.#AddSwitch("harp");                  // 0001
-        this.#AddSwitch("traveller");             // 0002
-        this.#AddSwitch("traveller_help");        // 0003
-        this.#AddSwitch("traveller_done");        // 0004
-        this.#AddSwitch("traveller_no");          // 0005
-        this.#AddSwitch("traveller_lake");        // 0006
-        this.#AddSwitch("lake_creature");         // 0007
-        this.#AddSwitch("traveller_c1");          // 0008
-        this.#AddSwitch("traveller_c2");          // 0009
-        this.#AddSwitch("traveller_c3");          // 0010
-        this.#AddSwitch("cave_secret");           // 0011
-        this.#AddSwitch("carriage");              // 0012
-        this.#AddSwitch("fire_wall_1");           // 0013
-        this.#AddSwitch("fire_wall_2");           // 0014
-        this.#AddSwitch("fire_chestb4solve");     // 0015
-        this.#AddSwitch("fire_enemy_1");          // 0016
-        this.#AddSwitch("fire_enemy_2");          // 0017
-        this.#AddSwitch("fire_puzzlereset");      // 0018
-        this.#AddSwitch("ice_void");              // 0019
-        this.#AddSwitch("touchedgrass");          // 0020
+        this.AddSwitch("harp");                  // 0001
+        this.AddSwitch("traveller");             // 0002
+        this.AddSwitch("traveller_help");        // 0003
+        this.AddSwitch("traveller_done");        // 0004
+        this.AddSwitch("traveller_no");          // 0005
+        this.AddSwitch("traveller_lake");        // 0006
+        this.AddSwitch("lake_creature");         // 0007
+        this.AddSwitch("traveller_c1");          // 0008
+        this.AddSwitch("traveller_c2");          // 0009
+        this.AddSwitch("traveller_c3");          // 0010
+        this.AddSwitch("cave_secret");           // 0011
+        this.AddSwitch("carriage");              // 0012
+        this.AddSwitch("fire_wall_1");           // 0013
+        this.AddSwitch("fire_wall_2");           // 0014
+        this.AddSwitch("fire_chestb4solve");     // 0015
+        this.AddSwitch("fire_enemy_1");          // 0016
+        this.AddSwitch("fire_enemy_2");          // 0017
+        this.AddSwitch("fire_puzzlereset");      // 0018
+        this.AddSwitch("ice_void");              // 0019
+        this.AddSwitch("touchedgrass");          // 0020
 
-        this.#AddSwitch("zera_left");             // 0021
-        this.#AddSwitch("claire");                // 0022
-        this.#AddSwitch("claire_quest");          // 0023
-        this.#AddSwitch("doc");                   // 0024
-        this.#AddSwitch("claire_quest_done");     // 0025
-        this.#AddSwitch("claire_reward");         // 0026
-        this.#AddSwitch("claire_fly");            // 0027
-        this.#AddSwitch("woof_sleep_1");          // 0028
-        this.#AddSwitch("woof_sleep_2");          // 0029
-        this.#AddSwitch("woof_sleep_3");          // 0030
-        this.#AddSwitch("aimottle_1");            // 0031
-        this.#AddSwitch("aimottle_2");            // 0032
-        this.#AddSwitch("viewed");                // 0033
-        this.#AddSwitch("claire_poster");         // 0034
-        this.#AddSwitch("stump");                 // 0035
-        this.#AddSwitch("caina_cafe");            // 0036
-        this.#AddSwitch("sign");                  // 0037
-        this.#AddSwitch("zera_athousescene");     // 0038
-        this.#AddSwitch("tree_letter");           // 0039
-        this.#AddSwitch("snek");                  // 0040
+        this.AddSwitch("zera_left");             // 0021
+        this.AddSwitch("claire");                // 0022
+        this.AddSwitch("claire_quest");          // 0023
+        this.AddSwitch("doc");                   // 0024
+        this.AddSwitch("claire_quest_done");     // 0025
+        this.AddSwitch("claire_reward");         // 0026
+        this.AddSwitch("claire_fly");            // 0027
+        this.AddSwitch("woof_sleep_1");          // 0028
+        this.AddSwitch("woof_sleep_2");          // 0029
+        this.AddSwitch("woof_sleep_3");          // 0030
+        this.AddSwitch("aimottle_1");            // 0031
+        this.AddSwitch("aimottle_2");            // 0032
+        this.AddSwitch("viewed");                // 0033
+        this.AddSwitch("claire_poster");         // 0034
+        this.AddSwitch("stump");                 // 0035
+        this.AddSwitch("caina_cafe");            // 0036
+        this.AddSwitch("sign");                  // 0037
+        this.AddSwitch("zera_athousescene");     // 0038
+        this.AddSwitch("tree_letter");           // 0039
+        this.AddSwitch("snek");                  // 0040
 
-        this.#AddSwitch("lighthouse");            // 0041
-        this.#AddSwitch("pier");                  // 0042
-        this.#AddSwitch("prince_1");              // 0043
-        this.#AddSwitch("prince_2");              // 0044
-        this.#AddSwitch("prince_3");              // 0045
-        this.#AddSwitch("prince_4");              // 0046
-        this.#AddSwitch("prince_index");          // 0047
-        this.#AddSwitch("tailor");                // 0048
-        this.#AddSwitch("tailor_dress");          // 0049
-        this.#AddSwitch("treasure");              // 0050
-        this.#AddSwitch("prince_parents_1");      // 0051
-        this.#AddSwitch("prince_parents_2");      // 0052
-        this.#AddSwitch("???");                   // 0053
-        this.#AddSwitch("caina_appeared");        // 0054
-        this.#AddSwitch("stump_touched");         // 0055
-        this.#AddSwitch("caina_sparred");         // 0056
-        this.#AddSwitch("j*b");                   // 0057
-        this.#AddSwitch("j*bbing");               // 0058
-        this.#AddSwitch("j*bbed");                // 0059
-        this.#AddSwitch("j*bbed_good");           // 0060
+        this.AddSwitch("lighthouse");            // 0041
+        this.AddSwitch("pier");                  // 0042
+        this.AddSwitch("prince_1");              // 0043
+        this.AddSwitch("prince_2");              // 0044
+        this.AddSwitch("prince_3");              // 0045
+        this.AddSwitch("prince_4");              // 0046
+        this.AddSwitch("prince_index");          // 0047
+        this.AddSwitch("tailor");                // 0048
+        this.AddSwitch("tailor_dress");          // 0049
+        this.AddSwitch("treasure");              // 0050
+        this.AddSwitch("prince_parents_1");      // 0051
+        this.AddSwitch("prince_parents_2");      // 0052
+        this.AddSwitch("???");                   // 0053
+        this.AddSwitch("caina_appeared");        // 0054
+        this.AddSwitch("stump_touched");         // 0055
+        this.AddSwitch("caina_sparred");         // 0056
+        this.AddSwitch("j*b");                   // 0057
+        this.AddSwitch("j*bbing");               // 0058
+        this.AddSwitch("j*bbed");                // 0059
+        this.AddSwitch("j*bbed_good");           // 0060
 
-        this.#AddSwitch("letter_house_1");        // 0061
-        this.#AddSwitch("letter_house_2");        // 0062
-        this.#AddSwitch("letter_house_3");        // 0063
-        this.#AddSwitch("letter_mail_1");         // 0064
-        this.#AddSwitch("letter_mail_2");         // 0065
-        this.#AddSwitch("letter_mail_3");         // 0066
-        this.#AddSwitch("traveller_village");     // 0067
-        this.#AddSwitch("kitty_fight");           // 0068
-        this.#AddSwitch("kitty_cat");             // 0069
-        this.#AddSwitch("kitty_bye");             // 0070
-        this.#AddSwitch("zera_manor");            // 0071
-        this.#AddSwitch("dragon_noticed");        // 0072
-        this.#AddSwitch("dragon_forest");         // 0073
-        this.#AddSwitch("dragon_deeper");         // 0074
-        this.#AddSwitch("dragon_transformed");    // 0075
-        this.#AddSwitch("dragon_done");           // 0076
-        this.#AddSwitch("dragon_talked");         // 0077
-        this.#AddSwitch("zera_drink");            // 0078
-        this.#AddSwitch("drink");                 // 0079
-        this.#AddSwitch("heroes_set");            // 0080
+        this.AddSwitch("letter_house_1");        // 0061
+        this.AddSwitch("letter_house_2");        // 0062
+        this.AddSwitch("letter_house_3");        // 0063
+        this.AddSwitch("letter_mail_1");         // 0064
+        this.AddSwitch("letter_mail_2");         // 0065
+        this.AddSwitch("letter_mail_3");         // 0066
+        this.AddSwitch("traveller_village");     // 0067
+        this.AddSwitch("kitty_fight");           // 0068
+        this.AddSwitch("kitty_cat");             // 0069
+        this.AddSwitch("kitty_bye");             // 0070
+        this.AddSwitch("zera_manor");            // 0071
+        this.AddSwitch("dragon_noticed");        // 0072
+        this.AddSwitch("dragon_forest");         // 0073
+        this.AddSwitch("dragon_deeper");         // 0074
+        this.AddSwitch("dragon_transformed");    // 0075
+        this.AddSwitch("dragon_done");           // 0076
+        this.AddSwitch("dragon_talked");         // 0077
+        this.AddSwitch("zera_drink");            // 0078
+        this.AddSwitch("drink");                 // 0079
+        this.AddSwitch("heroes_set");            // 0080
 
-        this.#AddSwitch("heroes_otherland");      // 0081
-        this.#AddSwitch("adventure_start");       // 0082
-        this.#AddSwitch("heroes");                // 0083
-        this.#AddSwitch("claire_joins");          // 0084
-        this.#AddSwitch("claire_here");           // 0085
-        this.#AddSwitch("heroes_betrayel");       // 0086
-        this.#AddSwitch("heroes_fight");          // 0087
-        this.#AddSwitch("save");                  // 0088
-        this.#AddSwitch("adventure_nohotspring"); // 0089
-        this.#AddSwitch("adventure_armored");     // 0090
-        this.#AddSwitch("heroes_reunite");        // 0091
-        this.#AddSwitch("adventure_dizzy");       // 0092
-        this.#AddSwitch("adventure_creeps");      // 0093
-        this.#AddSwitch("adventure_done");        // 0094
-        this.#AddSwitch("heroes_rogue");          // 0095
-        this.#AddSwitch("este_warp");             // 0096
-        this.#AddSwitch("journal_a");             // 0097
-        this.#AddSwitch("journal_b");             // 0098
-        this.#AddSwitch("leftroom");              // 0099
-        this.#AddSwitch("journal_pages_1");       // 0100
+        this.AddSwitch("heroes_otherland");      // 0081
+        this.AddSwitch("adventure_start");       // 0082
+        this.AddSwitch("heroes");                // 0083
+        this.AddSwitch("claire_joins");          // 0084
+        this.AddSwitch("claire_here");           // 0085
+        this.AddSwitch("heroes_betrayel");       // 0086
+        this.AddSwitch("heroes_fight");          // 0087
+        this.AddSwitch("save");                  // 0088
+        this.AddSwitch("adventure_nohotspring"); // 0089
+        this.AddSwitch("adventure_armored");     // 0090
+        this.AddSwitch("heroes_reunite");        // 0091
+        this.AddSwitch("adventure_dizzy");       // 0092
+        this.AddSwitch("adventure_creeps");      // 0093
+        this.AddSwitch("adventure_done");        // 0094
+        this.AddSwitch("heroes_rogue");          // 0095
+        this.AddSwitch("este_warp");             // 0096
+        this.AddSwitch("journal_a");             // 0097
+        this.AddSwitch("journal_b");             // 0098
+        this.AddSwitch("leftroom");              // 0099
+        this.AddSwitch("journal_pages_1");       // 0100
 
-        this.#AddSwitch("journal_pages_2");       // 0101
-        this.#AddSwitch("journal_pages_3");       // 0102
-        this.#AddSwitch("journal_done");          // 0103
-        this.#AddSwitch("claire_concern");        // 0104
-        this.#AddSwitch("bird_form");             // 0105
-        this.#AddSwitch("tem_speach");            // 0106
-        this.#AddSwitch("tem_gone");              // 0107
-        this.#AddSwitch("woof_venture");          // 0108
-        this.#AddSwitch("soldier_overheard");     // 0109
-        this.#AddSwitch("librarian");             // 0110
-        this.#AddSwitch("blacksmith");            // 0111
-        this.#AddSwitch("captain");               // 0112
-        this.#AddSwitch("soldier_annoying");      // 0113
-        this.#AddSwitch("villager_1");            // 0114
-        this.#AddSwitch("villager_2");            // 0115
-        this.#AddSwitch("villager_3");            // 0116
-        this.#AddSwitch("villager_4");            // 0117
-        this.#AddSwitch("soldier_talk_1");        // 0118
-        this.#AddSwitch("sailor_1");              // 0119
-        this.#AddSwitch("sailor_2");              // 0120
+        this.AddSwitch("journal_pages_2");       // 0101
+        this.AddSwitch("journal_pages_3");       // 0102
+        this.AddSwitch("journal_done");          // 0103
+        this.AddSwitch("claire_concern");        // 0104
+        this.AddSwitch("bird_form");             // 0105
+        this.AddSwitch("tem_speach");            // 0106
+        this.AddSwitch("tem_gone");              // 0107
+        this.AddSwitch("woof_venture");          // 0108
+        this.AddSwitch("soldier_overheard");     // 0109
+        this.AddSwitch("librarian");             // 0110
+        this.AddSwitch("blacksmith");            // 0111
+        this.AddSwitch("captain");               // 0112
+        this.AddSwitch("soldier_annoying");      // 0113
+        this.AddSwitch("villager_1");            // 0114
+        this.AddSwitch("villager_2");            // 0115
+        this.AddSwitch("villager_3");            // 0116
+        this.AddSwitch("villager_4");            // 0117
+        this.AddSwitch("soldier_talk_1");        // 0118
+        this.AddSwitch("sailor_1");              // 0119
+        this.AddSwitch("sailor_2");              // 0120
 
-        this.#AddSwitch("sailor_3");              // 0121
-        this.#AddSwitch("sailor_4");              // 0122
-        this.#AddSwitch("sailor_talk_10");        // 0123
-        this.#AddSwitch("townsman_1");            // 0124
-        this.#AddSwitch("townsman_2");            // 0125
-        this.#AddSwitch("townsman_3");            // 0126
-        this.#AddSwitch("townsman_4");            // 0127
-        this.#AddSwitch("townsman_5");            // 0128
-        this.#AddSwitch("townsman_6");            // 0129
-        this.#AddSwitch("sailor_talk_11");        // 0130
-        this.#AddSwitch("sailor_talk_12");        // 0131
-        this.#AddSwitch("guard_1");               // 0132
-        this.#AddSwitch("maid_1");                // 0133
-        this.#AddSwitch("guard_2");               // 0134
-        this.#AddSwitch("highknight");            // 0135
-        this.#AddSwitch("sacredknight");          // 0136
-        this.#AddSwitch("guard_3");               // 0137
-        this.#AddSwitch("guard_4");               // 0138
-        this.#AddSwitch("guard_5");               // 0139
-        this.#AddSwitch("guard_6");               // 0140
+        this.AddSwitch("sailor_3");              // 0121
+        this.AddSwitch("sailor_4");              // 0122
+        this.AddSwitch("sailor_talk_10");        // 0123
+        this.AddSwitch("townsman_1");            // 0124
+        this.AddSwitch("townsman_2");            // 0125
+        this.AddSwitch("townsman_3");            // 0126
+        this.AddSwitch("townsman_4");            // 0127
+        this.AddSwitch("townsman_5");            // 0128
+        this.AddSwitch("townsman_6");            // 0129
+        this.AddSwitch("sailor_talk_11");        // 0130
+        this.AddSwitch("sailor_talk_12");        // 0131
+        this.AddSwitch("guard_1");               // 0132
+        this.AddSwitch("maid_1");                // 0133
+        this.AddSwitch("guard_2");               // 0134
+        this.AddSwitch("highknight");            // 0135
+        this.AddSwitch("sacredknight");          // 0136
+        this.AddSwitch("guard_3");               // 0137
+        this.AddSwitch("guard_4");               // 0138
+        this.AddSwitch("guard_5");               // 0139
+        this.AddSwitch("guard_6");               // 0140
 
-        this.#AddSwitch("guard_7");               // 0141
-        this.#AddSwitch("butler_1");              // 0142
-        this.#AddSwitch("maid_2");                // 0143
-        this.#AddSwitch("chef");                  // 0144
-        this.#AddSwitch("butler_2");              // 0145
-        this.#AddSwitch("soldier_reluctance");    // 0146
-        this.#AddSwitch("soldier_talk_20");       // 0147
-        this.#AddSwitch("soldier_talk_21");       // 0148
-        this.#AddSwitch("soldier_talk_22");       // 0149
-        this.#AddSwitch("zera_crystal");          // 0150
-        this.#AddSwitch("fbuttler_1");            // 0151
-        this.#AddSwitch("fbuttler_2");            // 0152
-        this.#AddSwitch("fmaid_3");               // 0153
-        this.#AddSwitch("fbuttler_castle");       // 0154
-        this.#AddSwitch("fbuttler_kitchen");      // 0155
-        this.#AddSwitch("fbuttler_4");            // 0156
-        this.#AddSwitch("fmaid_4");               // 0157
-        this.#AddSwitch("fbuttler_5");            // 0158
-        this.#AddSwitch("frog");                  // 0159
-        this.#AddSwitch("forestsoldier_1");       // 0160
+        this.AddSwitch("guard_7");               // 0141
+        this.AddSwitch("butler_1");              // 0142
+        this.AddSwitch("maid_2");                // 0143
+        this.AddSwitch("chef");                  // 0144
+        this.AddSwitch("butler_2");              // 0145
+        this.AddSwitch("soldier_reluctance");    // 0146
+        this.AddSwitch("soldier_talk_20");       // 0147
+        this.AddSwitch("soldier_talk_21");       // 0148
+        this.AddSwitch("soldier_talk_22");       // 0149
+        this.AddSwitch("zera_crystal");          // 0150
+        this.AddSwitch("fbuttler_1");            // 0151
+        this.AddSwitch("fbuttler_2");            // 0152
+        this.AddSwitch("fmaid_3");               // 0153
+        this.AddSwitch("fbuttler_castle");       // 0154
+        this.AddSwitch("fbuttler_kitchen");      // 0155
+        this.AddSwitch("fbuttler_4");            // 0156
+        this.AddSwitch("fmaid_4");               // 0157
+        this.AddSwitch("fbuttler_5");            // 0158
+        this.AddSwitch("frog");                  // 0159
+        this.AddSwitch("forestsoldier_1");       // 0160
 
-        this.#AddSwitch("forestsoldier_2");       // 0161
-        this.#AddSwitch("zera_bonus");            // 0162
-        this.#AddSwitch("claire_journal");        // 0163
-        this.#AddSwitch("chest");                 // 0164
-        this.#AddSwitch("butterfly");             // 0165
-        this.#AddSwitch("aimottle_nigerundayo");  // 0166
+        this.AddSwitch("forestsoldier_2");       // 0161
+        this.AddSwitch("zera_bonus");            // 0162
+        this.AddSwitch("claire_journal");        // 0163
+        this.AddSwitch("chest");                 // 0164
+        this.AddSwitch("butterfly");             // 0165
+        this.AddSwitch("aimottle_nigerundayo");  // 0166
 
 
         // ----------------------------------------- VARIABLES
 
-        this.#AddVariable("harp");                // 0001
-        this.#AddVariable("traveller_lost");      // 0002
-        this.#AddVariable("zera_manor");          // 0003
-        this.#AddVariable("illusts");             // 0004
-        this.#AddVariable("hors");                // 0005
-        this.#AddVariable("carriage_addiction");  // 0006
-        this.#AddVariable("claire_go");           // 0007
-        this.#AddVariable("zera_athouse");        // 0008
-        this.#AddVariable("zera_talkcount");      // 0009
-        this.#AddVariable("letters_delivered");   // 0010
-        this.#AddVariable("hellbed");             // 0011
-        this.#AddVariable("her");                 // 0012
-        this.#AddVariable("tem_jump");            // 0013
+        this.AddVariable("harp");                // 0001
+        this.AddVariable("traveller_lost");      // 0002
+        this.AddVariable("zera_manor");          // 0003
+        this.AddVariable("illusts");             // 0004
+        this.AddVariable("hors");                // 0005
+        this.AddVariable("carriage_addiction");  // 0006
+        this.AddVariable("claire_go");           // 0007
+        this.AddVariable("zera_athouse");        // 0008
+        this.AddVariable("zera_talkcount");      // 0009
+        this.AddVariable("letters_delivered");   // 0010
+        this.AddVariable("hellbed");             // 0011
+        this.AddVariable("her");                 // 0012
+        this.AddVariable("tem_jump");            // 0013
     }
 
     static async Run (id)
@@ -219,9 +232,6 @@ class EventSystem
         switch (id)
         {
             case "hintbird": {
-                const bird = GameObject.Find("char_hintbird").GetComponent(RPGMovement);
-                bird.LookAtCharTemp(Player.instance);
-
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
@@ -339,14 +349,12 @@ class EventSystem
                 }
 
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                } break;
+            } break;
 
             case "fly": {
                 Loader.Ready(4);
                 
-                const them = GameObject.Find("char_claireyokifly").GetComponent(RPGMovement);
+                const them = RPGMovement.FindChar("char_claireyokifly");
                 them.lockLook = true;
                 them.moveSpeed = 6;
                 await them.MoveTowards(Vector2.left);
@@ -649,7 +657,7 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             case "yolkhouse_zera":
-                GameObject.Find("char_zera").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_zera").LookAtPlayer();
 
                 if (this.GetSwitch("zera_athousescene"))
                 {
@@ -680,7 +688,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "zera_talk_1", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_1", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -690,7 +698,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "upset");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -703,7 +711,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -716,7 +724,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -729,7 +737,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -758,7 +766,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
 
-                this.illustrator.Set(1, "zera_talk_2", 50 / 255);
+                await this.illustrator.Set(1, "zera_talk_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -771,7 +779,7 @@ class EventSystem
                 this.dialogueBox.SetFace("yoki", "annoyed");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
 
-                this.illustrator.Set(0, "zera_talk_3", 50 / 255);
+                await this.illustrator.Set(0, "zera_talk_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -810,12 +818,12 @@ class EventSystem
                 this.AddToVariable("illusts");
                 break;
             case "yolkhouse_harp": {
-                const harp = GameObject.Find("char_harp").GetComponent(RPGMovement);
-                const randMove = harp.GetComponent(RandomMove);
+                const harp = RPGMovement.FindChar("char_harp");
+                const randMove = harp.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                harp.LookAtChar(Player.instance);
+                harp.LookAtPlayer();
 
                 if (this.GetSwitch("harp"))
                 {
@@ -867,8 +875,8 @@ class EventSystem
                 this.SetVariable("harp", Math.RandomInt(1, 5));
                 break;
             case "yolkhouse_claire": {
-                const claire = GameObject.Find("char_claire").GetComponent(RPGMovement);
-                claire.LookAtChar(Player.instance);
+                const claire = RPGMovement.FindChar("char_claire");
+                claire.LookAtPlayer();
 
                 if (this.GetSwitch("journal_done"))
                 {
@@ -994,7 +1002,7 @@ class EventSystem
                 await this.TintAll(new Color(-1, -1, -1, 0));
                 await this.Timer(40);
 
-                this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
+                await this.illustrator.Set(0, "forest_view", 50 / 255, new Vector2(0, 3));
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1004,7 +1012,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 1);
                 await this.Timer(30);
-                await this.illustrator.Move(0, 1, Vector2.zero, 160);
+                await this.illustrator.Move(0, null, Vector2.zero, null, 160);
 
                 await this.WaitOk();
 
@@ -1042,7 +1050,7 @@ class EventSystem
                 }
                 break;
             case "forestview_este": {
-                GameObject.Find("char_este").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_este").LookAtPlayer();
 
                 if (this.GetSwitch("este_warp"))
                 {
@@ -1150,8 +1158,8 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_fox1": {
-                const fox = GameObject.Find("char_fox1").GetComponent(RPGMovement);              
-                fox.LookAtChar(Player.instance);
+                const fox = RPGMovement.FindChar("char_fox1");              
+                fox.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await fox.Jump();
@@ -1159,18 +1167,18 @@ class EventSystem
                 await fox.Jump();
             } break;
             case "forestbarrier_fox2":
-                GameObject.Find("char_fox2").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_fox2").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_squirrel1": {
-                const squirrel = GameObject.Find("char_squirrel1").GetComponent(RPGMovement);
-                const randMove = squirrel.GetComponent(RandomMove);
+                const squirrel = RPGMovement.FindChar("char_squirrel1");
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await squirrel.Jump();
@@ -1178,15 +1186,15 @@ class EventSystem
                 randMove.ResetTime();
             } break;
             case "forestbarrier_squirrel2":
-                GameObject.Find("char_squirrel2").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_squirrel2").LookAtPlayer();
 
                 this.dialogueBox.SetFace("yoki", "look");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrier_squirrel3": {
-                const squirrel = GameObject.Find("char_squirrel3").GetComponent(RPGMovement);
-                const randMove = squirrel.GetComponent(RandomMove);
+                const squirrel = RPGMovement.FindChar("char_squirrel3");
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
@@ -1198,7 +1206,7 @@ class EventSystem
                 await this.Timer(2);
                 squirrel.LookAt(Vector2.down);
                 await this.Timer(2);
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await squirrel.Jump();
@@ -1206,27 +1214,16 @@ class EventSystem
                 randMove.ResetTime();
             } break;
             case "forestbarrier_deer": {
-                const deer = GameObject.Find("char_deer").GetComponent(RPGMovement);
+                const deer = RPGMovement.FindChar("char_deer");
                 
-                deer.LookAtChar(Player.instance);
+                deer.LookAtPlayer();
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await deer.Jump();
                 } break;
-            case "forestbarrier_bird": {
-                const bird = GameObject.Find("char_bird").GetComponent(RPGMovement);
-                const randMove = bird.GetComponent(RandomMove);
-
-                randMove.enabled = false;
-                await this.WaitFrameEnd();
-                bird.LookAtCharTemp(Player.instance);
-
+            case "forestbarrier_bird":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                randMove.enabled = true;
-                randMove.ResetTime();
-            } break;
+                break;
             case "forestbarrier_blockerfly":
                 this.dialogueBox.SetFace("yoki", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -1249,7 +1246,7 @@ class EventSystem
                 await this.Timer(9);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "flower_ring", 50 / 255);
+                await this.illustrator.Set(0, "flower_ring", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1298,7 +1295,7 @@ class EventSystem
                 CamCtrl.current.Scroll(new Vector2(7 + 9 - Player.instance.gridPos.x, 0), 4);
                 await this.Timer(140);
 
-                const dragon = GameObject.Find("char_dragon").GetComponent(RPGMovement);
+                const dragon = RPGMovement.FindChar("char_dragon");
                 await dragon.MoveTowards(Vector2.right);
                 await dragon.MoveTowards(Vector2.right);
                 await dragon.MoveTowards(Vector2.right);
@@ -1317,14 +1314,15 @@ class EventSystem
                 this.SetSwitch("dragon_deeper", true);
             } break;
 
+            // ------------------------------------------------------- forest_barrier_edge
             case "forestbarrieredge_raccoon1":
-                GameObject.Find("char_raccoon1").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_raccoon1").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrieredge_raccoon2": {
-                const raccoon = GameObject.Find("char_raccoon2").GetComponent(RPGMovement);
+                const raccoon = RPGMovement.FindChar("char_raccoon2");
 
                 raccoon.LookAt(Vector2.up);
                 await this.Timer(2);
@@ -1334,13 +1332,13 @@ class EventSystem
                 await this.Timer(2);
                 raccoon.LookAt(Vector2.left);
                 await this.Timer(2);
-                raccoon.LookAtChar(Player.instance);
+                raccoon.LookAtPlayer();
 
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
                 await raccoon.Jump();
             } break;
             case "forestbarrieredge_raccoon3":
-                GameObject.Find("char_raccoon3").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_raccoon3").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1348,8 +1346,8 @@ class EventSystem
             case "forestbarrieredge_boar": {
                 AudioManager.instance.PlaySE("crush_1", 0.6);
 
-                const boar = GameObject.Find("char_boar").GetComponent(RPGMovement);
-                boar.LookAtChar(Player.instance);
+                const boar = RPGMovement.FindChar("char_boar");
+                boar.LookAtPlayer();
                 boar.Jump();
 
                 Player.instance.lockLook = true;
@@ -1362,11 +1360,11 @@ class EventSystem
                 this.dialogueBox.Close();
             } break;
             case "forestbarrieredge_fox": {
-                const fox = GameObject.Find("char_fox").GetComponent(RPGMovement);
-                const randMove = fox.GetComponent(RandomMove);
+                const fox = RPGMovement.FindChar("char_fox");
+                const randMove = fox.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
-                fox.LookAtChar(Player.instance);
+                fox.LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
@@ -1374,44 +1372,35 @@ class EventSystem
                 randMove.enabled = true;
                 randMove.ResetTime();
             } break;
-            case "forestbarrieredge_bird": {
-                const bird = GameObject.Find("char_bird").GetComponent(RPGMovement);
-                const randMove = bird.GetComponent(RandomMove);
-
-                randMove.enabled = false;
-                await this.WaitFrameEnd();
-                bird.LookAtCharTemp(Player.instance);
-
+            case "forestbarrieredge_bird":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
-
-                bird.Unlook();
-                randMove.enabled = true;
-                randMove.ResetTime();
-            } break;
+                break;
             case "forestbarrieredge_squirrel": {
                 AudioManager.instance.PlaySE("jump", 0.9, 1.5);
 
-                const squirrel = GameObject.Find("char_squirrel").GetComponent(RPGMovement);
-                const randMove = squirrel.GetComponent(RandomMove);
+                const squirrel = RPGMovement.FindChar("char_squirrel");
+                const randMove = squirrel.GetComponent(RandomMove, true);
 
                 randMove.enabled = false;
                 await this.WaitFrameEnd();
-                squirrel.LookAtChar(Player.instance);
+                squirrel.LookAtPlayer();
 
                 await squirrel.Jump();
                 randMove.enabled = true;
                 randMove.ResetTime();
             } break;
             case "forestbarrieredge_rabbit":
-                GameObject.Find("char_rabbit").GetComponent(RPGMovement).LookAtChar(Player.instance);
+                RPGMovement.FindChar("char_rabbit").LookAtPlayer();
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "forestbarrieredge_tigertaur": {
-                const tigertaur = GameObject.Find("char_tigertaur").GetComponent(RPGMovement);
-                tigertaur.LookAtChar(Player.instance);
+                Resources.Load("audio/bgm/yokihouse");
+
+                const tigertaur = RPGMovement.FindChar("char_tigertaur");
+                tigertaur.LookAtPlayer();
                 tigertaur.lockLook = true;
 
                 await this.TintAll(new Color(
@@ -1430,7 +1419,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
-                this.illustrator.Set(0, "tigertaur_1", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_1", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1444,8 +1433,6 @@ class EventSystem
 
                 AudioManager.instance.FadeOutBGM(1);
 
-                // this.dialogueBox.Close();
-
                 this.dialogueBox.SetFace("tigertaur", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
                 this.dialogueBox.SetFace("tigertaur", "grin");
@@ -1457,7 +1444,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 50 / 255);
                 await this.Timer(8);
-                this.illustrator.Set(0, "tigertaur_2", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_2", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1475,7 +1462,7 @@ class EventSystem
                 await this.Timer(8);
                 await this.illustrator.Move(0, 50 / 255);
                 await this.Timer(8);
-                this.illustrator.Set(0, "tigertaur_3", 50 / 255);
+                await this.illustrator.Set(0, "tigertaur_3", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -1485,7 +1472,7 @@ class EventSystem
                 this.dialogueBox.SetFace("tigertaur", "grin");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
 
-                this.illustrator.Set(1, "tigertaur_4", 50 / 255);
+                await this.illustrator.Set(1, "tigertaur_4", 50 / 255);
                 await this.Timer(8);
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -1495,6 +1482,1235 @@ class EventSystem
                 
                 this.dialogueBox.SetFace("yoki", "sweatdrop");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+
+                tigertaur.GetComponent("SpriteLibrary").asset = Resources.Find("spritelibs/chars/catiger");
+                this.SetSwitch("kitty_fight", true);
+
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(1);
+                await this.Timer(40);
+
+                Player.instance.LookAt(Vector2.down);
+                tigertaur.GetComponent(SpriteRenderer).color.a = 0;
+
+                this.dialogueBox.SetFace("claire", "down");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("yoki", "think");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(20);
+
+                AudioManager.instance.PlayBGM("yokihouse", 0.2);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "tigertaur_5", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[21]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[22]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Set(0, "tigertaur_6", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[23]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[24]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[25]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[26]);
+
+                tigertaur.GetComponent(SpriteRenderer).color.a = 1;
+                this.SetSwitch("kitty_bye", true);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(40);
+
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[27]);
+                this.dialogueBox.SetFace("claire", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[28]);
+                this.dialogueBox.Close();
+
+                const claire = RPGMovement.FindChar("char_claire");
+                claire.moveSpeed = 4;
+                await claire.MoveTowards(Vector2.up);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+                await claire.MoveTowards(Vector2.left);
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[29]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("forest", 0.2);
+
+                this.AddToVariable("illusts");
+                this.SetSwitch("kitty_cat", true);
+            } break;
+            case "forestbarrieredge_catiger":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "forestbarrieredge_traveller": {
+                if (this.GetSwitch("traveller_done")) return;
+
+                Party.Clear(1);
+                await this.WaitTransfer();
+
+                Player.instance.avoidInputs = true;
+                this.SetSwitch("traveller_help", false);
+                this.SetSwitch("traveller", true);
+
+                if (this.GetVariable("traveller_lost") >= 1)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                }
+
+                this.dialogueBox.Close();
+
+                this.AddToVariable("traveller_lost");
+                Player.instance.avoidInputs = false;
+            } break;
+
+            // ------------------------------------------------------- cliffs
+            case "cliffs_deer1": {
+                const deer = RPGMovement.FindChar("char_deer1");
+                await deer.LookAt(Vector2.left);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.up);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.right);
+                await this.Timer(2);
+                await deer.LookAt(Vector2.down);
+                await this.Timer(2);
+                await deer.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "cliffs_deer2": 
+                RPGMovement.FindChar("char_deer2").LookAtPlayer();
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_deer3": 
+                RPGMovement.FindChar("char_deer3").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_boar":
+                RPGMovement.FindChar("char_boar").LookAwayPlayer();
+                break;
+            case "cliffs_fox":
+                RPGMovement.FindChar("char_fox").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_rabbit1": {
+                const rabbit = RPGMovement.FindChar("char_rabbit1");
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+            } break;
+            case "cliffs_rabbit2": {
+                const rabbit = RPGMovement.FindChar("char_rabbit2");
+                rabbit.charCollision = false;
+                rabbit.moveSpeed = 6;
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.left);
+                await rabbit.MoveTowards(Vector2.right);
+                await rabbit.MoveTowards(Vector2.right);
+                await rabbit.MoveTowards(Vector2.right);
+                rabbit.charCollision = true;
+                rabbit.LookAtPlayer();
+            } break;
+            case "cliffs_bird":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_squirrel": {
+                const squirrel = RPGMovement.FindChar("char_squirrel");
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                squirrel.LookAtPlayer();
+                await squirrel.Jump();
+            } break;
+            case "cliffs_raccoon":
+                RPGMovement.FindChar("char_raccoon").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_frog":
+                RPGMovement.FindChar("char_frog").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_wolf":
+                RPGMovement.FindChar("char_wolf").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_woof": {
+                if (this.GetSwitch("woof_sleep_3"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[0]);
+                    this.dialogueBox.SetFace("woof", "sleep");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[1]);
+                    this.dialogueBox.Close();
+                    return;
+                }
+                else if (this.GetSwitch("woof_sleep_2"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[0]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[2]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[3]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[4]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`)[5]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("woof_sleep_3", true);
+                    return;
+                }
+                else if (this.GetSwitch("woof_sleep_1"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                    this.dialogueBox.SetFace("yoki", "annoyed");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[2]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[3]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[4]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[5]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[6]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("woof_sleep_2", true);
+                    return;
+                }
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "woof_1", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[2]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[3]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[4]);
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[5]);
+
+                await this.illustrator.Set(1, "woof_2", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[6]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[7]);
+
+                await this.illustrator.Set(0, "woof_3", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[8]);
+                this.dialogueBox.SetFace("woof", "sleep");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[9]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[10]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("woof_sleep_1", true);
+                this.AddToVariable("illusts")
+            } break;
+            case "cliffs_bonus_zera":
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("zera", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "cliffs_bonus_aimottle": {
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "extra_1", 50 / 100);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(30);
+
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+
+                await this.illustrator.Set(1, "extra_2", 50 / 100);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.SetFace("aimottle", "angry");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+
+                await this.illustrator.Set(0, "blank", 1);
+                this.illustrator.Clear(1)
+                await this.Timer(2);
+                await this.illustrator.Tint(0, new Color(-1, -1, -1, 0));
+                await this.illustrator.Tint(0, Color.clear);
+
+                AudioManager.instance.PlaySE("explosive_whish", 0.7);
+
+                await this.Timer(3);
+                await this.illustrator.Set(1, "extra_3", 1, new Vector2(4 / 96, 0), new Vector2(1.02, 1.02));
+                this.illustrator.Clear(0);
+                await this.Timer(3);
+                await this.illustrator.Move(1, null, Vector2.zero, Vector2.one);
+                await this.illustrator.Set(0, "extra_3", 1);
+                await this.illustrator.Move(0, 0, new Vector2(-1.25, 100 / 96), new Vector2(1.5, 1.5), 10);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "knocked out");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                
+                await this.illustrator.Set(0, "extra_4", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.SetFace("aimottle", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+
+                GameObject.Find("char_aimottle").SetActive(false);
+
+                Player.instance.LookAt(Vector2.up);
+                Player.instance.animateIdle = false;
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(60);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.3);
+                await Player.instance.Jump();
+                Player.instance.animateIdle = true;
+
+                await this.Timer(60);
+                Player.instance.LookAt(Vector2.left);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.right);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.left);
+                await this.Timer(30);
+                Player.instance.LookAt(Vector2.right);
+                await this.Timer(60);
+                Player.instance.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("aimottle_nigerundayo", true);
+            } break;
+            case "cliffs_bonus_zera_bye":
+                this.SetSwitch("zera_bonus", true);
+                break;
+
+            // ------------------------------------------------------- forest_tree
+            case "foresttree_tree":
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                if (this.GetSwitch("tree_letter"))
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_seen`));
+
+                    await this.illustrator.Move(0, 100 / 255);
+                    await this.Timer(8);
+                    await this.illustrator.Move(0, 50 / 255);
+                    await this.Timer(8);
+                    this.illustrator.Clear(0);
+                    await this.Timer(20);
+
+                    await this.TintAll(new Color(
+                        -80 / 255,
+                        -100 / 255,
+                        -100 / 255,
+                        0
+                    ));
+                    await this.Timer(8);
+                    await this.TintAll(new Color(
+                        -40 / 255,
+                        -50 / 255,
+                        -50 / 255,
+                        0
+                    ));
+                    await this.Timer(8);
+                    await this.TintAll(Color.clear);
+
+                    return;
+                }
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                await this.illustrator.Set(1, "tree_noletter", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("tree_letter", true);
+                this.AddToVariable("illusts");
+                break;
+            case "foresttree_bonus":
+                await this.WaitTransfer();
+
+                Player.instance.avoidInputs = true;
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                await this.Timer(60);
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+
+                await this.Timer(30);
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await Player.instance.Jump();
+                await this.Timer(20);
+                Player.instance.moveSpeed = 6;
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
+                Player.instance.LookAt(Vector2.down);
+                await this.Timer(30);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.Close();
+
+                await Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                Player.instance.LookAt(Vector2.up);
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "tree", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+
+                await this.illustrator.Set(1, "tree_noletter", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("woof", "awake");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                await this.illustrator.Set(0, "woof_end_1", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+
+                await this.illustrator.Set(1, "blank", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(10);
+                this.illustrator.Clear(0);
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.SetFace("woof", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+
+                await this.illustrator.Set(0, "woof_end_2", 50 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(10);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+                this.illustrator.Clear(1);
+
+                this.dialogueBox.SetBG(1);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(12);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(12);
+                this.illustrator.Clear(0);
+                await this.Timer(60);
+
+                // ==================================================================== UNFINISHED
+                
+                Loader.Ready(12); // move to start of event
+
+                await Party.Set(0, "bird");
+                Player.instance.moveSpeed = 4;
+                Player.instance.animateIdle = false;
+
+                Player.instance.LookAt(Vector2.down);
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(-5, 32); // set to bonus room
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(12);
+
+                Transitioner.instance.Clear();
+                await this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -136 / 255,
+                    -136 / 255,
+                    -136 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -51 / 255,
+                    -51 / 255,
+                    -51 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(Color.clear);
+
+                this.SetSwitch("woof_venture", true);
+                break;
+            
+            // ------------------------------------------------------- forest_mid
+            case "forestmid_rabbit1":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
+                RPGMovement.FindChar("char_rabbit1").LookAwayPlayer();
+                break;
+            case "forestmid_rabbit2": {
+                const rabbit = RPGMovement.FindChar("char_rabbit2");
+                rabbit.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestmid_fox": {
+                const fox = RPGMovement.FindChar("char_fox");
+                fox.LookAtPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+
+                    return;
+                }
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await fox.Jump();
+            } break;
+            case "forestmid_bird": {
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+
+                const bird = RPGMovement.FindChar("char_bird");
+                bird.LookAtPlayer();
+                await bird.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                bird.LookAt(Vector2.left);
+                await this.Timer(2);
+                bird.LookAt(Vector2.up);
+                await this.Timer(2);
+                bird.LookAt(Vector2.right);
+                await this.Timer(2);
+                bird.LookAt(Vector2.down);
+                await this.Timer(2);
+                bird.LookAt(Vector2.left);
+                await this.Timer(2);
+                bird.LookAt(Vector2.up);
+                await this.Timer(2);
+                bird.LookAt(Vector2.right);
+                await this.Timer(2);
+                bird.LookAt(Vector2.down);
+            } break;
+            case "forestmid_raccoon1":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
+                RPGMovement.FindChar("char_raccoon1").LookAwayPlayer();
+                break;
+            case "forestmid_raccoon2":
+                RPGMovement.FindChar("char_raccoon2").LookAwayPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+                break;
+            case "forestmid_deer1": {
+                const deer = RPGMovement.FindChar("char_deer1");
+                deer.LookAtPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "forestmid_deer2": {
+                const deer = RPGMovement.FindChar("char_deer2");
+
+                if (Party.Has("traveller"))
+                {
+                    deer.LookAwayPlayer();
+
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                deer.LookAtPlayer();
+                await deer.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+            } break;
+            case "forestmid_squirrel": {
+                const squirrel = RPGMovement.FindChar("char_squirrel");
+                squirrel.moveSpeed = 6;
+                squirrel.charCollision = false;
+                
+                await squirrel.MoveTowards(Vector2.up);
+                await squirrel.MoveTowards(Vector2.up);
+                await squirrel.MoveTowards(Vector2.left);
+                await squirrel.MoveTowards(Vector2.left);
+                await squirrel.MoveTowards(Vector2.down);
+                await squirrel.MoveTowards(Vector2.down);
+                await squirrel.MoveTowards(Vector2.right);
+                await squirrel.MoveTowards(Vector2.right);
+                squirrel.LookAtPlayer();
+
+                squirrel.moveSpeed = 4;
+                squirrel.charCollision = true;
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestmid_boar": {
+                AudioManager.instance.PlaySE("crush_1", 0.6, 1.5);
+
+                const boar = RPGMovement.FindChar("char_boar");
+                boar.LookAtPlayer();
+                boar.Jump();
+
+                await Player.instance.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestmid_traveller_set":
+                if (!this.GetSwitch("traveller") && !this.GetSwitch("traveller_help")) this.SetSwitch("traveller", true);
+                break;
+            case "forestmid_traveller": {
+                RPGMovement.FindChar("char_traveller").LookAtPlayer();
+
+                if (this.GetVariable("traveller_lost") >= 1)
+                {
+                    if (this.GetVariable("traveller_lost") >= 5)
+                    {
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[0]);
+                        this.dialogueBox.SetFace("yoki", "sweatdrop");
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_4`)[1]);
+                    }
+                    else if (this.GetVariable("traveller_lost") >= 2) await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`));
+                    else if (this.GetVariable("traveller_lost") >= 1)
+                    {
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                    }
+
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("traveller_help", true);
+                    this.SetSwitch("traveller", false);
+
+                    await Party.Set(1, "traveller");
+                    return;
+                }
+                
+                if (this.GetSwitch("traveller_no"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused`)[0]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused`)[1], true);
+
+                    const choice = await this.DialogueChoice([
+                        LocaleManager.Find(`${id}_refused_choices`)[0],
+                        LocaleManager.Find(`${id}_refused_choices`)[1]
+                    ], 1, 1);
+
+                    if (choice === 1)
+                    {
+                        this.SetSwitch("traveller_no", true);
+
+                        this.dialogueBox.SetFace("yoki", "think");
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_no`)[0]);
+                        await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_no`)[1]);
+                        this.dialogueBox.Close();
+                        return;
+                    }
+
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_ok`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_refused_ok`)[1]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("traveller_help", true);
+                    this.SetSwitch("traveller", false);
+
+                    await Party.Set(1, "traveller");
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[2]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[4]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[5]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[6]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[7]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[8]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[9]);
+                this.dialogueBox.SetFace("yoki", "meditative");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`)[10], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_1_choices`)[0],
+                    LocaleManager.Find(`${id}_1_choices`)[1]
+                ], 1, 1);
+
+                if (choice === 1)
+                {
+                    this.SetSwitch("traveller_no", true);
+                    
+                    this.dialogueBox.SetFace("yoki", "think");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_no`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_no`)[1]);
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_ok`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_1_ok`)[1]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("traveller_help", true);
+                this.SetSwitch("traveller", false);
+
+                await Party.Set(1, "traveller");
+            } break;
+            
+            // ------------------------------------------------------- forest_path
+            case "forestpath_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
             } break;
         }
     }
@@ -1517,6 +2733,10 @@ class EventSystem
                 break;
             case "21_4":
                 if (event === 1 && this.GetVariable("illusts") === 28 && this.GetVariable("zera_talkcount") === 0) Player.instance.TP(Vector2.Add(Player.instance.gridPos, new Vector2(0, -3)));
+                break;
+
+            case "7_8":
+                if (event === 1 && this.GetSwitch("bird_form")) Player.instance.TP(new Vector2(-6, 7));
                 break;
 
             case "16_20":
@@ -1542,7 +2762,7 @@ class EventSystem
         }
     }
 
-    static async DialogueChoice (choices, nahChoice)
+    static async DialogueChoice (choices, nahChoice, pos = 2)
     {
         this.dialogueChoiceBox.transform.parent = Camera.main?.transform;
         this.dialogueChoiceBox.Clear();
@@ -1559,7 +2779,7 @@ class EventSystem
         await CrystalEngine.Wait(() => this.dialogueChoiceBox.setDimensions);
 
         this.dialogueChoiceBox.transform.localPosition = new Vector2(
-            0.5 * (this.dialogueBox.spriteRenderer.size.x - this.dialogueChoiceBox.spriteRenderer.size.x),
+            0.5 * (this.dialogueBox.spriteRenderer.size.x - this.dialogueChoiceBox.spriteRenderer.size.x) * (pos - 1),
             -4.5 + this.dialogueChoiceBox.spriteRenderer.size.y * 0.5 + this.dialogueBox.spriteRenderer.size.y
         );
 
@@ -1620,6 +2840,17 @@ class EventSystem
         await new Promise(resolve => endCallback = resolve);
     }
 
+    static async WaitTransfer ()
+    {
+        await new Promise(resolve => {
+            const callback = () => {
+                Transitioner.instance.onTintOut.Remove(callback);
+                resolve();
+            };
+            Transitioner.instance.onTintOut.Add(callback);
+        });
+    }
+
     static async BlackSwitch (scene)
     {
         Transitioner.instance.SetFadeIn();
@@ -1645,7 +2876,7 @@ class EventSystem
 
     static async TintAll (color)
     {
-        const renderers = GameObject.FindComponents(Renderer).filter(item => !([4, 5]).includes(item.sortingLayer));
+        const renderers = GameObject.FindComponents(Renderer, true).filter(item => !([3, 4, 5]).includes(item.sortingLayer));
 
         for (let i = 0; i < renderers.length; i++) renderers[i].tint = color;
 
@@ -1664,12 +2895,16 @@ class EventSystem
 
     static SetSwitch (name, state)
     {
-        return this.#switches.set(name, state);
+        this.#switches.set(name, state);
+        this.onBeforeUpdate.Invoke();
+        this.onUpdate.Invoke();
     }
 
     static SetVariable (name, value)
     {
-        return this.#variables.set(name, value);
+        this.#variables.set(name, value);
+        this.onBeforeUpdate.Invoke();
+        this.onUpdate.Invoke();
     }
 
     static AddToVariable (name, amount = 1)

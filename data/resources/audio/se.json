@@ -61,5 +61,12 @@
         "args": {
             "src": "se/crush_1.ogg"
         }
+    },
+    {
+        "path": "audio/se/explosive_whish",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/explosive_whish.ogg"
+        }
     }
 ]

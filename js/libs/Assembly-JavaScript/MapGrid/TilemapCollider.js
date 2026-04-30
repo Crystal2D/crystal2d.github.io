@@ -1,27 +1,65 @@
 class TilemapCollider extends GameBehavior
 {
-    removeTilemap = true;
+    #hidden = true;
+    #size = Vector2.zero;
+
+    #map = null;
+
     type = 0;
 
-    Start ()
+    get removeTilemap ()
     {
-        const tilemap = this.GetComponent(Tilemap);
-        const size = Vector2.Subtract(MapGrid.current.max, MapGrid.current.min);
+        return this.#hidden;
+    }
 
-        for (let x = 0; x <= size.x; x++)
+    set removeTilemap (value)
+    {
+        this.#hidden = value;
+
+        if (this.#map == null) return;
+
+        this.#map.color.a = +!value;
+        this.#map.gameObject.SetActive(!value);
+
+        if (value) this.#map.Unmerge();
+        else this.#map.Merge();
+    }
+
+    Awake ()
+    {
+        if (this.GetComponentInParent(EventConditioner) != null) EventSystem.onBeforeUpdate.Add(() => {
+            this.Clear();
+            this.gameObject.SetActive(true);
+        });
+
+        this.#size = Vector2.Subtract(MapGrid.current.max, MapGrid.current.min);
+
+        this.#map = this.GetComponent(Tilemap);
+        this.#map.color.a = +!this.#hidden;
+        if (this.#hidden) this.#map.Unmerge();
+    }
+
+    #Set (value)
+    {
+        for (let x = 0; x <= this.#size.x; x++)
         {
-            for (let y = 0; y <= size.y; y++)
+            for (let y = 0; y <= this.#size.y; y++)
             {
                 const node = MapGrid.current.NodeOn(new Vector2(x, y));
 
-                if (tilemap.GetTile(node.gridPos) != null) node.collider = this.type + 1;
+                if (this.#map.GetTile(node.gridPos) != null) node.collider = value;
             }
         }
+    }
 
-        if (this.removeTilemap)
-        {
-            tilemap.color.a = 0;
-            tilemap.gameObject.SetActive(false);
-        }
+    OnEnable ()
+    {   
+        this.#map.gameObject.SetActive(!this.#hidden);
+        this.#Set(this.type + 1);
+    }
+
+    Clear ()
+    {
+        this.#Set(0);
     }
 }
