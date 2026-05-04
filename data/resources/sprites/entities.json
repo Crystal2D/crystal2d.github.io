@@ -97,5 +97,29 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/entities/sparkle2",
+        "type": "Texture",
+        "args": {
+            "src": "entities/sparkle.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
     }
 ]

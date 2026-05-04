@@ -1,5 +1,7 @@
 class RandomMove extends MovesBase
 {
+    turnOnly = false;
+    
     Invoke ()
     {
         const dir = new Vector2(

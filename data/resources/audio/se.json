@@ -68,5 +68,19 @@
         "args": {
             "src": "se/explosive_whish.ogg"
         }
+    },
+    {
+        "path": "audio/se/door_4",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/door_4.ogg"
+        }
+    },
+    {
+        "path": "audio/se/land",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/land.ogg"
+        }
     }
 ]

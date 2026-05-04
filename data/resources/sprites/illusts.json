@@ -182,5 +182,53 @@
             "src": "illusts\\woof_end_2.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/stump",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\stump.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_4.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_5",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_5.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

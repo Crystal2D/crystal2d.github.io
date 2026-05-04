@@ -4,7 +4,23 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/krys",
+            "spritelibs/chars/krys"
+        ],
+        [
+            "sprites/chars/zusy",
+            "spritelibs/chars/zusy"
+        ],
+        [
+            "sprites/chars/lerias",
+            "spritelibs/chars/lerias"
+        ],
+        "sprites/chars/krys",
+        "sprites/chars/zusy",
+        "sprites/chars/lerias",
+        "sprites/faces/fountain"
     ],
     "gameObjects": [
         {
@@ -529,10 +545,6 @@
                                                 "y": 2
                                             },
                                             {
-                                                "x": -5,
-                                                "y": 3
-                                            },
-                                            {
                                                 "x": -4,
                                                 "y": 3
                                             },
@@ -710,6 +722,10 @@
                                             {
                                                 "x": 2,
                                                 "y": 4
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": 3
                                             }
                                         ]
                                     },
@@ -2539,6 +2555,61 @@
             ]
         },
         {
+            "name": "tile_Char Collision",
+            "id": 9,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": -2
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                }
+            ]
+        },
+        {
             "name": "mapconfig",
             "id": 5,
             "components": [
@@ -2592,7 +2663,185 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -6,
+                                    "y": 2
+                                },
+                                "event": "forestdeeper_krys"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 2
+                                },
+                                "event": "forestdeeper_krys"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 3
+                                },
+                                "event": "forestdeeper_zusy"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 3
+                                },
+                                "event": "forestdeeper_zusy"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -2
+                                },
+                                "event": "forestdeeper_lerias"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": -2
+                                },
+                                "event": "forestdeeper_lerias"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_krys",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": -2.25,
+                    "y": 1.25
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/krys",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/krys"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestdeeper_krys"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_zusy",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 0.75,
+                    "y": 1.75
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/zusy",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/zusy"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestdeeper_zusy"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_lerias",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 2.25,
+                    "y": -0.75
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/lerias",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/lerias"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestdeeper_lerias"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
                     }
                 }
             ]

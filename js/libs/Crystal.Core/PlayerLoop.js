@@ -292,16 +292,19 @@ class PlayerLoop
                 Application.quitting.Invoke();
             }
 
-            // ScriptRunBehaviorOnDisable
-            for (let i = 0; i < rootGameObjs.length; i++)
-            {
-                if (rootGameObjs[i].destroying) DestroyFamily(rootGameObjs[i]);
+            // ScriptRunBehaviorReadyDestroy
+            const primaryDeadGameObjs = gameObjs.filter(item => item.destroying);
 
-                BroadcastMessageSingle(rootGameObjs[i], "OnDisable", null, {
-                    specialCall : 3,
-                    passActive : true
-                });
+            for (let i = 0; i < primaryDeadGameObjs.length; i++)
+            {
+                if (primaryDeadGameObjs[i].destroying) DestroyFamily(primaryDeadGameObjs[i]);
             }
+
+            // ScriptRunBehaviorOnDisable
+            BroadcastMessage("OnDisable", null, {
+                specialCall : 3,
+                passActive : true
+            });
     
             // ScriptRunBehaviorOnDestroy
             const tree = activeScene.tree;
@@ -311,6 +314,7 @@ class PlayerLoop
             {
                 if (deadGameObjs[i].transform?.parent == null) BroadcastMessageSingle(deadGameObjs[i], "OnDestroy", null, { passActive : true });
 
+                deadGameObjs[i].transform.parent = null;
                 tree.Remove(deadGameObjs[i]);
     
                 const index = activeScene.gameObjects.indexOf(deadGameObjs[i]);

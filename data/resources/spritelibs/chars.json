@@ -327,6 +327,46 @@
             "texture": "sprites/chars/traveller"
         }
     },
+    {
+        "path": "spritelibs/chars/mole",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/mole"
+        }
+    },
+    {
+        "path": "spritelibs/chars/krys",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/krys"
+        }
+    },
+    {
+        "path": "spritelibs/chars/zusy",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/zusy"
+        }
+    },
+    {
+        "path": "spritelibs/chars/lerias",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/lerias"
+        }
+    },
+    {
+        "path": "spritelibs/chars/caina",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/caina"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

@@ -213,6 +213,8 @@ class Illustrator extends GameBehavior
 
     Clear (index)
     {
+        EventSystem.dialogueBox.Close();
+        
         const illust = this.#illusts.get(index);
 
         if (illust == null || illust.duration > 0) return;

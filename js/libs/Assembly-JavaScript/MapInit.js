@@ -16,7 +16,9 @@ class MapInit extends GameBehavior
             "sprites/chars/butterfly",
             "spritelibs/chars/butterfly",
             "sprites/entities/sparkle",
-            "spritelibs/entities/sparkle"
+            "spritelibs/entities/sparkle",
+            "sprites/entities/sparkle2",
+            "spritelibs/entities/sparkle2"
         );
     }
 
@@ -54,15 +56,10 @@ class MapInit extends GameBehavior
             save = {
                 time: 0,
                 scene: 4,
-                // scene: 16,
-                // scene: 22,
                 party: [
                     {
                         name: "yoki",
-                        pos: {
-                            x: 2, y: -3,
-                            // x: -8, y: -3
-                        },
+                        pos: { x: 2, y: -3 },
                         dir: { x: 0, y: -1 }
                     },
                     blankChar,

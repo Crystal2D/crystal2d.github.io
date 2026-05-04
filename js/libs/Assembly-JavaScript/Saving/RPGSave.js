@@ -195,7 +195,9 @@ class RPGSave
             "sprites/chars/butterfly",
             "spritelibs/chars/butterfly",
             "sprites/entities/sparkle",
-            "spritelibs/entities/sparkle"
+            "spritelibs/entities/sparkle",
+            "sprites/entities/sparkle2",
+            "spritelibs/entities/sparkle2"
         );
         Loader.onSwitchStart.Remove(MapInit.switchCall);
 

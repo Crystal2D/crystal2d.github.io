@@ -33,5 +33,12 @@
         "args": {
             "src": "bgm/yokihouse.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/caina",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/caina.ogg"
+        }
     }
 ]

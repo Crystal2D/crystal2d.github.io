@@ -524,6 +524,113 @@
 "forestpath_save_choices": [
     "Yes",
     "No"
+],
+
+"forest_cove": "----------------------------------------------------------------------",
+"forestcove_traveller_1": [
+    "\\SE[8]Miss? Where did you go!? Hello?",
+    "\\SE[1]..Guess this is Zera's doing.\nHe probably doesn't want \nany visitors..."
+],
+"forestcove_traveller_2": [
+    "\\SE[8]Oh no..! Miss? Where did you go!?",
+    "\\SE[1]Oops... Not again..."
+],
+
+"forest_deep": "----------------------------------------------------------------------",
+"forestdeep_wolf": "\\SE[6]Howwwwl\\SE[1]",
+"forestdeep_wolf_traveller": "\\SE[8]Lost Traveller: What a cute wolf!!\\SE[1]",
+"forestdeep_mole_traveller": [
+    "\\SE[8]Lost Traveller: A mole..!",
+    "Lost Traveller: Ah. it ran away...\\SE[1]"
+],
+
+"forest_deeper": "----------------------------------------------------------------------",
+"forestdeeper_krys": [
+    "\\SE[0]...",
+    "\\SE[1]..."
+],
+"forestdeeper_zusy": [
+    "Are you guys lost..?\\.\\.\nWe're pretty deep in the\nforest.",
+    "\\SE[5]Nope.\\.\\.\nWe're doing just fine.",
+    "\\SE[1]Are you sure..?\\.\\.\nWe're pretty far from\nanywhere.",
+    "\\SE[5]Yup.",
+    "\\SE[1]..."
+],
+"forestdeeper_lerias": [
+    "\\SE[2]That's strange..\\.\\..\nI can't sense a fountain \nanywhere...",
+    "\\SE[1]Fountain?"
+],
+
+"forest_pocket": "----------------------------------------------------------------------",
+"forestpocket_deer1_traveller": "\\SE[8]Lost Traveller: What a friendly\ndeer!\\SE[1]",
+"forestpocket_deer2_traveller": "\\SE[8]Lost Traveller: She seems to be\nstomping her foot...\\SE[1]",
+"forestpocket_raccoon_traveller": "\\SE[8]Lost Traveller: Oh! \\.\\.\nWe scared him...\\SE[1]",
+"forestpocket_squirrel_traveller": "\\SE[8]Lost Traveller: Ow!\\.\\.\nHe threw an acorn at me...\\SE[1]",
+"forestpocket_rabbit_traveller": "\\SE[8]Lost Traveller: Such a cute\nbaby bunny!\\SE[1]",
+"forestpocket_bird": "\\SE[4]Chirp!\\SE[1]",
+"forestpocket_bird_traveller": "\\SE[8]Lost Traveller: Energetic little\nbird!\\SE[1]",
+"forestpocket_stump": "\\SE[1]Someone's been here \nrecently..",
+"forestpocket_stump_traveller": [
+    "\\SE[8]Lost Traveller: What a peculiar \ntree stump! Surely someone comes \nby here often. ",
+    "\\SE[1]Yeah... \nI know someone who does.",
+    "(Someone who likes to come \nhere and spar with me once \nin awhile..)"
+],
+"forestpocket_stump_caina": "\\SE[1]The spot that me and Caina\nlike to spar at sometimes..",
+"forestpocket_stump_nocaina": "\\SE[1]She's not here..\nWonder if she's at her cafe \nin the village..",
+"forestpocket_spar": [
+    "\\SE[1]..!",
+    "\\SE[5]Urgh..!",
+    "\\SE[1]Hah..!",
+    "\\SE[5]Heh!",
+    "Not bad! \\.\\.\nAfter all this time, still\nstrong as ever.",
+    "\\SE[1]I could say the same for\nyou..",
+    "\\SE[5]Whew!\\.\\. What a workout!\\.\\.\nHaven't felt that adrenaline \nin ages!",
+    "I forgot what it felt like\nto spar with you.",
+    "\\SE[1]Yeah, that was fun.",
+    "\\SE[5]I miss getting to train with \nyou regularly.",
+    "But... If it means never\nhaving to draw my dagger\never again...",
+    "I don't mind this being \nan occasional treat.",
+    "\\SE[1]Yeah...",
+    "I still remember when you\nused to train with me at \nthe castle.",
+    "It was so hard to beat you \nback then.",
+    "\\SE[5]And look at you now! \nKickin' my butt like nobody's \nbusiness!",
+    "Training with you back\nthen sure was a highlight\nduring my time at the castle.",
+    "It's hard to believe I used\nto be so wary of you when \nyou first showed up...",
+    "Sorry about back then.",
+    "\\SE[1]No worries...\\.\\.\nI'm usually a bit offputting\nat first.",
+    "Anyway...",
+    "It seems like things worked \nout pretty nicely for you \nafterwards.",
+    "You seem a lot happier\nthese days working at your \ncafe.",
+    "\\SE[5]One of the best decisions\nI ever made.",
+    "I heard you took on a side\njob too with Este at the \nPost Office, right?",
+    "\\SE[1]I'd honestly say my work\nat the Castle is my side\njob actually...",
+    "If I could...\\.\\. \nI'd just soley work at the \nPost Office.",
+    "But... The Prince wants to\nkeep me under surveillance.",
+    "\\SE[5]Eh!",
+    "I'd say he has you work \nat the Castle for access\nto that power of yours.",
+    "\\SE[1]Well... Yes that's part of it\ntoo.",
+    "I think the third part of \nit all is that he's pretty\nlonely.",
+    "\\SE[5].....",
+    "...Just take care of \nyourself,\\.\\. alright?",
+    "\\SE[1]..?\\.\\.\nWhat do you mean?\\.\\.\nWhere'd that come from?",
+    "\\SE[5]I'm sayin' I don't trust the \nCrown.",
+    "\\SE[1]If you mean the Prince,\\.\\.\nI think you might have the \nwrong idea about him.",
+    "Besides...\nYou didn't trust me at first \neither, right?",
+    "\\SE[5]This is different!",
+    "You haven't seen what \nI've seen...",
+    "There's a reason I quit my \nwork and ran off you know!",
+    "\\SE[1]..?",
+    "\\SE[5]...",
+    "Well...\\.\\. \nNevermind.",
+    "You're pretty strong.\\.\\.\nYou'd be able to handle\nwhatever comes your way.",
+    "Since the Prince likes you,\nI bet he won't let you \nsee anything too messy..",
+    "\\SE[1](..?\\.\\. I wonder what Caina \nsaw that made her quit\nworking at the Castle..)",
+    "(...)",
+    "(Oh well...)",
+    "(If she dislikes the Prince\nthis much...)",
+    "(I can't imagine what she'd \nthink of Zera.)",
+    "\\SE[5]Anyway, I'm gonna head back\nto the cafe now.",
+    "Feel free to stop by again \nany time you like!\\SE[1]"
 ]
 
 }
