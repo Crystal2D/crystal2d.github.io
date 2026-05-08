@@ -26,7 +26,9 @@ class Player extends RPGMovement
     
     Update ()
     {
-        GameWindow.SetTitle(`${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y - 0.3125}`);
+        if (Input.GetKeyDown(KeyCode.Num0)) this.collision = !this.collision;
+
+        GameWindow.SetTitle(`${this.collision} | ${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y - 0.3125}`);
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 

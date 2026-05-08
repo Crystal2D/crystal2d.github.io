@@ -3267,6 +3267,202 @@ class EventSystem
 
                 AudioManager.instance.PlayBGM("forest", 0.2);
             } break;
+
+            // ------------------------------------------------------- forest_fork
+            case "forestfork_cow":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[1]);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "forestfork_raccoon":
+                RPGMovement.FindChar("raccoon").LookAwayPlayer();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+                break;
+            case "forestfork_trouble":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[1]);
+
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id));
+                }
+
+                this.dialogueBox.Close();
+                Player.instance.MoveTowards(Vector2.left);
+                break;
+            case "forestfork_deer1": {
+                const deer = RPGMovement.FindChar("deer1");
+                deer.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestfork_deer2": {
+                const deer = RPGMovement.FindChar("deer2");
+                deer.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await deer.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestfork_rabbit": {
+                const rabbit = RPGMovement.FindChar("rabbit");
+
+                rabbit.charCollision = false;
+                await rabbit.MoveAwayChar(Player.instance);
+                await rabbit.MoveToChar(Player.instance);
+                rabbit.charCollision = true;
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestfork_frog": {
+                const frog = RPGMovement.FindChar("frog");
+                frog.LookAtPlayer();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "forestfork_sign":
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "fork", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                if (!this.GetSwitch("sign"))
+                {
+                    this.SetSwitch("sign", true);
+                    this.AddToVariable("illusts");
+                }
+                break;
+            case "forestfork_sign_back":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            
+            // ------------------------------------------------------- village_path
+            case "villagepath_bird1":
+            case "villagepath_bird2":
+            case "villagepath_bird3":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "villagepath_sign1":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[2]);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "villagepath_sign2":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                }
+                else await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                this.dialogueBox.Close();
+                break;
         }
     }
 

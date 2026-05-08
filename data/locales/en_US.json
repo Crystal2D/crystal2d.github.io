@@ -631,6 +631,39 @@
     "(I can't imagine what she'd \nthink of Zera.)",
     "\\SE[5]Anyway, I'm gonna head back\nto the cafe now.",
     "Feel free to stop by again \nany time you like!\\SE[1]"
-]
+],
+
+"forest_fork": "----------------------------------------------------------------------",
+"forestfork_cow": "\\SE[6]Moo\\SE[1]",
+"forestfork_cow_traveller": [
+    "\\SE[8]Lost Traveller: What's a cow doing \nthis deep in the forest?\\SE[1]",
+    "Yeah...\\.\\. How strange..."
+],
+"forestfork_raccoon_traveller": "\\SE[8]Lost Traveller: Seems shy...\\SE[1]",
+"forestfork_trouble": "\\SE[1](I shouldn't walk in the\nmiddle of this...)",
+"forestfork_trouble_traveller": [
+    "\\SE[8]Lost Traveller: This looks a little\nrough...\\.\\. Let's turn around.\\SE[1]",
+    "I agree..."
+],
+"forestfork_deer1_traveller": "\\SE[8]Lost Traveller: This little deer\nseems hungry...\\SE[1]",
+"forestfork_deer2_traveller": "\\SE[8]Lost Traveller: Seems interested\nin us!\\SE[1]",
+"forestfork_rabbit_traveller": "\\SE[8]Lost Traveller: How cute!\\.\\.\nThe bunny wants to play!\\SE[1]",
+"forestfork_frog_traveller": "\\SE[8]Lost Traveller: Hop!\\.\\. Hop!\\.\\.\nLittle frog!\\SE[1]",
+"forestfork_sign": "LEFT: to Village\nRIGHT: to Castle Town",
+"forestfork_sign_back": "(This sure is a sign I can't \nread from over here.)",
+
+"village_path": "----------------------------------------------------------------------",
+"villagepath_bird1": "Chirp!",
+"villagepath_bird2": "Chirp!",
+"villagepath_bird3": "Chirp!",
+"villagepath_sign1": "WARNING \nBEAST-type territory ahead",
+"villagepath_sign1_traveller": [
+    "\\SE[8]Lost Traveller: Good thing we\ndidn't run into any BEAST-types!\nI'd have been a goner for sure!",
+    "\\SE[1](Yeah, you were really \nlucky.)",
+    "(Maybe you being affected \nby the barrier was for\nthe best...)"
+],
+"villagepath_sign1_back": "I can't read the sign from \nhere...",
+"villagepath_sign2": "South: Village",
+"villagepath_sign2_back": "I can't read the sign from \nhere..."
 
 }

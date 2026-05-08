@@ -89,6 +89,7 @@ class RPGMovement extends GridAdjusted
 
     lockLook = false;
     updateMovement = true;
+    collision = true;
     charCollision = true;
     animateWalk = true;
     animateIdle = true;
@@ -103,9 +104,9 @@ class RPGMovement extends GridAdjusted
     lastNode = null;
     event = null;
 
-    static FindChar (name, includeInactive)
+    static FindChar (name, includeInactive, pureName)
     {
-        return GameObject.Find(`char_${name}`, includeInactive)?.GetComponent(RPGMovement);
+        return GameObject.Find(`${pureName ? "" : "char_"}${name}`, includeInactive)?.GetComponent(RPGMovement, includeInactive);
     }
 
     async Invoke ()
@@ -309,10 +310,11 @@ class RPGMovement extends GridAdjusted
 
     _DirCheck (node)
     {
-        if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
+        if (node.collider === 3) return true;
+        if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return this.collision;
 
         const char = node.GetOwnerOfType(RPGMovement);
-        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
+        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision && this.collision && char.collision;
 
         return false;
     }
@@ -476,11 +478,13 @@ class RPGMovement extends GridAdjusted
         this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
         this.#jumpDuration = ((10 + by.magnitude - this.#speed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
+
+        const lastLockLook = this.lockLook;
         this.lockLook = true;
 
         await new Promise(resolve => this.#onJumpEnd = resolve);
 
-        this.lockLook = false;
+        this.lockLook = lastLockLook;
     }
 
     async JumpTo (pos)
@@ -532,5 +536,22 @@ class RPGMovement extends GridAdjusted
     async StepBack ()
     {
         return this.MoveTowards(Vector2.Scale(this.#lookDir, -1));
+    }
+
+    ClearInstructions ()
+    {
+        this.#targetDir = Vector2.zero;
+        this._moveDir = Vector2.zero;
+        this.#moveStart = false;
+        this.#allowDirChange = true;
+
+        this.#jumpTime = 0;
+
+        this.#pos = this.#lastPos;
+        this.transform.position = this.#pos;
+
+        this.#animCount = 0;
+        this.#animState = this.#animStateInit;
+        this._sprResolver.label = `${this.#animState}`;
     }
 }

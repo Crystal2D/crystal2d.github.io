@@ -367,6 +367,14 @@
             "texture": "sprites/chars/caina"
         }
     },
+    {
+        "path": "spritelibs/chars/cow",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/cow"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

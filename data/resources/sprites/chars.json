@@ -2000,6 +2000,30 @@
             ]
         }
     },
+    {
+        "path": "sprites/chars/cow",
+        "type": "Texture",
+        "args": {
+            "src": "chars/cow.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
 
     {
         "path": "sprites/chars/claireyokifly",

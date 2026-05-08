@@ -104,7 +104,7 @@ class MapInit extends GameBehavior
         };
         Loader.onSwitching.Add(switchingCall);
 
-        const switchCall = () => {
+        const switchCall = async () => {
             Loader.onSwitchEnd.Remove(switchCall);
 
             Transitioner.instance.SetFadeIn();
@@ -124,12 +124,15 @@ class MapInit extends GameBehavior
             for (let i = 0; i < save.chars.length; i++)
             {
                 const data = save.chars[i];
-                const char = RPGMovement.FindChar(data.name, true);
+                const char = RPGMovement.FindChar(data.name, true, true);
 
                 if (char == null) continue;
 
-                char.gameObject.SetActive(true);
+                char.gameObject.SetActive(data.active);
 
+                if (!data.active) continue;
+
+                char.ClearInstructions();
                 char.TP(new Vector2(data.pos.x, data.pos.y));
                 char.LookAt(new Vector2(data.dir.x, data.dir.y));
                 char.lockLook = data.lockLook;
@@ -143,7 +146,7 @@ class MapInit extends GameBehavior
 
             if (save.bgm != null) AudioManager.instance.PlayBGM(save.bgm.name, save.bgm.volume, save.bgm.pitch);
 
-            Transitioner.instance.FadeIn(() => Player.instance.avoidInputs = false);
+            Transitioner.instance.FadeIn(async () => Player.instance.avoidInputs = false);
         };
         Loader.onSwitchEnd.Add(switchCall);
 

@@ -6,7 +6,27 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_graveyard",
         "sprites/collider",
-        "audio/bgm/forest"
+        "audio/bgm/forest",
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        [
+            "sprites/chars/deer",
+            "spritelibs/chars/deer"
+        ],
+        [
+            "sprites/chars/boar",
+            "spritelibs/chars/boar"
+        ],
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ],
+        [
+            "sprites/chars/frog",
+            "spritelibs/chars/frog"
+        ]
     ],
     "gameObjects": [
         {
@@ -43,11 +63,11 @@
                     "type": "MapGrid",
                     "args": {
                         "min": {
-                            "x": -7,
+                            "x": -10,
                             "y": -31
                         },
                         "max": {
-                            "x": 9,
+                            "x": 11,
                             "y": 28
                         }
                     }
@@ -1238,6 +1258,10 @@
                                             {
                                                 "x": -13,
                                                 "y": 25
+                                            },
+                                            {
+                                                "x": -13,
+                                                "y": -15
                                             }
                                         ]
                                     },
@@ -2476,10 +2500,6 @@
                                             {
                                                 "x": -13,
                                                 "y": -17
-                                            },
-                                            {
-                                                "x": -13,
-                                                "y": -15
                                             },
                                             {
                                                 "x": -13,
@@ -9979,6 +9999,490 @@
                                             {
                                                 "x": 9,
                                                 "y": -13
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 27
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 18
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 18
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 18
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 19
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 20
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 21
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 21
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 21
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 22
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 23
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 23
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 23
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 24
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 25
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 26
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 18
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 19
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 20
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 21
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 14
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 13
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 14
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 12
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 9
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 7
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 7
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 6
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 6
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 6
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 7
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 8
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 9
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 9
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -6
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -7
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -8
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": -8
+                                            },
+                                            {
+                                                "x": 8,
+                                                "y": -7
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -7
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -7
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -8
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -11
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -12
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -13
+                                            },
+                                            {
+                                                "x": 11,
+                                                "y": -13
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -15
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -16
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -16
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": -15
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -13
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -23
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -21
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -20
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -19
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -20
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -21
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -22
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": -23
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -24
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -1
                                             }
                                         ]
                                     }
@@ -10076,8 +10580,451 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 27
+                                },
+                                "event": "villagepath_sign1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": -24
+                                },
+                                "event": "villagepath_sign2"
+                            }
+                        ]
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel1",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": 12
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel2",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel3",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_deer1",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": 8
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/deer",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/deer"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_deer2",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": 3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/deer",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/deer"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_boar",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": 0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/boar",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/boar"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_frog",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -3.5,
+                    "y": -11
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_bird1",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": 1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 6,
+                        "event": "villagepath_bird1"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_bird2",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": -7.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 6,
+                        "event": "villagepath_bird2"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_bird3",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 6,
+                        "event": "villagepath_bird3"
+                    }
+                },
+                {
+                    "type": "RandomMove"
                 }
             ]
         }

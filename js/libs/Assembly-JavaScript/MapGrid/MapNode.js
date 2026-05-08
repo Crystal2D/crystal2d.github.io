@@ -1,6 +1,11 @@
 class MapNode
 {
+    // 0: normal
+    // 1: collider
+    // 2: char collider
+    // 3: bounds
     collider = 0;
+
     x = 0;
     y = 0;
     gridX = 0;

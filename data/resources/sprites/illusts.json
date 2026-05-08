@@ -230,5 +230,13 @@
             "src": "illusts\\caina_spar_5.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/fork",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\fork.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

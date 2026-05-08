@@ -150,9 +150,14 @@ class RPGSave
     static CharsSave ()
     {
         const party = Party.GetChars();
-        const chars = GameObject.FindComponents(RPGMovement).filter(item => !party.includes(item));
+        const chars = GameObject.FindComponents(RPGMovement, true).filter(item => !party.includes(item));
 
         return chars.map(item => {
+            if (!item.gameObject.activeSelf) return {
+                name: item.name,
+                active: false
+            };
+            
             return {
                 name: item.name,
                 pos: {
@@ -166,7 +171,8 @@ class RPGSave
                 lookLock: item.lockLook,
                 charCollision: item.charCollision,
                 animateWalk: item.animateWalk,
-                animateIdle: item.animateIdle
+                animateIdle: item.animateIdle,
+                active: true
             };
         });
     }
