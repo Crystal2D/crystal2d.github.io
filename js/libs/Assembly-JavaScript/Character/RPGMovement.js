@@ -20,11 +20,10 @@ class RPGMovement extends GridAdjusted
     #jumpTo = Vector2.zero;
     #onJumpEnd = () => { };
 
-    #node = null;
-
     _frameSpeed = 30 * Math.pow(2, 3) / 256;
     _moveDir = Vector2.zero;
 
+    _node = null;
     _sprResolver = null;
 
     get #jumpHeight ()
@@ -51,12 +50,12 @@ class RPGMovement extends GridAdjusted
 
     get nodePos ()
     {
-        return this.#node.pos;
+        return this._node.pos;
     }
 
     get gridPos ()
     {
-        return this.#node.gridPos;
+        return this._node.gridPos;
     }
 
     get isJumping ()
@@ -129,10 +128,10 @@ class RPGMovement extends GridAdjusted
 
         if (this._DirCheck(checkedNode)) return true;
 
-        this.#node.RemoveOwner(this);
-        this.lastNode = this.#node;
-        this.#node = checkedNode;
-        this.#node.AddOwner(this);
+        this._node.RemoveOwner(this);
+        this.lastNode = this._node;
+        this._node = checkedNode;
+        this._node.AddOwner(this);
 
         return false;
     }
@@ -188,17 +187,17 @@ class RPGMovement extends GridAdjusted
     {
         this.#pos = this.transform.position;
 
-        this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
-        this.#node.AddOwner(this);
+        this._node = MapGrid.current.NodeOnWorld(this.transform.position);
+        this._node.AddOwner(this);
 
         super.OnEnable();
     }
 
     OnDisable ()
     {
-        this.#node.RemoveOwner(this);
+        this._node.RemoveOwner(this);
         this.lastNode = null;
-        this.#node = null;
+        this._node = null;
 
         super.OnDisable();
     }
@@ -439,11 +438,11 @@ class RPGMovement extends GridAdjusted
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
 
-        if (this.#node != null) this.#node.RemoveOwner(this);
+        if (this._node != null) this._node.RemoveOwner(this);
         
-        this.lastNode = this.#node;
-        this.#node = targetNode;
-        this.#node.AddOwner(this);
+        this.lastNode = this._node;
+        this._node = targetNode;
+        this._node.AddOwner(this);
 
         this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
         this.transform.position = this.#pos;
@@ -465,10 +464,10 @@ class RPGMovement extends GridAdjusted
         {
             this.LookAt(by);
 
-            this.#node.RemoveOwner(this);
-            this.lastNode = this.#node;
-            this.#node = targetNode;
-            this.#node.AddOwner(this);
+            this._node.RemoveOwner(this);
+            this.lastNode = this._node;
+            this._node = targetNode;
+            this._node.AddOwner(this);
         }
 
         this.onJumpStart.Invoke();

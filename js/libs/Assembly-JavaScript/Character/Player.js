@@ -37,21 +37,34 @@ class Player extends RPGMovement
 
     _DirCheck (node)
     {
-        if (super._DirCheck(node)) return true;
+        this.#keyInteractable = null;
+
+        if (super._DirCheck(node))
+        {
+            const interactables = this._node.GetOwnersOfType(Interactable);
+
+            for (let i = 0; i < interactables.length; i++)
+            {
+                if (interactables[i].trigger !== 0) continue;
+                
+                this.#keyInteractable = interactables[i];
+                break;
+            }
+
+            return true;
+        }
 
         const transfer = node.GetOwnerOfType(MapTransfer);
 
         if (transfer != null) this.#transfer = transfer;
 
         const interactables = node.GetOwnersOfType(Interactable);
-        this.#keyInteractable = null;
 
         for (let i = 0; i < interactables.length; i++)
         {
             if (interactables[i].trigger !== 1)
             {
-                if (this.#keyInteractable == null) this.#keyInteractable = interactables[i];
-
+                this.#keyInteractable = interactables[i];
                 continue;
             }
 
