@@ -539,11 +539,14 @@ class Tilemap extends Renderer
 
         this.#tiles.delete(`${position.x}_${position.y}`);
 
+        let checkedOne = false;
+
         this.#tiles.forEach(item => {
             const pos = item.position;
-
-            if (i === 0)
+            
+            if (!checkedOne)
             {
+                checkedOne = true;
                 this.#min = pos.Duplicate();
                 this.#max = pos.Duplicate();
 

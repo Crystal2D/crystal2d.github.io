@@ -199,14 +199,8 @@ class Party extends SnekChar
             const data = item[1];
             const output = {
                 name: data.name,
-                pos: {
-                    x: data.char.gridPos.x,
-                    y: data.char.gridPos.y
-                },
-                dir: {
-                    x: data.char.lookingAt.x,
-                    y: data.char.lookingAt.y
-                }
+                pos: data.char.gridPos,
+                dir: data.char.lookingAt
             };
 
             if (item[0] > 0) output.moves = Party.instance.followers[item[0] - 1].MovesSave();

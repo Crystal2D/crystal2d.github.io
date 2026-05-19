@@ -160,14 +160,8 @@ class RPGSave
             
             return {
                 name: item.name,
-                pos: {
-                    x: item.gridPos.x,
-                    y: item.gridPos.y
-                },
-                dir: {
-                    x: item.lookingAt.x,
-                    y: item.lookingAt.y
-                },
+                pos: item.gridPos,
+                dir: item.lookingAt,
                 lookLock: item.lockLook,
                 charCollision: item.charCollision,
                 animateWalk: item.animateWalk,
