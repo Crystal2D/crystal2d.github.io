@@ -162,7 +162,7 @@ class RPGSave
                 name: item.name,
                 pos: item.gridPos,
                 dir: item.lookingAt,
-                lookLock: item.lockLook,
+                lockLook: item.lockLook,
                 charCollision: item.charCollision,
                 animateWalk: item.animateWalk,
                 animateIdle: item.animateIdle,

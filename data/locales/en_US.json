@@ -664,6 +664,82 @@
 ],
 "villagepath_sign1_back": "I can't read the sign from \nhere...",
 "villagepath_sign2": "South: Village",
-"villagepath_sign2_back": "I can't read the sign from \nhere..."
+"villagepath_sign2_back": "I can't read the sign from \nhere...",
+
+"village": "----------------------------------------------------------------------",
+"village_dog1": "Woof!",
+"village_dog2": "\\SE[4]Bark Bark Bark!!!\\SE[1]",
+"village_cat": "\\SE[4]Meeeooowww!\\SE[1]",
+"village_villager1": [
+    "\\SE[10]I was there when you took down \nthat BEAST-Type that stormed \ninto the Village.",
+    "It was appreciated but...\\.\\.\nA lot of us didn't know if YOU \nwere a BEAST-Type.",
+    "To be honest,\\.\\. I was also scared of \nyou up until recently.",
+    "But,\\.\\.\nafter you started working at the \nPost Office and coming by often,",
+    "I realized you're pretty alright!\\SE[1]"
+],
+"village_villager1_talked": [
+    "\\SE[10]Better late than never,\\.\\. right?",
+    "Other villagers here feel the same!",
+    "\\SE[1](...)"
+],
+"village_villager2": [
+    "\\SE[13]Oh!\\.\\. It's the delivery girl!",
+    "You've been doing a great job!",
+    "Before you used to deliver the mail,\nit used to be Este,\\.\\. But...",
+    "We'd always get our mail at weird \nhours,\\.\\. or it would be several\ndays late.",
+    "It's so much better now that you\ndeliver everything!",
+    "\\SE[1]Thank you...\\.\\.\nI think he tries his best \nthough.",
+    "(..With how spacey Este\ncan be,\\.\\. I can't imagine \nanyone EVER got their mail.)"
+],
+"village_villager2_talked": [
+    "\\SE[13]I remember when the rest of the \nVillage was scared of you...\\.\\.\nI was too...",
+    "Not Este though!",
+    "Este was never afraid of you,\\.\\. \nhe even gave you a job after\nyou came back from the Castle!",
+    "Este is a really nice guy!",
+    "He's just..\\.\\. not so organized or time\nefficient.\\SE[1]"
+],
+"village_villager3": [
+    "\\SE[2]My mommy told me to stay away \nfrom you...",
+    "She said you were actually a scary\nBEAST-Type in disguise.",
+    "You're not gonna eat me,\\.\\. right?",
+    "\\SE[1]Don't worry...\\.\\.\nI won't do that."
+],
+"village_villager3_talked": [
+    "\\SE[2]I don't think you're really a\nBEAST-Type!",
+    "I heard BEAST-Types are big,\\.\\. scary\\.\\. \nand mean.",
+    "But you're really nice!\\SE[1]"
+],
+"village_villager4": [
+    "\\SE[8]If you walk west, you'll hit the\nkingdom's border.",
+    "I've never gone that far...\\.\\.\nI'm kinda curious what the next \nkingdom over is like.",
+    "\\SE[1](I'd like to travel out again\nsoon...)",
+    "(Though,\\.\\. The Prince throws \na fit whenever he finds out\nI leave.)"
+],
+"village_villager4_talked": "\\SE[8]Wonder what it's like out there...\\SE[1]",
+"village_villager4_dragon": [
+    "\\SE[8]I saw someone with a very peculiar\npresence just walk by...",
+    "Wonder where he was off to.\\SE[1]"
+],
+"village_villager5": [
+    "\\SE[2]My mom wanted me to pick up some\nstuff from the market.",
+    "But...\\.\\. I don't remember what I \nwas supposed to get.\\SE[1]"
+],
+"village_villager6": "\\SE[5]What to buy..?\\SE[1]",
+"village_hero": "\\SE[11]Hmm...\\.\\.\nWhat should we bring with\nus on our journey?\\SE[1]",
+"village_cleric": "\\SE[10]Such a good variety of\nsupplies to choose from in \nsuch a small village.\\SE[1]",
+"village_knight": "\\SE[6]Gotta stock up on some\nof these incredible armor\nupgrades!\\SE[1]",
+"village_rogue": "\\SE[5]...\\SE[1]",
+"village_este": [
+    "\\SE[1]Oh...\\.\\.\nHere's where you went.",
+    "\\SE[6]Good work today.",
+    "If you want, I can fly\nyou back up the mountain."
+],
+"village_este_warped": "\\SE[6]Do you want me to fly you \nup the mountain?\\SE[1]",
+"village_este_choices": [
+    "Ok",
+    "Not right now"
+],
+"village_este_ok": "\\SE[1]Sure, I'd appreciate that.",
+"village_este_no": "\\SE[1]I'm good at the moment,\nthanks though."
 
 }

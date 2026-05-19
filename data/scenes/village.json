@@ -88,7 +88,9 @@
         "sprites/chars/hero_2",
         "sprites/chars/hero_3",
         "sprites/chars/hero_4",
-        "sprites/chars/este"
+        "sprites/chars/este",
+        "sprites/faces/heroes",
+        "sprites/faces/este"
     ],
     "gameObjects": [
         {

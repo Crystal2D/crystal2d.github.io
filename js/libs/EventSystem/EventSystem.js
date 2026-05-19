@@ -3463,6 +3463,290 @@ class EventSystem
 
                 this.dialogueBox.Close();
                 break;
+
+            // ------------------------------------------------------- village
+            case "village_dog1":
+                RPGMovement.FindChar("dog1").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_dog2": {
+                const dog = RPGMovement.FindChar("dog2");
+                dog.LookAtPlayer();
+                await dog.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+            } break;
+            case "village_cat":
+                RPGMovement.FindChar("cat").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_villager1": {
+                const villager = RPGMovement.FindChar("villager1");
+                const randMove = villager.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                villager.LookAtPlayer();
+
+                if (this.GetSwitch("villager_1"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.SetFace("yoki", "smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    this.dialogueBox.Close();
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("villager_1", true);
+                }
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "village_villager2": {
+                const villager = RPGMovement.FindChar("villager2");
+                const randMove = villager.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                villager.LookAtPlayer();
+
+                if (this.GetSwitch("villager_2"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[3]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[4]);
+                    this.dialogueBox.Close();
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                    this.dialogueBox.SetFace("yoki", "smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("villager_2", true);
+                }
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "village_villager3": {
+                const villager = RPGMovement.FindChar("villager3");
+                const randMove = villager.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                villager.LookAtPlayer();
+
+                if (this.GetSwitch("villager_3"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    this.dialogueBox.Close();
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("villager_3", true);
+                }
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "village_villager4": {
+                const villager = RPGMovement.FindChar("villager4");
+                const randMove = villager.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                villager.LookAtPlayer();
+
+                if (this.GetSwitch("dragon_noticed"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_dragon`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_dragon`)[1]);
+                    this.dialogueBox.Close();
+                }
+                else if (this.GetSwitch("villager_4"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`));
+                    this.dialogueBox.Close();
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("villager_4", true);
+                }
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "village_villager5":
+                RPGMovement.FindChar("villager5").LookAtPlayer();
+                
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "village_villager6":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_hero":
+                this.dialogueBox.SetFace("heroes", "chosen one");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_cleric":
+                this.dialogueBox.SetFace("heroes", "cleric");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_knight":
+                this.dialogueBox.SetFace("heroes", "knight");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_rogue":
+                RPGMovement.FindChar("rogue").LookAtPlayer();
+
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_este": {
+                RPGMovement.FindChar("este").LookAtPlayer();
+
+                if (this.GetSwitch("este_warp"))
+                {
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_warped`), true);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("este", null);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+                }
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                this.dialogueBox.SetFace("yoki", "smile");
+
+                if (choice === 1)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_no`));
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("este_warp", true);
+                    return;
+                }
+
+                Loader.Ready(21);
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`));
+                this.dialogueBox.Close();
+
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.TintAll(new Color(
+                    -68 / 255,
+                    -68 / 255,
+                    -68 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -102 / 255,
+                    -102 / 255,
+                    -102 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(8);
+
+                Player.instance.LookAt(Vector2.down);
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(0, -5);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(21);
+
+                await this.Timer(40);
+                Transitioner.instance.Clear();
+                await this.TintAll(new Color(
+                    -187 / 255,
+                    -187 / 255,
+                    -187 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -102 / 255,
+                    -102 / 255,
+                    -102 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                this.TintAll(new Color(
+                    -68 / 255,
+                    -68 / 255,
+                    -68 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(8);
+
+                AudioManager.instance.PlayBGM("forest", 0.2);
+
+                this.SetSwitch("este_warp", true);
+            } break;
         }
     }
 
