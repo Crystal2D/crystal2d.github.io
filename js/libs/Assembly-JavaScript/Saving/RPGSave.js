@@ -189,6 +189,7 @@ class RPGSave
     {
         // MapInit
         Resources.DestroyOnLoad(
+            "audio/se/journal",
             "anims/entity",
             "anims/entity_ctrl",
             "anims/entity_reset",

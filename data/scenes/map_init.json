@@ -9,6 +9,7 @@
         "audio/se/dialogue_2",
         "audio/se/dialogue_3",
         "audio/se/dialogue_4",
+        "audio/se/journal",
         [
             "anims/entity",
             "anims/entity_reset",

@@ -79,6 +79,32 @@ class ItsABox extends GameBehavior
         this.#onClose = () => callback();
     }
 
+    OpenInstant ()
+    {
+        this.#openness = 255;
+        this.transform.scale = new Vector2(1, this.#openness / 255);
+
+        this.#targetState = 1;
+        this.#state = 1;
+        this.OnOpen();
+
+        this.#onOpen();
+        this.#onOpen = () => { };
+    }
+
+    CloseInstant ()
+    {
+        this.#openness = 0;
+        this.transform.scale = new Vector2(1, this.#openness / 255);
+
+        this.#targetState = 0;
+        this.#state = 0;
+        this.OnClose();
+
+        this.#onClose();
+        this.#onClose = () => { };
+    }
+
     Toggle ()
     {
         if (this.isClosed) this.Open();

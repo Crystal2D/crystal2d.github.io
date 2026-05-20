@@ -23963,6 +23963,16 @@
                     "args": {
                         "args": 1
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "j*bbed_good"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -24021,6 +24031,17 @@
                     "type": "TilemapCollider",
                     "args": {
                         "args": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_fly",
+                                "not": true
+                            }
+                        ]
                     }
                 }
             ]
@@ -24346,63 +24367,738 @@
                                     "x": 4,
                                     "y": -20
                                 },
-                                "event": "village_hero"
+                                "event": "village_hero",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 3,
                                     "y": -21
                                 },
-                                "event": "village_cleric"
+                                "event": "village_cleric",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 5,
                                     "y": -21
                                 },
-                                "event": "village_cleric"
+                                "event": "village_cleric",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 5,
                                     "y": -30
                                 },
-                                "event": "village_knight"
+                                "event": "village_knight",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 7,
                                     "y": -30
                                 },
-                                "event": "village_knight"
+                                "event": "village_knight",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 11,
                                     "y": -21
                                 },
-                                "event": "village_rogue"
+                                "event": "village_rogue",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": 13,
                                     "y": -21
                                 },
-                                "event": "village_rogue"
+                                "event": "village_rogue",
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly",
+                                        "not": true
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": -6,
                                     "y": 33
                                 },
-                                "event": "village_este"
+                                "event": "village_este",
+                                "conditions": [
+                                    {
+                                        "name": "j*bbed_good"
+                                    }
+                                ]
                             },
                             {
                                 "pos": {
                                     "x": -4,
                                     "y": 33
                                 },
-                                "event": "village_este"
+                                "event": "village_este",
+                                "conditions": [
+                                    {
+                                        "name": "j*bbed_good"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -17
+                                },
+                                "event": "village_shop1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -18
+                                },
+                                "event": "village_shop1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -20
+                                },
+                                "event": "village_shop2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -21
+                                },
+                                "event": "village_shop2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -23
+                                },
+                                "event": "village_shop3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -24
+                                },
+                                "event": "village_shop3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -27
+                                },
+                                "event": "village_shop4"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -28
+                                },
+                                "event": "village_shop4"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -30
+                                },
+                                "event": "village_shop5"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -31
+                                },
+                                "event": "village_shop5"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -33
+                                },
+                                "event": "village_shop6"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": -34
+                                },
+                                "event": "village_shop6"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -17
+                                },
+                                "event": "village_shop7"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -18
+                                },
+                                "event": "village_shop7"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -20
+                                },
+                                "event": "village_shop8"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -21
+                                },
+                                "event": "village_shop8"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -23
+                                },
+                                "event": "village_shop9"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -24
+                                },
+                                "event": "village_shop9"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -27
+                                },
+                                "event": "village_shop10"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -28
+                                },
+                                "event": "village_shop10"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -30
+                                },
+                                "event": "village_shop11"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -31
+                                },
+                                "event": "village_shop11"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -33
+                                },
+                                "event": "village_shop12"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -34
+                                },
+                                "event": "village_shop12"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -17
+                                },
+                                "event": "village_shop13"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -18
+                                },
+                                "event": "village_shop13"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -20
+                                },
+                                "event": "village_shop14"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -21
+                                },
+                                "event": "village_shop14"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -23
+                                },
+                                "event": "village_shop15"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -24
+                                },
+                                "event": "village_shop15"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -27
+                                },
+                                "event": "village_shop16"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -28
+                                },
+                                "event": "village_shop16"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -30
+                                },
+                                "event": "village_shop17"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -31
+                                },
+                                "event": "village_shop17"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -33
+                                },
+                                "event": "village_shop18"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -34
+                                },
+                                "event": "village_shop18"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -17
+                                },
+                                "event": "village_shop19"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -18
+                                },
+                                "event": "village_shop19"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -20
+                                },
+                                "event": "village_shop20"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -21
+                                },
+                                "event": "village_shop20"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -23
+                                },
+                                "event": "village_shop21"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -24
+                                },
+                                "event": "village_shop21"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -27
+                                },
+                                "event": "village_shop22"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -28
+                                },
+                                "event": "village_shop22"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -30
+                                },
+                                "event": "village_shop23"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -31
+                                },
+                                "event": "village_shop23"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -33
+                                },
+                                "event": "village_shop24"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -34
+                                },
+                                "event": "village_shop24"
+                            },
+                            {
+                                "pos": {
+                                    "x": 12,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 13,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 15,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 18,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 20,
+                                    "y": -19
+                                },
+                                "event": "village_fruitstand"
+                            },
+                            {
+                                "pos": {
+                                    "x": 18,
+                                    "y": 15
+                                },
+                                "event": "village_cafe"
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": 15
+                                },
+                                "event": "village_cafe"
+                            },
+                            {
+                                "pos": {
+                                    "x": 20,
+                                    "y": 15
+                                },
+                                "event": "village_cafe"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 13
+                                },
+                                "event": "village_well"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 14
+                                },
+                                "event": "village_well"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 13
+                                },
+                                "event": "village_well"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 14
+                                },
+                                "event": "village_well"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 30
+                                },
+                                "event": "village_wishingwell"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 31
+                                },
+                                "event": "village_wishingwell"
+                            },
+                            {
+                                "pos": {
+                                    "x": -18,
+                                    "y": 30
+                                },
+                                "event": "village_wishingwell"
+                            },
+                            {
+                                "pos": {
+                                    "x": -18,
+                                    "y": 31
+                                },
+                                "event": "village_wishingwell"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 33
+                                },
+                                "event": "village_forestsign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 24,
+                                    "y": 8
+                                },
+                                "event": "village_carriagesign"
+                            },
+                            {
+                                "pos": {
+                                    "x": -26,
+                                    "y": -24
+                                },
+                                "event": "village_shrinesign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 17,
+                                    "y": 26
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": 25
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": -15,
+                                    "y": 14
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": 11
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 10
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": 9
+                                },
+                                "event": "village_veggie_bad"
+                            },
+                            {
+                                "pos": {
+                                    "x": 13,
+                                    "y": -1
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": -2
+                                },
+                                "event": "village_veggie_bad"
+                            },
+                            {
+                                "pos": {
+                                    "x": 18,
+                                    "y": -2
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": 15,
+                                    "y": -3
+                                },
+                                "event": "village_veggie"
+                            },
+                            {
+                                "pos": {
+                                    "x": -20,
+                                    "y": -7
+                                },
+                                "event": "village_postbox"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 25
+                                },
+                                "event": "village_mail1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": 8
+                                },
+                                "event": "village_mail2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": -5
+                                },
+                                "event": "village_mail3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 30
+                                },
+                                "event": "village_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 30
+                                },
+                                "event": "village_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 30
+                                },
+                                "event": "village_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 31
+                                },
+                                "event": "village_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 31
+                                },
+                                "event": "village_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 31
+                                },
+                                "event": "village_save"
                             }
                         ]
                     }
@@ -24804,8 +25500,26 @@
             ]
         },
         {
+            "name": "chars_heroes",
+            "id": 38,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_fly",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "char_hero",
             "id": 18,
+            "parent": 38,
             "transform": {
                 "position": {
                     "x": 1.5,
@@ -24848,6 +25562,7 @@
         {
             "name": "char_cleric",
             "id": 19,
+            "parent": 38,
             "transform": {
                 "position": {
                     "x": 2,
@@ -24890,6 +25605,7 @@
         {
             "name": "char_knight",
             "id": 20,
+            "parent": 38,
             "transform": {
                 "position": {
                     "x": 3,
@@ -24932,6 +25648,7 @@
         {
             "name": "char_rogue",
             "id": 21,
+            "parent": 38,
             "transform": {
                 "position": {
                     "x": 6,
@@ -25007,6 +25724,16 @@
                     "type": "RPGMovement",
                     "args": {
                         "event": "village_este"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "j*bbed_good"
+                            }
+                        ]
                     }
                 }
             ]
@@ -25590,6 +26317,16 @@
                     "type": "RandomMove"
                 }
             ]
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 37,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": 15
+                }
+            }
         }
     ]
 }

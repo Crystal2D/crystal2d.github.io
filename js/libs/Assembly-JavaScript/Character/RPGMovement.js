@@ -537,7 +537,7 @@ class RPGMovement extends GridAdjusted
         return this.MoveTowards(Vector2.Scale(this.#lookDir, -1));
     }
 
-    ClearInstructions ()
+    async ClearInstructions ()
     {
         this.#targetDir = Vector2.zero;
         this._moveDir = Vector2.zero;
@@ -551,6 +551,8 @@ class RPGMovement extends GridAdjusted
 
         this.#animCount = 0;
         this.#animState = this.#animStateInit;
+
+        await CrystalEngine.Wait(() => this._sprResolver != null);
         this._sprResolver.label = `${this.#animState}`;
     }
 }

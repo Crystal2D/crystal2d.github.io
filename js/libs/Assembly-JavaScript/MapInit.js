@@ -10,6 +10,7 @@ class MapInit extends GameBehavior
     Awake ()
     {
         Resources.DontDestroyOnLoad(
+            "audio/se/journal",
             "anims/entity",
             "anims/entity_ctrl",
             "anims/entity_reset",

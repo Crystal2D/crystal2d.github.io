@@ -197,6 +197,26 @@
     "\\SE[1]Yea. Let's do it again\nsometime soon."
 ],
 
+"j*bbed": [
+    "(Looks like all the letters\nhave been delivered..)",
+    "(I should head back to\nthe Post Office.)"
+],
+"journal_1": [
+    "..?",
+    "What are these..?",
+    "**Found missing journal pages**"
+],
+"journal_2": [
+    "..?",
+    "More pages..?",
+    "**Found missing journal pages**"
+],
+"journal_3": [
+    "..?",
+    "Are these the last ones..?",
+    "**Found missing journal pages**"
+],
+
 "yokihouse": "----------------------------------------------------------------------",
 "yolkhouse_mail": "No mail today.",
 "yolkhouse_veggie": "Some vegetables me and\nClaire have been growing.",
@@ -740,6 +760,75 @@
     "Not right now"
 ],
 "village_este_ok": "\\SE[1]Sure, I'd appreciate that.",
-"village_este_no": "\\SE[1]I'm good at the moment,\nthanks though."
+"village_este_no": "\\SE[1]I'm good at the moment,\nthanks though.",
+"village_shop1": "They seem to be selling\nsome quilts and linens.",
+"village_shop2": "Various wares are for sale...",
+"village_shop3": [
+    "Some freshly picked fruit\nis being sold here.",
+    "Those apples look really\ntasty!"
+],
+"village_shop4": "Looks like they're selling\nsome finely made pottery.",
+"village_shop5": "Various wares are for sale...",
+"village_shop6": "They're selling some freshly \nharvested grains.",
+"village_shop7": "Looks like they're selling\nsome finely made pottery.",
+"village_shop8": "They're selling some freshly \nharvested grains.",
+"village_shop9": "Seems like they're selling\nsome recently caught fish.",
+"village_shop10": "Various wares are for sale...",
+"village_shop11": "They're selling some freshly \nharvested grains.",
+"village_shop12": "Various wares are for sale...",
+"village_shop13": "Looks like they're selling\nsome cute hand-crafted \ncharms.",
+"village_shop14": "Looks like some fresh\ningredients...",
+"village_shop15": "Various herbs are being \nsold here.",
+"village_shop16": "Various wares are for sale...",
+"village_shop17": "They seem to be selling\nsome quilts and linens.",
+"village_shop18": "They're selling some freshly \nharvested grains.",
+"village_shop19": "Various wares are for sale...",
+"village_shop20": "They're selling some freshly \nharvested grains.",
+"village_shop21": "They seem to be selling\nsome quilts and linens.",
+"village_shop22": "Looks like they're selling\nsome finely made pottery.",
+"village_shop23": "Looks like there's some\nhandcrafted equipment \nbeing sold here.",
+"village_shop24": "Various wares are for sale...",
+"village_fruitstand": [
+    "There's some fresh looking \nfruit being sold here.",
+    "I'll come by another time\nto buy some..."
+],
+"village_cafe": [
+    "There's some cute pastries\non display.",
+    "Are they real or fake..?",
+    "They look tasty regardless."
+],
+"village_well": "A Well...\\.\\.\nThe villagers use this one \nfrequently.",
+"village_wishingwell": [
+    "A Well.\\.\\.\nThe villagers like to make\nwishes at this one...",
+    "I wonder if any of them\ncome true...\\.\\.\nMaybe I should try it."
+],
+"village_forestsign": "Forest Path ahead",
+"village_forestsign_back": "I can't read the sign from \nhere...",
+"village_carriagesign": "Carriage Service ahead",
+"village_carriagesign_back": "I can't read the sign from \nhere...",
+"village_shrinesign": [
+    "_r__on S_rine ahe_d",
+    "The too sign's too faded\nto read..."
+],
+"village_shrinesign_back": "I can't read the sign from \nhere...",
+"village_veggie": "Some fresh vegetables from\na fresh garden.",
+"village_veggie_bad": "This vegetable doesn't seem\nto be growing too well...",
+"village_postbox": [
+    "Some people drop off their \nmail here...",
+    "I don't have to look through\nhere right now."
+],
+"village_mail": "I don't have anything to\ndeliver here at the moment.",
+"village_mail_1": "One down... two to go.",
+"village_mail_2": "One more to go...",
+"village_mail_done": "I already delivered their\nmail...",
+"village_save": [
+    "..?",
+    "How did...\\.\\. My journal end up \nhere?",
+    "(Should I record stuff?)"
+],
+"village_save_choices": [
+    "Yes",
+    "No"
+]
 
 }

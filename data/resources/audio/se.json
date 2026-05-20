@@ -82,5 +82,12 @@
         "args": {
             "src": "se/land.ogg"
         }
+    },
+    {
+        "path": "audio/se/journal",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/journal.ogg"
+        }
     }
 ]

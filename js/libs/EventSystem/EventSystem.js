@@ -20,6 +20,87 @@ class EventSystem
         return this.#variables.size;
     }
 
+    static async #ProcessCommonEvents ()
+    {
+        // Delivering Letters
+        if (this.GetSwitch("j*bbing") && this.GetVariable("letters_delivered") === 3)
+        {
+            this.dialogueBox.CancelClose();
+            this.dialogueBox.SetFace("yoki", "neutral");
+            await this.dialogueBox.Type(LocaleManager.Find("j*bbed")[0]);
+            this.dialogueBox.SetFace("yoki", "look");
+            await this.dialogueBox.Type(LocaleManager.Find("j*bbed")[1]);
+            this.dialogueBox.Close();
+
+            this.SetSwitch("j*bbed", true);
+            this.SetSwitch("j*bbing", false);
+        }
+
+        // Journal Entries
+        if (this.GetSwitch("leftroom"))
+        {
+            if (!this.GetSwitch("journal_pages_1") && this.GetVariable("illusts") === 10)
+            {
+                AudioManager.instance.SaveBGM();
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.CancelClose();
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_1")[0]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_1")[1]);
+
+                AudioManager.instance.PlaySE("journal", 0.2);
+
+                await this.dialogueBox.Type(LocaleManager.Find("journal_1")[2]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.ReplayBGM();
+                this.SetSwitch("journal_pages_1", true);
+            }
+
+            if (!this.GetSwitch("journal_pages_2") && this.GetVariable("illusts") === 20)
+            {
+                AudioManager.instance.SaveBGM();
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.CancelClose();
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_2")[0]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_2")[1]);
+
+                AudioManager.instance.PlaySE("journal", 0.2);
+
+                await this.dialogueBox.Type(LocaleManager.Find("journal_2")[2]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.ReplayBGM();
+                this.SetSwitch("journal_pages_2", true);
+            }
+
+            if (!this.GetSwitch("journal_pages_3") && this.GetVariable("illusts") === 31)
+            {
+                AudioManager.instance.SaveBGM();
+                AudioManager.instance.FadeOutBGM(1);
+
+                this.dialogueBox.CancelClose();
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_3")[0]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find("journal_3")[1]);
+
+                AudioManager.instance.PlaySE("journal", 0.2);
+
+                await this.dialogueBox.Type(LocaleManager.Find("journal_3")[2]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.ReplayBGM();
+                this.SetSwitch("journal_pages_3", true);
+            }
+        }
+    }
+
     static AddSwitch (name)
     {
         this.#switches.set(name, false);
@@ -1048,7 +1129,7 @@ class EventSystem
                 await this.Timer(12);
                 this.TintAll(Color.clear);
 
-                if (this.GetSwitch("viewed"))
+                if (!this.GetSwitch("viewed"))
                 {
                     this.SetSwitch("viewed", true);
                     this.AddToVariable("illusts");
@@ -3747,7 +3828,221 @@ class EventSystem
 
                 this.SetSwitch("este_warp", true);
             } break;
+            case "village_shop1":
+            case "village_shop2":
+            case "village_shop4":
+            case "village_shop5":
+            case "village_shop6":
+            case "village_shop7":
+            case "village_shop8":
+            case "village_shop9":
+            case "village_shop10":
+            case "village_shop11":
+            case "village_shop12":
+            case "village_shop13":
+            case "village_shop14":
+            case "village_shop15":
+            case "village_shop16":
+            case "village_shop17":
+            case "village_shop18":
+            case "village_shop19":
+            case "village_shop20":
+            case "village_shop21":
+            case "village_shop22":
+            case "village_shop23":
+            case "village_shop24":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_shop3":
+            case "village_fruitstand":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "village_cafe":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                break;
+            case "village_well":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_wishingwell":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "village_forestsign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                }
+                else await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                this.dialogueBox.Close();
+                break;
+            case "village_carriagesign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                }
+                else await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                this.dialogueBox.Close();
+                break;
+            case "village_shrinesign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "village_veggie":
+            case "village_veggie_bad":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "village_postbox":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "village_mail1":
+                if (this.GetSwitch("j*bbing"))
+                {
+                    if (this.GetSwitch("letter_house_1"))
+                    {
+                        this.dialogueBox.SetFace("yoki", "neutral");
+                        await this.dialogueBox.Type(LocaleManager.Find("village_mail_done"));
+                        this.dialogueBox.Close();
+
+                        return;
+                    }
+
+                    this.SetSwitch("letter_mail_1", true);
+                    this.SetSwitch("letter_house_1", true);
+                    this.AddToVariable("letters_delivered");
+
+                    this.dialogueBox.SetFace("yoki", "look");
+
+                    if (this.GetVariable("letters_delivered") === 1) await this.dialogueBox.Type(LocaleManager.Find("village_mail_1"));
+                    else if (this.GetVariable("letters_delivered") === 2) await this.dialogueBox.Type(LocaleManager.Find("village_mail_2"));
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find("village_mail"));
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "village_mail2":
+                if (this.GetSwitch("j*bbing"))
+                {
+                    if (this.GetSwitch("letter_house_2"))
+                    {
+                        this.dialogueBox.SetFace("yoki", "neutral");
+                        await this.dialogueBox.Type(LocaleManager.Find("village_mail_done"));
+                        this.dialogueBox.Close();
+
+                        return;
+                    }
+
+                    this.SetSwitch("letter_mail_2", true);
+                    this.SetSwitch("letter_house_2", true);
+                    this.AddToVariable("letters_delivered");
+
+                    this.dialogueBox.SetFace("yoki", "look");
+
+                    if (this.GetVariable("letters_delivered") === 1) await this.dialogueBox.Type(LocaleManager.Find("village_mail_1"));
+                    else if (this.GetVariable("letters_delivered") === 2) await this.dialogueBox.Type(LocaleManager.Find("village_mail_2"));
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find("village_mail"));
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "village_mail3":
+                if (this.GetSwitch("j*bbing"))
+                {
+                    if (this.GetSwitch("letter_house_3"))
+                    {
+                        this.dialogueBox.SetFace("yoki", "neutral");
+                        await this.dialogueBox.Type(LocaleManager.Find("village_mail_done"));
+                        this.dialogueBox.Close();
+
+                        return;
+                    }
+
+                    this.SetSwitch("letter_mail_3", true);
+                    this.SetSwitch("letter_house_3", true);
+                    this.AddToVariable("letters_delivered");
+
+                    this.dialogueBox.SetFace("yoki", "look");
+
+                    if (this.GetVariable("letters_delivered") === 1) await this.dialogueBox.Type(LocaleManager.Find("village_mail_1"));
+                    else if (this.GetVariable("letters_delivered") === 2) await this.dialogueBox.Type(LocaleManager.Find("village_mail_2"));
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find("village_mail"));
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "village_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
+            } break;
         }
+
+        await this.#ProcessCommonEvents();
     }
 
     static async TransferEvent (from, to, event)
@@ -3928,23 +4223,23 @@ class EventSystem
         return this.#variables.get(name);
     }
 
-    static SetSwitch (name, state)
+    static async SetSwitch (name, state)
     {
         this.#switches.set(name, state);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
     }
 
-    static SetVariable (name, value)
+    static async SetVariable (name, value)
     {
         this.#variables.set(name, value);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
     }
 
-    static AddToVariable (name, amount = 1)
+    static async AddToVariable (name, amount = 1)
     {
-        this.SetVariable(name, this.GetVariable(name) + amount);
+        await this.SetVariable(name, this.GetVariable(name) + amount);
     }
 
     static SwitchesSave ()
