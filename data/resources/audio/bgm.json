@@ -40,5 +40,12 @@
         "args": {
             "src": "bgm/caina.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/heroes",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/heroes.ogg"
+        }
     }
 ]

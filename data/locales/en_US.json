@@ -829,6 +829,91 @@
 "village_save_choices": [
     "Yes",
     "No"
+],
+"village_traveller": [
+    "\\SE[8]Ah! This will be fine.",
+    "Thank you so much for helping me\nout of the forest!",
+    "\\SE[1]Sure thing...",
+    "Wonder how he got so deep\ninto the forest...",
+    "Did he not notice any of\nthe signs..?",
+    "...I wonder if Zera had\nanything to do with it."
+],
+
+"village_ride": "----------------------------------------------------------------------",
+"villageride_pig1": "\\SE[13]Oink!\\SE[1]",
+"villageride_pig2": "\\SE[13]Oink!\\.\\. Oink!\\SE[1]",
+"villageride_pig3": "\\SE[13]Oink!\\SE[1]",
+"villageride_cow": "\\SE[12]Mooooo\\SE[1]",
+"villageride_well": "A Well that's well taken \ncare of.",
+"villageride_hors_1": "whinny",
+"villageride_hors_2": "woof",
+"villageride_ride": [
+    "\\SE[11]Headin' over to the castle?",
+    "Want a lift?",
+    "\\SE[1]"
+],
+"villageride_ride_choices": [
+    "Sure",
+    "Not right now"
+],
+"villageride_ride_ok": [
+    "\\SE[1]Yes, thank you. ",
+    "\\SE[11]Alright.\nHop on in.\\SE[1]"
+],
+"villageride_ride_no": "\\SE[1]I'm alright for now. ",
+"villageride_ride_addicted": [
+    "\\SE[11]Enjoyin' the carriage ride, eh?",
+    "\\SE[1]...",
+    "\\SE[11]Another?",
+    "\\SE[1]"
+],
+
+"dragonshrine": "----------------------------------------------------------------------",
+"dragonshrine_dragon": [
+    "..?",
+    "Who was that?"
+],
+"dragonshrine_statue": [
+    "A large dragon statue...",
+    "Seems to be covered in moss\nand vines."
+],
+
+"territory": "----------------------------------------------------------------------",
+"territory_soldier": [
+    "\\SE[6]Oh!\\.\\. I've been looking all over for \nyou,\\.\\. Yoki.",
+    "D-did you leave the kingdom..!?",
+    "\\SE[1](Oh.\\..\\..\\.\\. whoops...)"
+],
+"territory_soldier_talked": [
+    "\\SE[6]I'll be picking you up here in a \nfew days for the next mission.",
+    "\\SE[1]Ok..\\.\\.\nI'll meet you here in a few \ndays then...",
+    "...",
+    ".\\..\\.Do you mind not telling\nthe Prince I left for a bit?",
+    "\\SE[6]S-sorry...\\.\\.\nI'm going to have to report this\nto the Prince.",
+    "\\SE[1]Ah...\\.\\.\n(He's going to get so mad \nat me again...)"
+],
+"territory_heroes": [
+    "\\SE[11]Well!\\.\\. It is time we set out \non our journey!",
+    "\\SE[10]To prevent unspeakable \nhorrors from unfolding...",
+    "\\SE[6]To protect our world from \na sinister evil!",
+    "\\SE[5]To defeat the Dark Lord...",
+    "\\SE[11]Come!\\.\\. Friends!\\.\\.\nLet us venture forth!",
+    "\\SE[1]..?\\.\\.\nDark Lord?",
+    "That doesn't sound good...",
+    "Those guys seem pretty\ncapable...\\.\\.\nMaybe they can handle this.",
+    "But...",
+    "I have a bad feeling about \nthis.",
+    "Maybe I should follow along \njust in case."
+],
+"territory_leave": [
+    "This path borders another\nkingdom.",
+    "I probably shouldn't venture\ntoo far out...",
+    "I don't really have a \nreason to."
+],
+"territory_leave_done": "I think...\\.\\.\nI'm done with adventures for \nawhile.",
+"territory_adventure": [
+    "\\SE[2]Was that....\\.\\.Yoki?",
+    "Where's she going?\\SE[1]"
 ]
 
 }

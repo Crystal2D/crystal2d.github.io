@@ -503,6 +503,22 @@
             "texture": "sprites/chars/hero_4"
         }
     },
+    {
+        "path": "spritelibs/chars/pig",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/pig"
+        }
+    },
+    {
+        "path": "spritelibs/chars/soldier",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/soldier"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

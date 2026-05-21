@@ -349,11 +349,13 @@ class RPGMovement extends GridAdjusted
         return moved;
     }
 
-    LookAtTemp (dir)
+    async LookAtTemp (dir)
     {
         if (this.lockLook) return;
 
         dir = dir.normalized;
+
+        await CrystalEngine.Wait(() => this._sprResolver != null);
 
         if (dir.y > 0) this._sprResolver.category = "up";
         else if (dir.y < 0) this._sprResolver.category = "down";

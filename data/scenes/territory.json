@@ -4,7 +4,38 @@
         "sprites/tilesets/ext_graveyard",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/hero_1",
+            "spritelibs/chars/hero_1"
+        ],
+        [
+            "sprites/chars/hero_2",
+            "spritelibs/chars/hero_2"
+        ],
+        [
+            "sprites/chars/hero_3",
+            "spritelibs/chars/hero_3"
+        ],
+        [
+            "sprites/chars/hero_4",
+            "spritelibs/chars/hero_4"
+        ],
+        [
+            "sprites/chars/claire",
+            "spritelibs/chars/claire"
+        ],
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        "audio/bgm/heroes",
+        "sprites/faces/heroes",
+        "sprites/faces/claire"
     ],
     "gameObjects": [
         {
@@ -8513,6 +8544,55 @@
             ]
         },
         {
+            "name": "tile_Char Collision",
+            "id": 7,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 21,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 19,
+                                                "y": -4
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "adventure_done"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "name": "mapconfig",
             "id": 6,
             "components": [
@@ -8566,10 +8646,468 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": -4
+                                },
+                                "event": "territory_soldier",
+                                "conditions": [
+                                    {
+                                        "name": "adventure_done"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 21,
+                                    "y": -4
+                                },
+                                "event": "territory_soldier",
+                                "conditions": [
+                                    {
+                                        "name": "adventure_done"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 0
+                                },
+                                "event": "territory_heroes",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "heroes_set",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -10,
+                                    "y": 0
+                                },
+                                "event": "territory_heroes",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "heroes_set",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 0
+                                },
+                                "event": "territory_heroes",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "claire_fly"
+                                    },
+                                    {
+                                        "name": "heroes_set",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": -8
+                                },
+                                "event": "territory_leave",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": -9
+                                },
+                                "event": "territory_leave",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": -8
+                                },
+                                "event": "territory_adventure",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": -9
+                                },
+                                "event": "territory_adventure",
+                                "trigger": 1
+                            }
+                        ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_soldier",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 10,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "territory_soldier"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "adventure_done"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/hintbird",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 9,
+                    "y": 4.5
+                }
+            }
+        },
+        {
+            "name": "chars_heroes",
+            "id": 10,
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "claire_fly"
+                            },
+                            {
+                                "name": "heroes_set",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_hero",
+            "id": 11,
+            "parent": 10,
+            "transform": {
+                "position": {
+                    "x": -8,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/hero_1",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/hero_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cleric",
+            "id": 12,
+            "parent": 10,
+            "transform": {
+                "position": {
+                    "x": -7,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/hero_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/hero_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_knight",
+            "id": 13,
+            "parent": 10,
+            "transform": {
+                "position": {
+                    "x": -8,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/hero_3",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/hero_3"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rogue",
+            "id": 14,
+            "parent": 10,
+            "transform": {
+                "position": {
+                    "x": -7,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/hero_4",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/hero_4"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_claire",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/claire",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/claire"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "anotherland"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_butterfly1",
+            "prefab": "entities/butterfly",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": 4.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly2",
+            "prefab": "entities/butterfly",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": -1.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly3",
+            "prefab": "entities/butterfly",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 7.5,
+                    "y": -2.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly4",
+            "prefab": "entities/butterfly",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 8,
+                    "y": 4.5
+                }
+            }
         }
     ]
 }

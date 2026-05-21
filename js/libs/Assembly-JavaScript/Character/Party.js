@@ -136,7 +136,7 @@ class Party extends SnekChar
         if (member.name != null) this.Clear(index);
 
         member.name = name;
-        member.char.charCollision = false;
+        member.char.charCollision = true;
         
         Resources.DontDestroyOnLoad(
             `sprites/chars/${name}`,

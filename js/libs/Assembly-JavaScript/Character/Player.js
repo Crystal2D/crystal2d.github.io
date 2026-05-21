@@ -158,10 +158,12 @@ class Player extends RPGMovement
         {
             this.avoidInputs = true;
 
-            await this.#touchInteractable.Invoke();
+            const interactable = this.#touchInteractable;
+            this.#touchInteractable = null;
+
+            await interactable.Invoke();
 
             this.avoidInputs = false;
-            this.#touchInteractable = null;
         }
     }
 

@@ -77,7 +77,7 @@ class SaveScreen extends GameBehavior
 
             const date = RPGSave.global[i].saveDate;
 
-            if (date < recentDate || date <= 0) return;
+            if (date < recentDate || date <= 0) continue;
 
             recentDate = date;
             SaveScreen.recent = i;

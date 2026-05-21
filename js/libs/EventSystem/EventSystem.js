@@ -199,7 +199,7 @@ class EventSystem
         this.AddSwitch("drink");                 // 0079
         this.AddSwitch("heroes_set");            // 0080
 
-        this.AddSwitch("heroes_otherland");      // 0081
+        this.AddSwitch("anotherland");           // 0081
         this.AddSwitch("adventure_start");       // 0082
         this.AddSwitch("heroes");                // 0083
         this.AddSwitch("claire_joins");          // 0084
@@ -2802,7 +2802,9 @@ class EventSystem
             // ------------------------------------------------------- forest_cove
             case "forestcove_traveller":
                 Party.Clear(1);
+                await this.WaitTransfer();
 
+                Player.instance.avoidInputs = true;
                 this.SetSwitch("traveller_help", false);
                 this.SetSwitch("traveller", true);
 
@@ -2822,6 +2824,7 @@ class EventSystem
                 this.dialogueBox.Close();
 
                 this.AddToVariable("traveller_lost");
+                Player.instance.avoidInputs = false;
                 break;
             
             // ------------------------------------------------------- forest_deep
@@ -3386,7 +3389,7 @@ class EventSystem
                 }
 
                 this.dialogueBox.Close();
-                Player.instance.MoveTowards(Vector2.left);
+                await Player.instance.MoveTowards(Vector2.left);
                 break;
             case "forestfork_deer1": {
                 const deer = RPGMovement.FindChar("deer1");
@@ -4040,6 +4043,468 @@ class EventSystem
                     return true;
                 }
             } break;
+            case "village_traveller": {
+                await this.WaitTransfer();
+
+                Player.instance.avoidInputs = true;
+                Party.Clear(1);
+                await this.Timer(20);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.Close();
+
+                const traveller = RPGMovement.FindChar("traveller");
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.up);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                
+                traveller.moveSpeed = 5;
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                await traveller.MoveTowards(Vector2.down);
+                
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("traveller_village", true);
+                this.SetSwitch("traveller_done", true);
+                this.AddToVariable("illusts");
+
+                Player.instance.avoidInputs = false;
+            } break;
+
+            // ------------------------------------------------------- village_ride
+            case "villageride_pig1": {
+                const pig = RPGMovement.FindChar("pig1");
+                pig.LookAtPlayer();
+                await pig.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+            } break;
+            case "villageride_pig2":
+                RPGMovement.FindChar("pig2").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "villageride_pig3": {
+                const pig = RPGMovement.FindChar("pig3");
+                pig.LookAtPlayer();
+                await pig.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+            } break;
+            case "villageride_cow":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "villageride_well":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "villageride_hors":
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_${+(this.GetVariable("hors") === 10) + 1}`));
+                this.dialogueBox.Close();
+
+                this.AddToVariable("hors");
+                break;
+            case "villageride_ride": {
+                if (Player.instance.gridPos.y > 0) RPGMovement.FindChar("driver").LookAt(Vector2.left);
+                else RPGMovement.FindChar("driver").LookAtPlayer();
+
+                if (this.GetVariable("carriage_addiction") >= 4)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[2]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[3], true);
+                    
+                    this.AddToVariable("carriage_addiction");
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+                }
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                if (choice === 1)
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_no`));
+                    this.dialogueBox.Close();
+                    
+                    return;
+                }
+
+                Loader.Ready(21);
+                
+                if (this.GetVariable("carriage_addiction") < 4) this.AddToVariable("carriage_addiction");
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`)[1]);
+                this.dialogueBox.Close();
+                
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(0, -5);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(21);
+            } break;
+
+            // ------------------------------------------------------- dragonshrine
+            case "dragonshrine_dragon": {
+                await this.WaitTransfer();
+
+                Player.instance.avoidInputs = true;
+                AudioManager.instance.FadeOutBGM(3);
+                await this.Timer(60);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.Close();
+
+                await this.Timer(60);
+                const dragon = RPGMovement.FindChar("dragon");
+                dragon.moveSpeed = 4;
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+                await dragon.MoveTowards(Vector2.right);
+
+                await this.Timer(20);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+
+                await this.Timer(30);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("village", 0.2);
+                this.SetSwitch("dragon_forest", true);
+                Player.instance.avoidInputs = false;
+            } break;
+            case "dragonshrine_statue":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            
+            // ------------------------------------------------------- territory
+            case "territory_soldier": {
+                const soldier = RPGMovement.FindChar("soldier");
+                const randMove = soldier.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                soldier.LookAtPlayer();
+
+                if (this.GetSwitch("soldier_talk_1"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[3]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[4]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[5]);
+                    this.dialogueBox.Close();
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("soldier_talk_1", true);
+                }
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "territory_heroes": {
+                AudioManager.instance.FadeOutBGM(1);
+                CamCtrl.current.Scroll(new Vector2(0, -3.5), 4);
+                await this.Timer(120);
+
+                const hero = RPGMovement.FindChar("hero");
+                const cleric = RPGMovement.FindChar("cleric");
+                const knight = RPGMovement.FindChar("knight");
+                const rogue = RPGMovement.FindChar("rogue");
+
+                await hero.MoveTowards(Vector2.down);
+                hero.animateIdle = true;
+
+                AudioManager.instance.PlayBGM("heroes", 0.2);
+
+                this.dialogueBox.SetFace("heroes", "chosen one");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.Close();
+
+                await cleric.MoveTowards(Vector2.down);
+                cleric.animateIdle = true;
+                this.dialogueBox.SetFace("heroes", "cleric");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                await knight.MoveTowards(Vector2.up);
+                knight.animateIdle = true;
+                this.dialogueBox.SetFace("heroes", "knight");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+
+                await rogue.MoveTowards(Vector2.up);
+                rogue.animateIdle = true;
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("heroes", "chosen one");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.Close();
+
+                (async () => {
+                    hero.charCollision = false;
+                    hero.moveSpeed = 4;
+                    await hero.MoveTowards(Vector2.down);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.down);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    await hero.MoveTowards(Vector2.left);
+                    hero.gameObject.SetActive(false);
+                })();
+
+                await this.Timer(20);
+
+                (async () => {
+                    cleric.charCollision = false;
+                    cleric.moveSpeed = 4;
+                    await cleric.MoveTowards(Vector2.down);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.down);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    await cleric.MoveTowards(Vector2.left);
+                    cleric.gameObject.SetActive(false);
+                })();
+
+                await this.Timer(90);
+
+                (async () => {
+                    knight.charCollision = false;
+                    knight.moveSpeed = 4;
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    await knight.MoveTowards(Vector2.left);
+                    knight.gameObject.SetActive(false);
+                })();
+
+                await this.Timer(40);
+
+                (async () => {
+                    rogue.charCollision = false;
+                    rogue.moveSpeed = 4;
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await this.Timer(90);
+                    await rogue.LookAt(Vector2.right);
+                    await this.Timer(90);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    await rogue.MoveTowards(Vector2.left);
+                    rogue.gameObject.SetActive(false);
+                })();
+
+                await this.Timer(360);
+
+                CamCtrl.current.Scroll(new Vector2(0, 3.5), 4);
+                AudioManager.instance.FadeOutBGM(1);
+                await this.Timer(120);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("village", 0.2);
+                this.SetSwitch("heroes_set", true);
+            } break;
+            case "territory_adventure": {
+                Loader.Ready(21);
+
+                AudioManager.instance.FadeOutBGM(1);
+                Player.instance.GetComponent(SpriteRenderer).color.a = 0;
+                await this.Timer(60);
+
+                this.SetSwitch("anotherland", true);
+                CamCtrl.current.Scroll(new Vector2(2, 0), 4);
+                await this.Timer(90);
+
+                const claire = RPGMovement.FindChar("claire");
+                await claire.MoveTowards(Vector2.down);
+                await claire.MoveTowards(Vector2.down);
+                await claire.MoveTowards(Vector2.down);
+                await claire.MoveTowards(Vector2.down);
+                await claire.MoveTowards(Vector2.down);
+                await claire.MoveTowards(Vector2.left);
+                claire.animateIdle = true;
+                await this.Timer(60);
+
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("claire", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -34 / 255,
+                    -34 / 255,
+                    -34 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -85 / 255,
+                    -85 / 255,
+                    -85 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(
+                    -170 / 255,
+                    -170 / 255,
+                    -170 / 255,
+                    0
+                ));
+                await this.Timer(10);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.SetSwitch("adventure_start", true);
+
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(0, -5);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(21);
+            } break;
+            case "territory_leave":
+                if (this.GetSwitch("adventure_done"))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_done`));
+                    this.dialogueBox.Close();
+
+                    await Player.instance.MoveTowards(Vector2.right);
+
+                    return;
+                }
+
+                if (this.GetSwitch("claire_fly")) return;
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+
+                await Player.instance.MoveTowards(Vector2.right);
+                break;
         }
 
         await this.#ProcessCommonEvents();
@@ -4223,23 +4688,23 @@ class EventSystem
         return this.#variables.get(name);
     }
 
-    static async SetSwitch (name, state)
+    static SetSwitch (name, state)
     {
         this.#switches.set(name, state);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
     }
 
-    static async SetVariable (name, value)
+    static SetVariable (name, value)
     {
         this.#variables.set(name, value);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
     }
 
-    static async AddToVariable (name, amount = 1)
+    static AddToVariable (name, amount = 1)
     {
-        await this.SetVariable(name, this.GetVariable(name) + amount);
+        this.SetVariable(name, this.GetVariable(name) + amount);
     }
 
     static SwitchesSave ()

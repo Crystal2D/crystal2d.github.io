@@ -5,7 +5,13 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_graveyard",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/dragon_human",
+            "spritelibs/chars/dragon_human"
+        ],
+        "sprites/chars/dragon_human",
+        "audio/bgm/village"
     ],
     "gameObjects": [
         {
@@ -3931,14 +3937,6 @@
                                                 "y": 2
                                             },
                                             {
-                                                "x": 0,
-                                                "y": 2
-                                            },
-                                            {
-                                                "x": 1,
-                                                "y": 2
-                                            },
-                                            {
                                                 "x": 2,
                                                 "y": 2
                                             },
@@ -4141,6 +4139,14 @@
                                             {
                                                 "x": 17,
                                                 "y": -6
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 3
                                             }
                                         ]
                                     }
@@ -4254,10 +4260,227 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -8,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 0
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -8,
+                                    "y": 0
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": -2
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -2
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -2
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": -2
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 10,
+                                    "y": -1
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": 0
+                                },
+                                "event": "dragonshrine_statue"
+                            },
+                            {
+                                "pos": {
+                                    "x": 10,
+                                    "y": 0
+                                },
+                                "event": "dragonshrine_statue"
+                            }
+                        ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_dragon",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 0,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/dragon_human",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/dragon_human"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "charCollision": false,
+                        "animateIdle": false
+                    }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "dragonshrine_dragon",
+                        "conditions": [
+                            {
+                                "name": "dragon_noticed"
+                            },
+                            {
+                                "name": "dragon_forest",
+                                "not": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "dragon_noticed"
+                            },
+                            {
+                                "name": "dragon_forest",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_butterfly1",
+            "prefab": "entities/butterfly",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -6.5,
+                    "y": 0.5
+                }
+            }
+        },
+        {
+            "name": "char_butterfly2",
+            "prefab": "entities/butterfly",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 2.5,
+                    "y": -1
+                }
+            }
+        },
+        {
+            "name": "char_butterfly3",
+            "prefab": "entities/butterfly",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": 8.5,
+                    "y": 1.5
+                }
+            }
         }
     ]
 }

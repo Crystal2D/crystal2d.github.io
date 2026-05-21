@@ -7,7 +7,19 @@
         "sprites/tilesets/ext_village",
         "sprites/tilesets/ext_fence",
         "sprites/tilesets/ext_ride",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/npc_2",
+            "spritelibs/chars/npc_2"
+        ],
+        [
+            "sprites/chars/pig",
+            "spritelibs/chars/pig"
+        ],
+        [
+            "sprites/chars/cow",
+            "spritelibs/chars/cow"
+        ]
     ],
     "gameObjects": [
         {
@@ -49,7 +61,7 @@
                         },
                         "max": {
                             "x": 8,
-                            "y": 4
+                            "y": 5
                         }
                     }
                 }
@@ -3109,34 +3121,6 @@
                                                 "y": 0
                                             },
                                             {
-                                                "x": 8,
-                                                "y": 0
-                                            },
-                                            {
-                                                "x": 8,
-                                                "y": 1
-                                            },
-                                            {
-                                                "x": 5,
-                                                "y": 2
-                                            },
-                                            {
-                                                "x": 6,
-                                                "y": 2
-                                            },
-                                            {
-                                                "x": 7,
-                                                "y": 2
-                                            },
-                                            {
-                                                "x": 8,
-                                                "y": 2
-                                            },
-                                            {
-                                                "x": 5,
-                                                "y": 3
-                                            },
-                                            {
                                                 "x": -15,
                                                 "y": 4
                                             },
@@ -3207,6 +3191,14 @@
                                             {
                                                 "x": 4,
                                                 "y": 4
+                                            },
+                                            {
+                                                "x": -1,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": 5
                                             }
                                         ]
                                     }
@@ -3217,6 +3209,85 @@
                 },
                 {
                     "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "tile_Char Collision",
+            "id": 6,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 5,
+                                                "y": 3
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": 6,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -5,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": -4,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": -4
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -3274,7 +3345,308 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": -3
+                                },
+                                "event": "villageride_pig1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": -3
+                                },
+                                "event": "villageride_pig1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": -4
+                                },
+                                "event": "villageride_pig2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -4
+                                },
+                                "event": "villageride_pig2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -3
+                                },
+                                "event": "villageride_pig3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -3
+                                },
+                                "event": "villageride_pig3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": -4
+                                },
+                                "event": "villageride_cow"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": -4
+                                },
+                                "event": "villageride_cow"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 3
+                                },
+                                "event": "villageride_hors"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 2
+                                },
+                                "event": "villageride_hors"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 1
+                                },
+                                "event": "villageride_ride"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 0
+                                },
+                                "event": "villageride_ride"
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": 5
+                                },
+                                "event": "villageride_well"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 5
+                                },
+                                "event": "villageride_well"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_driver",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 3.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_2",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "name": "char_pig1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -3,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/pig",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/pig"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "villageride_pig1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_pig2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/pig",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/pig"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "villageride_pig2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_pig3",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/pig",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/pig"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "villageride_pig3"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cow",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cow",
+                            "name": "b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cow"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "villageride_cow"
                     }
                 }
             ]
