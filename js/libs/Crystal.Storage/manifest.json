@@ -5,6 +5,7 @@
     "version": "2026.1f",
     "scripts" : [
         "CordovaFS",
+        "NodeFS",
         "GameStorage"
     ]
 }

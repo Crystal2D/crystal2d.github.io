@@ -141,6 +141,18 @@ class Application
             this.#ipc = ipcRenderer;
 
             ipcRenderer.on("eval", (event, data) => eval(data));
+
+            window.onbeforeunload = event => {
+                if (this.#playing)
+                {
+                    event.preventDefault();
+                    this.Quit();
+
+                    return;
+                }
+
+                if (!this.#unloaded) event.preventDefault();
+            };
         }
         
         this.#inited = true;

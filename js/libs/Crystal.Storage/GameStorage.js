@@ -12,7 +12,7 @@ class GameStorage
         return this.#platform > 0;
     }
 
-    static get appDir ()
+    static get path ()
     {
         return this.#path;
     }
@@ -23,7 +23,7 @@ class GameStorage
         {
             this.#platform = 1;
 
-            this.#path = `${(await ipcRenderer.invoke("GetPath", "appData"))}\\User Data`;
+            this.#path = `${(await Application.electronIPC.invoke("GetPath", "userData"))}\\User Data`;
 
             NodeFS = require("fs/promises");
             NodeSyncFS = require("fs");

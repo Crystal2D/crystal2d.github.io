@@ -3,7 +3,7 @@ class GameWindow
     static #loaded = false;
     static #resizable = true;
     static #fillWin = true;
-    static #electronFullscreen = false;
+    static #frameFullscreen = false;
     static #sizeChanged = 0;
     static #x = 0;
     static #y = 0;
@@ -19,7 +19,6 @@ class GameWindow
     static #ipc = null;
     static #wakeLock = null;
 
-    static $electronMoving = false;
     static $wakeTime = 0;
     
     static fullscreen = false;
@@ -131,6 +130,7 @@ class GameWindow
     
     static #Update ()
     {
+        // Wake
         if (document.hasFocus())
         {
             if (this.#wakeLock == null)
@@ -155,10 +155,10 @@ class GameWindow
         {
             if (this.#ipc != null)
             {
-                if (this.#electronFullscreen !== this.fullscreen)
+                if (this.#frameFullscreen !== this.fullscreen)
                 {
                     this.#ipc.invoke("SetFullscreen", this.fullscreen);
-                    this.#electronFullscreen = this.fullscreen;
+                    this.#frameFullscreen = this.fullscreen;
                 }
             }
             else if (document.fullscreenElement && !this.fullscreen) document.exitFullscreen();
@@ -168,7 +168,8 @@ class GameWindow
         // Sizer
         if (this.#sizeChanged > 0)
         {
-            if (!document.fullscreenElement && ((!this.$electronMoving && !this.#resizable) || this.#sizeChanged === 1) && !Application.isInCordova)
+            // Window
+            if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
             {
                 let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
                 let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
@@ -179,6 +180,7 @@ class GameWindow
                 window.resizeTo(x, y);
             }
             
+            // Game
             if (this.#fillWin)
             {
                 Application.htmlCanvas.width = window.devicePixelRatio * (window.innerWidth - 0.01 * this.#marginX * window.innerWidth);
