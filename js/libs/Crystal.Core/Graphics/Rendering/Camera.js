@@ -8,6 +8,8 @@ class Camera extends Behavior
     }
 
     #updateProjMat = true;
+    #orthoSize = 9;
+    #bounds = new Bounds();
     
     #projMatrix = null;
 
@@ -16,26 +18,49 @@ class Camera extends Behavior
         return this.sortingAxis ?? Camera.sortingAxis;
     }
     
-    orthographicSize = 9;
     backgroundColor = new Color();
     sortingAxis = null;
+
+    get gameObject ()
+    {
+        return super.gameObject;
+    }
+
+    set gameObject (value)
+    {
+        super.gameObject = value;
+        this.RecalcBounds();
+    }
+
+    get orthographicSize ()
+    {
+        return this.#orthoSize;
+    }
+
+    set orthographicSize (value)
+    {
+        this.#orthoSize = value;
+
+        this.RecalcBounds();
+    }
+
+    get viewportSize ()
+    {
+        const size = this.orthographicSize;
+        return new Vector2(
+            GameWindow.aspect * size,
+            1 * size
+        );
+    }
     
     get bounds ()
     {
-        const size = this.orthographicSize;
-        
-        return new Bounds(
-            this.transform.position,
-            new Vector2(
-                GameWindow.aspect * size,
-                1 * size
-            )
-        );
+        return this.#bounds.Duplicate();
     }
     
     get projectionMatrix ()
     {
-        return this.#projMatrix;
+        return this.#projMatrix.Duplicate();
     }
     
     set projectionMatrix (value)
@@ -55,12 +80,38 @@ class Camera extends Behavior
         return this.transform.worldToLocalMatrix;
     }
 
+    RecalcBounds ()
+    {
+        if (this.gameObject == null) return;
+
+        const bounds = new Bounds(Vector2.zero, this.viewportSize);
+
+        const pointA = Matrix3x3.Multiply(this.cameraToWorldMatrix, Matrix3x3.Translate(bounds.min));
+        const pointB = Matrix3x3.Multiply(this.cameraToWorldMatrix, Matrix3x3.Translate(new Vector2(bounds.min.x, bounds.max.y)));
+        const pointC = Matrix3x3.Multiply(this.cameraToWorldMatrix, Matrix3x3.Translate(new Vector2(bounds.max.x, bounds.min.y)));
+        const pointD = Matrix3x3.Multiply(this.cameraToWorldMatrix, Matrix3x3.Translate(bounds.max));
+
+        bounds.SetMinMax(
+            new Vector2(
+                Math.min(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.min(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            ),
+            new Vector2(
+                Math.max(pointA.GetValue(2, 0), pointB.GetValue(2, 0), pointC.GetValue(2, 0), pointD.GetValue(2, 0)),
+                Math.max(-pointA.GetValue(2, 1), -pointB.GetValue(2, 1), -pointC.GetValue(2, 1), -pointD.GetValue(2, 1))
+            ),
+        );
+        bounds.center = this.transform.position;
+
+        this.#bounds = bounds;
+    }
+
     ScreenToWorldPoint (point)
     {
         const viewMat = Matrix3x3.TRS(
             Vector2.Scale(this.transform.position, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.transform.rotation * Math.PI,
-            this.bounds.size
+            this.viewportSize
         );
         const pointMat = Matrix3x3.Translate(new Vector2(
             ((point.x - (window.innerWidth - GameWindow.canvasWidth) * 0.5) / GameWindow.canvasWidth) - 0.5,
@@ -76,7 +127,7 @@ class Camera extends Behavior
         const viewMat = Matrix3x3.TRS(
             Vector2.Scale(this.transform.position, new Vector2(1, -1)),
             5.555555555555556e-3 * -this.transform.rotation * Math.PI,
-            this.bounds.size
+            this.viewportSize
         );
         const pointMat = Matrix3x3.Multiply(viewMat.inverse, Matrix3x3.Translate(point));
         const targetMat = Matrix3x3.Translate(new Vector2(
@@ -101,8 +152,8 @@ class Camera extends Behavior
         const sortingDir = this.#sortingDir;
 
         const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y))
-            .filter(item => item.GetComponent(Renderer).isLoaded && item.activeInHierarchy)
             .map(item => item.GetComponent(Renderer))
+            .filter(item => item.isLoaded && item.gameObject.activeInHierarchy)
             .sort((a, b) => {
                 const aPos = Vector2.Add(a.transform.position, a.sortingAxisOffset);
                 const bPos = Vector2.Add(b.transform.position, b.sortingAxisOffset);

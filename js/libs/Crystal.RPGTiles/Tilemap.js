@@ -543,7 +543,7 @@ class Tilemap extends Renderer
 
         this.#tiles.forEach(item => {
             const pos = item.position;
-            
+
             if (!checkedOne)
             {
                 checkedOne = true;
@@ -577,6 +577,19 @@ class Tilemap extends Renderer
         }
 
         if (renderset.tiles.length === 0) this.#rendersets.delete(tile.sprite.texture);
+    }
+
+    RemoveAllTiles ()
+    {
+        this.#tiles.clear();
+        this.#rendersets.clear();
+
+        this.#min = null;
+        this.#max = null;
+
+        this.#bounds = new Bounds(new Vector2(NaN, NaN));
+        
+        this.RecalcBounds();
     }
 
     async #Merge ()

@@ -32,7 +32,7 @@ class ItsABox extends GameBehavior
     Start ()
     {
         this.spriteRenderer = this.GetComponent(SpriteRenderer);
-        this.transform.scale = new Vector2(1, 0);
+        this.transform.localScale = new Vector2(1, 0);
     }
     
     Update ()
@@ -59,7 +59,7 @@ class ItsABox extends GameBehavior
             this.#onClose = () => { };
         }
 
-        this.transform.scale = new Vector2(1, this.#openness / 255);
+        this.transform.localScale = new Vector2(1, this.#openness / 255);
     }
 
     Open (callback = () => { })
@@ -82,7 +82,7 @@ class ItsABox extends GameBehavior
     OpenInstant ()
     {
         this.#openness = 255;
-        this.transform.scale = new Vector2(1, this.#openness / 255);
+        this.transform.localScale = new Vector2(1, this.#openness / 255);
 
         this.#targetState = 1;
         this.#state = 1;
@@ -95,7 +95,7 @@ class ItsABox extends GameBehavior
     CloseInstant ()
     {
         this.#openness = 0;
-        this.transform.scale = new Vector2(1, this.#openness / 255);
+        this.transform.localScale = new Vector2(1, this.#openness / 255);
 
         this.#targetState = 0;
         this.#state = 0;

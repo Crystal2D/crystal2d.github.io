@@ -119,13 +119,17 @@ class Matrix3x3
     
     static TRS (translation, rotation, scale)
     {
-        const output = new Matrix3x3(
-            [Math.cos(rotation) * scale.x, Math.sin(rotation) * scale.y, 0],
-            [-Math.sin(rotation) * scale.x, Math.cos(rotation) * scale.y, 0],
-            [translation.x, translation.y, 1]
+        const transMat = this.Translate(translation);
+        const rotMat = this.Rotate(rotation);
+        const scaMat = this.Scale(scale);
+
+        return this.Multiply(
+            this.Multiply(
+                transMat,
+                rotMat
+            ),
+            scaMat
         );
-        
-        return output;
     }
     
     static Ortho (left, right, bottom, top)

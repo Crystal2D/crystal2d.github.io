@@ -351,7 +351,7 @@ class Options extends ChoiceBox
 
         await super.Start();
 
-        this._text.transform.position = new Vector2(-0.1875, 0);
+        this._text.transform.localPosition = new Vector2(-0.1875, 0);
         this.#leftArrow.transform.parent = this._selector.transform;
         this.#rightArrow.transform.parent = this._selector.transform;
 

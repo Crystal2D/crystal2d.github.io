@@ -59,7 +59,7 @@ class Parallax extends GameBehavior
 
     Awake ()
     {
-        this.transform.position = this.offset;
+        this.transform.localPosition = this.offset;
 
         const dir = new Vector2(
             (-this.speed.x / Math.abs(this.speed.x)) || 1,
@@ -97,7 +97,7 @@ class Parallax extends GameBehavior
         if (Math.abs(this.#pos.x) >= this.#threshold.x) this.#pos.x = (this.#pos.x % this.#threshold.x);
         if (Math.abs(this.#pos.y) >= this.#threshold.y) this.#pos.y = (this.#pos.y % this.#threshold.y);
 
-        this.transform.position = Vector2.Add(
+        this.transform.localPosition = Vector2.Add(
             Vector2.Scale(
                 Vector2.Scale(this.#pos, this.#tileSize),
                 0.5
