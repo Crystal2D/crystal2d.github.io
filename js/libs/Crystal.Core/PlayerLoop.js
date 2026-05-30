@@ -266,6 +266,7 @@ class PlayerLoop
             {
                 this.#focused = focused;
 
+                if (!focused) Input.Clear();
                 BroadcastMessage("OnApplicationFocus", focused);
             }
 
