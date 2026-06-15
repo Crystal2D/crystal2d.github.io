@@ -914,6 +914,43 @@
 "territory_adventure": [
     "\\SE[2]Was that....\\.\\.Yoki?",
     "Where's she going?\\SE[1]"
-]
+],
+
+"town_path": "----------------------------------------------------------------------",
+"townpath_squirrel1_traveller": "\\SE[8]Lost Traveller: Seems curious \nabout us!\\SE[1]",
+"townpath_squirrel2": "(Seems to be looking for\nacorns...)",
+"townpath_squirrel2_traveller": "\\SE[8]Lost Traveller: Looks like he's\nlooking for acorns!\\SE[1]",
+"townpath_squirrel3_traveller": "\\SE[8]Lost Traveller: Seems a little\naggressive...\\SE[1]",
+"townpath_wolf": "\\SE[6]Grr...\\SE[1]",
+"townpath_wolf_traveller": "\\SE[8]Lost Traveller: Ah..!\\.\\.\nHe seems mad at us...\\SE[1]",
+"townpath_fox": "\\SE[2]Bark!\\SE[1]",
+"townpath_fox_traveller": "\\SE[8]Lost Traveller: How cute!\\.\\.\nA baby fox!\\SE[1]",
+"townpath_raccoon1_traveller": "\\SE[8]Lost Traveller: Seems he's \ninterested in us!\\SE[1]",
+"townpath_raccoon3": "!!!",
+"townpath_raccoon3_traveller": "\\SE[8]Lost Traveller: Seems the little\nguy is hungry!\\SE[1]",
+"townpath_boar": "\\SE[6]Oink!\\SE[1]",
+"townpath_boar_traveller": "\\SE[8]Lost Traveller: A social little one!\\SE[1]",
+"townpath_bear": [
+    "Such a large bear.\\.\\.\nHe seems tired...",
+    "I should let him sleep..."
+],
+"townpath_bear_traveller": [
+    "\\SE[8]Lost Traveller: Wow!\\.\\. \nSuch a huge bear!",
+    "I almost thought he was a \nBEAST-Type!",
+    "\\SE[1]Yea...\\.\\.\nLet's let him sleep."
+],
+"townpath_sign1": "WARNING \nBEAST-type territory ahead",
+"townpath_sign1_traveller": [
+    "Lost Traveller: Good thing we\ndidn't run into any BEAST-types!\nI'd have been a goner for sure!",
+    "(Yeah, you were really \nlucky.)",
+    "(Maybe you being effected \nby the barrier was for\nthe best...)"
+],
+"townpath_sign1_back": "I can't read the sign from \nhere...",
+"townpath_sign2": "NO ENTRY",
+"townpath_sign2_traveller": "\\SE[8]Lost Traveller: Looks a little \nscary. Let's avoid this cave!\\SE[1]",
+"townpath_sign2_back": "I can't read the sign from \nhere...",
+"townpath_sign3": "North: Path up to Mountain Forest\nSouth: Lake Front",
+"townpath_sign3_back": "I can't read the sign from \nhere...",
+"townpath_cave": "\\SE[8]Lost Traveller: It looks a little \ndark in there... Best we find \nanother path!\\SE[1]"
 
 }

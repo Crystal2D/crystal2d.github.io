@@ -4505,6 +4505,160 @@ class EventSystem
 
                 await Player.instance.MoveTowards(Vector2.right);
                 break;
+            
+            // ------------------------------------------------------- town_path
+            case "townpath_squirrel1": {
+                const squirrel = RPGMovement.FindChar("squirrel1");
+                squirrel.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await squirrel.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "townpath_squirrel2":
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id));
+                }
+                
+                this.dialogueBox.Close();
+                break;
+            case "townpath_squirrel3": {
+                const squirrel = RPGMovement.FindChar("squirrel3");
+                squirrel.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await squirrel.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "townpath_wolf":
+                RPGMovement.FindChar("wolf").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                this.dialogueBox.Close();
+                break;
+            case "townpath_fox":
+                RPGMovement.FindChar("fox").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                this.dialogueBox.Close();
+                break;
+            case "townpath_raccoon1": {
+                const raccoon = RPGMovement.FindChar("raccoon1");
+                raccoon.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await raccoon.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await raccoon.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await raccoon.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "townpath_raccoon3":
+                RPGMovement.FindChar("raccoon3").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                this.dialogueBox.Close();
+                break;
+            case "townpath_boar":
+                RPGMovement.FindChar("boar").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                this.dialogueBox.Close();
+                break;
+            case "townpath_bear":
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[1]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[2]);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "townpath_sign1":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`)[2]);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "townpath_sign2":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                if (Party.Has("traveller")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+
+                this.dialogueBox.Close();
+                break;
+            case "townpath_sign3":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "townpath_cave":
+                if (!Party.Has("traveller")) return;
+                
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                Player.instance.MoveTowards(Vector2.down);
+                break;
         }
 
         await this.#ProcessCommonEvents();

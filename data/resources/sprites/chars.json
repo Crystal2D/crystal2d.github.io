@@ -3374,6 +3374,38 @@
             ]
         }
     },
+    {
+        "path": "sprites/chars/bear",
+        "type": "Texture",
+        "args": {
+            "src": "chars/bear.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 32
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.75
+                    }
+                }
+            ]
+        }
+    },
 
     {
         "path": "sprites/chars/claireyokifly",

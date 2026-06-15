@@ -519,6 +519,22 @@
             "texture": "sprites/chars/soldier"
         }
     },
+    {
+        "path": "spritelibs/chars/bear",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/bear"
+        }
+    },
+    {
+        "path": "spritelibs/chars/boss",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/boss"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",
