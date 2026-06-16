@@ -28,7 +28,8 @@
         [
             "sprites/chars/bear",
             "spritelibs/chars/bear"
-        ]
+        ],
+        "audio/se/jump"
     ],
     "gameObjects": [
         {

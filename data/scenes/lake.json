@@ -6,7 +6,29 @@
         "sprites/tilesets/colors",
         "sprites/tilesets/water",
         "sprites/tilesets/ext_graveyard",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/frog",
+            "spritelibs/chars/frog"
+        ],
+        [
+            "sprites/chars/raccoon",
+            "spritelibs/chars/raccoon"
+        ],
+        [
+            "sprites/chars/traveller",
+            "spritelibs/chars/traveller"
+        ],
+        [
+            "sprites/chars/boss",
+            "spritelibs/chars/boss"
+        ],
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
+        ],
+        "audio/se/jump",
+        "sprites/illusts/traveller"
     ],
     "gameObjects": [
         {
@@ -47,7 +69,7 @@
                             "y": -25
                         },
                         "max": {
-                            "x": 33,
+                            "x": 35,
                             "y": 24
                         }
                     }
@@ -17235,6 +17257,46 @@
                                             {
                                                 "x": -15,
                                                 "y": 21
+                                            },
+                                            {
+                                                "x": -17,
+                                                "y": -12
+                                            },
+                                            {
+                                                "x": -16,
+                                                "y": -12
+                                            },
+                                            {
+                                                "x": -15,
+                                                "y": -11
+                                            },
+                                            {
+                                                "x": -16,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": -17,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": -18,
+                                                "y": -10
+                                            },
+                                            {
+                                                "x": 34,
+                                                "y": 22
+                                            },
+                                            {
+                                                "x": 34,
+                                                "y": 21
+                                            },
+                                            {
+                                                "x": 34,
+                                                "y": 20
+                                            },
+                                            {
+                                                "x": 34,
+                                                "y": 19
                                             }
                                         ]
                                     }
@@ -17315,6 +17377,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -17343,6 +17411,23 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "frog",
+                                "not": true
+                            }
+                        ]
                     }
                 }
             ]
@@ -17376,6 +17461,22 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "traveller_lake"
+                            }
+                        ]
                     }
                 }
             ]
@@ -17419,8 +17520,1493 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": 15
+                                },
+                                "event": "lake_frog1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": 15
+                                },
+                                "event": "lake_frog1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 20
+                                },
+                                "event": "lake_frog2",
+                                "conditions": [
+                                    {
+                                        "name": "frog",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": -2
+                                },
+                                "event": "lake_frog3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 25,
+                                    "y": -11
+                                },
+                                "event": "lake_frog4"
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": -11
+                                },
+                                "event": "lake_frog4"
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": -17
+                                },
+                                "event": "lake_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 21,
+                                    "y": -17
+                                },
+                                "event": "lake_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 25,
+                                    "y": -19
+                                },
+                                "event": "lake_raccoon2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": -19
+                                },
+                                "event": "lake_raccoon2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 10,
+                                    "y": -5
+                                },
+                                "event": "lake_traveller",
+                                "conditions": [
+                                    {
+                                        "name": "traveller_lake"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 12,
+                                    "y": -5
+                                },
+                                "event": "lake_traveller",
+                                "conditions": [
+                                    {
+                                        "name": "traveller_lake"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 29,
+                                    "y": 20
+                                },
+                                "event": "lake_boss"
+                            },
+                            {
+                                "pos": {
+                                    "x": 31,
+                                    "y": 20
+                                },
+                                "event": "lake_boss"
+                            },
+                            {
+                                "pos": {
+                                    "x": 31,
+                                    "y": -14
+                                },
+                                "event": "lake_sign"
+                            },
+                            {
+                                "pos": {
+                                    "x": -22,
+                                    "y": -11
+                                },
+                                "event": "lake_traveller_bye",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -21,
+                                    "y": -11
+                                },
+                                "event": "lake_traveller_bye",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -20,
+                                    "y": -11
+                                },
+                                "event": "lake_traveller_bye",
+                                "trigger": 1
+                            }
+                        ]
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_frog1",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -7.5,
+                    "y": 7.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_frog1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_frog2",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_frog2"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "frog",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_frog3",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_frog3"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_frog4",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": 13,
+                    "y": -5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_frog4"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_frog5",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -8.5,
+                    "y": -5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/frog",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/frog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon1",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 10,
+                    "y": -8.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_raccoon1",
+                        "animateWalk": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon2",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 13,
+                    "y": -9.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_raccoon2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_traveller",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/traveller",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/traveller"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_traveller"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "traveller_lake"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_boss",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 15,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/boss",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/boss"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lake_boss"
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": -16,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": -15,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": -14,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": -13,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": -8,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 24,
+            "transform": {
+                "position": {
+                    "x": -7,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 25,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 26,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 27,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": 5.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 28,
+            "transform": {
+                "position": {
+                    "x": -2,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 29,
+            "transform": {
+                "position": {
+                    "x": -1,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 30,
+            "transform": {
+                "position": {
+                    "x": 0,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 31,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 32,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 33,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 8
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 34,
+            "transform": {
+                "position": {
+                    "x": -16,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 35,
+            "transform": {
+                "position": {
+                    "x": -15,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 36,
+            "transform": {
+                "position": {
+                    "x": -14,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 37,
+            "transform": {
+                "position": {
+                    "x": -13,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 38,
+            "transform": {
+                "position": {
+                    "x": -8,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 39,
+            "transform": {
+                "position": {
+                    "x": -7,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 40,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 41,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 42,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 43,
+            "transform": {
+                "position": {
+                    "x": -3,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 44,
+            "transform": {
+                "position": {
+                    "x": -2,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 45,
+            "transform": {
+                "position": {
+                    "x": 12.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 46,
+            "transform": {
+                "position": {
+                    "x": 13.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 47,
+            "transform": {
+                "position": {
+                    "x": 14.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 48,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": 8
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 49,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 50,
+            "transform": {
+                "position": {
+                    "x": 4.5,
+                    "y": 11.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 51,
+            "transform": {
+                "position": {
+                    "x": 4.5,
+                    "y": 10.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 52,
+            "transform": {
+                "position": {
+                    "x": 4.5,
+                    "y": 9.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 53,
+            "transform": {
+                "position": {
+                    "x": 12,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 54,
+            "transform": {
+                "position": {
+                    "x": 12,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 55,
+            "transform": {
+                "position": {
+                    "x": 12,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 56,
+            "transform": {
+                "position": {
+                    "x": 12,
+                    "y": -4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 57,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 58,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 59,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -8
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 60,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -9
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 61,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 62,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -11
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 63,
+            "transform": {
+                "position": {
+                    "x": 17.5,
+                    "y": -12
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 64,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 65,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 66,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 67,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 68,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 69,
+            "transform": {
+                "position": {
+                    "x": 2.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 70,
+            "transform": {
+                "position": {
+                    "x": 3.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 71,
+            "transform": {
+                "position": {
+                    "x": 4.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 72,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 6.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 74,
+            "transform": {
+                "position": {
+                    "x": 7.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 75,
+            "transform": {
+                "position": {
+                    "x": 8.5,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
                 }
             ]
         }

@@ -3406,6 +3406,38 @@
             ]
         }
     },
+    {
+        "path": "sprites/chars/boss",
+        "type": "Texture",
+        "args": {
+            "src": "chars/boss.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.665
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 24
+                    },
+                    "pivot": {
+                        "x": 0.5,
+                        "y": 0.665
+                    }
+                }
+            ]
+        }
+    },
 
     {
         "path": "sprites/chars/claireyokifly",

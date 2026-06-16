@@ -951,6 +951,32 @@
 "townpath_sign2_back": "I can't read the sign from \nhere...",
 "townpath_sign3": "North: Path up to Mountain Forest\nSouth: Lake Front",
 "townpath_sign3_back": "I can't read the sign from \nhere...",
-"townpath_cave": "\\SE[8]Lost Traveller: It looks a little \ndark in there... Best we find \nanother path!\\SE[1]"
+"townpath_cave": "\\SE[8]Lost Traveller: It looks a little \ndark in there... Best we find \nanother path!\\SE[1]",
+
+"lake": "----------------------------------------------------------------------",
+"lake_frog1_traveller": "\\SE[8]Lost Traveller: Seems like this \nlittle frog caught a fly!\\SE[1]",
+"lake_frog2_traveller": "Lost Traveller: Ah!\\.\\.\nHe jumped into the water..",
+"lake_traveller": "\\SE[8]Thank you for taking me here!\nSuch a lovely view...\\SE[1]",
+"lake_traveller_bye": [
+    "\\SE[8]Lost Traveller: Ah..!",
+    "\\SE[1]..?",
+    "\\SE[8]Lost Traveller: Ah, this will be fine.",
+    "\\SE[1]Are you sure you want\nto stop here?",
+    "The Village isn't anywhere\nnear here...",
+    "\\SE[8]That's quite alright! I believe I'm\nfamiliar with this area, we should\nbe near the Castle Town, correct?",
+    "I'll just stay the night in the\nCastle Town and try for the \nVillage again tomorrow.",
+    "\\SE[1]Are you from around here..?",
+    "\\SE[8]I was born and raised in the Castle\nTown near here. \nLeft sometime in my late youth to \ntravel the world.",
+    "It's been maybe 30 years since I've \nbeen back here.",
+    "This Lakefront view here is quite \nnostalgic to me. ",
+    "I don't mind spending some time \nhere.",
+    "\\SE[1]Ok, if you're sure...",
+    "On your next trip to the \nVillage...",
+    "Make sure to follow the \nsigns so you don't get \nlost again."
+],
+"lake_boss": "\\SE[6]Huh? What are you doing here? \nYou shouldn't be here..\\SE[1]",
+"lake_boss_talked": "\\SE[6]Lord Zera has great plans for you..\nMake sure to stay alive until then..\nHee hee\\SE[1]",
+"lake_sign": "Swimming and fishing prohibited due \nto sightings of BEAST-types in \ndeep waters.",
+"lake_sign_back": "I can't read the sign from \nhere..."
 
 }

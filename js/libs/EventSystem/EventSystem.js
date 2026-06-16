@@ -4659,6 +4659,234 @@ class EventSystem
                 this.dialogueBox.Close();
                 Player.instance.MoveTowards(Vector2.down);
                 break;
+
+            // ------------------------------------------------------- lake
+            case "lake_frog1": {
+                const frog = RPGMovement.FindChar("frog1");
+                frog.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "lake_frog2": {
+                const frog = RPGMovement.FindChar("frog2");
+                frog.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+                frog.collision = false;
+                await frog.MoveTowards(Vector2.down);
+                await frog.MoveTowards(Vector2.down);
+
+                this.SetSwitch("frog", true);
+
+                if (Party.Has("traveller"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_traveller`));
+                    this.dialogueBox.Close();
+                }
+            } break;
+            case "lake_frog3": {
+                const frog = RPGMovement.FindChar("frog3");
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+                await frog.MoveTowards(Vector2.left);
+                await frog.MoveTowards(Vector2.right);
+            } break;
+            case "lake_frog4": {
+                const frog = RPGMovement.FindChar("frog4");
+                frog.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await frog.Jump();
+            } break;
+            case "lake_raccoon1": {
+                const raccoon = RPGMovement.FindChar("raccoon1");
+                raccoon.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await raccoon.Jump();
+            } break;
+            case "lake_raccoon2":
+                RPGMovement.FindChar("raccoon2").LookAwayPlayer();
+                break;
+            case "lake_traveller": {
+                const traveller = RPGMovement.FindChar("traveller");
+                traveller.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                traveller.LookAt(Vector2.up);
+            } break;
+            case "lake_boss":
+                if (this.GetSwitch("lake_creature")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`));
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id));
+                    this.SetSwitch("lake_creature", true);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "lake_sign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "lake_traveller_bye":
+                if (!Party.Has("traveller")) return;
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                const startPos = Player.instance.gridPos;
+
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.down);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+
+                if (startPos.x <= -21) await Player.instance.MoveTowards(Vector2.right);
+                if (startPos.x === -22) await Player.instance.MoveTowards(Vector2.right);
+
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.up);
+                await Player.instance.MoveTowards(Vector2.right);
+                await Player.instance.MoveTowards(Vector2.right);
+                Player.instance.LookAt(Vector2.up);
+
+                CamCtrl.current.Scroll(new Vector2(0, 1.5), 2);
+                await this.Timer(220);
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "traveller", 50 / 255)
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+
+                this.SetSwitch("traveller_done", true);
+                Party.Clear(1);
+                this.SetSwitch("traveller_lake", true);
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0)
+                await this.Timer(20);
+
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                this.AddToVariable("illusts");
+                break;
         }
 
         await this.#ProcessCommonEvents();

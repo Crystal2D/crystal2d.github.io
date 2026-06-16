@@ -119,10 +119,9 @@ class Player extends RPGMovement
             if (this.#xTime > this.#yTime) input.x = 0;
             else input.y = 0;
         }
-
-        this.MoveTowards(input);
-
+        
         this.moveSpeed = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 5 : 4;
+        this.MoveTowards(input);
     }
 
     async _OnStop ()
@@ -157,6 +156,7 @@ class Player extends RPGMovement
         if (this.#touchInteractable != null)
         {
             this.avoidInputs = true;
+            this.moveSpeed = 4;
 
             const interactable = this.#touchInteractable;
             this.#touchInteractable = null;
@@ -174,6 +174,7 @@ class Player extends RPGMovement
         const interactable = this.#keyInteractable;
 
         this.avoidInputs = true;
+        this.moveSpeed = 4;
 
         const isChar = interactable instanceof RPGMovement;
         let charMove = null;

@@ -238,5 +238,13 @@
             "src": "illusts\\fork.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/traveller",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\traveller.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]
