@@ -977,6 +977,95 @@
 "lake_boss": "\\SE[6]Huh? What are you doing here? \nYou shouldn't be here..\\SE[1]",
 "lake_boss_talked": "\\SE[6]Lord Zera has great plans for you..\nMake sure to stay alive until then..\nHee hee\\SE[1]",
 "lake_sign": "Swimming and fishing prohibited due \nto sightings of BEAST-types in \ndeep waters.",
-"lake_sign_back": "I can't read the sign from \nhere..."
+"lake_sign_back": "I can't read the sign from \nhere...",
+
+"castle_road": "----------------------------------------------------------------------",
+"castleroad_bird": "\\SE[4]Chirp!\\SE[1]",
+"castleroad_soldier1": [
+    "\\SE[6]I'm patrolling the area to make\nsure there aren't any suspicious\npeople about.",
+    "I mean,\\.\\. besides you.",
+    "\\SE[1]Am I suspicious to you..?",
+    "\\SE[6]Absolutely.\\.\\.\nBut you already know everyone \nthinks you're fishy.",
+    "\\SE[1]I guess so..."
+],
+"castleroad_soldier1_talked": [
+    "\\SE[6]There was an odd man with a cape\nand horns I saw earlier.",
+    "I tried chasing after him but I \nlost track of him.",
+    "Where did he run off to...",
+    "\\SE[1](I think I know who that \nis...)"
+],
+"castleroad_soldier2": [
+    "\\SE[8]There aren't many people traveling \nthrough the forest these days...",
+    "Probably because of the spike in\nBEAST-Type appearances.\\SE[1]"
+],
+"castleroad_soldier2_talked": "\\SE[8]To by honest,\\.\\.\nI feel a little nervous to be\npatrolling in the forest too.\\SE[1]",
+"castleroad_sign1": "Lakefront ahead",
+"castleroad_sign1_back": "I can't read the sign from \nhere...",
+"castleroad_sign2": "Left: Graveyard\nRight: Path to Castle Town",
+"castleroad_sign2_back": "I can't read the sign from \nhere...",
+
+"graveyard": "----------------------------------------------------------------------",
+"graveyard_headstone": "...",
+"graveyard_save": [
+    "..?",
+    "How did...\\.\\. My journal end up \nhere?",
+    "(Should I record stuff?)"
+],
+"graveyard_save_choices": [
+    "Yes",
+    "No"
+],
+"graveyard_ghost": "\\SE[14]A little troublemaker, aren't you?\\SE[1]",
+"graveyard_corpse": "\\SE[14]That's my corpse you're standing \non.\\SE[1]",
+
+"castletown_gate": "----------------------------------------------------------------------",
+"castletowngate_soldier": [
+    "\\SE[8]Ugh.\\.\\.\nWhat a boring day.",
+    "Wish something interesting would \nhappen.",
+    "Hey,\\.\\. why don't you transform into\na large BEAST-Type so I have\nsomethin' to cut down?",
+    "\\SE[1]Sorry...\\.\\.\nI don't think I can do that."
+],
+"castletowngate_soldier_talked": [
+    "\\SE[8]I don't know why the Prince trusts \nyou so much.",
+    "When you go berserk one day,\\.\\. I \nwanna be the one to chop you \ndown.",
+    "Maybe they'd call me a Hero,\\.\\. heh.",
+    "Things would definitely be less \nboring,\\.\\.\ndon't you think?",
+    "\\SE[1](...)"
+],
+"castletowngate_frank": [
+    "\\SE[6]I'm so tired...",
+    "I hope someone comes and takes \nover my shift soon.\\SE[1]"
+],
+"castletowngate_ride": [
+    "\\SE[11]Headin' over to the village?",
+    "Want a lift?",
+    "\\SE[1]"
+],
+"castletowngate_ride_choices": [
+    "Sure",
+    "Not right now"
+],
+"castletowngate_ride_ok": [
+    "\\SE[1]Yes, thank you. ",
+    "\\SE[11]Alright.\nHop on in.\\SE[1]"
+],
+"castletowngate_ride_no": "\\SE[1]I'm alright for now. ",
+"castletowngate_ride_addicted": [
+    "\\SE[11]Enjoyin' the carriage ride, eh?",
+    "\\SE[1]...",
+    "\\SE[11]Another?",
+    "\\SE[1]"
+],
+"castletowngate_sign": "Castle Town gate",
+"castletowngate_sign_back": "I can't read the sign from \nhere..",
+"castletowngate_save": [
+    "..?",
+    "How did...\\.\\. My journal end up \nhere?",
+    "(Should I record stuff?)"
+],
+"castletowngate_save_choices": [
+    "Yes",
+    "No"
+]
 
 }
