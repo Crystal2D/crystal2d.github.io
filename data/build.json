@@ -54,7 +54,11 @@
         "forest_view",
         "town_path",
         "fly",
-        "lake"
+        "lake",
+        "castle_road",
+        "graveyard",
+        "castletown_gate",
+        "castletown_west"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,
