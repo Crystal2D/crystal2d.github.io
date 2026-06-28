@@ -294,6 +294,7 @@ class EventSystem
         // ----------------------------------------- ORIGINALLY SELF SWITCHES
 
         this.AddSwitch("mole");
+        this.AddSwitch("shackghost");
 
 
         // ----------------------------------------- VARIABLES
@@ -4887,6 +4888,323 @@ class EventSystem
 
                 this.AddToVariable("illusts");
                 break;
+
+            // ------------------------------------------------------- castle_road
+            case "castleroad_bird": {
+                const bird = RPGMovement.FindChar("bird");
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await bird.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await bird.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await bird.Jump();
+            } break;
+            case "castleroad_rabbit1": {
+                const rabbit = RPGMovement.FindChar("rabbit1");
+                rabbit.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+            } break;
+            case "castleroad_rabbit2": {
+                const rabbit = RPGMovement.FindChar("rabbit2");
+                rabbit.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await rabbit.Jump();
+            } break;
+            case "castleroad_squirrel":
+                RPGMovement.FindChar("squirrel1").LookAwayPlayer();
+                break;
+            case "castleroad_raccoon": {
+                const raccoon = RPGMovement.FindChar("raccoon");
+                raccoon.LookAtPlayer();
+                AudioManager.instance.PlaySE("jump", 0.9, 1.5);
+                await raccoon.Jump();
+                raccoon.LookAwayPlayer();
+            } break;
+            case "castleroad_soldier1":
+                RPGMovement.FindChar("soldier1").LookAtPlayer();
+
+                if (this.GetSwitch("forestsoldier_1"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    this.dialogueBox.SetFace("yoki", "unsure")
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[3]);
+                    this.dialogueBox.Close();
+                    
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look")
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "unsure")
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("forestsoldier_1", true);
+                break;
+            case "castleroad_soldier2":
+                RPGMovement.FindChar("soldier2").LookAtPlayer();
+
+                if (this.GetSwitch("forestsoldier_2"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`));
+                    this.dialogueBox.Close();
+                    
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("forestsoldier_2", true);
+                break;
+            case "castleroad_sign1":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castleroad_sign2":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+
+            // ------------------------------------------------------- graveyard
+            case "graveyard_ghost1": {
+                const ghost = RPGMovement.FindChar("ghost1");
+                const sprRenderer = ghost.GetComponent(SpriteRenderer);
+
+                ghost.LookAt(Vector2.up);
+                await this.Timer(20);
+                sprRenderer.color.a = 100 / 255;
+                await this.Timer(20);
+                ghost.gameObject.SetActive(false);
+            } break;
+            case "graveyard_ghost2": {
+                const ghost = RPGMovement.FindChar("ghost2");
+                const sprRenderer = ghost.GetComponent(SpriteRenderer);
+
+                ghost.LookAt(Vector2.up);
+                await this.Timer(20);
+                sprRenderer.color.a = 100 / 255;
+                await this.Timer(20);
+                ghost.gameObject.SetActive(false);
+            } break;
+            case "graveyard_ghost6": {
+                const ghost = RPGMovement.FindChar("ghost6");
+                const sprRenderer = ghost.GetComponent(SpriteRenderer);
+
+                ghost.LookAt(Vector2.up);
+                await this.Timer(20);
+                sprRenderer.color.a = 100 / 255;
+                await this.Timer(20);
+
+                this.SetSwitch("shackghost", true);
+            } break;
+            case "graveyard_ghost7": {
+                const ghost = RPGMovement.FindChar("ghost7");
+                const sprRenderer = ghost.GetComponent(SpriteRenderer);
+
+                ghost.LookAt(Vector2.up);
+                await this.Timer(20);
+                sprRenderer.color.a = 100 / 255;
+                await this.Timer(20);
+                ghost.gameObject.SetActive(false);
+            } break;
+            case "graveyard_chillghost":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "graveyard_corpse": {
+                const ghost = RPGMovement.FindChar("chillghost");
+
+                AudioManager.instance.PlaySE("crush_1", 0.25, 1.5);
+                ghost.animateIdle = false;
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                ghost.animateIdle = true;
+            } break;
+            case "graveyard_headstone":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "graveyard_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
+            } break;
+
+            // ------------------------------------------------------- castletown_gate
+            case "castletowngate_soldier":
+                if (this.GetSwitch("soldier_annoying"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[3]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[4]);
+                    this.dialogueBox.Close();
+
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("soldier_annoying", true);
+                break;
+            case "castletowngate_frank":
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "castletowngate_ride": {
+                RPGMovement.FindChar("driver").LookAtPlayer();
+
+                if (this.GetVariable("carriage_addiction") >= 4)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[2]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_addicted`)[3], true);
+                    
+                    this.AddToVariable("carriage_addiction");
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+                }
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                if (choice === 1)
+                {
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_no`));
+                    this.dialogueBox.Close();
+                    
+                    return;
+                }
+
+                Loader.Ready(21);
+                
+                if (this.GetVariable("carriage_addiction") < 4) this.AddToVariable("carriage_addiction");
+
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_ok`)[1]);
+                this.dialogueBox.Close();
+                
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(0, -5);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(21);
+            } break;
+            case "castletowngate_sign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castletowngate_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
+            } break;
         }
 
         await this.#ProcessCommonEvents();
@@ -4933,6 +5251,15 @@ class EventSystem
                 else if (event === 1) AudioManager.instance.PlayBGM("village", 0.2);
                 break;
             case "12_11":
+                if (event === 0) AudioManager.instance.FadeOutBGM(1);
+                else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
+                break;
+            
+            case "25_26":
+                if (event === 0) AudioManager.instance.FadeOutBGM(1);
+                else if (event === 2) AudioManager.instance.PlayBGM("graveyard", 0.2);
+                break;
+            case "26_25":
                 if (event === 0) AudioManager.instance.FadeOutBGM(1);
                 else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
                 break;

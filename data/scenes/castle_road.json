@@ -4,7 +4,28 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        [
+            "sprites/chars/rabbit",
+            "spritelibs/chars/rabbit"
+        ],
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ],
+        [
+            "sprites/chars/raccoon",
+            "spritelibs/chars/raccoon"
+        ],
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        "audio/bgm/forest"
     ],
     "gameObjects": [
         {
@@ -10329,6 +10350,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -10506,7 +10533,455 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 6
+                                },
+                                "event": "castleroad_rabbit1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -11,
+                                    "y": 6
+                                },
+                                "event": "castleroad_rabbit1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": -8
+                                },
+                                "event": "castleroad_rabbit2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -11
+                                },
+                                "event": "castleroad_raccoon"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -11
+                                },
+                                "event": "castleroad_raccoon"
+                            },
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": 5
+                                },
+                                "event": "castleroad_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -5,
+                                    "y": 5
+                                },
+                                "event": "castleroad_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -6,
+                                    "y": -14
+                                },
+                                "event": "castleroad_soldier2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": -14
+                                },
+                                "event": "castleroad_soldier2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 19
+                                },
+                                "event": "castleroad_sign1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 2
+                                },
+                                "event": "castleroad_sign2"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": 9.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_bird"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rabbit1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": 3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/rabbit",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/rabbit"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_rabbit1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rabbit2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": -4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/rabbit",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/rabbit"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_rabbit2",
+                        "animateIdle": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel1",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": 3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_squirrel"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel2",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": 2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel2",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": -5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -0.5,
+                    "y": -5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_raccoon"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldier1",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -3,
+                    "y": 2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_soldier1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldier2",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castleroad_soldier2"
                     }
                 }
             ]

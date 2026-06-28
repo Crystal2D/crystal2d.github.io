@@ -1,6 +1,12 @@
 class RandomMove extends MovesBase
 {
     turnOnly = false;
+
+    Start ()
+    {
+        super.Start();
+        this._time = this.interval * Math.RandomRanged(0.5, 1);
+    }
     
     Invoke ()
     {

@@ -47,5 +47,12 @@
         "args": {
             "src": "bgm/heroes.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/graveyard",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/graveyard.ogg"
+        }
     }
 ]

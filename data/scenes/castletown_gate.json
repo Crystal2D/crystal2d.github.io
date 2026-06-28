@@ -7,7 +7,17 @@
         "sprites/tilesets/ext_castletown_sidegates",
         "sprites/tilesets/colors",
         "sprites/tilesets/ext_ride",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/chars/npc_2",
+            "spritelibs/chars/npc_2"
+        ],
+        "sprites/chars/soldier",
+        "sprites/chars/npc_2"
     ],
     "gameObjects": [
         {
@@ -2365,6 +2375,10 @@
                                             {
                                                 "x": -4,
                                                 "y": 14
+                                            },
+                                            {
+                                                "x": -14,
+                                                "y": -7
                                             }
                                         ]
                                     },
@@ -3109,6 +3123,10 @@
                                             {
                                                 "x": 8,
                                                 "y": 0
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -6
                                             }
                                         ]
                                     },
@@ -3122,6 +3140,10 @@
                                             {
                                                 "x": 4,
                                                 "y": 0
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": -6
                                             }
                                         ]
                                     },
@@ -3135,6 +3157,10 @@
                                             {
                                                 "x": 5,
                                                 "y": 0
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -6
                                             }
                                         ]
                                     },
@@ -3161,6 +3187,10 @@
                                             {
                                                 "x": 4,
                                                 "y": 2
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": -5
                                             }
                                         ]
                                     },
@@ -3195,6 +3225,10 @@
                                             {
                                                 "x": 8,
                                                 "y": 2
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": -5
                                             }
                                         ]
                                     },
@@ -3620,6 +3654,15 @@
                                                 "y": 15
                                             }
                                         ]
+                                    },
+                                    {
+                                        "id": 92,
+                                        "coords": [
+                                            {
+                                                "x": -8,
+                                                "y": -5
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -3863,10 +3906,6 @@
                                                 "y": -8
                                             },
                                             {
-                                                "x": -14,
-                                                "y": -7
-                                            },
-                                            {
                                                 "x": -13,
                                                 "y": -7
                                             },
@@ -3919,18 +3958,6 @@
                                                 "y": -7
                                             },
                                             {
-                                                "x": -9,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": -8,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": -7,
-                                                "y": -6
-                                            },
-                                            {
                                                 "x": -6,
                                                 "y": -6
                                             },
@@ -3945,18 +3972,6 @@
                                             {
                                                 "x": 4,
                                                 "y": -6
-                                            },
-                                            {
-                                                "x": -9,
-                                                "y": -5
-                                            },
-                                            {
-                                                "x": -8,
-                                                "y": -5
-                                            },
-                                            {
-                                                "x": -7,
-                                                "y": -5
                                             },
                                             {
                                                 "x": -6,
@@ -6200,6 +6215,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -6287,10 +6308,216 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": -3
+                                },
+                                "event": "castletowngate_soldier"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": -7
+                                },
+                                "event": "castletowngate_frank"
+                            },
+                            {
+                                "pos": {
+                                    "x": -8,
+                                    "y": -6
+                                },
+                                "event": "castletowngate_ride"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 11
+                                },
+                                "event": "castletowngate_sign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 2
+                                },
+                                "event": "castletowngate_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 2
+                                },
+                                "event": "castletowngate_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 2
+                                },
+                                "event": "castletowngate_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 1
+                                },
+                                "event": "castletowngate_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": 1
+                                },
+                                "event": "castletowngate_save"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 1
+                                },
+                                "event": "castletowngate_save"
+                            }
+                        ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_soldier",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowngate_soldier",
+                        "lockLook": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_frank",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowngate_frank",
+                        "lockLook": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_driver",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_2",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowngate_ride"
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 0.5
+                }
+            }
         }
     ]
 }

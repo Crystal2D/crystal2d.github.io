@@ -5,7 +5,21 @@
         "sprites/tilesets/ext_graveyard",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/ghost_1",
+            "spritelibs/chars/ghost_1"
+        ],
+        [
+            "sprites/chars/ghost_2",
+            "spritelibs/chars/ghost_2"
+        ],
+        [
+            "sprites/chars/bat",
+            "spritelibs/chars/bat"
+        ],
+        "audio/se/crush_1",
+        "audio/bgm/graveyard"
     ],
     "gameObjects": [
         {
@@ -10970,6 +10984,10 @@
                                             {
                                                 "x": -20,
                                                 "y": 10
+                                            },
+                                            {
+                                                "x": -22,
+                                                "y": 14
                                             }
                                         ]
                                     },
@@ -19771,10 +19789,6 @@
                                                 "y": 10
                                             },
                                             {
-                                                "x": -22,
-                                                "y": 14
-                                            },
-                                            {
                                                 "x": 26,
                                                 "y": 20
                                             },
@@ -22643,6 +22657,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -22700,10 +22720,867 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -28,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -25,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -18,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -15,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": 10
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -30,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -27,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -26,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -20,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -17,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": 7
+                                },
+                                "event": "graveyard_headstone"
+                            },
+
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -28,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -25,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -18,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -15,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": 1
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -30,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -27,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -26,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -20,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -17,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": -2
+                                },
+                                "event": "graveyard_headstone"
+                            },
+
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -28,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -25,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -18,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -15,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": -8
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -30,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -29,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -27,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -26,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -24,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -23,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -20,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -19,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -17,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -16,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+                            {
+                                "pos": {
+                                    "x": -13,
+                                    "y": -11
+                                },
+                                "event": "graveyard_headstone"
+                            },
+
+                            {
+                                "pos": {
+                                    "x": 30,
+                                    "y": 24
+                                },
+                                "event": "graveyard_chillghost"
+                            },
+                            {
+                                "pos": {
+                                    "x": 32,
+                                    "y": 24
+                                },
+                                "event": "graveyard_chillghost"
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": 21
+                                },
+                                "event": "graveyard_corpse",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": 28,
+                                    "y": 21
+                                },
+                                "event": "graveyard_corpse",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": 20
+                                },
+                                "event": "graveyard_corpse",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": 28,
+                                    "y": 20
+                                },
+                                "event": "graveyard_corpse",
+                                "trigger": 1
+                            },
+                            {
+                                "pos": {
+                                    "x": -28,
+                                    "y": -22
+                                },
+                                "event": "graveyard_save"
+                            }
+                        ]
                     }
                 }
             ]
+        },
+        {
+            "name": "char_ghost1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -15.5,
+                    "y": 6.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_1",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "graveyard_ghost1",
+                        "eventBumpable": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_ghost2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -10,
+                    "y": -9.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_1",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "graveyard_ghost2",
+                        "eventBumpable": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_ghost3",
+            "prefab": "entities/ghost",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -7.5,
+                    "y": 4
+                }
+            }
+        },
+        {
+            "name": "char_ghost4",
+            "prefab": "entities/ghost",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": -14,
+                    "y": 1.5
+                }
+            }
+        },
+        {
+            "name": "char_ghost5",
+            "prefab": "entities/ghost",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -8,
+                    "y": -4
+                }
+            }
+        },
+        {
+            "name": "char_ghost6",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -11,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "graveyard_ghost6",
+                        "eventBumpable": true
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "shackghost",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_ghost7",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": -10.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "graveyard_ghost7"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_ghost8",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": -13.5,
+                    "y": -6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "collision": false,
+                        "lockLook": true
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_chillghost",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 15.5,
+                    "y": 12
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "graveyard_chillghost"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bat1",
+            "prefab": "entities/bat",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": -8.5
+                }
+            }
+        },
+        {
+            "name": "char_bat2",
+            "prefab": "entities/bat",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 14.5,
+                    "y": -8.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "name": "char_bat3",
+            "prefab": "entities/bat",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": -15
+                }
+            }
+        },
+        {
+            "name": "char_bat4",
+            "prefab": "entities/bat",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": -8.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "name": "char_bat5",
+            "prefab": "entities/bat",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 11,
+                    "y": -15
+                }
+            }
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": -14,
+                    "y": -11
+                }
+            }
         }
     ]
 }

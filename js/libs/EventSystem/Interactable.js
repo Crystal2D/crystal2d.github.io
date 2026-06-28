@@ -2,6 +2,7 @@ class Interactable
 {
     // 0: Key
     // 1: Touch
+    // 2: Bump
     trigger = 0;
     
     pos = Vector2.zero;

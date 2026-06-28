@@ -39,17 +39,33 @@ class Player extends RPGMovement
     {
         this.#keyInteractable = null;
 
-        if (super._DirCheck(node))
+        if (super._DirCheck(node)) // if collides
         {
-            const interactables = this._node.GetOwnersOfType(Interactable);
+            const interactables = node.GetOwnersOfType(Interactable);
+            let bumpInteractable = null;
 
             for (let i = 0; i < interactables.length; i++)
             {
-                if (interactables[i].trigger !== 0) continue;
+                if (interactables[i].trigger !== 2) continue;
                 
-                this.#keyInteractable = interactables[i];
+                bumpInteractable = interactables[i];
                 break;
             }
+
+            if (bumpInteractable == null) 
+            {
+                const char = node.GetOwnerOfType(RPGMovement);
+                if (char != null && char.eventBumpable && char.event != null) bumpInteractable = char;
+            }
+
+            if (bumpInteractable != null) (async () => {
+                this.avoidInputs = true;
+                this.moveSpeed = 4;
+
+                await bumpInteractable.Invoke();
+
+                this.avoidInputs = false;
+            })();
 
             return true;
         }
@@ -62,14 +78,8 @@ class Player extends RPGMovement
 
         for (let i = 0; i < interactables.length; i++)
         {
-            if (interactables[i].trigger !== 1)
-            {
-                this.#keyInteractable = interactables[i];
-                continue;
-            }
-
-            this.#touchInteractable = interactables[i];
-            break;
+            if (this.#keyInteractable == null && interactables[i].trigger === 0) this.#keyInteractable = interactables[i];
+            if (this.#touchInteractable == null && interactables[i].trigger === 1) this.#touchInteractable = interactables[i];
         }
 
         return false;

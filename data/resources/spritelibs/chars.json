@@ -535,6 +535,30 @@
             "texture": "sprites/chars/boss"
         }
     },
+    {
+        "path": "spritelibs/chars/ghost_1",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/ghost_1"
+        }
+    },
+    {
+        "path": "spritelibs/chars/ghost_2",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/ghost_2"
+        }
+    },
+    {
+        "path": "spritelibs/chars/bat",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/bat"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

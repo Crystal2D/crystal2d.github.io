@@ -92,6 +92,7 @@ class RPGMovement extends GridAdjusted
     charCollision = true;
     animateWalk = true;
     animateIdle = true;
+    eventBumpable = false;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
@@ -313,7 +314,7 @@ class RPGMovement extends GridAdjusted
         if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return this.collision;
 
         const char = node.GetOwnerOfType(RPGMovement);
-        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision && this.collision && char.collision;
+        if (char != null && char !== this && char.gameObject.activeInHierarchy && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision && this.collision && char.collision;
 
         return false;
     }

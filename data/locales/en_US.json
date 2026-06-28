@@ -1015,7 +1015,7 @@
     "Yes",
     "No"
 ],
-"graveyard_ghost": "\\SE[14]A little troublemaker, aren't you?\\SE[1]",
+"graveyard_chillghost": "\\SE[14]A little troublemaker, aren't you?\\SE[1]",
 "graveyard_corpse": "\\SE[14]That's my corpse you're standing \non.\\SE[1]",
 
 "castletown_gate": "----------------------------------------------------------------------",

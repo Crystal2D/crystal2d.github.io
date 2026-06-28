@@ -7,8 +7,9 @@ class Init extends GameBehavior
         FPSMeter.detailed = true;
         // Cursor.visible = false;
 
-        if (Application.isMobilePlatform) Options.resolution = 4;
-        else Crispixels.effect = true;
+        // if (Application.isMobilePlatform) Options.resolution = 4;
+        // else 
+            Crispixels.effect = true;
 
         Loader.ReadyLoader();
         Loader.Ready(2);

@@ -104,6 +104,10 @@
                 },
                 {
                     "type": "bool",
+                    "name": "collision"
+                },
+                {
+                    "type": "bool",
                     "name": "charCollision"
                 },
                 {
@@ -117,6 +121,10 @@
                 {
                     "type": "bool",
                     "name": "lockLook"
+                },
+                {
+                    "type": "bool",
+                    "name": "eventBumpable"
                 }
             ]
         },
