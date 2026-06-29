@@ -18,7 +18,7 @@
         ],
         "sprites/chars/soldier",
         "sprites/chars/npc_2",
-        "audio/bgm/village"
+        "audio/bgm/forest"
     ],
     "gameObjects": [
         {
@@ -6304,8 +6304,38 @@
                                     "y": -4
                                 },
                                 "pos": {
-                                    "x": 0,
-                                    "y": 0
+                                    "x": -8,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 28,
+                                "min": {
+                                    "x": 12,
+                                    "y": -5
+                                },
+                                "max": {
+                                    "x": 12,
+                                    "y": -5
+                                },
+                                "pos": {
+                                    "x": -8,
+                                    "y": -28
+                                }
+                            },
+                            {
+                                "scene": 28,
+                                "min": {
+                                    "x": 12,
+                                    "y": -6
+                                },
+                                "max": {
+                                    "x": 12,
+                                    "y": -6
+                                },
+                                "pos": {
+                                    "x": -8,
+                                    "y": -29
                                 }
                             }
                         ],

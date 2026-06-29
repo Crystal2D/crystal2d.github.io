@@ -243,15 +243,15 @@ class EventSystem
 
         this.AddSwitch("sailor_3");              // 0121
         this.AddSwitch("sailor_4");              // 0122
-        this.AddSwitch("sailor_talk_10");        // 0123
+        this.AddSwitch("soldier_talk_10");       // 0123
         this.AddSwitch("townsman_1");            // 0124
         this.AddSwitch("townsman_2");            // 0125
         this.AddSwitch("townsman_3");            // 0126
         this.AddSwitch("townsman_4");            // 0127
         this.AddSwitch("townsman_5");            // 0128
         this.AddSwitch("townsman_6");            // 0129
-        this.AddSwitch("sailor_talk_11");        // 0130
-        this.AddSwitch("sailor_talk_12");        // 0131
+        this.AddSwitch("soldier_talk_11");       // 0130
+        this.AddSwitch("soldier_talk_12");       // 0131
         this.AddSwitch("guard_1");               // 0132
         this.AddSwitch("maid_1");                // 0133
         this.AddSwitch("guard_2");               // 0134

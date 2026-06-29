@@ -60,7 +60,10 @@
         "castletown_gate",
         "castletown_west",
         "carriage_right",
-        "carriage_left"
+        "carriage_left",
+        "castle",
+        "castletown_east",
+        "castletown_alley"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

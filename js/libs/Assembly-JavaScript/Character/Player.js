@@ -35,7 +35,7 @@ class Player extends RPGMovement
         super.Update();
     }
 
-    _DirCheck (node)
+    _DirCheck (node, tped)
     {
         this.#keyInteractable = null;
 
@@ -70,9 +70,11 @@ class Player extends RPGMovement
             return true;
         }
 
-        const transfer = node.GetOwnerOfType(MapTransfer);
-
-        if (transfer != null) this.#transfer = transfer;
+        if (!tped)
+        {
+            const transfer = node.GetOwnerOfType(MapTransfer);
+            if (transfer != null) this.#transfer = transfer;   
+        }
 
         const interactables = node.GetOwnersOfType(Interactable);
 

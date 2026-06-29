@@ -308,7 +308,7 @@ class RPGMovement extends GridAdjusted
         }
     }
 
-    _DirCheck (node)
+    _DirCheck (node, tped)
     {
         if (node.collider === 3) return true;
         if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return this.collision;
@@ -436,7 +436,7 @@ class RPGMovement extends GridAdjusted
     {
         const targetNode = MapGrid.current.NodeOnGrid(pos);
 
-        if (this._DirCheck(targetNode)) return;
+        if (this._DirCheck(targetNode, true)) return;
 
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
