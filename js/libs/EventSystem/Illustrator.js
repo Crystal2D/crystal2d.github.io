@@ -60,8 +60,11 @@ class Illustrator extends GameBehavior
             {
                 item.tintTime += Time.deltaTime;
 
-                item.tint = Color.Lerp(item.lastTint, item.targetTint, item.tintTime / item.tintDuration);
-                item.renderer.tint = item.tint;
+                if (item.targetTint != null)
+                {
+                    item.tint = Color.Lerp(item.lastTint, item.targetTint, item.tintTime / item.tintDuration);
+                    item.renderer.tint = item.tint;
+                }
 
                 if (item.tintTime < item.tintDuration) return;
 

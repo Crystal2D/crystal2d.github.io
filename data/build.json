@@ -58,7 +58,9 @@
         "castle_road",
         "graveyard",
         "castletown_gate",
-        "castletown_west"
+        "castletown_west",
+        "carriage_right",
+        "carriage_left"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

@@ -19,7 +19,8 @@
         [
             "sprites/chars/cow",
             "spritelibs/chars/cow"
-        ]
+        ],
+        "audio/bgm/village"
     ],
     "gameObjects": [
         {

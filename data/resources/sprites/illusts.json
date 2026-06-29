@@ -246,5 +246,21 @@
             "src": "illusts\\traveller.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/carriage_right",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\carriage_right.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/carriage_left",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\carriage_left.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

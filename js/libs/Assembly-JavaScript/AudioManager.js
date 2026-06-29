@@ -88,8 +88,6 @@ class AudioManager extends GameBehavior
             "audio/se/confirm",
             "audio/se/no"
         ]);
-
-        Loader.onSwitchEnd.Add(() => this.#flushBGM = true);
     }
 
     Start ()
@@ -153,6 +151,7 @@ class AudioManager extends GameBehavior
 
         if (name === this.#clipName) return;
 
+        this.#flushBGM = true;
         this.StopBGM();
 
         this.#clipName = name;

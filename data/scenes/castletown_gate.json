@@ -17,7 +17,8 @@
             "spritelibs/chars/npc_2"
         ],
         "sprites/chars/soldier",
-        "sprites/chars/npc_2"
+        "sprites/chars/npc_2",
+        "audio/bgm/village"
     ],
     "gameObjects": [
         {

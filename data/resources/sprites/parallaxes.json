@@ -12,5 +12,12 @@
         "args": {
             "src": "parallaxes\\fly.png"
         }
+    },
+    {
+        "path": "sprites/parallaxes/forest",
+        "type": "Texture",
+        "args": {
+            "src": "parallaxes\\forest.png"
+        }
     }
 ]

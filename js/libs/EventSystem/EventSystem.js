@@ -725,6 +725,235 @@ class EventSystem
                 AudioManager.instance.PlayBGM("forest", 0.2);
             } break;
 
+            case "carriage_right": {
+                AudioManager.instance.PlayBGM("title", 0.2);
+                Player.instance.GetComponent(SpriteRenderer).color.a = 0;
+                this.TintAll(new Color(-1, -1, -1, 0));
+                Transitioner.instance.Clear();
+
+                await this.illustrator.Set(0, "carriage_right", 50 / 255, new Vector2(0, 40 / 96));
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -80 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -40 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                while (true)
+                {
+                    let breakLoop = false;
+
+                    for (let i = 0; i < 15; i++)
+                    {
+                        await this.Timer(2);
+                        if (InputManager.IsPressed("ok"))
+                        {
+                            breakLoop = true;
+                            break;
+                        }
+                    }
+
+                    if (breakLoop) break;
+
+                    await this.illustrator.Move(0, 1, new Vector2(0, 37 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 42 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 37 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 42 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 38 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 41 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 40 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                }
+
+                AudioManager.instance.FadeOutBGM(2);
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Clear(0);
+
+                Player.instance.LookAt(Vector2.right);
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(-6, -5);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(27);
+
+                await this.Timer(40);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -80 / 255,
+                    -100 / 255,
+                    0
+                ));
+                Transitioner.instance.Clear();
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -40 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                await this.dialogueBox.Type(LocaleManager.Find("carriage"));
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("forest", 0.2);
+
+                if (!this.GetSwitch("carriage"))
+                {
+                    this.SetSwitch("carriage", true);
+                    this.AddToVariable("illusts");
+                }
+            } break;
+            case "carriage_left": {
+                AudioManager.instance.PlayBGM("title", 0.2);
+                Player.instance.GetComponent(SpriteRenderer).color.a = 0;
+                this.TintAll(new Color(-1, -1, -1, 0));
+                Transitioner.instance.Clear();
+
+                await this.illustrator.Set(0, "carriage_left", 50 / 255, new Vector2(0, 40 / 96));
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -80 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -40 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                while (true)
+                {
+                    let breakLoop = false;
+
+                    for (let i = 0; i < 15; i++)
+                    {
+                        await this.Timer(2);
+                        if (InputManager.IsPressed("ok"))
+                        {
+                            breakLoop = true;
+                            break;
+                        }
+                    }
+
+                    if (breakLoop) break;
+
+                    await this.illustrator.Move(0, 1, new Vector2(0, 37 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 42 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 37 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 42 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 38 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 41 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                    await this.illustrator.Move(0, 1, new Vector2(0, 40 / 96), null, 4);
+                    if (InputManager.IsPressed("ok")) break;
+                }
+
+                AudioManager.instance.FadeOutBGM(2);
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                this.illustrator.Clear(0);
+
+                Player.instance.LookAt(Vector2.left);
+                const transfer = new MapTransfer();
+                transfer.pos = new Vector2(5, 1);
+                MapTransfer.last = transfer;
+                await this.BlackSwitch(15);
+
+                await this.Timer(40);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -80 / 255,
+                    -100 / 255,
+                    0
+                ));
+                Transitioner.instance.Clear();
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -40 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                await this.dialogueBox.Type(LocaleManager.Find("carriage"));
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlayBGM("village", 0.2);
+
+                if (!this.GetSwitch("carriage"))
+                {
+                    this.SetSwitch("carriage", true);
+                    this.AddToVariable("illusts");
+                }
+            } break;
+
             // ------------------------------------------------------- yokihouse
             case "yolkhouse_mail":
                 this.dialogueBox.SetFace("yoki", "look");
@@ -1050,13 +1279,13 @@ class EventSystem
                 Player.instance.GetComponent(SpriteRenderer).color.a = 0;
 
                 await this.Timer(60);
-                Transitioner.instance.Clear();
                 this.TintAll(new Color(
                     -153 / 255,
                     -153 / 255,
                     -170 / 255,
                     0
                 ));
+                Transitioner.instance.Clear();
                 await this.Timer(12);
                 this.TintAll(new Color(
                     -85 / 255,
@@ -1208,13 +1437,13 @@ class EventSystem
                 await this.BlackSwitch(12);
 
                 await this.Timer(40);
-                Transitioner.instance.Clear();
                 await this.TintAll(new Color(
                     -187 / 255,
                     -187 / 255,
                     -187 / 255,
                     0
                 ));
+                Transitioner.instance.Clear();
                 await this.Timer(8);
                 await this.TintAll(new Color(
                     -102 / 255,
@@ -2479,13 +2708,13 @@ class EventSystem
                 MapTransfer.last = transfer;
                 await this.BlackSwitch(12);
 
-                Transitioner.instance.Clear();
                 await this.TintAll(new Color(
                     -187 / 255,
                     -187 / 255,
                     -187 / 255,
                     0
                 ));
+                Transitioner.instance.Clear();
                 await this.Timer(10);
                 await this.TintAll(new Color(
                     -136 / 255,
@@ -3803,13 +4032,13 @@ class EventSystem
                 await this.BlackSwitch(21);
 
                 await this.Timer(40);
-                Transitioner.instance.Clear();
                 await this.TintAll(new Color(
                     -187 / 255,
                     -187 / 255,
                     -187 / 255,
                     0
                 ));
+                Transitioner.instance.Clear();
                 await this.Timer(8);
                 await this.TintAll(new Color(
                     -102 / 255,
@@ -4171,7 +4400,8 @@ class EventSystem
                     return;
                 }
 
-                Loader.Ready(21);
+                Loader.Ready(29);
+                Loader.Ready(27);
                 
                 if (this.GetVariable("carriage_addiction") < 4) this.AddToVariable("carriage_addiction");
 
@@ -4197,9 +4427,11 @@ class EventSystem
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
                 const transfer = new MapTransfer();
-                transfer.pos = new Vector2(0, -5);
+                transfer.pos = Vector2.zero;
                 MapTransfer.last = transfer;
-                await this.BlackSwitch(21);
+                await this.BlackSwitch(29);
+
+                await this.Run("carriage_right");
             } break;
 
             // ------------------------------------------------------- dragonshrine
@@ -5142,7 +5374,8 @@ class EventSystem
                     return;
                 }
 
-                Loader.Ready(21);
+                Loader.Ready(30);
+                Loader.Ready(15);
                 
                 if (this.GetVariable("carriage_addiction") < 4) this.AddToVariable("carriage_addiction");
 
@@ -5168,9 +5401,11 @@ class EventSystem
                 await this.TintAll(new Color(-1, -1, -1, 0));
 
                 const transfer = new MapTransfer();
-                transfer.pos = new Vector2(0, -5);
+                transfer.pos = Vector2.zero;
                 MapTransfer.last = transfer;
-                await this.BlackSwitch(21);
+                await this.BlackSwitch(30);
+
+                await this.Run("carriage_left");
             } break;
             case "castletowngate_sign":
                 if (!Player.instance.lookingAt.Equals(Vector2.up))
