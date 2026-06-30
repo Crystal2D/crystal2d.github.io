@@ -33,28 +33,28 @@
             "spritelibs/chars/cat"
         ],
         [
-            "sprites/chars/npc_1",
-            "spritelibs/chars/npc_1"
+            "sprites/chars/anpc_1",
+            "spritelibs/chars/anpc_1"
         ],
         [
-            "sprites/chars/npc_3",
-            "spritelibs/chars/npc_3"
+            "sprites/chars/anpc_3",
+            "spritelibs/chars/anpc_3"
         ],
         [
-            "sprites/chars/npc_4",
-            "spritelibs/chars/npc_4"
+            "sprites/chars/anpc_4",
+            "spritelibs/chars/anpc_4"
         ],
         [
-            "sprites/chars/npc_5",
-            "spritelibs/chars/npc_5"
+            "sprites/chars/anpc_5",
+            "spritelibs/chars/anpc_5"
         ],
         [
-            "sprites/chars/npc_6",
-            "spritelibs/chars/npc_6"
+            "sprites/chars/anpc_6",
+            "spritelibs/chars/anpc_6"
         ],
         [
-            "sprites/chars/npc_8",
-            "spritelibs/chars/npc_8"
+            "sprites/chars/anpc_8",
+            "spritelibs/chars/anpc_8"
         ],
         [
             "sprites/chars/este",
@@ -25233,7 +25233,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_3",
+                            "texture": "sprites/chars/anpc_3",
                             "name": "down-a"
                         },
                         "sortingLayer": 1
@@ -25242,7 +25242,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_3"
+                        "asset": "spritelibs/chars/anpc_3"
                     }
                 },
                 {
@@ -25280,7 +25280,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_4",
+                            "texture": "sprites/chars/anpc_4",
                             "name": "down-a"
                         },
                         "sortingLayer": 1
@@ -25289,7 +25289,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_4"
+                        "asset": "spritelibs/chars/anpc_4"
                     }
                 },
                 {
@@ -25327,7 +25327,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_5",
+                            "texture": "sprites/chars/anpc_5",
                             "name": "down-a"
                         },
                         "sortingLayer": 1
@@ -25336,7 +25336,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_5"
+                        "asset": "spritelibs/chars/anpc_5"
                     }
                 },
                 {
@@ -25374,7 +25374,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_1",
+                            "texture": "sprites/chars/anpc_1",
                             "name": "down-a"
                         },
                         "sortingLayer": 1
@@ -25383,7 +25383,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_1"
+                        "asset": "spritelibs/chars/anpc_1"
                     }
                 },
                 {
@@ -25421,7 +25421,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_8",
+                            "texture": "sprites/chars/anpc_8",
                             "name": "down-a"
                         },
                         "sortingLayer": 1
@@ -25430,7 +25430,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_8"
+                        "asset": "spritelibs/chars/anpc_8"
                     }
                 },
                 {
@@ -25462,7 +25462,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_6",
+                            "texture": "sprites/chars/anpc_6",
                             "name": "right-b"
                         },
                         "sortingLayer": 1
@@ -25471,7 +25471,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_6"
+                        "asset": "spritelibs/chars/anpc_6"
                     }
                 },
                 {

@@ -376,83 +376,83 @@
         }
     },
     {
-        "path": "spritelibs/chars/npc_1",
+        "path": "spritelibs/chars/anpc_1",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_1"
+            "texture": "sprites/chars/anpc_1"
         }
     },
     {
-        "path": "spritelibs/chars/npc_2",
+        "path": "spritelibs/chars/anpc_2",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_2"
+            "texture": "sprites/chars/anpc_2"
         }
     },
     {
-        "path": "spritelibs/chars/npc_3",
+        "path": "spritelibs/chars/anpc_3",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_3"
+            "texture": "sprites/chars/anpc_3"
         }
     },
     {
-        "path": "spritelibs/chars/npc_4",
+        "path": "spritelibs/chars/anpc_4",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_4"
+            "texture": "sprites/chars/anpc_4"
         }
     },
     {
-        "path": "spritelibs/chars/npc_5",
+        "path": "spritelibs/chars/anpc_5",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_5"
+            "texture": "sprites/chars/anpc_5"
         }
     },
     {
-        "path": "spritelibs/chars/npc_6",
+        "path": "spritelibs/chars/anpc_6",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_6"
+            "texture": "sprites/chars/anpc_6"
         }
     },
     {
-        "path": "spritelibs/chars/npc_7",
+        "path": "spritelibs/chars/anpc_7",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_7"
+            "texture": "sprites/chars/anpc_7"
         }
     },
     {
-        "path": "spritelibs/chars/npc_8",
+        "path": "spritelibs/chars/anpc_8",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_8"
+            "texture": "sprites/chars/anpc_8"
         }
     },
     {
-        "path": "spritelibs/chars/npc_9",
+        "path": "spritelibs/chars/anpc_9",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_9"
+            "texture": "sprites/chars/anpc_9"
         }
     },
     {
-        "path": "spritelibs/chars/npc_10",
+        "path": "spritelibs/chars/anpc_10",
         "type": "SpriteLibraryAsset",
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
-            "texture": "sprites/chars/npc_10"
+            "texture": "sprites/chars/anpc_10"
         }
     },
     {
@@ -557,6 +557,78 @@
         "args": {
             "mainLibrary": "spritelibs/chars/yoki",
             "texture": "sprites/chars/bat"
+        }
+    },
+    {
+        "path": "spritelibs/chars/fmaid",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/fmaid"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_1",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_1"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_2",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_2"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_3",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_3"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_4",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_4"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_5",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_5"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_6",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_6"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_7",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_7"
+        }
+    },
+    {
+        "path": "spritelibs/chars/npc_8",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/npc_8"
         }
     },
 

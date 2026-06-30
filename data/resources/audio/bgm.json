@@ -54,5 +54,12 @@
         "args": {
             "src": "bgm/graveyard.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/castletown",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/castletown.ogg"
+        }
     }
 ]

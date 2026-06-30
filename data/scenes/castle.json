@@ -10,7 +10,27 @@
         "sprites/tilesets/ext_castletown",
         "sprites/tilesets/colors",
         "sprites/tilesets/water",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        [
+            "sprites/chars/npc_8",
+            "spritelibs/chars/npc_8"
+        ],
+        [
+            "sprites/chars/npc_3",
+            "spritelibs/chars/npc_3"
+        ],
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
+        ]
     ],
     "gameObjects": [
         {
@@ -8275,6 +8295,12 @@
                             }
                         ]
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -8362,8 +8388,589 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 25,
+                                    "y": 7
+                                },
+                                "event": "castle_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": 7
+                                },
+                                "event": "castle_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": -1
+                                },
+                                "event": "castle_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": -1
+                                },
+                                "event": "castle_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 11,
+                                    "y": 12
+                                },
+                                "event": "castle_soldiera"
+                            },
+                            {
+                                "pos": {
+                                    "x": 13,
+                                    "y": 12
+                                },
+                                "event": "castle_soldiera"
+                            },
+                            {
+                                "pos": {
+                                    "x": 17,
+                                    "y": 12
+                                },
+                                "event": "castle_soldierb"
+                            },
+                            {
+                                "pos": {
+                                    "x": 19,
+                                    "y": 12
+                                },
+                                "event": "castle_soldierb"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": 2
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": 1
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": 0
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": -1
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 15,
+                                    "y": 2
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 15,
+                                    "y": -1
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": 2
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": 1
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": 0
+                                },
+                                "event": "castle_fountain"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": -1
+                                },
+                                "event": "castle_fountain"
+                            }
+                        ]
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_bird1",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_bird1"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_bird2",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": 4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_bird2"
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson1",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 13,
+                    "y": 3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_8",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_8"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_townsperson1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson2",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_3",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_3"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_townsperson2"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldiera",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 6,
+                    "y": 6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_soldiera"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierb",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 9,
+                    "y": 6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castle_soldierb"
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": -1,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 0,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 24,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 25,
+            "transform": {
+                "position": {
+                    "x": 12,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 26,
+            "transform": {
+                "position": {
+                    "x": 13,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 27,
+            "transform": {
+                "position": {
+                    "x": 14,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 28,
+            "transform": {
+                "position": {
+                    "x": 15,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 29,
+            "transform": {
+                "position": {
+                    "x": 16,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
                 }
             ]
         }

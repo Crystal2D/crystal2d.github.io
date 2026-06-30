@@ -113,7 +113,7 @@ class EventSystem
 
     static Init ()
     {
-        // ----------------------------------------- SWITCHES
+        // #region ----------------------------------------- SWITCHES
 
         this.AddSwitch("harp");                  // 0001
         this.AddSwitch("traveller");             // 0002
@@ -244,12 +244,12 @@ class EventSystem
         this.AddSwitch("sailor_3");              // 0121
         this.AddSwitch("sailor_4");              // 0122
         this.AddSwitch("soldier_talk_10");       // 0123
-        this.AddSwitch("townsman_1");            // 0124
-        this.AddSwitch("townsman_2");            // 0125
-        this.AddSwitch("townsman_3");            // 0126
-        this.AddSwitch("townsman_4");            // 0127
-        this.AddSwitch("townsman_5");            // 0128
-        this.AddSwitch("townsman_6");            // 0129
+        this.AddSwitch("townsperson_1");         // 0124
+        this.AddSwitch("townsperson_2");         // 0125
+        this.AddSwitch("townsperson_3");         // 0126
+        this.AddSwitch("townsperson_4");         // 0127
+        this.AddSwitch("townsperson_5");         // 0128
+        this.AddSwitch("townsperson_6");         // 0129
         this.AddSwitch("soldier_talk_11");       // 0130
         this.AddSwitch("soldier_talk_12");       // 0131
         this.AddSwitch("guard_1");               // 0132
@@ -290,14 +290,18 @@ class EventSystem
         this.AddSwitch("butterfly");             // 0165
         this.AddSwitch("aimottle_nigerundayo");  // 0166
 
+        // #endregion
+
         
-        // ----------------------------------------- ORIGINALLY SELF SWITCHES
+        // #region ----------------------------------------- ORIGINALLY SELF SWITCHES
 
         this.AddSwitch("mole");
         this.AddSwitch("shackghost");
 
+        // #endregion
 
-        // ----------------------------------------- VARIABLES
+
+        // #region ----------------------------------------- VARIABLES
 
         this.AddVariable("harp");                // 0001
         this.AddVariable("traveller_lost");      // 0002
@@ -312,12 +316,15 @@ class EventSystem
         this.AddVariable("hellbed");             // 0011
         this.AddVariable("her");                 // 0012
         this.AddVariable("tem_jump");            // 0013
+
+        // #endregion
     }
 
     static async Run (id)
     {
         switch (id)
         {
+            // #region ------------------------------------- special
             case "hintbird": {
                 await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
@@ -953,8 +960,61 @@ class EventSystem
                     this.AddToVariable("illusts");
                 }
             } break;
+            // #endregions
 
-            // ------------------------------------------------------- yokihouse
+
+            // #region ------------------------------------- common signs
+            case "villagepath_sign2":
+            case "townpath_sign3":
+            case "lake_sign":
+            case "castleroad_sign1":
+            case "castleroad_sign2":
+            case "castletowngate_sign":
+            case "castletownwest_tailorssign":
+            case "castletownwest_innsign":
+            case "castletownwest_librarysign":
+            case "castletowneast_doctorsign":
+            case "castletowneast_blacksmithsign":
+                if (!Player.instance.lookingAt.Equals(Vector2.up))
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                }
+                else await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+
+            // #region ------------------------------------- common saves
+            case "forestpath_save":
+            case "village_save":
+            case "graveyard_save":
+            case "castletowngate_save": {
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+
+                const choice = await this.DialogueChoice([
+                    LocaleManager.Find(`${id}_choices`)[0],
+                    LocaleManager.Find(`${id}_choices`)[1]
+                ], 1);
+
+                await this.dialogueBox.Close();
+
+                if (choice === 0)
+                {
+                    SaveScreen.Show();
+                    return true;
+                }
+            } break;
+            // #endregion
+
+
+            // #region ------------------------------------- yokihouse
             case "yolkhouse_mail":
                 this.dialogueBox.SetFace("yoki", "look");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -1298,8 +1358,9 @@ class EventSystem
 
                 await this.Run("fly");
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_view
+            // #region ------------------------------------- forest_view
             case "forestview_view":
                 await this.TintAll(new Color(
                     -40 / 255,
@@ -1466,8 +1527,9 @@ class EventSystem
 
                 this.SetSwitch("este_warp", true);
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_barrier
+            // #region ------------------------------------- forest_barrier
             case "aimottle_mail":
                 this.dialogueBox.SetFace("yoki", "look");
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -1629,8 +1691,9 @@ class EventSystem
                 AudioManager.instance.PlayBGM("forest", 0.2);
                 this.SetSwitch("dragon_deeper", true);
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_barrier_edge
+            // #region ------------------------------------- forest_barrier_edge
             case "forestbarrieredge_raccoon1":
                 RPGMovement.FindChar("raccoon1").LookAtPlayer();
 
@@ -1998,8 +2061,9 @@ class EventSystem
                 this.AddToVariable("traveller_lost");
                 Player.instance.avoidInputs = false;
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- cliffs
+            // #region ------------------------------------- cliffs
             case "cliffs_deer1": {
                 const deer = RPGMovement.FindChar("deer1");
                 await deer.LookAt(Vector2.left);
@@ -2392,8 +2456,9 @@ class EventSystem
             case "cliffs_bonus_zera_bye":
                 this.SetSwitch("zera_bonus", true);
                 break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_tree
+            // #region ------------------------------------- forest_tree
             case "foresttree_tree":
                 await this.TintAll(new Color(
                     -40 / 255,
@@ -2734,8 +2799,9 @@ class EventSystem
 
                 this.SetSwitch("woof_venture", true);
                 break;
+            // #endregion
             
-            // ------------------------------------------------------- forest_mid
+            // #region ------------------------------------- forest_mid
             case "forestmid_rabbit1":
                 if (Party.Has("traveller"))
                 {
@@ -3005,31 +3071,12 @@ class EventSystem
 
                 await Party.Set(1, "traveller");
             } break;
+            // #endregion
             
-            // ------------------------------------------------------- forest_path
-            case "forestpath_save": {
-                this.dialogueBox.SetFace("yoki", "surprised");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
-                this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
-                this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
-
-                const choice = await this.DialogueChoice([
-                    LocaleManager.Find(`${id}_choices`)[0],
-                    LocaleManager.Find(`${id}_choices`)[1]
-                ], 1);
-
-                await this.dialogueBox.Close();
-
-                if (choice === 0)
-                {
-                    SaveScreen.Show();
-                    return true;
-                }
-            } break;
+            // #region ------------------------------------- forest_path
+            // #endregion
             
-            // ------------------------------------------------------- forest_cove
+            // #region ------------------------------------- forest_cove
             case "forestcove_traveller":
                 Party.Clear(1);
                 await this.WaitTransfer();
@@ -3056,8 +3103,9 @@ class EventSystem
                 this.AddToVariable("traveller_lost");
                 Player.instance.avoidInputs = false;
                 break;
+            // #endregion
             
-            // ------------------------------------------------------- forest_deep
+            // #region ------------------------------------- forest_deep
             case "forestdeep_wolf": {
                 const wolf = RPGMovement.FindChar("wolf");
                 const randMove = wolf.GetComponent(RandomMove, true);
@@ -3108,8 +3156,9 @@ class EventSystem
 
                 this.SetSwitch("mole", true);
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_deeper
+            // #region ------------------------------------- forest_deeper
             case "forestdeeper_krys":
                 RPGMovement.FindChar("krys").LookAtPlayer();
 
@@ -3159,8 +3208,9 @@ class EventSystem
                 randMove.enabled = true;
                 randMove.ResetTime();
             } break;
+            // #endregion
             
-            // ------------------------------------------------------- forest_pocket
+            // #region ------------------------------------- forest_pocket
             case "forestpocket_deer1": {
                 const deer = RPGMovement.FindChar("deer1");
                 deer.LookAtPlayer();
@@ -3581,8 +3631,9 @@ class EventSystem
 
                 AudioManager.instance.PlayBGM("forest", 0.2);
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- forest_fork
+            // #region ------------------------------------- forest_fork
             case "forestfork_cow":
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 
@@ -3737,8 +3788,9 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
+            // #endregion
             
-            // ------------------------------------------------------- village_path
+            // #region ------------------------------------- village_path
             case "villagepath_bird1":
             case "villagepath_bird2":
             case "villagepath_bird3":
@@ -3767,18 +3819,9 @@ class EventSystem
 
                 this.dialogueBox.Close();
                 break;
-            case "villagepath_sign2":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
-                {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
-                }
-                else await this.dialogueBox.Type(LocaleManager.Find(id));
+            // #endregion
 
-                this.dialogueBox.Close();
-                break;
-
-            // ------------------------------------------------------- village
+            // #region ------------------------------------- village
             case "village_dog1":
                 RPGMovement.FindChar("dog1").LookAtPlayer();
                 await this.dialogueBox.Type(LocaleManager.Find(id));
@@ -4252,27 +4295,6 @@ class EventSystem
 
                 this.dialogueBox.Close();
                 break;
-            case "village_save": {
-                this.dialogueBox.SetFace("yoki", "surprised");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
-                this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
-                this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
-
-                const choice = await this.DialogueChoice([
-                    LocaleManager.Find(`${id}_choices`)[0],
-                    LocaleManager.Find(`${id}_choices`)[1]
-                ], 1);
-
-                await this.dialogueBox.Close();
-
-                if (choice === 0)
-                {
-                    SaveScreen.Show();
-                    return true;
-                }
-            } break;
             case "village_traveller": {
                 await this.WaitTransfer();
 
@@ -4325,8 +4347,9 @@ class EventSystem
 
                 Player.instance.avoidInputs = false;
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- village_ride
+            // #region ------------------------------------- village_ride
             case "villageride_pig1": {
                 const pig = RPGMovement.FindChar("pig1");
                 pig.LookAtPlayer();
@@ -4433,8 +4456,9 @@ class EventSystem
 
                 await this.Run("carriage_right");
             } break;
+            // #endregion
 
-            // ------------------------------------------------------- dragonshrine
+            // #region ------------------------------------- dragonshrine
             case "dragonshrine_dragon": {
                 await this.WaitTransfer();
 
@@ -4485,8 +4509,9 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
                 this.dialogueBox.Close();
                 break;
+            // #endregion
             
-            // ------------------------------------------------------- territory
+            // #region ------------------------------------- territory
             case "territory_soldier": {
                 const soldier = RPGMovement.FindChar("soldier");
                 const randMove = soldier.GetComponent(RandomMove, true);
@@ -4738,8 +4763,9 @@ class EventSystem
 
                 await Player.instance.MoveTowards(Vector2.right);
                 break;
+            // #endregion
             
-            // ------------------------------------------------------- town_path
+            // #region ------------------------------------- town_path
             case "townpath_squirrel1": {
                 const squirrel = RPGMovement.FindChar("squirrel1");
                 squirrel.LookAtPlayer();
@@ -4873,18 +4899,6 @@ class EventSystem
 
                 this.dialogueBox.Close();
                 break;
-            case "townpath_sign3":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
-                {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
-                    this.dialogueBox.Close();
-                    return;
-                }
-
-                await this.dialogueBox.Type(LocaleManager.Find(id));
-                this.dialogueBox.Close();
-                break;
             case "townpath_cave":
                 if (!Party.Has("traveller")) return;
                 
@@ -4892,8 +4906,9 @@ class EventSystem
                 this.dialogueBox.Close();
                 Player.instance.MoveTowards(Vector2.down);
                 break;
+            // #endregion
 
-            // ------------------------------------------------------- lake
+            // #region ------------------------------------- lake
             case "lake_frog1": {
                 const frog = RPGMovement.FindChar("frog1");
                 frog.LookAtPlayer();
@@ -4964,18 +4979,6 @@ class EventSystem
                     this.SetSwitch("lake_creature", true);
                 }
 
-                this.dialogueBox.Close();
-                break;
-            case "lake_sign":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
-                {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
-                    this.dialogueBox.Close();
-                    return;
-                }
-
-                await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
             case "lake_traveller_bye":
@@ -5120,8 +5123,9 @@ class EventSystem
 
                 this.AddToVariable("illusts");
                 break;
+            // #endregion
 
-            // ------------------------------------------------------- castle_road
+            // #region ------------------------------------- castle_road
             case "castleroad_bird": {
                 const bird = RPGMovement.FindChar("bird");
 
@@ -5202,32 +5206,9 @@ class EventSystem
 
                 this.SetSwitch("forestsoldier_2", true);
                 break;
-            case "castleroad_sign1":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
-                {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
-                    this.dialogueBox.Close();
-                    return;
-                }
+            // #endregion
 
-                await this.dialogueBox.Type(LocaleManager.Find(id));
-                this.dialogueBox.Close();
-                break;
-            case "castleroad_sign2":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
-                {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
-                    this.dialogueBox.Close();
-                    return;
-                }
-
-                await this.dialogueBox.Type(LocaleManager.Find(id));
-                this.dialogueBox.Close();
-                break;
-
-            // ------------------------------------------------------- graveyard
+            // #region ------------------------------------- graveyard
             case "graveyard_ghost1": {
                 const ghost = RPGMovement.FindChar("ghost1");
                 const sprRenderer = ghost.GetComponent(SpriteRenderer);
@@ -5287,29 +5268,9 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
                 break;
-            case "graveyard_save": {
-                this.dialogueBox.SetFace("yoki", "surprised");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
-                this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
-                this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+            // #endregion
 
-                const choice = await this.DialogueChoice([
-                    LocaleManager.Find(`${id}_choices`)[0],
-                    LocaleManager.Find(`${id}_choices`)[1]
-                ], 1);
-
-                await this.dialogueBox.Close();
-
-                if (choice === 0)
-                {
-                    SaveScreen.Show();
-                    return true;
-                }
-            } break;
-
-            // ------------------------------------------------------- castletown_gate
+            // #region ------------------------------------- castletown_gate
             case "castletowngate_soldier":
                 if (this.GetSwitch("soldier_annoying"))
                 {
@@ -5407,39 +5368,409 @@ class EventSystem
 
                 await this.Run("carriage_left");
             } break;
-            case "castletowngate_sign":
-                if (!Player.instance.lookingAt.Equals(Vector2.up))
+            // #endregion
+
+            // #region ------------------------------------- castletown_west
+            case "castletownwest_townsperson1": {
+                const townsperson = RPGMovement.FindChar("townsperson1");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                if (this.GetSwitch("townsperson_1"))
                 {
-                    this.dialogueBox.SetFace("yoki", "look");
-                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_back`));
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                    this.SetSwitch("townsperson_1", true);
+                }
+
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletownwest_townsperson2": {
+                const townsperson = RPGMovement.FindChar("townsperson2");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletownwest_townsperson3": {
+                const townsperson = RPGMovement.FindChar("townsperson3");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                if (this.GetSwitch("townsperson_3"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                    this.SetSwitch("townsperson_3", true);
+                }
+
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletownwest_soldier1": {
+                const soldier = RPGMovement.FindChar("soldier1");
+                const randMove = soldier.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                soldier.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletownwest_soldierb":
+                RPGMovement.FindChar("soldierb").LookAtPlayer();
+
+                if (this.GetSwitch("soldier_talk_11"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
                     this.dialogueBox.Close();
                     return;
                 }
 
                 await this.dialogueBox.Type(LocaleManager.Find(id));
                 this.dialogueBox.Close();
+
+                this.SetSwitch("soldier_talk_11", true);
                 break;
-            case "castletowngate_save": {
-                this.dialogueBox.SetFace("yoki", "surprised");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
-                this.dialogueBox.SetFace("yoki", "unsure");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
-                this.dialogueBox.SetFace("yoki", "look");
-                await this.dialogueBox.Type(LocaleManager.Find(id)[2], true);
+            case "castletownwest_soldierd":
+                RPGMovement.FindChar("soldierd").LookAtPlayer();
 
-                const choice = await this.DialogueChoice([
-                    LocaleManager.Find(`${id}_choices`)[0],
-                    LocaleManager.Find(`${id}_choices`)[1]
-                ], 1);
-
-                await this.dialogueBox.Close();
-
-                if (choice === 0)
+                if (this.GetSwitch("soldier_talk_12"))
                 {
-                    SaveScreen.Show();
-                    return true;
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.Close();
+                    return;
                 }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                if (this.GetSwitch("prince_2"))
+                {
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_job`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_job`)[1]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_job`)[2]);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_nojob`));
+                }
+
+                this.dialogueBox.Close();
+
+                this.SetSwitch("soldier_talk_12", true);
+                break;
+            case "castletownwest_fmaid":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+
+            // #region ------------------------------------- castle
+            case "castle_bird1": {
+                const bird = RPGMovement.FindChar("bird1");
+                await bird.Jump();
+                await bird.Jump();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
             } break;
+            case "castle_bird2":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castle_townsperson1": {
+                const townsperson = RPGMovement.FindChar("townsperson1");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castle_townsperson2": {
+                const townsperson = RPGMovement.FindChar("townsperson2");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                if (this.GetSwitch("townsperson_2"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                    this.SetSwitch("townsperson_2", true);
+                }
+
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castle_soldiera":
+                RPGMovement.FindChar("soldiera").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+
+                this.dialogueBox.SetFace("yoki", "unsure smile")
+                if (this.GetSwitch("prince_2")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_job`));
+                else await this.dialogueBox.Type(LocaleManager.Find(`${id}_nojob`));
+
+                this.dialogueBox.Close();
+                break;
+            case "castle_soldierb":
+                RPGMovement.FindChar("soldierb").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castle_fountain":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+
+            // #region ------------------------------------- castletown_east
+            case "castletowneast_townsperson1": {
+                const townsperson = RPGMovement.FindChar("townsperson1");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                if (this.GetSwitch("townsperson_4"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+
+                    this.SetSwitch("townsperson_4", true);
+                }
+
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletowneast_townsperson2": {
+                const townsperson = RPGMovement.FindChar("townsperson2");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                if (this.GetSwitch("townsperson_6")) await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`));
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                    this.SetSwitch("townsperson_6", true);
+                }
+
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletowneast_soldier1":
+                RPGMovement.FindChar("soldier1").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "castletowneast_soldierab": {
+                const soldierA = RPGMovement.FindChar("soldiera");
+                const soldierB = RPGMovement.FindChar("soldierb");
+
+                soldierB.animateIdle = false;
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                soldierA.animateIdle = false;
+                soldierB.animateIdle = true;
+                
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                
+                soldierB.animateIdle = false;
+                soldierA.animateIdle = true;
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.Close();
+
+                soldierB.animateIdle = true;
+            } break;
+            case "castletowneast_cat1": {
+                const townsperson = RPGMovement.FindChar("cat1");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletowneast_cat2":
+                RPGMovement.FindChar("cat2").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castletowneast_cat3": {
+                const townsperson = RPGMovement.FindChar("cat3");
+                const randMove = townsperson.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                townsperson.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "castletowneast_cat4":
+                RPGMovement.FindChar("cat4").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "castletowneast_cat5":
+                RPGMovement.FindChar("cat5").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+            
+            // #region ------------------------------------- castletown_alley
+            case "castletownalley_rogue": {
+                const rogue = RPGMovement.FindChar("rogue");
+
+                if (this.GetSwitch("heroes_rogue"))
+                {
+                    rogue.LookAtPlayer();
+
+                    this.dialogueBox.SetFace("heroes", "rogue");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`));
+                    this.dialogueBox.Close();
+
+                    break;
+                }
+
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+
+                rogue.lockLook = false;
+                rogue.LookAtPlayer();
+
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("heroes", "rogue");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.SetFace("yoki", "meditative");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("heroes_rogue", true);
+            } break;
+            case "castletownalley_skull":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            // #endregion
         }
 
         await this.#ProcessCommonEvents();
@@ -5498,6 +5829,23 @@ class EventSystem
                 if (event === 0) AudioManager.instance.FadeOutBGM(1);
                 else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
                 break;
+        
+            case "27_28":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                else if (event === 2) AudioManager.instance.PlayBGM("castletown", 0.2);
+                break
+            case "28_27":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
+                break
         }
     }
 

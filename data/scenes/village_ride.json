@@ -9,8 +9,8 @@
         "sprites/tilesets/ext_ride",
         "sprites/collider",
         [
-            "sprites/chars/npc_2",
-            "spritelibs/chars/npc_2"
+            "sprites/chars/anpc_2",
+            "spritelibs/chars/anpc_2"
         ],
         [
             "sprites/chars/pig",
@@ -3464,7 +3464,7 @@
                     "type": "SpriteRenderer",
                     "args": {
                         "sprite": {
-                            "texture": "sprites/chars/npc_2",
+                            "texture": "sprites/chars/anpc_2",
                             "name": "left-a"
                         },
                         "sortingLayer": 1
@@ -3473,7 +3473,7 @@
                 {
                     "type": "SpriteLibrary",
                     "args": {
-                        "asset": "spritelibs/chars/npc_2"
+                        "asset": "spritelibs/chars/anpc_2"
                     }
                 },
                 {

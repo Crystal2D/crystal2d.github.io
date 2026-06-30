@@ -6,7 +6,29 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_castletown_houses",
         "sprites/tilesets/ext_castletown",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/npc_6",
+            "spritelibs/chars/npc_6"
+        ],
+        [
+            "sprites/chars/npc_1",
+            "spritelibs/chars/npc_1"
+        ],
+        [
+            "sprites/chars/npc_2",
+            "spritelibs/chars/npc_2"
+        ],
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/chars/fmaid",
+            "spritelibs/chars/fmaid"
+        ],
+        "sprites/entities/corpse",
+        "audio/bgm/castletown"
     ],
     "gameObjects": [
         {
@@ -11017,6 +11039,10 @@
                                             {
                                                 "x": 54,
                                                 "y": -27
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": -9
                                             }
                                         ]
                                     }
@@ -11024,6 +11050,12 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
                     }
                 }
             ]
@@ -11157,8 +11189,449 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 52,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 54,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 25,
+                                    "y": -5
+                                },
+                                "event": "castletownwest_townsperson3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 27,
+                                    "y": -5
+                                },
+                                "event": "castletownwest_townsperson3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 24,
+                                    "y": -21
+                                },
+                                "event": "castletownwest_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 26,
+                                    "y": -21
+                                },
+                                "event": "castletownwest_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 40,
+                                    "y": -29
+                                },
+                                "event": "castletownwest_soldierb"
+                            },
+                            {
+                                "pos": {
+                                    "x": 42,
+                                    "y": -29
+                                },
+                                "event": "castletownwest_soldierb"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_soldierd"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -27
+                                },
+                                "event": "castletownwest_soldierd"
+                            },
+                            {
+                                "pos": {
+                                    "x": 25,
+                                    "y": -25
+                                },
+                                "event": "castletownwest_tailorssign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 32,
+                                    "y": -25
+                                },
+                                "event": "castletownwest_innsign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 31,
+                                    "y": -17
+                                },
+                                "event": "castletownwest_librarysign"
+                            }
+                        ]
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson1",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 26.5,
+                    "y": -13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_6",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_6"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_townsperson1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson2",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 7.5,
+                    "y": -13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_1",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_townsperson2"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson3",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 13,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_2",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_townsperson3"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldier1",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 12.5,
+                    "y": -10.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_soldier1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierb",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 20.5,
+                    "y": -14.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_soldierb"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierd",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": -0.5,
+                    "y": -13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_soldierd"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_fmaid",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fmaid",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fmaid"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownwest_fmaid"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_corpse",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/corpse"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
                 }
             ]
         }

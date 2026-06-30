@@ -89,5 +89,12 @@
         "args": {
             "src": "se/journal.ogg"
         }
+    },
+    {
+        "path": "audio/se/door_5",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/door_5.ogg"
+        }
     }
 ]

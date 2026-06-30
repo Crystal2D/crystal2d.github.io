@@ -121,5 +121,12 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/entities/corpse",
+        "type": "Texture",
+        "args": {
+            "src": "entities/corpse.png"
+        }
     }
 ]

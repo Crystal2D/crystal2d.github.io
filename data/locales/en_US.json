@@ -1071,25 +1071,25 @@
 ],
 
 "castletown_west": "----------------------------------------------------------------------",
-"castletownwest_citizen1": [
+"castletownwest_townsperson1": [
     "\\SE[2]You have antennae!\\.\\.\nAnd a tail!\\.\\.\nAre you a BEAST-Type?",
     "\\SE[1]No... I'm not."
 ],
-"castletownwest_citizen1_talked": [
+"castletownwest_townsperson1_talked": [
     "\\SE[2]I hear the Village near here is \nfilled with people with animal parts!",
     "That means they're all \nBEAST-Types,\\.\\. right?",
     "\\SE[1]Not quite...\\.\\.\nThey are still human."
 ],
-"castletownwest_citizen2": [
+"castletownwest_townsperson2": [
     "\\SE[8]Since more BEAST-Types have been\nshowing up,",
     "Taxes have been going through the\nroof.",
     "I don't know how much more I can\nhandle this...\\SE[1]"
 ],
-"castletownwest_citizen3": [
+"castletownwest_townsperson3": [
     "\\SE[4]Wow!\\.\\.\nYou have a tail!\\.\\. You're so cool!",
     "I want to be like you when I grow \nup!\\SE[1]"
 ],
-"castletownwest_citizen3_talked": [
+"castletownwest_townsperson3_talked": [
     "\\SE[4]How do I grow antennae?",
     "\\SE[1](...)"
 ],
@@ -1097,22 +1097,22 @@
     "\\SE[6]I wanna quit my job and become an\napprentice to the Tailors.",
     "They're so cute...\\SE[1]"
 ],
-"castletownwest_soldier11": "\\SE[11]I sure could go for a bite to eat...\\SE[1]",
-"castletownwest_soldier11_talked": [
+"castletownwest_soldierb": "\\SE[11]I sure could go for a bite to eat...\\SE[1]",
+"castletownwest_soldierb_talked": [
     "\\SE[11]I heard Caina opened up a Cafe \nsome time ago in the Village near \nhere.",
     "I should stop by sometime.\\SE[1]"
 ],
-"castletownwest_soldier12": [
+"castletownwest_soldierd": [
     "\\SE[6]Oh?\\.\\. You're back in Town,\\.\\. Yoki?",
     "Got another job from the Prince?\\SE[1]"
 ],
-"castletownwest_soldier12_job": [
+"castletownwest_soldierd_job": [
     "\\SE[1]Yea...\\.\\.\nI think I'm gonna be sent out \nsometime soon.",
     "\\SE[6]'Nother BEAST-Type,\\.\\. huh?",
     "\\SE[1]Yea..."
 ],
-"castletownwest_soldier12_nojob": "\\SE[1]I'm not sure yet...\\.\\.\nI just wanted to take a \nsmall walk is all.",
-"castletownwest_soldier12_talked": [
+"castletownwest_soldierd_nojob": "\\SE[1]I'm not sure yet...\\.\\.\nI just wanted to take a \nsmall walk is all.",
+"castletownwest_soldierd_talked": [
     "\\SE[6]Things have been pretty tense in\nTown lately.",
     "With all the BEAST-Types showin'\nup recently,\\.\\. everyone's on edge.\\SE[1]"
 ],
@@ -1122,19 +1122,20 @@
 "castletownwest_innsign_back": "I can't read the sign from \nhere...",
 "castletownwest_librarysign": "Town Library",
 "castletownwest_librarysign_back": "I can't read the sign from \nhere..",
+"castletownwest_fmaid": "\\SE[2]Oh? What are you doing here?\\SE[1]",
 
 "castle": "----------------------------------------------------------------------",
 "castle_bird1": "\\SE[4]Chirp!\\SE[1]",
 "castle_bird2": "\\SE[4]Chirp..\\SE[1]",
-"castle_citizen1": [
+"castle_townsperson1": [
     "\\SE[10]The Prince is so handsome..!",
     "If only he wasn't so cold and \nstern.\\SE[1]"
 ],
-"castle_citizen2": [
+"castle_townsperson2": [
     "\\SE[2]My dad doesn't like the Prince.",
     "He says he'll never be like the\nlast King.\\SE[1]"
 ],
-"castle_citizen2_talked": [
+"castle_townsperson2_talked": [
     "\\SE[2]My dad says a BEAST-Type works \nfor the Crown.",
     "Is that true?",
     "\\SE[1](...)"
@@ -1149,22 +1150,22 @@
 ],
 
 "castletown_east": "----------------------------------------------------------------------",
-"castletowneast_citizen1": [
+"castletowneast_townsperson1": [
     "\\SE[5]If you ask me,",
     "I think the reason so many \nBEAST-Types have been showing up,",
     "Is because of the one the Prince \nhired!",
     "\\SE[1](...)"
 ],
-"castletowneast_citizen1_talked": [
+"castletowneast_townsperson1_talked": [
     "\\SE[5]Honestly!",
     "What was he thinking by having \na BEAST-Type work for him..?",
     "Even after his parents were killed \nby one!\\SE[1]"
 ],
-"castletowneast_citizen2": [
+"castletowneast_townsperson2": [
     "\\SE[8]Man I've had enough of this town.",
     "I've been thinking about moving\nto the Village nearby..\\SE[1]"
 ],
-"castletowneast_citizen2_talked": "\\SE[8]I want a quieter life...\\SE[1]",
+"castletowneast_townsperson2_talked": "\\SE[8]I want a quieter life...\\SE[1]",
 "castletowneast_soldier1": [
     "\\SE[6]I was thinking of picking up a \nnew spear from the Blacksmith.",
     "His work is really fantastic!\\SE[1]"
@@ -1181,6 +1182,10 @@
 "castletowneast_cat3": "Rrrrr",
 "castletowneast_cat4": "Meooooooww",
 "castletowneast_cat5": "Grrr",
+"castletowneast_doctorsign": "Town Doctor",
+"castletowneast_doctorsign_back": "I can't read the sign from \nhere...",
+"castletowneast_blacksmithsign": "Town Blacksmith",
+"castletowneast_blacksmithsign_back": "I can't read the sign from \nhere...",
 
 "castletown_alley": "----------------------------------------------------------------------",
 "castletownalley_skull": "...",

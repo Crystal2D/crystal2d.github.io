@@ -4,7 +4,12 @@
         "sprites/tilesets/ext_castletown_alley",
         "sprites/tilesets/ext_castletown_alley1",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/hero_4",
+            "spritelibs/chars/hero_4"
+        ],
+        "sprites/faces/heroes"
     ],
     "gameObjects": [
         {
@@ -3220,6 +3225,22 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "adventure_done"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -3277,7 +3298,101 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 9
+                                },
+                                "event": "castletownalley_rogue",
+                                "conditions": [
+                                    {
+                                        "name": "adventure_done"
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 9
+                                },
+                                "event": "castletownalley_skull"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": 8
+                                },
+                                "event": "castletownalley_skull"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 9
+                                },
+                                "event": "castletownalley_skull"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 0
+                                },
+                                "event": "castletownalley_skull"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rogue",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": -0.5,
+                    "y": 4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/hero_4",
+                            "name": "up-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/hero_4"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletownalley_rogue",
+                        "animateIdle": false,
+                        "lockLook": true
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "adventure_done"
+                            }
+                        ]
                     }
                 }
             ]
