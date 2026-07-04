@@ -61,5 +61,12 @@
         "args": {
             "src": "bgm/castletown.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/dragon",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/dragon.ogg"
+        }
     }
 ]

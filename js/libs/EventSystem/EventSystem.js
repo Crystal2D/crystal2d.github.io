@@ -5771,6 +5771,523 @@ class EventSystem
                 this.dialogueBox.Close();
                 break;
             // #endregion
+
+            // #region ------------------------------------- dragoncliff
+            case "dragoncliff_reveal": {
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "dragon_1", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+
+                await this.illustrator.Set(0, "dragon_2", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("dragon", "dismiss");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                this.dialogueBox.SetFace("dragon", "dismiss");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Set(1, "dragon_3", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(20);
+                this.illustrator.Clear(0);
+
+                this.dialogueBox.SetFace("dragon", "stern");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(1);
+
+                await this.illustrator.Set(0, "dragon_4", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(60);
+
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[12]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[13]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[14]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[15]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[16]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[17]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[18]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[19]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
+                this.dialogueBox.SetFace("dragon", "dismiss");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[21]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+
+                await this.illustrator.Set(0, "dragon_5", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("dragon", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[22]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[23]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[24]);
+                this.dialogueBox.SetFace("dragon", "dismiss");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[25]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[26]);
+                this.dialogueBox.SetFace("dragon", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[27]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+
+                await this.illustrator.Set(0, "dragon_6", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[28]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[29]);
+                this.dialogueBox.SetFace("dragon", "dismiss");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[30]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+
+                await this.illustrator.Set(0, "dragon_7", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.SetSwitch("dragon_transformed", true);
+
+                this.dialogueBox.SetFace("dragon", "smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[31]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[32]);
+                this.dialogueBox.Close();
+
+                AudioManager.instance.PlaySE("wind_whish3", 0.9);
+
+                await this.illustrator.Set(1, "blank", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(1, 1);
+                await this.Timer(30);
+
+                await this.illustrator.Set(0, "dragon_8", 50 / 255, new Vector2(0, 3.5));
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(40);
+                this.illustrator.Clear(1);
+
+                await this.illustrator.Move(0, null, new Vector2(0, 50 / 96), null, 60);
+                AudioManager.instance.PlaySE("dragon", 0.9);
+                await this.illustrator.Move(0, null, Vector2.zero, null, 60);
+                await this.Timer(30);
+                
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                Player.instance.TP(new Vector2(0, 3));
+                CamCtrl.current.Scroll(new Vector2(0, 3.5), 6);
+
+                await this.illustrator.Set(0, "dragon_9", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(20);
+
+                this.dialogueBox.SetFace("dragon", "reveal");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[33]);
+                this.dialogueBox.SetFace("dragon", "reveal");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[34]);
+                this.dialogueBox.Close();
+
+                await this.illustrator.Move(0, 200 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 150 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                AudioManager.instance.PlayBGM("dragon", 0.2);
+
+                await this.Timer(40);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                await this.Timer(40);
+
+                Player.instance.lockLook = true;
+                Player.instance.moveSpeed = 3;
+                await Player.instance.MoveTowards(Vector2.down);
+                Player.instance.lockLook = false;
+                Player.instance.moveSpeed = 4;
+
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[35]);
+                this.dialogueBox.SetFace("yoki", "sweatdrop");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[36]);
+                this.dialogueBox.SetFace("yoki", "upset");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[37]);
+                this.dialogueBox.Close();
+
+                const dragon = RPGMovement.FindChar("dragon");
+                dragon.LookAt(Vector2.left);
+                dragon.moveSpeed = 6;
+                AudioManager.instance.PlaySE("dragon", 0.9);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[38]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[39]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[40]);
+                this.dialogueBox.Close();
+
+                dragon.moveSpeed = 4;
+                dragon.LookAt(Vector2.right);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[41]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[42]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[43]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[44]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[45]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[46]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[47]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[48]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[49]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[50]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[51]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[52]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[53]);
+                this.dialogueBox.SetFace("yoki", "think");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[54]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[55]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[56]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[57]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[58]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[59]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.right);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[60]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[61]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[62]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[63]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[64]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[65]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[66]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.right);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[67]);
+                this.dialogueBox.Close();
+                
+                dragon.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[68]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[69]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[70]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[71]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[72]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[73]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[74]);
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[75]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[76]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[77]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[78]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[79]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[80]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[81]);
+                this.dialogueBox.Close();
+
+                dragon.animateIdle = false;
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[82]);
+                this.dialogueBox.SetFace("yoki", "annoyed");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[83]);
+                this.dialogueBox.Close();
+
+                dragon.animateIdle = true;
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[84]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[85]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[86]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.right);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[87]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[88]);
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[89]);
+                this.dialogueBox.SetFace("yoki", "disheartened");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[90]);
+                this.dialogueBox.Close();
+
+                dragon.LookAt(Vector2.down);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[91]);
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[92]);
+                this.dialogueBox.Close();
+
+                dragon.moveSpeed = 6;
+                dragon.LookAt(Vector2.left);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[93]);
+
+                AudioManager.instance.PlaySE("dragon", 0.9);
+
+                this.dialogueBox.SetFace("dragon", "familiar");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[94]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[95]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[96]);
+                this.dialogueBox.Close();
+
+                await this.Timer(20);
+                CamCtrl.current.Scroll(new Vector2(0, -3.5), 4);
+                await this.Timer(60);
+
+                dragon.moveSpeed = 2;
+                dragon.LookAt(Vector2.down);
+                await this.Timer(60);
+
+                this.SetSwitch("dragon_done", true);
+                this.AddToVariable("illusts");
+            } break;
+            case "dragoncliff_dragon":
+                CamCtrl.current.Scroll(new Vector2(0, 2.5), 4);
+                await this.Timer(90);
+
+                if (this.GetSwitch("dragon_talked"))
+                {
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[2]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[3]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[4]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[5]);
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[10]);
+                    this.dialogueBox.SetFace("dragon", "familiar");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[11]);
+
+                    this.SetSwitch("dragon_talked", true);
+                }
+
+                this.dialogueBox.Close();
+
+                CamCtrl.current.Scroll(new Vector2(0, -2.5), 4);
+                await this.Timer(90);
+                break;
+            // #endregion
         }
 
         await this.#ProcessCommonEvents();
@@ -5846,6 +6363,15 @@ class EventSystem
                 }
                 else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
                 break
+
+            case "34_35":
+                if (event === 0) AudioManager.instance.FadeOutBGM(1);
+                else if (event === 2 && this.GetSwitch("dragon_transformed")) AudioManager.instance.PlayBGM("dragon", 0.2);
+                break;
+            case "35_34":
+                if (event === 0) AudioManager.instance.FadeOutBGM(1);
+                else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
+                break;
         }
     }
 

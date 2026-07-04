@@ -63,7 +63,9 @@
         "carriage_left",
         "castle",
         "castletown_east",
-        "castletown_alley"
+        "castletown_alley",
+        "mysterious",
+        "dragoncliff"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

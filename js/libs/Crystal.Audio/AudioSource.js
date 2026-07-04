@@ -196,7 +196,7 @@ class AudioSource extends Behavior
     {
         this.Stop();
 
-        this.#playing = true;
+        if (this.#clip != null) this.#playing = true;
     }
 
     PlayScheduled (time)

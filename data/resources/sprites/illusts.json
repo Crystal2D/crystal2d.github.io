@@ -262,5 +262,77 @@
             "src": "illusts\\carriage_left.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/dragon_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_4.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_5",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_5.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_6",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_6.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_7",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_7.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_8",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_8.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_9",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_9.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

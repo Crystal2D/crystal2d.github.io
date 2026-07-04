@@ -631,6 +631,14 @@
             "texture": "sprites/chars/npc_8"
         }
     },
+    {
+        "path": "spritelibs/chars/dragon",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/dragon"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

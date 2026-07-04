@@ -96,5 +96,19 @@
         "args": {
             "src": "se/door_5.ogg"
         }
+    },
+    {
+        "path": "audio/se/wind_whish3",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/wind_whish3.ogg"
+        }
+    },
+    {
+        "path": "audio/se/dragon",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/dragon.ogg"
+        }
     }
 ]

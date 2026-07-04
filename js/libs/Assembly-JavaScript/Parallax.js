@@ -24,7 +24,7 @@ class Parallax extends GameBehavior
         );
         this.#count = Vector2.Add(
             Vector2.Divide(this.#camSize, this.#sprSize),
-            Vector2.one
+            new Vector2(2, 2)
         );
         this.#count.x = Math.ceil(this.#count.x);
         this.#count.y = Math.ceil(this.#count.y);
@@ -38,7 +38,7 @@ class Parallax extends GameBehavior
                 this.#sprSize
             )
         );
-
+        
         const targetCount = this.#count.x * this.#count.y;
         let loadedRenderers = 0;
 
@@ -61,19 +61,14 @@ class Parallax extends GameBehavior
     {
         this.transform.localPosition = this.offset;
 
-        const dir = new Vector2(
-            (-this.speed.x / Math.abs(this.speed.x)) || 1,
-            (this.speed.y / Math.abs(this.speed.y)) || 1,
-        );
-
         for (let y = 0; y < this.#count.y; y++)
         {
             for (let x = 0; x < this.#count.x; x++) (async () => {
                 const renderer = this.#renderers.get(`${x}_${y}`);
                 renderer.transform.parent = this.transform;
                 renderer.transform.localPosition = new Vector2(
-                    0.5 * (this.#sprSize.x - this.#camSize.x) + (x * this.#sprSize.x * dir.x),
-                    0.5 * (this.#camSize.y - this.#sprSize.y) - (y * this.#sprSize.y * dir.y)
+                    0.5 * (this.#sprSize.x - this.#camSize.x) + ((x - 1) * this.#sprSize.x),
+                    0.5 * (this.#camSize.y - this.#sprSize.y) - ((y - 1) * this.#sprSize.y)
                 );
             })();
         }
@@ -94,12 +89,17 @@ class Parallax extends GameBehavior
             )
         );
 
-        if (Math.abs(this.#pos.x) >= this.#threshold.x) this.#pos.x = (this.#pos.x % this.#threshold.x);
-        if (Math.abs(this.#pos.y) >= this.#threshold.y) this.#pos.y = (this.#pos.y % this.#threshold.y);
+        const pos = Vector2.Add(
+            Vector2.Scale(Camera.main.transform.localPosition, -2),
+            this.#pos
+        );
+
+        if (Math.abs(pos.x) >= this.#threshold.x) pos.x = (pos.x % this.#threshold.x);
+        if (Math.abs(pos.y) >= this.#threshold.y) pos.y = (pos.y % this.#threshold.y);
 
         this.transform.localPosition = Vector2.Add(
             Vector2.Scale(
-                Vector2.Scale(this.#pos, this.#tileSize),
+                Vector2.Scale(pos, this.#tileSize),
                 0.5
             ),
             this.offset
