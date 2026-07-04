@@ -5597,5 +5597,251 @@
         "args": {
             "src": "collider.png"
         }
+    },
+    {
+        "path": "sprites/tilesets/ext_port_wall",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_port_wall.png",
+            "sprites": [
+                {
+                    "name": "ext_port_wall (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_port_wall (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_port_wall (2)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_port_wall (3)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/floorboards",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\floorboards.png",
+            "sprites": [
+                {
+                    "name": "floorboards (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (2)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (3)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (4)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (5)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (6)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (7)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (8)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (9)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (10)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (11)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (12)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (13)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (14)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair (1)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "floorboards (15)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair (2)",
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair (3)",
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "box",
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair (4)",
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stair (5)",
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
     }
 ]

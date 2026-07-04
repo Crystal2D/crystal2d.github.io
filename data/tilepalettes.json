@@ -2468,6 +2468,32 @@
         ]
     },
     {
+        "name": "Exterior - Port Wall",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_port_wall",
+                "sprites": [
+                    {
+                        "name": "ext_port_wall (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_port_wall (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_port_wall (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_port_wall (3)",
+                        "id": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Ride",
         "textures": [
             {
@@ -2578,6 +2604,108 @@
                     {
                         "name": null,
                         "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Floorboards",
+        "textures": [
+            {
+                "src": "sprites/tilesets/floorboards",
+                "sprites": [
+                    {
+                        "name": "floorboards (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "floorboards (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "floorboards (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "floorboards (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "floorboards (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "floorboards (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "floorboards (6)",
+                        "id": 6
+                    },
+                    {
+                        "name": "floorboards (7)",
+                        "id": 7
+                    },
+                    {
+                        "name": "floorboards (8)",
+                        "id": 8
+                    },
+                    {
+                        "name": "floorboards (9)",
+                        "id": 9
+                    },
+                    {
+                        "name": "floorboards (10)",
+                        "id": 10
+                    },
+                    {
+                        "name": "floorboards (11)",
+                        "id": 11
+                    },
+                    {
+                        "name": "floorboards (12)",
+                        "id": 12
+                    },
+                    {
+                        "name": "floorboards (13)",
+                        "id": 13
+                    },
+                    {
+                        "name": "floorboards (14)",
+                        "id": 14
+                    },
+                    {
+                        "name": "stair",
+                        "id": 15
+                    },
+                    {
+                        "name": "stair (1)",
+                        "id": 16
+                    },
+                    {
+                        "name": "floorboards (15)",
+                        "id": 17
+                    },
+                    {
+                        "name": "stair (2)",
+                        "id": 18
+                    },
+                    {
+                        "name": "stair (3)",
+                        "id": 19
+                    },
+                    {
+                        "name": "box",
+                        "id": 20
+                    },
+                    {
+                        "name": "stair (4)",
+                        "id": 21
+                    },
+                    {
+                        "name": "stair (5)",
+                        "id": 22
                     }
                 ]
             }
