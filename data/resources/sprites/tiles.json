@@ -5843,5 +5843,1182 @@
                 }
             ]
         }
+    },
+    {
+        "path": "sprites/tilesets/underground",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\underground.png",
+            "sprites": [
+                {
+                    "name": "ladder",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ladder (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (0)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (1)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ladder (2)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ladder (3)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (2)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (3)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ladder (4)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ladder (5)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (4)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (5)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (6)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (7)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (8)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (9)",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (10)",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (11)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "underground (12)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_lighthouse",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_lighthouse.png",
+            "sprites": [
+                {
+                    "name": "top",
+                    "rect": {
+                        "width": 56,
+                        "height": 56
+                    }
+                },
+                {
+                    "name": "bottom",
+                    "rect": {
+                        "y": 56,
+                        "width": 56,
+                        "height": 48
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_lighthouse1",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_lighthouse1.png",
+            "sprites": [
+                {
+                    "name": "ext_lighthouse1 (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_lighthouse1 (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_ship",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_ship.png",
+            "sprites": [
+                {
+                    "name": "ext_ship (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (2)",
+                    "rect": {
+                        "x": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (3)",
+                    "rect": {
+                        "x": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (4)",
+                    "rect": {
+                        "x": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (5)",
+                    "rect": {
+                        "x": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ldbarrel",
+                    "rect": {
+                        "x": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ldbarrel (1)",
+                    "rect": {
+                        "x": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rdbarrel",
+                    "rect": {
+                        "x": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rdbarrel (1)",
+                    "rect": {
+                        "x": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (6)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "barrel",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "barrel (2)",
+                    "rect": {
+                        "x": 16,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (7)",
+                    "rect": {
+                        "x": 24,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (8)",
+                    "rect": {
+                        "x": 32,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (9)",
+                    "rect": {
+                        "x": 40,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ldbarrel (2)",
+                    "rect": {
+                        "x": 48,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ldbarrel (3)",
+                    "rect": {
+                        "x": 56,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rdbarrel (2)",
+                    "rect": {
+                        "x": 64,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "rdbarrel (3)",
+                    "rect": {
+                        "x": 72,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (10)",
+                    "rect": {
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "barrel (4)",
+                    "rect": {
+                        "x": 8,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "barrel (5)",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (11)",
+                    "rect": {
+                        "x": 24,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (12)",
+                    "rect": {
+                        "x": 32,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (13)",
+                    "rect": {
+                        "x": 40,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs",
+                    "rect": {
+                        "x": 48,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs (1)",
+                    "rect": {
+                        "x": 56,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm",
+                    "rect": {
+                        "x": 64,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm (1)",
+                    "rect": {
+                        "x": 72,
+                        "y": 16,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (14)",
+                    "rect": {
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (15)",
+                    "rect": {
+                        "x": 8,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (16)",
+                    "rect": {
+                        "x": 16,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (17)",
+                    "rect": {
+                        "x": 24,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (18)",
+                    "rect": {
+                        "x": 32,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (19)",
+                    "rect": {
+                        "x": 40,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs (2)",
+                    "rect": {
+                        "x": 48,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs (3)",
+                    "rect": {
+                        "x": 56,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm (2)",
+                    "rect": {
+                        "x": 64,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm (3)",
+                    "rect": {
+                        "x": 72,
+                        "y": 24,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (20)",
+                    "rect": {
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (21)",
+                    "rect": {
+                        "x": 8,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (22)",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (23)",
+                    "rect": {
+                        "x": 24,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (24)",
+                    "rect": {
+                        "x": 32,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (25)",
+                    "rect": {
+                        "x": 40,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs (4)",
+                    "rect": {
+                        "x": 48,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "stairs (5)",
+                    "rect": {
+                        "x": 56,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm (4)",
+                    "rect": {
+                        "x": 64,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "helm (5)",
+                    "rect": {
+                        "x": 72,
+                        "y": 32,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (26)",
+                    "rect": {
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (27)",
+                    "rect": {
+                        "x": 8,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (28)",
+                    "rect": {
+                        "x": 16,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (29)",
+                    "rect": {
+                        "x": 24,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (30)",
+                    "rect": {
+                        "x": 32,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (31)",
+                    "rect": {
+                        "x": 40,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (32)",
+                    "rect": {
+                        "x": 48,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (33)",
+                    "rect": {
+                        "x": 56,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (34)",
+                    "rect": {
+                        "x": 64,
+                        "y": 40,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (35)",
+                    "rect": {
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (36)",
+                    "rect": {
+                        "x": 8,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (37)",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (38)",
+                    "rect": {
+                        "x": 24,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (39)",
+                    "rect": {
+                        "x": 32,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (40)",
+                    "rect": {
+                        "x": 40,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (41)",
+                    "rect": {
+                        "x": 48,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (42)",
+                    "rect": {
+                        "x": 56,
+                        "y": 48,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (43)",
+                    "rect": {
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (44)",
+                    "rect": {
+                        "x": 8,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (45)",
+                    "rect": {
+                        "x": 16,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (46)",
+                    "rect": {
+                        "x": 24,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (47)",
+                    "rect": {
+                        "x": 32,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (48)",
+                    "rect": {
+                        "x": 40,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (49)",
+                    "rect": {
+                        "x": 48,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (50)",
+                    "rect": {
+                        "x": 56,
+                        "y": 56,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs",
+                    "rect": {
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs (1)",
+                    "rect": {
+                        "x": 8,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (51)",
+                    "rect": {
+                        "x": 16,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (52)",
+                    "rect": {
+                        "x": 24,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (53)",
+                    "rect": {
+                        "x": 32,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (54)",
+                    "rect": {
+                        "x": 40,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (55)",
+                    "rect": {
+                        "x": 48,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (56)",
+                    "rect": {
+                        "x": 56,
+                        "y": 64,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs (2)",
+                    "rect": {
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs (3)",
+                    "rect": {
+                        "x": 8,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (57)",
+                    "rect": {
+                        "x": 16,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (58)",
+                    "rect": {
+                        "x": 24,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (59)",
+                    "rect": {
+                        "x": 32,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (60)",
+                    "rect": {
+                        "x": 40,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (61)",
+                    "rect": {
+                        "x": 48,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (62)",
+                    "rect": {
+                        "x": 56,
+                        "y": 72,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs (4)",
+                    "rect": {
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "morestairs (5)",
+                    "rect": {
+                        "x": 8,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (63)",
+                    "rect": {
+                        "x": 16,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (64)",
+                    "rect": {
+                        "x": 24,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (65)",
+                    "rect": {
+                        "x": 32,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (66)",
+                    "rect": {
+                        "x": 40,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (67)",
+                    "rect": {
+                        "x": 48,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship (68)",
+                    "rect": {
+                        "x": 56,
+                        "y": 80,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_ship1",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_ship1.png"
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_ship2",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_ship2.png",
+            "sprites": [
+                {
+                    "name": "ext_ship2 (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "ext_ship2 (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/tilesets/ext_grave",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\ext_grave.png"
+        }
+    },
+    {
+        "path": "sprites/tilesets/hole",
+        "type": "Texture",
+        "args": {
+            "src": "tilesets\\hole.png",
+            "sprites": [
+                {
+                    "name": "hole (0)",
+                    "rect": {
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "hole (1)",
+                    "rect": {
+                        "x": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "hole (2)",
+                    "rect": {
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                },
+                {
+                    "name": "hole (3)",
+                    "rect": {
+                        "x": 8,
+                        "y": 8,
+                        "width": 8,
+                        "height": 8
+                    }
+                }
+            ]
+        }
     }
 ]
