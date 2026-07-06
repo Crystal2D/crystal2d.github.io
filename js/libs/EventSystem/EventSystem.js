@@ -6372,6 +6372,24 @@ class EventSystem
                 if (event === 0) AudioManager.instance.FadeOutBGM(1);
                 else if (event === 2) AudioManager.instance.PlayBGM("forest", 0.2);
                 break;
+            
+            case "32_36":
+            case "36_32":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                break;
+            
+            case "36_38":
+            case "38_36":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("stair_5", 0.6, 1.2);
+                }
+                break;
         }
     }
 

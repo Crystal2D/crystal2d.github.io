@@ -1325,6 +1325,89 @@
     "Should a god be forgotten,\nthe god ceases to exist.",
     "One day, in the same way,\nI will be forgotten, and\nsimply vanish.",
     "But,\\.\\. I will fight to exist \nuntil I carry out my revenge \non Zera.\\SE[1]"
+],
+
+"port": "----------------------------------------------------------------------",
+"port_soldiera": [
+    "\\SE[6]You're not thinking of hopping \naboard the ship,\\.\\. are you?",
+    "\\SE[1]I don't plan on riding the \nship...\\.\\. But I might walk \naround a bit."
+],
+"port_soldiera_talked": [
+    "\\SE[6]If you plan on sailing away on the\nship,\\.\\. I'll have to inform the\nPrince about this...",
+    "\\SE[1]Don't worry...\\.\\.\nI don't plan to."
+],
+"port_soldierb": "\\SE[8]I wanna go on the ship and grab \na drink...\\SE[1]",
+"port_soldierc": [
+    "\\SE[6]You're not setting out, are you?",
+    "Eh,\\.\\. go ahead,\\.\\. I won't tell.",
+    "\\SE[1](I wish this was the gaurd\nthat always catches me \nwhen I leave somewhere.)"
+],
+"port_sailor": [
+    "\\SE[8]It always feels strange to walk on \nland again after spending days at \nsea.",
+    "I feel like I'm still swaying...\\SE[1]"
+],
+"port_fishing1": [
+    "\\SE[2]This is a nice fishing spot.\nBut.\\..\\..",
+    "There's so much cargo on the pier \ntoday. ",
+    "Guess a large shipment must've\ncome in..\\SE[1]"
+],
+"port_fishing2_1": "\\SE[10]I'm not catching any fish...\\.\\.\nI wonder what I'm doing wrong...\\SE[1]",
+"port_fishing2_2": [
+    "\\SE[10]There was a mysterious man who\npassed by here earlier.",
+    "He looked really cool.\\..\\.. But kind of \nscary.",
+    "It must've been my imagination, but I\nthought I saw him hover above the \ncastle walls.",
+    "He had.\\..\\.. An otherworldy feeling \nabout him...\\SE[1]"
+],
+"port_fishing2_3": "\\SE[10]*sigh* \nMaybe I should just give up and go \nhome soon...\\SE[1]",
+"port_fishing3": "\\SE[5]Nice day for fishing, isn't it? \\SE[1]",
+"port_fishing4": [
+    "\\SE[6]Catching a whole ton of fish today!",
+    "Lucky me!\\SE[1]"
+],
+"port_pier": [
+    ".\\..\\..",
+    "(I wonder what's beyond the \nsea.)",
+    "(Far off lands...\\.\nOther kingdoms\\...\\..\nNew horizons...)",
+    "(Maybe.\\.\\..\\.\\.. people like me.)",
+    "(But...)",
+    "(I don't think the Prince \nwould ever let me go and \nsee for myself.)",
+    "(I need to stay here anyway.\\..\\..\nAnd wait for\\.\\..\\.\\..)",
+    "(...)"
+],
+"port_pier_done": ".\\..\\..",
+
+"lighthouse": "----------------------------------------------------------------------",
+"lighthouse_soldier": "\\SE[6]The sea really washes away all\nyour stresses and worries,\\.\\. huh?\\SE[1]",
+"lighthouse_?": [
+    "Huh..?",
+    "...",
+    "Please... Don't tell anyone..."
+],
+
+"ship": "----------------------------------------------------------------------",
+"ship_sailor1": "\\SE[6]I love the sea!!\\SE[1]",
+"ship_sailor2": "\\SE[8]The Captain's quarters are ahead.\\SE[1]",
+"ship_sailor2_talked": [
+    "\\SE[8]*Sigh*\\.\\. I wonder when we're setting\nsail...",
+    "I wanna see my girlfriend again.",
+    "The sooner we're done here,\\.\\. the \nsooner I get to see her again.",
+    "\\SE[1]Long distance must be tough,\nhuh."
+],
+"ship_dog": "\\SE[9]Woof!\\SE[1]",
+"ship_barrel": "There's fish in this barrel.",
+"ship_helm": [
+    "The helm of the ship.",
+    "I wanna spin it."
+],
+"ship_box": [
+    "..!",
+    "There was a rat in the box.."
+],
+
+"grave": "----------------------------------------------------------------------",
+"grave_???": [
+    "!?",
+    "..What was that all about?"
 ]
 
 }

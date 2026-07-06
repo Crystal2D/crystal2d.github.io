@@ -65,7 +65,11 @@
         "castletown_east",
         "castletown_alley",
         "mysterious",
-        "dragoncliff"
+        "dragoncliff",
+        "port",
+        "lighthouse",
+        "ship",
+        "grave"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

@@ -110,5 +110,12 @@
         "args": {
             "src": "se/dragon.ogg"
         }
+    },
+    {
+        "path": "audio/se/stair_5",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/stair_5.ogg"
+        }
     }
 ]

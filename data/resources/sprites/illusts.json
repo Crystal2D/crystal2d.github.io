@@ -334,5 +334,13 @@
             "src": "illusts\\dragon_9.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/pier",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\pier.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

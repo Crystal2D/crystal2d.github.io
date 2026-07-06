@@ -639,6 +639,126 @@
             "texture": "sprites/chars/dragon"
         }
     },
+    {
+        "path": "spritelibs/chars/fishing_1",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/fishing_1"
+        }
+    },
+    {
+        "path": "spritelibs/chars/fishing_2",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/fishing_2"
+        }
+    },
+    {
+        "path": "spritelibs/chars/fishing_3",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/fishing_3"
+        }
+    },
+    {
+        "path": "spritelibs/chars/fishing_4",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/fishing_4"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_1",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_1"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_2",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_2"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_3",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_3"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_4",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_4"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_5",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_5"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_6",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_6"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_7",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_7"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_8",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_8"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_bartender",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/sailor_bartender"
+        }
+    },
+    {
+        "path": "spritelibs/chars/sailor_drinking",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/sailor_drinking"
+        }
+    },
+    {
+        "path": "spritelibs/chars/noname",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/chars/noname"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

@@ -28,7 +28,8 @@
             "spritelibs/chars/fmaid"
         ],
         "sprites/entities/corpse",
-        "audio/bgm/castletown"
+        "audio/bgm/castletown",
+        "audio/se/door_5"
     ],
     "gameObjects": [
         {

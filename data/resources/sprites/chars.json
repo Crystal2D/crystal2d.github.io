@@ -1649,7 +1649,6 @@
                 {
                     "name": "left-a",
                     "rect": {
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -1657,7 +1656,6 @@
                 {
                     "name": "right-a",
                     "rect": {
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -1665,7 +1663,7 @@
                 {
                     "name": "up-a",
                     "rect": {
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -1673,8 +1671,6 @@
                 {
                     "name": "left-b",
                     "rect": {
-                        "x": 16,
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -1682,8 +1678,6 @@
                 {
                     "name": "right-b",
                     "rect": {
-                        "x": 16,
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -1691,8 +1685,7 @@
                 {
                     "name": "up-b",
                     "rect": {
-                        "x": 16,
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3394,7 +3387,6 @@
                 {
                     "name": "b",
                     "rect": {
-                        "x": 24,
                         "width": 24,
                         "height": 32
                     },
@@ -3462,7 +3454,6 @@
                 {
                     "name": "left-a",
                     "rect": {
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3470,7 +3461,6 @@
                 {
                     "name": "right-a",
                     "rect": {
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -3478,7 +3468,7 @@
                 {
                     "name": "up-a",
                     "rect": {
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3486,8 +3476,6 @@
                 {
                     "name": "left-b",
                     "rect": {
-                        "x": 16,
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3495,8 +3483,6 @@
                 {
                     "name": "right-b",
                     "rect": {
-                        "x": 16,
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -3504,8 +3490,7 @@
                 {
                     "name": "up-b",
                     "rect": {
-                        "x": 16,
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3537,7 +3522,6 @@
                 {
                     "name": "left-a",
                     "rect": {
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3545,7 +3529,6 @@
                 {
                     "name": "right-a",
                     "rect": {
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -3553,7 +3536,7 @@
                 {
                     "name": "up-a",
                     "rect": {
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3561,8 +3544,6 @@
                 {
                     "name": "left-b",
                     "rect": {
-                        "x": 16,
-                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -3570,8 +3551,6 @@
                 {
                     "name": "right-b",
                     "rect": {
-                        "x": 16,
-                        "y": 32,
                         "width": 16,
                         "height": 16
                     }
@@ -3579,8 +3558,7 @@
                 {
                     "name": "up-b",
                     "rect": {
-                        "x": 16,
-                        "y": 48,
+                        "y": 16,
                         "width": 16,
                         "height": 16
                     }
@@ -4440,6 +4418,824 @@
                     "pivot": {
                         "x": 0.5,
                         "y": 0.9333333333333333333333333333333333333333333333333
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/fishing_1",
+        "type": "Texture",
+        "args": {
+            "src": "chars/fishing_1.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/fishing_2",
+        "type": "Texture",
+        "args": {
+            "src": "chars/fishing_2.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/fishing_3",
+        "type": "Texture",
+        "args": {
+            "src": "chars/fishing_3.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/fishing_4",
+        "type": "Texture",
+        "args": {
+            "src": "chars/fishing_4.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 24,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 24,
+                        "width": 24,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_1",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_1.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_2",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_2.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_3",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_3.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_4",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_4.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_5",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_5.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_6",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_6.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_7",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_7.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_8",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_8.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_bartender",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_bartender.png",
+            "sprites": [
+                {
+                    "name": "down-a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "down-b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-a",
+                    "rect": {
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-a",
+                    "rect": {
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-a",
+                    "rect": {
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "left-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "right-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 32,
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "up-b",
+                    "rect": {
+                        "x": 16,
+                        "y": 48,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/sailor_drinking",
+        "type": "Texture",
+        "args": {
+            "src": "chars/sailor_drinking.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "x": 16,
+                        "width": 16,
+                        "height": 16
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "path": "sprites/chars/noname",
+        "type": "Texture",
+        "args": {
+            "src": "chars/noname.png",
+            "sprites": [
+                {
+                    "name": "a",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
+                    }
+                },
+                {
+                    "name": "b",
+                    "rect": {
+                        "width": 16,
+                        "height": 16
                     }
                 }
             ]
