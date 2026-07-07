@@ -40,6 +40,7 @@ class AudioManager extends GameBehavior
     #select = null;
     #confirm = null;
     #no = null;
+    #savedBgm = null;
 
     bgm = null;
     se = null;
@@ -87,8 +88,6 @@ class AudioManager extends GameBehavior
             "audio/se/confirm",
             "audio/se/no"
         ]);
-
-        Loader.onSwitchEnd.Add(() => this.#flushBGM = true);
     }
 
     Start ()
@@ -152,16 +151,28 @@ class AudioManager extends GameBehavior
 
         if (name === this.#clipName) return;
 
+        this.#flushBGM = true;
         this.StopBGM();
 
         this.#clipName = name;
 
         Resources.DontDestroyOnLoad(`audio/bgm/${this.#clipName}`);
-
         await Resources.Load(`audio/bgm/${this.#clipName}`);
 
         this.bgm.clip = Resources.Find(`audio/bgm/${this.#clipName}`);
         this.bgm.Play();
+    }
+
+    SaveBGM ()
+    {
+        this.#savedBgm = this.BGMSave();
+        this.#savedBgm.time = this.bgm.time;
+    }
+
+    async ReplayBGM ()
+    {
+        await this.PlayBGM(this.#savedBgm.name, this.#savedBgm.volume, this.#savedBgm.pitch);
+        this.bgm.time = this.#savedBgm.time;
     }
 
     FadeOutBGM (duration)

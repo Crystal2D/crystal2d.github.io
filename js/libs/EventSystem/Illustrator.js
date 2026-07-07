@@ -37,7 +37,7 @@ class Illustrator extends GameBehavior
                     item.renderer.transform.localPosition = Vector2.Add(item.origin, item.pos);
                 }
 
-                if (item.targetPos != null)
+                if (item.targetScale != null)
                 {
                     item.scale = Vector2.Lerp(item.lastScale, item.targetScale, item.time / item.duration);
                     item.renderer.transform.localScale = item.scale;
@@ -60,8 +60,11 @@ class Illustrator extends GameBehavior
             {
                 item.tintTime += Time.deltaTime;
 
-                item.tint = Color.Lerp(item.lastTint, item.targetTint, item.tintTime / item.tintDuration);
-                item.renderer.tint = item.tint;
+                if (item.targetTint != null)
+                {
+                    item.tint = Color.Lerp(item.lastTint, item.targetTint, item.tintTime / item.tintDuration);
+                    item.renderer.tint = item.tint;
+                }
 
                 if (item.tintTime < item.tintDuration) return;
 
@@ -213,6 +216,8 @@ class Illustrator extends GameBehavior
 
     Clear (index)
     {
+        EventSystem.dialogueBox.Close();
+        
         const illust = this.#illusts.get(index);
 
         if (illust == null || illust.duration > 0) return;

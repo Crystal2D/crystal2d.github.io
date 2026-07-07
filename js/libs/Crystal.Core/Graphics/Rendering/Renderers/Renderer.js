@@ -84,7 +84,7 @@ class Renderer extends Component
     {
         super();
         
-        this.#material = material.Duplicate() ?? new Material();
+        this.#material = material?.Duplicate() ?? new Material();
     }
     
     Reload ()
@@ -118,7 +118,7 @@ class Renderer extends Component
         const max = this.bounds.max;
         const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
 
-        this.gameObject.scene.tree?.Relocate(this.gameObject, rect);
+        this.gameObject?.scene.tree?.Relocate(this.gameObject, rect);
     }
 
     ForceMeshUpdate ()

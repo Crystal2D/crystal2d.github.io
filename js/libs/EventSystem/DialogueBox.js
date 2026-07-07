@@ -7,6 +7,7 @@ class DialogueBox extends ItsABox
     #showFace = false;
     #skipPause = false;
     #showFast = false;
+    #cancelClose = false;
     #speed = 1 / 60;
     #audioIndex = 0;
     #playIndex = 0;
@@ -177,8 +178,16 @@ class DialogueBox extends ItsABox
         if (this.#startedTyping || this.isClosed) return;
         
         super.Close();
+        await CrystalEngine.Wait(() => this.isClosed || this.#cancelClose);
 
-        await CrystalEngine.Wait(() => this.isClosed);
+        if (!this.#cancelClose) return;
+        this.#cancelClose = false;
+        this.OpenInstant();
+    }
+
+    CancelClose ()
+    {
+        if (!this.isClosed) this.#cancelClose = true;
     }
 
     OnClose ()

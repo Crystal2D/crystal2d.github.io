@@ -693,5 +693,131 @@
                 }
             ]
         }
+    },
+    {
+        "path": "entities/sparkle2",
+        "type": "GameObject",
+        "args": {
+            "name": "entity_sparkle",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/sparkle2",
+                            "name": "b"
+                        },
+                        "sortingLayer": 8
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/entities/sparkle2"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "Animator",
+                    "args": {
+                        "controller": "anims/entity_ctrl",
+                        "speed": 0.8333333333333334
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/ghost",
+        "type": "GameObject",
+        "args": {
+            "name": "ghost",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/ghost_1",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/ghost_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "collision": false,
+                        "lockLook": true
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        }
+    },
+    {
+        "path": "entities/bat",
+        "type": "GameObject",
+        "args": {
+            "name": "bat",
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bat",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1,
+                        "sortingOrder": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "collision": false
+                    }
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        }
     }
 ]

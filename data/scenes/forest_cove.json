@@ -2698,6 +2698,22 @@
                         ],
                         "interactables": []
                     }
+                },
+                {
+                    "type": "EventAutostart",
+                    "args": {
+                        "event": "forestcove_traveller",
+                        "conditions": [
+                            { "type": 1, "name": "zera_manor", "threshold": 4 },
+                            {
+                                "name": "traveller_help"
+                            },
+                            {
+                                "name": "traveller_done",
+                                "not": true
+                            }
+                        ]
+                    }
                 }
             ]
         }

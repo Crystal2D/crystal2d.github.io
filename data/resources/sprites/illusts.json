@@ -182,5 +182,181 @@
             "src": "illusts\\woof_end_2.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/stump",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\stump.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_4.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/caina_spar_5",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\caina_spar_5.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/fork",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\fork.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/traveller",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\traveller.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/carriage_right",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\carriage_right.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/carriage_left",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\carriage_left.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_2.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_3",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_3.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_4",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_4.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_5",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_5.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_6",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_6.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_7",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_7.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_8",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_8.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/dragon_9",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\dragon_9.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/pier",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\pier.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/remains_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\remains_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/remains_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\remains_2.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

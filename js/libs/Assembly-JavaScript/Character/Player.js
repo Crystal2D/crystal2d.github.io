@@ -26,35 +26,63 @@ class Player extends RPGMovement
     
     Update ()
     {
-        GameWindow.SetTitle(`${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y - 0.3125}`);
+        if (Input.GetKeyDown(KeyCode.Num0)) this.collision = !this.collision;
+
+        GameWindow.SetTitle(`${this.collision} | ${SceneManager.GetActiveScene().index} @ ${this.gridPos.toString()} | ${this.transform.position.x} ${this.transform.position.y - 0.3125}`);
 
         this.#tertriaryInput = InputManager.GetKey("shift");
 
         super.Update();
     }
 
-    _DirCheck (node)
+    _DirCheck (node, tped)
     {
-        if (super._DirCheck(node)) return true;
-
-        const transfer = node.GetOwnerOfType(MapTransfer);
-
-        if (transfer != null) this.#transfer = transfer;
-
-        const interactables = node.GetOwnersOfType(Interactable);
         this.#keyInteractable = null;
 
-        for (let i = 0; i < interactables.length; i++)
+        if (super._DirCheck(node)) // if collides
         {
-            if (interactables[i].trigger !== 1)
-            {
-                if (this.#keyInteractable == null) this.#keyInteractable = interactables[i];
+            const interactables = node.GetOwnersOfType(Interactable);
+            let bumpInteractable = null;
 
-                continue;
+            for (let i = 0; i < interactables.length; i++)
+            {
+                if (interactables[i].trigger !== 2) continue;
+                
+                bumpInteractable = interactables[i];
+                break;
             }
 
-            this.#touchInteractable = interactables[i];
-            break;
+            if (bumpInteractable == null) 
+            {
+                const char = node.GetOwnerOfType(RPGMovement);
+                if (char != null && char.eventBumpable && char.event != null) bumpInteractable = char;
+            }
+
+            if (bumpInteractable != null) (async () => {
+                this.avoidInputs = true;
+                this.moveSpeed = 4;
+
+                await bumpInteractable.Invoke();
+
+                this.avoidInputs = false;
+            })();
+
+            return true;
+        }
+
+        if (!tped)
+        {
+            const transfer = node.GetOwnerOfType(MapTransfer);
+            if (transfer != null) this.#transfer = transfer;   
+        }
+
+        const interactables = node.GetOwnersOfType(Interactable);
+
+        // Get on tile interactables
+        for (let i = 0; i < interactables.length; i++)
+        {
+            if (this.#keyInteractable == null && (interactables[i].trigger === 0 || interactables[i].trigger === 3)) this.#keyInteractable = interactables[i];
+            if (this.#touchInteractable == null && interactables[i].trigger === 1) this.#touchInteractable = interactables[i];
         }
 
         return false;
@@ -64,6 +92,7 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
+        // Get looked at interactable
         if (this.#keyInteractable == null)
         {
             const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
@@ -104,10 +133,9 @@ class Player extends RPGMovement
             if (this.#xTime > this.#yTime) input.x = 0;
             else input.y = 0;
         }
-
-        this.MoveTowards(input);
-
+        
         this.moveSpeed = (Options.run ? !this.#tertriaryInput : this.#tertriaryInput) ? 5 : 4;
+        this.MoveTowards(input);
     }
 
     async _OnStop ()
@@ -142,11 +170,14 @@ class Player extends RPGMovement
         if (this.#touchInteractable != null)
         {
             this.avoidInputs = true;
+            this.moveSpeed = 4;
 
-            await this.#touchInteractable.Invoke();
+            const interactable = this.#touchInteractable;
+            this.#touchInteractable = null;
+
+            await interactable.Invoke();
 
             this.avoidInputs = false;
-            this.#touchInteractable = null;
         }
     }
 
@@ -157,6 +188,7 @@ class Player extends RPGMovement
         const interactable = this.#keyInteractable;
 
         this.avoidInputs = true;
+        this.moveSpeed = 4;
 
         const isChar = interactable instanceof RPGMovement;
         let charMove = null;

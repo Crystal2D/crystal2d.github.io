@@ -150,23 +150,23 @@ class RPGSave
     static CharsSave ()
     {
         const party = Party.GetChars();
-        const chars = GameObject.FindComponents(RPGMovement).filter(item => !party.includes(item));
+        const chars = GameObject.FindComponents(RPGMovement, true).filter(item => !party.includes(item));
 
         return chars.map(item => {
+            if (!item.gameObject.activeSelf) return {
+                name: item.name,
+                active: false
+            };
+            
             return {
                 name: item.name,
-                pos: {
-                    x: item.gridPos.x,
-                    y: item.gridPos.y
-                },
-                dir: {
-                    x: item.lookingAt.x,
-                    y: item.lookingAt.y
-                },
-                lookLock: item.lockLook,
+                pos: item.gridPos,
+                dir: item.lookingAt,
+                lockLook: item.lockLook,
                 charCollision: item.charCollision,
                 animateWalk: item.animateWalk,
-                animateIdle: item.animateIdle
+                animateIdle: item.animateIdle,
+                active: true
             };
         });
     }
@@ -189,13 +189,16 @@ class RPGSave
     {
         // MapInit
         Resources.DestroyOnLoad(
+            "audio/se/journal",
             "anims/entity",
             "anims/entity_ctrl",
             "anims/entity_reset",
             "sprites/chars/butterfly",
             "spritelibs/chars/butterfly",
             "sprites/entities/sparkle",
-            "spritelibs/entities/sparkle"
+            "spritelibs/entities/sparkle",
+            "sprites/entities/sparkle2",
+            "spritelibs/entities/sparkle2"
         );
         Loader.onSwitchStart.Remove(MapInit.switchCall);
 

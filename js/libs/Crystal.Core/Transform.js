@@ -4,7 +4,9 @@ class Transform extends Component
     #child = [];
     
     #position = Vector2.zero;
+    #globalPosition = Vector2.zero;
     #scale = Vector2.one;
+    #globalScale = Vector2.zero;
     #lWMat = new Matrix3x3();
     #lWMatInv = new Matrix3x3();
     
@@ -64,22 +66,33 @@ class Transform extends Component
     
     get position ()
     {
-        return Vector2.Add(this.localPosition, this.parent?.position ?? Vector2.zero);
+        return this.#globalPosition.Duplicate();
     }
     
     set position (value)
     {
-        this.localPosition = Vector2.Subtract(value, this.parent?.position ?? Vector2.zero);
+        if (this.#globalPosition.Equals(value)) return;
+
+        if (this.#parent == null)
+        {
+            this.localPosition = value;
+            return;
+        }
+
+        const rotatedPos = Vector2.Divide(
+            Vector2.Subtract(value, this.#parent.position),
+            this.#parent.lossyScale
+        );
+        const rotation = -this.#parent.rotation / (180 / Math.PI);
+        this.localPosition = new Vector2(
+            rotatedPos.x * Math.cos(rotation) - rotatedPos.y * Math.sin(rotation),
+            rotatedPos.x * Math.sin(rotation) + rotatedPos.y * Math.cos(rotation)
+        );
     }
     
-    get scale ()
+    get lossyScale ()
     {
-        return Vector2.Scale(this.localScale, this.parent?.scale ?? Vector2.one);
-    }
-    
-    set scale (value)
-    {
-        this.localScale = Vector2.Divide(value, this.parent?.scale ?? Vector2.one);
+        return this.#globalScale.Duplicate();
     }
     
     get childCount ()
@@ -118,64 +131,63 @@ class Transform extends Component
         
         this.#BindData();
     }
+
+    #Calc ()
+    {
+        if (this.#parent == null)
+        {
+            this.#globalPosition = this.#position;
+            this.#globalScale = this.#scale;
+        }
+        else
+        {
+            const rotation = this.#parent.rotation / (180 / Math.PI);
+            this.#globalPosition = Vector2.Add(
+                this.#parent.position,
+                Vector2.Scale(
+                    new Vector2(
+                        this.#position.x * Math.cos(rotation) - this.#position.y * Math.sin(rotation),
+                        this.#position.x * Math.sin(rotation) + this.#position.y * Math.cos(rotation)
+                    ),
+                    this.#parent.lossyScale
+                )
+            );
+            this.#globalScale = Vector2.Scale(this.#scale, this.#parent.lossyScale);
+        }
+
+        this.#lWMat = Matrix3x3.TRS(
+            Vector2.Scale(this.#globalPosition, new Vector2(1, -1)),
+            5.555555555555556e-3 * -this.rotation * Math.PI,
+            this.#globalScale
+        );
+        this.#lWMatInv = this.#lWMat.inverse;
+    }
     
     #BindData ()
     {
-        if (this.#parent == null || this.gameObject == null) return;
+        if (this.gameObject == null) return;
+        if (this.#parent == null)
+        {
+            this.#Calc();
+            return;
+        }
         
-        this.#parent.AttachChild(this);
-        
-        const rotation = this.#parent.rotation / (180 / Math.PI);
-        const pos = Vector2.Add(
-            this.#parent.position,
-            Vector2.Scale(
-                new Vector2(
-                    this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
-                    this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
-                ),
-                this.#parent.scale
-            )
-        );
+        this.#parent.AttachChild(this, true);
 
-        this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(pos, new Vector2(1, -1)),
-            5.555555555555556e-3 * -this.rotation * Math.PI,
-            this.scale
-        );
-        this.#lWMatInv = this.#lWMat.inverse;
+        this.#Calc();
 
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
     
     Recalc ()
     {
-        let pos = null;
+        this.#Calc();
 
-        if (this.#parent != null)
+        if (this.gameObject != null)
         {
-            const rotation = this.#parent.rotation / (180 / Math.PI);
-
-            pos = Vector2.Add(
-                this.#parent.position,
-                Vector2.Scale(
-                    new Vector2(
-                        this.localPosition.x * Math.cos(rotation) - this.localPosition.y * Math.sin(rotation),
-                        this.localPosition.x * Math.sin(rotation) + this.localPosition.y * Math.cos(rotation)
-                    ),
-                    this.#parent.scale
-                )
-            );
+            this.GetComponent(Renderer)?.RecalcBounds();
+            this.GetComponent(Camera)?.RecalcBounds();
         }
-        else pos = this.localPosition;
-
-        this.#lWMat = Matrix3x3.TRS(
-            Vector2.Scale(pos, new Vector2(1, -1)),
-            5.555555555555556e-3 * -this.rotation * Math.PI,
-            this.scale
-        );
-        this.#lWMatInv = this.#lWMat.inverse;
-
-        if (this.gameObject != null) this.GetComponent(Renderer)?.RecalcBounds();
         
         for (let i = 0; i < this.childCount; i++) this.GetChild(i).Recalc();
     }
@@ -233,14 +245,17 @@ class Transform extends Component
     
     DetachChildByID (id)
     {
-        this.#child.splice(this.#child.indexOf(id), 1);
+        const index = this.#child.indexOf(id);
+
+        if (index < 0) return;
+
+        this.#child.splice(index, 1);
 
         const child = GameObject.FindByID(id);
 
         if (child.parent !== this) return;
             
         child.parent = null;
-        child.Recalc();
     }
     
     DetachChild (index)
@@ -256,25 +271,18 @@ class Transform extends Component
         {
             const child = this.GetChild(i);
             child.parent = null;
-            child.Recalc();
         }
         
         this.#child = [];
     }
     
-    AttachChild (child)
+    AttachChild (child, bind)
     {
         const id = child.gameObject.GetSceneID();
 
-        if (this.HasChild(id)) return;
-
-        if (child.parent !== this)
-        {
-            child.parent = this;    
-            child.Recalc();
-        }
+        if (child.parent !== this) child.parent = this;
         
-        if (!this.HasChild(id)) this.#child.push(id);
+        if (bind && !this.HasChild(id)) this.#child.push(id);
     }
     
     AttachChildByID (id)

@@ -2468,6 +2468,68 @@
         ]
     },
     {
+        "name": "Exterior - Lighthouse",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_lighthouse",
+                "sprites": [
+                    {
+                        "name": "top",
+                        "id": 0
+                    },
+                    {
+                        "name": "bottom",
+                        "id": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Lighthouse 1",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_lighthouse1",
+                "sprites": [
+                    {
+                        "name": "ext_lighthouse1 (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_lighthouse1 (1)",
+                        "id": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Port Wall",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_port_wall",
+                "sprites": [
+                    {
+                        "name": "ext_port_wall (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_port_wall (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_port_wall (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_port_wall (3)",
+                        "id": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Exterior - Ride",
         "textures": [
             {
@@ -2484,6 +2546,458 @@
                     {
                         "name": "juan in town",
                         "id": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Secluded Grave",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_grave",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Ship",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_ship",
+                "sprites": [
+                    {
+                        "name": "ext_ship (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_ship (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "ext_ship (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "ext_ship (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ext_ship (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ext_ship (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "ldbarrel",
+                        "id": 6
+                    },
+                    {
+                        "name": "ldbarrel (1)",
+                        "id": 7
+                    },
+                    {
+                        "name": "rdbarrel",
+                        "id": 8
+                    },
+                    {
+                        "name": "rdbarrel (1)",
+                        "id": 9
+                    },
+                    {
+                        "name": "ext_ship (6)",
+                        "id": 10
+                    },
+                    {
+                        "name": "barrel",
+                        "id": 11
+                    },
+                    {
+                        "name": "barrel (2)",
+                        "id": 12
+                    },
+                    {
+                        "name": "ext_ship (7)",
+                        "id": 13
+                    },
+                    {
+                        "name": "ext_ship (8)",
+                        "id": 14
+                    },
+                    {
+                        "name": "ext_ship (9)",
+                        "id": 15
+                    },
+                    {
+                        "name": "ldbarrel (2)",
+                        "id": 16
+                    },
+                    {
+                        "name": "ldbarrel (3)",
+                        "id": 17
+                    },
+                    {
+                        "name": "rdbarrel (2)",
+                        "id": 18
+                    },
+                    {
+                        "name": "rdbarrel (3)",
+                        "id": 19
+                    },
+                    {
+                        "name": "ext_ship (10)",
+                        "id": 20
+                    },
+                    {
+                        "name": "barrel (4)",
+                        "id": 21
+                    },
+                    {
+                        "name": "barrel (5)",
+                        "id": 22
+                    },
+                    {
+                        "name": "ext_ship (11)",
+                        "id": 23
+                    },
+                    {
+                        "name": "ext_ship (12)",
+                        "id": 24
+                    },
+                    {
+                        "name": "ext_ship (13)",
+                        "id": 25
+                    },
+                    {
+                        "name": "stairs",
+                        "id": 26
+                    },
+                    {
+                        "name": "stairs (1)",
+                        "id": 27
+                    },
+                    {
+                        "name": "helm",
+                        "id": 28
+                    },
+                    {
+                        "name": "helm (1)",
+                        "id": 29
+                    },
+                    {
+                        "name": "ext_ship (14)",
+                        "id": 30
+                    },
+                    {
+                        "name": "ext_ship (15)",
+                        "id": 31
+                    },
+                    {
+                        "name": "ext_ship (16)",
+                        "id": 32
+                    },
+                    {
+                        "name": "ext_ship (17)",
+                        "id": 33
+                    },
+                    {
+                        "name": "ext_ship (18)",
+                        "id": 34
+                    },
+                    {
+                        "name": "ext_ship (19)",
+                        "id": 35
+                    },
+                    {
+                        "name": "stairs (2)",
+                        "id": 36
+                    },
+                    {
+                        "name": "stairs (3)",
+                        "id": 37
+                    },
+                    {
+                        "name": "helm (2)",
+                        "id": 38
+                    },
+                    {
+                        "name": "helm (3)",
+                        "id": 39
+                    },
+                    {
+                        "name": "ext_ship (20)",
+                        "id": 40
+                    },
+                    {
+                        "name": "ext_ship (21)",
+                        "id": 41
+                    },
+                    {
+                        "name": "ext_ship (22)",
+                        "id": 42
+                    },
+                    {
+                        "name": "ext_ship (23)",
+                        "id": 43
+                    },
+                    {
+                        "name": "ext_ship (24)",
+                        "id": 44
+                    },
+                    {
+                        "name": "ext_ship (25)",
+                        "id": 45
+                    },
+                    {
+                        "name": "stairs (4)",
+                        "id": 46
+                    },
+                    {
+                        "name": "stairs (5)",
+                        "id": 47
+                    },
+                    {
+                        "name": "helm (4)",
+                        "id": 48
+                    },
+                    {
+                        "name": "helm (5)",
+                        "id": 49
+                    },
+                    {
+                        "name": "ext_ship (26)",
+                        "id": 50
+                    },
+                    {
+                        "name": "ext_ship (27)",
+                        "id": 51
+                    },
+                    {
+                        "name": "ext_ship (28)",
+                        "id": 52
+                    },
+                    {
+                        "name": "ext_ship (29)",
+                        "id": 53
+                    },
+                    {
+                        "name": "ext_ship (30)",
+                        "id": 54
+                    },
+                    {
+                        "name": "ext_ship (31)",
+                        "id": 55
+                    },
+                    {
+                        "name": "ext_ship (32)",
+                        "id": 56
+                    },
+                    {
+                        "name": "ext_ship (33)",
+                        "id": 57
+                    },
+                    {
+                        "name": "ext_ship (34)",
+                        "id": 58
+                    },
+                    {
+                        "name": "ext_ship (35)",
+                        "id": 59
+                    },
+                    {
+                        "name": "ext_ship (36)",
+                        "id": 60
+                    },
+                    {
+                        "name": "ext_ship (37)",
+                        "id": 61
+                    },
+                    {
+                        "name": "ext_ship (38)",
+                        "id": 62
+                    },
+                    {
+                        "name": "ext_ship (39)",
+                        "id": 63
+                    },
+                    {
+                        "name": "ext_ship (40)",
+                        "id": 64
+                    },
+                    {
+                        "name": "ext_ship (41)",
+                        "id": 65
+                    },
+                    {
+                        "name": "ext_ship (42)",
+                        "id": 66
+                    },
+                    {
+                        "name": "ext_ship (43)",
+                        "id": 67
+                    },
+                    {
+                        "name": "ext_ship (44)",
+                        "id": 68
+                    },
+                    {
+                        "name": "ext_ship (45)",
+                        "id": 69
+                    },
+                    {
+                        "name": "ext_ship (46)",
+                        "id": 70
+                    },
+                    {
+                        "name": "ext_ship (47)",
+                        "id": 71
+                    },
+                    {
+                        "name": "ext_ship (48)",
+                        "id": 72
+                    },
+                    {
+                        "name": "ext_ship (49)",
+                        "id": 73
+                    },
+                    {
+                        "name": "ext_ship (50)",
+                        "id": 74
+                    },
+                    {
+                        "name": "morestairs",
+                        "id": 75
+                    },
+                    {
+                        "name": "morestairs (1)",
+                        "id": 76
+                    },
+                    {
+                        "name": "ext_ship (51)",
+                        "id": 77
+                    },
+                    {
+                        "name": "ext_ship (52)",
+                        "id": 78
+                    },
+                    {
+                        "name": "ext_ship (53)",
+                        "id": 79
+                    },
+                    {
+                        "name": "ext_ship (54)",
+                        "id": 80
+                    },
+                    {
+                        "name": "ext_ship (55)",
+                        "id": 81
+                    },
+                    {
+                        "name": "ext_ship (56)",
+                        "id": 82
+                    },
+                    {
+                        "name": "morestairs (2)",
+                        "id": 83
+                    },
+                    {
+                        "name": "morestairs (3)",
+                        "id": 84
+                    },
+                    {
+                        "name": "ext_ship (57)",
+                        "id": 85
+                    },
+                    {
+                        "name": "ext_ship (58)",
+                        "id": 86
+                    },
+                    {
+                        "name": "ext_ship (59)",
+                        "id": 87
+                    },
+                    {
+                        "name": "ext_ship (60)",
+                        "id": 88
+                    },
+                    {
+                        "name": "ext_ship (61)",
+                        "id": 89
+                    },
+                    {
+                        "name": "ext_ship (62)",
+                        "id": 90
+                    },
+                    {
+                        "name": "morestairs (4)",
+                        "id": 91
+                    },
+                    {
+                        "name": "morestairs (5)",
+                        "id": 92
+                    },
+                    {
+                        "name": "ext_ship (63)",
+                        "id": 93
+                    },
+                    {
+                        "name": "ext_ship (64)",
+                        "id": 94
+                    },
+                    {
+                        "name": "ext_ship (65)",
+                        "id": 95
+                    },
+                    {
+                        "name": "ext_ship (66)",
+                        "id": 96
+                    },
+                    {
+                        "name": "ext_ship (67)",
+                        "id": 97
+                    },
+                    {
+                        "name": "ext_ship (68)",
+                        "id": 98
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Ship 1",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_ship1",
+                "sprites": [
+                    {
+                        "name": null,
+                        "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Exterior - Ship 2",
+        "textures": [
+            {
+                "src": "sprites/tilesets/ext_ship2",
+                "sprites": [
+                    {
+                        "name": "ext_ship2 (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "ext_ship2 (1)",
+                        "id": 1
                     }
                 ]
             }
@@ -2578,6 +3092,220 @@
                     {
                         "name": null,
                         "id": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Floorboards",
+        "textures": [
+            {
+                "src": "sprites/tilesets/floorboards",
+                "sprites": [
+                    {
+                        "name": "floorboards (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "floorboards (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "floorboards (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "floorboards (3)",
+                        "id": 3
+                    },
+                    {
+                        "name": "floorboards (4)",
+                        "id": 4
+                    },
+                    {
+                        "name": "floorboards (5)",
+                        "id": 5
+                    },
+                    {
+                        "name": "floorboards (6)",
+                        "id": 6
+                    },
+                    {
+                        "name": "floorboards (7)",
+                        "id": 7
+                    },
+                    {
+                        "name": "floorboards (8)",
+                        "id": 8
+                    },
+                    {
+                        "name": "floorboards (9)",
+                        "id": 9
+                    },
+                    {
+                        "name": "floorboards (10)",
+                        "id": 10
+                    },
+                    {
+                        "name": "floorboards (11)",
+                        "id": 11
+                    },
+                    {
+                        "name": "floorboards (12)",
+                        "id": 12
+                    },
+                    {
+                        "name": "floorboards (13)",
+                        "id": 13
+                    },
+                    {
+                        "name": "floorboards (14)",
+                        "id": 14
+                    },
+                    {
+                        "name": "stair",
+                        "id": 15
+                    },
+                    {
+                        "name": "stair (1)",
+                        "id": 16
+                    },
+                    {
+                        "name": "floorboards (15)",
+                        "id": 17
+                    },
+                    {
+                        "name": "stair (2)",
+                        "id": 18
+                    },
+                    {
+                        "name": "stair (3)",
+                        "id": 19
+                    },
+                    {
+                        "name": "box",
+                        "id": 20
+                    },
+                    {
+                        "name": "stair (4)",
+                        "id": 21
+                    },
+                    {
+                        "name": "stair (5)",
+                        "id": 22
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Hole",
+        "textures": [
+            {
+                "src": "sprites/tilesets/hole",
+                "sprites": [
+                    {
+                        "name": "hole (0)",
+                        "id": 0
+                    },
+                    {
+                        "name": "hole (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "hole (2)",
+                        "id": 2
+                    },
+                    {
+                        "name": "hole (3)",
+                        "id": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Underground",
+        "textures": [
+            {
+                "src": "sprites/tilesets/underground",
+                "sprites": [
+                    {
+                        "name": "ladder",
+                        "id": 0
+                    },
+                    {
+                        "name": "ladder (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "underground (0)",
+                        "id": 2
+                    },
+                    {
+                        "name": "underground (1)",
+                        "id": 3
+                    },
+                    {
+                        "name": "ladder (2)",
+                        "id": 4
+                    },
+                    {
+                        "name": "ladder (3)",
+                        "id": 5
+                    },
+                    {
+                        "name": "underground (2)",
+                        "id": 6
+                    },
+                    {
+                        "name": "underground (3)",
+                        "id": 7
+                    },
+                    {
+                        "name": "ladder (4)",
+                        "id": 8
+                    },
+                    {
+                        "name": "ladder (5)",
+                        "id": 9
+                    },
+                    {
+                        "name": "underground (4)",
+                        "id": 10
+                    },
+                    {
+                        "name": "underground (5)",
+                        "id": 11
+                    },
+                    {
+                        "name": "underground (6)",
+                        "id": 12
+                    },
+                    {
+                        "name": "underground (7)",
+                        "id": 13
+                    },
+                    {
+                        "name": "underground (8)",
+                        "id": 14
+                    },
+                    {
+                        "name": "underground (9)",
+                        "id": 15
+                    },
+                    {
+                        "name": "underground (10)",
+                        "id": 16
+                    },
+                    {
+                        "name": "underground (11)",
+                        "id": 17
+                    },
+                    {
+                        "name": "underground (12)",
+                        "id": 18
                     }
                 ]
             }

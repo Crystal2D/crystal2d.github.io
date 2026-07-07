@@ -4,7 +4,50 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/deer",
+            "spritelibs/chars/deer"
+        ],
+        [
+            "sprites/chars/raccoon",
+            "spritelibs/chars/raccoon"
+        ],
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ],
+        [
+            "sprites/chars/rabbit",
+            "spritelibs/chars/rabbit"
+        ],
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        [
+            "sprites/chars/caina",
+            "spritelibs/chars/caina"
+        ],
+        "audio/se/jump",
+        "audio/se/crush_1",
+        "sprites/illusts/stump",
+        "sprites/chars/deer",
+        "sprites/chars/raccoon",
+        "sprites/chars/squirrel",
+        "sprites/chars/rabbit",
+        "sprites/chars/bird",
+        "audio/se/door_4",
+        "sprites/illusts/blank",
+        "sprites/illusts/caina_spar_1",
+        "sprites/illusts/caina_spar_2",
+        "sprites/illusts/caina_spar_3",
+        "sprites/illusts/caina_spar_4",
+        "sprites/illusts/caina_spar_5",
+        "audio/se/explosive_whish",
+        "audio/se/land",
+        "sprites/faces/caina",
+        "audio/bgm/caina"
     ],
     "gameObjects": [
         {
@@ -4271,10 +4314,6 @@
                                                 "y": 1
                                             },
                                             {
-                                                "x": 2,
-                                                "y": 2
-                                            },
-                                            {
                                                 "x": 7,
                                                 "y": 2
                                             },
@@ -4886,6 +4925,10 @@
                                             {
                                                 "x": 3,
                                                 "y": 14
+                                            },
+                                            {
+                                                "x": 2,
+                                                "y": 2
                                             }
                                         ]
                                     },
@@ -5450,6 +5493,65 @@
             ]
         },
         {
+            "name": "tile_Char Collision",
+            "id": 6,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -9,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 0,
+                                                "y": -6
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 3,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": 7
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 7
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                }
+            ]
+        },
+        {
             "name": "mapconfig",
             "id": 5,
             "components": [
@@ -5488,7 +5590,483 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 2
+                                },
+                                "event": "forestpocket_deer1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": 2
+                                },
+                                "event": "forestpocket_deer1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -6
+                                },
+                                "event": "forestpocket_deer2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 7
+                                },
+                                "event": "forestpocket_raccoon"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": 7
+                                },
+                                "event": "forestpocket_raccoon"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": -2
+                                },
+                                "event": "forestpocket_squirrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": -2
+                                },
+                                "event": "forestpocket_rabbit"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -1
+                                },
+                                "event": "forestpocket_stump"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": -1
+                                },
+                                "event": "forestpocket_stump"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": -2
+                                },
+                                "event": "forestpocket_stump"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": -2
+                                },
+                                "event": "forestpocket_stump"
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": 0
+                                },
+                                "event": "forestpocket_spar",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "caina_appeared"
+                                    },
+                                    {
+                                        "name": "caina_sparred",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "event": "forestpocket_spar",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "caina_appeared"
+                                    },
+                                    {
+                                        "name": "caina_sparred",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 0
+                                },
+                                "event": "forestpocket_spar",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "caina_appeared"
+                                    },
+                                    {
+                                        "name": "caina_sparred",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 0
+                                },
+                                "event": "forestpocket_spar",
+                                "trigger": 1,
+                                "conditions": [
+                                    {
+                                        "name": "caina_appeared"
+                                    },
+                                    {
+                                        "name": "caina_sparred",
+                                        "not": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_deer1",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": 1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/deer",
+                            "name": "right-b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/deer"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_deer1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_deer2",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -0.5,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/deer",
+                            "name": "right-b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/deer"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_deer2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": 3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_raccoon"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_squirrel"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_rabbit",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/rabbit",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/rabbit"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_rabbit"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": -3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "forestpocket_bird"
+                    }
+                },
+                {
+                    "type": "ScriptedMove",
+                    "args": {
+                        "callback": "$char.LookAt(Vector2.right); await $caller.Wait(60); $char.LookAt(Vector2.left); await $caller.Wait(60);"
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/sparkle2",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "stump",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_caina",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": 4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/caina",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/caina"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "stump_touched"
+                            },
+                            {
+                                "name": "caina_sparred",
+                                "not": true
+                            }
+                        ]
                     }
                 }
             ]

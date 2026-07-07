@@ -240,16 +240,20 @@ class Input
 
         
         document.addEventListener("keydown", event => {
-            if (!PlayerLoop.isPlaying || this.#terminated) return;
+            const altF4 = event.altKey && event.key === "F4";
+            if (altF4) return;
 
-            GameWindow.Wake();
-
-            if (Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase()))
+            const openDevTools = Application.debugMode && event.ctrlKey && event.shiftKey && (["j", "i", "c"]).includes(event.key.toLowerCase());
+            if (openDevTools)
             {
-                if (Application.isInElectron) Application.electronIPC.invoke("OpenDevtools");
+                if (Application.isInElectron && event.key.toLowerCase() !== "i") Application.electronIPC.invoke("OpenDevtools");
 
                 return;
             }
+
+            if (!PlayerLoop.isPlaying || this.#terminated) return;
+
+            GameWindow.Wake();
             
             event.preventDefault();
 

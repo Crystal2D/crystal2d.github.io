@@ -24,7 +24,7 @@ class SaveItem extends GameBehavior
         const data = RPGSave.global[index];
 
         this.#textFile.text = `File ${index + 1}`;
-        this.#textFile.color.a = data == null ? 0.63 : 1;
+        this.#textFile.color.a = (SaveScreen.mode === 1 && data == null) ? 0.63 : 1;
         
         this.#textTitle.text = data == null ? "" : data.title;
 

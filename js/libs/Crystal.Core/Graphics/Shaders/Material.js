@@ -324,7 +324,37 @@ class Material
     
     Duplicate ()
     {
-        return new Material(this.#vertex, this.#fragment);
+        const output = new Material(this.#vertex, this.#fragment);
+        const types = new Map([
+            ["BOOL", "Boolean"],
+            ["INT", "Int"],
+            ["UNSIGNED_INT", "Uint"],
+            ["FLOAT", "Float"],
+            ["SAMPLER_2D", "Sampler2D"],
+            ["SAMPLER_CUBE", "SamplerCube"]
+        ]);
+
+        this.#props.forEach(item => {
+            const isSampler = (["SAMPLER_2D", "SAMPLER_CUBE"]).includes(item.type);
+            const typeCutIndex = item.type.lastIndexOf("_");
+            const shouldCutType = !isSampler && typeCutIndex >= 0;
+            const typeBase = item.type.slice(0, shouldCutType ? typeCutIndex : item.type.length);
+            let type = item.type.includes("MAT") ? "Matrix" : types.get(typeBase);
+
+            if (item.type.includes("VEC"))
+            {
+                if (type === "Float") type = "";
+                type += "Vector";
+            }
+            if (item.array) type += "Array";
+
+            let value = this.GetProperty(item.name);
+            if (value instanceof Int32Array || value instanceof Uint32Array || value instanceof Float32Array) value = Array.from(value);
+
+            output.SetProperty(item.name, type, value);
+        });
+
+        return output;
     }
     
     GetPropertyNames ()

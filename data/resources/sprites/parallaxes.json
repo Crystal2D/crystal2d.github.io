@@ -1,5 +1,12 @@
 [
     {
+        "path": "sprites/parallaxes/sky_1",
+        "type": "Texture",
+        "args": {
+            "src": "parallaxes\\sky_1.png"
+        }
+    },
+    {
         "path": "sprites/parallaxes/sky_2",
         "type": "Texture",
         "args": {
@@ -11,6 +18,13 @@
         "type": "Texture",
         "args": {
             "src": "parallaxes\\fly.png"
+        }
+    },
+    {
+        "path": "sprites/parallaxes/forest",
+        "type": "Texture",
+        "args": {
+            "src": "parallaxes\\forest.png"
         }
     }
 ]

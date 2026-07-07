@@ -8,6 +8,7 @@
 precision mediump float;
 
 uniform sampler2D uSampler;
+uniform vec4 uTint;
 
 in vec2 vTexturePos;
 in vec4 vColor;
@@ -18,5 +19,5 @@ void main ()
 {
     vec4 texColor = texture(uSampler, vTexturePos) * vColor;
     
-    fragColor = vec4(1.0 - texColor.r, 1.0 - texColor.g, 1.0 - texColor.b, texColor.a);
+    fragColor = vec4(1.0 - texColor.r, 1.0 - texColor.g, 1.0 - texColor.b, texColor.a) + uTint;
 }

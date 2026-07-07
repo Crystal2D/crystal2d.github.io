@@ -7,7 +7,24 @@
         "sprites/tilesets/ext_common",
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_castletown",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/npc_4",
+            "spritelibs/chars/npc_4"
+        ],
+        [
+            "sprites/chars/npc_7",
+            "spritelibs/chars/npc_7"
+        ],
+        [
+            "sprites/chars/soldier",
+            "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/chars/cat",
+            "spritelibs/chars/cat"
+        ],
+        "audio/se/door_5"
     ],
     "gameObjects": [
         {
@@ -16,6 +33,20 @@
             "components": [
                 {
                     "type": "Camera"
+                },
+                {
+                    "type": "CamCtrl",
+                    "args": {
+                        "target": "char_yoki",
+                        "clampMin": {
+                            "x": 2.25,
+                            "y": -17.25
+                        },
+                        "clampMax": {
+                            "x": 32.25,
+                            "y": -1.25
+                        }
+                    }
                 }
             ]
         },
@@ -25,6 +56,19 @@
             "components": [
                 {
                     "type": "Grid"
+                },
+                {
+                    "type": "MapGrid",
+                    "args": {
+                        "min": {
+                            "x": -5,
+                            "y": -36
+                        },
+                        "max": {
+                            "x": 71,
+                            "y": 6
+                        }
+                    }
                 }
             ]
         },
@@ -9341,6 +9385,20 @@
                                         ]
                                     }
                                 ]
+                            },
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -5
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -9525,10 +9583,20 @@
                                             {
                                                 "x": 64,
                                                 "y": -16
-                                            },
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
                                             {
-                                                "x": 36,
-                                                "y": 13
+                                                "x": 75,
+                                                "y": 0
                                             }
                                         ]
                                     }
@@ -9634,6 +9702,24 @@
                                         ]
                                     }
                                 ]
+                            },
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -9
+                                            },
+                                            {
+                                                "x": 75,
+                                                "y": -20
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -9678,6 +9764,24 @@
                                             {
                                                 "x": 15,
                                                 "y": -17
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -6,
+                                                "y": -13
+                                            },
+                                            {
+                                                "x": 75,
+                                                "y": -20
                                             }
                                         ]
                                     }
@@ -10140,15 +10244,7 @@
                                                 "y": -6
                                             },
                                             {
-                                                "x": 63,
-                                                "y": -6
-                                            },
-                                            {
                                                 "x": 56,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 55,
                                                 "y": -6
                                             },
                                             {
@@ -10156,27 +10252,7 @@
                                                 "y": -6
                                             },
                                             {
-                                                "x": 51,
-                                                "y": -6
-                                            },
-                                            {
                                                 "x": 48,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 47,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 44,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 43,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 39,
                                                 "y": -6
                                             },
                                             {
@@ -10189,10 +10265,6 @@
                                             },
                                             {
                                                 "x": 36,
-                                                "y": -6
-                                            },
-                                            {
-                                                "x": 23,
                                                 "y": -6
                                             },
                                             {
@@ -10290,10 +10362,6 @@
                                             {
                                                 "x": 20,
                                                 "y": -28
-                                            },
-                                            {
-                                                "x": 17,
-                                                "y": -21
                                             },
                                             {
                                                 "x": 18,
@@ -11061,10 +11129,6 @@
                                             },
                                             {
                                                 "x": 20,
-                                                "y": -36
-                                            },
-                                            {
-                                                "x": 20,
                                                 "y": -35
                                             },
                                             {
@@ -11218,6 +11282,50 @@
                                             {
                                                 "x": -5,
                                                 "y": -34
+                                            },
+                                            {
+                                                "x": 21,
+                                                "y": -36
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": -21
+                                            },
+                                            {
+                                                "x": 20,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 23,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 43,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 44,
+                                                "y": -6
+                                            },
+                                            {
+                                                "x": 47,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 51,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 55,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 63,
+                                                "y": -5
+                                            },
+                                            {
+                                                "x": 39,
+                                                "y": -5
                                             }
                                         ]
                                     }
@@ -11225,6 +11333,856 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "tile_Char Collision",
+            "id": 12,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": 16,
+                                                "y": -31
+                                            },
+                                            {
+                                                "x": 18,
+                                                "y": -31
+                                            },
+                                            {
+                                                "x": 29,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 31,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 35,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 33,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 38,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 40,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 51,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 49,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 62,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 60,
+                                                "y": -3
+                                            },
+                                            {
+                                                "x": 64,
+                                                "y": -4
+                                            },
+                                            {
+                                                "x": 61,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 59,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 58,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 56,
+                                                "y": -33
+                                            },
+                                            {
+                                                "x": 44,
+                                                "y": -31
+                                            },
+                                            {
+                                                "x": 46,
+                                                "y": -31
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mapconfig",
+            "id": 13,
+            "components": [
+                {
+                    "type": "MapConfig",
+                    "args": {
+                        "transfers": [
+                            {
+                                "scene": 28,
+                                "min": {
+                                    "x": -5,
+                                    "y": -31
+                                },
+                                "max": {
+                                    "x": -5,
+                                    "y": -31
+                                },
+                                "pos": {
+                                    "x": 65,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 28,
+                                "min": {
+                                    "x": -5,
+                                    "y": -32
+                                },
+                                "max": {
+                                    "x": -5,
+                                    "y": -32
+                                },
+                                "pos": {
+                                    "x": 65,
+                                    "y": -28
+                                }
+                            },
+                            {
+                                "scene": 28,
+                                "min": {
+                                    "x": -5,
+                                    "y": -33
+                                },
+                                "max": {
+                                    "x": -5,
+                                    "y": -33
+                                },
+                                "pos": {
+                                    "x": 65,
+                                    "y": -29
+                                }
+                            },
+                            {
+                                "scene": 33,
+                                "min": {
+                                    "x": 56,
+                                    "y": 6
+                                },
+                                "max": {
+                                    "x": 57,
+                                    "y": 6
+                                },
+                                "pos": {
+                                    "x": 0,
+                                    "y": -12
+                                }
+                            },
+                            {
+                                "scene": 33,
+                                "min": {
+                                    "x": 58,
+                                    "y": 6
+                                },
+                                "max": {
+                                    "x": 58,
+                                    "y": 6
+                                },
+                                "pos": {
+                                    "x": 1,
+                                    "y": -12
+                                }
+                            },
+                            {
+                                "scene": 33,
+                                "min": {
+                                    "x": 59,
+                                    "y": 6
+                                },
+                                "max": {
+                                    "x": 59,
+                                    "y": 6
+                                },
+                                "pos": {
+                                    "x": 2,
+                                    "y": -12
+                                }
+                            },
+                            {
+                                "scene": 36,
+                                "min": {
+                                    "x": 71,
+                                    "y": -31
+                                },
+                                "max": {
+                                    "x": 71,
+                                    "y": -31
+                                },
+                                "pos": {
+                                    "x": -9,
+                                    "y": 9
+                                }
+                            },
+                            {
+                                "scene": 36,
+                                "min": {
+                                    "x": 71,
+                                    "y": -32
+                                },
+                                "max": {
+                                    "x": 71,
+                                    "y": -32
+                                },
+                                "pos": {
+                                    "x": -9,
+                                    "y": 8
+                                }
+                            },
+                            {
+                                "scene": 36,
+                                "min": {
+                                    "x": 71,
+                                    "y": -33
+                                },
+                                "max": {
+                                    "x": 71,
+                                    "y": -33
+                                },
+                                "pos": {
+                                    "x": -9,
+                                    "y": 7
+                                }
+                            }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 16,
+                                    "y": -31
+                                },
+                                "event": "castletowneast_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 18,
+                                    "y": -31
+                                },
+                                "event": "castletowneast_townsperson1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 29,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 31,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_townsperson2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 44,
+                                    "y": -31
+                                },
+                                "event": "castletowneast_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 46,
+                                    "y": -31
+                                },
+                                "event": "castletowneast_soldier1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 56,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_soldierab"
+                            },
+                            {
+                                "pos": {
+                                    "x": 58,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_soldierab"
+                            },
+                            {
+                                "pos": {
+                                    "x": 59,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_soldierab"
+                            },
+                            {
+                                "pos": {
+                                    "x": 61,
+                                    "y": -33
+                                },
+                                "event": "castletowneast_soldierab"
+                            },
+                            {
+                                "pos": {
+                                    "x": 33,
+                                    "y": -2
+                                },
+                                "event": "castletowneast_cat1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 35,
+                                    "y": -2
+                                },
+                                "event": "castletowneast_cat1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 38,
+                                    "y": -4
+                                },
+                                "event": "castletowneast_cat2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 40,
+                                    "y": -4
+                                },
+                                "event": "castletowneast_cat2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 49,
+                                    "y": -2
+                                },
+                                "event": "castletowneast_cat3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 51,
+                                    "y": -2
+                                },
+                                "event": "castletowneast_cat3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 60,
+                                    "y": -3
+                                },
+                                "event": "castletowneast_cat4"
+                            },
+                            {
+                                "pos": {
+                                    "x": 62,
+                                    "y": -3
+                                },
+                                "event": "castletowneast_cat4"
+                            },
+                            {
+                                "pos": {
+                                    "x": 62,
+                                    "y": -4
+                                },
+                                "event": "castletowneast_cat5"
+                            },
+                            {
+                                "pos": {
+                                    "x": 64,
+                                    "y": -4
+                                },
+                                "event": "castletowneast_cat5"
+                            },
+                            {
+                                "pos": {
+                                    "x": 8,
+                                    "y": -30
+                                },
+                                "event": "castletowneast_doctorsign"
+                            },
+                            {
+                                "pos": {
+                                    "x": 38,
+                                    "y": -29
+                                },
+                                "event": "castletowneast_blacksmithsign"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson1",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 8.5,
+                    "y": -15.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_4",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_4"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_townsperson1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_townsperson2",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 15,
+                    "y": -16.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/npc_7",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/npc_7"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_townsperson2"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldier1",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 22.5,
+                    "y": -15.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_soldier1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldiera",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 28.5,
+                    "y": -16.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_soldierab",
+                        "lockLook": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierb",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 30,
+                    "y": -16.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_soldierab",
+                        "lockLook": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat1",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 17,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_cat1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat2",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 19.5,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_cat2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat3",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 25,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_cat3"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat4",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": 30.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_cat4"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat5",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": 31.5,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "castletowneast_cat5"
                     }
                 }
             ]

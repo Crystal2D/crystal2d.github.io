@@ -20,11 +20,10 @@ class RPGMovement extends GridAdjusted
     #jumpTo = Vector2.zero;
     #onJumpEnd = () => { };
 
-    #node = null;
-
     _frameSpeed = 30 * Math.pow(2, 3) / 256;
     _moveDir = Vector2.zero;
 
+    _node = null;
     _sprResolver = null;
 
     get #jumpHeight ()
@@ -51,12 +50,12 @@ class RPGMovement extends GridAdjusted
 
     get nodePos ()
     {
-        return this.#node.pos;
+        return this._node.pos;
     }
 
     get gridPos ()
     {
-        return this.#node.gridPos;
+        return this._node.gridPos;
     }
 
     get isJumping ()
@@ -89,9 +88,11 @@ class RPGMovement extends GridAdjusted
 
     lockLook = false;
     updateMovement = true;
+    collision = true;
     charCollision = true;
     animateWalk = true;
     animateIdle = true;
+    eventBumpable = false;
     tileSize = new Vector2(0.5, 0.5);
     onMoveStart = new DelegateEvent();
     onStop = new DelegateEvent();
@@ -103,9 +104,9 @@ class RPGMovement extends GridAdjusted
     lastNode = null;
     event = null;
 
-    static FindChar (name, includeInactive)
+    static FindChar (name, includeInactive, pureName)
     {
-        return GameObject.Find(name, includeInactive)?.GetComponent(RPGMovement);
+        return GameObject.Find(`${pureName ? "" : "char_"}${name}`, includeInactive)?.GetComponent(RPGMovement, includeInactive);
     }
 
     async Invoke ()
@@ -128,10 +129,10 @@ class RPGMovement extends GridAdjusted
 
         if (this._DirCheck(checkedNode)) return true;
 
-        this.#node.RemoveOwner(this);
-        this.lastNode = this.#node;
-        this.#node = checkedNode;
-        this.#node.AddOwner(this);
+        this._node.RemoveOwner(this);
+        this.lastNode = this._node;
+        this._node = checkedNode;
+        this._node.AddOwner(this);
 
         return false;
     }
@@ -187,17 +188,17 @@ class RPGMovement extends GridAdjusted
     {
         this.#pos = this.transform.position;
 
-        this.#node = MapGrid.current.NodeOnWorld(this.transform.position);
-        this.#node.AddOwner(this);
+        this._node = MapGrid.current.NodeOnWorld(this.transform.position);
+        this._node.AddOwner(this);
 
         super.OnEnable();
     }
 
     OnDisable ()
     {
-        this.#node.RemoveOwner(this);
+        this._node.RemoveOwner(this);
         this.lastNode = null;
-        this.#node = null;
+        this._node = null;
 
         super.OnDisable();
     }
@@ -307,12 +308,13 @@ class RPGMovement extends GridAdjusted
         }
     }
 
-    _DirCheck (node)
+    _DirCheck (node, tped)
     {
-        if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return true;
+        if (node.collider === 3) return true;
+        if (node.collider === 1 || (node.collider === 2 && this.charCollision)) return this.collision;
 
         const char = node.GetOwnerOfType(RPGMovement);
-        if (char != null && char !== this && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision;
+        if (char != null && char !== this && char.gameObject.activeInHierarchy && !this.ignoredCharCollisions.includes(char)) return this.charCollision && char.charCollision && this.collision && char.collision;
 
         return false;
     }
@@ -348,11 +350,13 @@ class RPGMovement extends GridAdjusted
         return moved;
     }
 
-    LookAtTemp (dir)
+    async LookAtTemp (dir)
     {
         if (this.lockLook) return;
 
         dir = dir.normalized;
+
+        await CrystalEngine.Wait(() => this._sprResolver != null);
 
         if (dir.y > 0) this._sprResolver.category = "up";
         else if (dir.y < 0) this._sprResolver.category = "down";
@@ -432,16 +436,16 @@ class RPGMovement extends GridAdjusted
     {
         const targetNode = MapGrid.current.NodeOnGrid(pos);
 
-        if (this._DirCheck(targetNode)) return;
+        if (this._DirCheck(targetNode, true)) return;
 
         this.#allowDirChange = true;
         this.#targetDir = Vector2.zero;
 
-        if (this.#node != null) this.#node.RemoveOwner(this);
+        if (this._node != null) this._node.RemoveOwner(this);
         
-        this.lastNode = this.#node;
-        this.#node = targetNode;
-        this.#node.AddOwner(this);
+        this.lastNode = this._node;
+        this._node = targetNode;
+        this._node.AddOwner(this);
 
         this.#pos = Vector2.Add(MapGrid.current.CellToWorld(pos), new Vector2(0, 0.3125));
         this.transform.position = this.#pos;
@@ -463,10 +467,10 @@ class RPGMovement extends GridAdjusted
         {
             this.LookAt(by);
 
-            this.#node.RemoveOwner(this);
-            this.lastNode = this.#node;
-            this.#node = targetNode;
-            this.#node.AddOwner(this);
+            this._node.RemoveOwner(this);
+            this.lastNode = this._node;
+            this._node = targetNode;
+            this._node.AddOwner(this);
         }
 
         this.onJumpStart.Invoke();
@@ -476,11 +480,13 @@ class RPGMovement extends GridAdjusted
         this.#jumpPeak = (10 + by.magnitude - this.#speed / 60) * 0.05;
         this.#jumpDuration = ((10 + by.magnitude - this.#speed) / 60) * 2;
         this.#jumpTime = this.#jumpDuration;
+
+        const lastLockLook = this.lockLook;
         this.lockLook = true;
 
         await new Promise(resolve => this.#onJumpEnd = resolve);
 
-        this.lockLook = false;
+        this.lockLook = lastLockLook;
     }
 
     async JumpTo (pos)
@@ -532,5 +538,24 @@ class RPGMovement extends GridAdjusted
     async StepBack ()
     {
         return this.MoveTowards(Vector2.Scale(this.#lookDir, -1));
+    }
+
+    async ClearInstructions ()
+    {
+        this.#targetDir = Vector2.zero;
+        this._moveDir = Vector2.zero;
+        this.#moveStart = false;
+        this.#allowDirChange = true;
+
+        this.#jumpTime = 0;
+
+        this.#pos = this.#lastPos;
+        this.transform.position = this.#pos;
+
+        this.#animCount = 0;
+        this.#animState = this.#animStateInit;
+
+        await CrystalEngine.Wait(() => this._sprResolver != null);
+        this._sprResolver.label = `${this.#animState}`;
     }
 }

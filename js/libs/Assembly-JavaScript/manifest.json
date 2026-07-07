@@ -31,6 +31,7 @@
         "Character/Moves/MovesBase",
         "Character/Moves/RandomMove",
         "Character/Moves/ToPlayerMove",
+        "Character/Moves/ScriptedMove",
         "Test",
         "LocaleManager",
         "Parallax"
@@ -103,6 +104,10 @@
                 },
                 {
                     "type": "bool",
+                    "name": "collision"
+                },
+                {
+                    "type": "bool",
                     "name": "charCollision"
                 },
                 {
@@ -112,6 +117,14 @@
                 {
                     "type": "bool",
                     "name": "animateIdle"
+                },
+                {
+                    "type": "bool",
+                    "name": "lockLook"
+                },
+                {
+                    "type": "bool",
+                    "name": "eventBumpable"
                 }
             ]
         },
@@ -156,6 +169,17 @@
                 {
                     "type": "bool",
                     "name": "away"
+                }
+            ]
+        },
+        {
+            "name" : "ScriptedMove",
+            "type" : 0,
+            "construction": "return new ScriptedMove(data.callback);",
+            "args": [
+                {
+                    "type": "number",
+                    "name": "interval"
                 }
             ]
         },

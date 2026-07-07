@@ -15,6 +15,11 @@ class SceneManager
     static sceneUnloaded = new DelegateEvent();
     static activeSceneChanged = new DelegateEvent();
 
+    static get $emptyScene ()
+    {
+        return this.#emptyScene;
+    }
+
     static get sceneCount ()
     {
         return this.#unloadedScenes.length;

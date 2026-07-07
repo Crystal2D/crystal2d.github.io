@@ -4,7 +4,32 @@
         "sprites/tilesets/ext_forest",
         "sprites/tilesets/ext_common",
         "sprites/tilesets/colors",
-        "sprites/collider"
+        "sprites/collider",
+        [
+            "sprites/chars/squirrel",
+            "spritelibs/chars/squirrel"
+        ],
+        [
+            "sprites/chars/wolf",
+            "spritelibs/chars/wolf"
+        ],
+        [
+            "sprites/chars/fox",
+            "spritelibs/chars/fox"
+        ],
+        [
+            "sprites/chars/raccoon",
+            "spritelibs/chars/raccoon"
+        ],
+        [
+            "sprites/chars/boar",
+            "spritelibs/chars/boar"
+        ],
+        [
+            "sprites/chars/bear",
+            "spritelibs/chars/bear"
+        ],
+        "audio/se/jump"
     ],
     "gameObjects": [
         {
@@ -41,12 +66,12 @@
                     "type": "MapGrid",
                     "args": {
                         "min": {
-                            "x": -99,
-                            "y": -99
+                            "x": -14,
+                            "y": -22
                         },
                         "max": {
-                            "x": 99,
-                            "y": 99
+                            "x": 13,
+                            "y": 27
                         }
                     }
                 }
@@ -11002,6 +11027,10 @@
                                             {
                                                 "x": 1,
                                                 "y": 27
+                                            },
+                                            {
+                                                "x": -2,
+                                                "y": 5
                                             }
                                         ]
                                     }
@@ -11009,6 +11038,100 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider"
+                }
+            ]
+        },
+        {
+            "name": "tile_Char Collision",
+            "id": 7,
+            "parent": 1,
+            "components": [
+                {
+                    "type": "Tilemap",
+                    "args": {
+                        "tiles": [
+                            {
+                                "palette": "Dev - Collider",
+                                "sprites": [
+                                    {
+                                        "id": 0,
+                                        "coords": [
+                                            {
+                                                "x": -9,
+                                                "y": 20
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 20
+                                            },
+                                            {
+                                                "x": -9,
+                                                "y": 19
+                                            },
+                                            {
+                                                "x": 7,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": 5,
+                                                "y": 17
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": 10
+                                            },
+                                            {
+                                                "x": 12,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": 10,
+                                                "y": 2
+                                            },
+                                            {
+                                                "x": -12,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": -14,
+                                                "y": -2
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -11
+                                            },
+                                            {
+                                                "x": 9,
+                                                "y": -12
+                                            },
+                                            {
+                                                "x": -8,
+                                                "y": -14
+                                            },
+                                            {
+                                                "x": -10,
+                                                "y": -14
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
                     }
                 }
             ]
@@ -11020,8 +11143,647 @@
                 {
                     "type": "MapConfig",
                     "args": {
-                        "transfers": [],
-                        "interactables": []
+                        "transfers": [
+                            {
+                                "scene": 10,
+                                "min": {
+                                    "x": -5,
+                                    "y": 27
+                                },
+                                "max": {
+                                    "x": -5,
+                                    "y": 27
+                                },
+                                "pos": {
+                                    "x": 16,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 10,
+                                "min": {
+                                    "x": -4,
+                                    "y": 27
+                                },
+                                "max": {
+                                    "x": -4,
+                                    "y": 27
+                                },
+                                "pos": {
+                                    "x": 17,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 10,
+                                "min": {
+                                    "x": -3,
+                                    "y": 27
+                                },
+                                "max": {
+                                    "x": -3,
+                                    "y": 27
+                                },
+                                "pos": {
+                                    "x": 18,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 10,
+                                "min": {
+                                    "x": -2,
+                                    "y": 27
+                                },
+                                "max": {
+                                    "x": 0,
+                                    "y": 27
+                                },
+                                "pos": {
+                                    "x": 19,
+                                    "y": -27
+                                }
+                            },
+                            {
+                                "scene": 24,
+                                "min": {
+                                    "x": -1,
+                                    "y": -22
+                                },
+                                "max": {
+                                    "x": -1,
+                                    "y": -22
+                                },
+                                "pos": {
+                                    "x": -22,
+                                    "y": 23
+                                }
+                            },
+                            {
+                                "scene": 24,
+                                "min": {
+                                    "x": 0,
+                                    "y": -22
+                                },
+                                "max": {
+                                    "x": 0,
+                                    "y": -22
+                                },
+                                "pos": {
+                                    "x": -21,
+                                    "y": 23
+                                }
+                            }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 20
+                                },
+                                "event": "townpath_squirrel1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -7,
+                                    "y": 20
+                                },
+                                "event": "townpath_squirrel1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -9,
+                                    "y": 19
+                                },
+                                "event": "townpath_squirrel2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 5,
+                                    "y": 17
+                                },
+                                "event": "townpath_wolf"
+                            },
+                            {
+                                "pos": {
+                                    "x": 7,
+                                    "y": 17
+                                },
+                                "event": "townpath_wolf"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": 10
+                                },
+                                "event": "townpath_fox"
+                            },
+                            {
+                                "pos": {
+                                    "x": -10,
+                                    "y": 10
+                                },
+                                "event": "townpath_fox"
+                            },
+                            {
+                                "pos": {
+                                    "x": -14,
+                                    "y": -2
+                                },
+                                "event": "townpath_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -12,
+                                    "y": -2
+                                },
+                                "event": "townpath_raccoon1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -10,
+                                    "y": -14
+                                },
+                                "event": "townpath_raccoon3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -8,
+                                    "y": -14
+                                },
+                                "event": "townpath_raccoon3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 10,
+                                    "y": 2
+                                },
+                                "event": "townpath_boar"
+                            },
+                            {
+                                "pos": {
+                                    "x": 12,
+                                    "y": 2
+                                },
+                                "event": "townpath_boar"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": -11
+                                },
+                                "event": "townpath_bear"
+                            },
+                            {
+                                "pos": {
+                                    "x": 9,
+                                    "y": -12
+                                },
+                                "event": "townpath_bear"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 22
+                                },
+                                "event": "townpath_sign1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 3
+                                },
+                                "event": "townpath_sign2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 6,
+                                    "y": -7
+                                },
+                                "event": "townpath_sign3"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": 3
+                                },
+                                "event": "townpath_cave",
+                                "trigger": 1
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel1",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -4,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_squirrel1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel2",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 9.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "ScriptedMove",
+                    "args": {
+                        "callback": "await $char.MoveTowards(Vector2.left); await $caller.Wait(60); await $char.MoveTowards(Vector2.right); await $caller.Wait(60);"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_squirrel3",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": 1,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/squirrel",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/squirrel"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_squirrel3"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_wolf",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 8.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/wolf",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/wolf"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_wolf"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_fox",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -5.5,
+                    "y": 5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fox",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fox"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_fox"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon1",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": -6.5,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_raccoon1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon2",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": -6,
+                    "y": -6.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                },
+                {
+                    "type": "RandomMove"
+                }
+            ]
+        },
+        {
+            "name": "char_raccoon3",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/raccoon",
+                            "name": "right-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/raccoon"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_raccoon3"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_boar",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 5.5,
+                    "y": 1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/boar",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/boar"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_boar"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bear",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bear",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bear"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "townpath_bear"
                     }
                 }
             ]

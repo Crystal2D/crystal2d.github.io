@@ -38,7 +38,10 @@ class CamCtrl extends Viewport
     LateUpdate ()
     {
         this.transform.position = Vector2.Clamp(
-            Vector2.Add(this.target.position, this.offset),
+            Vector2.Add(
+                Vector2.Add(this.target.position, new Vector2(0, -0.3125)),
+                this.offset
+            ),
             this.clampMin,
             this.clampMax
         );

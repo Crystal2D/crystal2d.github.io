@@ -9,6 +9,7 @@
         "audio/se/dialogue_2",
         "audio/se/dialogue_3",
         "audio/se/dialogue_4",
+        "audio/se/journal",
         [
             "anims/entity",
             "anims/entity_reset",
@@ -18,7 +19,9 @@
             "sprites/chars/butterfly",
             "spritelibs/chars/butterfly",
             "sprites/entities/sparkle",
-            "spritelibs/entities/sparkle"
+            "spritelibs/entities/sparkle",
+            "sprites/entities/sparkle2",
+            "spritelibs/entities/sparkle2"
         ]
     ],
     "gameObjects": [

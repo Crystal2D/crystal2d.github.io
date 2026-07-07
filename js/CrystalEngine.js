@@ -329,6 +329,16 @@ class CrystalEngine
             
             let errLogs = null;
 
+            const splashTexts = [
+                "RIP",
+                "Well that's unfortunate",
+                "Task successfully failed!",
+                ":c",
+                "Reason: an error has occurred",
+                "JARVIS, CLIP THAT!",
+                "Stay calm...",
+                "I have not been tamed."
+            ];
             const onError = error => {
                 if (this.#terminateStart)
                 {
@@ -362,12 +372,96 @@ class CrystalEngine
 
                 errLogs = document.createElement("span");
                 errLogs.style.userSelect = "text";
+
+                errLogs.append(`ERROR ENCOUNTERED\n\n${splashTexts[Math.floor(Math.random() * splashTexts.length)]}`);
+                errLogs.append(`\n\nCrystal ${Application.engineVersion}\n\n${Application.name}\nVersion: ${Application.version}`);
+
+                if (SceneManager != null)
+                {
+                    const activeScene = SceneManager.GetActiveScene();
+                    if (activeScene != null && activeScene !== SceneManager.$emptyScene)
+                    {
+                        errLogs.append(`\nScene: ${activeScene.index} | "${activeScene.name}"`);
+
+                        if (activeScene.path != null) errLogs.append(` | "${activeScene.path}"`);
+                    }
+                }
+
+                errLogs.append("\n\n");
                 errLogs.append(error?.stack ?? "Unidentified error :(");
                 
-                const tip = document.createElement("span");
-                tip.append(`\n\n\n----------\n\nPlease report this problem`);
+                const copy = document.createElement("span");
+                copy.textContent = "Copy to clipboard";
+                copy.style.textDecoration = "underline";
+                copy.style.fontWeight = "bold";
+                copy.style.cursor = "copy";
+
+                let copying = false;
+
+                copy.ontouchstart = () => {
+                    if (copying) return;
+
+                    copy.style.textDecoration = "";
+                    copy.style.opacity = "0.25";
+                };
+                copy.ontouchmove = copy.ontouchstart;
+                copy.ontouchend = () => {
+                    if (copying) return;
+
+                    copy.style.textDecoration = "underline";
+                    copy.style.opacity = "";
+                };
+                copy.onmousemove = () => {
+                    if (copying) return;
+
+                    copy.style.textDecoration = "";
+                    copy.style.opacity = "0.5";
+                };
+                copy.onmouseleave = () => {
+                    if (copying) return;
+
+                    copy.style.textDecoration = "underline";
+                    copy.style.opacity = "";
+                };
+                copy.onclick = async () => {
+                    if (copying) return;
+                    copying = true;
+
+                    copy.textContent = "Copying...";
+                    copy.style.textDecoration = "";
+                    copy.style.opacity = "";
+                    copy.style.cursor = "";
+
+                    let copied = false;
+
+                    try
+                    {
+                        await navigator.clipboard.writeText(errLogs.innerText);
+                        copied = true;
+                    }
+                    catch { }
+
+                    const targetTime = performance.now() + 1000;
+                    await CrystalEngine.Wait(() => {
+                        const time = targetTime - performance.now();
+                        copy.textContent = `${copied ? "Copied" : "Copy failed :("} (${(1e-3 * time).toFixed(2)}s)`;
+
+                        return time <= 0;
+                    });
+
+                    copy.textContent = "Copy to clipboard";
+                    copy.style.textDecoration = "underline";
+                    copy.style.cursor = "copy";
+
+                    copying = false;
+                };
                 
-                errWrap.append(errLogs, tip)
+                errWrap.append(
+                    errLogs,
+                    `\n\n\n------------------------------\n\n`,
+                    copy,
+                    "\n\nPlease report this problem"
+                )
                 document.body.append(errWrap);
             };
             

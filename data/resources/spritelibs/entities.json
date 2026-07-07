@@ -14,5 +14,13 @@
             "mainLibrary": "spritelibs/chars/butterfly",
             "texture": "sprites/entities/sparkle"
         }
+    },
+    {
+        "path": "spritelibs/entities/sparkle2",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/butterfly",
+            "texture": "sprites/entities/sparkle2"
+        }
     }
 ]
