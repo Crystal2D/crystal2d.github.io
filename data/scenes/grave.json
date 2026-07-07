@@ -10,7 +10,11 @@
             "sprites/chars/noname",
             "spritelibs/chars/noname"
         ],
-        "sprites/entities/corpse"
+        "sprites/entities/corpse",
+        "sprites/chars/noname",
+        "audio/se/laugh",
+        "sprites/illusts/remains_1",
+        "sprites/illusts/remains_2"
     ],
     "gameObjects": [
         {
@@ -2641,6 +2645,10 @@
                                             {
                                                 "x": 2,
                                                 "y": 1
+                                            },
+                                            {
+                                                "x": 1,
+                                                "y": 1
                                             }
                                         ]
                                     }
@@ -2648,6 +2656,12 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
                     }
                 }
             ]
@@ -2678,6 +2692,23 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "???",
+                                "not": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -2688,9 +2719,136 @@
                 {
                     "type": "MapConfig",
                     "args": {
-                        "transfers": [],
-                        "interactables": []
+                        "transfers": [
+                            {
+                                "scene": 38,
+                                "min": {
+                                    "x": -1,
+                                    "y": -7
+                                },
+                                "max": {
+                                    "x": 0,
+                                    "y": -7
+                                },
+                                "pos": {
+                                    "x": -1,
+                                    "y": 14
+                                }
+                            }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": 1
+                                },
+                                "event": "grave_???",
+                                "conditions": [
+                                    {
+                                        "name": "???",
+                                        "not": true
+                                    }
+                                ]
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 1
+                                },
+                                "event": "grave_???"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 1
+                                },
+                                "event": "grave_???"
+                            },
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 1
+                                },
+                                "event": "grave_???"
+                            }
+                        ]
                     }
+                }
+            ]
+        },
+        {
+            "name": "char_noname",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": -0.25,
+                    "y": 0.75
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/noname",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/noname"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "grave_???"
+                    }
+                },
+                {
+                    "type": "EventConditioner",
+                    "args": {
+                        "conditions": [
+                            {
+                                "name": "???",
+                                "not": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "corpse",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 0.75,
+                    "y": 0.75
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/entities/corpse"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "GridAdjusted"
                 }
             ]
         }

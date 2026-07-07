@@ -4319,6 +4319,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -4376,7 +4382,64 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 2,
+                                    "y": 6
+                                },
+                                "event": "lighthouse_soldier"
+                            },
+                            {
+                                "pos": {
+                                    "x": 0,
+                                    "y": 21
+                                },
+                                "event": "lighthouse_?",
+                                "trigger": 3
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldier",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 1.75,
+                    "y": 3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "right-b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "lighthouse_soldier"
                     }
                 }
             ]

@@ -342,5 +342,21 @@
             "src": "illusts\\pier.png",
             "sprite": { "pivot": { } }
         }
+    },
+    {
+        "path": "sprites/illusts/remains_1",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\remains_1.png",
+            "sprite": { "pivot": { } }
+        }
+    },
+    {
+        "path": "sprites/illusts/remains_2",
+        "type": "Texture",
+        "args": {
+            "src": "illusts\\remains_2.png",
+            "sprite": { "pivot": { } }
+        }
     }
 ]

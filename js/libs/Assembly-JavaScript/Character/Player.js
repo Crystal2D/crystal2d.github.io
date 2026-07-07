@@ -78,9 +78,10 @@ class Player extends RPGMovement
 
         const interactables = node.GetOwnersOfType(Interactable);
 
+        // Get on tile interactables
         for (let i = 0; i < interactables.length; i++)
         {
-            if (this.#keyInteractable == null && interactables[i].trigger === 0) this.#keyInteractable = interactables[i];
+            if (this.#keyInteractable == null && (interactables[i].trigger === 0 || interactables[i].trigger === 3)) this.#keyInteractable = interactables[i];
             if (this.#touchInteractable == null && interactables[i].trigger === 1) this.#touchInteractable = interactables[i];
         }
 
@@ -91,6 +92,7 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
+        // Get looked at interactable
         if (this.#keyInteractable == null)
         {
             const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));

@@ -4268,6 +4268,12 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
         },
@@ -4320,12 +4326,219 @@
                                     "y": 15
                                 },
                                 "pos": {
-                                    "x": 0,
-                                    "y": 0
+                                    "x": -1,
+                                    "y": -6
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": -1
+                                },
+                                "event": "ship_dog"
+                            },
+                            {
+                                "pos": {
+                                    "x": 1,
+                                    "y": 3
+                                },
+                                "event": "ship_sailor1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 3
+                                },
+                                "event": "ship_sailor1"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 21
+                                },
+                                "event": "ship_sailor2"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 2
+                                },
+                                "event": "ship_barrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 2
+                                },
+                                "event": "ship_barrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 3
+                                },
+                                "event": "ship_barrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": -3,
+                                    "y": 3
+                                },
+                                "event": "ship_barrel"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 11
+                                },
+                                "event": "ship_box"
+                            },
+                            {
+                                "pos": {
+                                    "x": -2,
+                                    "y": 18
+                                },
+                                "event": "ship_helm"
+                            },
+                            {
+                                "pos": {
+                                    "x": -1,
+                                    "y": 18
+                                },
+                                "event": "ship_helm"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_dog",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": 0.25,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/dog",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/dog"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "ship_dog"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_sailor1",
+            "id": 11,
+            "transform": {
+                "position": {
+                    "x": 1.25,
+                    "y": 1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/sailor_3",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/sailor_3"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "ship_sailor1"
+                    }
+                },
+                {
+                    "type": "RandomMove",
+                    "args": {
+                        "turnOnly": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_sailor2",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": -1.75,
+                    "y": 10.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/sailor_4",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/sailor_4"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "ship_sailor2"
                     }
                 }
             ]

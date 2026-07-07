@@ -3,6 +3,7 @@ class Interactable
     // 0: Key
     // 1: Touch
     // 2: Bump
+    // 3: Key + On tile
     trigger = 0;
     
     pos = Vector2.zero;

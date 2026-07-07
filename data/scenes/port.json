@@ -35,7 +35,27 @@
         ],
         "sprites/illusts/pier",
         "audio/se/door_5",
-        "audio/se/stair_5"
+        "audio/se/stair_5",
+        [
+            "sprites/chars/cat",
+            "spritelibs/chars/cat"
+        ],
+        [
+            "sprites/chars/bird",
+            "spritelibs/chars/bird"
+        ],
+        "sprites/chars/soldier",
+        "sprites/chars/fishing_2",
+        "sprites/chars/fishing_3",
+        "sprites/chars/fishing_1",
+        "sprites/chars/fishing_4",
+        "sprites/chars/sailor_1",
+        "sprites/chars/cat",
+        "sprites/chars/bird",
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
+        ]
     ],
     "gameObjects": [
         {
@@ -11370,6 +11390,70 @@
                                             {
                                                 "x": -3,
                                                 "y": 0
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 4
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 5
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 1
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 0
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 12
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 11
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 12
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 15
+                                            },
+                                            {
+                                                "x": -6,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 16
+                                            },
+                                            {
+                                                "x": -7,
+                                                "y": 15
                                             }
                                         ]
                                     }
@@ -11441,6 +11525,12 @@
                             }
                         ],
                         "sortingLayer": 2
+                    }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
                     }
                 }
             ]
@@ -11574,14 +11664,215 @@
                                 }
                             }
                         ],
-                        "interactables": []
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 5
+                                },
+                                "event": "port_soldiera"
+                            },
+                            {
+                                "pos": {
+                                    "x": -4,
+                                    "y": 11
+                                },
+                                "event": "port_soldierb"
+                            },
+                            {
+                                "pos": {
+                                    "x": 13,
+                                    "y": 18
+                                },
+                                "event": "port_soldierc"
+                            },
+                            {
+                                "pos": {
+                                    "x": 15,
+                                    "y": 18
+                                },
+                                "event": "port_soldierc"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 9
+                                },
+                                "event": "port_fishing1"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 27
+                                },
+                                "event": "port_fishing2"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 30
+                                },
+                                "event": "port_fishing3"
+                            },
+                            {
+                                "pos": {
+                                    "x": 3,
+                                    "y": 38
+                                },
+                                "event": "port_fishing4"
+                            },
+                            {
+                                "pos": {
+                                    "x": 14,
+                                    "y": 4
+                                },
+                                "event": "port_sailor"
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": 28
+                                },
+                                "event": "port_pier"
+                            },
+                            {
+                                "pos": {
+                                    "x": 4,
+                                    "y": 29
+                                },
+                                "event": "port_pier"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldiera",
+            "id": 8,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": 2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "right-b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "port_soldiera"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierb",
+            "id": 9,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "right-b"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "1"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "port_soldierb"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_soldierc",
+            "id": 10,
+            "transform": {
+                "position": {
+                    "x": 7,
+                    "y": 9
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/soldier",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/soldier"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "port_soldierc"
                     }
                 }
             ]
         },
         {
             "name": "char_fishing1",
-            "id": 10,
+            "id": 11,
             "transform": {
                 "position": {
                     "x": 2,
@@ -11608,7 +11899,7 @@
                 {
                     "type": "SpriteResolver",
                     "args": {
-                        "category": "down",
+                        "category": "right",
                         "label": "0"
                     }
                 },
@@ -11616,6 +11907,1327 @@
                     "type": "RPGMovement"
                 }
             ]
+        },
+        {
+            "name": "char_fishing2",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fishing_3",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fishing_3"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "name": "char_fishing3",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": 15
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fishing_1",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fishing_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "name": "char_fishing4",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 2,
+                    "y": 19
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/fishing_4",
+                            "name": "a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/fishing_4"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "name": "char_sailor",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 6.5,
+                    "y": 2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/sailor_1",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/sailor_1"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "event": "port_sailor"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_cat",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 17.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/cat",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/cat"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "moveSpeed": 5
+                    }
+                },
+                {
+                    "type": "ScriptedMove",
+                    "args": {
+                        "callback": "await $char.MoveTowards(Vector2.down); await $char.MoveTowards(Vector2.down); await $char.MoveTowards(Vector2.left); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.right); await $char.MoveTowards(Vector2.down);"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_bird",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": -5,
+                    "y": 16.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/bird",
+                            "name": "down-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/bird"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "down",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement",
+                    "args": {
+                        "animateIdle": false,
+                        "moveSpeed": 5
+                    }
+                },
+                {
+                    "type": "ScriptedMove",
+                    "args": {
+                        "callback": "await $char.MoveTowards(Vector2.left); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.up); await $char.MoveTowards(Vector2.right); await $char.MoveTowards(Vector2.down); await $char.MoveTowards(Vector2.down); await $char.MoveTowards(Vector2.down);"
+                    }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/hintbird",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": 8.5
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 19.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 18.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 17.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 16.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 15.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 24,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 14.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 25,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 26,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 12.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 27,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 11.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 28,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 10.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 29,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 30,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 31,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 32,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 33,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 34,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 35,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 36,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 37,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 38,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 9
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 39,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 8
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 40,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 7
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 41,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 42,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 43,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 44,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": 0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 45,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 46,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 47,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 48,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": -3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 49,
+            "transform": {
+                "position": {
+                    "x": 9.5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 50,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 5.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 51,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 52,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 53,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 54,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 55,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 56,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -0.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 57,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -1.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 58,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -2.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 59,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -3.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 60,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": -4.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "right"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 61,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 6
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 62,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": 6
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 63,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 6
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 64,
+            "transform": {
+                "position": {
+                    "x": -6.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 65,
+            "transform": {
+                "position": {
+                    "x": -5.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 66,
+            "transform": {
+                "position": {
+                    "x": -4.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 67,
+            "transform": {
+                "position": {
+                    "x": -3.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 68,
+            "transform": {
+                "position": {
+                    "x": -2.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 69,
+            "transform": {
+                "position": {
+                    "x": -1.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 70,
+            "transform": {
+                "position": {
+                    "x": -0.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 71,
+            "transform": {
+                "position": {
+                    "x": 0.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 72,
+            "transform": {
+                "position": {
+                    "x": 1.5,
+                    "y": -3
+                }
+            }
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 3,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 4,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 5,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 6,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 7,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 8,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 73,
+            "transform": {
+                "position": {
+                    "x": 9,
+                    "y": 10
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/sparkle",
+            "id": 74,
+            "transform": {
+                "position": {
+                    "x": 2.5,
+                    "y": 14
+                }
+            }
         }
     ]
 }

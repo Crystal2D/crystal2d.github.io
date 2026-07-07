@@ -1349,7 +1349,7 @@
 "port_fishing1": [
     "\\SE[2]This is a nice fishing spot.\nBut.\\..\\..",
     "There's so much cargo on the pier \ntoday. ",
-    "Guess a large shipment must've\ncome in..\\SE[1]"
+    "Guess a large shipment must've\ncome in.\\SE[1]"
 ],
 "port_fishing2_1": "\\SE[10]I'm not catching any fish...\\.\\.\nI wonder what I'm doing wrong...\\SE[1]",
 "port_fishing2_2": [

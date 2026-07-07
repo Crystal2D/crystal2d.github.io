@@ -117,5 +117,12 @@
         "args": {
             "src": "se/stair_5.ogg"
         }
+    },
+    {
+        "path": "audio/se/laugh",
+        "type": "AudioClip",
+        "args": {
+            "src": "se/laugh.ogg"
+        }
     }
 ]

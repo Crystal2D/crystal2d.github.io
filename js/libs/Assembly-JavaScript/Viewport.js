@@ -2,7 +2,7 @@ class Viewport extends GameBehavior
 {
     static current = null;
     
-    #fps = 0;
+    #fps = 1;
 
     Awake ()
     {

@@ -11613,7 +11613,7 @@
             ]
         },
         {
-            "name": "char_corpse",
+            "name": "corpse",
             "id": 22,
             "transform": {
                 "position": {

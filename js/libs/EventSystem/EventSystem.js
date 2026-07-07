@@ -292,14 +292,6 @@ class EventSystem
 
         // #endregion
 
-        
-        // #region ----------------------------------------- ORIGINALLY SELF SWITCHES
-
-        this.AddSwitch("mole");
-        this.AddSwitch("shackghost");
-
-        // #endregion
-
 
         // #region ----------------------------------------- VARIABLES
 
@@ -316,6 +308,16 @@ class EventSystem
         this.AddVariable("hellbed");             // 0011
         this.AddVariable("her");                 // 0012
         this.AddVariable("tem_jump");            // 0013
+
+        // #endregion
+
+
+        // #region ----------------------------------------- ORIGINALLY SELF SWITCHES
+
+        this.AddSwitch("mole");                  // 0167
+        this.AddSwitch("shackghost");            // 0168
+
+        this.AddVariable("fih");                 // 0014
 
         // #endregion
     }
@@ -5807,7 +5809,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
                 this.dialogueBox.SetFace("yoki", "surprised");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -5825,7 +5826,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
                 this.dialogueBox.SetFace("dragon", "dismiss");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Set(1, "dragon_3", 50 / 255);
                 await this.Timer(8);
@@ -5841,7 +5841,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[8]);
                 this.dialogueBox.SetFace("yoki", "unsure");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[9]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(1, 100 / 255);
                 await this.Timer(8);
@@ -5880,7 +5879,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[20]);
                 this.dialogueBox.SetFace("dragon", "dismiss");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[21]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -5906,7 +5904,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[26]);
                 this.dialogueBox.SetFace("dragon", "neutral");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[27]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -5926,7 +5923,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[29]);
                 this.dialogueBox.SetFace("dragon", "dismiss");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[30]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(0, 100 / 255);
                 await this.Timer(8);
@@ -5946,7 +5942,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[31]);
                 this.dialogueBox.SetFace("yoki", "surprised");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[32]);
-                this.dialogueBox.Close();
 
                 AudioManager.instance.PlaySE("wind_whish3", 0.9);
 
@@ -6002,7 +5997,6 @@ class EventSystem
                 await this.dialogueBox.Type(LocaleManager.Find(id)[33]);
                 this.dialogueBox.SetFace("dragon", "reveal");
                 await this.dialogueBox.Type(LocaleManager.Find(id)[34]);
-                this.dialogueBox.Close();
 
                 await this.illustrator.Move(0, 200 / 255);
                 await this.Timer(8);
@@ -6288,6 +6282,329 @@ class EventSystem
                 await this.Timer(90);
                 break;
             // #endregion
+
+            // #region ------------------------------------- port
+            case "port_soldiera":
+                RPGMovement.FindChar("soldiera").LookAtPlayer();
+
+                if (this.GetSwitch("soldier_talk_10"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                }
+                else
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "unsure smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+
+                    this.SetSwitch("soldier_talk_10", true);
+                }
+
+                this.dialogueBox.Close();
+                break;
+            case "port_soldierb":
+                RPGMovement.FindChar("soldierb").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "port_soldierc":
+                RPGMovement.FindChar("soldierc").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.SetFace("yoki", "unsure smile");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                break;
+            case "port_fishing1":
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                break;
+            case "port_fishing2":
+                if (this.GetVariable("fih") === 2)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_3`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                this.AddToVariable("fih");
+
+                if (this.GetVariable("fih") === 1)
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_1`));
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[2]);
+                await this.dialogueBox.Type(LocaleManager.Find(`${id}_2`)[3]);
+                this.dialogueBox.Close();
+                break;
+            case "port_fishing3":
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "port_fishing4":
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "port_sailor":
+                RPGMovement.FindChar("sailor").LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "port_pier":
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, "pier", 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+                await this.Timer(30);
+
+                if (this.GetSwitch("pier"))
+                {
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_done`));
+                }
+                else
+                {
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.SetFace("yoki", "think");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                    this.dialogueBox.SetFace("yoki", "meditative");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[4]);
+                    this.dialogueBox.SetFace("yoki", "smile");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[5]);
+                    this.dialogueBox.SetFace("yoki", "neutral");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[6]);
+                    this.dialogueBox.SetFace("yoki", "disheartened");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[7]);
+
+                    this.SetSwitch("pier", true);
+                    this.AddToVariable("illusts");
+                }
+
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                await this.Timer(20);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+                break;
+            // #endregion
+
+            // #region ------------------------------------- lighthouse
+            case "lighthouse_soldier": {
+                const soldier = RPGMovement.FindChar("soldier");
+                soldier.LookAtPlayer();
+
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                soldier.LookAt(Vector2.right);
+            } break;
+            case "lighthouse_?":
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+
+            // #region ------------------------------------- ship
+            case "ship_dog":
+                RPGMovement.FindChar("dog").LookAtPlayer();
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "ship_sailor1": {
+                const sailor = RPGMovement.FindChar("sailor1");
+                const randMove = sailor.GetComponent(RandomMove, true);
+
+                randMove.enabled = false;
+                await this.WaitFrameEnd();
+                sailor.LookAtPlayer();
+                
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+
+                randMove.enabled = true;
+                randMove.ResetTime();
+            } break;
+            case "ship_sailor2":
+                RPGMovement.FindChar("sailor2").LookAtPlayer();
+
+                if (!this.GetSwitch("sailor_1"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(id));
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("sailor_1", true);
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[2]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[3]);
+                this.dialogueBox.Close();
+                break;
+            case "ship_barrel":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            case "ship_box":
+                this.dialogueBox.SetFace("yoki", "surprised");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "unsure");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            case "ship_helm":
+                this.dialogueBox.SetFace("yoki", "neutral");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+                break;
+            // #endregion
+
+            // #region ------------------------------------- grave
+            case "grave_???":
+                const gone = this.GetSwitch("???");
+
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(-1, -1, -1, 0));
+
+                await this.illustrator.Set(0, `remains_${1 + +gone}`, 50 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 1);
+
+                await this.WaitOk();
+
+                if (!gone)
+                {
+                    AudioManager.instance.PlaySE("laugh", 0.9);
+
+                    await this.illustrator.Set(1, "remains_2", 50 / 255);
+                    await this.Timer(5);
+                    await this.illustrator.Move(1, 100 / 255);
+                    await this.Timer(5);
+                    await this.illustrator.Move(1, 150 / 255);
+                    await this.Timer(5);
+                    await this.illustrator.Move(1, 200 / 255);
+                    await this.Timer(5);
+                    await this.illustrator.Move(1, 1);
+                    await this.Timer(20);
+
+                    this.dialogueBox.SetFace("yoki", "surprised");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                    this.dialogueBox.Close();
+
+                    this.SetSwitch("???", true);
+                    
+                    await this.Timer(20);
+                    await this.illustrator.Set(0, "remains_2", 1);
+                    this.illustrator.Clear(1);
+                }
+
+                await this.Timer(2);
+                await this.illustrator.Move(0, 100 / 255);
+                await this.Timer(8);
+                await this.illustrator.Move(0, 50 / 255);
+                await this.Timer(8);
+                this.illustrator.Clear(0);
+
+                await this.Timer(20);
+                await this.TintAll(new Color(
+                    -80 / 255,
+                    -100 / 255,
+                    -100 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(new Color(
+                    -40 / 255,
+                    -50 / 255,
+                    -50 / 255,
+                    0
+                ));
+                await this.Timer(8);
+                await this.TintAll(Color.clear);
+
+                if (!gone)
+                {
+                    this.dialogueBox.SetFace("yoki", "surprised");
+                    await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                    this.dialogueBox.Close();
+
+                    this.AddToVariable("illusts");
+                }
+                break;
+            // #endregion
         }
 
         await this.#ProcessCommonEvents();
@@ -6375,20 +6692,12 @@ class EventSystem
             
             case "32_36":
             case "36_32":
-                if (event === 0)
-                {
-                    AudioManager.instance.FadeOutBGM(1);
-                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
-                }
+                if (event === 0) AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
                 break;
             
             case "36_38":
             case "38_36":
-                if (event === 0)
-                {
-                    AudioManager.instance.FadeOutBGM(1);
-                    AudioManager.instance.PlaySE("stair_5", 0.6, 1.2);
-                }
+                if (event === 0) AudioManager.instance.PlaySE("stair_5", 0.6, 1.2);
                 break;
         }
     }
