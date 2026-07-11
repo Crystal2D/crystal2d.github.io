@@ -612,7 +612,7 @@ class SpriteRenderer extends Renderer
         gl.bindTexture(gl.TEXTURE_2D, this.sprite.texture.GetNativeTexture());
         
         if (this.#drawMode === 0) gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.#trisCounts[0]);
-        else Application.gl_multidraw.multiDrawArraysWEBGL(
+        else if (Application.supportsMultidraw) Application.gl_multidraw.multiDrawArraysWEBGL(
             gl.TRIANGLE_STRIP,
             this.#indexes,
             0,
@@ -620,6 +620,10 @@ class SpriteRenderer extends Renderer
             0,
             this.#indexes.length
         );
+        else for (let i = 0; i < this.#indexes.length; i++)
+        {
+            gl.drawArrays(gl.TRIANGLE_STRIP, this.#indexes[i], this.#trisCounts[i]);
+        }
         
         gl.useProgram(null);
     }

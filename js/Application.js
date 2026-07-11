@@ -19,6 +19,7 @@ class Application
     
     static runInBackgroud = false;
     static debugMode = false;
+    static preferScheduler = false;
     static targetFrameRate = 0;
     static vSyncCount = 0;
 
@@ -99,6 +100,21 @@ class Application
     static get isFocused ()
     {
         return this.#focusedCall();
+    }
+
+    static get supportsScheduler ()
+    {
+        return scheduler != null;
+    }
+
+    static get useScheduler ()
+    {
+        return this.preferScheduler && this.supportsScheduler;
+    }
+
+    static get supportsMultidraw ()
+    {
+        return this.#gl_md != null;
     }
     
     static Init (name, dev, ver)

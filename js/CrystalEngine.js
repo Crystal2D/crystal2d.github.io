@@ -82,7 +82,7 @@ class CrystalEngine
                 return;
             }
     
-            if (scheduler != null) scheduler.postTask(loop.bind(this, callback));
+            if (Application.useScheduler) scheduler.postTask(loop.bind(this, callback));
             else setTimeout(loop.bind(this, callback), 0);
         };
     

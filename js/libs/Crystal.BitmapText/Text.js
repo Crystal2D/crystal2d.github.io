@@ -776,7 +776,7 @@ class Text extends Renderer
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.font.texture.GetNativeTexture());
         
-        Application.gl_multidraw.multiDrawArraysWEBGL(
+        if (Application.supportsMultidraw) Application.gl_multidraw.multiDrawArraysWEBGL(
             gl.TRIANGLE_STRIP,
             this.#indexes,
             0,
@@ -784,6 +784,10 @@ class Text extends Renderer
             0,
             chars.length
         );
+        else for (let i = 0; i < this.#indexes.length; i++)
+        {
+            gl.drawArrays(gl.TRIANGLE_STRIP, this.#indexes[i], this.#trisCounts[i]);
+        }
         
         gl.useProgram(null);
     }
