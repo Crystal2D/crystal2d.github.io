@@ -362,8 +362,11 @@ class CrystalEngine
                 GameWindow.resizable = true;
                 GameWindow.fullscreen = false;
 
-                Cursor.locked = false;
-                Cursor.visible = true;
+                if (Cursor != null)
+                {
+                    Cursor.locked = false;
+                    Cursor.visible = true;
+                }
                 
                 const errWrap = document.createElement("div");
                 errWrap.style.whiteSpace = "pre";
