@@ -1,7 +1,7 @@
 class AudioSettings
 {
     static #terminating = false;
-    static #context = new AudioContext();
+    static #context = new oggmented.OggmentedAudioContext();
     static #worker = new Worker("js/libs/Crystal.Audio/AudioWorker.js");
 
     static dspTime = 0;

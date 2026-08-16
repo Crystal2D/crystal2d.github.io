@@ -4,6 +4,7 @@
     "description" : "Adds basic audio implementations",
     "version": "2025.3.1f",
     "scripts" : [
+        "oggmented",
         "AudioSource",
         "AudioSettings",
         "AudioClip"
