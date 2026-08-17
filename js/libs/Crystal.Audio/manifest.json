@@ -10,7 +10,8 @@
         "AudioClip"
     ],
     "preserve": [
-        "AudioWorker.js"
+        "AudioWorker.js",
+        "oggmented.LICENSE.md"
     ],
     "classes" : [
         {
