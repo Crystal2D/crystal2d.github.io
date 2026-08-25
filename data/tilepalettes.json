@@ -3226,6 +3226,878 @@
         ]
     },
     {
+        "name": "Interior - Walls",
+        "textures": [
+            {
+                "src": "sprites/tilesets/walls",
+                "sprites": [
+                    {
+                        "name": "a",
+                        "id": 0
+                    },
+                    {
+                        "name": "a (1)",
+                        "id": 1
+                    },
+                    {
+                        "name": "b",
+                        "id": 2
+                    },
+                    {
+                        "name": "b (1)",
+                        "id": 3
+                    },
+                    {
+                        "name": "c",
+                        "id": 4
+                    },
+                    {
+                        "name": "c (1)",
+                        "id": 5
+                    },
+                    {
+                        "name": "a (2)",
+                        "id": 6
+                    },
+                    {
+                        "name": "a (3)",
+                        "id": 7
+                    },
+                    {
+                        "name": "b (2)",
+                        "id": 8
+                    },
+                    {
+                        "name": "b (3)",
+                        "id": 9
+                    },
+                    {
+                        "name": "c (2)",
+                        "id": 10
+                    },
+                    {
+                        "name": "c (3)",
+                        "id": 11
+                    },
+                    {
+                        "name": "a (4)",
+                        "id": 12
+                    },
+                    {
+                        "name": "a (5)",
+                        "id": 13
+                    },
+                    {
+                        "name": "b (4)",
+                        "id": 14
+                    },
+                    {
+                        "name": "b (5)",
+                        "id": 15
+                    },
+                    {
+                        "name": "a (6)",
+                        "id": 16
+                    },
+                    {
+                        "name": "a (7)",
+                        "id": 17
+                    },
+                    {
+                        "name": "b (6)",
+                        "id": 18
+                    },
+                    {
+                        "name": "b (7)",
+                        "id": 19
+                    },
+                    {
+                        "name": "a (8)",
+                        "id": 20
+                    },
+                    {
+                        "name": "a (9)",
+                        "id": 21
+                    },
+                    {
+                        "name": "b (8)",
+                        "id": 22
+                    },
+                    {
+                        "name": "b (9)",
+                        "id": 23
+                    },
+                    {
+                        "name": "a (10)",
+                        "id": 24
+                    },
+                    {
+                        "name": "a (11)",
+                        "id": 25
+                    },
+                    {
+                        "name": "a (12)",
+                        "id": 26
+                    },
+                    {
+                        "name": "a (13)",
+                        "id": 27
+                    },
+                    {
+                        "name": "a (14)",
+                        "id": 28
+                    },
+                    {
+                        "name": "a (15)",
+                        "id": 29
+                    },
+                    {
+                        "name": "a (16)",
+                        "id": 30
+                    },
+                    {
+                        "name": "a (17)",
+                        "id": 31
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Interior - Yoki's House",
+        "textures": [
+            {
+                "src": "sprites/tilesets/yokihouse",
+                "sprites": [
+                    {
+                        "name": "bed-topleft",
+                        "id": 0
+                    },
+                    {
+                        "name": "bed-top",
+                        "id": 1
+                    },
+                    {
+                        "name": "bed-topright",
+                        "id": 2
+                    },
+                    {
+                        "name": "lamp-topleft",
+                        "id": 3
+                    },
+                    {
+                        "name": "lamp-topright",
+                        "id": 4
+                    },
+                    {
+                        "name": "journal-topleft",
+                        "id": 5
+                    },
+                    {
+                        "name": "journal-topright",
+                        "id": 6
+                    },
+                    {
+                        "name": "yokihouse (0)",
+                        "id": 7
+                    },
+                    {
+                        "name": "yokihouse (1)",
+                        "id": 8
+                    },
+                    {
+                        "name": "yokihouse (2)",
+                        "id": 9
+                    },
+                    {
+                        "name": "yokihouse (3)",
+                        "id": 10
+                    },
+                    {
+                        "name": "fridge-topleft",
+                        "id": 11
+                    },
+                    {
+                        "name": "fridge-topright",
+                        "id": 12
+                    },
+                    {
+                        "name": "bed-bottomleft",
+                        "id": 13
+                    },
+                    {
+                        "name": "bed-bottom",
+                        "id": 14
+                    },
+                    {
+                        "name": "bed-bottomright",
+                        "id": 15
+                    },
+                    {
+                        "name": "lamp-bottomleft",
+                        "id": 16
+                    },
+                    {
+                        "name": "lamp-bottomright",
+                        "id": 17
+                    },
+                    {
+                        "name": "journal-bottomleft",
+                        "id": 18
+                    },
+                    {
+                        "name": "journal-bottomright",
+                        "id": 19
+                    },
+                    {
+                        "name": "yokihouse (4)",
+                        "id": 20
+                    },
+                    {
+                        "name": "yokihouse (5)",
+                        "id": 21
+                    },
+                    {
+                        "name": "yokihouse (6)",
+                        "id": 22
+                    },
+                    {
+                        "name": "yokihouse (7)",
+                        "id": 23
+                    },
+                    {
+                        "name": "fridge-left",
+                        "id": 24
+                    },
+                    {
+                        "name": "fridge-right",
+                        "id": 25
+                    },
+                    {
+                        "name": "yokihouse (8)",
+                        "id": 26
+                    },
+                    {
+                        "name": "yokihouse (9)",
+                        "id": 27
+                    },
+                    {
+                        "name": "cabinet-topleft",
+                        "id": 28
+                    },
+                    {
+                        "name": "cabinet-topright",
+                        "id": 29
+                    },
+                    {
+                        "name": "yokihouse (10)",
+                        "id": 30
+                    },
+                    {
+                        "name": "yokihouse (11)",
+                        "id": 31
+                    },
+                    {
+                        "name": "chair",
+                        "id": 32
+                    },
+                    {
+                        "name": "yokihouse (12)",
+                        "id": 33
+                    },
+                    {
+                        "name": "yokihouse (13)",
+                        "id": 34
+                    },
+                    {
+                        "name": "yokihouse (14)",
+                        "id": 35
+                    },
+                    {
+                        "name": "yokihouse (15)",
+                        "id": 36
+                    },
+                    {
+                        "name": "fridge-bottomleft",
+                        "id": 37
+                    },
+                    {
+                        "name": "fridge-bottomright",
+                        "id": 38
+                    },
+                    {
+                        "name": "yokihouse (16)",
+                        "id": 39
+                    },
+                    {
+                        "name": "yokihouse (17)",
+                        "id": 40
+                    },
+                    {
+                        "name": "cabinet-left",
+                        "id": 41
+                    },
+                    {
+                        "name": "cabinet-right",
+                        "id": 42
+                    },
+                    {
+                        "name": "yokihouse (18)",
+                        "id": 43
+                    },
+                    {
+                        "name": "yokihouse (19)",
+                        "id": 44
+                    },
+                    {
+                        "name": "yokihouse (20)",
+                        "id": 45
+                    },
+                    {
+                        "name": "yokihouse (21)",
+                        "id": 46
+                    },
+                    {
+                        "name": "yokihouse (22)",
+                        "id": 47
+                    },
+                    {
+                        "name": "yokihouse (23)",
+                        "id": 48
+                    },
+                    {
+                        "name": "yokihouse (24)",
+                        "id": 49
+                    },
+                    {
+                        "name": "yokihouse (25)",
+                        "id": 50
+                    },
+                    {
+                        "name": "yokihouse (26)",
+                        "id": 51
+                    },
+                    {
+                        "name": "yokihouse (27)",
+                        "id": 52
+                    },
+                    {
+                        "name": "yokihouse (28)",
+                        "id": 53
+                    },
+                    {
+                        "name": "cabinet-bottomleft",
+                        "id": 54
+                    },
+                    {
+                        "name": "cabinet-bottomright",
+                        "id": 55
+                    },
+                    {
+                        "name": "yokihouse (29)",
+                        "id": 56
+                    },
+                    {
+                        "name": "yokihouse (30)",
+                        "id": 57
+                    },
+                    {
+                        "name": "trash",
+                        "id": 58
+                    },
+                    {
+                        "name": "yokihouse (31)",
+                        "id": 59
+                    },
+                    {
+                        "name": "yokihouse (32)",
+                        "id": 60
+                    },
+                    {
+                        "name": "yokihouse (33)",
+                        "id": 61
+                    },
+                    {
+                        "name": "yokihouse (34)",
+                        "id": 62
+                    },
+                    {
+                        "name": "yokihouse (35)",
+                        "id": 63
+                    },
+                    {
+                        "name": "yokihouse (36)",
+                        "id": 64
+                    },
+                    {
+                        "name": "ruga-left",
+                        "id": 65
+                    },
+                    {
+                        "name": "ruga-right",
+                        "id": 66
+                    },
+                    {
+                        "name": "rugb-left",
+                        "id": 67
+                    },
+                    {
+                        "name": "rugb-right",
+                        "id": 68
+                    },
+                    {
+                        "name": "chair (1)",
+                        "id": 69
+                    },
+                    {
+                        "name": "chair (2)",
+                        "id": 70
+                    },
+                    {
+                        "name": "yokihouse (37)",
+                        "id": 71
+                    },
+                    {
+                        "name": "yokihouse (38)",
+                        "id": 72
+                    },
+                    {
+                        "name": "yokihouse (39)",
+                        "id": 73
+                    },
+                    {
+                        "name": "yokihouse (40)",
+                        "id": 74
+                    },
+                    {
+                        "name": "yokihouse (41)",
+                        "id": 75
+                    },
+                    {
+                        "name": "yokihouse (42)",
+                        "id": 76
+                    },
+                    {
+                        "name": "couch-topleft",
+                        "id": 77
+                    },
+                    {
+                        "name": "couch-top",
+                        "id": 78
+                    },
+                    {
+                        "name": "couch-topright",
+                        "id": 79
+                    },
+                    {
+                        "name": "brooma-top",
+                        "id": 80
+                    },
+                    {
+                        "name": "stove-topleft",
+                        "id": 81
+                    },
+                    {
+                        "name": "stove-topright",
+                        "id": 82
+                    },
+                    {
+                        "name": "yokihouse (43)",
+                        "id": 83
+                    },
+                    {
+                        "name": "yokihouse (44)",
+                        "id": 84
+                    },
+                    {
+                        "name": "yokihouse (45)",
+                        "id": 85
+                    },
+                    {
+                        "name": "yokihouse (46)",
+                        "id": 86
+                    },
+                    {
+                        "name": "yokihouse (47)",
+                        "id": 87
+                    },
+                    {
+                        "name": "yokihouse (48)",
+                        "id": 88
+                    },
+                    {
+                        "name": "couch-bottomleft",
+                        "id": 89
+                    },
+                    {
+                        "name": "couch-bottom",
+                        "id": 90
+                    },
+                    {
+                        "name": "couch-bottomright",
+                        "id": 91
+                    },
+                    {
+                        "name": "brooma-bottom",
+                        "id": 92
+                    },
+                    {
+                        "name": "stove-bottomleft",
+                        "id": 93
+                    },
+                    {
+                        "name": "stove-bottomright",
+                        "id": 94
+                    },
+                    {
+                        "name": "planttop",
+                        "id": 95
+                    },
+                    {
+                        "name": "trash (1)",
+                        "id": 96
+                    },
+                    {
+                        "name": "yokihouse (49)",
+                        "id": 97
+                    },
+                    {
+                        "name": "yokihouse (50)",
+                        "id": 98
+                    },
+                    {
+                        "name": "yokihouse (51)",
+                        "id": 99
+                    },
+                    {
+                        "name": "yokihouse (52)",
+                        "id": 100
+                    },
+                    {
+                        "name": "yokihouse (53)",
+                        "id": 101
+                    },
+                    {
+                        "name": "yokihouse (54)",
+                        "id": 102
+                    },
+                    {
+                        "name": "yokihouse (55)",
+                        "id": 103
+                    },
+                    {
+                        "name": "yokihouse (56)",
+                        "id": 104
+                    },
+                    {
+                        "name": "yokihouse (57)",
+                        "id": 105
+                    },
+                    {
+                        "name": "yokihouse (58)",
+                        "id": 106
+                    },
+                    {
+                        "name": "yokihouse (59)",
+                        "id": 107
+                    },
+                    {
+                        "name": "yokihouse (60)",
+                        "id": 108
+                    },
+                    {
+                        "name": "yokihouse (61)",
+                        "id": 109
+                    },
+                    {
+                        "name": "yokihouse (62)",
+                        "id": 110
+                    },
+                    {
+                        "name": "yokihouse (63)",
+                        "id": 111
+                    },
+                    {
+                        "name": "yokihouse (64)",
+                        "id": 112
+                    },
+                    {
+                        "name": "yokihouse (65)",
+                        "id": 113
+                    },
+                    {
+                        "name": "yokihouse (66)",
+                        "id": 114
+                    },
+                    {
+                        "name": "yokihouse (67)",
+                        "id": 115
+                    },
+                    {
+                        "name": "yokihouse (68)",
+                        "id": 116
+                    },
+                    {
+                        "name": "yokihouse (69)",
+                        "id": 117
+                    },
+                    {
+                        "name": "yokihouse (70)",
+                        "id": 118
+                    },
+                    {
+                        "name": "yokihouse (71)",
+                        "id": 119
+                    },
+                    {
+                        "name": "yokihouse (72)",
+                        "id": 120
+                    },
+                    {
+                        "name": "yokihouse (73)",
+                        "id": 121
+                    },
+                    {
+                        "name": "yokihouse (74)",
+                        "id": 122
+                    },
+                    {
+                        "name": "yokihouse (75)",
+                        "id": 123
+                    },
+                    {
+                        "name": "yokihouse (76)",
+                        "id": 124
+                    },
+                    {
+                        "name": "yokihouse (77)",
+                        "id": 125
+                    },
+                    {
+                        "name": "yokihouse (78)",
+                        "id": 126
+                    },
+                    {
+                        "name": "yokihouse (79)",
+                        "id": 127
+                    },
+                    {
+                        "name": "yokihouse (80)",
+                        "id": 128
+                    },
+                    {
+                        "name": "yokihouse (81)",
+                        "id": 129
+                    },
+                    {
+                        "name": "yokihouse (82)",
+                        "id": 130
+                    },
+                    {
+                        "name": "broomb-top",
+                        "id": 131
+                    },
+                    {
+                        "name": "yokihouse (83)",
+                        "id": 132
+                    },
+                    {
+                        "name": "yokihouse (84)",
+                        "id": 133
+                    },
+                    {
+                        "name": "yokihouse (85)",
+                        "id": 134
+                    },
+                    {
+                        "name": "yokihouse (86)",
+                        "id": 135
+                    },
+                    {
+                        "name": "yokihouse (87)",
+                        "id": 136
+                    },
+                    {
+                        "name": "yokihouse (88)",
+                        "id": 137
+                    },
+                    {
+                        "name": "chair (3)",
+                        "id": 138
+                    },
+                    {
+                        "name": "yokihouse (89)",
+                        "id": 139
+                    },
+                    {
+                        "name": "yokihouse (90)",
+                        "id": 140
+                    },
+                    {
+                        "name": "yokihouse (91)",
+                        "id": 141
+                    },
+                    {
+                        "name": "broomb-bottom",
+                        "id": 142
+                    },
+                    {
+                        "name": "yokihouse (92)",
+                        "id": 143
+                    },
+                    {
+                        "name": "yokihouse (93)",
+                        "id": 144
+                    },
+                    {
+                        "name": "yokihouse (94)",
+                        "id": 145
+                    },
+                    {
+                        "name": "yokihouse (95)",
+                        "id": 146
+                    },
+                    {
+                        "name": "yokihouse (96)",
+                        "id": 147
+                    },
+                    {
+                        "name": "yokihouse (97)",
+                        "id": 148
+                    },
+                    {
+                        "name": "yokihouse (98)",
+                        "id": 149
+                    },
+                    {
+                        "name": "yokihouse (99)",
+                        "id": 150
+                    },
+                    {
+                        "name": "box",
+                        "id": 151
+                    },
+                    {
+                        "name": "trash (2)",
+                        "id": 152
+                    },
+                    {
+                        "name": "yokihouse (100)",
+                        "id": 153
+                    },
+                    {
+                        "name": "yokihouse (101)",
+                        "id": 154
+                    },
+                    {
+                        "name": "yokihouse (102)",
+                        "id": 155
+                    },
+                    {
+                        "name": "yokihouse (103)",
+                        "id": 156
+                    },
+                    {
+                        "name": "yokihouse (104)",
+                        "id": 157
+                    },
+                    {
+                        "name": "yokihouse (105)",
+                        "id": 158
+                    },
+                    {
+                        "name": "yokihouse (106)",
+                        "id": 159
+                    },
+                    {
+                        "name": "yokihouse (107)",
+                        "id": 160
+                    },
+                    {
+                        "name": "yokihouse (108)",
+                        "id": 161
+                    },
+                    {
+                        "name": "yokihouse (109)",
+                        "id": 162
+                    },
+                    {
+                        "name": "yokihouse (110)",
+                        "id": 163
+                    },
+                    {
+                        "name": "yokihouse (111)",
+                        "id": 164
+                    },
+                    {
+                        "name": "cauldron-topleft",
+                        "id": 165
+                    },
+                    {
+                        "name": "cauldron-topright",
+                        "id": 166
+                    },
+                    {
+                        "name": "yokihouse (112)",
+                        "id": 167
+                    },
+                    {
+                        "name": "yokihouse (113)",
+                        "id": 168
+                    },
+                    {
+                        "name": "yokihouse (114)",
+                        "id": 169
+                    },
+                    {
+                        "name": "yokihouse (115)",
+                        "id": 170
+                    },
+                    {
+                        "name": "yokihouse (116)",
+                        "id": 171
+                    },
+                    {
+                        "name": "yokihouse (117)",
+                        "id": 172
+                    },
+                    {
+                        "name": "cauldron-bottomleft",
+                        "id": 173
+                    },
+                    {
+                        "name": "cauldron-bottomright",
+                        "id": 174
+                    },
+                    {
+                        "name": "yokihouse (118)",
+                        "id": 175
+                    },
+                    {
+                        "name": "yokihouse (119)",
+                        "id": 176
+                    },
+                    {
+                        "name": "yokihouse (120)",
+                        "id": 177
+                    },
+                    {
+                        "name": "yokihouse (121)",
+                        "id": 178
+                    },
+                    {
+                        "name": "yokihouse (122)",
+                        "id": 179
+                    },
+                    {
+                        "name": "yokihouse (123)",
+                        "id": 180
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Underground",
         "textures": [
             {

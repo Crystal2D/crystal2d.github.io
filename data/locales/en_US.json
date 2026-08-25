@@ -44,6 +44,17 @@
 "options_graphics_fps_unli_aright": 3.525,
 "options_graphics_fps_vsync_aleft": 0.6,
 
+"opening": [
+    "...................\\.\\..\\.\\..\\.\\..",
+    "........My head...\\.\\..\\.\\..",
+    ".............It\\.\\. hurts..........",
+    "All of these voices..\\.\\.and..\\..\\.\nAll of these faces are flooding \ninto my head......",
+    "Who..\\..\\..\\. are they..\\..\\.?",
+    "Ah......................",
+    "It feels like..\\.\\...\nMy head's gonna burst open......\\..\\.",
+    "Someone.....\\.\\..\\.\\..\nMake it stop.........\\.\\..\\.\\.."
+],
+
 "hintbird": [
     "Chirp!\\.\\. Chirp!\\.\\.\nAre you feeling lost?\\.\\.\nConfused?",
     "I'm here to help!",
@@ -300,6 +311,277 @@
     "\\SE[1]I'm ok!\\.\\.\nJust had a long walk,\\.\\.\nI'm just tired is all.",
     "I managed to clear my head \nfrom that awful nightmare \nI had earlier.",
     "\\SE[2]...\\SE[1]"
+],
+
+"yokihouse_yokiroom_opening": [
+    ".............!!!",
+    "...............",
+    "....Another nightmare..",
+    "I've been getting a lot of \nthese lately....",
+    ".\\.\\..\\.\\..",
+    "..I have a feeling HE's behind \nthis one again.",
+    "........",
+    "I don't think I can fall back \nasleep after THAT.",
+    ".\\.\\..\\.\\..",
+    "Well...\nNo use laying around in bed.",
+    "Guess I'll go for a walk to \nclear my mind a bit."
+],
+"yokihouse_yokiroom_window": "It's bright and sunny out.",
+"yokihouse_yokiroom_apples": [
+    "Oh...\\.\\. I forgot about these \napples I left here.",
+    "They still seem good...\\.\\.\nI'll eat one later though."
+],
+"yokihouse_yokiroom_sched": [
+    "Checking my schedule...",
+    "Seems like I don't have \nwork today.",
+    "Well...\\.\\. I usually don't work \non weekends."
+],
+"yokihouse_yokiroom_trash": [
+    "My garbage can...",
+    "I should empty it out \nsoon,\\.\\. it's starting to\nsmell.",
+    "..?",
+    "There's a crumpled up note \nin here that says...\\.\\. \"Hold \nShift to move faster.\"",
+    "What is...\\.\\. \"Shift\"?"
+],
+"yokihouse_yokiroom_cabinet": [
+    "I don't need to change\nclothes...\\.\\. What I'm wearing \nright now is fine.",
+    "It's not like I have much\nvariety anyway...",
+    "Maybe I should pick up\nsome new clothes sometime\nin town."
+],
+"yokihouse_yokiroom_lamp": "The sun's out.\\.\\.\nIt's too bright right now\nto use my lamp...",
+"yokihouse_yokiroom_bed": [
+    "It's my bed.",
+    "Go to sleep?"
+],
+"yokihouse_yokiroom_bed_choices": [
+    "Yes",
+    "No"
+],
+"yokihouse_yokiroom_bed_no": "Of course...\\.\\.\nI haven't even left the room \nyet.",
+"yokihouse_yokiroom_bed_yes": [
+    "..................",
+    "I haven't even left the room \nyet...",
+    "Should I really..?"
+],
+"yokihouse_yokiroom_bed_choices2": [
+    "Yes",
+    "No"
+],
+"yokihouse_yokiroom_bed_yes2": "Well...\\.\\.\nMaybe I just won't have\nany more nightmares...",
+"yokihouse_yokiroom_bed_no2": "Of course...\\.\\.\nI haven't even left the\nroom yet.",
+"yokihouse_yokiroom_bed_zerad": "...Why do I have a feeling\nI won't be having pleasant\ndreams any time soon.",
+"yokihouse_yokiroom_end": [
+    "...",
+    "I wonder how long this will \ngo on for.",
+    "Claire living here...\\.\\.\nMy work at the Post Office...\\.\\.\nWork at the Castle...",
+    "Zera's visits...",
+    "...",
+    "I thought Charles would \nstay here forever.",
+    "But...\\.\\.\nOne day...\\.\\.\nHe just left.",
+    "Will everything I have now...\\.\\. \nThese peaceful days...\\.\\.\nWill it all vanish too?",
+    "No...\\.\\.\nI shouldn't think this way.",
+    "Charles will come back one\nday.",
+    "And...",
+    "Nothing will vanish if I work \nto make sure it doesn't.",
+    "That was quite a long\nstroll.",
+    "I think I could probably \nget some good sleep \nfinally.",
+    "Something that still bothers\nme...",
+    "A sister.\\..\\..",
+    "..Did I have a sister?",
+    "What was my life like before\nI met Charles..?",
+    "Why can't I...\\.\\. remember...",
+    "\\SE[3]Hmm hmm hmm...",
+    "Think what you like.",
+    "Stay as blissfully ignorant as you \nare now.",
+    "That'll make everything easier.",
+    "In time..",
+    "Everything you are..\\.\\. will be mine.",
+    "Enjoy these remaining peaceful \ndays while it lasts.",
+    "..\\{ She\\}  won't be able to hold it back\nanymore.\n\\.\\.Her influence will reach here soon.",
+    "I'll make sure you're ready,\\.\\. Yoki.\\SE[1]"
+],
+
+"yokihouse_hallway_painting": "A nice painting...",
+"yokihouse_hallway_landscape": "A landscape of the mountain.\\.\\.\nIt's really pretty.",
+"yokihouse_hallway_lamp": "The sun's out...\\.\\.\nIt's too bright right now\nto turn the lamp on.",
+"yokihouse_hallway_window": "It's bright and sunny out...",
+"yokihouse_hallway_broom": [
+    "Claire's spare broom...",
+    "I can't use it to fly \nthough.\\.\\. I just clean with\nit."
+],
+
+"yokihouse_spare_broom": "A spare broom stick.",
+"yokihouse_spare_cabinet": [
+    "A spare wardrobe...",
+    "It has some of my old\nclothes and Claire's outfits\nmixed in there."
+],
+"yokihouse_spare_photo": "A photo of..",
+"yokihouse_spare_bed": [
+    "My old bed.\\.\\.\nI guess it's now the guest \nbed...",
+    "To be honest,\\.\\.\nI don't know why Claire\ndoesn't use this bed..",
+    "This room was supposed to\nbe for her...",
+    "But she just sleeps on the\ncouch downstairs."
+],
+"yokihouse_spare_journal": [
+    "My old journal.",
+    "I filled up all the pages so \nI have a new one now in my \nroom...",
+    ".\\..\\..",
+    "I'm too embarrassed to read\nmy old journal entries."
+],
+
+"yokihouse_livingroom_lamp": "The sun's out...\\.\\.\nIt's too bright right now\nto turn the lamp on.",
+"yokihouse_livingroom_couch": [
+    "The livingroom couch...\\.\\.\nAKA Claire's bed...",
+    "I wish she'd just use the \nguest bed upstairs.",
+    "I guess I'm pretty guilty of \nfalling asleep on it too \nthough..."
+],
+"yokihouse_livingroom_fridge": [
+    "The fridge is pretty empty...",
+    "I should do some shopping\nin the village soon."
+],
+"yokihouse_livingroom_stove": [
+    "The stove...",
+    ".\\..I have so many unpleasant\nstories involving this thing."
+],
+"yokihouse_livingroom_fih": "I should cook this fish\nsoon.",
+"yokihouse_livingroom_sink": "Always good to wash your\nhands before you prepare\nfood.",
+
+"yokihouse_claireroom_broom": [
+    "Claire's broom.",
+    "Why does she have so many\nbrooms lying around the\nhouse..."
+],
+"yokihouse_claireroom_poster": "...",
+"yokihouse_claireroom_poster_claire": "\\SE[2]I liked that picture of me so \nI decided to keep that one.\\SE[1]",
+"yokihouse_claireroom_books": [
+    "Lots of spell books and \nsuch.",
+    ".\\..\\..Some of these are in\nlanguages I've never seen\nbefore...",
+    "Claire is really smart."
+],
+"yokihouse_claireroom_ingredients": "Looks like these are \ningredients ready to use for \nspells and formulas.",
+"yokihouse_claireroom_ingredients_organic": ".\\..\\..Organic ingredients for\nspells and formulas.",
+"yokihouse_claireroom_ingredients_shelf": "Looks like a lot of \ningredients for formulas \nand rituals...",
+"yokihouse_claireroom_trash": [
+    "A lot of old torn up notes\nand formulas it seems.",
+    "..As well as some failed \nexperiments and empty vials."
+],
+"yokihouse_claireroom_brew": [
+    "Claire's latest work...",
+    "What a strong smell."
+],
+"yokihouse_claireroom_brew_claire": [
+    "\\SE[2]Wanna try it?",
+    "\\SE[1]No thank you..."
+],
+"yokihouse_claireroom_journal": [
+    "\\SE[2]Hey heyyy!\\.\\.\nThat's my journal!",
+    "I don't go lookin' through\nyour stuff without your\npermission!",
+    "\\SE[1]I'm pretty sure you do...",
+    "\\SE[2]Well...\\.\\. maybe.",
+    "But don't look through mine!\\.\\.\nMy stuff is cuuuuuurrrsed!\\.\\.\nYou'll be haunted!",
+    "\\SE[1]By who..?",
+    "\\SE[2]By me of course.",
+    "\\SE[1]You're right...\\.\\.\nWouldn't want that."
+],
+"yokihouse_claireroom_journal_real": [
+    "\\SE[2]Hey\\. hey!!\\.\\.\nNo reading my journal!",
+    "Just cuz I left for a minute,\\.\\.\ndon't think I can't tell when \nyou open my journal!\\SE[1]"
+],
+"yokihouse_claireroom_claire_1a": [
+    "\\SE[2]Yo!\\.\\. \nGood morning, Yoki! ",
+    "Aren't you awake kind of\nearly? ",
+    "\\SE[1]Good morning Claire.",
+    "It is pretty early, huh?",
+    "I haven't been sleeping all\nthat well lately...",
+    "\\SE[2]Mm...Yeah..\\.\\. \nYou don't look so great \nthese days.",
+    "Was it another nightmare?",
+    "\\SE[1]Yeah...",
+    "I've been getting them a lot \nmore recently.",
+    "I can't remember the last \ntime I got a good full \nnight's rest.",
+    "This one was especially\ndraining. I feel beyond\nexhausted.",
+    "\\SE[2]mm...",
+    "You know...",
+    "I'm thinking.\\.\\..\\.\\..\\.\\.\nIt was probably HIS doing\nagain.",
+    "You know.\\..\\.\\..\\.\\.\n...Zera."
+],
+"yokihouse_claireroom_claire_1_nooutside": [
+    "\\SE[1]Yeah. I was thinking the same \nthing...",
+    "Usually with his nightmares,\\.\nthey end with some kind of \nEYE looking back at me.",
+    "\\SE[2]I was also thinking it was\nhim because I saw him by \nthe front door earlier.",
+    "\\SE[1]Ah. \\.\\.\nThere's no doubt about it \nthen. \\.\\.It was him."
+],
+"yokihouse_claireroom_claire_1_outside": [
+    "\\SE[1]Yeah... ",
+    "I saw him outside next to \nthe house after all... ",
+    "\\SE[2]Ugh, he's still there?"
+],
+"yokihouse_claireroom_claire_1_zera": "\\SE[1]So you saw him earlier too \nthen, huh...",
+"yokihouse_claireroom_claire_1_byezera": [
+    "\\SE[1]Well not anymore.",
+    "He wandered off somewhere.",
+    "\\SE[2]Good riddance."
+],
+"yokihouse_claireroom_claire_1b": [
+    "\\SE[1]These nightmares feel much\nmore aggressive lately.",
+    "Wonder if he's mad at me...",
+    "\\SE[2]Man\\.\\. what's with that guy?\\.\\.\nWhy's he so fixated on you?",
+    "Think he's got a crush?",
+    "\\SE[1]I don't think it's that...",
+    "\\SE[2]Well whatever it is...\\.\\.\nSeriously,\\.\\. be careful around\nhim.",
+    "If I could get rid of him\nmyself, I totally would.",
+    "I put up so many spell \nbarriers around the house...",
+    "..and he just comes in and \nbreaks them like it was \nnothing.",
+    "\\SE[1]Don't worry about me.",
+    "If it ever came down to it...\nIf he ever tried anything...",
+    "I can take care of myself, \nI'm not scared of him.",
+    "\\SE[2]Ooohhhhh! \nYou're so cool!",
+    "After all,\\.\\. It's not like he's\never tricked you or roped \nyou into his schemes before.",
+    "\\SE[1]..............."
+],
+"yokihouse_claireroom_claire_quest_nooutside": "\\SE[2]Hey, if you're heading out...",
+"yokihouse_claireroom_claire_quest_outside": "\\SE[2]Hey, if you're heading out \nagain...",
+"yokihouse_claireroom_claire_quest": "\\SE[2]Do you think you can pick up \nmy order from the Doctor's \nplace in the Castle Town?",
+"yokihouse_claireroom_claire_quest_doc": [
+    "\\SE[1]Oh.\\.\\...\\.\\.. \\.\\.I already dropped by\nthere.. \\.\\.I didn't..\\.\\. know..",
+    "\\SE[2]What!? \\.\\.You already.. \\.\\.went\nto the Town\\.\\. and back?",
+    "Aww man..",
+    "\\SE[1]Ah... It's ok, I don't mind \ngoing back...\nI can still get your stuff.",
+    "\\SE[2]Yay! \nYou're so wonderful!\\SE[1]"
+],
+"yokihouse_claireroom_claire_quest_nodoc": [
+    "\\SE[1]Sure thing, if I end up\nheading that way.",
+    "\\SE[2]Thanks a bunch!\\SE[1]"
+],
+"yokihouse_claireroom_claire_quest_check": [
+    "\\SE[2]Did you pick up my stuff\nyet?",
+    "From the Castle Town Doctor,\nin case you forgot.",
+    "\\SE[1]No... Not yet.",
+    "\\SE[2]Awww booooo.\\SE[1]"
+],
+"yokihouse_claireroom_claire_quest_done": [
+    "\\SE[2]Wowwww! You brought my\nstuff! Thanks sooo much!",
+    "\\SE[1]Sure thing.",
+    "I'm assuming these are\ningredients for witchcraft.",
+    "\\SE[2]Yup! They sure are! \nAnd these are especially\nhard to come by.",
+    "\\SE[1]What are these ingredients\nfor this time..?",
+    "The doctor's tone really\nchanged when I brought up\nthe order...",
+    "\\SE[2]It's umm.\\.\\..\\.\\..\nThe commission this time\\.\\. \nis a little unpleasant.",
+    "\\SE[1].\\.\\..\\.\\..\\.\\..",
+    "\\SE[2]..........",
+    "...Just kidding!\\.\\.\nIt's for healing potions.",
+    "Witchcraft is used for more\nthan just vile reasons like \nmaking poisons or curses.",
+    "Though I guess I've taken on\na few of those types of \njobs before...",
+    "\\SE[1]If these ingredients help\npeople, why do they have\nto be obtained so sneakily?",
+    "\\SE[2]The only use for these types\nof unique items are formulas \nrelating to Witchcraft...",
+    "And ingredients like these \ntend to have uses in more\nthan just one formula.",
+    "Some being... very deadly\nor dangerous.",
+    "To reduce the risk of these \nbeing used for some \ndangerous stuff...",
+    "..It's all just outlawed.\\.\\.\nAnnoying, right?",
+    "\\SE[1]I guess I understand..",
+    "\\SE[2]Anyway, I have the \ningredients now.",
+    "But... I don't have to make \nthe potions right away.",
+    "Why don't I take you out \nfor a flight on my broom?",
+    "That always helps me feel\nbetter when I'm not doing\ntoo well.",
+    "I'll be waiting for you \noutside!\\SE[1]"
 ],
 
 "forest_view": "----------------------------------------------------------------------",
@@ -1408,6 +1690,16 @@
 "grave_???": [
     "!?",
     "..What was that all about?"
+],
+
+"underground": "----------------------------------------------------------------------",
+"underground_secret": [
+    "\\SE[12]!",
+    "Sorry... No secrets to find here.\\SE[1]"
+],
+"underground_secret_talked": [
+    "\\SE[12]Thank you for coming all this way \njust to see me.",
+    "\\SE[1]Sure thing..."
 ]
 
 }
