@@ -759,6 +759,14 @@
             "texture": "sprites/chars/noname"
         }
     },
+    {
+        "path": "spritelibs/chars/enemy",
+        "type": "SpriteLibraryAsset",
+        "args": {
+            "mainLibrary": "spritelibs/chars/yoki",
+            "texture": "sprites/chars/enemy"
+        }
+    },
 
     {
         "path": "spritelibs/chars/claireyokifly",

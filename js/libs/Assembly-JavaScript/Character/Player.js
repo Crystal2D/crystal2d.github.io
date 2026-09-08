@@ -6,7 +6,8 @@ class Player extends RPGMovement
     #xTime = 0;
     #yTime = 0;
 
-    #transfer = null;
+    #touchTransfer = null;
+    #keyTransfer = null;
     #keyInteractable = null;
     #touchInteractable = null;
 
@@ -22,6 +23,12 @@ class Player extends RPGMovement
 
         this.onJumpStart.Add(() => Party.OnJump());
         this.onTP.Add(() => Party.OnTP());
+
+        EventSystem.onAfterUpdate.Add(() => {
+            this.#keyTransfer = null;
+            this.#keyInteractable = null;
+            this.#GetTileInteractables(this._node);
+        });
     }
     
     Update ()
@@ -35,8 +42,23 @@ class Player extends RPGMovement
         super.Update();
     }
 
+    #GetTileInteractables (node)
+    {
+        if (node == null) return;
+        
+        const interactables = node.GetOwnersOfType(Interactable);
+
+        // Get on tile interactables
+        for (let i = 0; i < interactables.length; i++)
+        {
+            if (this.#keyInteractable == null && (interactables[i].trigger === 0 || interactables[i].trigger === 3)) this.#keyInteractable = interactables[i];
+            if (this.#touchInteractable == null && interactables[i].trigger === 1) this.#touchInteractable = interactables[i];
+        }
+    }
+
     _DirCheck (node, tped)
     {
+        this.#keyTransfer = null;
         this.#keyInteractable = null;
 
         if (super._DirCheck(node)) // if collides
@@ -73,17 +95,10 @@ class Player extends RPGMovement
         if (!tped)
         {
             const transfer = node.GetOwnerOfType(MapTransfer);
-            if (transfer != null) this.#transfer = transfer;   
+            if (transfer != null) this.#touchTransfer = transfer;
         }
 
-        const interactables = node.GetOwnersOfType(Interactable);
-
-        // Get on tile interactables
-        for (let i = 0; i < interactables.length; i++)
-        {
-            if (this.#keyInteractable == null && (interactables[i].trigger === 0 || interactables[i].trigger === 3)) this.#keyInteractable = interactables[i];
-            if (this.#touchInteractable == null && interactables[i].trigger === 1) this.#touchInteractable = interactables[i];
-        }
+        this.#GetTileInteractables(node);
 
         return false;
     }
@@ -92,10 +107,20 @@ class Player extends RPGMovement
     {
         if (this.avoidInputs) return;
 
+        let lookedNode = null;
+
+        // Get looked at transfer
+        if (this.#keyTransfer == null)
+        {
+            lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
+            this.#keyTransfer = lookedNode.GetOwnerOfType(MapTransfer);
+        }
+
         // Get looked at interactable
         if (this.#keyInteractable == null)
         {
-            const lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
+            if (lookedNode == null) lookedNode = MapGrid.current.NodeOn(Vector2.Add(this.nodePos, this.lookingAt));
+
             const interactables = lookedNode.GetOwnersOfType(Interactable);
 
             let interactable = null;
@@ -140,32 +165,7 @@ class Player extends RPGMovement
 
     async _OnStop ()
     {
-        if (this.#transfer != null)
-        {
-            this.avoidInputs = true;
-
-            const lastScene = MapGrid.scene;
-
-            MapTransfer.last = this.#transfer;
-            this.#transfer = null;
-
-            EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 0);
-
-            await Transitioner.instance.TintIn();
-
-            const transCall = async () => {
-                Loader.onSwitchEnd.Remove(transCall);
-                EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 1);
-
-                await Transitioner.instance.TintOut();
-
-                this.avoidInputs = false;
-                EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 2);
-            };
-            Loader.onSwitchEnd.Add(transCall);
-
-            Loader.Switch(MapTransfer.last.scene);
-        }
+        if (this.#touchTransfer != null) await this.#Transfer(0);
 
         if (this.#touchInteractable != null)
         {
@@ -181,8 +181,46 @@ class Player extends RPGMovement
         }
     }
 
+    async #Transfer (index)
+    {
+        this.avoidInputs = true;
+        this.moveSpeed = 4;
+
+        const lastScene = MapGrid.scene;
+
+        if (index === 0)
+        {
+            MapTransfer.last = this.#touchTransfer;
+            this.#touchTransfer = null;
+        }
+        else
+        {
+            MapTransfer.last = this.#keyTransfer;
+            this.#keyTransfer = null;
+        }
+
+        await EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 0);
+
+        await Transitioner.instance.TintIn();
+
+        const transCall = async () => {
+            Loader.onSwitchEnd.Remove(transCall);
+            await EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 1);
+
+            await Transitioner.instance.TintOut();
+
+            await EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 2);
+            this.avoidInputs = false;
+        };
+        Loader.onSwitchEnd.Add(transCall);
+
+        Loader.Switch(MapTransfer.last.scene);
+    }
+
     async #Interact ()
     {
+        if (this.#keyTransfer != null) await this.#Transfer(1);
+
         if (this.#keyInteractable == null) return;
 
         const interactable = this.#keyInteractable;

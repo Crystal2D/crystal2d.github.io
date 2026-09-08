@@ -4,7 +4,17 @@
         "sprites/tilesets/underground",
         "sprites/tilesets/colors",
         "sprites/tilesets/water",
-        "sprites/collider"
+        "sprites/collider",
+        "audio/se/door_5",
+        "audio/bgm/underground",
+        [
+            "sprites/chars/enemy",
+            "spritelibs/chars/enemy"
+        ],
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
+        ]
     ],
     "gameObjects": [
         {
@@ -13,6 +23,20 @@
             "components": [
                 {
                     "type": "Camera"
+                },
+                {
+                    "type": "CamCtrl",
+                    "args": {
+                        "target": "char_yoki",
+                        "clampMin": {
+                            "x": -16.75,
+                            "y": -9.25
+                        },
+                        "clampMax": {
+                            "x": 18.25,
+                            "y": 11.75
+                        }
+                    }
                 }
             ]
         },
@@ -22,6 +46,19 @@
             "components": [
                 {
                     "type": "Grid"
+                },
+                {
+                    "type": "MapGrid",
+                    "args": {
+                        "min": {
+                            "x": -38,
+                            "y": -23
+                        },
+                        "max": {
+                            "x": 42,
+                            "y": 30
+                        }
+                    }
                 }
             ]
         },
@@ -25303,6 +25340,9 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider"
                 }
             ]
         },
@@ -25332,8 +25372,180 @@
                         ],
                         "sortingLayer": 2
                     }
+                },
+                {
+                    "type": "TilemapCollider",
+                    "args": {
+                        "type": 1
+                    }
                 }
             ]
+        },
+        {
+            "name": "mapconfig",
+            "id": 5,
+            "components": [
+                {
+                    "type": "MapConfig",
+                    "args": {
+                        "transfers": [
+                            {
+                                "scene": 22,
+                                "min": {
+                                    "x": -5,
+                                    "y": 19
+                                },
+                                "max": {
+                                    "x": -4,
+                                    "y": 19
+                                },
+                                "pos": {
+                                    "x": -2,
+                                    "y": 3
+                                }
+                            },
+                            {
+                                "scene": 33,
+                                "min": {
+                                    "x": 37,
+                                    "y": 19
+                                },
+                                "max": {
+                                    "x": 37,
+                                    "y": 19
+                                },
+                                "pos": {
+                                    "x": 0,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "scene": 33,
+                                "min": {
+                                    "x": 38,
+                                    "y": 19
+                                },
+                                "max": {
+                                    "x": 38,
+                                    "y": 19
+                                },
+                                "pos": {
+                                    "x": 1,
+                                    "y": 6
+                                }
+                            },
+                            {
+                                "scene": 39,
+                                "min": {
+                                    "x": -31,
+                                    "y": -20
+                                },
+                                "max": {
+                                    "x": -31,
+                                    "y": -20
+                                },
+                                "pos": {
+                                    "x": -1,
+                                    "y": -6
+                                }
+                            },
+                            {
+                                "scene": 39,
+                                "min": {
+                                    "x": -30,
+                                    "y": -20
+                                },
+                                "max": {
+                                    "x": -30,
+                                    "y": -20
+                                },
+                                "pos": {
+                                    "x": 0,
+                                    "y": -6
+                                }
+                            }
+                        ],
+                        "interactables": [
+                            {
+                                "pos": {
+                                    "x": 35,
+                                    "y": 30
+                                },
+                                "event": "underground_secret"
+                            },
+                            {
+                                "pos": {
+                                    "x": 40,
+                                    "y": -1
+                                },
+                                "event": "underground_water"
+                            },
+                            {
+                                "pos": {
+                                    "x": 41,
+                                    "y": -1
+                                },
+                                "event": "underground_water"
+                            },
+                            {
+                                "pos": {
+                                    "x": 42,
+                                    "y": -1
+                                },
+                                "event": "underground_water"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "char_enemy",
+            "id": 6,
+            "transform": {
+                "position": {
+                    "x": 18,
+                    "y": 15
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/chars/enemy",
+                            "name": "left-a"
+                        },
+                        "sortingLayer": 1
+                    }
+                },
+                {
+                    "type": "SpriteLibrary",
+                    "args": {
+                        "asset": "spritelibs/chars/enemy"
+                    }
+                },
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left",
+                        "label": "0"
+                    }
+                },
+                {
+                    "type": "RPGMovement"
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 7,
+            "transform": {
+                "position": {
+                    "x": 20.5,
+                    "y": -1.5
+                }
+            }
         }
     ]
 }

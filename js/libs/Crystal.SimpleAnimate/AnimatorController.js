@@ -10,20 +10,65 @@ class AnimatorController
     currentNode = null;
     currentTransition = null;
 
+    #IsProperTransition (transition)
+    {
+        let proper = true;
+
+        for (let j = 0; j < transition.conditions.length; j++)
+        {
+            const condition = transition.conditions[j];
+            const param = this.parameters.find(item => item.name === condition.parameter);
+
+            if (param.value == null)
+            {
+                if (param.type === AnimatorControllerParameterType.Bool) param.value = param.defaultBool;
+                else if (param.type === AnimatorControllerParameterType.Number) param.value = param.defaultNumber;
+            }
+
+            if (param.type === AnimatorControllerParameterType.Bool)
+            {
+                const value = +param.value === condition.threshold;
+
+                if (condition.mode === AnimatorConditionMode.Equals && !value) proper = false;
+                else if (condition.mode === AnimatorConditionMode.NotEquals && value) proper = false;
+            }
+
+            if (param.type === AnimatorControllerParameterType.Trigger)
+            {
+                const value = +param.value === condition.threshold;
+                param.value = false;
+
+                if (condition.mode === AnimatorConditionMode.If && !value) proper = false;
+                else if (condition.mode === AnimatorConditionMode.IfNot && value) proper = false;
+            }
+
+            if (param.type === AnimatorControllerParameterType.Number)
+            {
+                if (condition.mode === AnimatorConditionMode.Greater && param.value <= condition.threshold) proper = false;
+                else if (condition.mode === AnimatorConditionMode.Less && param.value >= condition.threshold) proper = false;
+                else if (condition.mode === AnimatorConditionMode.Equals && param.value !== condition.threshold) proper = false;
+                else if (condition.mode === AnimatorConditionMode.NotEquals && param.value === condition.threshold) proper = false;
+            }
+        }
+
+        return proper;
+    }
+
     Update ()
     {
+        // Start
         if (!this.#started)
         {
             this.#started = true;
 
             this.currentNode = this.nodes[0].Duplicate();
             this.currentNode.Start(this.gameObject, this.animator);
-
-            this.currentTransition = this.currentNode.transitions.find(item => item.isExit);
         }
 
+        // Update Node
         this.currentNode.Update(this.gameObject, this.animator);
 
+        // Get Transition
         if (this.currentTransition == null)
         {
             const transitions = this.currentNode.transitions;
@@ -32,53 +77,15 @@ class AnimatorController
             {
                 const transition = transitions[i];
 
-                let useTransition = true;
-
-                for (let j = 0; j < transition.conditions.length; j++)
-                {
-                    const condition = transition.conditions[j];
-                    const param = this.parameters.find(item => item.name === condition.parameter);
-
-                    if (param.value == null)
-                    {
-                        if (param.type === AnimatorControllerParameterType.Bool) param.value = param.defaultBool;
-                        else if (param.type === AnimatorControllerParameterType.Number) param.value = param.defaultNumber;
-                    }
-
-                    if (param.type === AnimatorControllerParameterType.Bool)
-                    {
-                        const value = +param.value === condition.threshold;
-
-                        if (condition.mode === AnimatorConditionMode.Equals && !value) useTransition = false;
-                        else if (condition.mode === AnimatorConditionMode.NotEquals && value) useTransition = false;
-                    }
-
-                    if (param.type === AnimatorControllerParameterType.Trigger)
-                    {
-                        const value = +param.value === condition.threshold;
-                        param.value = false;
-
-                        if (condition.mode === AnimatorConditionMode.If && !value) useTransition = false;
-                        else if (condition.mode === AnimatorConditionMode.IfNot && value) useTransition = false;
-                    }
-
-                    if (param.type === AnimatorControllerParameterType.Number)
-                    {
-                        if (condition.mode === AnimatorConditionMode.Greater && param.value <= condition.threshold) useTransition = false;
-                        else if (condition.mode === AnimatorConditionMode.Less && param.value >= condition.threshold) useTransition = false;
-                        else if (condition.mode === AnimatorConditionMode.Equals && param.value !== condition.threshold) useTransition = false;
-                        else if (condition.mode === AnimatorConditionMode.NotEquals && param.value === condition.threshold) useTransition = false;
-                    }
-                }
-
-                if (!useTransition) continue;
+                if (!transition.isExit && transition.conditions.length === 0) continue;
+                if (!this.#IsProperTransition(transition)) continue;
 
                 this.currentTransition = transition;
-
                 break;
             }
         }
 
+        // Process Transition
         if (this.currentTransition == null) return;
 
         if (!(this.currentNode.animation.loop && this.currentTransition.isExit) && this.currentNode.normalizedTime >= this.currentTransition.exitTime)
@@ -88,7 +95,7 @@ class AnimatorController
             this.currentNode = this.nodes.find(item => item.name === this.currentTransition.nextNode).Duplicate();
             this.currentNode.Start(this.gameObject, this.animator);
 
-            this.currentTransition = this.currentNode.transitions.find(item => item.isExit);
+            this.currentTransition = null;
         }
     }
 

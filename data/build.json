@@ -69,7 +69,9 @@
         "port",
         "lighthouse",
         "ship",
-        "grave"
+        "grave",
+        "underground",
+        "yokihouse/livingroom"
     ],
     "shaders" : [],
     "targetFrameRate" : -1,

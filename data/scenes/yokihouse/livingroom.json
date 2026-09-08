@@ -17,7 +17,18 @@
                     "type": "Camera"
                 },
                 {
-                    "type": "Viewport"
+                    "type": "CamCtrl",
+                    "args": {
+                        "target": "char_yoki",
+                        "clampMin": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "clampMax": {
+                            "x": 0.5,
+                            "y": 0
+                        }
+                    }
                 }
             ]
         },
@@ -51,12 +62,12 @@
                     "type": "MapGrid",
                     "args": {
                         "min": {
-                            "x": -99,
-                            "y": -99
+                            "x": -7,
+                            "y": -6
                         },
                         "max": {
-                            "x": 99,
-                            "y": 99
+                            "x": 7,
+                            "y": 3
                         }
                     }
                 }

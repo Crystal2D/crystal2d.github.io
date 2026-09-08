@@ -4,6 +4,7 @@ class GameWindow
     static #resizable = true;
     static #fillWin = true;
     static #frameFullscreen = false;
+    static #setOutWin = false;
     static #sizeChanged = 0;
     static #x = 0;
     static #y = 0;
@@ -11,6 +12,8 @@ class GameWindow
     static #marginY = 0;
     static #winX = 0;
     static #winY = 0;
+    static #outWinX = 0;
+    static #outWinY = 0;
     static #aspect = 0;
     static #sleepTime = 0;
     static #title = "";
@@ -130,6 +133,13 @@ class GameWindow
     
     static #Update ()
     {
+        if (document.hasFocus() && !this.#setOutWin)
+        {
+            this.#setOutWin = true;
+            this.#outWinX = window.outerWidth - window.innerWidth;
+            this.#outWinY = window.outerHeight - window.innerHeight;
+        }
+
         // Wake
         if (document.hasFocus())
         {
@@ -171,11 +181,11 @@ class GameWindow
             // Window
             if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
             {
-                let x = this.windowWidth + (window.outerWidth - window.innerWidth) + (0.02 * this.windowWidth * this.#marginX);
-                let y = this.windowHeight + (window.outerHeight - window.innerHeight) + (0.02 * this.windowHeight * this.#marginY);
+                let x = this.windowWidth + this.#outWinX + (0.02 * this.windowWidth * this.#marginX);
+                let y = this.windowHeight + this.#outWinY + (0.02 * this.windowHeight * this.#marginY);
 
-                if (x % 2 !== 0) x += x % 2;
-                if (y % 2 !== 0) y += y % 2;
+                // if (x % 2 !== 0) x += x % 2;
+                // if (y % 2 !== 0) y += y % 2;
                 
                 window.resizeTo(x, y);
             }

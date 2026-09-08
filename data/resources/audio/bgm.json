@@ -68,5 +68,12 @@
         "args": {
             "src": "bgm/dragon.ogg"
         }
+    },
+    {
+        "path": "audio/bgm/underground",
+        "type": "AudioClip",
+        "args": {
+            "src": "bgm/underground.ogg"
+        }
     }
 ]

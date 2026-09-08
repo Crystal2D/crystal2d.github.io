@@ -14,7 +14,8 @@
         "sprites/chars/noname",
         "audio/se/laugh",
         "sprites/illusts/remains_1",
-        "sprites/illusts/remains_2"
+        "sprites/illusts/remains_2",
+        "audio/se/door_5"
     ],
     "gameObjects": [
         {
@@ -2721,9 +2722,24 @@
                     "args": {
                         "transfers": [
                             {
-                                "scene": 38,
+                                "scene": 40,
                                 "min": {
                                     "x": -1,
+                                    "y": -7
+                                },
+                                "max": {
+                                    "x": -1,
+                                    "y": -7
+                                },
+                                "pos": {
+                                    "x": -31,
+                                    "y": -22
+                                }
+                            },
+                            {
+                                "scene": 40,
+                                "min": {
+                                    "x": 0,
                                     "y": -7
                                 },
                                 "max": {
@@ -2731,8 +2747,8 @@
                                     "y": -7
                                 },
                                 "pos": {
-                                    "x": -1,
-                                    "y": 14
+                                    "x": -30,
+                                    "y": -22
                                 }
                             }
                         ],

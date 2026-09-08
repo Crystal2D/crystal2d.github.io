@@ -2,6 +2,10 @@ class MapTransfer
 {
     static last = null;
 
+    // 0: Touch
+    // 1: Key
+    trigger = 1;
+
     scene = 0;
     min = Vector2.zero;
     max = Vector2.zero;

@@ -29,7 +29,9 @@
             "sprites/chars/bear",
             "spritelibs/chars/bear"
         ],
-        "audio/se/jump"
+        "audio/se/jump",
+        "audio/se/door_5",
+        "audio/bgm/forest"
     ],
     "gameObjects": [
         {
@@ -11232,6 +11234,21 @@
                                 "pos": {
                                     "x": -21,
                                     "y": 23
+                                }
+                            },
+                            {
+                                "scene": 40,
+                                "min": {
+                                    "x": -2,
+                                    "y": 4
+                                },
+                                "max": {
+                                    "x": -2,
+                                    "y": 4
+                                },
+                                "pos": {
+                                    "x": -5,
+                                    "y": 17
                                 }
                             }
                         ],

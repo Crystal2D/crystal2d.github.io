@@ -1700,6 +1700,7 @@
 "underground_secret_talked": [
     "\\SE[12]Thank you for coming all this way \njust to see me.",
     "\\SE[1]Sure thing..."
-]
+],
+"underground_water": "The water looks too muddy.\nThere's no way this would\nrestore my health at all."
 
 }

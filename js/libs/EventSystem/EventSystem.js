@@ -5,6 +5,7 @@ class EventSystem
 
     static onBeforeUpdate = new DelegateEvent();
     static onUpdate = new DelegateEvent();
+    static onAfterUpdate = new DelegateEvent();
 
     static dialogueBox = null;
     static dialogueChoiceBox = null;
@@ -1360,6 +1361,9 @@ class EventSystem
 
                 await this.Run("fly");
             } break;
+            // #endregion
+
+            // #region ------------------------------------- yokihouse
             // #endregion
 
             // #region ------------------------------------- forest_view
@@ -6605,6 +6609,30 @@ class EventSystem
                 }
                 break;
             // #endregion
+
+            // #region ------------------------------------- underground
+            case "underground_secret":
+                if (this.GetSwitch("cave_secret"))
+                {
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[0]);
+                    this.dialogueBox.SetFace("yoki", "look");
+                    await this.dialogueBox.Type(LocaleManager.Find(`${id}_talked`)[1]);
+                    this.dialogueBox.Close();
+                    return;
+                }
+
+                await this.dialogueBox.Type(LocaleManager.Find(id)[0]);
+                await this.dialogueBox.Type(LocaleManager.Find(id)[1]);
+                this.dialogueBox.Close();
+
+                this.SetSwitch("cave_secret", true);
+                break;
+            case "underground_water":
+                this.dialogueBox.SetFace("yoki", "look");
+                await this.dialogueBox.Type(LocaleManager.Find(id));
+                this.dialogueBox.Close();
+                break;
+            // #endregion
         }
 
         await this.#ProcessCommonEvents();
@@ -6698,6 +6726,47 @@ class EventSystem
             case "36_38":
             case "38_36":
                 if (event === 0) AudioManager.instance.PlaySE("stair_5", 0.6, 1.2);
+                break;
+
+            case "22_40":
+            case "33_40":
+            case "39_40":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                else if (event === 1) Player.instance.MoveTowards(Vector2.down);
+                else if (event === 2) AudioManager.instance.PlayBGM("underground", 0.2);
+                break;
+            case "40_22":
+            case "40_33":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                else if (event === 1) Player.instance.MoveTowards(Vector2.down);
+                else if (event === 2)
+                {
+                    switch (to)
+                    {
+                        case 22:
+                            AudioManager.instance.PlayBGM("forest", 0.2);
+                            break;
+                        case 33:
+                            AudioManager.instance.PlayBGM("castletown", 0.2);
+                            break;
+                    }
+                }
+                break;
+            case "40_39":
+                if (event === 0)
+                {
+                    AudioManager.instance.FadeOutBGM(1);
+                    AudioManager.instance.PlaySE("door_5", 0.6, 1.2);
+                }
+                else if (event === 1) Player.instance.MoveTowards(Vector2.up);
                 break;
         }
     }
@@ -6838,6 +6907,7 @@ class EventSystem
         this.#switches.set(name, state);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
+        this.onAfterUpdate.Invoke();
     }
 
     static SetVariable (name, value)
@@ -6845,6 +6915,7 @@ class EventSystem
         this.#variables.set(name, value);
         this.onBeforeUpdate.Invoke();
         this.onUpdate.Invoke();
+        this.onAfterUpdate.Invoke();
     }
 
     static AddToVariable (name, amount = 1)
