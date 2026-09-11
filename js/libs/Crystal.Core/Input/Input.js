@@ -286,8 +286,8 @@ class Input
         document.addEventListener("contextmenu", event => event.preventDefault());
 
         const getScreenPos = (x, y) => new Vector2(
-            Math.Clamp(x, 0, window.innerWidth),
-            Math.Clamp(y, 0, window.innerHeight)
+            Math.Clamp(x, 0, GameWindow.windowWidth),
+            Math.Clamp(y, 0, GameWindow.windowHeight)
         );
         const setMousePos = event => {
             GameWindow.Wake();
@@ -399,8 +399,8 @@ class Input
         }
 
         const getScreenPos = (x, y) => new Vector2(
-            Math.Clamp(x, 0, window.innerWidth),
-            Math.Clamp(y, 0, window.innerHeight)
+            Math.Clamp(x, 0, GameWindow.windowWidth),
+            Math.Clamp(y, 0, GameWindow.windowHeight)
         );
 
         let contacts = [];

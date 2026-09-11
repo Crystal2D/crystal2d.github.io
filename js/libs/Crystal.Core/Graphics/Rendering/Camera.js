@@ -11,6 +11,7 @@ class Camera extends Behavior
     #orthoSize = 9;
     #bounds = new Bounds();
     
+    #lastAspect = null;
     #projMatrix = null;
 
     get #sortingDir ()
@@ -40,7 +41,6 @@ class Camera extends Behavior
     set orthographicSize (value)
     {
         this.#orthoSize = value;
-
         this.RecalcBounds();
     }
 
@@ -84,6 +84,8 @@ class Camera extends Behavior
     {
         if (this.gameObject == null) return;
 
+        this.#lastAspect = GameWindow.aspect;
+
         const bounds = new Bounds(Vector2.zero, this.viewportSize);
 
         const pointA = Matrix3x3.Multiply(this.cameraToWorldMatrix, Matrix3x3.Translate(bounds.min));
@@ -114,8 +116,8 @@ class Camera extends Behavior
             this.viewportSize
         );
         const pointMat = Matrix3x3.Translate(new Vector2(
-            ((point.x - (window.innerWidth - GameWindow.canvasWidth) * 0.5) / GameWindow.canvasWidth) - 0.5,
-            ((point.y - (window.innerHeight - GameWindow.canvasHeight) * 0.5) / GameWindow.canvasHeight) - 0.5
+            ((point.x - (GameWindow.windowWidth - GameWindow.scaledCanvasWidth) * 0.5) / GameWindow.scaledCanvasWidth) - 0.5,
+            ((point.y - (GameWindow.windowHeight - GameWindow.scaledCanvasHeight) * 0.5) / GameWindow.scaledCanvasHeight) - 0.5
         ));
         const targetMat = Matrix3x3.Multiply(viewMat, pointMat);
 
@@ -131,8 +133,8 @@ class Camera extends Behavior
         );
         const pointMat = Matrix3x3.Multiply(viewMat.inverse, Matrix3x3.Translate(point));
         const targetMat = Matrix3x3.Translate(new Vector2(
-            ((pointMat.GetValue(2, 0) + 0.5) * GameWindow.canvasWidth) + (window.innerWidth - GameWindow.canvasWidth) * 0.5,
-            ((-pointMat.GetValue(2, 1) + 0.5) * GameWindow.canvasHeight) + (window.innerHeight - GameWindow.canvasHeight) * 0.5
+            ((pointMat.GetValue(2, 0) + 0.5) * GameWindow.scaledCanvasWidth) + (GameWindow.windowWidth - GameWindow.scaledCanvasWidth) * 0.5,
+            ((-pointMat.GetValue(2, 1) + 0.5) * GameWindow.scaledCanvasHeight) + (GameWindow.windowHeight - GameWindow.scaledCanvasHeight) * 0.5
         ));
 
         return new Vector2(targetMat.GetValue(2, 0), targetMat.GetValue(2, 1));
@@ -140,6 +142,8 @@ class Camera extends Behavior
     
     Render ()
     {
+        if (this.#lastAspect !== GameWindow.aspect) this.RecalcBounds();
+
         const camM = this.worldToCameraMatrix;
         
         if (this.#updateProjMat) this.#projMatrix = Matrix3x3.Ortho(0, this.orthographicSize, 0, this.orthographicSize);

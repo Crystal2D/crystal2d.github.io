@@ -145,8 +145,8 @@ HTMLUI.Element = class
                         -1
                     ),
                     new Vector2(
-                        window.innerWidth / 64 / HTMLUI.scale,
-                        window.innerHeight / 64 / HTMLUI.scale,
+                        GameWindow.windowWidth / 64 / HTMLUI.scale,
+                        GameWindow.windowHeight / 64 / HTMLUI.scale,
                     )
                 )
             ),

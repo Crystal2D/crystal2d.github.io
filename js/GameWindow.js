@@ -12,9 +12,13 @@ class GameWindow
     static #marginY = 0;
     static #winX = 0;
     static #winY = 0;
+    static #minWinX = 0;
+    static #minWinY = 0;
     static #outWinX = 0;
     static #outWinY = 0;
     static #aspect = 0;
+    static #minAspect = 0;
+    static #maxAspect = 0;
     static #sleepTime = 0;
     static #title = "";
     
@@ -29,6 +33,17 @@ class GameWindow
     static get fillWindow ()
     {
         return this.#fillWin;
+    }
+
+    static set fillWindow (value)
+    {
+        if (value) this.#SetResolutionBase(
+            window.devicePixelRatio * (this.windowWidth - 0.02 * this.#marginX * this.windowWidth),
+            window.devicePixelRatio * (this.windowHeight - 0.02 * this.#marginY * this.windowHeight)
+        );
+        else this.#SetResolutionBase(this.#x, this.#y);
+        
+        this.#fillWin = value;
     }
     
     static get resizable ()
@@ -45,52 +60,110 @@ class GameWindow
         this.#resizable = value;
     }
     
-    static set fillWindow (value)
-    {
-        if (value)
-        {
-            Application.htmlCanvas.width = window.devicePixelRatio * (window.innerWidth - 0.01 * this.#marginX * window.innerWidth);
-            Application.htmlCanvas.height = window.devicePixelRatio * (window.innerHeight - 0.01 * this.#marginY * window.innerHeight);
-        }
-        else
-        {
-            Application.htmlCanvas.width = this.#x;
-            Application.htmlCanvas.height = this.#y;
-        }
-        
-        this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
-        
-        this.#fillWin = value;
-    }
-    
-    static get width ()
+    static get targetWidth ()
     {
         return this.#x;
     }
+
+    static set targetWidth (value)
+    {
+        this.#x = value ?? 250;
+        if (!this.#fillWin) this.#SetResolutionBase(this.#x, this.#y);
+
+        if (this.#winX === 0) this.#sizeChanged = 1;
+    }
     
-    static get height ()
+    static get targetHeight ()
     {
         return this.#y;
+    }
+
+    static set targetHeight (value)
+    {
+        this.#y = value ?? 250;
+        if (!this.#fillWin) this.#SetResolutionBase(this.#x, this.#y);
+
+        if (this.#winY === 0) this.#sizeChanged = 1;
     }
     
     static get marginWidth ()
     {
         return this.#marginX;
     }
+
+    static set marginWidth (value)
+    {
+        this.#marginX = value ?? 0;
+        Application.htmlCanvas.style.width = `${100 - 2 * this.#marginX}%`;
+
+        this.#sizeChanged = 1;
+    }
     
     static get marginHeight ()
     {
         return this.#marginY;
     }
-    
-    static get windowWidth ()
+
+    static set marginHeight (value)
     {
-        return this.#winX || this.#x;
+        this.#marginY = value ?? 0;
+        Application.htmlCanvas.style.height = `${100 - 2 * this.#marginY}%`;
+
+        this.#sizeChanged = 1;
     }
     
+    static get targetWindowWidth ()
+    {
+        return Math.max(this.#winX || this.#x, this.#minWinX);
+    }
+
+    static set targetWindowWidth (value)
+    {
+        this.#winX = value ?? 0;
+        this.#sizeChanged = 1;
+    }
+    
+    static get targetWindowHeight ()
+    {
+        return Math.max(this.#winY || this.#y, this.#minWinY);
+    }
+
+    static set targetWindowHeight (value)
+    {
+        this.#winY = value ?? 0;
+        this.#sizeChanged = 1;
+    }
+
+    static get minWindowWidth ()
+    {
+        return this.#minWinX;
+    }
+
+    static set minWindowWidth (value)
+    {
+        this.#minWinX = value ?? 0;
+        this.#sizeChanged = 2;
+    }
+    
+    static get minWindowHeight ()
+    {
+        return this.#minWinY;
+    }
+
+    static set minWindowHeight (value)
+    {
+        this.#minWinY = value ?? 0;
+        this.#sizeChanged = 2;
+    }
+
+    static get windowWidth ()
+    {
+        return window.innerWidth;
+    }
+
     static get windowHeight ()
     {
-        return this.#winY || this.#y;
+        return window.innerHeight;
     }
     
     static get aspect ()
@@ -98,14 +171,70 @@ class GameWindow
         return this.#aspect;
     }
 
+    static set aspect (value)
+    {
+        value = Math.max(value, this.#minAspect);
+        if (this.#maxAspect > this.#minAspect) value = Math.min(value, this.#maxAspect);
+
+        let width = this.canvasWidth;
+        let height = this.canvasHeight;
+
+        if (this.#aspect < value) height = width / value;
+        else if (this.#aspect > value) width = value * height;
+
+        this.#SetResolutionBase(width, height);
+    }
+
+    static get minAspect ()
+    {
+        return this.#minAspect;
+    }
+
+    static set minAspect (value)
+    {
+        this.#minAspect = value;
+        this.#SetResolutionBase(this.canvasWidth, this.canvasWidth);
+    }
+
+    static get maxAspect ()
+    {
+        return this.#maxAspect;
+    }
+
+    static set maxAspect (value)
+    {
+        this.#maxAspect = value;
+        this.#SetResolutionBase(this.canvasWidth, this.canvasWidth);
+    }
+
     static get canvasWidth ()
     {
-        return (window.innerWidth / window.innerHeight < this.aspect) ? window.innerWidth : (this.aspect * window.innerHeight);
+        return Application.htmlCanvas.width;
+    }
+
+    static set canvasWidth (value)
+    {
+        Application.htmlCanvas.width = value;
     }
 
     static get canvasHeight ()
     {
-        return (window.innerWidth / window.innerHeight < this.aspect) ? (window.innerWidth / this.aspect) : window.innerHeight;
+        return Application.htmlCanvas.height;
+    }
+
+    static set canvasHeight (value)
+    {
+        Application.htmlCanvas.height = value;
+    }
+
+    static get scaledCanvasWidth ()
+    {
+        return (this.windowWidth / this.windowHeight < this.aspect) ? this.windowWidth : (this.aspect * this.windowHeight);
+    }
+
+    static get scaledCanvasHeight ()
+    {
+        return (this.windowWidth / this.windowHeight < this.aspect) ? (this.windowWidth / this.aspect) : this.windowHeight;
     }
 
     static get sleepTimeout ()
@@ -136,8 +265,8 @@ class GameWindow
         if (document.hasFocus() && !this.#setOutWin)
         {
             this.#setOutWin = true;
-            this.#outWinX = window.outerWidth - window.innerWidth;
-            this.#outWinY = window.outerHeight - window.innerHeight;
+            this.#outWinX = window.outerWidth - this.windowWidth;
+            this.#outWinY = window.outerHeight - this.windowHeight;
         }
 
         // Wake
@@ -179,25 +308,47 @@ class GameWindow
         if (this.#sizeChanged > 0)
         {
             // Window
-            if (!document.fullscreenElement && (!this.#resizable || this.#sizeChanged === 1) && !Application.isInCordova)
+            if (!document.fullscreenElement && !Application.isInCordova)
             {
-                let x = this.windowWidth + this.#outWinX + (0.02 * this.windowWidth * this.#marginX);
-                let y = this.windowHeight + this.#outWinY + (0.02 * this.windowHeight * this.#marginY);
+                if (!this.#resizable || this.#sizeChanged === 1)
+                {
+                    const x = this.targetWindowWidth + this.#outWinX + (0.02 * this.#marginX * this.targetWindowWidth);
+                    const y = this.targetWindowHeight + this.#outWinY + (0.02 * this.#marginY * this.targetWindowHeight);
 
-                // if (x % 2 !== 0) x += x % 2;
-                // if (y % 2 !== 0) y += y % 2;
-                
-                window.resizeTo(x, y);
+                    window.resizeTo(x, y);
+                }
+                else if (this.#sizeChanged === 2)
+                {
+                    let update = false;
+                    let width = this.windowWidth - (0.02 * this.#marginX * this.windowWidth);
+                    let height = this.windowHeight - (0.02 * this.#marginY * this.windowHeight);
+
+                    if (width < this.#minWinX)
+                    {
+                        width = this.#minWinX;
+                        update = true;
+                    }
+                    if (height < this.#minWinY)
+                    {
+                        height = this.#minWinY;
+                        update = true;
+                    }
+
+                    if (update)
+                    {
+                        const x = width + this.#outWinX + (0.02 * this.#marginX * width);
+                        const y = height + this.#outWinY + (0.02 * this.#marginY * height);
+                        
+                        window.resizeTo(x, y);
+                    }
+                }
             }
             
             // Game
-            if (this.#fillWin)
-            {
-                Application.htmlCanvas.width = window.devicePixelRatio * (window.innerWidth - 0.01 * this.#marginX * window.innerWidth);
-                Application.htmlCanvas.height = window.devicePixelRatio * (window.innerHeight - 0.01 * this.#marginY * window.innerHeight);
-                
-                this.#aspect = Application.htmlCanvas.width / Application.htmlCanvas.height;
-            }
+            if (this.#fillWin) this.#SetResolutionBase(
+                window.devicePixelRatio * (this.windowWidth - 0.02 * this.#marginX * this.windowWidth),
+                window.devicePixelRatio * (this.windowHeight - 0.02 * this.#marginY * this.windowHeight)
+            );
             
             this.#sizeChanged = 0;
         }
@@ -213,6 +364,10 @@ class GameWindow
         this.fullscreen = data.fullscreen ?? Application.isInCordova;
         this.fillWindow = data.fillWindow ?? true;
         this.sleepTimeout = data.sleepTimeout ?? 0;
+        this.#minAspect = data.minAspect?.x / data.minAspect?.y;
+        this.#maxAspect = data.maxAspect?.x / data.maxAspect?.y;
+        this.#minWinX = data.minWindowWidth ?? 250;
+        this.#minWinY = data.minWindowHeight ?? 250;
   
         this.SetTitle(data.title);
         this.SetResolution(data.width, data.height);
@@ -235,19 +390,28 @@ class GameWindow
         this.#title = title ?? "Untitled";
         document.title = this.#title;
     }
+
+    static #SetResolutionBase (width, height)
+    {
+        let aspect = width / height;
+
+        if (aspect < this.#minAspect) height = width / this.#minAspect;
+        else if (this.#maxAspect > this.#minAspect && aspect > this.#maxAspect) width = this.#maxAspect * height;
+        
+        aspect = width / height;
+
+        this.canvasWidth = width;
+        this.canvasHeight = height;
+        
+        this.#aspect = aspect;
+    }
     
     static SetResolution (width, height)
     {
         this.#x = width ?? 250;
         this.#y = height ?? 250;
         
-        if (!this.#fillWin)
-        {
-            Application.htmlCanvas.width = this.#x;
-            Application.htmlCanvas.height = this.#y;
-            
-            this.#aspect = this.#x / this.#y;
-        }
+        if (!this.#fillWin) this.#SetResolutionBase(this.#x, this.#y);
         
         if (this.#winX === 0 || this.#winY === 0) this.#sizeChanged = 1;
     }

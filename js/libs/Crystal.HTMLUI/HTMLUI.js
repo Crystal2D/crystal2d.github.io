@@ -168,8 +168,8 @@ class HTMLUI
             return;
         }
 
-        const width = window.innerWidth / this.#refRes.x;
-        const height = window.innerHeight / this.#refRes.y;
+        const width = GameWindow.windowWidth / this.#refRes.x;
+        const height = GameWindow.windowHeight / this.#refRes.y;
 
         switch (this.#matchMode)
         {
@@ -199,12 +199,12 @@ class HTMLUI
     {
         const scaler = 32 * HTMLUI.scale;
         const viewMat = Matrix3x3.Scale(new Vector2(
-            window.innerWidth / scaler,
-            window.innerHeight / scaler
+            GameWindow.windowWidth / scaler,
+            GameWindow.windowHeight / scaler
         ));
         const pointMat = Matrix3x3.Translate(new Vector2(
-            (point.x / window.innerWidth) - 0.5,
-            (point.y / window.innerHeight) - 0.5
+            (point.x / GameWindow.windowWidth) - 0.5,
+            (point.y / GameWindow.windowHeight) - 0.5
         ));
         const targetMat = Matrix3x3.Multiply(viewMat, pointMat);
 

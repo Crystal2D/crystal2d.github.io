@@ -156,7 +156,7 @@ class PlayerLoop
             {
                 const gl = Application.gl;
 
-                gl.viewport(0, 0, Application.htmlCanvas.width, Application.htmlCanvas.height);
+                gl.viewport(0, 0, GameWindow.canvasWidth, GameWindow.canvasHeight);
 
                 const cameras = GameObject.FindComponents(Camera);
 
@@ -224,16 +224,16 @@ class PlayerLoop
             if (!this.#crashed && this.#playing)
             {
                 const renderers = GameObject.FindComponents(Renderer);
-                        
                 for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
 
                 this.onAfterMeshUpdate.Invoke();
+
+                const gl = Application.gl;
                 
                 const cameras = GameObject.FindComponents(Camera);
-                            
                 for (let i = 0; i < cameras.length; i++) cameras[i].Render();
                             
-                Application.gl.flush();
+                gl.flush();
             }
         })();
 
