@@ -15,6 +15,10 @@
         [
             "sprites/chars/soldier",
             "spritelibs/chars/soldier"
+        ],
+        [
+            "sprites/entities/water",
+            "spritelibs/entities/water"
         ]
     ],
     "gameObjects": [
@@ -4441,6 +4445,367 @@
                     "args": {
                         "event": "lighthouse_soldier"
                     }
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 12,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 13,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 14,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": -1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 15,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 0
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 16,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 1
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 17,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 2
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 18,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 3
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 19,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 4
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 20,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 21,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 6
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "left"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 22,
+            "transform": {
+                "position": {
+                    "x": -4.75,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 23,
+            "transform": {
+                "position": {
+                    "x": -3.75,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 24,
+            "transform": {
+                "position": {
+                    "x": -2.75,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 25,
+            "transform": {
+                "position": {
+                    "x": -1.75,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 26,
+            "transform": {
+                "position": {
+                    "x": -0.75,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 27,
+            "transform": {
+                "position": {
+                    "x": 1.25,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 28,
+            "transform": {
+                "position": {
+                    "x": 2.25,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 29,
+            "transform": {
+                "position": {
+                    "x": 3.25,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
+                }
+            ]
+        },
+        {
+            "prefab": "entities/water",
+            "id": 30,
+            "transform": {
+                "position": {
+                    "x": 4.25,
+                    "y": 13.5
+                }
+            },
+            "components": [
+                {
+                    "type": "SpriteResolver",
+                    "args": {
+                        "category": "up"
+                    },
+                    "replace": true
                 }
             ]
         }

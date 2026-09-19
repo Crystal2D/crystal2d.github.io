@@ -63,6 +63,7 @@ class Player extends RPGMovement
 
         if (super._DirCheck(node)) // if collides
         {
+            // Bump interactables
             const interactables = node.GetOwnersOfType(Interactable);
             let bumpInteractable = null;
 
@@ -88,6 +89,10 @@ class Player extends RPGMovement
 
                 this.avoidInputs = false;
             })();
+
+
+            // Reget on tile interactables
+            this.#GetTileInteractables(this._node);
 
             return true;
         }
@@ -220,6 +225,8 @@ class Player extends RPGMovement
     async #Interact ()
     {
         if (this.#keyTransfer != null) await this.#Transfer(1);
+
+        console.log(this.#keyInteractable);
 
         if (this.#keyInteractable == null) return;
 
