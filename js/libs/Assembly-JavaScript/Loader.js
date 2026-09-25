@@ -3,6 +3,7 @@ class Loader extends GameBehavior
     static #loaderLoaded = false;
     static #loadingScenes = [];
 
+    static keepTime = false;
     static time = 0;
     static readyScenes = [];
 
@@ -76,10 +77,15 @@ class Loader extends GameBehavior
 
     Awake ()
     {
-        Loader.time = 0;
-
         this.#spr = this.GetComponent(SpriteRenderer);
-        this.#spr.color.a = 0;
+
+        if (!keepTime)
+        {
+            Loader.time = 0;
+            his.#spr.color.a = 0;
+        }
+        else keepTime = false;
+
         Loader.onSwitchStart.Invoke();
     }
 
