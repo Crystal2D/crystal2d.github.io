@@ -3,7 +3,9 @@ class Loader extends GameBehavior
     static #loaderLoaded = false;
     static #loadingScenes = [];
 
+    static time = 0;
     static readyScenes = [];
+
     static target = null;
 
     static onSwitchStart = new DelegateEvent();
@@ -70,12 +72,12 @@ class Loader extends GameBehavior
         this.SwitchBase(true);
     }
 
-    #t = 0;
-
     #spr = null;
 
     Awake ()
     {
+        Loader.time = 0;
+
         this.#spr = this.GetComponent(SpriteRenderer);
         this.#spr.color.a = 0;
         Loader.onSwitchStart.Invoke();
@@ -85,8 +87,7 @@ class Loader extends GameBehavior
     {
         if (Loader.target != null && Loader.readyScenes.includes(Loader.target)) Loader.SwitchBase();
 
-        if (this.#t >= 0.3333) this.#spr.color.a = Math.min((this.#t - 0.3333) * 2, 1);
-        
-        this.#t += Time.deltaTime;
+        if (Loader.time >= 0.3333) this.#spr.color.a = Math.min((Loader.time - 0.3333) * 2, 1);
+        Loader.time += Time.deltaTime;
     }
 }

@@ -4,6 +4,7 @@
         "disabled": true
     },
     "resources": [
+        "sprites/loading",
         "sprites/faces/yoki",
         "audio/se/dialogue_1",
         "audio/se/dialogue_2",
@@ -26,8 +27,20 @@
     ],
     "gameObjects": [
         {
-            "name": "init",
+            "name": "camera",
             "id": 0,
+            "components": [
+                {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "init",
+            "id": 1,
             "components": [
                 {
                     "type": "Grid"
@@ -37,12 +50,20 @@
                 },
                 {
                     "type": "MapInit"
+                },
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/loading"
+                        }
+                    }
                 }
             ]
         },
         {
             "name": "char_yoki",
-            "id": 1,
+            "id": 2,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -54,6 +75,12 @@
                         "sortingLayer": 1,
                         "sortingAxisOffset": {
                             "y": -0.00000001
+                        },
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
                         }
                     }
                 },
@@ -80,7 +107,7 @@
         },
         {
             "name": "dialogue_box",
-            "id": 2,
+            "id": 3,
             "transform": {
                 "position": { "x": 0, "y": -3.46875 }
             },
@@ -106,8 +133,8 @@
         },
         {
             "name": "face",
-            "id": 3,
-            "parent": 2,
+            "id": 4,
+            "parent": 3,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -130,8 +157,8 @@
         },
         {
             "name": "text",
-            "id": 4,
-            "parent": 2,
+            "id": 5,
+            "parent": 3,
             "components": [
                 {
                     "type": "Text",
@@ -160,8 +187,8 @@
         },
         {
             "name": "arrow",
-            "id": 5,
-            "parent": 2,
+            "id": 6,
+            "parent": 3,
             "transform": {
                 "position": { "x": 0, "y": -0.925 }
             },
@@ -193,7 +220,7 @@
         },
         {
             "name": "dialogue_choicebox",
-            "id": 6,
+            "id": 7,
             "components": [
                 {
                     "type": "SpriteRenderer",
@@ -212,7 +239,7 @@
         },
         {
             "name": "illustrator",
-            "id": 7,
+            "id": 8,
             "components": [
                 {
                     "type": "Illustrator"

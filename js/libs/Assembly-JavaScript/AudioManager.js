@@ -83,11 +83,7 @@ class AudioManager extends GameBehavior
 
     Awake ()
     {
-        this.DontDestroyOnLoad(this, [
-            "audio/se/select",
-            "audio/se/confirm",
-            "audio/se/no"
-        ]);
+        this.DontDestroyOnLoad(this);
     }
 
     Start ()

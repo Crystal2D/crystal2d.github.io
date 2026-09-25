@@ -1,15 +1,38 @@
 {
     "name": "Init",
+    "resources": [
+        "sprites/loading"
+    ],
     "partioning": {
         "disabled": true
     },
     "gameObjects": [
         {
-            "name": "init",
+            "name": "camera",
             "id": 0,
             "components": [
                 {
+                    "type": "Camera"
+                },
+                {
+                    "type": "Viewport"
+                }
+            ]
+        },
+        {
+            "name": "init",
+            "id": 1,
+            "components": [
+                {
                     "type": "Init"
+                },
+                {
+                    "type": "SpriteRenderer",
+                    "args": {
+                        "sprite": {
+                            "texture": "sprites/loading"
+                        }
+                    }
                 }
             ]
         }

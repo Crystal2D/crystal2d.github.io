@@ -469,7 +469,13 @@
                             "texture": "sprites/chars/yoki",
                             "name": "down-a"
                         },
-                        "sortingLayer": 1
+                        "sortingLayer": 1,
+                        "color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 0
+                        }
                     }
                 },
                 {

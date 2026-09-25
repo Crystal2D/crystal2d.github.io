@@ -2,17 +2,6 @@ class TitleScreen extends ChoiceBox
 {
     Awake ()
     {
-        Resources.DontDestroyOnLoad(
-            "font_main",
-            "sprites/pixel",
-            "sprites/box",
-            "sprites/arrows",
-            "anims/dialogue_arrow",
-            "anims/dialogue_arrow_ctrl",
-            "sprites/chars/yoki",
-            "spritelibs/chars/yoki"
-        );
-
         Loader.Ready(3);
         Loader.onSwitchStart.Add(() => Transitioner.instance.Clear());
     }
@@ -29,7 +18,7 @@ class TitleScreen extends ChoiceBox
             Transitioner.instance.FadeOut(() => Loader.Switch(3));
         }));
         this.AddChoice(LocaleManager.Find("title_continue"), () => this.Close(async () => {
-            await EventSystem.Timer(14);
+            await EventSystem.Timer(7);
             SaveScreen.Show(1);
         }));
 

@@ -112,13 +112,10 @@ class Party extends SnekChar
         char.TP(Player.instance.gridPos);
         Party.instance.Add(char);
 
-        const sprRen = gameObject.GetComponent(SpriteRenderer);
-        sprRen.color.a = 0;         
-
         const member = {
             name: null,
             char: char,
-            sprRen: sprRen,
+            sprRen: gameObject.GetComponent(SpriteRenderer),
             sprLib: gameObject.GetComponent(SpriteLibrary),
             sprRes: gameObject.GetComponent(SpriteResolver),
             onSwitchStart: () => { },

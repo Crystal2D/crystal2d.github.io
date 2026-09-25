@@ -7,6 +7,8 @@ class MapInit extends GameBehavior
 
     #inited = false;
 
+    #loadingSpr = null;
+    
     Awake ()
     {
         Resources.DontDestroyOnLoad(
@@ -21,9 +23,20 @@ class MapInit extends GameBehavior
             "sprites/entities/sparkle2",
             "spritelibs/entities/sparkle2"
         );
+
+        this.#loadingSpr = this.GetComponent(SpriteRenderer);
+        this.#loadingSpr.color.a = 0;
     }
 
-    async Update ()
+    Update ()
+    {
+        this.#Init();
+
+        if (Loader.time >= 0.3333) this.#loadingSpr.color.a = Math.min((Loader.time - 0.3333) * 2, 1);
+        Loader.time += Time.deltaTime;
+    }
+
+    async #Init ()
     {
         if (this.#inited) return;
 
@@ -83,7 +96,18 @@ class MapInit extends GameBehavior
         }
 
         Loader.Ready(save.scene);
-        if (save.bgm != null) await Resources.Load(`audio/bgm/${save.bgm.name}`);
+
+        let loadedBgm = false;
+
+        if (save.bgm != null) (async () => {
+            const bgm = `audio/bgm/${save.bgm.name}`;
+
+            Resources.DontDestroyOnLoad(bgm);
+            await Resources.Load(bgm);
+
+            loadedBgm = true;
+        })();
+        else loadedBgm = true;
 
         RPGSave.saveTime = save.time;
 
@@ -150,6 +174,8 @@ class MapInit extends GameBehavior
             Transitioner.instance.FadeIn(async () => Player.instance.avoidInputs = false);
         };
         Loader.onSwitchEnd.Add(switchCall);
+
+        await CrystalEngine.Wait(() => loadedBgm);
 
         Loader.Switch(save.scene);
     }
