@@ -6,7 +6,6 @@ class SpriteRenderer extends Renderer
     #indexes = [];
     #trisCounts = [];
     
-    #texSize = Vector2.zero;
     #boundsSize = Vector2.zero;
     #bounds = new Bounds();
     #transMat = new Matrix3x3();
@@ -157,7 +156,6 @@ class SpriteRenderer extends Renderer
         const rescaleW = texX / ppu;
         const rescaleH = texY / ppu;
 
-        this.#texSize = new Vector2(rescaleW, rescaleH);
         this.#boundsSize = new Vector2(
             rescaleW * (verts[3].x - vertexPos.x),
             rescaleH * (verts[3].y - vertexPos.y)

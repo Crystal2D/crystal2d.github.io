@@ -133,7 +133,7 @@ class Material
         
         if (typeof prop === "string") prop = this.GetPropertyNameID(prop);
         
-        return this.#props[prop].location;
+        return this.#props[prop]?.location;
     }
     
     #HasPropertyOfType (name, type, array)
