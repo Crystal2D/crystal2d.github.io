@@ -50,7 +50,9 @@
         "Graphics/SpriteLibrary/SpriteResolver",
         "Graphics/Rendering/SortingLayer",
         "Graphics/Rendering/Camera",
+        "Graphics/Rendering/Renderers/RendererBase",
         "Graphics/Rendering/Renderers/Renderer",
+        "Graphics/Rendering/Renderers/TexturedRenderer",
         "Graphics/Rendering/Renderers/SpriteRenderer",
         "Graphics/Rendering/Renderers/SpriteDrawMode",
         "Grid"
@@ -166,12 +168,12 @@
         {
             "name" : "Material",
             "type" : 0,
-            "construction" : "const output = (typeof data === \"string\") ? Resources.Find(data).Duplicate() : new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
+            "construction" : "const output = (typeof data === \"string\") ? Resources.Find(data).Duplicate() : new Material(Shader.Find(data.shader)); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Material",
             "type" : 1,
-            "construction" : "const output = new Material(Shader.Find(data.vertexShader ?? \"Default/Standard\", \"VERTEX\"), Shader.Find(data.fragmentShader ?? \"Default/Standard\", \"FRAGMENT\")); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
+            "construction" : "const output = new Material(Shader.Find(data.shader)); for (let i = 0; i < data.properties?.length ?? 0; i++) { output.SetProperty(data.properties[i].name, data.properties[i].type, data.properties[i].value); } return output;"
         },
         {
             "name" : "Texture",

@@ -1,4 +1,4 @@
-class Text extends Renderer
+class Text extends TexturedRenderer
 {
     #meshChanged = false;
     #remapArrays = false;
@@ -453,11 +453,10 @@ class Text extends Renderer
         this.#remapArrays = false;
     }
 
-    Reload ()
+    _OnLoad ()
     {
+        super._OnLoad();
         if (this.updatedMaterial) this.#meshChanged = true;
-
-        super.Reload();
     }
 
     RecalcBounds ()
@@ -788,7 +787,8 @@ class Text extends Renderer
         {
             gl.drawArrays(gl.TRIANGLE_STRIP, this.#indexes[i], this.#trisCounts[i]);
         }
-        
+
+        gl.bindTexture(gl.TEXTURE_2D, null);
         gl.useProgram(null);
     }
 

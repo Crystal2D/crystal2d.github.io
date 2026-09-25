@@ -6,17 +6,11 @@ class Material
     
     #gl = null;
     #program = null;
-    #vertex = null;
-    #fragment = null;
+    #shader = null;
     
-    get vertexShader ()
+    get shader ()
     {
-        return this.#vertex;
-    }
-    
-    get fragmentShader ()
-    {
-        return this.#fragment;
+        return this.#shader;
     }
     
     get gl ()
@@ -48,12 +42,11 @@ class Material
         }
     }
     
-    constructor (vertexShader, fragmentShader)
+    constructor (shader)
     {
         this.#gl = Application.gl;
         
-        this.#vertex = vertexShader ?? Shader.Find("Default/Standard", "VERTEX");
-        this.#fragment = fragmentShader ?? Shader.Find("Default/Standard", "FRAGMENT");
+        this.#shader = shader ?? Shader.Find("Default/Unlit");
         
         const gl = this.#gl;
         
@@ -61,15 +54,15 @@ class Material
         
         const program = this.#program;
         
-        gl.attachShader(program, this.#vertex.shader);
-        gl.attachShader(program, this.#fragment.shader);
+        gl.attachShader(program, this.#shader.vertex);
+        gl.attachShader(program, this.#shader.fragment);
         
         gl.linkProgram(program);
         
         if (!gl.getProgramParameter(program, gl.LINK_STATUS))
         {
-            const vErr = gl.getShaderInfoLog(this.#vertex.shader);
-            const fErr = gl.getShaderInfoLog(this.#fragment.shader);
+            const vErr = gl.getShaderInfoLog(this.#shader.vertex);
+            const fErr = gl.getShaderInfoLog(this.#shader.fragment);
             
             console.error(`Shader Errors:\n${(vErr === "" ? "" : `Vertex:\n${vErr}`)}${((vErr === "" || fErr === "") ? "" : "\n\n")}${(fErr === "" ? "" : `Fragment:\n${fErr}`)}`);
         }
@@ -111,8 +104,8 @@ class Material
             ));
         }
         
-        gl.detachShader(program, this.#vertex.shader);
-        gl.detachShader(program, this.#fragment.shader);
+        gl.detachShader(program, this.#shader.vertex);
+        gl.detachShader(program, this.#shader.fragment);
     }
     
     #GetGLType (value)
@@ -324,7 +317,7 @@ class Material
     
     Duplicate ()
     {
-        const output = new Material(this.#vertex, this.#fragment);
+        const output = new Material(this.#shader);
         const types = new Map([
             ["BOOL", "Boolean"],
             ["INT", "Int"],

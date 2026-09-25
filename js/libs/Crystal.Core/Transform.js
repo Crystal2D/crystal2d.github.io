@@ -185,7 +185,7 @@ class Transform extends Component
 
         if (this.gameObject != null)
         {
-            this.GetComponent(Renderer)?.RecalcBounds();
+            this.GetComponent(RendererBase)?.RecalcBounds();
             this.GetComponent(Camera)?.RecalcBounds();
         }
         

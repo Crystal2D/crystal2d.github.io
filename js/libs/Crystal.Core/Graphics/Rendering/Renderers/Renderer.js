@@ -1,9 +1,9 @@
-class Renderer extends Component
+class Renderer extends RendererBase
 {
     static sortingAxis = Vector2.zero;
 
     #loaded = false;
-    #updatedMaterial = false;
+    #newMaterial = true;
     #tintColor = Color.clear;
     
     #material = null;
@@ -11,32 +11,13 @@ class Renderer extends Component
     
     uMatrixID = 0;
     geometryBufferID = 0;
-    textureBufferID = 0;
     colorBufferID = 0;
     aVertexPosID = 0;
-    aTexturePosID = 0;
     aColorID = 0;
-    sortingLayer = 0;
-    sortingOrder = 0;
-    
-    color = Color.white;
-    sortingAxisOffset = Vector2.zero;
-    renderMatrix = new Matrix3x3();
-    onMeshUpdate = new DelegateEvent();
     
     get isLoaded ()
     {
         return this.#loaded;
-    }
-    
-    get meshChanged ()
-    {
-        return false;
-    }
-    
-    get bounds ()
-    {
-        return new Bounds();
     }
     
     get material ()
@@ -46,20 +27,17 @@ class Renderer extends Component
     
     set material (value)
     {
+        if (this.#materialOld === value) return;
+        
         this.#material = value.Duplicate();
-        this.#updatedMaterial = true;
+        this.#newMaterial = true;
         
         this.Reload();
     }
 
-    get localToWorldMatrix ()
-    {
-        return Matrix3x3.identity;
-    }
-
     get updatedMaterial ()
     {
-        return this.#updatedMaterial;
+        return this.#newMaterial;
     }
 
     get tint ()
@@ -87,46 +65,31 @@ class Renderer extends Component
         this.#material = material?.Duplicate() ?? new Material();
     }
     
-    Reload ()
+    async Reload ()
     {
-        if (this.#materialOld === this.#material) return;
+        if (this.#newMaterial)
+        {
+            this.material?.Unload();
 
-        this.#updatedMaterial = false;
+            this.#materialOld = this.#material;
 
-        this.material?.Unload();
+            this.uMatrixID = this.material.GetPropertyNameID("uMatrix");
+            this.material.SetMatrix(this.uMatrixID,
+                1, 0, 0,
+                0, 1, 0,
+                0, 0, 1
+            );
+            
+            this.geometryBufferID = this.material.AddBuffer("geometry", null, 2);
+            this.colorBufferID = this.material.AddBuffer("color", null, 4);
 
-        this.#materialOld = this.#material;
-        
-        this.material.SetSampler2D("uSampler", 0);
+            this.aVertexPosID = this.material.GetAttributeNameID("aVertexPos");
+            this.aColorID = this.material.GetAttributeNameID("aColor");
+        }
 
-        this.uMatrixID = this.material.GetPropertyNameID("uMatrix");
-        
-        this.geometryBufferID = this.material.AddBuffer("geometry", null, 2);
-        this.textureBufferID = this.material.AddBuffer("texture", null, 2);
-        this.colorBufferID = this.material.AddBuffer("color", null, 4);
+        await this._OnLoad();
 
-        this.aVertexPosID = this.material.GetAttributeNameID("aVertexPos");
-        this.aTexturePosID = this.material.GetAttributeNameID("aTexturePos");
-        this.aColorID = this.material.GetAttributeNameID("aColor");
-        
+        this.#newMaterial = false;
         this.#loaded = true;
     }
-
-    RecalcBounds ()
-    {
-        const min = this.bounds.min;
-        const max = this.bounds.max;
-        const rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
-
-        this.gameObject?.scene.tree?.Relocate(this.gameObject, rect);
-    }
-
-    ForceMeshUpdate ()
-    {
-        this.onMeshUpdate.Invoke();
-        
-        this.RecalcBounds();
-    }
-    
-    Render () { }
 }

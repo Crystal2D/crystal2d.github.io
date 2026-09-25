@@ -7,7 +7,7 @@ class Color
 
     static get black ()
     {
-        return new Color();
+        return new Color(0, 0, 0);
     }
 
     static get white ()

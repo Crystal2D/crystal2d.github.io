@@ -62,7 +62,7 @@ Object.prototype.Instantiate = async function (obj, parent, transform, rotation,
 
     gameObj.scene = scene;
 
-    const renderer = gameObj.GetComponent(Renderer);
+    const renderer = gameObj.GetComponent(RendererBase);
 
     Object.InstantiationQueue.Add(() => {
         if (renderer != null)

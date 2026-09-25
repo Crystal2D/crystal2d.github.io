@@ -223,7 +223,7 @@ class PlayerLoop
             // UpdateAllRenderers
             if (!this.#crashed && this.#playing)
             {
-                const renderers = GameObject.FindComponents(Renderer);
+                const renderers = GameObject.FindComponents(RendererBase);
                 for (let i = 0; i < renderers.length; i++) if (renderers[i].meshChanged) renderers[i].ForceMeshUpdate();
 
                 this.onAfterMeshUpdate.Invoke();

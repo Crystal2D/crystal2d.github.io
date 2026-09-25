@@ -156,7 +156,7 @@ class Camera extends Behavior
         const sortingDir = this.#sortingDir;
 
         const objs = this.gameObject.scene.tree.Find(Rect.MinMaxRect(min.x, min.y, max.x, max.y))
-            .map(item => item.GetComponent(Renderer))
+            .map(item => item.GetComponent(RendererBase))
             .filter(item => item.isLoaded && item.gameObject.activeInHierarchy)
             .sort((a, b) => {
                 const aPos = Vector2.Add(a.transform.position, a.sortingAxisOffset);

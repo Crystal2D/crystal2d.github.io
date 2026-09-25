@@ -500,7 +500,7 @@ class CrystalEngine
             this.#buildData = await buildResponse.json();
             
             this.#buildData.libs.unshift("Crystal.Core");
-            this.#buildData.shaders.unshift("vertex", "fragment");
+            this.#buildData.shaders.unshift("unlit");
 
             const loadEnd = this.#buildData.libs.length + this.#buildData.shaders.length + this.#buildData.resources.length;
             let loadCount = 0;

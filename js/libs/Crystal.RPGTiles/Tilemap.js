@@ -1,4 +1,4 @@
-class Tilemap extends Renderer
+class Tilemap extends TexturedRenderer
 {
     #loaded = false;
     #meshChanged = true;
@@ -345,20 +345,19 @@ class Tilemap extends Renderer
             gl.drawArrays(gl.TRIANGLE_STRIP, renderset.indexes[i], renderset.trisCounts[i]);
         }
 
+        gl.bindTexture(gl.TEXTURE_2D, null);
         gl.useProgram(null);
 
         gl.flush();
     }
 
-    Reload ()
+    _OnLoad ()
     {
-        const updatedMaterial = this.updatedMaterial;
-
-        super.Reload();
+        super._OnLoad();
 
         this.#rendersets.forEach(item => item.SetMaterial(this.material));
 
-        if (updatedMaterial)
+        if (this.updatedMaterial)
         {
             if (this.#sprite != null)
             {
@@ -452,9 +451,8 @@ class Tilemap extends Renderer
         
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.#sprite.texture.GetNativeTexture());
-        
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 5);
-        
+        gl.bindTexture(gl.TEXTURE_2D, null);
         gl.useProgram(null);
     }
 
