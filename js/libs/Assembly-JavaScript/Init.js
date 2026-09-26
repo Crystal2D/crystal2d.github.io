@@ -52,6 +52,8 @@ class Init extends GameBehavior
 
         Loader.ReadyLoader();
         Loader.Ready(2);
+        
+        Loader.keepTime = true;
 
         (async () => {
             await RPGSave.Init();

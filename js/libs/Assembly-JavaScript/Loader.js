@@ -79,12 +79,10 @@ class Loader extends GameBehavior
     {
         this.#spr = this.GetComponent(SpriteRenderer);
 
-        if (!keepTime)
-        {
-            Loader.time = 0;
-            his.#spr.color.a = 0;
-        }
-        else keepTime = false;
+        if (!Loader.keepTime) Loader.time = 0;
+        else Loader.keepTime = false;
+
+        this.#spr.color.a = Math.min((Loader.time - 0.3333) * 2, 1);
 
         Loader.onSwitchStart.Invoke();
     }

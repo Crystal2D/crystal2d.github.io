@@ -10,9 +10,6 @@ class TitleScreen extends ChoiceBox
     {
         super.Start();
 
-        // Loader.Switch(3);
-        // return;
-
         this.AddChoice(LocaleManager.Find("title_start"), () => this.Close(() => {
             AudioManager.instance.FadeOutBGM(1);
             Transitioner.instance.FadeOut(() => Loader.Switch(3));
@@ -23,8 +20,18 @@ class TitleScreen extends ChoiceBox
         }));
 
         const options = GameObject.Find("options").GetComponent(Options);
-
         this.AddChoice(LocaleManager.Find("title_options"), () => this.Close(() => options.Open()));
+
+        if (Application.isInElectron || Application.isInCordova || window.opener != null)
+        {
+            this.transform.localPosition = new Vector2(this.transform.localPosition.x, 1.64);
+
+            this.AddChoice(LocaleManager.Find("title_quit"), () => {
+                AudioManager.instance.FadeOutBGM(1);
+                Transitioner.instance.FadeOut(() => Application.Quit());
+            });
+        }
+
         this.padding = new Vector2(0.375, 0);
 
         const hasSave = RPGSave.global.find(item => item != null) != null;
