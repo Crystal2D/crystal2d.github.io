@@ -6853,10 +6853,10 @@ class EventSystem
     {
         await new Promise(resolve => {
             const callback = () => {
-                Transitioner.instance.onTintOut.Remove(callback);
+                Player.instance.onTransfer.Remove(callback);
                 resolve();
             };
-            Transitioner.instance.onTintOut.Add(callback);
+            Player.instance.onTransfer.Add(callback);
         });
     }
 

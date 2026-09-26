@@ -13,6 +13,7 @@ class Player extends RPGMovement
 
     animateIdle = false;
     avoidInputs = true;
+    onTransfer = new DelegateEvent();
 
     Start ()
     {
@@ -216,6 +217,8 @@ class Player extends RPGMovement
 
             await EventSystem.TransferEvent(lastScene, MapTransfer.last.scene, 2);
             this.avoidInputs = false;
+
+            await this.onTransfer.Invoke();
         };
         Loader.onSwitchEnd.Add(transCall);
 
@@ -225,8 +228,6 @@ class Player extends RPGMovement
     async #Interact ()
     {
         if (this.#keyTransfer != null) await this.#Transfer(1);
-
-        console.log(this.#keyInteractable);
 
         if (this.#keyInteractable == null) return;
 
