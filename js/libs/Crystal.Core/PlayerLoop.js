@@ -323,7 +323,9 @@ class PlayerLoop
             {
                 this.#quitState = 2;
                 await Application.Unload();
-                window.close();
+
+                if (Application.isInCordova) navigator.app.exitApp();
+                else window.close();
             
                 return;
             }

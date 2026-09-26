@@ -2,6 +2,7 @@
 // just to mimic how dep's og engine did stuff
 class InputManager extends GameBehavior
 {
+    static disableTouch = false;
     static instance = null;
 
     #touchEnabled = true;
@@ -200,7 +201,7 @@ class InputManager extends GameBehavior
         this.instance.Clear();
     }
 
-    #SetTouch (state)
+    SetTouch (state)
     {
         if (this.#touchEnabled === state) return;
 
@@ -296,7 +297,7 @@ class InputManager extends GameBehavior
         this.#shiftBtn.horizontalOrigin = HUIOriginX.Right;
         this.#shiftBtn.verticalOrigin = HUIOriginY.Bottom;
 
-        if (!Application.isMobilePlatform) this.#SetTouch(false);
+        if (!Application.isMobilePlatform) this.SetTouch(false);
 
         this.#keys = [
             new this.#Key("up"),
@@ -399,12 +400,11 @@ class InputManager extends GameBehavior
     {
         if (!this.#touchEnabled)
         {
-            if (Input.touchCount > 0) this.#SetTouch(true);
-
+            if (!InputManager.disableTouch && Input.touchCount > 0) this.SetTouch(true);
             return;
         }
 
-        if (Input.anyKeyDown || GamepadInput.anyKey) this.#SetTouch(false);
+        if (InputManager.disableTouch || Input.anyKeyDown || GamepadInput.anyKey) this.SetTouch(false);
 
         if (this.#upBtn.pressed) this.#dpad.texture = this.#textures[1];
         else if (this.#downBtn.pressed) this.#dpad.texture = this.#textures[2];

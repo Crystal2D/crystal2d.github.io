@@ -27,6 +27,8 @@ class TitleScreen extends ChoiceBox
             this.transform.localPosition = new Vector2(this.transform.localPosition.x, 1.64);
 
             this.AddChoice(LocaleManager.Find("title_quit"), () => {
+                InputManager.disableTouch = true;
+
                 AudioManager.instance.FadeOutBGM(1);
                 Transitioner.instance.FadeOut(() => Application.Quit());
             });
