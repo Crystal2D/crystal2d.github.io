@@ -33,7 +33,7 @@ class Input
 
     static get touches ()
     {
-        return [...this.#touches];
+        return this.#touches.map(item => item.Duplicate());
     }
 
     static get anyKey ()
@@ -373,11 +373,11 @@ class Input
         document.addEventListener("touchcancel", event => {
             if (!PlayerLoop.isPlaying || this.#terminated) return;
 
-            event.preventDefault();
+            if (event.cancelable) event.preventDefault();
             GameWindow.Wake();
 
             this.#nativeTouches = event.touches;
-        });
+        }, { passive: false });
 
         GamepadInput.Init();
     }
@@ -588,6 +588,6 @@ class Input
 
     static GetTouch (index)
     {
-        return this.#touches[index];
+        return this.#touches[index]?.Duplicate();
     }
 }
